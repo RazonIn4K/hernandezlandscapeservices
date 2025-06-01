@@ -32,6 +32,17 @@
             background-size: cover;
         }
         
+        /* Mobile optimization for hero background */
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/hero_mobile.jpg');
+                background-attachment: scroll; /* Disable parallax on mobile for better performance */
+                background-position: center center;
+                background-size: cover;
+                min-height: 100vh;
+            }
+        }
+        
         /* Floating animation for Call To Action buttons */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -631,19 +642,28 @@
                     <div class="bg-white text-gray-800 p-6 rounded-lg">
                         <h3 class="text-2xl font-bold mb-4">Request a Free Quote</h3>
                         
-                        <form id="contactForm">
+                        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
                             <div class="space-y-4">
+                                <!-- Web3Forms Access Key -->
+                                <input type="hidden" name="access_key" value="61e8b0ea-97d8-434c-8c2d-e54a44a63743">
+                                
+                                <!-- Email Subject -->
+                                <input type="hidden" name="subject" value="New Quote Request - Hernandez Landscape Services">
+                                
+                                <!-- Success Page (optional) -->
+                                <input type="hidden" name="from_name" value="Website Quote Form">
+                                
                                 <label for="contactName" class="sr-only">Your Name</label>
-                                <input type="text" id="contactName" placeholder="Your Name" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                                <input type="text" id="contactName" name="name" placeholder="Your Name" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
                                 
                                 <label for="contactPhone" class="sr-only">Phone Number</label>
-                                <input type="tel" id="contactPhone" placeholder="Phone Number" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Enter a 10-digit phone number (e.g., 8155011478)" required>
+                                <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Enter a 10-digit phone number (e.g., 8155011478)" required>
                                 
                                 <label for="contactEmail" class="sr-only">Email (optional)</label>
-                                <input type="email" id="contactEmail" placeholder="Email (optional)" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600">
+                                <input type="email" id="contactEmail" name="email" placeholder="Email (optional)" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600">
                                 
                                 <label for="contactService" class="sr-only">Select Service Needed</label>
-                                <select id="contactService" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                                <select id="contactService" name="service" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
                                     <option value="">Select Service Needed</option>
                                     <option>Lawn Care</option>
                                     <option>Tree Service</option>
@@ -653,7 +673,10 @@
                                 </select>
                                 
                                 <label for="projectDetails" class="sr-only">Tell us about your project...</label>
-                                <textarea id="projectDetails" placeholder="Tell us about your project..." rows="4" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required></textarea>
+                                <textarea id="projectDetails" name="message" placeholder="Tell us about your project..." rows="4" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required></textarea>
+                                
+                                <!-- Honeypot Spam Protection -->
+                                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                                 
                                 <button type="submit" class="w-full bg-green-600 text-white py-3 rounded font-bold hover:bg-green-700 transition">
                                     Send Quote Request
@@ -819,8 +842,8 @@
             document.getElementById('quoteResult').classList.remove('hidden');
         }
 
-        // Contact Form Handler: Prevents default submission and shows a success message
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+        // Contact Form Handler with Web3Forms integration
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault(); // Stop default form submission
 
             // Basic client-side validation for contact form
@@ -841,17 +864,37 @@
                 return;
             }
 
-            // Simulate form submission (e.g., send data to a server)
-            console.log('Form submitted:', {
-                name: contactName.value,
-                phone: contactPhone.value,
-                email: document.getElementById('contactEmail').value,
-                service: contactService.value,
-                details: projectDetails.value
-            });
+            // Show loading state
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-            showModal('Thank you for your interest! We will call you within 24 hours.');
-            this.reset(); // Clear the form fields after successful submission
+            // Prepare form data for Web3Forms
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showModal('Thank you for your interest! We will call you within 24 hours.');
+                    this.reset();
+                } else {
+                    showModal('There was an error sending your request. Please call us at 815-501-1478.');
+                }
+            } catch (error) {
+                console.error('Form submission error:', error);
+                showModal('There was an error sending your request. Please call us at 815-501-1478.');
+            } finally {
+                // Restore button state
+                button.disabled = false;
+                button.textContent = originalText;
+            }
         });
 
         // Back to Top button functionality
