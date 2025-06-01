@@ -7,244 +7,868 @@
     <meta name="description" content="Professional landscaping and tree services in DeKalb, IL. Licensed and insured. Free estimates. Call 815-501-1478">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Base font styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hero section background with parallax effect */
+        .hero-bg {
+            /* Using Wideshot_Bestlandscape_Person.jpg for the hero background */
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/Wideshot_Bestlandscape_Person.jpeg');
+            background-attachment: fixed; /* Creates the parallax effect */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Floating animation for Call To Action buttons */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Before/After Slider specific styles */
+        .before-after-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Max width for the slider */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 0.5rem; /* Rounded corners for the container */
+        }
+        .before-after-slider {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Fixed height for the slider */
+        }
+        .before-after-slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images cover the area without distortion */
+        }
+        .after-image {
+            /* clip-path property is dynamically controlled by JavaScript for the slider effect */
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        }
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: white;
+            cursor: ew-resize; /* Cursor indicates horizontal resizing */
+            transform: translateX(-50%);
+            z-index: 10; /* Ensure handle is above images */
+        }
+        .slider-handle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Subtle shadow for the handle */
+        }
+        
+        /* Service card hover effects for visual feedback */
+        .service-card {
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+        }
+        .service-card:hover {
+            transform: translateY(-10px); /* Lifts the card on hover */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Adds a larger shadow on hover */
+        }
+        
+        /* Testimonial slider styles */
+        .testimonial-slider {
+            overflow: hidden; /* Hides overflowing slides */
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease; /* Smooth transition for sliding testimonials */
+        }
+        .testimonial-slide {
+            min-width: 100%; /* Each slide takes full width of its container */
+            padding: 0 20px;
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+        
+        /* Loading animation for quote form (if implemented with async calls) */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #22c55e; /* Green color for the loader */
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite; /* Spin animation */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Sticky header shadow on scroll */
+        .header-scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adds shadow when scrolled */
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* High z-index to appear on top */
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        /* Back to Top button styles */
+        #backToTopBtn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #22c55e;
+            color: white;
+            padding: 1rem;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 999;
+            opacity: 0; /* Hidden by default */
+            visibility: hidden;
+            cursor: pointer;
+        }
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
 </head>
-<body>
-    <!-- Header -->
-    <header class="bg-green-800 text-white sticky top-0 z-50 shadow-lg">
+<body class="bg-gray-50">
+    
+    <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
-                <div>
-                    <h1 class="text-2xl font-bold">Hernandez Landscape & Tree Service LLC</h1>
-                    <p class="text-sm">Licensed & Insured • DeKalb, IL</p>
+                <div class="flex items-center space-x-4">
+                    <img src="hernandez_images/Logo.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain">
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">Hernandez Landscape & Tree Service</h1>
+                        <p class="text-xs text-gray-600">Licensed & Insured • LLC #13934835</p>
+                    </div>
                 </div>
-                <div class="text-right">
-                    <p class="text-sm">Free Estimates</p>
-                    <a href="tel:815-501-1478" class="text-xl font-bold hover:text-green-200">
+                
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="#services" class="text-gray-700 hover:text-green-600 transition">Services</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-green-600 transition">Our Work</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-green-600 transition">Reviews</a>
+                    <a href="#service-area" class="text-gray-700 hover:text-green-600 transition">Service Area</a>
+                    <a href="#quote" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">
+                        Get Free Quote
+                    </a>
+                    <a href="tel:815-501-1478" class="text-green-600 font-bold text-lg hover:text-green-700">
                         <i class="fas fa-phone"></i> (815) 501-1478
                     </a>
                 </div>
+                
+                <button class="lg:hidden text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
             </nav>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-green-600" onclick="toggleMobileMenu()">Services</a>
+                <a href="#gallery" class="block text-gray-700 hover:text-green-600" onclick="toggleMobileMenu()">Our Work</a>
+                <a href="#testimonials" class="block text-gray-700 hover:text-green-600" onclick="toggleMobileMenu()">Reviews</a>
+                <a href="#service-area" class="block text-gray-700 hover:text-green-600" onclick="toggleMobileMenu()">Service Area</a>
+                <a href="#quote" class="block bg-green-600 text-white text-center py-2 rounded" onclick="toggleMobileMenu()">Get Free Quote</a>
+                <a href="tel:815-501-1478" class="block text-green-600 font-bold text-center">
+                    <i class="fas fa-phone"></i> (815) 501-1478
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-green-700 text-white py-20">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-5xl font-bold mb-4">
-                Beautiful Landscapes.<br>
-                <span class="text-green-200">Reliable Service.</span>
+    <section class="hero-bg min-h-screen flex items-center relative mt-16">
+        <div class="container mx-auto px-4 text-center text-white relative z-10">
+            <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                Transform Your<br>
+                <span class="text-green-400">Outdoor Space</span>
             </h2>
-            <p class="text-xl mb-8">
-                Serving DeKalb and Surrounding Areas Since 2023
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+                Professional landscaping and tree services in DeKalb County. 
+                Family-owned, fully insured, and committed to excellence.
             </p>
-            <div class="space-x-4">
-                <a href="tel:815-501-1478" 
-                   class="bg-white text-green-800 px-8 py-4 rounded-lg text-xl font-bold inline-block hover:bg-green-100 transition">
-                   <i class="fas fa-phone"></i> Call for Free Quote
+            
+            <div class="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
+                <a href="#instant-quote" class="floating bg-green-600 text-white px-8 py-4 rounded-full text-xl font-bold inline-block hover:bg-green-700 transition shadow-lg">
+                    <i class="fas fa-calculator"></i> Get Instant Quote
                 </a>
-                <a href="#contact" 
-                   class="bg-green-900 text-white px-8 py-4 rounded-lg text-xl font-bold inline-block hover:bg-green-800 transition">
-                   <i class="fas fa-envelope"></i> Contact Us
+                <a href="tel:815-501-1478" class="bg-white text-green-800 px-8 py-4 rounded-full text-xl font-bold inline-block hover:bg-gray-100 transition shadow-lg">
+                    <i class="fas fa-phone"></i> Call Now
                 </a>
             </div>
+            
+            <div class="mt-12 flex flex-wrap justify-center gap-8 text-sm">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-shield-alt text-green-400 text-2xl"></i>
+                    <span>Fully Insured</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-award text-green-400 text-2xl"></i>
+                    <span>Licensed LLC</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-users text-green-400 text-2xl"></i>
+                    <span>Family Owned</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-language text-green-400 text-2xl"></i>
+                    <span>Se Habla Español</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="py-16 bg-gray-50">
+    <section id="instant-quote" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Our Services</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Lawn Care -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition">
-                    <div class="text-5xl mb-4 text-green-600">
-                        <i class="fas fa-grass"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Lawn Care</h3>
-                    <ul class="text-left text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Weekly mowing & edging</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Fertilization programs</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Weed control</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Aeration & overseeding</li>
-                    </ul>
-                </div>
-
-                <!-- Tree Service -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition">
-                    <div class="text-5xl mb-4 text-green-600">
-                        <i class="fas fa-tree"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Tree Service</h3>
-                    <ul class="text-left text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Tree trimming & pruning</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Tree removal</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Stump grinding</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Emergency service</li>
-                    </ul>
-                </div>
-
-                <!-- Landscaping -->
-                <div class="bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition">
-                    <div class="text-5xl mb-4 text-green-600">
-                        <i class="fas fa-seedling"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3">Landscaping</h3>
-                    <ul class="text-left text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Garden design & installation</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Mulch & rock installation</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Sod installation</li>
-                        <li><i class="fas fa-check text-green-600 mr-2"></i>Spring/Fall cleanup</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Additional Services -->
-            <div class="mt-12 text-center">
-                <h3 class="text-2xl font-bold mb-4">Also Available:</h3>
-                <div class="flex flex-wrap justify-center gap-4 text-gray-700">
-                    <span class="bg-green-100 px-4 py-2 rounded-full">
-                        <i class="fas fa-snowflake text-blue-500 mr-2"></i>Snow Removal
-                    </span>
-                    <span class="bg-green-100 px-4 py-2 rounded-full">
-                        <i class="fas fa-leaf text-orange-500 mr-2"></i>Leaf Removal
-                    </span>
-                    <span class="bg-green-100 px-4 py-2 rounded-full">
-                        <i class="fas fa-home text-brown-500 mr-2"></i>Gutter Cleaning
-                    </span>
-                    <span class="bg-green-100 px-4 py-2 rounded-full">
-                        <i class="fas fa-tools text-gray-500 mr-2"></i>Pressure Washing
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Service Areas -->
-    <section class="py-16 bg-green-800 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-8">Proudly Serving DeKalb County</h2>
-            <div class="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
-                <div>
-                    <h4 class="font-bold mb-2">Primary Service Area:</h4>
-                    <ul class="space-y-1">
-                        <li>DeKalb</li>
-                        <li>Sycamore</li>
-                        <li>Cortland</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-2">Also Serving:</h4>
-                    <ul class="space-y-1">
-                        <li>Malta</li>
-                        <li>Genoa</li>
-                        <li>Kingston</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-2">Extended Area:</h4>
-                    <ul class="space-y-1">
-                        <li>Rochelle</li>
-                        <li>Hinckley</li>
-                        <li>Waterman</li>
-                    </ul>
-                </div>
-            </div>
-            <p class="mt-8 text-lg">
-                <i class="fas fa-map-marker-alt"></i> Located at 1029 Lewis St, DeKalb, IL 60115
-            </p>
-        </div>
-    </section>
-
-    <!-- Why Choose Us -->
-    <section class="py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Why Choose Hernandez Landscape?</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl mb-4 text-green-600">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Licensed & Insured</h3>
-                    <p class="text-gray-600">LLC #13934835<br>Fully insured for your protection</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl mb-4 text-green-600">
-                        <i class="fas fa-dollar-sign"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Free Estimates</h3>
-                    <p class="text-gray-600">No obligation quotes<br>Competitive pricing</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl mb-4 text-green-600">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Family Owned</h3>
-                    <p class="text-gray-600">Local business<br>Personal service</p>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl mb-4 text-green-600">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Quality Work</h3>
-                    <p class="text-gray-600">Attention to detail<br>Customer satisfaction</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Get Your Free Estimate</h2>
-            <div class="max-w-2xl mx-auto text-center">
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold mb-6">Contact Us Today!</h3>
+            <h2 class="text-4xl font-bold text-center mb-12">Get Your Instant Estimate</h2>
+            
+            <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg">
+                <form id="quoteForm">
                     <div class="space-y-4">
-                        <a href="tel:815-501-1478" class="block bg-green-600 text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-green-700 transition">
-                            <i class="fas fa-phone mr-2"></i> (815) 501-1478
+                        <div>
+                            <label for="serviceType" class="block text-gray-700 font-semibold mb-2">Service Type</label>
+                            <select id="serviceType" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" required>
+                                <option value="">Select a service...</option>
+                                <option value="lawn">Lawn Mowing (Weekly)</option>
+                                <option value="tree">Tree Service</option>
+                                <option value="landscaping">Landscaping Design</option>
+                                <option value="cleanup">Spring/Fall Cleanup</option>
+                                <option value="snow">Snow Removal</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="propertySize" class="block text-gray-700 font-semibold mb-2">Property Size</label>
+                            <select id="propertySize" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" required>
+                                <option value="">Select size...</option>
+                                <option value="small">Small (< 5,000 sq ft)</option>
+                                <option value="medium">Medium (5,000 - 10,000 sq ft)</option>
+                                <option value="large">Large (10,000 - 20,000 sq ft)</option>
+                                <option value="xlarge">Extra Large (> 20,000 sq ft)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="zipCode" class="block text-gray-700 font-semibold mb-2">Your ZIP Code</label>
+                            <input type="text" id="zipCode" placeholder="e.g., 60115" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" pattern="^\d{5}(?:[-\s]\d{4})?$" title="Enter a valid 5-digit ZIP code" required>
+                        </div>
+                        
+                        <button type="button" onclick="calculateQuote()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition">
+                            Calculate Estimate
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="quoteResult" class="hidden mt-6 p-6 bg-green-50 rounded-lg">
+                    <h3 class="text-2xl font-bold text-green-800 mb-2">Estimated Price Range:</h3>
+                    <p class="text-3xl font-black text-green-600" id="priceRange">$0 - $0</p>
+                    <p class="text-gray-700 mt-2">This is an estimate. Final price depends on specific requirements and on-site assessment.</p>
+                    <a href="tel:815-501-1478" class="mt-4 inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition">
+                        <i class="fas fa-phone"></i> Call for Exact Quote
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Our Professional Services</h2>
+                <p class="text-xl text-gray-600">Quality work, competitive prices, satisfaction guaranteed</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 bg-green-600 flex items-center justify-center">
+                        <img src="hernandez_images/After1.jpeg" alt="Lawn care service, perfectly mowed lawn" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Lawn Care</h3>
+                        <ul class="text-gray-600 space-y-2 mb-4">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Weekly mowing & edging</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Fertilization programs</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Weed control</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Aeration & overseeding</li>
+                        </ul>
+                        <a href="#quote" class="text-green-600 font-semibold hover:text-green-700">
+                            Get Quote <i class="fas fa-arrow-right"></i>
                         </a>
-                        <p class="text-gray-600">
-                            <strong>Business Hours:</strong><br>
-                            Monday - Friday: 7:00 AM - 6:00 PM<br>
-                            Saturday: 8:00 AM - 4:00 PM<br>
-                            Sunday: Closed
-                        </p>
-                        <p class="text-gray-600">
-                            <strong>Email:</strong> hernandezlandscapetreeservices@gmail.com
-                        </p>
-                        <p class="text-gray-600">
-                            <strong>Service Area:</strong> DeKalb County and surrounding areas
+                    </div>
+                </div>
+                
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 bg-green-700 flex items-center justify-center">
+                        <img src="hernandez_images/IMG_9256.jpeg" alt="Tree service with truck and equipment" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Tree Service</h3>
+                        <ul class="text-gray-600 space-y-2 mb-4">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Tree trimming & pruning</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Safe tree removal</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Stump grinding</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>24/7 emergency service</li>
+                        </ul>
+                        <a href="#quote" class="text-green-600 font-semibold hover:text-green-700">
+                            Get Quote <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 bg-green-800 flex items-center justify-center">
+                        <img src="hernandez_images/Wideshot_Bestlandscape.png" alt="Landscaping design, well-maintained front yard" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3">Landscaping</h3>
+                        <ul class="text-gray-600 space-y-2 mb-4">
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Custom garden design</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Mulch & rock installation</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Sod installation</li>
+                            <li><i class="fas fa-check text-green-600 mr-2"></i>Seasonal cleanup</li>
+                        </ul>
+                        <a href="#quote" class="text-green-600 font-semibold hover:text-green-700">
+                            Get Quote <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-green-600 text-white p-6 rounded-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center">Also Available:</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="bg-white/20 px-4 py-2 rounded-full">
+                        <i class="fas fa-snowflake mr-2"></i>Snow Removal
+                    </span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full">
+                        <i class="fas fa-leaf mr-2"></i>Leaf Removal
+                    </span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full">
+                        <i class="fas fa-home mr-2"></i>Gutter Cleaning
+                    </span>
+                    <span class="bg-white/20 px-4 py-2 rounded-full">
+                        <i class="fas fa-spray-can mr-2"></i>Pressure Washing
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">See The Difference We Make</h2>
+                <p class="text-xl text-gray-600">Drag the slider to see our transformations</p>
+            </div>
+            
+            <div class="before-after-container mb-12">
+                <div class="before-after-slider" id="beforeAfterSlider">
+                    <img src="hernandez_images/Before1.jpeg" alt="Before lawn service, overgrown and messy" class="before-image">
+                    <img src="hernandez_images/After1.jpeg" alt="After lawn service, clean and manicured" class="after-image">
+                    <div class="slider-handle" id="sliderHandle"></div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                    <img src="hernandez_images/Wideshot_Bestlandscape2.jpeg" alt="Completed yard makeover project, house with new landscaping" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold">Complete Yard Makeover</h4>
+                            <p>DeKalb Residence</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                    <img src="hernandez_images/IMG_9256.jpeg" alt="Professional tree trimming with work truck visible" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold">Professional Tree Trimming</h4>
+                            <p>Sycamore Commercial</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-lg shadow-lg">
+                    <img src="hernandez_images/IMG_9259.jpeg" alt="Custom garden design, neat lawn and bushes" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <h4 class="font-bold">Custom Garden Design</h4>
+                            <p>Cortland Home</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition" aria-label="See more projects on Facebook">
+                    <i class="fab fa-facebook mr-2"></i> See More on Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="testimonial-slider relative">
+                    <div class="testimonial-track" id="testimonialTrack">
+                        <div class="testimonial-slide">
+                            <div class="bg-white p-8 rounded-lg shadow-lg">
+                                <div class="flex mb-4" aria-label="5 star rating">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                                <p class="text-gray-700 mb-4">"Excellent service! They transformed our overgrown yard into a beautiful landscape. Very professional and the price was fair. Highly recommend!"</p>
+                                <p class="font-semibold">- Maria G., DeKalb</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-slide">
+                            <div class="bg-white p-8 rounded-lg shadow-lg">
+                                <div class="flex mb-4" aria-label="5 star rating">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                                <p class="text-gray-700 mb-4">"Fast response for tree removal after the storm. Safe, efficient, and cleaned up everything. Best tree service in the area!"</p>
+                                <p class="font-semibold">- John D., Sycamore</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-slide">
+                            <div class="bg-white p-8 rounded-lg shadow-lg">
+                                <div class="flex mb-4" aria-label="5 star rating">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                                <p class="text-gray-700 mb-4">"They do our weekly lawn maintenance and it always looks perfect. Reliable, affordable, and they speak Spanish which helps my family!"</p>
+                                <p class="font-semibold">- Rosa M., Cortland</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center mt-6 space-x-2">
+                        <button onclick="goToTestimonial(0)" class="w-3 h-3 bg-green-600 rounded-full" aria-label="Go to testimonial 1"></button>
+                        <button onclick="goToTestimonial(1)" class="w-3 h-3 bg-gray-300 rounded-full" aria-label="Go to testimonial 2"></button>
+                        <button onclick="goToTestimonial(2)" class="w-3 h-3 bg-gray-300 rounded-full" aria-label="Go to testimonial 3"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service-area" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Areas We Serve</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Proudly Serving DeKalb County</h3>
+                    <p class="text-gray-700 mb-6">
+                        Based in DeKalb, we provide professional landscaping and tree services 
+                        throughout the county. Fast response times and competitive pricing for all areas.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <h4 class="font-bold text-green-600 mb-2">Primary Areas:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>DeKalb</li>
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Sycamore</li>
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Cortland</li>
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Malta</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-green-600 mb-2">Also Serving:</h4>
+                            <ul class="space-y-1 text-gray-700">
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Genoa</li>
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Kingston</li>
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Rochelle</li>
+                                <li><i class="fas fa-map-marker-alt text-green-600 mr-2"></i>Hinckley</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <p class="text-green-800">
+                            <i class="fas fa-info-circle mr-2"></i>
+                            Not sure if we service your area? Give us a call! We're expanding our service area.
                         </p>
                     </div>
                 </div>
                 
-                <!-- Bilingual Notice -->
-                <div class="mt-8 p-4 bg-green-100 rounded-lg">
-                    <p class="text-green-800">
-                        <i class="fas fa-language mr-2"></i>
-                        Se habla español • We speak Spanish
-                    </p>
+                <div class="bg-gray-100 p-8 rounded-lg">
+                    <div class="aspect-video bg-gray-300 rounded flex items-center justify-center">
+                        <div class="text-center">
+                            <i class="fas fa-map-marked-alt text-6xl text-gray-400 mb-4"></i>
+                            <p class="text-gray-600">Interactive map coming soon</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p class="mb-2">© 2025 Hernandez Landscape & Tree Service LLC</p>
-            <p class="text-sm text-gray-400">Illinois LLC #13934835 • Licensed & Insured</p>
-            <p class="text-sm text-gray-400 mt-2">1029 Lewis St, DeKalb, IL 60115</p>
+    <section id="quote" class="py-16 bg-green-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-12">Ready to Transform Your Property?</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Get in Touch</h3>
+                        
+                        <div class="space-y-4 mb-8">
+                            <a href="tel:815-501-1478" class="flex items-center space-x-3 hover:text-green-200 transition">
+                                <i class="fas fa-phone text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">Call or Text</p>
+                                    <p class="text-xl">(815) 501-1478</p>
+                                </div>
+                            </a>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-envelope text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">Email</p>
+                                    <p>hernandezlandscapetreeservices@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-clock text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">Business Hours</p>
+                                    <p>Mon-Fri: 7AM-6PM</p>
+                                    <p>Saturday: 8AM-4PM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-map-marker-alt text-2xl"></i>
+                                <div>
+                                    <p class="font-semibold">Location</p>
+                                    <p>1029 Lewis St, DeKalb, IL 60115</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <p class="font-semibold mb-3">Follow Us</p>
+                            <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" class="inline-block bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition" aria-label="Visit our Facebook page">
+                                <i class="fab fa-facebook mr-2"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white text-gray-800 p-6 rounded-lg">
+                        <h3 class="text-2xl font-bold mb-4">Request a Free Quote</h3>
+                        
+                        <form id="contactForm">
+                            <div class="space-y-4">
+                                <label for="contactName" class="sr-only">Your Name</label>
+                                <input type="text" id="contactName" placeholder="Your Name" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                                
+                                <label for="contactPhone" class="sr-only">Phone Number</label>
+                                <input type="tel" id="contactPhone" placeholder="Phone Number" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Enter a 10-digit phone number (e.g., 8155011478)" required>
+                                
+                                <label for="contactEmail" class="sr-only">Email (optional)</label>
+                                <input type="email" id="contactEmail" placeholder="Email (optional)" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600">
+                                
+                                <label for="contactService" class="sr-only">Select Service Needed</label>
+                                <select id="contactService" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                                    <option value="">Select Service Needed</option>
+                                    <option>Lawn Care</option>
+                                    <option>Tree Service</option>
+                                    <option>Landscaping</option>
+                                    <option>Snow Removal</option>
+                                    <option>Multiple Services</option>
+                                </select>
+                                
+                                <label for="projectDetails" class="sr-only">Tell us about your project...</label>
+                                <textarea id="projectDetails" placeholder="Tell us about your project..." rows="4" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required></textarea>
+                                
+                                <button type="submit" class="w-full bg-green-600 text-white py-3 rounded font-bold hover:bg-green-700 transition">
+                                    Send Quote Request
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">© 2025 Hernandez Landscape & Tree Service LLC</p>
+                <p class="text-gray-400">Illinois LLC #13934835 • Licensed & Insured</p>
+                <p class="text-gray-400 mt-2">Professional Landscaping Services in DeKalb County</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Add schema markup for local business -->
+    <div id="customModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <p id="modalMessage" class="text-lg font-semibold mb-4 text-gray-800"></p>
+            <button onclick="hideModal()" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <button id="backToTopBtn" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Function to show the custom modal with a message
+        function showModal(message) {
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('customModal').classList.remove('hidden');
+        }
+
+        // Function to hide the custom modal
+        function hideModal() {
+            document.getElementById('customModal').classList.add('hidden');
+        }
+
+        // Sticky header effect: Adds a shadow to the header when scrolled down
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+
+            // Show/hide Back to Top button
+            const backToTopBtn = document.getElementById('backToTopBtn');
+            if (window.scrollY > 300) { // Show button after scrolling 300px
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // Mobile menu toggle: Shows/hides the mobile navigation menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Before/After Slider functionality
+        const slider = document.getElementById('beforeAfterSlider');
+        const handle = document.getElementById('sliderHandle');
+        let isSliding = false; // Flag to track if the slider is being dragged
+
+        // Updates the clip-path of the 'after' image and position of the handle
+        function updateSlider(percentage) {
+            const afterImage = slider.querySelector('.after-image');
+            afterImage.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
+            handle.style.left = percentage + '%';
+        }
+
+        // Event listeners for mouse interaction on the slider handle
+        handle.addEventListener('mousedown', () => isSliding = true);
+        window.addEventListener('mouseup', () => isSliding = false);
+        window.addEventListener('mousemove', (e) => {
+            if (!isSliding) return; // Only process if dragging
+            const rect = slider.getBoundingClientRect(); // Get slider's position and size
+            // Calculate percentage based on mouse X position relative to slider
+            const percentage = ((e.clientX - rect.left) / rect.width) * 100;
+            // Ensure percentage stays within 0-100 range
+            updateSlider(Math.max(0, Math.min(100, percentage)));
+        });
+
+        // Touch support for mobile devices for the slider
+        handle.addEventListener('touchstart', () => isSliding = true);
+        window.addEventListener('touchend', () => isSliding = false);
+        window.addEventListener('touchmove', (e) => {
+            if (!isSliding) return;
+            const rect = slider.getBoundingClientRect();
+            // Use e.touches[0].clientX for touch events
+            const percentage = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
+            updateSlider(Math.max(0, Math.min(100, percentage)));
+        });
+
+        // Testimonial Slider functionality
+        let currentTestimonial = 0;
+        const testimonialTrack = document.getElementById('testimonialTrack');
+        const dots = document.querySelectorAll('.flex.justify-center.mt-6 button');
+        const totalTestimonials = dots.length;
+
+        // Moves the testimonial track to display the selected testimonial
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
+            // Update active dot styling
+            dots.forEach((dot, i) => {
+                dot.className = i === index ? 'w-3 h-3 bg-green-600 rounded-full' : 'w-3 h-3 bg-gray-300 rounded-full';
+            });
+        }
+
+        // Auto-rotate testimonials every 5 seconds
+        setInterval(() => {
+            goToTestimonial((currentTestimonial + 1) % totalTestimonials);
+        }, 5000);
+
+        // Quote Calculator logic
+        function calculateQuote() {
+            const service = document.getElementById('serviceType');
+            const size = document.getElementById('propertySize');
+            const zip = document.getElementById('zipCode');
+            
+            // Basic validation for required fields
+            if (!service.value || !size.value || !zip.value) {
+                showModal('Please select a service type, property size, and enter your ZIP code.');
+                // Add visual feedback to invalid fields
+                if (!service.value) service.classList.add('border-red-500'); else service.classList.remove('border-red-500');
+                if (!size.value) size.classList.add('border-red-500'); else size.classList.remove('border-red-500');
+                if (!zip.value || !zip.checkValidity()) zip.classList.add('border-red-500'); else zip.classList.remove('border-red-500');
+                return;
+            } else {
+                // Remove error styling if fields are valid
+                service.classList.remove('border-red-500');
+                size.classList.remove('border-red-500');
+                zip.classList.remove('border-red-500');
+            }
+
+            // Simple price calculation (this would typically involve backend logic or a more complex lookup)
+            const basePrices = {
+                lawn: { small: 40, medium: 60, large: 80, xlarge: 120 },
+                tree: { small: 200, medium: 350, large: 500, xlarge: 800 },
+                landscaping: { small: 500, medium: 1000, large: 2000, xlarge: 3500 },
+                cleanup: { small: 150, medium: 250, large: 400, xlarge: 600 },
+                snow: { small: 50, medium: 80, large: 120, xlarge: 200 }
+            };
+
+            const basePrice = basePrices[service.value][size.value];
+            const minPrice = Math.floor(basePrice * 0.8); // 80% of base price
+            const maxPrice = Math.floor(basePrice * 1.2); // 120% of base price
+
+            document.getElementById('priceRange').textContent = `$${minPrice} - $${maxPrice}`;
+            document.getElementById('quoteResult').classList.remove('hidden');
+        }
+
+        // Contact Form Handler: Prevents default submission and shows a success message
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop default form submission
+
+            // Basic client-side validation for contact form
+            const contactName = document.getElementById('contactName');
+            const contactPhone = document.getElementById('contactPhone');
+            const contactService = document.getElementById('contactService');
+            const projectDetails = document.getElementById('projectDetails');
+
+            let isValid = true;
+
+            if (!contactName.value) { contactName.classList.add('border-red-500'); isValid = false; } else { contactName.classList.remove('border-red-500'); }
+            if (!contactPhone.value || !contactPhone.checkValidity()) { contactPhone.classList.add('border-red-500'); isValid = false; } else { contactPhone.classList.remove('border-red-500'); }
+            if (!contactService.value) { contactService.classList.add('border-red-500'); isValid = false; } else { contactService.classList.remove('border-red-500'); }
+            if (!projectDetails.value) { projectDetails.classList.add('border-red-500'); isValid = false; } else { projectDetails.classList.remove('border-red-500'); }
+
+            if (!isValid) {
+                showModal('Please fill in all required fields correctly.');
+                return;
+            }
+
+            // Simulate form submission (e.g., send data to a server)
+            console.log('Form submitted:', {
+                name: contactName.value,
+                phone: contactPhone.value,
+                email: document.getElementById('contactEmail').value,
+                service: contactService.value,
+                details: projectDetails.value
+            });
+
+            showModal('Thank you for your interest! We will call you within 24 hours.');
+            this.reset(); // Clear the form fields after successful submission
+        });
+
+        // Back to Top button functionality
+        document.getElementById('backToTopBtn').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // Smooth scroll to the top
+            });
+        });
+    </script>
+
     <script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "LocalBusiness",
         "name": "Hernandez Landscape & Tree Service LLC",
-        "image": "",
+        "image": "hernandez_images/Wideshot_Bestlandscape_Person.jpeg",
         "telephone": "815-501-1478",
         "email": "hernandezlandscapetreeservices@gmail.com",
         "address": {
@@ -270,7 +894,7 @@
             }
         ],
         "priceRange": "$$",
-        "areaServed": ["DeKalb", "Sycamore", "Cortland", "Malta", "Genoa", "Kingston"],
+        "areaServed": ["DeKalb", "Sycamore", "Cortland", "Malta", "Genoa", "Kingston", "Rochelle", "Hinckley"],
         "url": "https://hernandezlandscapeservices.com"
     }
     </script>
