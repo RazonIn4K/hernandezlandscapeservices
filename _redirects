@@ -1,0 +1,13 @@
+# Redirect old WordPress URLs to appropriate sections
+/gallery/*              /#gallery               301
+/gallery                /#gallery               301
+/hello-world/*          /                       301
+/hello-world            /                       301
+/category/*             /                       301
+/2024/*                 /                       301
+/wp-admin/*             /                       301
+/wp-content/*           /                       301
+/wp-includes/*          /                       301
+
+# Redirect any .php files to homepage
+/*.php                  /                       301
