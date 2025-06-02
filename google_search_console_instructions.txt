@@ -1,0 +1,78 @@
+GOOGLE SEARCH CONSOLE SUBMISSION INSTRUCTIONS
+For hernandezlandscapeservices.com
+============================================
+
+PREREQUISITES:
+- Domain must be live and accessible at https://hernandezlandscapeservices.com
+- You need a Google account
+- Access to your domain's DNS settings or ability to upload files to your web server
+
+STEP 1: ACCESS GOOGLE SEARCH CONSOLE
+1. Go to: https://search.google.com/search-console
+2. Sign in with your Google account
+3. Click "Start now" if you're a new user
+
+STEP 2: ADD YOUR PROPERTY
+1. Click "Add property" button
+2. Choose property type:
+   - Domain property: hernandezlandscapeservices.com (recommended)
+   - URL prefix: https://hernandezlandscapeservices.com
+
+STEP 3: VERIFY OWNERSHIP
+Choose one of these verification methods:
+
+A) HTML FILE UPLOAD (Easiest)
+   1. Download the verification HTML file from Google
+   2. Upload it to your website root directory
+   3. Make sure it's accessible at: https://hernandezlandscapeservices.com/google[verification-code].html
+   4. Click "Verify" in Search Console
+
+B) DNS VERIFICATION (For domain property)
+   1. Copy the TXT record provided by Google
+   2. Add it to your domain's DNS settings
+   3. Wait for DNS propagation (can take up to 48 hours)
+   4. Click "Verify" in Search Console
+
+C) HTML TAG
+   1. Copy the meta tag provided
+   2. Add it to the <head> section of your index.html
+   3. Click "Verify" in Search Console
+
+STEP 4: SUBMIT YOUR SITEMAP
+1. After verification, go to "Sitemaps" in the left menu
+2. Enter: sitemap.xml
+3. Click "Submit"
+4. Google will now crawl and index your site
+
+STEP 5: REQUEST INDEXING (Optional but recommended)
+1. Go to "URL Inspection" tool
+2. Enter: https://hernandezlandscapeservices.com
+3. Click "Request indexing" to speed up the process
+
+ADDITIONAL RECOMMENDATIONS:
+1. Monitor Performance
+   - Check back in a few days to see indexing status
+   - Use the Performance report to see search queries and clicks
+
+2. Fix Any Issues
+   - Check Coverage report for any crawling errors
+   - Fix any mobile usability issues
+   - Ensure Core Web Vitals are passing
+
+3. Set Up Analytics
+   - Consider linking Google Analytics for more detailed insights
+   - Set up conversion tracking for contact form submissions
+
+4. Local SEO
+   - Create a Google Business Profile for local visibility
+   - Ensure NAP (Name, Address, Phone) consistency across the web
+
+TIMELINE:
+- Verification: Immediate to 48 hours (depending on method)
+- Initial indexing: 2-7 days
+- Full indexing: 1-4 weeks
+- Ranking improvements: 1-3 months
+
+SUPPORT:
+- Google Search Console Help: https://support.google.com/webmasters
+- Search Console Community: https://support.google.com/webmasters/community
