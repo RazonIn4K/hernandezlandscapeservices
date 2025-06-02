@@ -10,6 +10,8 @@ test_*.js
 !hernandez_images/*.jpeg
 !hernandez_images/*.jpg
 !hernandez_images/*.png
+!favicon*.png
+!apple-touch-icon.png
 
 # Personal/private files
 message_*.txt
