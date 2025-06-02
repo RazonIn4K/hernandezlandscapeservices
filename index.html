@@ -109,6 +109,10 @@
         /* Base font styles */
         body {
             font-family: 'Open Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        html {
+            overflow-x: hidden;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Montserrat', sans-serif;
@@ -155,9 +159,10 @@
             position: relative;
             width: 100%;
             max-width: 600px; /* Max width for the slider */
-            margin: 0 auto;
+            margin: 0 auto 2rem auto; /* Added bottom margin */
             overflow: hidden;
             border-radius: 0.5rem; /* Rounded corners for the container */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Add shadow for separation */
         }
         .before-after-slider {
             position: relative;
@@ -551,8 +556,10 @@
                 <p class="text-xl text-gray-600">Drag the slider to see our transformations</p>
             </div>
             
-            <div class="before-after-container mb-12">
-                <div class="before-after-slider" id="beforeAfterSlider">
+            <!-- Before/After Slider Section -->
+            <div class="mb-20">
+                <div class="before-after-container mb-8">
+                    <div class="before-after-slider" id="beforeAfterSlider">
                     <img src="hernandez_images/web_Before1.jpeg" 
                          srcset="hernandez_images/web_Before1_small.jpeg 200w,
                                  hernandez_images/web_Before1_medium.jpeg 400w,
@@ -573,7 +580,10 @@
                 </div>
             </div>
             
-            <div class="grid md:grid-cols-3 gap-6">
+            <!-- Gallery Section -->
+            <div class="pt-16 border-t border-gray-200">
+                <h3 class="text-3xl font-bold text-center mb-8">More of Our Work</h3>
+                <div class="grid md:grid-cols-3 gap-6">
                 <div class="group relative overflow-hidden rounded-lg shadow-lg">
                     <img src="hernandez_images/web_Wideshot_Bestlandscape2.jpeg" 
                          srcset="hernandez_images/web_Wideshot_Bestlandscape2_small.jpeg 300w,
