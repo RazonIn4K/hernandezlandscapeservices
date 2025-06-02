@@ -1,4 +1,25 @@
 node_modules/
+
+# Development and testing files
+*.txt
+audit_*.js
+quick_*.js
+test_*.js
+*.png
+*.jpg
+!hernandez_images/*.jpeg
+!hernandez_images/*.jpg
+!hernandez_images/*.png
+
+# Personal/private files
+message_*.txt
+*_instructions.txt
+*_report.txt
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
 .npm
 .DS_Store
 npm-debug.log*
