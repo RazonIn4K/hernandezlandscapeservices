@@ -699,7 +699,7 @@
         </div>
     </footer>
 
-    <div id="customModal" class="modal-overlay hidden">
+    <div id="customModal" class="modal-overlay hidden" style="display: none;">
         <div class="modal-content">
             <p id="modalMessage" class="text-lg font-semibold mb-4 text-gray-800"></p>
             <button onclick="hideModal()" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">
@@ -715,13 +715,17 @@
     <script>
         // Function to show the custom modal with a message
         function showModal(message) {
+            const modal = document.getElementById('customModal');
             document.getElementById('modalMessage').textContent = message;
-            document.getElementById('customModal').classList.remove('hidden');
+            modal.classList.remove('hidden');
+            modal.style.display = 'flex';
         }
 
         // Function to hide the custom modal
         function hideModal() {
-            document.getElementById('customModal').classList.add('hidden');
+            const modal = document.getElementById('customModal');
+            modal.classList.add('hidden');
+            modal.style.display = 'none';
         }
 
         // Sticky header effect: Adds a shadow to the header when scrolled down
