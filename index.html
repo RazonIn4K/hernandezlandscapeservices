@@ -5,9 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hernandez Landscape & Tree Service LLC - Professional Landscaping in DeKalb, IL</title>
     <meta name="description" content="Professional landscaping and tree services in DeKalb, IL. Licensed and insured. Free estimates. Call 815-501-1478">
+    
+    <!-- Preconnect to external resources for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS inline for above-the-fold content -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #f9fafb; }
+        .bg-gray-50 { background-color: #f9fafb; }
+        .bg-white { background-color: #ffffff; }
+        .fixed { position: fixed; }
+        .top-0 { top: 0; }
+        .w-full { width: 100%; }
+        .z-50 { z-index: 50; }
+        .container { width: 100%; margin: 0 auto; max-width: 1280px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+        .space-x-4 > :not(:first-child) { margin-left: 1rem; }
+        .text-xl { font-size: 1.25rem; }
+        .font-bold { font-weight: 700; }
+        .text-gray-800 { color: #1f2937; }
+        .text-xs { font-size: 0.75rem; }
+        .text-gray-600 { color: #4b5563; }
+        .hidden { display: none; }
+        .lg\:flex { display: flex; }
+        @media (max-width: 1023px) { .lg\:hidden { display: none; } .lg\:flex { display: none; } }
+        .hero-bg { 
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+        }
+        .mt-16 { margin-top: 4rem; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        
+        /* Font loading optimization */
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Montserrat Regular'), local('Montserrat-Regular');
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold');
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: local('Montserrat Bold'), local('Montserrat-Bold');
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: local('Montserrat Black'), local('Montserrat-Black');
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Open Sans Regular'), local('OpenSans-Regular');
+        }
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+            src: local('Open Sans SemiBold'), local('OpenSans-SemiBold');
+        }
+    </style>
+    
+    <!-- Load external stylesheets -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Load Font Awesome asynchronously -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    
+    <!-- Load Google Fonts with font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Non-critical styles -->
     <style>
         /* Base font styles */
         body {
@@ -198,7 +295,14 @@
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-4">
-                    <img src="hernandez_images/web_Logo.jpg" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain" width="400" height="175" loading="lazy">
+                    <img src="hernandez_images/web_Logo.jpg" 
+                         srcset="hernandez_images/web_Logo_small.jpg 100w,
+                                 hernandez_images/web_Logo_medium.jpg 200w,
+                                 hernandez_images/web_Logo.jpg 400w" 
+                         sizes="(max-width: 640px) 100px, (max-width: 1024px) 200px, 400px"
+                         alt="Hernandez Landscape & Tree Service LLC Logo" 
+                         class="h-12 w-auto object-contain" 
+                         width="400" height="175" loading="lazy">
                     <div>
                         <h1 class="text-xl font-bold text-gray-800">Hernandez Landscape & Tree Service</h1>
                         <p class="text-xs text-gray-600">Licensed & Insured • LLC #13934835</p>
@@ -346,7 +450,14 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
                     <div class="h-48 bg-green-600 flex items-center justify-center">
-                        <img src="hernandez_images/web_After1.jpeg" alt="Lawn care service, perfectly mowed lawn" class="w-full h-full object-cover" width="800" height="600" loading="lazy">
+                        <img src="hernandez_images/web_After1.jpeg" 
+                             srcset="hernandez_images/web_After1_small.jpeg 200w,
+                                     hernandez_images/web_After1_medium.jpeg 400w,
+                                     hernandez_images/web_After1.jpeg 800w" 
+                             sizes="(max-width: 640px) 200px, (max-width: 1024px) 400px, 800px"
+                             alt="Lawn care service, perfectly mowed lawn" 
+                             class="w-full h-full object-cover" 
+                             width="800" height="600" loading="lazy">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-3">Lawn Care</h3>
@@ -364,7 +475,14 @@
                 
                 <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
                     <div class="h-48 bg-green-700 flex items-center justify-center">
-                        <img src="hernandez_images/web_IMG_9256.jpeg" alt="Tree service with truck and equipment" class="w-full h-full object-cover" width="800" height="600" loading="lazy">
+                        <img src="hernandez_images/web_IMG_9256.jpeg" 
+                             srcset="hernandez_images/web_IMG_9256_small.jpeg 200w,
+                                     hernandez_images/web_IMG_9256_medium.jpeg 400w,
+                                     hernandez_images/web_IMG_9256.jpeg 800w" 
+                             sizes="(max-width: 640px) 200px, (max-width: 1024px) 400px, 800px"
+                             alt="Tree service with truck and equipment" 
+                             class="w-full h-full object-cover" 
+                             width="800" height="600" loading="lazy">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-3">Tree Service</h3>
@@ -382,7 +500,14 @@
                 
                 <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
                     <div class="h-48 bg-green-800 flex items-center justify-center">
-                        <img src="hernandez_images/web_Wideshot_Bestlandscape.jpg" alt="Landscaping design, well-maintained front yard" class="w-full h-full object-cover" width="1200" height="868" loading="lazy">
+                        <img src="hernandez_images/web_Wideshot_Bestlandscape.jpg" 
+                             srcset="hernandez_images/web_Wideshot_Bestlandscape_small.jpg 300w,
+                                     hernandez_images/web_Wideshot_Bestlandscape_medium.jpg 600w,
+                                     hernandez_images/web_Wideshot_Bestlandscape.jpg 1200w" 
+                             sizes="(max-width: 640px) 300px, (max-width: 1024px) 600px, 1200px"
+                             alt="Landscaping design, well-maintained front yard" 
+                             class="w-full h-full object-cover" 
+                             width="1200" height="868" loading="lazy">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-3">Landscaping</h3>
@@ -428,15 +553,36 @@
             
             <div class="before-after-container mb-12">
                 <div class="before-after-slider" id="beforeAfterSlider">
-                    <img src="hernandez_images/web_Before1.jpeg" alt="Before lawn service, overgrown and messy" class="before-image" width="800" height="600" loading="lazy">
-                    <img src="hernandez_images/web_After1.jpeg" alt="After lawn service, clean and manicured" class="after-image" width="800" height="600" loading="lazy">
+                    <img src="hernandez_images/web_Before1.jpeg" 
+                         srcset="hernandez_images/web_Before1_small.jpeg 200w,
+                                 hernandez_images/web_Before1_medium.jpeg 400w,
+                                 hernandez_images/web_Before1.jpeg 800w" 
+                         sizes="(max-width: 640px) 200px, (max-width: 1024px) 400px, 800px"
+                         alt="Before lawn service, overgrown and messy" 
+                         class="before-image" 
+                         width="800" height="600" loading="lazy">
+                    <img src="hernandez_images/web_After1.jpeg" 
+                         srcset="hernandez_images/web_After1_small.jpeg 200w,
+                                 hernandez_images/web_After1_medium.jpeg 400w,
+                                 hernandez_images/web_After1.jpeg 800w" 
+                         sizes="(max-width: 640px) 200px, (max-width: 1024px) 400px, 800px"
+                         alt="After lawn service, clean and manicured" 
+                         class="after-image" 
+                         width="800" height="600" loading="lazy">
                     <div class="slider-handle" id="sliderHandle"></div>
                 </div>
             </div>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="group relative overflow-hidden rounded-lg shadow-lg">
-                    <img src="hernandez_images/web_Wideshot_Bestlandscape2.jpeg" alt="Completed yard makeover project, house with new landscaping" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300" width="1200" height="900" loading="lazy">
+                    <img src="hernandez_images/web_Wideshot_Bestlandscape2.jpeg" 
+                         srcset="hernandez_images/web_Wideshot_Bestlandscape2_small.jpeg 300w,
+                                 hernandez_images/web_Wideshot_Bestlandscape2_medium.jpeg 600w,
+                                 hernandez_images/web_Wideshot_Bestlandscape2.jpeg 1200w" 
+                         sizes="(max-width: 640px) 300px, (max-width: 1024px) 600px, 1200px"
+                         alt="Completed yard makeover project, house with new landscaping" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition duration-300" 
+                         width="1200" height="900" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
                         <div class="absolute bottom-4 left-4 text-white">
                             <h4 class="font-bold">Complete Yard Makeover</h4>
@@ -446,7 +592,14 @@
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-lg shadow-lg">
-                    <img src="hernandez_images/web_IMG_9256.jpeg" alt="Professional tree trimming with work truck visible" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300" width="800" height="600" loading="lazy">
+                    <img src="hernandez_images/web_IMG_9256.jpeg" 
+                         srcset="hernandez_images/web_IMG_9256_small.jpeg 200w,
+                                 hernandez_images/web_IMG_9256_medium.jpeg 400w,
+                                 hernandez_images/web_IMG_9256.jpeg 800w" 
+                         sizes="(max-width: 640px) 200px, (max-width: 1024px) 400px, 800px"
+                         alt="Professional tree trimming with work truck visible" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition duration-300" 
+                         width="800" height="600" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
                         <div class="absolute bottom-4 left-4 text-white">
                             <h4 class="font-bold">Professional Tree Trimming</h4>
@@ -456,7 +609,14 @@
                 </div>
                 
                 <div class="group relative overflow-hidden rounded-lg shadow-lg">
-                    <img src="hernandez_images/web_IMG_9259.jpeg" alt="Custom garden design, neat lawn and bushes" class="w-full h-64 object-cover group-hover:scale-110 transition duration-300" width="800" height="600" loading="lazy">
+                    <img src="hernandez_images/web_IMG_9259.jpeg" 
+                         srcset="hernandez_images/web_IMG_9259_small.jpeg 200w,
+                                 hernandez_images/web_IMG_9259_medium.jpeg 400w,
+                                 hernandez_images/web_IMG_9259.jpeg 800w" 
+                         sizes="(max-width: 640px) 200px, (max-width: 1024px) 400px, 800px"
+                         alt="Custom garden design, neat lawn and bushes" 
+                         class="w-full h-64 object-cover group-hover:scale-110 transition duration-300" 
+                         width="800" height="600" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
                         <div class="absolute bottom-4 left-4 text-white">
                             <h4 class="font-bold">Custom Garden Design</h4>
