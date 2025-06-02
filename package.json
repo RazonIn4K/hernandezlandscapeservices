@@ -21,5 +21,8 @@
   "description": "",
   "devDependencies": {
     "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "playwright": "^1.52.0"
   }
 }
