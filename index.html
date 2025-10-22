@@ -659,7 +659,14 @@
                 </div>
             </div>
             
-            <div class="text-center mt-8">
+            <div class="pt-16 border-t border-gray-200">
+                <h3 class="text-3xl font-bold text-center mb-8">Últimas fotos subidas</h3>
+                <div id="gallery-container" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <p class="text-gray-500 text-center col-span-full">Tus nuevas fotos aparecerán aquí después de subirlas.</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
                 <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition" aria-label="See more projects on Facebook">
                     <i class="fab fa-facebook mr-2"></i> See More on Facebook
                 </a>
@@ -884,10 +891,27 @@
 
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4">
-            <div class="text-center">
-                <p class="mb-2">© 2025 Hernandez Landscape & Tree Service LLC</p>
-                <p class="text-gray-400">Illinois LLC #13934835 • Licensed & Insured</p>
-                <p class="text-gray-400 mt-2">Professional Landscaping Services in DeKalb County</p>
+            <div class="md:flex md:items-start md:justify-between text-center md:text-left space-y-8 md:space-y-0">
+                <div>
+                    <p class="mb-2">© 2025 Hernandez Landscape & Tree Service LLC</p>
+                    <p class="text-gray-400">Illinois LLC #13934835 • Licensed & Insured</p>
+                    <p class="text-gray-400 mt-2">Professional Landscaping Services in DeKalb County</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold">Síguenos</h3>
+                    <ul class="mt-3 space-y-2">
+                        <li>
+                            <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white transition">
+                                <i class="fab fa-facebook-square mr-2"></i> Facebook
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white transition">
+                                <i class="fas fa-map-marker-alt mr-2"></i> Google Maps
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </footer>
@@ -1102,6 +1126,11 @@
             });
         });
     </script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js" defer></script>
+    <script src="admin/firebase-config.js" defer></script>
+    <script src="assets/js/gallery.js" defer></script>
 
     <script type="application/ld+json">
     {

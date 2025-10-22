@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal · Hernandez Landscape & Tree Service</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="bg-gray-50">
+    <main class="min-h-screen flex items-center justify-center py-16 px-4">
+        <section class="admin-card">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">Sube tus fotos</h1>
+                <p class="text-gray-600 mt-2">Inicia sesión con tu número para compartir nuevos proyectos.</p>
+            </header>
+
+            <div id="auth-section">
+                <form id="phone-form" class="space-y-4" autocomplete="tel">
+                    <label class="block text-sm font-semibold text-gray-700" for="phone-number">Número de teléfono</label>
+                    <input id="phone-number" type="tel" inputmode="tel" placeholder="+1 815 555 1234" class="admin-input" required>
+                    <button id="send-code-btn" type="submit" class="admin-button">Enviar código</button>
+                </form>
+
+                <form id="code-form" class="space-y-4 hidden" autocomplete="one-time-code">
+                    <label class="block text-sm font-semibold text-gray-700" for="verification-code">Código de verificación</label>
+                    <input id="verification-code" type="text" inputmode="numeric" maxlength="6" placeholder="123456" class="admin-input" required>
+                    <button id="verify-code-btn" type="submit" class="admin-button">Verificar e ingresar</button>
+                </form>
+
+                <p id="auth-message" class="admin-message" role="status"></p>
+            </div>
+
+            <div id="upload-section" class="hidden">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-900">Subir fotografías</h2>
+                    <button id="logout-button" class="admin-button admin-button--secondary">Cerrar sesión</button>
+                </div>
+
+                <p class="text-gray-600 mb-4">Selecciona una o varias imágenes. Nosotros las añadiremos a la galería del sitio automáticamente.</p>
+
+                <input id="file-input" type="file" accept="image/*" multiple class="admin-input admin-input--file">
+                <button id="upload-button" class="admin-button w-full mt-4">Subir fotos</button>
+
+                <div class="progress-wrapper mt-6" aria-live="polite">
+                    <div id="upload-progress-bar" class="progress-bar">0%</div>
+                </div>
+
+                <p id="upload-status" class="admin-message" role="status"></p>
+            </div>
+
+            <div id="recaptcha-container"></div>
+        </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin-script.js"></script>
+</body>
+</html>
