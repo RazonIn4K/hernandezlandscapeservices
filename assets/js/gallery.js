@@ -13,7 +13,7 @@
     galleryContainer.appendChild(placeholder);
 
     if (typeof window.firebaseConfig === 'undefined') {
-      placeholder.textContent = 'Falta el archivo admin/firebase-config.js. Añádelo para cargar las fotos.';
+      placeholder.textContent = 'Falta el archivo assets/js/firebase-config.js. Añádelo para cargar las fotos.';
       return;
     }
 
@@ -25,41 +25,97 @@
     const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
     const storage = firebase.storage(app);
     const storageRef = storage.ref('gallery-images');
+    const PAGE_SIZE = 24;
+    let nextPageToken = null;
+    let isLoading = false;
 
-    storageRef.listAll()
-      .then((listResult) => {
-        const items = listResult.items.slice().sort((a, b) => b.name.localeCompare(a.name));
+    const loadMoreWrapper = document.createElement('div');
+    loadMoreWrapper.className = 'col-span-full flex justify-center mt-8';
 
-        if (!items.length) {
-          placeholder.textContent = 'Sube nuevas fotos desde el portal de administración para verlas aquí.';
-          return;
-        }
+    const loadMoreButton = document.createElement('button');
+    loadMoreButton.type = 'button';
+    loadMoreButton.textContent = 'Cargar más fotos';
+    loadMoreButton.className = 'bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition';
+    loadMoreButton.addEventListener('click', () => {
+      if (!isLoading) {
+        fetchPage();
+      }
+    });
+    loadMoreWrapper.appendChild(loadMoreButton);
 
-        galleryContainer.innerHTML = '';
+    function renderItems(items) {
+      if (!items.length && galleryContainer.contains(placeholder)) {
+        placeholder.textContent = 'Sube nuevas fotos desde el portal de administración para verlas aquí.';
+        return;
+      }
 
-        items.forEach((itemRef) => {
-          itemRef.getDownloadURL()
-            .then((url) => {
-              const figure = document.createElement('figure');
-              figure.className = 'relative overflow-hidden rounded-lg shadow-lg bg-gray-100';
+      if (galleryContainer.contains(placeholder)) {
+        galleryContainer.removeChild(placeholder);
+      }
 
-              const img = document.createElement('img');
-              img.src = url;
-              img.loading = 'lazy';
-              img.alt = 'Proyecto reciente de Hernandez Landscape & Tree Service';
-              img.className = 'w-full h-64 object-cover transition duration-300 ease-in-out transform hover:scale-105';
+      if (!galleryContainer.contains(loadMoreWrapper)) {
+        galleryContainer.appendChild(loadMoreWrapper);
+      }
 
-              figure.appendChild(img);
-              galleryContainer.appendChild(figure);
-            })
-            .catch((error) => {
-              console.error('URL retrieval error:', error);
-            });
-        });
-      })
-      .catch((error) => {
-        console.error('Gallery load error:', error);
-        placeholder.textContent = 'No pudimos cargar las fotos ahora mismo. Intenta nuevamente.';
+      items.forEach((itemRef) => {
+        itemRef.getDownloadURL()
+          .then((url) => {
+            const figure = document.createElement('figure');
+            figure.className = 'relative overflow-hidden rounded-lg shadow-lg bg-gray-100';
+
+            const img = document.createElement('img');
+            img.src = url;
+            img.loading = 'lazy';
+            img.alt = itemRef.name.replace(/_/g, ' ');
+            img.className = 'w-full h-64 object-cover transition duration-300 ease-in-out transform hover:scale-105';
+
+            figure.appendChild(img);
+            galleryContainer.insertBefore(figure, loadMoreWrapper);
+          })
+          .catch((error) => {
+            console.error('URL retrieval error:', error);
+          });
       });
+    }
+
+    function updateLoadMoreVisibility() {
+      if (nextPageToken) {
+        if (!galleryContainer.contains(loadMoreWrapper)) {
+          galleryContainer.appendChild(loadMoreWrapper);
+        }
+        loadMoreButton.disabled = false;
+        loadMoreButton.textContent = 'Cargar más fotos';
+      } else if (galleryContainer.contains(loadMoreWrapper)) {
+        galleryContainer.removeChild(loadMoreWrapper);
+      }
+    }
+
+    function fetchPage() {
+      isLoading = true;
+      loadMoreButton.disabled = true;
+      loadMoreButton.textContent = 'Cargando...';
+
+      storageRef.list({ maxResults: PAGE_SIZE, pageToken: nextPageToken })
+        .then((listResult) => {
+          nextPageToken = listResult.nextPageToken || null;
+          const items = listResult.items.slice().reverse();
+          renderItems(items);
+          updateLoadMoreVisibility();
+        })
+        .catch((error) => {
+          console.error('Gallery load error:', error);
+          if (!galleryContainer.contains(placeholder)) {
+            galleryContainer.insertBefore(placeholder, galleryContainer.firstChild);
+          }
+          placeholder.textContent = 'No pudimos cargar las fotos ahora mismo. Intenta nuevamente.';
+          updateLoadMoreVisibility();
+        })
+        .finally(() => {
+          isLoading = false;
+        });
+    }
+
+    // Kick off first page
+    fetchPage();
   });
 })();
