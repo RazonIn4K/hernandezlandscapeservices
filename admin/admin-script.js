@@ -12,7 +12,33 @@ const firebaseApp = firebase.apps.length ? firebase.app() : firebase.initializeA
 const auth = firebase.auth();
 const storage = firebase.storage();
 
-const ALLOWED_UPLOADERS = new Set(['+18155011478', '+13316451372']);
+function normalizeToE164(value) {
+  if (!value) {
+    return '';
+  }
+
+  const trimmed = value.trim();
+
+  if (trimmed.startsWith('+')) {
+    const digits = '+' + trimmed.slice(1).replace(/[^0-9]/g, '');
+    return digits.length > 1 ? digits : '';
+  }
+
+  const digitsOnly = trimmed.replace(/[^0-9]/g, '');
+  if (digitsOnly.length === 10) {
+    return `+1${digitsOnly}`;
+  }
+
+  if (digitsOnly.length > 10) {
+    return `+${digitsOnly}`;
+  }
+
+  return '';
+}
+
+const allowedNumbersConfig = Array.isArray(window.allowedUploaders) ? window.allowedUploaders : [];
+const normalizedAllowed = allowedNumbersConfig.map(normalizeToE164).filter(Boolean);
+const ALLOWED_UPLOADERS = normalizedAllowed.length ? new Set(normalizedAllowed) : null;
 
 const authSection = document.getElementById('auth-section');
 const phoneForm = document.getElementById('phone-form');
@@ -75,33 +101,10 @@ function resetRecaptcha() {
   }
 }
 
-function normalizePhoneInput(value) {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return '';
-  }
-
-  if (trimmed.startsWith('+')) {
-    const digits = '+' + trimmed.slice(1).replace(/[^0-9]/g, '');
-    return digits.length > 1 ? digits : '';
-  }
-
-  const digitsOnly = trimmed.replace(/[^0-9]/g, '');
-  if (digitsOnly.length === 10) {
-    return `+1${digitsOnly}`;
-  }
-
-  if (digitsOnly.length > 10) {
-    return `+${digitsOnly}`;
-  }
-
-  return '';
-}
-
 phoneForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  const normalizedPhone = normalizePhoneInput(phoneInput.value);
+  const normalizedPhone = normalizeToE164(phoneInput.value);
   if (!normalizedPhone) {
     setAuthMessage('Introduce un número válido. Ejemplo: 8155551234 o +18155551234.', 'admin-message--error');
     return;
@@ -169,8 +172,8 @@ logoutButton.addEventListener('click', () => {
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    const phone = user.phoneNumber || '';
-    if (ALLOWED_UPLOADERS.has(phone)) {
+    const phone = normalizeToE164(user.phoneNumber);
+    if (!ALLOWED_UPLOADERS || ALLOWED_UPLOADERS.has(phone)) {
       authSection.classList.add('hidden');
       uploadSection.classList.remove('hidden');
       setAuthMessage('');
@@ -202,7 +205,6 @@ uploadButton.addEventListener('click', () => {
 
   const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
   const transferredByFile = new Map();
-  let completedUploads = 0;
   let hasFailed = false;
 
   uploadStatus.textContent = 'Subiendo fotos...';
@@ -216,37 +218,45 @@ uploadButton.addEventListener('click', () => {
     uploadProgressBar.textContent = `${percentage}%`;
   };
 
-  files.forEach((file) => {
-    const uniqueName = `${Date.now()}-${file.name.replace(/\s+/g, '-')}`;
+  const uploadTasks = files.map((file, index) => new Promise((resolve) => {
+    const uniqueName = `${Date.now()}-${index}-${file.name.replace(/\s+/g, '-')}`;
     const storageRef = storage.ref(`gallery-images/${uniqueName}`);
     const uploadTask = storageRef.put(file);
 
-    transferredByFile.set(file.name, 0);
+    transferredByFile.set(uniqueName, 0);
 
     uploadTask.on('state_changed',
       (snapshot) => {
-        transferredByFile.set(file.name, snapshot.bytesTransferred);
+        transferredByFile.set(uniqueName, snapshot.bytesTransferred);
         updateProgress();
       },
       (error) => {
         console.error('Error subiendo archivo:', error);
         hasFailed = true;
-        uploadStatus.textContent = 'Ocurrió un problema con algunas imágenes. Intenta de nuevo.';
-        uploadStatus.classList.add('admin-message--error');
-        uploadButton.disabled = false;
+        resolve({ status: 'rejected', reason: error });
       },
       () => {
-        completedUploads += 1;
-        transferredByFile.set(file.name, file.size);
+        transferredByFile.set(uniqueName, file.size);
         updateProgress();
-
-        if (completedUploads === files.length && !hasFailed) {
-          uploadStatus.textContent = '¡Listo! Las fotos ya están en la galería.';
-          uploadStatus.classList.add('admin-message--success');
-          fileInput.value = '';
-          uploadButton.disabled = false;
-        }
+        resolve({ status: 'fulfilled' });
       }
     );
+  }));
+
+  Promise.allSettled(uploadTasks).then((results) => {
+    uploadButton.disabled = false;
+
+    if (hasFailed) {
+      uploadStatus.textContent = 'Ocurrió un problema con algunas imágenes. Intenta de nuevo.';
+      uploadStatus.classList.add('admin-message--error');
+      return;
+    }
+
+    const hasSuccess = results.some((result) => result.status === 'fulfilled');
+    if (hasSuccess) {
+      uploadStatus.textContent = '¡Listo! Las fotos ya están en la galería.';
+      uploadStatus.classList.add('admin-message--success');
+      fileInput.value = '';
+    }
   });
 });
