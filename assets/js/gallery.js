@@ -7,18 +7,49 @@
       return;
     }
 
+    const i18n = window.siteI18n || null;
+    const getText = (key, fallback) => {
+      if (i18n && typeof i18n.t === 'function') {
+        const value = i18n.t(key);
+        if (value) {
+          return value;
+        }
+      }
+      return fallback;
+    };
+
     const placeholder = document.createElement('p');
     placeholder.className = 'text-gray-500 text-center col-span-full';
-    placeholder.textContent = 'Cargando galería...';
+
+    const placeholderTexts = {
+      loading: ['gallery.loading', 'Loading gallery...'],
+      'no-config': ['gallery.error.configMissing', 'Missing assets/js/firebase-config.js. Add it to load photos.'],
+      'no-firebase': ['gallery.error.firebase', 'Unable to load Firebase. Check your connection.'],
+      'no-items': ['gallery.placeholder', 'Your new photos will appear here after you upload them.'],
+      error: ['gallery.error.generic', 'We could not load the photos right now. Please try again.']
+    };
+
+    let placeholderState = 'loading';
+    function refreshPlaceholder() {
+      if (placeholderState === 'hidden') {
+        return;
+      }
+      const [key, fallback] = placeholderTexts[placeholderState] || placeholderTexts.loading;
+      placeholder.textContent = getText(key, fallback);
+    }
+
+    refreshPlaceholder();
     galleryContainer.appendChild(placeholder);
 
     if (typeof window.firebaseConfig === 'undefined') {
-      placeholder.textContent = 'Falta el archivo assets/js/firebase-config.js. Añádelo para cargar las fotos.';
+      placeholderState = 'no-config';
+      refreshPlaceholder();
       return;
     }
 
     if (typeof firebase === 'undefined') {
-      placeholder.textContent = 'No se pudo cargar Firebase. Revisa tu conexión.';
+      placeholderState = 'no-firebase';
+      refreshPlaceholder();
       return;
     }
 
@@ -34,8 +65,18 @@
 
     const loadMoreButton = document.createElement('button');
     loadMoreButton.type = 'button';
-    loadMoreButton.textContent = 'Cargar más fotos';
     loadMoreButton.className = 'bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition';
+
+    let loadMoreState = 'idle';
+    function refreshLoadMoreButton() {
+      if (loadMoreState === 'loading') {
+        loadMoreButton.textContent = getText('gallery.loadingButton', 'Loading...');
+      } else {
+        loadMoreButton.textContent = getText('gallery.loadMore', 'Load more photos');
+      }
+    }
+
+    refreshLoadMoreButton();
     loadMoreButton.addEventListener('click', () => {
       if (!isLoading) {
         fetchPage();
@@ -44,13 +85,17 @@
     loadMoreWrapper.appendChild(loadMoreButton);
 
     function renderItems(items) {
-      if (!items.length && galleryContainer.contains(placeholder)) {
-        placeholder.textContent = 'Sube nuevas fotos desde el portal de administración para verlas aquí.';
+      if (!items.length) {
+        if (galleryContainer.contains(placeholder)) {
+          placeholderState = 'no-items';
+          refreshPlaceholder();
+        }
         return;
       }
 
       if (galleryContainer.contains(placeholder)) {
         galleryContainer.removeChild(placeholder);
+        placeholderState = 'hidden';
       }
 
       if (!galleryContainer.contains(loadMoreWrapper)) {
@@ -84,7 +129,8 @@
           galleryContainer.appendChild(loadMoreWrapper);
         }
         loadMoreButton.disabled = false;
-        loadMoreButton.textContent = 'Cargar más fotos';
+        loadMoreState = 'idle';
+        refreshLoadMoreButton();
       } else if (galleryContainer.contains(loadMoreWrapper)) {
         galleryContainer.removeChild(loadMoreWrapper);
       }
@@ -93,7 +139,8 @@
     function fetchPage() {
       isLoading = true;
       loadMoreButton.disabled = true;
-      loadMoreButton.textContent = 'Cargando...';
+      loadMoreState = 'loading';
+      refreshLoadMoreButton();
 
       storageRef.list({ maxResults: PAGE_SIZE, pageToken: nextPageToken })
         .then((listResult) => {
@@ -107,15 +154,25 @@
           if (!galleryContainer.contains(placeholder)) {
             galleryContainer.insertBefore(placeholder, galleryContainer.firstChild);
           }
-          placeholder.textContent = 'No pudimos cargar las fotos ahora mismo. Intenta nuevamente.';
+          placeholderState = 'error';
+          refreshPlaceholder();
           updateLoadMoreVisibility();
         })
         .finally(() => {
           isLoading = false;
+          loadMoreButton.disabled = false;
+          loadMoreState = 'idle';
+          refreshLoadMoreButton();
         });
     }
 
-    // Kick off first page
     fetchPage();
+
+    if (i18n && typeof i18n.onChange === 'function') {
+      i18n.onChange(() => {
+        refreshPlaceholder();
+        refreshLoadMoreButton();
+      });
+    }
   });
 })();
