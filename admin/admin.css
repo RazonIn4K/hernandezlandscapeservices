@@ -1,0 +1,99 @@
+.admin-card {
+    width: 100%;
+    max-width: 36rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
+    padding: 2.5rem;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-input:focus {
+    border-color: #059669;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+}
+
+.admin-input--file {
+    padding: 0.75rem;
+}
+
+.admin-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 15px 30px rgba(16, 185, 129, 0.25);
+}
+
+.admin-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.admin-button--secondary {
+    background: #1f2937;
+}
+
+.admin-message {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #1f2937;
+    min-height: 1.5rem;
+}
+
+.admin-message--error {
+    color: #dc2626;
+}
+
+.admin-message--success {
+    color: #059669;
+}
+
+.progress-wrapper {
+    width: 100%;
+    background-color: #f3f4f6;
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 1.5rem;
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5rem;
+    transition: width 0.2s ease;
+}
+
+#recaptcha-container {
+    display: none;
+}
+
+@media (max-width: 640px) {
+    .admin-card {
+        padding: 2rem 1.5rem;
+    }
+}
