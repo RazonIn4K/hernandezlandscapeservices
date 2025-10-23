@@ -358,9 +358,19 @@
                     </a>
                 </div>
 
-                <button class="lg:hidden text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
+                <div class="flex items-center space-x-3 lg:hidden">
+                    <div class="flex items-center space-x-2 border border-gray-300 rounded-full px-2 py-1" role="group" aria-label="Language selector">
+                        <button type="button" class="px-2 py-1 text-sm font-semibold rounded-full bg-green-600 text-white transition hover:text-green-600" data-lang-switch="en" aria-pressed="true" id="langToggleEnCompact">
+                            EN
+                        </button>
+                        <button type="button" class="px-2 py-1 text-sm font-semibold rounded-full text-gray-700 hover:text-green-600 transition" data-lang-switch="es" aria-pressed="false" id="langToggleEsCompact">
+                            ES
+                        </button>
+                    </div>
+                    <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </nav>
         </div>
 
@@ -677,6 +687,10 @@
 
             <div class="pt-16 border-t border-gray-200">
                 <h3 class="text-3xl font-bold text-center mb-8" data-i18n-key="gallery.latestHeading">Latest Uploads</h3>
+                <p id="latest-uploads-empty" class="text-gray-500 text-center" data-i18n-key="gallery.placeholder">Your new photos will appear here after you upload them.</p>
+                <div id="latest-uploads-carousel" class="hidden overflow-x-auto pb-6 -mx-4 px-4">
+                    <div id="latest-uploads-track" class="flex gap-6 snap-x snap-mandatory"></div>
+                </div>
                 <div id="gallery-container" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     <p class="text-gray-500 text-center col-span-full" data-i18n-key="gallery.placeholder">Your new photos will appear here after you upload them.</p>
                     <span class="hidden bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition"></span>
@@ -793,12 +807,8 @@
                 </div>
 
                 <div class="bg-gray-100 p-8 rounded-lg">
-                    <div class="aspect-video bg-gray-300 rounded flex items-center justify-center">
-                        <div class="text-center">
-                            <i class="fas fa-map-marked-alt text-6xl text-gray-400 mb-4"></i>
-                            <p class="text-gray-600" data-i18n-key="serviceArea.mapPlaceholder">Interactive map coming soon</p>
-                        </div>
-                    </div>
+                    <iframe title="Mapa de Hernandez Landscape &amp; Tree Service" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.946874187628!2d-88.75760132421542!3d41.92134107123761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fcfe9f3319d01%3A0x8d84401d9dc143e9!2s1029%20Lewis%20St%2C%20DeKalb%2C%20IL%2060115!5e0!3m2!1ses!2sus!4v1732240940000!5m2!1ses!2sus" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-80 rounded-lg border-0"></iframe>
+                    <p class="text-sm text-gray-600 mt-3" data-i18n-key="serviceArea.mapNote">Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.</p>
                 </div>
             </div>
         </div>
