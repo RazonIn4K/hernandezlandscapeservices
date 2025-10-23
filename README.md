@@ -58,6 +58,32 @@ npm run build
 - Successful uploads land in Firebase Storage under `gallery-images/`. The public gallery (`#gallery` on `index.html`) lists that folder and shows the newest items first.
 - When you add or remove numbers from the allowlist, update the corresponding environment variable so the next deploy keeps the admin portal in sync with your Firebase Storage security rules.
 
+### Phone auth configuration
+
+The admin portal relies on Firebase phone authentication. The current implementation always sets `disableRecaptcha` to `false` to ensure real SMS delivery in production:
+
+```html
+<script>
+  window.firebasePhoneAuthConfig = {
+      disableRecaptcha: false
+  };
+</script>
+```
+
+- **Production**: `disableRecaptcha` is `false`, enabling real SMS delivery with reCAPTCHA verification required.
+- **Development/Testing**: For local testing, you can manually edit the inline script to `disableRecaptcha: true` to bypass reCAPTCHA and SMS delivery (useful for testing without real phone numbers). Remember to revert this change before deploying.
+- Firebase requires a completed reCAPTCHA check before sending verification SMS to real phone numbers. The flag is currently hardcoded to `false` for production safety.
+- **Important**: Always verify the deployed admin portal renders `disableRecaptcha: false` in production via View Page Source. If testing locally, temporarily set to `true` only for development purposes.
+
+### Bilingual content (English / Spanish)
+
+- Both the public site and the admin portal render in English by default and provide an EN/ES toggle.
+- Text that needs translation is marked with `data-i18n-*` attributes; all strings live in `assets/js/i18n.js`.
+- To add or update copy:
+  1. Edit the English source text directly in the markup.
+  2. Add the corresponding Spanish translation to the `translations.es` section in `assets/js/i18n.js`.
+- Any new admin UI strings should use the existing helper keys (see the `admin.*` entries) so the toggle stays in sync.
+
 ### Files
 
 - `index.html` - Main website file

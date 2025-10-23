@@ -40,6 +40,62 @@ const allowedNumbersConfig = Array.isArray(window.allowedUploaders) ? window.all
 const normalizedAllowed = allowedNumbersConfig.map(normalizeToE164).filter(Boolean);
 const ALLOWED_UPLOADERS = normalizedAllowed.length ? new Set(normalizedAllowed) : null;
 
+const siteI18n = typeof window.siteI18n === 'object' ? window.siteI18n : null;
+
+const phoneAuthConfig =
+  typeof window.firebasePhoneAuthConfig === 'object' ? window.firebasePhoneAuthConfig : {};
+const disableRecaptcha = phoneAuthConfig.disableRecaptcha === true;
+
+if (disableRecaptcha) {
+  console.warn('Firebase Phone Auth: reCAPTCHA disabled (testing mode enabled). Only use this in trusted environments.');
+}
+
+if (disableRecaptcha && auth.settings) {
+  try {
+    auth.settings.appVerificationDisabledForTesting = true;
+  } catch (error) {
+    console.warn('Unable to disable app verification. reCAPTCHA may still be required.', error);
+  }
+}
+
+const bypassVerifier = disableRecaptcha
+  ? {
+      type: 'recaptcha',
+      verify: () => Promise.resolve('recaptcha-disabled'),
+    }
+  : null;
+
+if (disableRecaptcha) {
+  console.warn(
+    'reCAPTCHA requirement is disabled. Only use this mode in trusted environments.'
+  );
+}
+
+function getMessage(key, fallback, replacements = {}) {
+  let template = '';
+  if (siteI18n && typeof siteI18n.t === 'function') {
+    try {
+      template = siteI18n.t(key);
+    } catch (error) {
+      template = '';
+    }
+  }
+  if (!template) {
+    template = fallback;
+  }
+  if (!template) {
+    return '';
+  }
+  return Object.entries(replacements).reduce((result, [placeholder, value]) => {
+    const pattern = new RegExp(`{{\\s*${placeholder}\\s*}}`, 'g');
+    return result.replace(pattern, value);
+  }, template);
+}
+
+function pluralKey(baseKey, count) {
+  return count === 1 ? `${baseKey}.one` : `${baseKey}.other`;
+}
+
 const authSection = document.getElementById('auth-section');
 const phoneForm = document.getElementById('phone-form');
 const phoneInput = document.getElementById('phone-number');
@@ -57,6 +113,7 @@ const uploadStatus = document.getElementById('upload-status');
 const dropZone = document.getElementById('file-dropzone');
 const addPhotosButton = document.getElementById('add-photos-button');
 const selectedFilesList = document.getElementById('selected-files');
+const logoutButton = document.getElementById('logout-button');
 
 let confirmationResult = null;
 let recaptchaVerifier = null;
@@ -88,7 +145,36 @@ function resetForms() {
   confirmationResult = null;
 }
 
+function resetRecaptcha() {
+  if (disableRecaptcha) {
+    return;
+  }
+
+  if (recaptchaWidgetId !== null && window.grecaptcha && typeof window.grecaptcha.reset === 'function') {
+    try {
+      window.grecaptcha.reset(recaptchaWidgetId);
+    } catch (error) {
+      console.warn('Unable to reset reCAPTCHA widget.', error);
+    }
+  }
+
+  if (recaptchaVerifier && typeof recaptchaVerifier.clear === 'function') {
+    try {
+      recaptchaVerifier.clear();
+    } catch (error) {
+      console.warn('Unable to clear reCAPTCHA verifier.', error);
+    }
+  }
+
+  recaptchaVerifier = null;
+  recaptchaWidgetId = null;
+}
+
 function ensureRecaptcha() {
+  if (disableRecaptcha && bypassVerifier) {
+    return bypassVerifier;
+  }
+
   if (recaptchaVerifier) {
     return recaptchaVerifier;
   }
@@ -121,7 +207,8 @@ function renderSelectedFiles() {
   selectedFilesList.innerHTML = '';
 
   if (!selectedFiles.length) {
-    selectedFilesList.innerHTML = '<li class="admin-file-item empty">No hay fotos seleccionadas todavía.</li>';
+    const emptyMessage = getMessage('admin.file.empty', 'No photos selected yet.');
+    selectedFilesList.innerHTML = `<li class="admin-file-item empty">${emptyMessage}</li>`;
     return;
   }
 
@@ -136,7 +223,7 @@ function renderSelectedFiles() {
     const removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.className = 'admin-file-remove';
-    removeButton.textContent = 'Quitar';
+    removeButton.textContent = getMessage('admin.file.remove', 'Remove');
     removeButton.addEventListener('click', () => {
       selectedFiles.splice(index, 1);
       renderSelectedFiles();
@@ -185,12 +272,18 @@ phoneForm.addEventListener('submit', (event) => {
 
   const normalizedPhone = normalizeToE164(phoneInput.value);
   if (!normalizedPhone) {
-    setAuthMessage('Introduce un número válido. Ejemplo: 8155551234 o +18155551234.', 'admin-message--error');
+    setAuthMessage(
+      getMessage(
+        'admin.message.invalidPhone',
+        'Enter a valid phone number. Example: 8155551234 or +18155551234.'
+      ),
+      'admin-message--error'
+    );
     return;
   }
 
   sendCodeButton.disabled = true;
-  setAuthMessage('Enviando código por SMS...', '');
+  setAuthMessage(getMessage('admin.message.sendingCode', 'Sending SMS code...'), '');
 
   resetRecaptcha();
   const verifier = ensureRecaptcha();
@@ -201,11 +294,20 @@ phoneForm.addEventListener('submit', (event) => {
     .then((result) => {
       confirmationResult = result;
       codeForm.classList.remove('hidden');
-      setAuthMessage('Código enviado. Revisa tu teléfono e ingrésalo abajo.', 'admin-message--success');
+      setAuthMessage(
+        getMessage('admin.message.codeSent', 'Code sent. Check your phone and enter it below.'),
+        'admin-message--success'
+      );
     })
     .catch((error) => {
       console.error('SMS error:', error);
-      setAuthMessage('No pudimos enviar el SMS. Verifica el número o inténtalo más tarde.', 'admin-message--error');
+      setAuthMessage(
+        getMessage(
+          'admin.message.smsError',
+          'We could not send the SMS. Check the number or try again later.'
+        ),
+        'admin-message--error'
+      );
     })
     .finally(() => {
       sendCodeButton.disabled = false;
@@ -216,42 +318,56 @@ codeForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
   if (!confirmationResult) {
-    setAuthMessage('Solicita un nuevo código antes de confirmar.', 'admin-message--error');
+    setAuthMessage(
+      getMessage('admin.message.requestCodeFirst', 'Request a new code before confirming.'),
+      'admin-message--error'
+    );
     return;
   }
 
   const code = codeInput.value.trim();
   if (!code) {
-    setAuthMessage('Ingresa el código de 6 dígitos recibido por SMS.', 'admin-message--error');
+    setAuthMessage(
+      getMessage('admin.message.enterCode', 'Enter the 6-digit code you received via SMS.'),
+      'admin-message--error'
+    );
     return;
   }
 
   verifyCodeButton.disabled = true;
-  setAuthMessage('Verificando código...', '');
+  setAuthMessage(getMessage('admin.message.verifying', 'Verifying code...'), '');
 
   confirmationResult.confirm(code)
     .then(() => {
-      setAuthMessage('Sesión iniciada. ¡Listo para subir fotos!', 'admin-message--success');
+      setAuthMessage(
+        getMessage('admin.message.loginSuccess', 'Signed in. Ready to upload photos!'),
+        'admin-message--success'
+      );
       codeForm.classList.add('hidden');
     })
     .catch((error) => {
-      console.error('Código inválido:', error);
-      setAuthMessage('Código incorrecto o vencido. Solicita uno nuevo.', 'admin-message--error');
+      console.error('Invalid verification code:', error);
+      setAuthMessage(
+        getMessage('admin.message.invalidCode', 'Incorrect or expired code. Request a new one.'),
+        'admin-message--error'
+      );
     })
     .finally(() => {
       verifyCodeButton.disabled = false;
     });
 });
 
-logoutButton.addEventListener('click', () => {
-  clearSelectedFiles();
-  setUploadMessage('');
-  uploadProgressBar.style.width = '0%';
-  uploadProgressBar.textContent = '0%';
-  auth.signOut().catch((error) => {
-    console.error('Error al cerrar sesión:', error);
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    clearSelectedFiles();
+    setUploadMessage('');
+    uploadProgressBar.style.width = '0%';
+    uploadProgressBar.textContent = '0%';
+    auth.signOut().catch((error) => {
+      console.error('Error signing out:', error);
+    });
   });
-});
+}
 
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -263,9 +379,12 @@ auth.onAuthStateChanged((user) => {
       return;
     }
 
-    setAuthMessage('Este número no tiene permiso para subir fotos.', 'admin-message--error');
+    setAuthMessage(
+      getMessage('admin.message.notAllowed', 'This number is not allowed to upload photos.'),
+      'admin-message--error'
+    );
     auth.signOut().catch((error) => {
-      console.error('Error al cerrar sesión:', error);
+      console.error('Error signing out:', error);
     });
   }
 
@@ -312,11 +431,25 @@ if (dropZone) {
     if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files.length) {
       const { added, duplicates, skipped } = addImagesToSelection(event.dataTransfer.files);
       if (added) {
-        setUploadMessage(`${added} foto${added === 1 ? '' : 's'} añadida${added === 1 ? '' : 's'} a la lista.`, 'admin-message--success');
+        const key = pluralKey('admin.message.filesAdded', added);
+        const fallback =
+          added === 1
+            ? 'Added 1 photo to the upload list.'
+            : `Added ${added} photos to the upload list.`;
+        setUploadMessage(
+          getMessage(key, fallback, { count: String(added) }),
+          'admin-message--success'
+        );
       } else if (duplicates) {
-        setUploadMessage('Estas imágenes ya estaban en la lista.', 'admin-message--error');
+        setUploadMessage(
+          getMessage('admin.message.duplicates', 'Those images were already on the list.'),
+          'admin-message--error'
+        );
       } else if (skipped) {
-        setUploadMessage('Solo se permiten archivos de imagen.', 'admin-message--error');
+        setUploadMessage(
+          getMessage('admin.message.skipped', 'Only image files are allowed.'),
+          'admin-message--error'
+        );
       }
     }
   });
@@ -329,11 +462,25 @@ fileInput.addEventListener('change', (event) => {
 
   const { added, duplicates, skipped } = addImagesToSelection(event.target.files);
   if (added) {
-    setUploadMessage(`${added} foto${added === 1 ? '' : 's'} añadida${added === 1 ? '' : 's'} a la lista.`, 'admin-message--success');
+    const key = pluralKey('admin.message.filesAdded', added);
+    const fallback =
+      added === 1
+        ? 'Added 1 photo to the upload list.'
+        : `Added ${added} photos to the upload list.`;
+    setUploadMessage(
+      getMessage(key, fallback, { count: String(added) }),
+      'admin-message--success'
+    );
   } else if (duplicates) {
-    setUploadMessage('Estas imágenes ya estaban en la lista.', 'admin-message--error');
+    setUploadMessage(
+      getMessage('admin.message.duplicates', 'Those images were already on the list.'),
+      'admin-message--error'
+    );
   } else if (skipped) {
-    setUploadMessage('Solo se permiten archivos de imagen.', 'admin-message--error');
+    setUploadMessage(
+      getMessage('admin.message.skipped', 'Only image files are allowed.'),
+      'admin-message--error'
+    );
   }
   fileInput.value = '';
 });
@@ -341,7 +488,10 @@ fileInput.addEventListener('change', (event) => {
 uploadButton.addEventListener('click', () => {
   const files = selectedFiles.slice();
   if (!files.length) {
-    setUploadMessage('Selecciona al menos una imagen.', 'admin-message--error');
+    setUploadMessage(
+      getMessage('admin.message.selectImage', 'Select at least one image.'),
+      'admin-message--error'
+    );
     return;
   }
 
@@ -350,7 +500,7 @@ uploadButton.addEventListener('click', () => {
   let hasFailed = false;
   const failedFiles = [];
 
-  setUploadMessage('Subiendo fotos...');
+  setUploadMessage(getMessage('admin.message.uploading', 'Uploading photos...'));
   uploadButton.disabled = true;
   uploadProgressBar.style.width = '0%';
   uploadProgressBar.textContent = '0%';
@@ -375,7 +525,7 @@ uploadButton.addEventListener('click', () => {
         updateProgress();
       },
       (error) => {
-        console.error('Error subiendo archivo:', error);
+        console.error('Error uploading file:', error);
         hasFailed = true;
         failedFiles.push({ name: file.name, error });
         resolve({ status: 'rejected', reason: error });
@@ -393,19 +543,41 @@ uploadButton.addEventListener('click', () => {
 
     if (hasFailed) {
       const failedList = failedFiles.map((item) => item.name).join(', ');
-      const message = failedList ? `No pudimos subir estas imágenes: ${failedList}.` : 'Ocurrió un problema con algunas imágenes. Intenta de nuevo.';
-      setUploadMessage(message, 'admin-message--error');
+      if (failedList) {
+        setUploadMessage(
+          getMessage(
+            'admin.message.uploadFailedList',
+            `We could not upload these images: ${failedList}.`,
+            { list: failedList }
+          ),
+          'admin-message--error'
+        );
+      } else {
+        setUploadMessage(
+          getMessage(
+            'admin.message.uploadFailedGeneric',
+            'Something went wrong with some images. Please try again.'
+          ),
+          'admin-message--error'
+        );
+      }
       return;
     }
 
     const hasSuccess = results.some((result) => result.status === 'fulfilled');
     if (hasSuccess) {
-      setUploadMessage('¡Listo! Las fotos ya están en la galería.', 'admin-message--success');
+      setUploadMessage(
+        getMessage('admin.message.uploadSuccess', 'All set! Your photos are now in the gallery.'),
+        'admin-message--success'
+      );
       clearSelectedFiles();
       uploadProgressBar.style.width = '0%';
       uploadProgressBar.textContent = '0%';
     } else {
-      setUploadMessage('No se subió ninguna imagen.', 'admin-message--error');
+      setUploadMessage(
+        getMessage('admin.message.noUploads', 'No images were uploaded.'),
+        'admin-message--error'
+      );
     }
   });
 });
