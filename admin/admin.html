@@ -37,9 +37,19 @@
                     <button id="logout-button" class="admin-button admin-button--secondary">Cerrar sesión</button>
                 </div>
 
-                <p class="text-gray-600 mb-4">Selecciona una o varias imágenes. Nosotros las añadiremos a la galería del sitio automáticamente.</p>
+                <p class="text-gray-600 mb-4">Arrastra y suelta tus fotos o selecciónalas desde tu dispositivo.</p>
 
-                <input id="file-input" type="file" accept="image/*" multiple class="admin-input admin-input--file">
+                <div id="file-dropzone" class="admin-dropzone" role="button" tabindex="0">
+                    <svg class="w-10 h-10 text-green-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p class="text-sm text-gray-600">Suelta las imágenes aquí o</p>
+                    <button type="button" id="add-photos-button" class="admin-button admin-button--ghost mt-3">Elegir fotos</button>
+                </div>
+
+                <ul id="selected-files" class="admin-file-list" aria-live="polite"></ul>
+
+                <input id="file-input" type="file" accept="image/*" multiple class="admin-input admin-input--file hidden" aria-hidden="true" tabindex="-1">
                 <button id="upload-button" class="admin-button w-full mt-4">Subir fotos</button>
 
                 <div class="progress-wrapper mt-6" aria-live="polite">
