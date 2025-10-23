@@ -47,20 +47,19 @@
                     <button id="logout-button" class="admin-button admin-button--secondary" data-i18n-key="admin.logout">Log out</button>
                 </div>
 
-                <p class="text-gray-600 mb-4" data-i18n-key="admin.upload.instructions">Drag and drop your photos, videos, or documents here, or click "Choose files" below.</p>
+                <p class="text-gray-600 mb-4" data-i18n-key="admin.upload.instructions">Drag and drop your photos here, or click "Choose photos" below.</p>
 
                 <div id="file-dropzone" class="admin-dropzone" role="button" tabindex="0">
                     <svg class="w-12 h-12 text-green-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    <p class="text-sm text-gray-600 mb-2" data-i18n-key="admin.dropzone.prompt">Drop files here or</p>
-                    <button type="button" id="add-photos-button" class="admin-button admin-button--ghost" data-i18n-key="admin.dropzone.button">Choose files</button>
-                    <p class="text-xs text-gray-500 mt-2">Photos, videos, PDFs, documents</p>
+                    <p class="text-sm text-gray-600 mb-2" data-i18n-key="admin.dropzone.prompt">Drop images here or</p>
+                    <button type="button" id="add-photos-button" class="admin-button admin-button--ghost" data-i18n-key="admin.dropzone.button">Choose photos</button>
                 </div>
 
                 <ul id="selected-files" class="admin-file-list" aria-live="polite"></ul>
 
-                <input id="file-input" type="file" accept="image/*,video/*,.pdf,.doc,.docx" multiple class="admin-input admin-input--file hidden" aria-hidden="true" tabindex="-1">
+                <input id="file-input" type="file" accept="image/*" multiple class="admin-input admin-input--file hidden" aria-hidden="true" tabindex="-1">
                 <button id="upload-button" class="admin-button w-full mt-4" data-i18n-key="admin.upload.button">Upload photos</button>
 
                 <div class="progress-wrapper mt-6" aria-live="polite">

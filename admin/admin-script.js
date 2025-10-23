@@ -247,12 +247,7 @@ function addImagesToSelection(fileList) {
   let skipped = 0;
 
   files.forEach((file) => {
-    // Accept images, videos, PDFs, and documents
-    if (!file.type.startsWith('image/') &&
-        !file.type.startsWith('video/') &&
-        file.type !== 'application/pdf' &&
-        !file.type.includes('document') &&
-        !file.type.includes('word')) {
+    if (!file.type.startsWith('image/')) {
       skipped += 1;
       return;
     }
@@ -452,7 +447,7 @@ if (dropZone) {
         );
       } else if (skipped) {
         setUploadMessage(
-          getMessage('admin.message.skipped', 'Only image, video, PDF, and document files are allowed.'),
+          getMessage('admin.message.skipped', 'Only image files are allowed.'),
           'admin-message--error'
         );
       }
@@ -494,7 +489,7 @@ uploadButton.addEventListener('click', () => {
   const files = selectedFiles.slice();
   if (!files.length) {
     setUploadMessage(
-      getMessage('admin.message.selectImage', 'Select at least one file to upload.'),
+      getMessage('admin.message.selectImage', 'Select at least one image to upload.'),
       'admin-message--error'
     );
     return;
@@ -555,7 +550,7 @@ uploadButton.addEventListener('click', () => {
         setUploadMessage(
           getMessage(
             'admin.message.uploadFailedList',
-            `We could not upload these files: ${failedList}. Check your connection and try again.`,
+            `We could not upload these images: ${failedList}. Check your connection and try again.`,
             { list: failedList }
           ),
           'admin-message--error'
@@ -564,7 +559,7 @@ uploadButton.addEventListener('click', () => {
         setUploadMessage(
           getMessage(
             'admin.message.uploadFailedGeneric',
-            'Something went wrong with some files. Please check your connection and try again.'
+            'Something went wrong with some images. Please check your connection and try again.'
           ),
           'admin-message--error'
         );
