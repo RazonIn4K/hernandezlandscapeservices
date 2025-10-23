@@ -31,3 +31,5 @@ yarn-error.log*
 # Firebase configuration (local only)
 admin/firebase-config.js
 assets/js/firebase-config.js
+
+.env
