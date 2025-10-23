@@ -7,19 +7,27 @@ const rootDir = resolve(currentDir, '..');
 
 /**
  * Resolve variable names to environment values and ensure none are missing.
- * @param {string[]} keys
+ * @param {string[]} requiredKeys
+ * @param {string[]} [optionalKeys]
  * @returns {Record<string, string>}
  */
-function loadEnv(keys) {
+function loadEnv(requiredKeys, optionalKeys = []) {
   const values = {};
   const missing = [];
 
-  keys.forEach((key) => {
+  requiredKeys.forEach((key) => {
     const value = process.env[key];
     if (typeof value === 'string' && value.trim().length > 0) {
       values[key] = value.trim();
     } else {
       missing.push(key);
+    }
+  });
+
+  optionalKeys.forEach((key) => {
+    const value = process.env[key];
+    if (typeof value === 'string' && value.trim().length > 0) {
+      values[key] = value.trim();
     }
   });
 
@@ -72,16 +80,17 @@ function writeFile(targetPath, contents) {
 }
 
 function main() {
-  const envMap = loadEnv([
-    'PUBLIC_FIREBASE_API_KEY',
-    'PUBLIC_FIREBASE_AUTH_DOMAIN',
-    'PUBLIC_FIREBASE_PROJECT_ID',
-    'PUBLIC_FIREBASE_STORAGE_BUCKET',
-    'PUBLIC_FIREBASE_MESSAGING_SENDER_ID',
-    'PUBLIC_FIREBASE_APP_ID',
-    // optional but still load if present
-    'PUBLIC_FIREBASE_MEASUREMENT_ID',
-  ]);
+  const envMap = loadEnv(
+    [
+      'PUBLIC_FIREBASE_API_KEY',
+      'PUBLIC_FIREBASE_AUTH_DOMAIN',
+      'PUBLIC_FIREBASE_PROJECT_ID',
+      'PUBLIC_FIREBASE_STORAGE_BUCKET',
+      'PUBLIC_FIREBASE_MESSAGING_SENDER_ID',
+      'PUBLIC_FIREBASE_APP_ID',
+    ],
+    ['PUBLIC_FIREBASE_MEASUREMENT_ID']
+  );
 
   const allowListRaw = process.env.ADMIN_PHONE_ALLOWLIST || '';
   const allowedUploaders = allowListRaw
