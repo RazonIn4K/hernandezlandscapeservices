@@ -22,6 +22,7 @@
   "homepage": "https://github.com/RazonIn4K/hernandezlandscapeservices#readme",
   "description": "",
   "devDependencies": {
+    "dotenv": "^17.2.3",
     "tailwindcss": "^3.4.17"
   },
   "dependencies": {
