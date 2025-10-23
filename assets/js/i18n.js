@@ -25,6 +25,7 @@
         "We could not load the photos right now. Please try again.",
       "gallery.loadMore": "Load more photos",
       "gallery.loadingButton": "Loading...",
+      "serviceArea.mapNote": "Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.",
     },
     es: {
       "nav.services": "Servicios",
@@ -135,6 +136,7 @@
       "serviceArea.info":
         "¿No estás seguro si cubrimos tu área? ¡Llámanos! Seguimos ampliando nuestra zona de servicio.",
       "serviceArea.mapPlaceholder": "Mapa interactivo muy pronto",
+      "serviceArea.mapNote": "Haz zoom y explora nuestra base en DeKalb; atendemos todo el condado y comunidades cercanas.",
 
       "quote.heading": "¿Listo para transformar tu propiedad?",
       "quote.contactHeading": "Ponte en contacto",
