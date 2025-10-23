@@ -247,7 +247,12 @@ function addImagesToSelection(fileList) {
   let skipped = 0;
 
   files.forEach((file) => {
-    if (!file.type.startsWith('image/')) {
+    // Accept images, videos, PDFs, and documents
+    if (!file.type.startsWith('image/') &&
+        !file.type.startsWith('video/') &&
+        file.type !== 'application/pdf' &&
+        !file.type.includes('document') &&
+        !file.type.includes('word')) {
       skipped += 1;
       return;
     }
@@ -447,7 +452,7 @@ if (dropZone) {
         );
       } else if (skipped) {
         setUploadMessage(
-          getMessage('admin.message.skipped', 'Only image files are allowed.'),
+          getMessage('admin.message.skipped', 'Only image, video, PDF, and document files are allowed.'),
           'admin-message--error'
         );
       }
@@ -489,11 +494,13 @@ uploadButton.addEventListener('click', () => {
   const files = selectedFiles.slice();
   if (!files.length) {
     setUploadMessage(
-      getMessage('admin.message.selectImage', 'Select at least one image.'),
+      getMessage('admin.message.selectImage', 'Select at least one file to upload.'),
       'admin-message--error'
     );
     return;
   }
+
+  console.log('Starting upload for', files.length, 'files:', files.map(f => ({name: f.name, type: f.type, size: f.size})));
 
   const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
   const transferredByFile = new Map();
@@ -543,11 +550,12 @@ uploadButton.addEventListener('click', () => {
 
     if (hasFailed) {
       const failedList = failedFiles.map((item) => item.name).join(', ');
+      console.error('Upload failed files:', failedFiles);
       if (failedList) {
         setUploadMessage(
           getMessage(
             'admin.message.uploadFailedList',
-            `We could not upload these images: ${failedList}.`,
+            `We could not upload these files: ${failedList}. Check your connection and try again.`,
             { list: failedList }
           ),
           'admin-message--error'
@@ -556,7 +564,7 @@ uploadButton.addEventListener('click', () => {
         setUploadMessage(
           getMessage(
             'admin.message.uploadFailedGeneric',
-            'Something went wrong with some images. Please try again.'
+            'Something went wrong with some files. Please check your connection and try again.'
           ),
           'admin-message--error'
         );
