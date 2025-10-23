@@ -52,9 +52,12 @@ npm run build
 
 > The two generated files remain git-ignored; they only exist in the build output.
 
-### Uploading photos via the admin portal
+### Uploading files via the admin portal
 
 - Open `https://<your-domain>/admin/admin.html` and sign in with a phone number that exists in `ADMIN_PHONE_ALLOWLIST`.
+- The system accepts photos, videos, PDFs, and documents (Word docs, etc.).
+- Upload by dragging and dropping files onto the upload area, or click "Choose files" to browse.
+- Works on both desktop and mobile devices - the interface adapts to smaller screens.
 - Successful uploads land in Firebase Storage under `gallery-images/`. The public gallery (`#gallery` on `index.html`) lists that folder and shows the newest items first.
 - When you add or remove numbers from the allowlist, update the corresponding environment variable so the next deploy keeps the admin portal in sync with your Firebase Storage security rules.
 
