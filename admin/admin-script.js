@@ -309,7 +309,7 @@ if (dropZone) {
 
   dropZone.addEventListener('drop', (event) => {
     event.preventDefault();
-    if (event.dataTransfer?.files?.length) {
+    if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files.length) {
       const { added, duplicates, skipped } = addImagesToSelection(event.dataTransfer.files);
       if (added) {
         setUploadMessage(`${added} foto${added === 1 ? '' : 's'} añadida${added === 1 ? '' : 's'} a la lista.`, 'admin-message--success');
@@ -323,7 +323,7 @@ if (dropZone) {
 }
 
 fileInput.addEventListener('change', (event) => {
-  if (!event.target.files?.length) {
+  if (!event.target.files || !event.target.files.length) {
     return;
   }
 
