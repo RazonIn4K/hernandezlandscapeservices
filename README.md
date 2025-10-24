@@ -78,6 +78,41 @@ The admin portal relies on Firebase phone authentication. The current implementa
 - Firebase requires a completed reCAPTCHA check before sending verification SMS to real phone numbers. The flag is currently hardcoded to `false` for production safety.
 - **Important**: Always verify the deployed admin portal renders `disableRecaptcha: false` in production via View Page Source. If testing locally, temporarily set to `true` only for development purposes.
 
+### Gallery metadata & Firestore
+
+- Every uploaded photo or video now creates a document in the Cloud Firestore collection `media`. Each doc stores the download URL, thumbnail URL, MIME type, media category, optional title/description, uploader phone number, and timestamps.
+- Enable Cloud Firestore for your Firebase project before deploying. Uploads include a "Publish immediately" toggle in the admin portal; if you leave it off, the Firestore doc is created with `published: false` and you can flip the status later from the built-in media manager. Ordering uses a single `createdAt` field, so no composite indexes are required (Firestore will prompt you to create one when needed).
+- When Firestore asks for an index to support `where(published == true)` + `orderBy(createdAt)`, accept the prompt and save the generated URL so future deployments can recreate the index quickly.
+- Media files are written to `media/` and thumbnails to `thumbnails/` in Firebase Storage. Legacy photos in `gallery-images/` (or the earlier `gallery-media/` path) continue to work; the public site reads from Firestore first and falls back to those Storage buckets if Firestore is unavailable.
+- Update your Firebase security rules so only authenticated, allow-listed phone numbers can write to these paths. Use this as a starting point (tighten to your needs — for production, replace the admin token check with your allowlist logic):
+
+  ```
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /media/{itemId} {
+        allow read: if resource.data.published == true;
+        allow write: if request.auth != null && request.auth.token.admin == true;
+      }
+    }
+  }
+
+  service firebase.storage {
+    match /b/{bucket}/o {
+      match /media/{file=**} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.token.admin == true;
+      }
+      match /thumbnails/{file=**} {
+        allow read: if true;
+        allow write: if request.auth != null && request.auth.token.admin == true;
+      }
+    }
+  }
+  ```
+
+  Adjust the `allow write` rules to mirror your allowlist or custom claims before going live, and remember to toggle `published` to `true` when a media item is ready for the public gallery.
+
 ### Bilingual content (English / Spanish)
 
 - Both the public site and the admin portal render in English by default and provide an EN/ES toggle.
