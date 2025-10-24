@@ -1,0 +1,802 @@
+[debug] [2025-10-24T03:32:30.787Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T03:32:30.789Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T03:32:30.789Z] CLI Version:   14.21.0
+[debug] [2025-10-24T03:32:30.789Z] Platform:      darwin
+[debug] [2025-10-24T03:32:30.789Z] Node Version:  v24.1.0
+[debug] [2025-10-24T03:32:30.789Z] Time:          Thu Oct 23 2025 22:32:30 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T03:32:30.789Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T03:32:30.872Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T03:32:30.872Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T03:32:30.872Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T03:32:30.873Z] Checked if tokens are valid: false, expires at: 1761261025825
+[debug] [2025-10-24T03:32:30.873Z] Checked if tokens are valid: false, expires at: 1761261025825
+[debug] [2025-10-24T03:32:30.873Z] > refreshing access token with scopes: []
+[debug] [2025-10-24T03:32:30.874Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-24T03:32:30.874Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T03:32:31.004Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-24T03:32:31.004Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T03:32:31.018Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T03:32:31.018Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T03:32:31.018Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T03:32:31.109Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T03:32:31.109Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T03:32:31.110Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.110Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.110Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T03:32:31.294Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T03:32:31.294Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T03:32:31.296Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.296Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.296Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T03:32:31.296Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T03:32:31.430Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T03:32:31.430Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T03:32:31.431Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.431Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.431Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T03:32:31.692Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T03:32:31.692Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T02:32:31.697283Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"INCmi5nzu5ADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T03:32:31.693Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.693Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.693Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T03:32:31.693Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T03:32:31.720Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T03:32:31.720Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T03:32:31.720Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.720Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.720Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T03:32:31.776Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T03:32:31.776Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-23T22:19:41.523242Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-23T22:19:41.178505Z"}]}
+[debug] [2025-10-24T03:32:31.784Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.784Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.784Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T03:32:31.830Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T03:32:31.830Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T03:32:31.831Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.831Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.831Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T03:32:31.885Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T03:32:31.885Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-23T22:19:41.523242Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-23T22:19:41.178505Z"}]}
+[debug] [2025-10-24T03:32:31.885Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.885Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.885Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T03:32:31.934Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T03:32:31.934Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T03:32:31.935Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4
+[debug] [2025-10-24T03:32:31.935Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.935Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:31.935Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T03:32:31.935Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4"}}
+[debug] [2025-10-24T03:32:32.016Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T03:32:32.016Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T03:32:32.011772Z"}
+[debug] [2025-10-24T03:32:32.016Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T03:32:32.017Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43
+[debug] [2025-10-24T03:32:32.017Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:32.017Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T03:32:32.017Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T03:32:32.017Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43"}}
+[debug] [2025-10-24T03:32:32.104Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T03:32:32.105Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T03:32:32.090747Z"}
+[debug] [2025-10-24T03:32:32.108Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T04:16:58.789Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T04:16:58.792Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T04:16:58.793Z] CLI Version:   14.21.0
+[debug] [2025-10-24T04:16:58.793Z] Platform:      darwin
+[debug] [2025-10-24T04:16:58.793Z] Node Version:  v24.1.0
+[debug] [2025-10-24T04:16:58.793Z] Time:          Thu Oct 23 2025 23:16:58 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T04:16:58.793Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T04:16:58.895Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T04:16:58.896Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T04:16:58.896Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T04:16:58.896Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:58.896Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:58.897Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T04:16:58.897Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T04:16:58.897Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T04:16:59.065Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T04:16:59.065Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T04:16:59.066Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.066Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.066Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T04:16:59.222Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T04:16:59.222Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T04:16:59.224Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.224Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.224Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:16:59.224Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:16:59.325Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:16:59.325Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T04:16:59.326Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.326Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.326Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T04:16:59.557Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T04:16:59.557Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T03:16:59.610690Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IKbfn5H9u5ADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T04:16:59.558Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.558Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.558Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:16:59.558Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:16:59.583Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:16:59.583Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T04:16:59.583Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.583Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.583Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:16:59.648Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:16:59.648Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T03:32:32.090747Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T03:32:32.011772Z"}]}
+[debug] [2025-10-24T04:16:59.656Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.656Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.656Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T04:16:59.716Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T04:16:59.716Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T04:16:59.717Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.717Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.717Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:16:59.779Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:16:59.779Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T03:32:32.090747Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T03:32:32.011772Z"}]}
+[debug] [2025-10-24T04:16:59.780Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.780Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.780Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T04:16:59.823Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T04:16:59.824Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T04:16:59.828Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4
+[debug] [2025-10-24T04:16:59.828Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.828Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.829Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T04:16:59.829Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4"}}
+[debug] [2025-10-24T04:16:59.921Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T04:16:59.921Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:16:59.965389Z"}
+[debug] [2025-10-24T04:16:59.921Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T04:16:59.922Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43
+[debug] [2025-10-24T04:16:59.922Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.922Z] Checked if tokens are valid: true, expires at: 1761280350004
+[debug] [2025-10-24T04:16:59.922Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T04:16:59.922Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43"}}
+[debug] [2025-10-24T04:16:59.988Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T04:16:59.988Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:17:00.031538Z"}
+[debug] [2025-10-24T04:16:59.988Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T04:20:33.334Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T04:20:33.338Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T04:20:33.338Z] CLI Version:   14.21.0
+[debug] [2025-10-24T04:20:33.338Z] Platform:      darwin
+[debug] [2025-10-24T04:20:33.338Z] Node Version:  v24.1.0
+[debug] [2025-10-24T04:20:33.338Z] Time:          Thu Oct 23 2025 23:20:33 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T04:20:33.338Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T04:20:33.430Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T04:20:33.431Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T04:20:33.431Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T04:20:33.431Z] Checked if tokens are valid: false, expires at: 1761280350004
+[debug] [2025-10-24T04:20:33.431Z] Checked if tokens are valid: false, expires at: 1761280350004
+[debug] [2025-10-24T04:20:33.431Z] > refreshing access token with scopes: []
+[debug] [2025-10-24T04:20:33.432Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-24T04:20:33.432Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T04:20:33.564Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-24T04:20:33.565Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T04:20:33.581Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T04:20:33.581Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T04:20:33.581Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T04:20:33.723Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T04:20:33.723Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T04:20:33.724Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:33.724Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:33.724Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T04:20:33.902Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T04:20:33.903Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T04:20:33.904Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:33.904Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:33.904Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:20:33.904Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:20:33.992Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:20:33.992Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T04:20:33.994Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:33.994Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:33.994Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T04:20:34.194Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T04:20:34.194Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T03:20:34.246481Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IKWOzPf9u5ADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T04:20:34.197Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.197Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.198Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:20:34.198Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:20:34.255Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:20:34.255Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T04:20:34.255Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.255Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.255Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:20:34.302Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:20:34.302Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:17:00.031538Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:16:59.965389Z"}]}
+[debug] [2025-10-24T04:20:34.313Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.313Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.313Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T04:20:34.359Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T04:20:34.359Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T04:20:34.360Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.360Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.360Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:20:34.415Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:20:34.415Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:17:00.031538Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:16:59.965389Z"}]}
+[debug] [2025-10-24T04:20:34.415Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.415Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.415Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T04:20:34.450Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T04:20:34.450Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T04:20:34.450Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4
+[debug] [2025-10-24T04:20:34.450Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.450Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.450Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T04:20:34.450Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4"}}
+[debug] [2025-10-24T04:20:34.522Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T04:20:34.522Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:20:34.568197Z"}
+[debug] [2025-10-24T04:20:34.522Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T04:20:34.522Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43
+[debug] [2025-10-24T04:20:34.522Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.522Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:20:34.522Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T04:20:34.522Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43"}}
+[debug] [2025-10-24T04:20:34.580Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T04:20:34.580Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:20:34.626861Z"}
+[debug] [2025-10-24T04:20:34.580Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T04:32:50.828Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T04:32:50.831Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T04:32:50.831Z] CLI Version:   14.21.0
+[debug] [2025-10-24T04:32:50.831Z] Platform:      darwin
+[debug] [2025-10-24T04:32:50.831Z] Node Version:  v24.1.0
+[debug] [2025-10-24T04:32:50.831Z] Time:          Thu Oct 23 2025 23:32:50 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T04:32:50.831Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T04:32:50.924Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T04:32:50.925Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T04:32:50.925Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T04:32:50.925Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:50.925Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:50.926Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T04:32:50.926Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T04:32:50.926Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T04:32:51.103Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T04:32:51.103Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T04:32:51.104Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.104Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.104Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T04:32:51.280Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T04:32:51.280Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T04:32:51.282Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.282Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.282Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:32:51.282Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:32:51.398Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:32:51.398Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T04:32:51.399Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.399Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.399Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T04:32:51.633Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T04:32:51.633Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T03:32:51.633783Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"INPVmteAvJADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T04:32:51.635Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.636Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.636Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:32:51.636Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:32:51.669Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:32:51.669Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T04:32:51.670Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.670Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.670Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:32:51.709Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:32:51.709Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:20:34.626861Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:20:34.568197Z"}]}
+[debug] [2025-10-24T04:32:51.719Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.719Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.719Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T04:32:51.761Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T04:32:51.761Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T04:32:51.762Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.762Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.762Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:32:51.820Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:32:51.820Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:20:34.626861Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:20:34.568197Z"}]}
+[debug] [2025-10-24T04:32:51.820Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.820Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.821Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T04:32:51.886Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T04:32:51.886Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T04:32:51.886Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4
+[debug] [2025-10-24T04:32:51.886Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.887Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.887Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T04:32:51.887Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4"}}
+[debug] [2025-10-24T04:32:51.957Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T04:32:51.958Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:32:51.952035Z"}
+[debug] [2025-10-24T04:32:51.958Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T04:32:51.958Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43
+[debug] [2025-10-24T04:32:51.958Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.958Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:32:51.958Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T04:32:51.958Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43"}}
+[debug] [2025-10-24T04:32:52.061Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T04:32:52.061Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:32:52.056096Z"}
+[debug] [2025-10-24T04:32:52.061Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T04:54:26.815Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T04:54:26.817Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T04:54:26.817Z] CLI Version:   14.21.0
+[debug] [2025-10-24T04:54:26.817Z] Platform:      darwin
+[debug] [2025-10-24T04:54:26.817Z] Node Version:  v24.1.0
+[debug] [2025-10-24T04:54:26.817Z] Time:          Thu Oct 23 2025 23:54:26 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T04:54:26.817Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T04:54:26.911Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T04:54:26.912Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T04:54:26.912Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T04:54:26.913Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:26.913Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:26.913Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T04:54:26.913Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T04:54:26.913Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T04:54:27.102Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T04:54:27.102Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T04:54:27.103Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.103Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.103Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T04:54:27.294Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T04:54:27.294Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T04:54:27.296Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.296Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.296Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:54:27.296Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:54:27.421Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:54:27.421Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T04:54:27.422Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.423Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.423Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T04:54:27.648Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T04:54:27.649Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T03:54:27.640038Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IMHOmMGFvJADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T04:54:27.650Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.650Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.650Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T04:54:27.650Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T04:54:27.713Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T04:54:27.713Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T04:54:27.714Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.714Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.714Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:54:27.763Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:54:27.763Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:32:52.056096Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:32:51.952035Z"}]}
+[debug] [2025-10-24T04:54:27.771Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.771Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.772Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T04:54:27.824Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T04:54:27.824Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T04:54:27.825Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.825Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.825Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T04:54:27.868Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T04:54:27.868Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:32:52.056096Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:32:51.952035Z"}]}
+[debug] [2025-10-24T04:54:27.868Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.868Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.868Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T04:54:27.912Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T04:54:27.912Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T04:54:27.913Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4
+[debug] [2025-10-24T04:54:27.913Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.913Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.913Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T04:54:27.913Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4"}}
+[debug] [2025-10-24T04:54:27.990Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T04:54:27.990Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:54:27.972055Z"}
+[debug] [2025-10-24T04:54:27.990Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T04:54:27.990Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43
+[debug] [2025-10-24T04:54:27.990Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.990Z] Checked if tokens are valid: true, expires at: 1761283232565
+[debug] [2025-10-24T04:54:27.990Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T04:54:27.990Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43"}}
+[debug] [2025-10-24T04:54:28.047Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T04:54:28.047Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:54:28.030268Z"}
+[debug] [2025-10-24T04:54:28.047Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T06:17:50.848Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T06:17:50.852Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T06:17:50.852Z] CLI Version:   14.21.0
+[debug] [2025-10-24T06:17:50.852Z] Platform:      darwin
+[debug] [2025-10-24T06:17:50.852Z] Node Version:  v24.1.0
+[debug] [2025-10-24T06:17:50.852Z] Time:          Fri Oct 24 2025 01:17:50 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T06:17:50.852Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T06:17:50.945Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T06:17:50.946Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T06:17:50.946Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T06:17:50.946Z] Checked if tokens are valid: false, expires at: 1761283232565
+[debug] [2025-10-24T06:17:50.946Z] Checked if tokens are valid: false, expires at: 1761283232565
+[debug] [2025-10-24T06:17:50.946Z] > refreshing access token with scopes: []
+[debug] [2025-10-24T06:17:50.947Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-24T06:17:50.947Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T06:17:51.073Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-24T06:17:51.074Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T06:17:51.086Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T06:17:51.086Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T06:17:51.086Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T06:17:51.183Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T06:17:51.184Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T06:17:51.185Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.185Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.185Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T06:17:51.374Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T06:17:51.374Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T06:17:51.375Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.375Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.375Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T06:17:51.376Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T06:17:51.483Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T06:17:51.484Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T06:17:51.485Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.485Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.485Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T06:17:51.720Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T06:17:51.720Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T05:17:51.770290Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IP/ArJOYvJADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T06:17:51.722Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.722Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.722Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T06:17:51.722Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T06:17:51.782Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T06:17:51.782Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T06:17:51.782Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.782Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.783Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T06:17:51.835Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T06:17:51.835Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:54:28.030268Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:54:27.972055Z"}]}
+[debug] [2025-10-24T06:17:51.843Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.843Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.843Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T06:17:51.894Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T06:17:51.894Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T06:17:51.895Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.895Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.895Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T06:17:51.923Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T06:17:51.924Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T04:54:28.030268Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T04:54:27.972055Z"}]}
+[debug] [2025-10-24T06:17:51.924Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.924Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.924Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T06:17:51.962Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T06:17:51.962Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T06:17:51.963Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4
+[debug] [2025-10-24T06:17:51.963Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.963Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:51.963Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T06:17:51.963Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4"}}
+[debug] [2025-10-24T06:17:52.050Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T06:17:52.050Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T06:17:52.092363Z"}
+[debug] [2025-10-24T06:17:52.050Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T06:17:52.051Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43
+[debug] [2025-10-24T06:17:52.051Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:52.051Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:17:52.051Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T06:17:52.051Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43"}}
+[debug] [2025-10-24T06:17:52.134Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T06:17:52.134Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T06:17:52.174517Z"}
+[debug] [2025-10-24T06:17:52.134Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T06:34:50.557Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T06:34:50.559Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T06:34:50.559Z] CLI Version:   14.21.0
+[debug] [2025-10-24T06:34:50.559Z] Platform:      darwin
+[debug] [2025-10-24T06:34:50.559Z] Node Version:  v24.1.0
+[debug] [2025-10-24T06:34:50.559Z] Time:          Fri Oct 24 2025 01:34:50 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T06:34:50.559Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T06:34:50.658Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T06:34:50.659Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T06:34:50.659Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T06:34:50.659Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:50.660Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:50.660Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T06:34:50.660Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T06:34:50.660Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T06:34:50.849Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T06:34:50.850Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T06:34:50.851Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:50.851Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:50.851Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T06:34:51.038Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T06:34:51.038Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T06:34:51.039Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.039Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.039Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T06:34:51.040Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T06:34:51.155Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T06:34:51.155Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T06:34:51.156Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.156Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.156Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T06:34:51.376Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T06:34:51.376Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T05:34:51.375229Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IIigxPmbvJADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T06:34:51.376Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.376Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.376Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T06:34:51.376Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T06:34:51.401Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T06:34:51.401Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T06:34:51.401Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.401Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.401Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T06:34:51.456Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T06:34:51.456Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T06:17:52.174517Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T06:17:52.092363Z"}]}
+[debug] [2025-10-24T06:34:51.464Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.464Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.464Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [none]
+[debug] [2025-10-24T06:34:51.514Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 200
+[debug] [2025-10-24T06:34:51.514Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4 [omitted]
+[info] i  storage: uploading rules storage.rules... 
+[debug] [2025-10-24T06:34:51.515Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.515Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.515Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets [none]
+[debug] [2025-10-24T06:34:51.515Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets [omitted]
+[debug] [2025-10-24T06:34:51.584Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets 200
+[debug] [2025-10-24T06:34:51.584Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets {"name":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe","source":{"files":[{"content":"rules_version = '2';\nservice firebase.storage {\n  match /b/{bucket}/o {\n    match /media/{allPaths=**} {\n      allow read: if true;\n      allow write: if request.auth != null;\n    }\n    match /thumbnails/{allPaths=**} {\n      allow read: if true;\n      allow write: if request.auth != null;\n    }\n    match /{allPaths=**} {\n      allow read, write: if false;\n    }\n  }\n}\n","name":"storage.rules"}]},"createTime":"2025-10-24T06:34:51.572063Z","metadata":{"services":["firebase.storage"]}}
+[debug] [2025-10-24T06:34:51.584Z] [rules] created ruleset projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe
+[debug] [2025-10-24T06:34:51.585Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.585Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.585Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T06:34:51.632Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T06:34:51.632Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T06:17:52.174517Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/3369e8c3-c5fa-4306-b834-d13374e42de4","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T06:17:52.092363Z"}]}
+[debug] [2025-10-24T06:34:51.632Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.633Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.633Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [none]
+[debug] [2025-10-24T06:34:51.681Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 200
+[debug] [2025-10-24T06:34:51.681Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/430ef4b5-1917-4d50-bfc4-ec1859667e43 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2025-10-24T06:34:51.681Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.681Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.682Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets [none]
+[debug] [2025-10-24T06:34:51.682Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets [omitted]
+[debug] [2025-10-24T06:34:51.748Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets 200
+[debug] [2025-10-24T06:34:51.748Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets {"name":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf","source":{"files":[{"content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /media/{itemId} {\n      allow read: if resource.data.published == true;\n      allow write: if request.auth != null;\n    }\n    match /{document=**} {\n      allow read, write: if false;\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2025-10-24T06:34:51.736751Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2025-10-24T06:34:51.748Z] [rules] created ruleset projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T06:34:51.748Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe
+[debug] [2025-10-24T06:34:51.749Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.749Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.749Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T06:34:51.749Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe"}}
+[debug] [2025-10-24T06:34:51.826Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T06:34:51.826Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T06:34:51.815526Z"}
+[debug] [2025-10-24T06:34:51.827Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T06:34:51.827Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf
+[debug] [2025-10-24T06:34:51.827Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.827Z] Checked if tokens are valid: true, expires at: 1761290270074
+[debug] [2025-10-24T06:34:51.827Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T06:34:51.827Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf"}}
+[debug] [2025-10-24T06:34:51.890Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T06:34:51.890Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T06:34:51.879746Z"}
+[debug] [2025-10-24T06:34:51.890Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
+[debug] [2025-10-24T07:19:13.314Z] ----------------------------------------------------------------------
+[debug] [2025-10-24T07:19:13.318Z] Command:       /opt/homebrew/Cellar/node/24.1.0/bin/node /Users/davidortiz/.npm-global/bin/firebase deploy
+[debug] [2025-10-24T07:19:13.318Z] CLI Version:   14.21.0
+[debug] [2025-10-24T07:19:13.318Z] Platform:      darwin
+[debug] [2025-10-24T07:19:13.318Z] Node Version:  v24.1.0
+[debug] [2025-10-24T07:19:13.318Z] Time:          Fri Oct 24 2025 02:19:13 GMT-0500 (Central Daylight Time)
+[debug] [2025-10-24T07:19:13.318Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-24T07:19:13.424Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-24T07:19:13.425Z] > authorizing via signed-in user (davidinfosec07@gmail.com)
+[debug] [2025-10-24T07:19:13.425Z] [iam] checking project hernandez-photo for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2025-10-24T07:19:13.425Z] Checked if tokens are valid: false, expires at: 1761290270074
+[debug] [2025-10-24T07:19:13.425Z] Checked if tokens are valid: false, expires at: 1761290270074
+[debug] [2025-10-24T07:19:13.425Z] > refreshing access token with scopes: []
+[debug] [2025-10-24T07:19:13.426Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-10-24T07:19:13.426Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T07:19:13.564Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-10-24T07:19:13.564Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-10-24T07:19:13.581Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions [none]
+[debug] [2025-10-24T07:19:13.581Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions x-goog-quota-user=projects/hernandez-photo
+[debug] [2025-10-24T07:19:13.581Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2025-10-24T07:19:13.755Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions 200
+[debug] [2025-10-24T07:19:13.755Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hernandez-photo:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[info] 
+[info] === Deploying to 'hernandez-photo'...
+[info] 
+[info] i  deploying storage, firestore 
+[info] i  storage: ensuring required API firebasestorage.googleapis.com is enabled... 
+[debug] [2025-10-24T07:19:13.756Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:13.756Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:13.756Z] >>> [apiv2][query] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket [none]
+[debug] [2025-10-24T07:19:13.978Z] <<< [apiv2][status] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket 200
+[debug] [2025-10-24T07:19:13.979Z] <<< [apiv2][body] GET https://firebasestorage.googleapis.com/v1alpha/projects/hernandez-photo/defaultBucket {"name":"projects/hernandez-photo/defaultBucket","location":"US-CENTRAL1","bucket":{"name":"projects/hernandez-photo/buckets/hernandez-photo.firebasestorage.app"},"storageClass":"REGIONAL"}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2025-10-24T07:19:13.980Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:13.980Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:13.980Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T07:19:13.980Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T07:19:14.087Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T07:19:14.087Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-10-24T07:19:14.088Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.088Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.089Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) [none]
+[debug] [2025-10-24T07:19:14.332Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) 200
+[debug] [2025-10-24T07:19:14.333Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/hernandez-photo/databases/(default) {"name":"projects/hernandez-photo/databases/(default)","uid":"36a79ce3-05fd-407e-bb51-746f5bba7082","createTime":"2025-10-23T20:47:10.143669Z","updateTime":"2025-10-23T20:47:10.143669Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-10-24T06:19:14.362229Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"II2HrO+lvJADMLXB1cuYu5AD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2025-10-24T07:19:14.333Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.333Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.333Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [none]
+[debug] [2025-10-24T07:19:14.333Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test [omitted]
+[debug] [2025-10-24T07:19:14.364Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test 200
+[debug] [2025-10-24T07:19:14.364Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/hernandez-photo:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2025-10-24T07:19:14.365Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.365Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.365Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T07:19:14.415Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T07:19:14.415Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T06:34:51.879746Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T06:34:51.815526Z"}]}
+[debug] [2025-10-24T07:19:14.424Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.424Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.424Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe [none]
+[debug] [2025-10-24T07:19:14.514Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe 200
+[debug] [2025-10-24T07:19:14.514Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[debug] [2025-10-24T07:19:14.515Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.515Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.515Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases pageSize=10&pageToken=
+[debug] [2025-10-24T07:19:14.575Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases 200
+[debug] [2025-10-24T07:19:14.575Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases {"releases":[{"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T06:34:51.879746Z"},{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T06:34:51.815526Z"}]}
+[debug] [2025-10-24T07:19:14.575Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.576Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.576Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf [none]
+[debug] [2025-10-24T07:19:14.636Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf 200
+[debug] [2025-10-24T07:19:14.636Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf [omitted]
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[info] i  firestore: deploying indexes... 
+[debug] [2025-10-24T07:19:14.637Z] [rules] releasing firebase.storage/hernandez-photo.firebasestorage.app with ruleset projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe
+[debug] [2025-10-24T07:19:14.637Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.637Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.637Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app [none]
+[debug] [2025-10-24T07:19:14.637Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"release":{"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe"}}
+[debug] [2025-10-24T07:19:14.761Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app 200
+[debug] [2025-10-24T07:19:14.761Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app {"name":"projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app","rulesetName":"projects/hernandez-photo/rulesets/36064d95-e5db-4563-8d45-00a78e860efe","createTime":"2025-10-22T17:49:35.664901Z","updateTime":"2025-10-24T07:19:14.739876Z"}
+[debug] [2025-10-24T07:19:14.761Z] [rules] updated release projects/hernandez-photo/releases/firebase.storage/hernandez-photo.firebasestorage.app
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2025-10-24T07:19:14.762Z] [rules] releasing cloud.firestore/(default) with ruleset projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf
+[debug] [2025-10-24T07:19:14.762Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.762Z] Checked if tokens are valid: true, expires at: 1761293952564
+[debug] [2025-10-24T07:19:14.762Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) [none]
+[debug] [2025-10-24T07:19:14.762Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"release":{"name":"projects/hernandez-photo/releases/cloud.firestore/(default)","rulesetName":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf"}}
+[debug] [2025-10-24T07:19:14.840Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) 200
+[debug] [2025-10-24T07:19:14.840Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/hernandez-photo/releases/cloud.firestore/(default) {"name":"projects/hernandez-photo/releases/cloud.firestore","rulesetName":"projects/hernandez-photo/rulesets/cd095120-174c-4843-b49b-3ce4855d8dbf","createTime":"2025-10-23T20:47:14.026949Z","updateTime":"2025-10-24T07:19:14.861106Z"}
+[debug] [2025-10-24T07:19:14.841Z] [rules] updated release projects/hernandez-photo/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/hernandez-photo/overview
