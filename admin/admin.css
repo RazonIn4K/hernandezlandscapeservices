@@ -143,24 +143,68 @@
 
 .admin-file-item {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
     box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
 }
 
+.admin-file-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
 .admin-file-name {
     display: flex;
     flex-direction: column;
     text-align: left;
+    gap: 0.35rem;
 }
 
 .admin-file-size {
     font-size: 0.8rem;
     color: #6b7280;
+}
+
+.admin-file-tag {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.admin-file-tag--video {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.admin-file-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-file-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.admin-file-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #374151;
 }
 
 .admin-file-remove {
@@ -170,6 +214,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: color 0.2s ease;
+    align-self: flex-start;
 }
 
 .admin-file-remove:hover {
@@ -180,4 +225,163 @@
     justify-content: center;
     color: #6b7280;
     font-style: italic;
+}
+
+.admin-input--compact {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.95rem;
+}
+
+.admin-input--textarea {
+    min-height: 3.5rem;
+    resize: vertical;
+}
+
+.admin-publish-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: #047857;
+}
+
+.admin-checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    border: 1px solid #047857;
+    border-radius: 0.25rem;
+}
+
+.admin-manager {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.admin-manager-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-manager-filters {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.admin-manager-empty {
+    text-align: center;
+    color: #6b7280;
+    font-style: italic;
+}
+
+.admin-manager-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.admin-manager-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 10px 20px rgba(15, 23, 42, 0.05);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+}
+
+.admin-manager-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.admin-manager-meta h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.admin-manager-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.admin-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.admin-tag--draft {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.admin-tag--video {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.admin-manager-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.admin-action-button {
+    border: none;
+    border-radius: 9999px;
+    padding: 0.45rem 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-action-button:hover {
+    transform: translateY(-1px);
+}
+
+.admin-action-button--primary {
+    background: linear-gradient(135deg, #047857, #10b981);
+    color: #ffffff;
+}
+
+.admin-action-button--secondary {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+.admin-action-button--danger {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+@media (min-width: 768px) {
+    .admin-manager-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .admin-manager-actions {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
 }

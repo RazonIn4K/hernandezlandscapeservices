@@ -21,8 +21,8 @@
                 </div>
             </div>
             <header class="text-center mb-8">
-                <h1 class="text-3xl font-bold text-gray-900" data-i18n-key="admin.heading">Upload Your Photos</h1>
-                <p class="text-gray-600 mt-2" data-i18n-key="admin.subheading">Sign in with your phone number to share new projects.</p>
+                <h1 class="text-3xl font-bold text-gray-900" data-i18n-key="admin.heading">Upload Your Work</h1>
+                <p class="text-gray-600 mt-2" data-i18n-key="admin.subheading">Sign in with your phone number to share new projects and showcase your landscaping work.</p>
             </header>
 
             <div id="auth-section">
@@ -43,25 +43,29 @@
 
             <div id="upload-section" class="hidden">
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-2xl font-semibold text-gray-900" data-i18n-key="admin.upload.heading">Upload photos</h2>
+                    <h2 class="text-2xl font-semibold text-gray-900" data-i18n-key="admin.upload.heading">Upload your work</h2>
                     <button id="logout-button" class="admin-button admin-button--secondary" data-i18n-key="admin.logout">Log out</button>
                 </div>
 
-                <p class="text-gray-600 mb-4" data-i18n-key="admin.upload.instructions">Drag and drop your photos, videos, or documents here, or click "Choose files" below.</p>
+                <p class="text-gray-600 mb-4" data-i18n-key="admin.upload.instructions">Drag and drop your photos or videos, or choose them from your device.</p>
 
                 <div id="file-dropzone" class="admin-dropzone" role="button" tabindex="0">
                     <svg class="w-12 h-12 text-green-500 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                     </svg>
-                    <p class="text-sm text-gray-600 mb-2" data-i18n-key="admin.dropzone.prompt">Drop files here or</p>
+                    <p class="text-sm text-gray-600 mb-2" data-i18n-key="admin.dropzone.prompt">Drop your files here or</p>
                     <button type="button" id="add-photos-button" class="admin-button admin-button--ghost" data-i18n-key="admin.dropzone.button">Choose files</button>
-                    <p class="text-xs text-gray-500 mt-2">Photos, videos, PDFs, documents</p>
+                    <p class="text-xs text-gray-500 mt-2">Photos (JPG/PNG) and short clips (MP4/WebM)</p>
                 </div>
 
                 <ul id="selected-files" class="admin-file-list" aria-live="polite"></ul>
 
-                <input id="file-input" type="file" accept="image/*,video/*,.pdf,.doc,.docx" multiple class="admin-input admin-input--file hidden" aria-hidden="true" tabindex="-1">
-                <button id="upload-button" class="admin-button w-full mt-4" data-i18n-key="admin.upload.button">Upload photos</button>
+                <input id="file-input" type="file" accept="image/*,video/*" multiple class="admin-input admin-input--file hidden" aria-hidden="true" tabindex="-1">
+                <label class="admin-publish-toggle" for="publish-toggle">
+                    <input id="publish-toggle" type="checkbox" class="admin-checkbox">
+                    <span data-i18n-key="admin.publish.label">Publish immediately</span>
+                </label>
+                <button id="upload-button" class="admin-button w-full mt-4" data-i18n-key="admin.upload.button">Upload media</button>
 
                 <div class="progress-wrapper mt-6" aria-live="polite">
                     <div id="upload-progress-bar" class="progress-bar">0%</div>
@@ -70,6 +74,22 @@
                 <p id="upload-status" class="admin-message" role="status"></p>
             </div>
 
+            <section id="media-manager" class="admin-manager hidden" aria-live="polite">
+                <div class="admin-manager-header">
+                    <h2 class="text-2xl font-semibold text-gray-900" data-i18n-key="admin.manager.heading">Manage gallery media</h2>
+                    <div class="admin-manager-filters">
+                        <select id="media-filter" class="admin-input admin-input--compact">
+                            <option value="all" data-i18n-key="admin.manager.filter.all">All items</option>
+                            <option value="photo" data-i18n-key="admin.manager.filter.photos">Photos</option>
+                            <option value="video" data-i18n-key="admin.manager.filter.videos">Videos</option>
+                            <option value="unpublished" data-i18n-key="admin.manager.filter.unpublished">Unpublished</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="media-empty" class="admin-manager-empty" data-i18n-key="admin.manager.empty">No media uploaded yet.</div>
+                <ul id="media-list" class="admin-manager-list"></ul>
+            </section>
+
             <div id="recaptcha-container"></div>
         </section>
     </main>
@@ -77,6 +97,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
     <script>
         window.firebasePhoneAuthConfig = {
             disableRecaptcha: false

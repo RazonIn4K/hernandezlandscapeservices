@@ -30,7 +30,7 @@
       'no-config': ['gallery.error.configMissing', 'Missing assets/js/firebase-config.js. Add it to load photos.'],
       'no-firebase': ['gallery.error.firebase', 'Unable to load Firebase. Check your connection.'],
       'no-items': ['gallery.placeholder', 'Your new photos will appear here after you upload them.'],
-      error: ['gallery.error.generic', 'We could not load the photos right now. Please try again.']
+      error: ['gallery.error.generic', 'We could not load the gallery right now. Please try again later.']
     };
 
     let placeholderState = 'loading';
@@ -43,8 +43,283 @@
     }
 
     refreshPlaceholder();
-    renderLatestCarousel();
     galleryContainer.appendChild(placeholder);
+
+    const PAGE_SIZE = 24;
+    const LATEST_UPLOAD_LIMIT = 12;
+
+    const latestEntries = new Map();
+    const renderedEntries = new Set();
+
+    const loadMoreWrapper = document.createElement('div');
+    loadMoreWrapper.className = 'col-span-full flex justify-center mt-8';
+    const loadMoreButton = document.createElement('button');
+    loadMoreButton.type = 'button';
+    loadMoreButton.className = 'bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition';
+    loadMoreWrapper.appendChild(loadMoreButton);
+
+    let loadMoreState = 'idle';
+    function refreshLoadMoreButton() {
+      if (loadMoreState === 'loading') {
+        loadMoreButton.textContent = getText('gallery.loadingButton', 'Loading...');
+      } else {
+        loadMoreButton.textContent = getText('gallery.loadMore', 'Load more items');
+      }
+    }
+    refreshLoadMoreButton();
+
+    loadMoreButton.addEventListener('click', () => {
+      if (!isLoading && !reachedEnd) {
+        fetchPage();
+      }
+    });
+
+    const latestCarouselEntries = () => Array.from(latestEntries.values())
+      .sort((a, b) => b.createdAt - a.createdAt)
+      .slice(0, LATEST_UPLOAD_LIMIT);
+
+    function renderLatestCarousel() {
+      if (!latestTrack || !latestCarousel || !latestEmpty) {
+        return;
+      }
+
+      const items = latestCarouselEntries();
+      latestTrack.innerHTML = '';
+
+      if (!items.length) {
+        latestCarousel.classList.add('hidden');
+        latestEmpty.classList.remove('hidden');
+        return;
+      }
+
+      latestCarousel.classList.remove('hidden');
+      latestEmpty.classList.add('hidden');
+
+      items.forEach((entry) => {
+        const slide = document.createElement('div');
+        slide.className = 'snap-start shrink-0 w-64';
+
+        const figure = document.createElement('figure');
+        figure.className = 'relative h-48 rounded-lg overflow-hidden shadow-lg bg-gray-100';
+
+        if (entry.mediaCategory === 'video') {
+          if (entry.thumbnailURL) {
+            const thumb = document.createElement('img');
+            thumb.src = entry.thumbnailURL;
+            thumb.alt = entry.title;
+            thumb.loading = 'lazy';
+            thumb.className = 'w-full h-full object-cover';
+            figure.appendChild(thumb);
+          } else {
+            const video = document.createElement('video');
+            video.src = entry.downloadURL;
+            video.preload = 'metadata';
+            video.controls = true;
+            video.muted = true;
+            video.className = 'w-full h-full object-cover';
+            figure.appendChild(video);
+          }
+
+          const caption = document.createElement('figcaption');
+          caption.className = 'absolute bottom-0 inset-x-0 bg-black/60 text-white text-xs sm:text-sm px-3 py-2';
+          caption.textContent = `${entry.title} · ${getText('gallery.latest.videoTag', 'Video')}`;
+          figure.appendChild(caption);
+        } else if (entry.mediaCategory === 'image') {
+          const img = document.createElement('img');
+          img.src = entry.thumbnailURL || entry.downloadURL;
+          img.alt = entry.title;
+          img.loading = 'lazy';
+          img.className = 'w-full h-full object-cover';
+          figure.appendChild(img);
+
+          const caption = document.createElement('figcaption');
+          caption.className = 'absolute bottom-0 inset-x-0 bg-black/60 text-white text-xs sm:text-sm px-3 py-2';
+          caption.textContent = entry.title;
+          figure.appendChild(caption);
+        } else {
+          const card = document.createElement('a');
+          card.href = entry.downloadURL;
+          card.target = '_blank';
+          card.className = 'w-full h-full flex flex-col items-center justify-center bg-gray-200 hover:bg-gray-300 transition';
+          card.innerHTML = '<div class="text-3xl text-gray-500 mb-2">📎</div>' + `<div class="text-xs text-gray-600 text-center px-2">${entry.title}</div>`;
+          figure.appendChild(card);
+        }
+
+        slide.appendChild(figure);
+        latestTrack.appendChild(slide);
+      });
+    }
+
+    function registerLatest(entry) {
+      latestEntries.set(entry.id, entry);
+      if (latestEntries.size > 60) {
+        const sorted = Array.from(latestEntries.entries()).sort((a, b) => b[1].createdAt - a[1].createdAt).slice(0, 60);
+        latestEntries.clear();
+        sorted.forEach(([key, value]) => latestEntries.set(key, value));
+      }
+      renderLatestCarousel();
+    }
+
+    function mediaCategoryFromType(type) {
+      if (typeof type !== 'string') {
+        return 'other';
+      }
+      if (type.startsWith('image/')) {
+        return 'image';
+      }
+      if (type.startsWith('video/')) {
+        return 'video';
+      }
+      return 'other';
+    }
+
+    function getFileTypeFromUrl(url) {
+      const extension = url.split('.').pop().toLowerCase();
+      if (['mp4', 'mov', 'avi', 'webm'].includes(extension)) {
+        return 'video';
+      }
+      if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(extension)) {
+        return 'image';
+      }
+      return 'other';
+    }
+
+    function deriveTitleFromName(name) {
+      return name.replace(/\.[^/.]+$/, '').replace(/[-_]+/g, ' ').trim() || 'Gallery item';
+    }
+
+    function extractTimestamp(name) {
+      const match = name.match(/^(\d{13})-/);
+      return match ? Number(match[1]) : 0;
+    }
+
+    function createMediaFigure(entry) {
+      const figure = document.createElement('figure');
+      figure.className = 'relative overflow-hidden rounded-lg shadow-lg bg-gray-100 group';
+      figure.dataset.mediaCategory = entry.mediaCategory;
+
+      if (entry.mediaCategory === 'video') {
+        const video = document.createElement('video');
+        video.src = entry.downloadURL;
+        video.preload = 'metadata';
+        video.controls = true;
+        video.muted = true;
+        video.className = 'w-full h-64 object-cover transition duration-300 ease-in-out transform group-hover:scale-105';
+        if (entry.thumbnailURL) {
+          video.setAttribute('poster', entry.thumbnailURL);
+        }
+        figure.appendChild(video);
+
+        if (entry.title) {
+          const caption = document.createElement('figcaption');
+          caption.className = 'absolute bottom-0 inset-x-0 bg-black/60 text-white text-xs sm:text-sm px-3 py-2';
+          caption.textContent = `${entry.title} · ${getText('gallery.latest.videoTag', 'Video')}`;
+          figure.appendChild(caption);
+        }
+      } else if (entry.mediaCategory === 'image') {
+        const img = document.createElement('img');
+        img.src = entry.thumbnailURL || entry.downloadURL;
+        img.alt = entry.title;
+        img.loading = 'lazy';
+        img.className = 'w-full h-64 object-cover transition duration-300 ease-in-out transform group-hover:scale-105';
+        figure.appendChild(img);
+
+        if (entry.title) {
+          const caption = document.createElement('figcaption');
+          caption.className = 'absolute bottom-0 inset-x-0 bg-black/60 text-white text-xs sm:text-sm px-3 py-2';
+          caption.textContent = entry.title;
+          figure.appendChild(caption);
+        }
+      } else {
+        const link = document.createElement('a');
+        link.href = entry.downloadURL;
+        link.target = '_blank';
+        link.className = 'w-full h-64 flex flex-col items-center justify-center bg-gray-200 hover:bg-gray-300 transition';
+        link.innerHTML = '<div class="text-4xl text-gray-500 mb-2">📎</div>' + `<div class="text-sm text-gray-600 text-center px-2">${entry.title}</div>`;
+        figure.appendChild(link);
+      }
+
+      return figure;
+    }
+
+    function renderEntries(entries) {
+      if (!entries.length && !renderedEntries.size) {
+        placeholderState = 'no-items';
+        refreshPlaceholder();
+        return;
+      }
+
+      if (galleryContainer.contains(placeholder)) {
+        galleryContainer.removeChild(placeholder);
+        placeholderState = 'hidden';
+      }
+
+      if (!galleryContainer.contains(loadMoreWrapper)) {
+        galleryContainer.appendChild(loadMoreWrapper);
+      }
+
+      entries.forEach((entry) => {
+        if (!entry || renderedEntries.has(entry.id)) {
+          return;
+        }
+
+        const figure = createMediaFigure(entry);
+        galleryContainer.insertBefore(figure, loadMoreWrapper);
+        renderedEntries.add(entry.id);
+        registerLatest(entry);
+      });
+    }
+
+    function updateLoadMoreVisibility() {
+      if (reachedEnd) {
+        if (galleryContainer.contains(loadMoreWrapper)) {
+          galleryContainer.removeChild(loadMoreWrapper);
+        }
+      } else if (!galleryContainer.contains(loadMoreWrapper) && renderedEntries.size) {
+        galleryContainer.appendChild(loadMoreWrapper);
+      }
+      refreshLoadMoreButton();
+    }
+
+    function docToEntry(doc) {
+      const data = doc.data();
+      if (!data || !data.downloadURL) {
+        return null;
+      }
+      if (data.published === false) {
+        return null;
+      }
+      const createdAt = data.createdAt && typeof data.createdAt.toMillis === 'function'
+        ? data.createdAt.toMillis()
+        : Date.now();
+      const mediaCategory = data.mediaCategory || mediaCategoryFromType(data.contentType || '');
+      return {
+        id: doc.id,
+        downloadURL: data.downloadURL,
+        thumbnailURL: data.thumbnailURL || null,
+        title: (data.title || '').trim() || deriveTitleFromName(data.originalFileName || doc.id),
+        description: (data.description || '').trim(),
+        mediaCategory,
+        contentType: data.contentType || null,
+        createdAt,
+      };
+    }
+
+    function storageItemToEntry(itemRef) {
+      return itemRef.getDownloadURL().then((url) => {
+        const mediaCategory = getFileTypeFromUrl(url);
+        return {
+          id: itemRef.fullPath,
+          downloadURL: url,
+          thumbnailURL: mediaCategory === 'image' ? url : null,
+          title: deriveTitleFromName(itemRef.name),
+          description: '',
+          mediaCategory,
+          contentType: null,
+          createdAt: extractTimestamp(itemRef.name) || Date.now(),
+        };
+      });
+    }
 
     if (typeof window.firebaseConfig === 'undefined') {
       placeholderState = 'no-config';
@@ -59,183 +334,120 @@
     }
 
     const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(window.firebaseConfig);
+
+    let firestore = null;
+    let galleryCollection = null;
+    let useFirestore = false;
+
+    try {
+      firestore = firebase.firestore(app);
+      galleryCollection = firestore.collection('media');
+      useFirestore = true;
+    } catch (error) {
+      console.warn('Firestore unavailable, using Storage fallback.', error);
+    }
+
     const storage = firebase.storage(app);
-    const storageRef = storage.ref('gallery-images');
-    const PAGE_SIZE = 24;
-    const LATEST_UPLOAD_LIMIT = 12;
-    let nextPageToken = null;
+    const storageRefs = [
+      storage.ref('media'),
+      storage.ref('gallery-media'),
+      storage.ref('gallery-images'),
+    ];
+    let storageRefIndex = 0;
+    let storageRef = storageRefs[storageRefIndex];
+
     let isLoading = false;
+    let nextPageToken = null;
+    let lastDoc = null;
+    let reachedEnd = false;
 
-    const latestItems = new Map();
-
-    const loadMoreWrapper = document.createElement('div');
-    loadMoreWrapper.className = 'col-span-full flex justify-center mt-8';
-
-    const loadMoreButton = document.createElement('button');
-    loadMoreButton.type = 'button';
-    loadMoreButton.className = 'bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition';
-
-    let loadMoreState = 'idle';
-    function refreshLoadMoreButton() {
-      if (loadMoreState === 'loading') {
-        loadMoreButton.textContent = getText('gallery.loadingButton', 'Loading...');
-      } else {
-        loadMoreButton.textContent = getText('gallery.loadMore', 'Load more photos');
+    function handleError(error) {
+      console.error('Gallery load error:', error);
+      if (!galleryContainer.contains(placeholder)) {
+        galleryContainer.insertBefore(placeholder, galleryContainer.firstChild);
       }
-    }
-
-    refreshLoadMoreButton();
-    loadMoreButton.addEventListener('click', () => {
-      if (!isLoading) {
-        fetchPage();
-      }
-    });
-    loadMoreWrapper.appendChild(loadMoreButton);
-
-    function extractTimestamp(name) {
-      const match = name.match(/^(\d{13})-/);
-      return match ? Number(match[1]) : 0;
-    }
-
-    function renderLatestCarousel() {
-      if (!latestTrack || !latestCarousel || !latestEmpty) {
-        return;
-      }
-
-      const items = Array.from(latestItems.values())
-        .sort((a, b) => b.timestamp - a.timestamp)
-        .slice(0, LATEST_UPLOAD_LIMIT);
-
-      latestTrack.innerHTML = '';
-
-      if (!items.length) {
-        latestCarousel.classList.add('hidden');
-        latestEmpty.classList.remove('hidden');
-        return;
-      }
-
-      latestCarousel.classList.remove('hidden');
-      latestEmpty.classList.add('hidden');
-
-      items.forEach((item) => {
-        const slide = document.createElement('div');
-        slide.className = 'snap-start shrink-0 w-64';
-
-        const figure = document.createElement('figure');
-        figure.className = 'relative h-48 rounded-lg overflow-hidden shadow-lg bg-gray-100';
-
-        const img = document.createElement('img');
-        img.src = item.url;
-        img.alt = item.alt;
-        img.loading = 'lazy';
-        img.className = 'w-full h-full object-cover';
-
-        const caption = document.createElement('figcaption');
-        caption.className = 'absolute bottom-0 inset-x-0 bg-black/60 text-white text-xs sm:text-sm px-3 py-2';
-        caption.textContent = item.alt.replace(/[-_]/g, ' ');
-
-        figure.appendChild(img);
-        figure.appendChild(caption);
-        slide.appendChild(figure);
-        latestTrack.appendChild(slide);
-      });
-    }
-
-    function registerLatest(itemRef, url) {
-      if (!latestTrack) {
-        return;
-      }
-
-      const key = (itemRef && itemRef.fullPath) || itemRef.name;
-      const altText = (itemRef && itemRef.name ? itemRef.name : 'Proyecto reciente').replace(/_/g, ' ');
-      const timestamp = extractTimestamp(itemRef && itemRef.name ? itemRef.name : '') || Date.now();
-
-      latestItems.set(key, { key, url, alt: altText, timestamp });
-      renderLatestCarousel();
-    }
-
-
-    function renderItems(items) {
-      if (!items.length) {
-        if (galleryContainer.contains(placeholder)) {
-          placeholderState = 'no-items';
-          refreshPlaceholder();
-        }
-        return;
-      }
-
-      if (galleryContainer.contains(placeholder)) {
-        galleryContainer.removeChild(placeholder);
-        placeholderState = 'hidden';
-      }
-
-      if (!galleryContainer.contains(loadMoreWrapper)) {
-        galleryContainer.appendChild(loadMoreWrapper);
-      }
-
-      items.forEach((itemRef) => {
-        itemRef.getDownloadURL()
-          .then((url) => {
-            const figure = document.createElement('figure');
-            figure.className = 'relative overflow-hidden rounded-lg shadow-lg bg-gray-100';
-
-            const img = document.createElement('img');
-            img.src = url;
-            img.loading = 'lazy';
-            img.alt = itemRef.name.replace(/_/g, ' ');
-            img.className = 'w-full h-64 object-cover transition duration-300 ease-in-out transform hover:scale-105';
-
-            figure.appendChild(img);
-            galleryContainer.insertBefore(figure, loadMoreWrapper);
-            registerLatest(itemRef, url);
-          })
-          .catch((error) => {
-            console.error('URL retrieval error:', error);
-          });
-      });
-    }
-
-    function updateLoadMoreVisibility() {
-      if (nextPageToken) {
-        if (!galleryContainer.contains(loadMoreWrapper)) {
-          galleryContainer.appendChild(loadMoreWrapper);
-        }
-        loadMoreButton.disabled = false;
-        loadMoreState = 'idle';
-        refreshLoadMoreButton();
-      } else if (galleryContainer.contains(loadMoreWrapper)) {
-        galleryContainer.removeChild(loadMoreWrapper);
-      }
+      placeholderState = 'error';
+      refreshPlaceholder();
     }
 
     function fetchPage() {
+      if (isLoading || reachedEnd) {
+        return;
+      }
       isLoading = true;
-      loadMoreButton.disabled = true;
       loadMoreState = 'loading';
       refreshLoadMoreButton();
 
-      storageRef.list({ maxResults: PAGE_SIZE, pageToken: nextPageToken })
-        .then((listResult) => {
-          nextPageToken = listResult.nextPageToken || null;
-          const items = listResult.items.slice().reverse();
-          renderItems(items);
-          updateLoadMoreVisibility();
-        })
-        .catch((error) => {
-          console.error('Gallery load error:', error);
-          if (!galleryContainer.contains(placeholder)) {
-            galleryContainer.insertBefore(placeholder, galleryContainer.firstChild);
-          }
-          placeholderState = 'error';
-          refreshPlaceholder();
-          updateLoadMoreVisibility();
-        })
-        .finally(() => {
-          isLoading = false;
-          loadMoreButton.disabled = false;
-          loadMoreState = 'idle';
-          refreshLoadMoreButton();
-        });
+      if (useFirestore && galleryCollection) {
+        let query = galleryCollection
+          .where('published', '==', true)
+          .orderBy('createdAt', 'desc')
+          .limit(PAGE_SIZE);
+        if (lastDoc) {
+          query = query.startAfter(lastDoc);
+        }
+
+        query.get()
+          .then((snapshot) => {
+            const docs = snapshot.docs || [];
+            const entries = docs
+              .map(docToEntry)
+              .filter(Boolean);
+
+            if (docs.length) {
+              lastDoc = docs[docs.length - 1];
+            }
+
+            if (docs.length < PAGE_SIZE) {
+              reachedEnd = true;
+            }
+
+            renderEntries(entries);
+            updateLoadMoreVisibility();
+          })
+          .catch((error) => {
+            handleError(error);
+          })
+          .finally(() => {
+            isLoading = false;
+            loadMoreState = 'idle';
+            refreshLoadMoreButton();
+          });
+      } else {
+        let switchStorageRef = false;
+        storageRef.list({ maxResults: PAGE_SIZE, pageToken: nextPageToken })
+          .then((listResult) => {
+            nextPageToken = listResult.nextPageToken || null;
+            const items = listResult.items.slice().reverse();
+            return Promise.all(items.map(storageItemToEntry));
+          })
+          .then((entries) => {
+            if (!entries.length && !nextPageToken && storageRefIndex + 1 < storageRefs.length) {
+              switchStorageRef = true;
+              return;
+            }
+            if (!nextPageToken) {
+              reachedEnd = true;
+            }
+            renderEntries(entries);
+            updateLoadMoreVisibility();
+          })
+          .catch((error) => {
+            handleError(error);
+          })
+          .finally(() => {
+            isLoading = false;
+            loadMoreState = 'idle';
+            refreshLoadMoreButton();
+            if (switchStorageRef) {
+              storageRefIndex += 1;
+              storageRef = storageRefs[storageRefIndex];
+              nextPageToken = null;
+              reachedEnd = false;
+              fetchPage();
+            }
+          });
+      }
     }
 
     fetchPage();
