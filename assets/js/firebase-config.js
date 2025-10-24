@@ -7,4 +7,4 @@ window.firebaseConfig = {
   "messagingSenderId": "312479713819",
   "appId": "1:312479713819:web:4788b418257451097a06be"
 };
-window.allowedUploaders = ["+18155011478","+13316451372"];
+window.allowedUploaders = ["+18155011478","+13316451372","+18155551234"];
