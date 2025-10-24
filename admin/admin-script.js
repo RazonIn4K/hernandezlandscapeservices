@@ -194,7 +194,7 @@ function ensureRecaptcha() {
   }
 
   recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-    size: 'invisible'
+    size: 'normal'
   });
 
   recaptchaVerifier.render().then((widgetId) => {
