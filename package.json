@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "create-configs": "node scripts/create-firebase-config.mjs",
-    "build": "npm run create-configs && npm run build-css",
+    "build": "npm run build-css",
     "build-css": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
     "watch-css": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ci": "playwright test --reporter=dot",
+    "dev": "npm run watch-css"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,8 @@
   "homepage": "https://github.com/RazonIn4K/hernandezlandscapeservices#readme",
   "description": "",
   "devDependencies": {
-    "dotenv": "^17.2.3",
+    "@playwright/test": "^1.56.1",
+    "serve": "^14.2.0",
     "tailwindcss": "^3.4.17"
   },
   "dependencies": {
