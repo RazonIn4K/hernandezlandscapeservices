@@ -28,6 +28,9 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Preconnect to external resources for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -336,6 +339,7 @@
                 <div class="hidden lg:flex items-center space-x-6">
                     <a href="#services" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.services">Services</a>
                     <a href="#gallery" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.work">Our Work</a>
+                    <a href="#pricing" class="text-gray-700 hover:text-green-600 transition">Pricing</a>
                     <a href="#testimonials" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.reviews">Reviews</a>
                     <a href="#service-area" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.serviceArea">Service Area</a>
                     <a href="#quote" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition" data-i18n-key="nav.freeQuote">
@@ -374,6 +378,7 @@
             <div class="container mx-auto px-4 py-4 space-y-3">
                 <a href="#services" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.services">Services</a>
                 <a href="#gallery" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.work">Our Work</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()">Pricing</a>
                 <a href="#testimonials" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.reviews">Reviews</a>
                 <a href="#service-area" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.serviceArea">Service Area</a>
                 <a href="#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold hover:bg-green-700 transition" onclick="toggleMobileMenu()" data-i18n-key="nav.freeQuote">Get Free Quote</a>
@@ -655,7 +660,7 @@
                 <div id="latest-uploads-carousel" class="hidden overflow-x-auto pb-6 -mx-4 px-4">
                     <div id="latest-uploads-track" class="flex gap-6 snap-x snap-mandatory"></div>
                 </div>
-                <div id="gallery-container" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div id="gallery-container" class="gallery-grid">
                     <p class="text-gray-500 text-center col-span-full" data-i18n-key="gallery.placeholder">Your new photos will appear here after you upload them.</p>
                     <span class="hidden bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition"></span>
                 </div>
@@ -665,6 +670,223 @@
                 <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition" aria-label="See more projects on Facebook">
                     <i class="fab fa-facebook mr-2"></i> <span data-i18n-key="gallery.facebookCta">See More on Facebook</span>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-4">Website Care Plans</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+                Keep your online presence running smoothly with our affordable maintenance plans. 
+                Longer commitments mean lower weekly rates. All plans include hosting, SSL, uptime monitoring, and support.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Keep-Lights-On Plan -->
+                <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow" data-testid="pricing-card">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Keep-Lights-On</h3>
+                    <p class="text-gray-600 mb-6">Maintenance only</p>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-green-600 mb-2">
+                            $16<span class="text-lg font-normal">/week</span>
+                        </div>
+                        <p class="text-sm text-gray-500">24-week commitment</p>
+                        <p class="text-xs text-gray-400 mt-1">Save $4/week vs rolling</p>
+                    </div>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Hosting & SSL certificate</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Uptime monitoring & alerts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Regular backups</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Form → email forwarding</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Up to 15 min edits/week</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Support by text message</span>
+                        </li>
+                    </ul>
+
+                    <div class="space-y-2 mb-6">
+                        <p class="text-sm text-gray-600">
+                            <strong>Other terms:</strong><br>
+                            4 weeks: $20/week<br>
+                            12 weeks: $18/week<br>
+                            52 weeks: $13/week
+                        </p>
+                    </div>
+
+                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition" onclick="window.location.href='#quote'">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Basic Care Plan -->
+                <div class="bg-white rounded-lg shadow-xl p-8 border-2 border-green-600 relative" data-testid="pricing-card">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic Care</h3>
+                    <p class="text-gray-600 mb-6">Light marketing</p>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-green-600 mb-2">
+                            $29<span class="text-lg font-normal">/week</span>
+                        </div>
+                        <p class="text-sm text-gray-500">24-week commitment</p>
+                        <p class="text-xs text-gray-400 mt-1">Save $6/week vs rolling</p>
+                    </div>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Everything in Keep-Lights-On</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Up to 30 min edits/week</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">1 Google Business post/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Monthly mini lead report</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Photo updates & optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Priority support</span>
+                        </li>
+                    </ul>
+
+                    <div class="space-y-2 mb-6">
+                        <p class="text-sm text-gray-600">
+                            <strong>Other terms:</strong><br>
+                            4 weeks: $35/week<br>
+                            12 weeks: $32/week<br>
+                            52 weeks: $24/week
+                        </p>
+                    </div>
+
+                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition" onclick="window.location.href='#quote'">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Workhorse Plan -->
+                <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow" data-testid="pricing-card">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Workhorse</h3>
+                    <p class="text-gray-600 mb-6">Steady lead generation</p>
+                    
+                    <div class="mb-6">
+                        <div class="text-3xl font-bold text-green-600 mb-2">
+                            $46<span class="text-lg font-normal">/week</span>
+                        </div>
+                        <p class="text-sm text-gray-500">24-week commitment</p>
+                        <p class="text-xs text-gray-400 mt-1">Save $9/week vs rolling</p>
+                    </div>
+
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Everything in Basic Care</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Up to 60 min edits/week</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">2 Google Business posts/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Review text nudges</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Regular photo updates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Monthly performance report</span>
+                        </li>
+                    </ul>
+
+                    <div class="space-y-2 mb-6">
+                        <p class="text-sm text-gray-600">
+                            <strong>Other terms:</strong><br>
+                            4 weeks: $55/week<br>
+                            12 weeks: $50/week<br>
+                            52 weeks: $39/week
+                        </p>
+                    </div>
+
+                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition" onclick="window.location.href='#quote'">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add-ons Section -->
+            <div class="mt-16 max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold text-center mb-8">Available Add-ons</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="font-bold text-gray-900 mb-2">Call Tracking Number</h4>
+                        <p class="text-gray-600 mb-3">Track calls from your website with a dedicated forwarding number</p>
+                        <p class="text-green-600 font-semibold">+$5/week (+$3/week with 24+ week plans)</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <h4 class="font-bold text-gray-900 mb-2">Review SMS Campaign</h4>
+                        <p class="text-gray-600 mb-3">Automated text messages to encourage customer reviews</p>
+                        <p class="text-green-600 font-semibold">+$5/week (+SMS fees)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms Section -->
+            <div class="mt-16 bg-white p-8 rounded-lg shadow max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold mb-4">Simple & Fair Terms</h3>
+                <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
+                    <div>
+                        <h4 class="font-semibold mb-2">Commitment & Pricing</h4>
+                        <ul class="space-y-1">
+                            <li>• Longer commitment = lower weekly price</li>
+                            <li>• Biweekly billing available (2× weekly rate)</li>
+                            <li>• $99 setup fee (waived at 24+ weeks)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2">Flexibility</h4>
+                        <ul class="space-y-1">
+                            <li>• Pause up to 8 winter weeks at $5/week</li>
+                            <li>• Early exit: pay difference to rolling rate</li>
+                            <li>• Edits completed within 48 hours</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1129,12 +1351,8 @@
         });
     </script>
 
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-storage-compat.js" defer></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js" defer></script>
-    <script src="assets/js/firebase-config.js" defer></script>
     <script src="assets/js/i18n.js" defer></script>
-    <script src="assets/js/gallery.js" defer></script>
+    <script src="assets/js/static-gallery.js" defer></script>
 
     <script type="application/ld+json">
     {
@@ -1225,6 +1443,28 @@
             ]
         }
     }
+    </script>
+<script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('DOMContentLoaded', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
     </script>
 </body>
 </html>
