@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hernandez Landscape & Tree Service LLC - Professional Landscaping in DeKalb, IL</title>
     <meta name="description" content="Transform your outdoor space with Hernandez Landscape & Tree Service in DeKalb, IL. Professional lawn care, tree trimming, landscaping design, and more. Family-owned, fully insured, Se Habla Español. Free estimates! Call (815) 501-1478">
-    <meta name="keywords" content="landscaping DeKalb IL, lawn care DeKalb, tree service DeKalb Illinois, lawn mowing Sycamore IL, landscape design Cortland, tree trimming DeKalb County, Hernandez landscaping">
-
     <!-- Open Graph meta tags for social media -->
     <meta property="og:title" content="Hernandez Landscape & Tree Service LLC - DeKalb's Trusted Landscaping Experts">
     <meta property="og:description" content="Professional landscaping, lawn care, and tree services in DeKalb County. Family-owned, licensed & insured. Free estimates. Se Habla Español.">
@@ -28,7 +26,6 @@
     <link rel="icon" type="image/png" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" href="/favicon-16x16.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#ffffff">
 
@@ -66,7 +63,7 @@
         @media (max-width: 1023px) { .lg\:hidden { display: none; } .lg\:flex { display: none; } }
         .hero-bg {
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
-            background-attachment: fixed;
+            background-attachment: scroll;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -153,7 +150,7 @@
         .hero-bg {
             /* Using Wideshot_Bestlandscape_Person.jpg for the hero background */
             background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
-            background-attachment: fixed; /* Creates the parallax effect */
+            background-attachment: scroll; /* Creates the parallax effect */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -170,6 +167,12 @@
             }
         }
 
+        @media (min-width: 1024px) {
+            .hero-bg {
+                background-attachment: fixed;
+            }
+        }
+
         /* Floating animation for Call To Action buttons */
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -178,6 +181,12 @@
         }
         .floating {
             animation: float 3s ease-in-out infinite;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .floating {
+                animation: none;
+            }
         }
 
         /* Before/After Slider specific styles */
@@ -331,7 +340,7 @@
                          class="h-12 w-auto object-contain"
                          width="400" height="175" loading="lazy">
                     <div>
-                        <h1 class="text-xl font-bold text-gray-800">Hernandez Landscape & Tree Service</h1>
+                        <p class="text-xl font-bold text-gray-800" aria-hidden="true">Hernandez Landscape & Tree Service</p>
                         <p class="text-xs text-gray-600">Licensed & Insured • LLC #13934835</p>
                     </div>
                 </div>
@@ -367,7 +376,7 @@
                             ES
                         </button>
                     </div>
-                    <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu">
+                    <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" aria-controls="mobileMenu" aria-expanded="false">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -399,10 +408,10 @@
 
     <section class="hero-bg min-h-screen flex items-center relative mt-16">
         <div class="container mx-auto px-4 text-center text-white relative z-10">
-            <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight" data-i18n-key="hero.heading">
+            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight" data-i18n-key="hero.heading">
                 Transform Your<br>
                 <span class="text-green-400">Outdoor Space</span>
-            </h2>
+            </h1>
             <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" data-i18n-key="hero.subheading">
                 Professional landscaping and tree services in DeKalb County.
                 Family-owned, fully insured, and committed to excellence.
@@ -483,7 +492,7 @@
                     </div>
                 </form>
 
-                <div id="quoteResult" class="hidden mt-6 p-6 bg-green-50 rounded-lg">
+                <div id="quoteResult" class="hidden mt-6 p-6 bg-green-50 rounded-lg" role="status" aria-live="polite">
                     <h3 class="text-2xl font-bold text-green-800 mb-2" data-i18n-key="instant.result.heading">Estimated Price Range:</h3>
                     <p class="text-3xl font-black text-green-600" id="priceRange">$0 - $0</p>
                     <p class="text-gray-700 mt-2" data-i18n-key="instant.result.disclaimer">This is an estimate. Final price depends on specific requirements and on-site assessment.</p>
@@ -606,7 +615,7 @@
                          alt="After lawn service, clean and manicured"
                          class="after-image"
                          width="800" height="600" loading="lazy">
-                    <div class="slider-handle" id="sliderHandle"></div>
+                    <div class="slider-handle" id="sliderHandle" role="slider" tabindex="0" aria-label="Reveal after photo" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
                 </div>
             </div>
 
@@ -675,219 +684,14 @@
     </section>
 
     <section id="pricing" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-4">Website Care Plans</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-                Keep your online presence running smoothly with our affordable maintenance plans. 
-                Longer commitments mean lower weekly rates. All plans include hosting, SSL, uptime monitoring, and support.
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Custom Landscaping Pricing</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+                Every yard, project, and season is different. We build tailored estimates after learning about your property and goals so you only pay for the services you need.
             </p>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Keep-Lights-On Plan -->
-                <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow" data-testid="pricing-card">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Keep-Lights-On</h3>
-                    <p class="text-gray-600 mb-6">Maintenance only</p>
-                    
-                    <div class="mb-6">
-                        <div class="text-3xl font-bold text-green-600 mb-2">
-                            $16<span class="text-lg font-normal">/week</span>
-                        </div>
-                        <p class="text-sm text-gray-500">24-week commitment</p>
-                        <p class="text-xs text-gray-400 mt-1">Save $4/week vs rolling</p>
-                    </div>
-
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Hosting & SSL certificate</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Uptime monitoring & alerts</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Regular backups</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Form → email forwarding</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Up to 15 min edits/week</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Support by text message</span>
-                        </li>
-                    </ul>
-
-                    <div class="space-y-2 mb-6">
-                        <p class="text-sm text-gray-600">
-                            <strong>Other terms:</strong><br>
-                            4 weeks: $20/week<br>
-                            12 weeks: $18/week<br>
-                            52 weeks: $13/week
-                        </p>
-                    </div>
-
-                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition" onclick="window.location.href='#quote'">
-                        Get Started
-                    </button>
-                </div>
-
-                <!-- Basic Care Plan -->
-                <div class="bg-white rounded-lg shadow-xl p-8 border-2 border-green-600 relative" data-testid="pricing-card">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                        Most Popular
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic Care</h3>
-                    <p class="text-gray-600 mb-6">Light marketing</p>
-                    
-                    <div class="mb-6">
-                        <div class="text-3xl font-bold text-green-600 mb-2">
-                            $29<span class="text-lg font-normal">/week</span>
-                        </div>
-                        <p class="text-sm text-gray-500">24-week commitment</p>
-                        <p class="text-xs text-gray-400 mt-1">Save $6/week vs rolling</p>
-                    </div>
-
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Everything in Keep-Lights-On</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Up to 30 min edits/week</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">1 Google Business post/month</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Monthly mini lead report</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Photo updates & optimization</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Priority support</span>
-                        </li>
-                    </ul>
-
-                    <div class="space-y-2 mb-6">
-                        <p class="text-sm text-gray-600">
-                            <strong>Other terms:</strong><br>
-                            4 weeks: $35/week<br>
-                            12 weeks: $32/week<br>
-                            52 weeks: $24/week
-                        </p>
-                    </div>
-
-                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition" onclick="window.location.href='#quote'">
-                        Get Started
-                    </button>
-                </div>
-
-                <!-- Workhorse Plan -->
-                <div class="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow" data-testid="pricing-card">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Workhorse</h3>
-                    <p class="text-gray-600 mb-6">Steady lead generation</p>
-                    
-                    <div class="mb-6">
-                        <div class="text-3xl font-bold text-green-600 mb-2">
-                            $46<span class="text-lg font-normal">/week</span>
-                        </div>
-                        <p class="text-sm text-gray-500">24-week commitment</p>
-                        <p class="text-xs text-gray-400 mt-1">Save $9/week vs rolling</p>
-                    </div>
-
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Everything in Basic Care</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Up to 60 min edits/week</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">2 Google Business posts/month</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Review text nudges</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Regular photo updates</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
-                            <span class="text-gray-700">Monthly performance report</span>
-                        </li>
-                    </ul>
-
-                    <div class="space-y-2 mb-6">
-                        <p class="text-sm text-gray-600">
-                            <strong>Other terms:</strong><br>
-                            4 weeks: $55/week<br>
-                            12 weeks: $50/week<br>
-                            52 weeks: $39/week
-                        </p>
-                    </div>
-
-                    <button class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition" onclick="window.location.href='#quote'">
-                        Get Started
-                    </button>
-                </div>
-            </div>
-
-            <!-- Add-ons Section -->
-            <div class="mt-16 max-w-4xl mx-auto">
-                <h3 class="text-2xl font-bold text-center mb-8">Available Add-ons</h3>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h4 class="font-bold text-gray-900 mb-2">Call Tracking Number</h4>
-                        <p class="text-gray-600 mb-3">Track calls from your website with a dedicated forwarding number</p>
-                        <p class="text-green-600 font-semibold">+$5/week (+$3/week with 24+ week plans)</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow">
-                        <h4 class="font-bold text-gray-900 mb-2">Review SMS Campaign</h4>
-                        <p class="text-gray-600 mb-3">Automated text messages to encourage customer reviews</p>
-                        <p class="text-green-600 font-semibold">+$5/week (+SMS fees)</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Terms Section -->
-            <div class="mt-16 bg-white p-8 rounded-lg shadow max-w-4xl mx-auto">
-                <h3 class="text-xl font-bold mb-4">Simple & Fair Terms</h3>
-                <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-700">
-                    <div>
-                        <h4 class="font-semibold mb-2">Commitment & Pricing</h4>
-                        <ul class="space-y-1">
-                            <li>• Longer commitment = lower weekly price</li>
-                            <li>• Biweekly billing available (2× weekly rate)</li>
-                            <li>• $99 setup fee (waived at 24+ weeks)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="font-semibold mb-2">Flexibility</h4>
-                        <ul class="space-y-1">
-                            <li>• Pause up to 8 winter weeks at $5/week</li>
-                            <li>• Early exit: pay difference to rolling rate</li>
-                            <li>• Edits completed within 48 hours</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <a href="#quote" class="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full transition">
+                Request a Personalized Quote
+            </a>
         </div>
     </section>
 
@@ -1070,7 +874,7 @@
                                 <input type="text" id="contactName" name="name" placeholder="Your Name" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required data-i18n-placeholder="quote.placeholder.name">
 
                                 <label for="contactPhone" class="sr-only">Phone Number</label>
-                                <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" title="Enter a 10-digit phone number (e.g., 8155011478)" required data-i18n-placeholder="quote.placeholder.phone" data-i18n-title="quote.title.phone">
+                                <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="^\\+?[0-9 ()-]{10,}$" title="Enter a valid phone number (digits, spaces, parentheses, or dashes)" required data-i18n-placeholder="quote.placeholder.phone" data-i18n-title="quote.title.phone">
 
                                 <label for="contactEmail" class="sr-only">Email (optional)</label>
                                 <input type="email" id="contactEmail" name="email" placeholder="Email (optional)" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" data-i18n-placeholder="quote.placeholder.email">
@@ -1129,8 +933,8 @@
         </div>
     </footer>
 
-    <div id="customModal" class="modal-overlay hidden" style="display: none;">
-        <div class="modal-content">
+    <div id="customModal" class="modal-overlay hidden" style="display: none;" role="presentation">
+        <div class="modal-content" role="alertdialog" aria-modal="true" aria-labelledby="modalMessage" tabindex="-1">
             <p id="modalMessage" class="text-lg font-semibold mb-4 text-gray-800"></p>
             <button onclick="hideModal()" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition" data-i18n-key="modal.close">
                 Close
@@ -1143,20 +947,68 @@
     </button>
 
     <script>
-        // Function to show the custom modal with a message
+        const modal = document.getElementById('customModal');
+        const modalContent = modal ? modal.querySelector('.modal-content') : null;
+        let lastFocusedElement = null;
+
         function showModal(message) {
-            const modal = document.getElementById('customModal');
+            if (!modal || !modalContent) {
+                console.warn('Modal elements unavailable.');
+                return;
+            }
+            lastFocusedElement = document.activeElement;
             document.getElementById('modalMessage').textContent = message;
             modal.classList.remove('hidden');
             modal.style.display = 'flex';
+            modalContent.setAttribute('tabindex', '-1');
+            modalContent.focus();
         }
 
-        // Function to hide the custom modal
         function hideModal() {
-            const modal = document.getElementById('customModal');
+            if (!modal || !modalContent) {
+                return;
+            }
             modal.classList.add('hidden');
             modal.style.display = 'none';
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+            }
         }
+
+        if (modalContent) {
+            modalContent.addEventListener('keydown', (event) => {
+                if (event.key !== 'Tab') {
+                    return;
+                }
+                const focusableSelectors = [
+                    'a[href]',
+                    'button:not([disabled])',
+                    'textarea:not([disabled])',
+                    'input:not([disabled])',
+                    '[tabindex]:not([tabindex="-1"])'
+                ];
+                const focusableElements = modalContent.querySelectorAll(focusableSelectors.join(','));
+                if (!focusableElements.length) {
+                    event.preventDefault();
+                    return;
+                }
+                const firstEl = focusableElements[0];
+                const lastEl = focusableElements[focusableElements.length - 1];
+                if (event.shiftKey && document.activeElement === firstEl) {
+                    event.preventDefault();
+                    lastEl.focus();
+                } else if (!event.shiftKey && document.activeElement === lastEl) {
+                    event.preventDefault();
+                    firstEl.focus();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                hideModal();
+            }
+        });
 
         const siteI18n = window.siteI18n || null;
         const getMessage = (key, fallback) => {
@@ -1169,108 +1021,127 @@
             return fallback;
         };
 
-        // Sticky header effect: Adds a shadow to the header when scrolled down
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
-            if (window.scrollY > 100) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
+            if (header) {
+                header.classList.toggle('header-scrolled', window.scrollY > 100);
             }
-
-            // Show/hide Back to Top button
             const backToTopBtn = document.getElementById('backToTopBtn');
-            if (window.scrollY > 300) { // Show button after scrolling 300px
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
+            if (backToTopBtn) {
+                backToTopBtn.classList.toggle('show', window.scrollY > 300);
             }
         });
 
-        // Mobile menu toggle: Shows/hides the mobile navigation menu
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
+            const toggleButton = document.querySelector('button[aria-controls="mobileMenu"]');
+            if (!menu || !toggleButton) {
+                return;
+            }
+            const isHidden = menu.classList.toggle('hidden');
+            toggleButton.setAttribute('aria-expanded', String(!isHidden));
+            if (!isHidden) {
+                const focusable = menu.querySelector('a, button');
+                if (focusable) {
+                    focusable.focus();
+                }
+            } else {
+                toggleButton.focus();
+            }
         }
 
-        // Before/After Slider functionality
         const slider = document.getElementById('beforeAfterSlider');
         const handle = document.getElementById('sliderHandle');
-        let isSliding = false; // Flag to track if the slider is being dragged
-
-        // Updates the clip-path of the 'after' image and position of the handle
-        function updateSlider(percentage) {
+        if (slider && handle) {
+            let isSliding = false;
             const afterImage = slider.querySelector('.after-image');
-            afterImage.style.clipPath = `polygon(${percentage}% 0, 100% 0, 100% 100%, ${percentage}% 100%)`;
-            handle.style.left = percentage + '%';
+
+            const updateSlider = (percentage) => {
+                if (!afterImage) {
+                    return;
+                }
+                const constrained = Math.max(0, Math.min(100, percentage));
+                afterImage.style.clipPath = `polygon(${constrained}% 0, 100% 0, 100% 100%, ${constrained}% 100%)`;
+                handle.style.left = `${constrained}%`;
+                handle.setAttribute('aria-valuenow', String(Math.round(constrained)));
+            };
+
+            handle.addEventListener('mousedown', () => { isSliding = true; });
+            window.addEventListener('mouseup', () => { isSliding = false; });
+            window.addEventListener('mousemove', (e) => {
+                if (!isSliding) return;
+                const rect = slider.getBoundingClientRect();
+                const percentage = ((e.clientX - rect.left) / rect.width) * 100;
+                updateSlider(percentage);
+            });
+
+            handle.addEventListener('touchstart', () => { isSliding = true; }, { passive: true });
+            window.addEventListener('touchend', () => { isSliding = false; }, { passive: true });
+            window.addEventListener('touchmove', (e) => {
+                if (!isSliding) return;
+                const rect = slider.getBoundingClientRect();
+                const percentage = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
+                updateSlider(percentage);
+            }, { passive: true });
+
+            handle.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+                    event.preventDefault();
+                    const currentValue = Number(handle.getAttribute('aria-valuenow')) || 50;
+                    const delta = event.key === 'ArrowLeft' ? -5 : 5;
+                    updateSlider(currentValue + delta);
+                }
+            });
+
+            updateSlider(50);
         }
 
-        // Event listeners for mouse interaction on the slider handle
-        handle.addEventListener('mousedown', () => isSliding = true);
-        window.addEventListener('mouseup', () => isSliding = false);
-        window.addEventListener('mousemove', (e) => {
-            if (!isSliding) return; // Only process if dragging
-            const rect = slider.getBoundingClientRect(); // Get slider's position and size
-            // Calculate percentage based on mouse X position relative to slider
-            const percentage = ((e.clientX - rect.left) / rect.width) * 100;
-            // Ensure percentage stays within 0-100 range
-            updateSlider(Math.max(0, Math.min(100, percentage)));
-        });
-
-        // Touch support for mobile devices for the slider
-        handle.addEventListener('touchstart', () => isSliding = true);
-        window.addEventListener('touchend', () => isSliding = false);
-        window.addEventListener('touchmove', (e) => {
-            if (!isSliding) return;
-            const rect = slider.getBoundingClientRect();
-            // Use e.touches[0].clientX for touch events
-            const percentage = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
-            updateSlider(Math.max(0, Math.min(100, percentage)));
-        });
-
-        // Testimonial Slider functionality
         let currentTestimonial = 0;
         const testimonialTrack = document.getElementById('testimonialTrack');
-        const dots = document.querySelectorAll('.flex.justify-center.mt-6 button');
-        const totalTestimonials = dots.length;
+        const testimonialDots = document.querySelectorAll('.flex.justify-center.mt-6 button');
+        const totalTestimonials = testimonialDots.length;
 
-        // Moves the testimonial track to display the selected testimonial
         function goToTestimonial(index) {
+            if (!testimonialTrack || !testimonialDots.length) {
+                return;
+            }
             currentTestimonial = index;
             testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
-            // Update active dot styling
-            dots.forEach((dot, i) => {
+            testimonialDots.forEach((dot, i) => {
                 dot.className = i === index ? 'w-3 h-3 bg-green-600 rounded-full' : 'w-3 h-3 bg-gray-300 rounded-full';
             });
         }
 
-        // Auto-rotate testimonials every 5 seconds
-        setInterval(() => {
-            goToTestimonial((currentTestimonial + 1) % totalTestimonials);
-        }, 5000);
+        if (testimonialTrack && testimonialDots.length) {
+            setInterval(() => {
+                goToTestimonial((currentTestimonial + 1) % totalTestimonials);
+            }, 5000);
+        }
 
-        // Quote Calculator logic
+        const quoteResult = document.getElementById('quoteResult');
+
         function calculateQuote() {
             const service = document.getElementById('serviceType');
             const size = document.getElementById('propertySize');
             const zip = document.getElementById('zipCode');
 
-            // Basic validation for required fields
-            if (!service.value || !size.value || !zip.value) {
-                showModal(getMessage('alerts.instant.missing', 'Please select a service type, property size, and enter your ZIP code.'));
-                // Add visual feedback to invalid fields
-                if (!service.value) service.classList.add('border-red-500'); else service.classList.remove('border-red-500');
-                if (!size.value) size.classList.add('border-red-500'); else size.classList.remove('border-red-500');
-                if (!zip.value || !zip.checkValidity()) zip.classList.add('border-red-500'); else zip.classList.remove('border-red-500');
+            if (!service || !size || !zip) {
+                console.warn('Quote form elements unavailable.');
                 return;
-            } else {
-                // Remove error styling if fields are valid
-                service.classList.remove('border-red-500');
-                size.classList.remove('border-red-500');
-                zip.classList.remove('border-red-500');
             }
 
-            // Simple price calculation (this would typically involve backend logic or a more complex lookup)
+            if (!service.value || !size.value || !zip.value || !zip.checkValidity()) {
+                showModal(getMessage('alerts.instant.missing', 'Please select a service type, property size, and enter your ZIP code.'));
+                service.classList.toggle('border-red-500', !service.value);
+                size.classList.toggle('border-red-500', !size.value);
+                zip.classList.toggle('border-red-500', !zip.value || !zip.checkValidity());
+                return;
+            }
+
+            service.classList.remove('border-red-500');
+            size.classList.remove('border-red-500');
+            zip.classList.remove('border-red-500');
+
             const basePrices = {
                 lawn: { small: 40, medium: 60, large: 80, xlarge: 120 },
                 tree: { small: 200, medium: 350, large: 500, xlarge: 800 },
@@ -1279,76 +1150,95 @@
                 snow: { small: 50, medium: 80, large: 120, xlarge: 200 }
             };
 
-            const basePrice = basePrices[service.value][size.value];
-            const minPrice = Math.floor(basePrice * 0.8); // 80% of base price
-            const maxPrice = Math.floor(basePrice * 1.2); // 120% of base price
-
-            document.getElementById('priceRange').textContent = `$${minPrice} - $${maxPrice}`;
-            document.getElementById('quoteResult').classList.remove('hidden');
-        }
-
-        // Contact Form Handler with Web3Forms integration
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Stop default form submission
-
-            // Basic client-side validation for contact form
-            const contactName = document.getElementById('contactName');
-            const contactPhone = document.getElementById('contactPhone');
-            const contactService = document.getElementById('contactService');
-            const projectDetails = document.getElementById('projectDetails');
-
-            let isValid = true;
-
-            if (!contactName.value) { contactName.classList.add('border-red-500'); isValid = false; } else { contactName.classList.remove('border-red-500'); }
-            if (!contactPhone.value || !contactPhone.checkValidity()) { contactPhone.classList.add('border-red-500'); isValid = false; } else { contactPhone.classList.remove('border-red-500'); }
-            if (!contactService.value) { contactService.classList.add('border-red-500'); isValid = false; } else { contactService.classList.remove('border-red-500'); }
-            if (!projectDetails.value) { projectDetails.classList.add('border-red-500'); isValid = false; } else { projectDetails.classList.remove('border-red-500'); }
-
-            if (!isValid) {
-                showModal(getMessage('alerts.contact.invalid', 'Please fill in all required fields correctly.'));
+            const priceMap = basePrices[service.value];
+            if (!priceMap) {
+                showModal(getMessage('alerts.instant.missing', 'Please select a valid service.'));
+                return;
+            }
+            const basePrice = priceMap[size.value];
+            if (!basePrice) {
+                showModal(getMessage('alerts.instant.missing', 'Please select a valid property size.'));
                 return;
             }
 
-            // Show loading state
-            const button = this.querySelector('button[type="submit"]');
-            const originalText = button.textContent;
-            button.disabled = true;
-            button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage('contact.sending', 'Sending...')}`;
+            const minPrice = Math.floor(basePrice * 0.8);
+            const maxPrice = Math.floor(basePrice * 1.2);
 
-            // Prepare form data for Web3Forms
-            const formData = new FormData(this);
-
-            try {
-                const response = await fetch('https://api.web3forms.com/submit', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    showModal(getMessage('alerts.contact.success', 'Thank you for your interest! We will call you within 24 hours.'));
-                    this.reset();
-                } else {
-                    showModal(getMessage('alerts.contact.error', 'There was an error sending your request. Please call us at 815-501-1478.'));
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                showModal(getMessage('alerts.contact.error', 'There was an error sending your request. Please call us at 815-501-1478.'));
-            } finally {
-                // Restore button state
-                button.disabled = false;
-                button.textContent = originalText;
+            const priceRangeEl = document.getElementById('priceRange');
+            if (priceRangeEl) {
+                priceRangeEl.textContent = `$${minPrice} - $${maxPrice}`;
             }
-        });
+            if (quoteResult) {
+                quoteResult.classList.remove('hidden');
+            }
+        }
 
-        // Back to Top button functionality
-        document.getElementById('backToTopBtn').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Smooth scroll to the top
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const contactName = document.getElementById('contactName');
+                const contactPhone = document.getElementById('contactPhone');
+                const contactService = document.getElementById('contactService');
+                const projectDetails = document.getElementById('projectDetails');
+
+                let isValid = true;
+
+                if (!contactName.value) { contactName.classList.add('border-red-500'); isValid = false; } else { contactName.classList.remove('border-red-500'); }
+                if (!contactPhone.value || !contactPhone.checkValidity()) { contactPhone.classList.add('border-red-500'); isValid = false; } else { contactPhone.classList.remove('border-red-500'); }
+                if (!contactService.value) { contactService.classList.add('border-red-500'); isValid = false; } else { contactService.classList.remove('border-red-500'); }
+                if (!projectDetails.value) { projectDetails.classList.add('border-red-500'); isValid = false; } else { projectDetails.classList.remove('border-red-500'); }
+
+                if (!isValid) {
+                    showModal(getMessage('alerts.contact.invalid', 'Please fill in all required fields correctly.'));
+                    return;
+                }
+
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button ? button.textContent : '';
+                if (button) {
+                    button.disabled = true;
+                    button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage('contact.sending', 'Sending...')}`;
+                }
+
+                const formData = new FormData(this);
+
+                try {
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        showModal(getMessage('alerts.contact.success', 'Thank you for your interest! We will call you within 24 hours.'));
+                        this.reset();
+                    } else {
+                        showModal(getMessage('alerts.contact.error', 'There was an error sending your request. Please call us at 815-501-1478.'));
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    showModal(getMessage('alerts.contact.error', 'There was an error sending your request. Please call us at 815-501-1478.'));
+                } finally {
+                    if (button) {
+                        button.disabled = false;
+                        button.textContent = originalText;
+                    }
+                }
             });
-        });
+        }
+
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 
     <script src="assets/js/i18n.js" defer></script>
@@ -1408,7 +1298,7 @@
         ],
         "url": "https://hernandezlandscapeservices.com",
         "sameAs": [
-            "https://www.facebook.com/planoill/"
+            "https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
         ],
         "paymentAccepted": ["Cash", "Check", "Venmo", "Zelle"],
         "currenciesAccepted": "USD",
@@ -1447,22 +1337,13 @@
 <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-    </script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('DOMContentLoaded', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('ServiceWorker registration successful with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('ServiceWorker registration failed:', error);
+                    });
             });
         }
     </script>
