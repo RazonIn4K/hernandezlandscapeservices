@@ -3,14 +3,6 @@
 
 User-agent: *
 Allow: /
-Disallow: /gallery/
-Disallow: /hello-world/
-Disallow: /category/
-Disallow: /2024/
-Disallow: /wp-admin/
-Disallow: /wp-content/
-Disallow: /wp-includes/
-Disallow: /*.php
 
 # Sitemap location
 Sitemap: https://hernandezlandscapeservices.com/sitemap.xml
