@@ -32,4 +32,9 @@ yarn-error.log*
 admin/firebase-config.js
 assets/js/firebase-config.js
 
+# Test results
+playwright-report/
+test-results/
+tests/test-data/
+
 .env
