@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Hernandez Landscape</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .success-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .success-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+        }
+        .success-title {
+            color: #2e7d32;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .success-message {
+            color: #4a5a4a;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #1b5e20;
+        }
+        .btn-secondary {
+            background: #4caf50;
+        }
+        .btn-secondary:hover {
+            background: #388e3c;
+        }
+        .stripe-info {
+            background: #f6f8f7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="success-container">
+        <div class="success-card">
+            <div class="success-icon">
+                ✓
+            </div>
+            <h1 class="success-title">Payment Successful!</h1>
+            <p class="success-message">
+                Thank you for choosing Hernandez Landscape & Tree Service! 
+                Your website care plan is now active and we'll begin maintaining your site right away.
+            </p>
+            
+            <div class="stripe-info">
+                <strong>Payment processed securely through Stripe</strong><br>
+                You will receive a receipt email shortly. You can manage or cancel your subscription at any time through your Stripe customer portal.
+            </div>
+            
+            <div>
+                <a href="../index.html" class="btn">
+                    Return to Website
+                </a>
+                <a href="../pricing.html" class="btn btn-secondary">
+                    View Plans
+                </a>
+            </div>
+            
+            <p style="margin-top: 2rem; color: #666; font-size: 0.9rem;">
+                Questions? Call us at <a href="tel:815-501-1478">(815) 501-1478</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Get Stripe session ID from URL if available
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        
+        if (sessionId) {
+            document.getElementById('sid').textContent = sessionId;
+        }
+        
+        // Optional: Track conversion with analytics
+        console.log('Payment conversion tracked');
+    </script>
+</body>
+</html>
