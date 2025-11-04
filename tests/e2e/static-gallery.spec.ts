@@ -60,19 +60,18 @@ test.describe('Static Gallery Functionality', () => {
 
   test('pricing section displays correctly', async ({ page }) => {
     await page.goto('/#pricing');
-    
-    // Check pricing cards are present
-    const pricingCards = page.locator('[data-testid="pricing-card"]');
-    await expect(pricingCards).toHaveCount(3);
-    
-    // Check "Most Popular" badge
-    const popularBadge = page.locator('text=Most Popular');
-    await expect(popularBadge).toBeVisible();
-    
-    // Check pricing values
-    await expect(page.locator('text=$16')).toBeVisible();
-    await expect(page.locator('text=$29')).toBeVisible();
-    await expect(page.locator('text=$46')).toBeVisible();
+
+    const pricingSection = page.locator('section#pricing');
+    await expect(pricingSection).toBeVisible();
+
+    const heading = pricingSection.locator('h2');
+    await expect(heading).toHaveText('Custom Landscaping Pricing');
+
+    const ctaButton = pricingSection.locator('a[href="#quote"]');
+    await expect(ctaButton).toBeVisible();
+    await expect(ctaButton).toHaveText(/Request a Personalized Quote/i);
+
+    await expect(pricingSection).not.toContainText('Website Care Plans');
   });
 
   test('contact form is accessible', async ({ page }) => {
