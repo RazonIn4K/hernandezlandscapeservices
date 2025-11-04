@@ -133,7 +133,7 @@ hernandezlandscapeservices/
 - Domain renewal coming up in ~2 weeks
 - Three flexible payment plans
 - Link to pricing page: https://hernandezlandscapeservices.com/pricing.html
-- Your contact info: (815) 501-1478
+- Your contact info: (331) 645-1372
 
 ### Follow-Up Schedule
 - **Day 0 (Tomorrow):** Initial message
@@ -245,7 +245,7 @@ git push origin main
 - No pressure - domain doesn't expire for 2 weeks
 
 **Quick Reference:**
-- Your phone: (815) 501-1478
+- Your phone: (331) 645-1372
 - Pricing page: hernandezlandscapeservices.com/pricing.html
 - Guide: GILBERTO_PAYMENT_GUIDE.md (updated with correct pricing)
 

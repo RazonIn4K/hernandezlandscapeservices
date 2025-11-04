@@ -147,9 +147,9 @@ You'll be charged automatically each month/week/bi-week for 12 months. After 12 
 
 ### How do I request updates?
 - Email: support@highencodelearning.com
-- Phone: (815) 501-1478
-- WhatsApp: (815) 501-1478 (Full Care only)
-- Text: (815) 501-1478
+- Phone: (331) 645-1372
+- WhatsApp: (331) 645-1372 (Full Care only)
+- Text: (331) 645-1372
 
 ### When will my domain be renewed?
 Within 24 hours of receiving payment. You'll get a confirmation email once it's complete.
@@ -172,7 +172,7 @@ Domain renewals are non-refundable once processed (usually within 24 hours). Ser
 
 I'm here to help! Let's hop on a quick call to discuss which plan makes the most sense for your business.
 
-**Call or text:** (815) 501-1478
+**Call or text:** (331) 645-1372
 **Email:** support@highencodelearning.com
 **Hours:** Monday-Friday, 9 AM - 6 PM CT
 
@@ -190,4 +190,4 @@ Click the payment link I sent you by email, or contact me to get started!
 
 **HighEncodeLearning.com**
 Professional Website Care & Maintenance
-(815) 501-1478 | support@highencodelearning.com
+(331) 645-1372 | support@highencodelearning.com

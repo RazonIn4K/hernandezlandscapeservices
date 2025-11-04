@@ -16,7 +16,7 @@ The website now shows "Custom Landscaping Pricing" with a quote request button i
 - ✅ "Custom Landscaping Pricing" 
 - ✅ "Every yard is different, we build tailored estimates"
 - ✅ "Request a Personalized Quote" button
-- ✅ Phone number prominent: (815) 501-1478
+- ✅ Phone number prominent: (331) 645-1372
 
 ### What Happens When They Click Quote:
 1. They fill out contact form

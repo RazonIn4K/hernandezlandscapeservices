@@ -58,7 +58,7 @@ Ready to get started? Just click your pricing link and pick the option that work
 Thanks,
 David
 
-Call/Text: (815) 501-1478
+Call/Text: (331) 645-1372
 Email: support@highencodelearning.com
 
 ---
@@ -121,7 +121,7 @@ Para tu negocio de paisajismo, te sugiero comenzar con el **Plan de Cuidado Bás
 Gracias,
 David
 
-Llamar/Texto: (815) 501-1478
+Llamar/Texto: (331) 645-1372
 Email: support@highencodelearning.com
 
 ---
@@ -142,7 +142,7 @@ Check them out here: [PRICING PAGE LINK]
 
 My recommendation: Start with Basic Care bi-weekly ($75 every 2 weeks) - best value for your business!
 
-Questions? Call/text me anytime: (815) 501-1478
+Questions? Call/text me anytime: (331) 645-1372
 
 Ready when you are!
 
@@ -166,7 +166,7 @@ Revísalos aquí: [ENLACE DE PÁGINA DE PRECIOS]
 
 Mi recomendación: Empieza con Cuidado Básico quincenal ($75 cada 2 semanas) - ¡mejor valor para tu negocio!
 
-¿Preguntas? Llámame/escríbeme cuando sea: (815) 501-1478
+¿Preguntas? Llámame/escríbeme cuando sea: (331) 645-1372
 
 ¡Listo cuando tú lo estés!
 

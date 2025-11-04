@@ -224,7 +224,7 @@ Use this template and **replace ALL `[INSERT_X_LINK]` placeholders** with the ac
     </div>
 
     <footer>
-      <p>Questions? Call or text (815) 501‑1478 · support@highencodelearning.com</p>
+      <p>Questions? Call or text (331) 645‑1372 · support@highencodelearning.com</p>
       <p>Hernandez Landscape & Tree Service LLC</p>
     </footer>
   </div>
