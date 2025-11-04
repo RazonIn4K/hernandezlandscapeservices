@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled | Hernandez Landscape</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .cancel-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .cancel-card {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        .cancel-icon {
+            width: 80px;
+            height: 80px;
+            background: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 2rem;
+            color: white;
+        }
+        .cancel-title {
+            color: #d97706;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cancel-message {
+            color: #4a5a4a;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0.5rem;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #1b5e20;
+        }
+        .btn-secondary {
+            background: #6b7280;
+        }
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        .reassurance {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 2rem 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="cancel-container">
+        <div class="cancel-card">
+            <div class="cancel-icon">
+                ×
+            </div>
+            <h1 class="cancel-title">Payment Cancelled</h1>
+            <p class="cancel-message">
+                No worries! Your payment was cancelled and no charges were made. 
+                You can try again anytime or contact us if you need help with the checkout process.
+            </p>
+            
+            <div class="reassurance">
+                <strong>Need assistance?</strong><br>
+                We're here to help! Call us at <a href="tel:815-501-1478">(815) 501-1478</a> 
+                and we can walk you through the payment process or answer any questions about our plans.
+            </div>
+            
+            <div>
+                <a href="../pricing.html" class="btn">
+                    Try Again
+                </a>
+                <a href="../index.html" class="btn btn-secondary">
+                    Return to Website
+                </a>
+            </div>
+            
+            <p style="margin-top: 2rem; color: #666; font-size: 0.9rem;">
+                Questions about our plans? <a href="tel:815-501-1478">Call (815) 501-1478</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Optional: Track cancelled checkout for analytics
+        console.log('Payment cancellation tracked');
+        
+        // Optional: Show helpful message based on URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('reason')) {
+            console.log('Cancellation reason:', urlParams.get('reason'));
+        }
+    </script>
+</body>
+</html>
