@@ -76,7 +76,7 @@ Your domain expires mid-November. I wanted to give you time to:
 
 ### **Questions? Let's Talk:**
 
-Call or text me: **(815) 501-1478**
+Call or text me: **(331) 645-1372**
 
 I'm happy to hop on a quick call and walk you through the options if that's easier than reading this email.
 
@@ -108,7 +108,7 @@ See details: hernandezlandscapeservices.com/pricing.html
 
 Need to renew before mid-Nov so site doesn't go offline.
 
-Questions? Call me: (815) 501-1478
+Questions? Call me: (331) 645-1372
 
 - David
 

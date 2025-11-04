@@ -35,7 +35,7 @@ Review all options and payment frequencies here:
 
 Each plan has 4 payment options (annual, monthly, bi-weekly, weekly) so you can match your cash flow. All secure through Stripe - no invoices, no hassle.
 
-Questions? Call/text anytime: **(815) 501-1478**
+Questions? Call/text anytime: **(331) 645-1372**
 
 Thanks,
 David Ortiz
@@ -55,7 +55,7 @@ All plans have monthly/bi-weekly/weekly payment options to match your cash flow.
 
 Review and choose here: hernandezlandscapeservices.com/pricing.html
 
-Questions? Call/text (815) 501-1478 anytime.
+Questions? Call/text (331) 645-1372 anytime.
 
 - David
 
@@ -78,7 +78,7 @@ hernandezlandscapeservices.com/pricing.html
 
 Let me know if you want to discuss which plan makes the most sense. Happy to jump on a quick call! 📞
 
-(815) 501-1478
+(331) 645-1372
 
 ---
 

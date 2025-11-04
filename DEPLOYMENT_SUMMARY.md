@@ -148,7 +148,7 @@ All plans based on annual value with 8.3% premium for frequent billing:
 ## 📧 Customer Support Contact
 
 If customers have questions or issues:
-- **Phone/Text:** (815) 501-1478
+- **Phone/Text:** (331) 645-1372
 - **Email:** support@highencodelearning.com
 
 ---

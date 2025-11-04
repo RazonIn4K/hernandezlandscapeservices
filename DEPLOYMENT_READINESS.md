@@ -125,7 +125,7 @@ firebase deploy --only hosting
 - **Call-to-action** with direct pricing page link
 
 ### Support Information
-- **Phone**: (815) 501-1478 clearly displayed
+- **Phone**: (331) 645-1372 clearly displayed
 - **Plan cancellation** instructions included
 - **Customer support** contact information provided
 
