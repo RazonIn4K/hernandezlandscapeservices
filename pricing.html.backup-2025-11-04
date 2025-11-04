@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Website Care Plans | Hernandez Landscape</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .plan-card { 
+      background:#fff; 
+      border-radius:1rem; 
+      padding:1.75rem; 
+      box-shadow:0 15px 35px rgba(15,23,42,0.08); 
+    }
+    .pricing-btn { 
+      display:block; 
+      text-align:center; 
+      padding:0.75rem; 
+      border-radius:9999px; 
+      font-weight:600; 
+      border:1px solid #d1d5db; 
+      transition:all 0.2s; 
+      text-decoration:none;
+    }
+    .pricing-btn:hover { 
+      border-color:#15803d; 
+      color:#15803d; 
+    }
+    .best-value { 
+      background:#15803d; 
+      color:#fff; 
+      border-color:#15803d; 
+    }
+    .best-value:hover {
+      background:#166534;
+      color:#fff;
+    }
+    .secondary { 
+      font-size:0.9rem; 
+      color:#334155; 
+      border-style:dashed; 
+    }
+    .secondary:hover {
+      border-color:#15803d;
+      color:#15803d;
+    }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f9fafb;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: #6b7280;
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    .updated-notice {
+      background: #dcfce7;
+      border: 2px solid #22c55e;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #166534;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="updated-notice">
+      ✅ UPDATED PRICING - Industry-aligned rates for static site maintenance
+    </div>
+    
+    <h1>Website Care & Maintenance Plans</h1>
+    <p class="subtitle">Professional maintenance for hernandezlandscapeservices.com</p>
+
+    <div class="grid md:grid-cols-3 gap-8 mt-10">
+      <article class="plan-card">
+        <h3 class="text-xl font-semibold">Keep-Lights-On</h3>
+        <p class="text-sm text-gray-600 mb-4">Renewals, SSL, uptime alerts.</p>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>Domain & SSL renewals handled</li>
+          <li>Emergency security patches</li>
+          <li>24h response for outages</li>
+        </ul>
+        <div class="mt-6 space-y-2">
+          <a class="pricing-btn best-value" href="https://buy.stripe.com/28E7sN8MOcZAeX473o4ZG0j">Best value · $20/month</a>
+          <a class="pricing-btn" href="https://buy.stripe.com/eVqcN71km4t45mu5Zk4ZG0c">$10 every 2 weeks</a>
+          <a class="pricing-btn" href="https://buy.stripe.com/5kQ3cx4wyaRs9CKbjE4ZG0b">$5 per week (convenience fee)</a>
+          <a class="pricing-btn secondary" href="https://buy.stripe.com/eVq4gB2oq8Jkg180F04ZG0l">Pay $200 for 1 year · save 17%</a>
+        </div>
+      </article>
+
+      <article class="plan-card">
+        <h3 class="text-xl font-semibold">Basic Care</h3>
+        <p class="text-sm text-gray-600 mb-4">Quarterly updates + content edits.</p>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>Everything in Keep-Lights-On</li>
+          <li>Quarterly content refresh (English/Spanish)</li>
+          <li>Photo gallery updates & new uploads</li>
+        </ul>
+        <div class="mt-6 space-y-2">
+          <a class="pricing-btn best-value" href="https://buy.stripe.com/fZucN7fbc5x816eevQ4ZG0g">$75/month</a>
+          <a class="pricing-btn" href="https://buy.stripe.com/4gM14p0gi3p08yGafA4ZG0f">$37.50 every 2 weeks</a>
+          <a class="pricing-btn" href="https://buy.stripe.com/eVqdRb5ACaRs8yG4Vg4ZG0e">$18.75 per week</a>
+          <a class="pricing-btn secondary" href="https://buy.stripe.com/14A00l5AC6Bc9CK4Vg4ZG0d">Pay $800 for 1 year · save 11%</a>
+        </div>
+      </article>
+
+      <article class="plan-card">
+        <h3 class="text-xl font-semibold">Full Care</h3>
+        <p class="text-sm text-gray-600 mb-4">Unlimited edits + quarterly strategy.</p>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li>Everything in Basic Care</li>
+          <li>Analytics reporting & SEO tuning</li>
+          <li>Quarterly growth strategy call</li>
+        </ul>
+        <div class="mt-6 space-y-2">
+          <a class="pricing-btn best-value" href="https://buy.stripe.com/7sY7sN1km0cO5mu4Vg4ZG0m">$175/month</a>
+          <a class="pricing-btn" href="https://buy.stripe.com/28EaEZfbcbVw6qyfzU4ZG0i">$87.50 every 2 weeks</a>
+          <a class="pricing-btn" href="https://buy.stripe.com/bJe6oJgfg8JkaGO5Zk4ZG0h">$43.75 per week</a>
+          <a class="pricing-btn secondary" href="https://buy.stripe.com/8x2eVf7IK5x8cOWgDY4ZG0k">Pay $1,800 for 1 year · save 14%</a>
+        </div>
+      </article>
+    </div>
+
+    <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+      <p class="text-gray-600">Questions? Call or text (815) 501‑1478</p>
+      <p class="text-sm text-gray-500 mt-2">Hernandez Landscape & Tree Service LLC</p>
+      <p class="text-xs text-gray-400 mt-4">All payments secure through Stripe. Cancel or change plans anytime.</p>
+    </footer>
+  </div>
+</body>
+</html>
