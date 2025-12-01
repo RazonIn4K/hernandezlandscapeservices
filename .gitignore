@@ -1,4 +1,7 @@
+# Dependencies
 node_modules/
+vendor/
+.venv/
 
 # Development and testing files
 *.txt
@@ -18,12 +21,22 @@ message_*.txt
 *_instructions.txt
 *_report.txt
 
+# Environment variables
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+.next/
+__pycache__/
+
 # IDE and OS files
 .DS_Store
 .vscode/
 .idea/
+*.swp
 .npm
-.DS_Store
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -36,5 +49,3 @@ assets/js/firebase-config.js
 playwright-report/
 test-results/
 tests/test-data/
-
-.env
