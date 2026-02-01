@@ -547,6 +547,22 @@
                 </div>
                 <form id="quoteForm">
                     <div class="space-y-4">
+                        <!-- Anti-Scam: Property Address -->
+                        <div>
+                            <label for="propertyAddress" class="block text-gray-700 font-semibold mb-2" data-i18n-key="instant.label.address">Property Address</label>
+                            <input type="text" id="propertyAddress" placeholder="e.g., 1234 Main St, DeKalb" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" required data-i18n-placeholder="instant.placeholder.address">
+                        </div>
+
+                        <!-- Anti-Scam: Owner Verification -->
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="isOwner" type="checkbox" class="w-4 h-4 text-green-600 border-gray-300 rounded focus:ring-green-500" required>
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="isOwner" class="font-medium text-gray-700" data-i18n-key="instant.label.isOwner">I am the property owner and will be present for the estimate.</label>
+                            </div>
+                        </div>
+
                         <div>
                             <label for="serviceType" class="block text-gray-700 font-semibold mb-2" data-i18n-key="instant.label.serviceType">Service Type</label>
                             <select id="serviceType" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" required>
@@ -573,6 +589,15 @@
                         <div>
                             <label for="zipCode" class="block text-gray-700 font-semibold mb-2" data-i18n-key="instant.label.zip">Your ZIP Code</label>
                             <input type="text" id="zipCode" placeholder="e.g., 60115" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" pattern="^\d{5}(?:[-\s]\d{4})?$" title="Enter a valid 5-digit ZIP code" required data-i18n-placeholder="instant.placeholder.zip" data-i18n-title="instant.title.zip">
+                        </div>
+
+                        <div>
+                            <label for="bestTime" class="block text-gray-700 font-semibold mb-2" data-i18n-key="instant.label.bestTime">Best Time to Call</label>
+                            <select id="bestTime" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600">
+                                <option value="morning">Morning (8am - 12pm)</option>
+                                <option value="afternoon">Afternoon (12pm - 5pm)</option>
+                                <option value="evening">Evening (5pm - 8pm)</option>
+                            </select>
                         </div>
 
                         <button type="button" onclick="calculateQuote()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition" data-i18n-key="instant.button.calculate">
@@ -1059,6 +1084,27 @@
 
                                 <label for="contactEmail" class="sr-only">Email (optional)</label>
                                 <input type="email" id="contactEmail" name="email" placeholder="Email (optional)" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" data-i18n-placeholder="quote.placeholder.email">
+
+                                <!-- Property Address (scam filter) -->
+                                <label for="contactAddress" class="sr-only">Property Address</label>
+                                <input type="text" id="contactAddress" name="address" placeholder="Property Address (required for quote)" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required data-i18n-placeholder="quote.placeholder.address">
+
+                                <!-- Verification Checkbox (scam filter) -->
+                                <div class="flex items-start space-x-2 bg-amber-50 p-3 rounded border border-amber-200">
+                                    <input type="checkbox" id="ownerVerify" name="owner_verified" class="mt-1" required>
+                                    <label for="ownerVerify" class="text-sm text-amber-900" data-i18n-key="quote.verify">
+                                        I am the property owner or authorized agent, and I will be present for the estimate.
+                                    </label>
+                                </div>
+
+                                <!-- Best Time to Call (scam filter) -->
+                                <label for="bestTime" class="sr-only">Best Time to Call</label>
+                                <select id="bestTime" name="best_time" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                                    <option value="" data-i18n-key="quote.time.placeholder">Best time to call back?</option>
+                                    <option value="morning" data-i18n-key="quote.time.morning">Morning (8AM-12PM)</option>
+                                    <option value="afternoon" data-i18n-key="quote.time.afternoon">Afternoon (12PM-5PM)</option>
+                                    <option value="evening" data-i18n-key="quote.time.evening">Evening (5PM-7PM)</option>
+                                </select>
 
                                 <label for="contactService" class="sr-only">Select Service Needed</label>
                                 <select id="contactService" name="service" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
