@@ -62,7 +62,7 @@
         .lg\:flex { display: flex; }
         @media (max-width: 1023px) { .lg\:hidden { display: none; } .lg\:flex { display: none; } }
         .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
+            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.6)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
             background-attachment: scroll;
             background-position: center;
             background-repeat: no-repeat;
@@ -149,7 +149,7 @@
         /* Hero section background with parallax effect */
         .hero-bg {
             /* Using Wideshot_Bestlandscape_Person.jpg for the hero background */
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
+            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.6)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
             background-attachment: scroll; /* Creates the parallax effect */
             background-position: center;
             background-repeat: no-repeat;
@@ -159,7 +159,7 @@
         /* Mobile optimization for hero background */
         @media (max-width: 768px) {
             .hero-bg {
-                background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hernandez_images/web_hero_mobile.jpg');
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.65)), url('hernandez_images/web_hero_mobile.jpg');
                 background-attachment: scroll; /* Disable parallax on mobile for better performance */
                 background-position: center center;
                 background-size: cover;
@@ -327,6 +327,83 @@
             opacity: 1;
             visibility: visible;
         }
+
+        /* Hero text shadow for better legibility */
+        .hero-text-shadow {
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .reveal-left, .reveal-right {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
+        /* Trust badge styling */
+        .trust-badge {
+            transition: transform 0.2s ease;
+        }
+        .trust-badge:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Focus states for accessibility */
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+            outline: 2px solid #22c55e;
+            outline-offset: 2px;
+        }
+
+        /* Process step styling */
+        .process-step {
+            position: relative;
+        }
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -2rem;
+            width: 1.5rem;
+            height: 2px;
+            background: #22c55e;
+        }
+        .process-step:last-child::after {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .process-step::after {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -335,7 +412,7 @@
         <div class="container mx-auto px-4">
             <nav class="flex justify-between items-center py-4">
                 <div class="flex items-center space-x-4">
-                    <img src="hernandez_images/web_Logo.jpg"
+                    <img src="hernandez_images/web_Logo_New.png"
                          alt="Hernandez Landscape & Tree Service LLC Logo"
                          class="h-12 w-auto object-contain"
                          width="400" height="175" loading="lazy">
@@ -407,7 +484,7 @@
     </header>
 
     <section class="hero-bg min-h-screen flex items-center relative mt-16">
-        <div class="container mx-auto px-4 text-center text-white relative z-10">
+        <div class="container mx-auto px-4 text-center text-white relative z-10 hero-text-shadow">
             <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight" data-i18n-key="hero.heading">
                 Transform Your<br>
                 <span class="text-green-400">Outdoor Space</span>
@@ -426,21 +503,21 @@
                 </a>
             </div>
 
-            <div class="mt-12 flex flex-wrap justify-center gap-8 text-sm">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-shield-alt text-green-400 text-2xl"></i>
+            <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 text-sm">
+                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-shield-alt text-green-400 text-xl"></i>
                     <span data-i18n-key="hero.badge.insured">Fully Insured</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-award text-green-400 text-2xl"></i>
+                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-award text-green-400 text-xl"></i>
                     <span data-i18n-key="hero.badge.licensed">Licensed LLC</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-users text-green-400 text-2xl"></i>
+                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-users text-green-400 text-xl"></i>
                     <span data-i18n-key="hero.badge.family">Family Owned</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-language text-green-400 text-2xl"></i>
+                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                    <i class="fas fa-language text-green-400 text-xl"></i>
                     <span data-i18n-key="hero.badge.bilingual">Se Habla Español</span>
                 </div>
             </div>
@@ -451,11 +528,23 @@
         </div>
     </section>
 
-    <section id="instant-quote" class="py-16 bg-white">
+    <section id="instant-quote" class="py-16 bg-white reveal">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-bold text-center mb-12" data-i18n-key="instant.heading">Get Your Instant Estimate</h2>
+            <h2 class="text-4xl font-bold text-center mb-4" data-i18n-key="instant.heading">Get Your Instant Estimate</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-xl mx-auto" data-i18n-key="instant.subtitle">No obligation, no pressure. See estimated pricing in seconds.</p>
 
             <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg">
+                <!-- Trust indicators -->
+                <div class="flex flex-wrap justify-center gap-4 mb-6 text-sm text-gray-600">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                        <span data-i18n-key="instant.trust.free">Free, no-obligation estimate</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-clock text-green-600 mr-2"></i>
+                        <span data-i18n-key="instant.trust.response">Response within 24 hours</span>
+                    </div>
+                </div>
                 <form id="quoteForm">
                     <div class="space-y-4">
                         <div>
@@ -489,6 +578,9 @@
                         <button type="button" onclick="calculateQuote()" class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition" data-i18n-key="instant.button.calculate">
                             Calculate Estimate
                         </button>
+                        <p class="text-xs text-gray-500 text-center mt-3" data-i18n-key="instant.privacy">
+                            <i class="fas fa-lock mr-1"></i>We never share your information. Your privacy is protected.
+                        </p>
                     </div>
                 </form>
 
@@ -504,11 +596,11 @@
         </div>
     </section>
 
-    <section id="services" class="py-16 bg-gray-50">
+    <section id="services" class="py-16 bg-gray-50 reveal">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4" data-i18n-key="services.heading">Our Professional Services</h2>
-                <p class="text-xl text-gray-600" data-i18n-key="services.subheading">Quality work, competitive prices, satisfaction guaranteed</p>
+                <p class="text-xl text-gray-600" data-i18n-key="services.subheading">Serving DeKalb County since 2019 — Over 500 properties transformed</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
@@ -596,7 +688,78 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-16 bg-white">
+    <!-- Why Choose Us Section -->
+    <section id="why-choose-us" class="py-16 bg-white reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4" data-i18n-key="whyChoose.heading">Why Choose Hernandez?</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto" data-i18n-key="whyChoose.subheading">More than just a landscaping company — we're your neighbors committed to excellence.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-i18n-key="whyChoose.feature1.title">Same-Day Quotes</h3>
+                    <p class="text-gray-600" data-i18n-key="whyChoose.feature1.desc">Request a quote today, get a response within hours — not days.</p>
+                </div>
+
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tools text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-i18n-key="whyChoose.feature2.title">Professional Equipment</h3>
+                    <p class="text-gray-600" data-i18n-key="whyChoose.feature2.desc">Commercial-grade tools for better results and faster completion.</p>
+                </div>
+
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-i18n-key="whyChoose.feature3.title">Local & Trusted</h3>
+                    <p class="text-gray-600" data-i18n-key="whyChoose.feature3.desc">DeKalb-based family business. We treat your property like our own.</p>
+                </div>
+
+                <div class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-dollar-sign text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-i18n-key="whyChoose.feature4.title">Fair, Upfront Pricing</h3>
+                    <p class="text-gray-600" data-i18n-key="whyChoose.feature4.desc">No hidden fees. You know exactly what you're paying before work begins.</p>
+                </div>
+            </div>
+
+            <!-- What to Expect Process -->
+            <div class="bg-green-50 rounded-lg p-8">
+                <h3 class="text-2xl font-bold text-center mb-8" data-i18n-key="whyChoose.process.heading">What to Expect</h3>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">1</div>
+                        <h4 class="font-bold mb-1" data-i18n-key="whyChoose.process.step1.title">Request Quote</h4>
+                        <p class="text-sm text-gray-600" data-i18n-key="whyChoose.process.step1.desc">Fill out our form or call us directly</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">2</div>
+                        <h4 class="font-bold mb-1" data-i18n-key="whyChoose.process.step2.title">Free Assessment</h4>
+                        <p class="text-sm text-gray-600" data-i18n-key="whyChoose.process.step2.desc">We visit your property to understand your needs</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">3</div>
+                        <h4 class="font-bold mb-1" data-i18n-key="whyChoose.process.step3.title">Get Your Quote</h4>
+                        <p class="text-sm text-gray-600" data-i18n-key="whyChoose.process.step3.desc">Receive a detailed, no-surprise estimate</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">4</div>
+                        <h4 class="font-bold mb-1" data-i18n-key="whyChoose.process.step4.title">Enjoy Results</h4>
+                        <p class="text-sm text-gray-600" data-i18n-key="whyChoose.process.step4.desc">We complete the work to your satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-16 bg-gray-50 reveal">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl font-bold mb-4" data-i18n-key="gallery.heading">See The Difference We Make</h2>
@@ -695,7 +858,7 @@
         </div>
     </section>
 
-    <section id="testimonials" class="py-16 bg-gray-50">
+    <section id="testimonials" class="py-16 bg-gray-50 reveal">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12" data-i18n-key="testimonials.heading">What Our Clients Say</h2>
 
@@ -755,7 +918,7 @@
         </div>
     </section>
 
-    <section id="service-area" class="py-16 bg-white">
+    <section id="service-area" class="py-16 bg-white reveal">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-bold text-center mb-12" data-i18n-key="serviceArea.heading">Areas We Serve</h2>
 
@@ -804,7 +967,7 @@
         </div>
     </section>
 
-    <section id="quote" class="py-16 bg-green-800 text-white">
+    <section id="quote" class="py-16 bg-green-800 text-white reveal">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <h2 class="text-4xl font-bold text-center mb-12" data-i18n-key="quote.heading">Ready to Transform Your Property?</h2>
@@ -1239,6 +1402,27 @@
                 });
             });
         }
+
+        // Scroll reveal animations using Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        if (revealElements.length > 0 && 'IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            revealElements.forEach(el => el.classList.add('active'));
+        }
     </script>
 
     <script src="assets/js/i18n.js" defer></script>
@@ -1252,7 +1436,7 @@
         "description": "Professional landscaping and tree services in DeKalb County, IL. Family-owned business offering lawn care, tree trimming, landscape design, and more. Licensed, insured, and committed to excellence. Se Habla Español.",
         "image": [
             "https://hernandezlandscapeservices.com/hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg",
-            "https://hernandezlandscapeservices.com/hernandez_images/web_Logo.jpg",
+            "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New.png",
             "https://hernandezlandscapeservices.com/hernandez_images/web_After1.jpeg"
         ],
         "telephone": "+1-815-501-1478",
