@@ -9,7 +9,8 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ci": "playwright test --reporter=dot",
-    "dev": "npm run watch-css"
+    "dev": "npm run watch-css",
+    "send-renewal": "node scripts/send-renewal.js"
   },
   "repository": {
     "type": "git",
