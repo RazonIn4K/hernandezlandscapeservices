@@ -1,293 +1,444 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Website Care Plans | Hernandez Landscape</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .plan-card {
-      background:#fff;
-      border-radius:1rem;
-      padding:1.75rem;
-      box-shadow:0 15px 35px rgba(15,23,42,0.08);
-    }
-    .pricing-btn {
-      display:block;
-      text-align:center;
-      padding:0.75rem;
-      border-radius:9999px;
-      font-weight:600;
-      border:1px solid #d1d5db;
-      transition:all 0.2s;
-      text-decoration:none;
-    }
-    .pricing-btn:hover {
-      border-color:#15803d;
-      color:#15803d;
-    }
-    .best-value {
-      background:#15803d;
-      color:#fff;
-      border-color:#15803d;
-    }
-    .best-value:hover {
-      background:#166534;
-      color:#fff;
-    }
-    .secondary {
-      font-size:0.9rem;
-      color:#334155;
-      border-style:dashed;
-    }
-    .secondary:hover {
-      border-color:#15803d;
-      color:#15803d;
-    }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #f9fafb;
-      color: #1f2937;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-    h1 {
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #1f2937;
-      margin-bottom: 1rem;
-    }
-    .subtitle {
-      text-align: center;
-      color: #6b7280;
-      margin-bottom: 3rem;
-      font-size: 1.1rem;
-    }
-    .updated-notice {
-      background: #dcfce7;
-      border: 2px solid #22c55e;
-      border-radius: 8px;
-      padding: 1rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: #166534;
-      font-weight: 600;
-    }
-    .language-toggle {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .lang-btn {
-      padding: 0.5rem 1.5rem;
-      border: 2px solid #22c55e;
-      background: white;
-      color: #1f2937;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.2s;
-      margin: 0 0.25rem;
-      border-radius: 0.5rem;
-      font-size: 0.95rem;
-    }
-    .lang-btn.active {
-      background: #22c55e;
-      color: white;
-    }
-    .lang-btn:hover:not(.active) {
-      background: #f0fdf4;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="language-toggle">
-      <button type="button" data-lang="en" class="lang-btn active" aria-label="Switch to English">
-        English
-      </button>
-      <button type="button" data-lang="es" class="lang-btn" aria-label="Cambiar a Español">
-        Español
-      </button>
-    </div>
-
-    <div class="updated-notice" data-lang-content="en">
-      ✅ UPDATED PRICING - Industry-aligned rates for static site maintenance
-    </div>
-    <div class="updated-notice hidden" data-lang-content="es">
-      ✅ PRECIOS ACTUALIZADOS - Tarifas alineadas con la industria para mantenimiento de sitios estáticos
-    </div>
-
-    <h1 data-lang-content="en">Website Care & Maintenance Plans</h1>
-    <h1 class="hidden" data-lang-content="es">Planes de Cuidado y Mantenimiento Web</h1>
-
-    <p class="subtitle" data-lang-content="en">Professional maintenance for hernandezlandscapeservices.com</p>
-    <p class="subtitle hidden" data-lang-content="es">Mantenimiento profesional para hernandezlandscapeservices.com</p>
-
-    <div class="grid md:grid-cols-3 gap-8 mt-10">
-      <!-- Keep-Lights-On Plan - English -->
-      <article class="plan-card" data-lang-content="en">
-        <h3 class="text-xl font-semibold">Keep-Lights-On</h3>
-        <p class="text-sm text-gray-600 mb-4">Renewals, SSL, uptime alerts.</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li>Domain & SSL renewals handled</li>
-          <li>Emergency security patches</li>
-          <li>24h response for outages</li>
-        </ul>
-        <div class="mt-6 space-y-2">
-          <a class="pricing-btn best-value" href="https://buy.stripe.com/28E7sN8MOcZAeX473o4ZG0j">Best value · $20/month</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/eVqcN71km4t45mu5Zk4ZG0c">$10 every 2 weeks</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/5kQ3cx4wyaRs9CKbjE4ZG0b">$5 per week (convenience fee)</a>
-          <a class="pricing-btn secondary" href="https://buy.stripe.com/eVq4gB2oq8Jkg180F04ZG0l">Pay $200 for 1 year · save 17%</a>
-        </div>
-      </article>
-
-      <!-- Keep-Lights-On Plan - Spanish -->
-      <article class="plan-card hidden" data-lang-content="es">
-        <h3 class="text-xl font-semibold">Plan Básico</h3>
-        <p class="text-sm text-gray-600 mb-4">Renovaciones, SSL, alertas de tiempo de actividad.</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li>Renovaciones de dominio y SSL gestionadas</li>
-          <li>Parches de seguridad de emergencia</li>
-          <li>Respuesta de 24h para interrupciones</li>
-        </ul>
-        <div class="mt-6 space-y-2">
-          <a class="pricing-btn best-value" href="https://buy.stripe.com/28E7sN8MOcZAeX473o4ZG0j">Mejor valor · $20/mes</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/eVqcN71km4t45mu5Zk4ZG0c">$10 cada 2 semanas</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/5kQ3cx4wyaRs9CKbjE4ZG0b">$5 por semana (tarifa de conveniencia)</a>
-          <a class="pricing-btn secondary" href="https://buy.stripe.com/eVq4gB2oq8Jkg180F04ZG0l">Paga $200 por 1 año · ahorra 17%</a>
-        </div>
-      </article>
-
-      <!-- Basic Care Plan - English -->
-      <article class="plan-card" data-lang-content="en">
-        <h3 class="text-xl font-semibold">Basic Care</h3>
-        <p class="text-sm text-gray-600 mb-4">Quarterly updates + content edits.</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li>Everything in Keep-Lights-On</li>
-          <li>Quarterly content refresh (English/Spanish)</li>
-          <li>Photo gallery updates & new uploads</li>
-        </ul>
-        <div class="mt-6 space-y-2">
-          <a class="pricing-btn best-value" href="https://buy.stripe.com/fZucN7fbc5x816eevQ4ZG0g">$75/month</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/4gM14p0gi3p08yGafA4ZG0f">$37.50 every 2 weeks</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/eVqdRb5ACaRs8yG4Vg4ZG0e">$18.75 per week</a>
-          <a class="pricing-btn secondary" href="https://buy.stripe.com/14A00l5AC6Bc9CK4Vg4ZG0d">Pay $800 for 1 year · save 11%</a>
-        </div>
-      </article>
-
-      <!-- Basic Care Plan - Spanish -->
-      <article class="plan-card hidden" data-lang-content="es">
-        <h3 class="text-xl font-semibold">Plan Estándar</h3>
-        <p class="text-sm text-gray-600 mb-4">Actualizaciones trimestrales + ediciones de contenido.</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li>Todo lo del Plan Básico</li>
-          <li>Actualización de contenido trimestral (Inglés/Español)</li>
-          <li>Actualizaciones de galería de fotos y nuevas subidas</li>
-        </ul>
-        <div class="mt-6 space-y-2">
-          <a class="pricing-btn best-value" href="https://buy.stripe.com/fZucN7fbc5x816eevQ4ZG0g">$75/mes</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/4gM14p0gi3p08yGafA4ZG0f">$37.50 cada 2 semanas</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/eVqdRb5ACaRs8yG4Vg4ZG0e">$18.75 por semana</a>
-          <a class="pricing-btn secondary" href="https://buy.stripe.com/14A00l5AC6Bc9CK4Vg4ZG0d">Paga $800 por 1 año · ahorra 11%</a>
-        </div>
-      </article>
-
-      <!-- Full Care Plan - English -->
-      <article class="plan-card" data-lang-content="en">
-        <h3 class="text-xl font-semibold">Full Care</h3>
-        <p class="text-sm text-gray-600 mb-4">Unlimited edits + quarterly strategy.</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li>Everything in Basic Care</li>
-          <li>Analytics reporting & SEO tuning</li>
-          <li>Quarterly growth strategy call</li>
-        </ul>
-        <div class="mt-6 space-y-2">
-          <a class="pricing-btn best-value" href="https://buy.stripe.com/7sY7sN1km0cO5mu4Vg4ZG0m">$175/month</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/28EaEZfbcbVw6qyfzU4ZG0i">$87.50 every 2 weeks</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/bJe6oJgfg8JkaGO5Zk4ZG0h">$43.75 per week</a>
-          <a class="pricing-btn secondary" href="https://buy.stripe.com/8x2eVf7IK5x8cOWgDY4ZG0k">Pay $1,800 for 1 year · save 14%</a>
-        </div>
-      </article>
-
-      <!-- Full Care Plan - Spanish -->
-      <article class="plan-card hidden" data-lang-content="es">
-        <h3 class="text-xl font-semibold">Plan Premium</h3>
-        <p class="text-sm text-gray-600 mb-4">Ediciones ilimitadas + estrategia trimestral.</p>
-        <ul class="space-y-2 text-sm text-gray-700">
-          <li>Todo lo del Plan Estándar</li>
-          <li>Reportes de análisis y ajuste de SEO</li>
-          <li>Llamada de estrategia de crecimiento trimestral</li>
-        </ul>
-        <div class="mt-6 space-y-2">
-          <a class="pricing-btn best-value" href="https://buy.stripe.com/7sY7sN1km0cO5mu4Vg4ZG0m">$175/mes</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/28EaEZfbcbVw6qyfzU4ZG0i">$87.50 cada 2 semanas</a>
-          <a class="pricing-btn" href="https://buy.stripe.com/bJe6oJgfg8JkaGO5Zk4ZG0h">$43.75 por semana</a>
-          <a class="pricing-btn secondary" href="https://buy.stripe.com/8x2eVf7IK5x8cOWgDY4ZG0k">Paga $1,800 por 1 año · ahorra 14%</a>
-        </div>
-      </article>
-    </div>
-
-    <footer class="text-center mt-12 pt-8 border-t border-gray-200">
-      <p class="text-gray-600" data-lang-content="en">Questions? Call or text (331) 645-1372</p>
-      <p class="text-gray-600 hidden" data-lang-content="es">¿Preguntas? Llama o envía mensaje (331) 645-1372</p>
-
-      <p class="text-sm text-gray-500 mt-2">Hernandez Landscape & Tree Service LLC</p>
-
-      <p class="text-xs text-gray-400 mt-4" data-lang-content="en">All payments secure through Stripe. Cancel or change plans anytime.</p>
-      <p class="text-xs text-gray-400 mt-4 hidden" data-lang-content="es">Todos los pagos son seguros a través de Stripe. Cancela o cambia de plan en cualquier momento.</p>
-    </footer>
-  </div>
-
-  <script>
-  (function() {
-    'use strict';
-
-    const STORAGE_KEY = 'pricingLanguage';
-    const langButtons = document.querySelectorAll('.lang-btn');
-    const savedLang = localStorage.getItem(STORAGE_KEY) || 'en';
-
-    function switchLanguage(lang) {
-      // Update content visibility
-      document.querySelectorAll('[data-lang-content]').forEach(el => {
-        const shouldShow = el.dataset.langContent === lang;
-        el.classList.toggle('hidden', !shouldShow);
-      });
-
-      // Update button states
-      langButtons.forEach(btn => {
-        const isActive = btn.dataset.lang === lang;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-pressed', String(isActive));
-      });
-
-      // Persist choice
-      try {
-        localStorage.setItem(STORAGE_KEY, lang);
-      } catch (error) {
-        console.warn('Unable to save language preference:', error);
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website Care Plans | Hernandez Landscape</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .plan-card {
+        background: #fff;
+        border-radius: 1rem;
+        padding: 1.75rem;
+        box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
       }
+      .pricing-btn {
+        display: block;
+        text-align: center;
+        padding: 0.75rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        border: 1px solid #d1d5db;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .pricing-btn:hover {
+        border-color: #15803d;
+        color: #15803d;
+      }
+      .best-value {
+        background: #15803d;
+        color: #fff;
+        border-color: #15803d;
+      }
+      .best-value:hover {
+        background: #166534;
+        color: #fff;
+      }
+      .secondary {
+        font-size: 0.9rem;
+        color: #334155;
+        border-style: dashed;
+      }
+      .secondary:hover {
+        border-color: #15803d;
+        color: #15803d;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: #f9fafb;
+        color: #1f2937;
+        line-height: 1.6;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+      .subtitle {
+        text-align: center;
+        color: #6b7280;
+        margin-bottom: 3rem;
+        font-size: 1.1rem;
+      }
+      .updated-notice {
+        background: #dcfce7;
+        border: 2px solid #22c55e;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        color: #166534;
+        font-weight: 600;
+      }
+      .language-toggle {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .lang-btn {
+        padding: 0.5rem 1.5rem;
+        border: 2px solid #22c55e;
+        background: white;
+        color: #1f2937;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s;
+        margin: 0 0.25rem;
+        border-radius: 0.5rem;
+        font-size: 0.95rem;
+      }
+      .lang-btn.active {
+        background: #22c55e;
+        color: white;
+      }
+      .lang-btn:hover:not(.active) {
+        background: #f0fdf4;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="language-toggle">
+        <button
+          type="button"
+          data-lang="en"
+          class="lang-btn active"
+          aria-label="Switch to English"
+        >
+          English
+        </button>
+        <button
+          type="button"
+          data-lang="es"
+          class="lang-btn"
+          aria-label="Cambiar a Español"
+        >
+          Español
+        </button>
+      </div>
 
-      // Update page lang attribute
-      document.documentElement.setAttribute('lang', lang);
-    }
+      <div class="updated-notice" data-lang-content="en">
+        ✅ UPDATED PRICING - Industry-aligned rates for static site maintenance
+      </div>
+      <div class="updated-notice hidden" data-lang-content="es">
+        ✅ PRECIOS ACTUALIZADOS - Tarifas alineadas con la industria para
+        mantenimiento de sitios estáticos
+      </div>
 
-    // Set up click handlers
-    langButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        switchLanguage(btn.dataset.lang);
-      });
-    });
+      <h1 data-lang-content="en">Website Care & Maintenance Plans</h1>
+      <h1 class="hidden" data-lang-content="es">
+        Planes de Cuidado y Mantenimiento Web
+      </h1>
 
-    // Initialize with saved or default language
-    switchLanguage(savedLang);
-  })();
-  </script>
-</body>
+      <p class="subtitle" data-lang-content="en">
+        Professional maintenance for hernandezlandscapeservices.com
+      </p>
+      <p class="subtitle hidden" data-lang-content="es">
+        Mantenimiento profesional para hernandezlandscapeservices.com
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 mt-10">
+        <!-- Keep-Lights-On Plan - English -->
+        <article class="plan-card" data-lang-content="en">
+          <h3 class="text-xl font-semibold">Keep-Lights-On</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Renewals, SSL, uptime alerts.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Domain & SSL renewals handled</li>
+            <li>Emergency security patches</li>
+            <li>24h response for outages</li>
+          </ul>
+          <div class="mt-6 space-y-2">
+            <a
+              class="pricing-btn best-value"
+              href="https://buy.stripe.com/28E7sN8MOcZAeX473o4ZG0j"
+              >Best value · $20/month</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/eVqcN71km4t45mu5Zk4ZG0c"
+              >$10 every 2 weeks</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/5kQ3cx4wyaRs9CKbjE4ZG0b"
+              >$5 per week (convenience fee)</a
+            >
+            <a
+              class="pricing-btn secondary"
+              href="https://buy.stripe.com/eVq4gB2oq8Jkg180F04ZG0l"
+              >Pay $200 for 1 year · save 17%</a
+            >
+          </div>
+        </article>
+
+        <!-- Keep-Lights-On Plan - Spanish -->
+        <article class="plan-card hidden" data-lang-content="es">
+          <h3 class="text-xl font-semibold">Plan Básico</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Renovaciones, SSL, alertas de tiempo de actividad.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Renovaciones de dominio y SSL gestionadas</li>
+            <li>Parches de seguridad de emergencia</li>
+            <li>Respuesta de 24h para interrupciones</li>
+          </ul>
+          <div class="mt-6 space-y-2">
+            <a
+              class="pricing-btn best-value"
+              href="https://buy.stripe.com/28E7sN8MOcZAeX473o4ZG0j"
+              >Mejor valor · $20/mes</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/eVqcN71km4t45mu5Zk4ZG0c"
+              >$10 cada 2 semanas</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/5kQ3cx4wyaRs9CKbjE4ZG0b"
+              >$5 por semana (tarifa de conveniencia)</a
+            >
+            <a
+              class="pricing-btn secondary"
+              href="https://buy.stripe.com/eVq4gB2oq8Jkg180F04ZG0l"
+              >Paga $200 por 1 año · ahorra 17%</a
+            >
+          </div>
+        </article>
+
+        <!-- Basic Care Plan - English -->
+        <article class="plan-card" data-lang-content="en">
+          <h3 class="text-xl font-semibold">Basic Care</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Quarterly updates + content edits.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Everything in Keep-Lights-On</li>
+            <li>Quarterly content refresh (English/Spanish)</li>
+            <li>Photo gallery updates & new uploads</li>
+          </ul>
+          <div class="mt-6 space-y-2">
+            <a
+              class="pricing-btn best-value"
+              href="https://buy.stripe.com/fZucN7fbc5x816eevQ4ZG0g"
+              >$75/month</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/4gM14p0gi3p08yGafA4ZG0f"
+              >$37.50 every 2 weeks</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/eVqdRb5ACaRs8yG4Vg4ZG0e"
+              >$18.75 per week</a
+            >
+            <a
+              class="pricing-btn secondary"
+              href="https://buy.stripe.com/14A00l5AC6Bc9CK4Vg4ZG0d"
+              >Pay $800 for 1 year · save 11%</a
+            >
+          </div>
+        </article>
+
+        <!-- Basic Care Plan - Spanish -->
+        <article class="plan-card hidden" data-lang-content="es">
+          <h3 class="text-xl font-semibold">Plan Estándar</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Actualizaciones trimestrales + ediciones de contenido.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Todo lo del Plan Básico</li>
+            <li>Actualización de contenido trimestral (Inglés/Español)</li>
+            <li>Actualizaciones de galería de fotos y nuevas subidas</li>
+          </ul>
+          <div class="mt-6 space-y-2">
+            <a
+              class="pricing-btn best-value"
+              href="https://buy.stripe.com/fZucN7fbc5x816eevQ4ZG0g"
+              >$75/mes</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/4gM14p0gi3p08yGafA4ZG0f"
+              >$37.50 cada 2 semanas</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/eVqdRb5ACaRs8yG4Vg4ZG0e"
+              >$18.75 por semana</a
+            >
+            <a
+              class="pricing-btn secondary"
+              href="https://buy.stripe.com/14A00l5AC6Bc9CK4Vg4ZG0d"
+              >Paga $800 por 1 año · ahorra 11%</a
+            >
+          </div>
+        </article>
+
+        <!-- Full Care Plan - English -->
+        <article class="plan-card" data-lang-content="en">
+          <h3 class="text-xl font-semibold">Full Care</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Unlimited edits + quarterly strategy.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Everything in Basic Care</li>
+            <li>
+              <strong>🛡️ Scam Protection: Lead Verification Filters</strong>
+            </li>
+            <li><strong>🚛 Route Policy: Minimal Charge Rule</strong></li>
+            <li>Analytics reporting & SEO tuning</li>
+            <li>Quarterly growth strategy call</li>
+          </ul>
+          <div class="mt-6 space-y-2">
+            <a
+              class="pricing-btn best-value"
+              href="https://buy.stripe.com/7sY7sN1km0cO5mu4Vg4ZG0m"
+              >$175/month</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/28EaEZfbcbVw6qyfzU4ZG0i"
+              >$87.50 every 2 weeks</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/bJe6oJgfg8JkaGO5Zk4ZG0h"
+              >$43.75 per week</a
+            >
+            <a
+              class="pricing-btn secondary"
+              href="https://buy.stripe.com/8x2eVf7IK5x8cOWgDY4ZG0k"
+              >Pay $1,800 for 1 year · save 14%</a
+            >
+          </div>
+        </article>
+
+        <!-- Full Care Plan - Spanish -->
+        <article class="plan-card hidden" data-lang-content="es">
+          <h3 class="text-xl font-semibold">Plan Premium</h3>
+          <p class="text-sm text-gray-600 mb-4">
+            Ediciones ilimitadas + estrategia trimestral.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700">
+            <li>Todo lo del Plan Estándar</li>
+            <li>
+              <strong
+                >🛡️ Protección Anti-Estafas: Filtros de verificación</strong
+              >
+            </li>
+            <li>
+              <strong>🚛 Política de Ruta: Reglas de cargo mínimo</strong>
+            </li>
+            <li>Reportes de análisis y ajuste de SEO</li>
+            <li>Llamada de estrategia de crecimiento trimestral</li>
+          </ul>
+          <div class="mt-6 space-y-2">
+            <a
+              class="pricing-btn best-value"
+              href="https://buy.stripe.com/7sY7sN1km0cO5mu4Vg4ZG0m"
+              >$175/mes</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/28EaEZfbcbVw6qyfzU4ZG0i"
+              >$87.50 cada 2 semanas</a
+            >
+            <a
+              class="pricing-btn"
+              href="https://buy.stripe.com/bJe6oJgfg8JkaGO5Zk4ZG0h"
+              >$43.75 por semana</a
+            >
+            <a
+              class="pricing-btn secondary"
+              href="https://buy.stripe.com/8x2eVf7IK5x8cOWgDY4ZG0k"
+              >Paga $1,800 por 1 año · ahorra 14%</a
+            >
+          </div>
+        </article>
+      </div>
+
+      <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+        <p class="text-gray-600" data-lang-content="en">
+          Questions? Call or text (331) 645-1372
+        </p>
+        <p class="text-gray-600 hidden" data-lang-content="es">
+          ¿Preguntas? Llama o envía mensaje (331) 645-1372
+        </p>
+
+        <p class="text-sm text-gray-500 mt-2">
+          Hernandez Landscape & Tree Service LLC
+        </p>
+
+        <p class="text-xs text-gray-400 mt-4" data-lang-content="en">
+          All payments secure through Stripe. Cancel or change plans anytime.
+        </p>
+        <p class="text-xs text-gray-400 mt-4 hidden" data-lang-content="es">
+          Todos los pagos son seguros a través de Stripe. Cancela o cambia de
+          plan en cualquier momento.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const STORAGE_KEY = "pricingLanguage";
+        const langButtons = document.querySelectorAll(".lang-btn");
+        const savedLang = localStorage.getItem(STORAGE_KEY) || "en";
+
+        function switchLanguage(lang) {
+          // Update content visibility
+          document.querySelectorAll("[data-lang-content]").forEach((el) => {
+            const shouldShow = el.dataset.langContent === lang;
+            el.classList.toggle("hidden", !shouldShow);
+          });
+
+          // Update button states
+          langButtons.forEach((btn) => {
+            const isActive = btn.dataset.lang === lang;
+            btn.classList.toggle("active", isActive);
+            btn.setAttribute("aria-pressed", String(isActive));
+          });
+
+          // Persist choice
+          try {
+            localStorage.setItem(STORAGE_KEY, lang);
+          } catch (error) {
+            console.warn("Unable to save language preference:", error);
+          }
+
+          // Update page lang attribute
+          document.documentElement.setAttribute("lang", lang);
+        }
+
+        // Set up click handlers
+        langButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            switchLanguage(btn.dataset.lang);
+          });
+        });
+
+        // Initialize with saved or default language
+        switchLanguage(savedLang);
+      })();
+    </script>
+  </body>
 </html>
