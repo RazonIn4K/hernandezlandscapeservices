@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hernandez Landscape - Contact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .btn-link { transition: transform 0.2s; }
+        .btn-link:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl overflow-hidden">
+        <!-- Header -->
+        <div class="bg-green-700 p-6 text-center text-white relative">
+            <div class="absolute top-4 right-4">
+                <button onclick="toggleLang()" class="bg-white/20 hover:bg-white/30 text-xs font-bold py-1 px-2 rounded backdrop-blur-sm transition">
+                    <span id="langLabel">ES</span>
+                </button>
+            </div>
+            <img src="hernandez_images/web_Logo_New.png" alt="Hernandez Landscape" class="w-24 h-24 mx-auto bg-white rounded-full p-1 shadow-lg object-contain">
+            <h1 class="mt-4 text-2xl font-bold">Hernandez Landscape</h1>
+            <p class="text-green-100 text-sm mt-1" data-en="Pro Landscaping & Tree Service" data-es="Jardinería y Servicio de Árboles">Pro Landscaping & Tree Service</p>
+            <p class="text-xs text-green-200 mt-2">DeKalb • Sycamore • St. Charles</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="p-6 space-y-4">
+            <a href="tel:8155011478" class="btn-link flex items-center justify-center w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-sm transition">
+                <i class="fas fa-phone-alt text-xl mr-3"></i>
+                <span data-en="Call Now" data-es="Llamar Ahora">Call Aow</span>
+            </a>
+
+            <a href="sms:8155011478" class="btn-link flex items-center justify-center w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-sm transition">
+                <i class="fas fa-comment-alt text-xl mr-3"></i>
+                <span data-en="Send Text Message" data-es="Enviar Mensaje de Texto">Send Text Message</span>
+            </a>
+
+            <a href="https://wa.me/18155011478" class="btn-link flex items-center justify-center w-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold py-4 rounded-xl shadow-sm transition">
+                <i class="fab fa-whatsapp text-2xl mr-3"></i>
+                <span data-en="WhatsApp" data-es="WhatsApp">WhatsApp</span>
+            </a>
+
+            <div class="grid grid-cols-2 gap-4">
+                <a href="https://hernandezlandscapeservices.com" class="btn-link flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-800 p-4 rounded-xl transition">
+                    <i class="fas fa-globe text-green-600 text-2xl mb-2"></i>
+                    <span class="text-xs font-semibold" data-en="Website" data-es="Sitio Web">Website</span>
+                </a>
+                <a href="https://g.page/r/YOUR_GOOGLE_REVIEW_LINK" class="btn-link flex flex-col items-center justify-center bg-gray-50 hover:bg-gray-100 border border-gray-200 text-gray-800 p-4 rounded-xl transition">
+                    <i class="fas fa-star text-yellow-500 text-2xl mb-2"></i>
+                    <span class="text-xs font-semibold" data-en="Reviews" data-es="Reseñas">Reviews</span>
+                </a>
+            </div>
+            
+            <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" class="btn-link flex items-center justify-center w-full bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-3 rounded-xl shadow-sm transition text-sm">
+                <i class="fab fa-facebook-f text-lg mr-3"></i>
+                <span data-en="Visit Facebook Page" data-es="Ver Página de Facebook">Visit Facebook Page</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-50 p-4 text-center border-t border-gray-100">
+            <div class="flex justify-center space-x-2 text-gray-400 text-sm">
+                 <i class="fas fa-shield-alt text-green-600"></i>
+                 <span class="font-medium text-gray-500" data-en="Licensed & Insured" data-es="Con Licencia y Seguro">Licensed & Insured</span>
+            </div>
+            <button onclick="saveContact()" class="mt-4 text-green-600 text-sm font-semibold hover:underline">
+                <i class="fas fa-download mr-1"></i> <span data-en="Save to Contacts" data-es="Guardar Contacto">Save to Contacts</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+        
+        function toggleLang() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            document.getElementById('langLabel').textContent = currentLang === 'en' ? 'ES' : 'EN';
+            
+            document.querySelectorAll('[data-' + currentLang + ']').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
+            });
+        }
+
+        function saveContact() {
+            // Simple vCard generation
+            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Hernandez Landscape\nTEL;TYPE=CELL:8155011478\nURL:https://hernandezlandscapeservices.com\nEND:VCARD";
+            const blob = new Blob([vcard], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "HernandezLandscape.vcf";
+            a.click();
+        }
+    </script>
+</body>
+</html>
