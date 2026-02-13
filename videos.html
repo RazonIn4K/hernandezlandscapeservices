@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Video Tours - Hernandez Landscape & Tree Service LLC</title>
+    <meta name="description" content="Watch video tours of our landscaping and tree service projects in DeKalb County. See our team in action.">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Project Video Tours - Hernandez Landscape & Tree Service">
+    <meta property="og:description" content="Watch our team in action and see the transformations we deliver.">
+    <meta property="og:image" content="https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434_poster.jpg">
+    <meta property="og:url" content="https://hernandezlandscapeservices.com/videos.html">
+    <meta property="og:type" content="website">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/gallery.css">
+    <link rel="stylesheet" href="assets/css/video.css">
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
+        <div class="container mx-auto px-4">
+            <nav class="flex justify-between items-center py-3">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html">
+                        <img src="hernandez_images/web_Logo_New.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain">
+                    </a>
+                    <div>
+                        <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
+                        <p class="text-xs text-gray-600 hidden md:block">Licensed & Insured • LLC #13934835</p>
+                    </div>
+                </div>
+
+                 <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="index.html#services" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.services">Services</a>
+                    <a href="gallery.html" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.work">Our Work</a>
+                    <a href="videos.html" class="text-sm font-bold text-green-600 hover:text-green-700 transition" data-i18n-key="nav.videos">Videos</a>
+                    <!-- Language Toggle -->
+                    <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
+                        <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
+                        <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
+                    </div>
+                    <a href="index.html#quote" class="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md transform hover:-translate-y-0.5 whitespace-nowrap" data-i18n-key="nav.freeQuote">
+                        Get Free Quote
+                    </a>
+                </div>
+
+                <!-- Mobile Controls (Lang + Menu) -->
+                <div class="flex items-center lg:hidden space-x-3">
+                     <div class="flex items-center bg-gray-100 rounded-full p-1">
+                        <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
+                        <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
+                    </div>
+                    <button class="text-gray-700 focus:outline-none" onclick="toggleMobileMenu()" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                <a href="index.html#services" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.services">Services</a>
+                <a href="gallery.html" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.work">Our Work</a>
+                <a href="videos.html" class="block text-green-600 font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.videos">Videos</a>
+                <a href="index.html#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.freeQuote">Get Quote</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg flex items-center justify-center mt-16 text-center px-4" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hernandez_images/web_IMG_0434_poster.jpg'); background-size: cover; background-position: center;">
+        <div class="max-w-4xl text-white py-20">
+            <h1 class="text-5xl md:text-6xl font-black mb-6 drop-shadow-lg" data-i18n-key="video.page.title">Project Video Tours</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 drop-shadow-md" data-i18n-key="video.page.subtitle">Watch our team in action and see the quality of our work firsthand.</p>
+        </div>
+    </section>
+
+    <!-- Video Grid -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="video-grid">
+                
+                <!-- Videos moved from index.html -->
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_0434_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_0434.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1095_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1095.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2055_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2055.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1139_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1139.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1229_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1229.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1268_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1268.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1425_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1425.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1464_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1464.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1878_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1878.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1953_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1953.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2031_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2031.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2046_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2046.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2047_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2047.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2048_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2048.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2049_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2049.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2050_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2050.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2051_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2051.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2052_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2052.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2055_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2055.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2056_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2056.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2109_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2109.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2110_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2110.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2111_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2111.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2112_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2112.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2125_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2125.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2134_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2134.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2136_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2136.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2154_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2154.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2155_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2155.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2315_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2315.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2395_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2395.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_7968_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_7968.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_8116_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_8116.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="text-center mt-12">
+                <a href="index.html#quote" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                    <i class="fas fa-calculator mr-2"></i> Get Your Free Estimate
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Column 1: Brand & About -->
+                <div class="space-y-4">
+                    <img src="hernandez_images/web_Logo_New.png" alt="Hernandez Landscape Logo" class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110">
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n-key="footer.about">
+                        Transforming outdoor spaces in DeKalb County with professional craftsmanship and family values since 2019.
+                    </p>
+                    <div class="pt-2">
+                        <p class="text-green-500 font-semibold text-sm">Licensed & Insured</p>
+                        <p class="text-gray-500 text-xs">Auth #13934835</p>
+                    </div>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.links">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.home">Home</span></a></li>
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.services">Services</span></a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.gallery">Our Work</span></a></li>
+                        <li><a href="videos.html" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.videos">Videos</span></a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.contact">Contact</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.contact">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                            <a href="https://goo.gl/maps/YOUR_MAP_LINK" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                1029 Lewis St<br>DeKalb, IL 60115
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-green-500 mr-3"></i>
+                            <a href="tel:18155011478" class="text-gray-400 hover:text-white transition-colors font-semibold">
+                                (815) 501-1478
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-green-500 mr-3"></i>
+                            <a href="mailto:hernandezlandscapetreeservices@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
+                                hernandezlandscapetreeservices@gmail.com
+                            </a>
+                        </li>
+                        <li class="flex items-start">
+                             <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
+                             <div class="text-sm text-gray-400">
+                                 <span class="block">Mon-Fri: 7AM - 6PM</span>
+                                 <span class="block">Sat: 8AM - 4PM</span>
+                             </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Service Areas & Social -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.areas">Service Areas</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">DeKalb</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Sycamore</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Cortland</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Genoa</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Malta</span>
+                    </div>
+                    
+                    <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
+                            <i class="fab fa-google"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8 mt-8 text-center md:flex md:justify-between md:items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Hernandez Landscape & Tree Service LLC. <span data-i18n-key="footer.rights">All Rights Reserved.</span>
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors" data-i18n-key="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors" data-i18n-key="footer.terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="assets/js/i18n.js"></script>
+
+</body>
+</html>
