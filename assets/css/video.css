@@ -1,0 +1,60 @@
+/* Video Section Styles */
+.video-section {
+    background-color: #f8fafc; /* Very light cool gray/white for clean look */
+    padding: 4rem 0;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Wider videos */
+    gap: 3rem; /* More breathing room */
+    margin-top: 3rem;
+}
+
+.video-card {
+    background: transparent; /* Remove container styling for cleaner look */
+    border-radius: 1.5rem;
+    overflow: hidden;
+    /* Removed white bg and shadow for sleek "floating" video look */
+}
+
+/* No hover effect on the card container itself, focus on the video wrapper */
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 1.25rem; /* Matches card */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-card:hover .video-wrapper {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Subtle zoom of poster/video on hover */
+.video-card:hover video {
+    transform: scale(1.02);
+}
+
+.video-caption {
+    padding: 1rem;
+    text-align: center;
+    color: #374151;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}

@@ -34,91 +34,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
-    <!-- Critical CSS inline for above-the-fold content -->
-    <style>
-        /* Critical CSS for above-the-fold content */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #f9fafb; }
-        .bg-gray-50 { background-color: #f9fafb; }
-        .bg-white { background-color: #ffffff; }
-        .fixed { position: fixed; }
-        .top-0 { top: 0; }
-        .w-full { width: 100%; }
-        .z-50 { z-index: 50; }
-        .container { width: 100%; margin: 0 auto; max-width: 1280px; }
-        .mx-auto { margin-left: auto; margin-right: auto; }
-        .px-4 { padding-left: 1rem; padding-right: 1rem; }
-        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-        .flex { display: flex; }
-        .justify-between { justify-content: space-between; }
-        .items-center { align-items: center; }
-        .space-x-4 > :not(:first-child) { margin-left: 1rem; }
-        .text-xl { font-size: 1.25rem; }
-        .font-bold { font-weight: 700; }
-        .text-gray-800 { color: #1f2937; }
-        .text-xs { font-size: 0.75rem; }
-        .text-gray-600 { color: #4b5563; }
-        .hidden { display: none; }
-        .lg\:flex { display: flex; }
-        @media (max-width: 1023px) { .lg\:hidden { display: none; } .lg\:flex { display: none; } }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.6)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
-            background-attachment: scroll;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            min-height: 100vh;
-        }
-        .mt-16 { margin-top: 4rem; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 
-        /* Font loading optimization */
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Montserrat Regular'), local('Montserrat-Regular');
-        }
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Montserrat SemiBold'), local('Montserrat-SemiBold');
-        }
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 700;
-            font-display: swap;
-            src: local('Montserrat Bold'), local('Montserrat-Bold');
-        }
-        @font-face {
-            font-family: 'Montserrat';
-            font-style: normal;
-            font-weight: 900;
-            font-display: swap;
-            src: local('Montserrat Black'), local('Montserrat-Black');
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Open Sans Regular'), local('OpenSans-Regular');
-        }
-        @font-face {
-            font-family: 'Open Sans';
-            font-style: normal;
-            font-weight: 600;
-            font-display: swap;
-            src: local('Open Sans SemiBold'), local('OpenSans-SemiBold');
-        }
-    </style>
 
     <!-- Load external stylesheets -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/video.css">
 
     <!-- Load Font Awesome asynchronously -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
@@ -127,404 +48,115 @@
     <!-- Load Google Fonts with font-display: swap -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Non-critical styles -->
-    <style>
-        /* Base font styles */
-        body {
-            font-family: 'Open Sans', sans-serif;
-            overflow-x: hidden;
-        }
-        html {
-            overflow-x: hidden;
-        }
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-        }
 
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
-        }
 
-        /* Hero section background with parallax effect */
-        .hero-bg {
-            /* Using Wideshot_Bestlandscape_Person.jpg for the hero background */
-            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.6)), url('hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg');
-            background-attachment: scroll; /* Creates the parallax effect */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        /* Mobile optimization for hero background */
-        @media (max-width: 768px) {
-            .hero-bg {
-                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.65)), url('hernandez_images/web_hero_mobile.jpg');
-                background-attachment: scroll; /* Disable parallax on mobile for better performance */
-                background-position: center center;
-                background-size: cover;
-                min-height: 100vh;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-bg {
-                background-attachment: fixed;
-            }
-        }
-
-        /* Floating animation for Call To Action buttons */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .floating {
-                animation: none;
-            }
-        }
-
-        /* Before/After Slider specific styles */
-        .before-after-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px; /* Max width for the slider */
-            margin: 0 auto 2rem auto; /* Added bottom margin */
-            overflow: hidden;
-            border-radius: 0.5rem; /* Rounded corners for the container */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Add shadow for separation */
-        }
-        .before-after-slider {
-            position: relative;
-            width: 100%;
-            height: 400px; /* Fixed height for the slider */
-        }
-        .before-after-slider img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures images cover the area without distortion */
-        }
-        .after-image {
-            /* clip-path property is dynamically controlled by JavaScript for the slider effect */
-            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-        }
-        .slider-handle {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 4px;
-            height: 100%;
-            background: white;
-            cursor: ew-resize; /* Cursor indicates horizontal resizing */
-            transform: translateX(-50%);
-            z-index: 10; /* Ensure handle is above images */
-        }
-        .slider-handle::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            background: white;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3); /* Subtle shadow for the handle */
-        }
-
-        /* Service card hover effects for visual feedback */
-        .service-card {
-            transition: all 0.3s ease; /* Smooth transition for all properties */
-        }
-        .service-card:hover {
-            transform: translateY(-10px); /* Lifts the card on hover */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Adds a larger shadow on hover */
-        }
-
-        /* Testimonial slider styles */
-        .testimonial-slider {
-            overflow: hidden; /* Hides overflowing slides */
-        }
-        .testimonial-track {
-            display: flex;
-            transition: transform 0.5s ease; /* Smooth transition for sliding testimonials */
-        }
-        .testimonial-slide {
-            min-width: 100%; /* Each slide takes full width of its container */
-            padding: 0 20px;
-            box-sizing: border-box; /* Include padding in width calculation */
-        }
-
-        /* Loading animation for quote form (if implemented with async calls) */
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 3px solid #22c55e; /* Green color for the loader */
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite; /* Spin animation */
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Sticky header shadow on scroll */
-        .header-scrolled {
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Adds shadow when scrolled */
-        }
-
-        /* Modal styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000; /* High z-index to appear on top */
-        }
-        .modal-content {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            max-width: 90%;
-            width: 400px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        /* Back to Top button styles */
-        #backToTopBtn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #22c55e;
-            color: white;
-            padding: 1rem;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 999;
-            opacity: 0; /* Hidden by default */
-            visibility: hidden;
-            cursor: pointer;
-        }
-        #backToTopBtn.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* Hero text shadow for better legibility */
-        .hero-text-shadow {
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Scroll reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .reveal-left.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .reveal-right.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .reveal, .reveal-left, .reveal-right {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-        }
-
-        /* Trust badge styling */
-        .trust-badge {
-            transition: transform 0.2s ease;
-        }
-        .trust-badge:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Focus states for accessibility */
-        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-            outline: 2px solid #22c55e;
-            outline-offset: 2px;
-        }
-
-        /* Process step styling */
-        .process-step {
-            position: relative;
-        }
-        .process-step::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            right: -2rem;
-            width: 1.5rem;
-            height: 2px;
-            background: #22c55e;
-        }
-        .process-step:last-child::after {
-            display: none;
-        }
-        @media (max-width: 768px) {
-            .process-step::after {
-                display: none;
-            }
-        }
-    </style>
 </head>
 <body class="bg-gray-50">
 
-    <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300">
+    <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
         <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <img src="hernandez_images/web_Logo_New.png"
-                         alt="Hernandez Landscape & Tree Service LLC Logo"
-                         class="h-12 w-auto object-contain"
-                         width="400" height="175" loading="lazy">
+            <nav class="flex justify-between items-center py-3">
+                <div class="flex items-center space-x-3">
+                    <a href="#">
+                        <img src="hernandez_images/web_Logo_New.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain">
+                    </a>
                     <div>
-                        <p class="text-xl font-bold text-gray-800" aria-hidden="true">Hernandez Landscape & Tree Service</p>
-                        <p class="text-xs text-gray-600">Licensed & Insured • LLC #13934835</p>
+                        <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
+                        <p class="text-xs text-gray-600 hidden md:block">Licensed & Insured • LLC #13934835</p>
                     </div>
                 </div>
 
-                <div class="hidden lg:flex items-center space-x-6">
-                    <a href="#services" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.services">Services</a>
-                    <a href="#gallery" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.work">Our Work</a>
-                    <a href="#pricing" class="text-gray-700 hover:text-green-600 transition">Pricing</a>
-                    <a href="#testimonials" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.reviews">Reviews</a>
-                    <a href="#service-area" class="text-gray-700 hover:text-green-600 transition" data-i18n-key="nav.serviceArea">Service Area</a>
-                    <a href="#quote" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition" data-i18n-key="nav.freeQuote">
+                 <!-- Desktop Nav -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="#services" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.services">Services</a>
+                    <a href="gallery.html" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.work">Our Work</a>
+                    <a href="videos.html" class="text-sm font-bold text-green-600 hover:text-green-700 transition" data-i18n-key="nav.videos">Videos</a>
+                    <!-- Language Toggle -->
+                    <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
+                        <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
+                        <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
+                    </div>
+                    <a href="#quote" class="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md transform hover:-translate-y-0.5 whitespace-nowrap" data-i18n-key="nav.freeQuote">
                         Get Free Quote
                     </a>
-                    <div class="flex items-center space-x-2 border border-gray-300 rounded-full px-2 py-1" role="group" aria-label="Language selector">
-                        <button type="button" class="px-2 py-1 text-sm font-semibold rounded-full bg-green-600 text-white transition hover:text-green-600" data-lang-switch="en" aria-pressed="true" id="langToggleEnDesktop">
-                            EN
-                        </button>
-                        <button type="button" class="px-2 py-1 text-sm font-semibold rounded-full text-gray-700 hover:text-green-600 transition" data-lang-switch="es" aria-pressed="false" id="langToggleEsDesktop">
-                            ES
-                        </button>
-                    </div>
-                    <a href="tel:815-501-1478" class="text-green-600 font-bold text-lg hover:text-green-700">
-                        <i class="fas fa-phone"></i> (815) 501-1478
-                    </a>
                 </div>
 
-                <div class="flex items-center space-x-3 lg:hidden">
-                    <div class="flex items-center space-x-2 border border-gray-300 rounded-full px-2 py-1" role="group" aria-label="Language selector">
-                        <button type="button" class="px-2 py-1 text-sm font-semibold rounded-full bg-green-600 text-white transition hover:text-green-600" data-lang-switch="en" aria-pressed="true" id="langToggleEnCompact">
-                            EN
-                        </button>
-                        <button type="button" class="px-2 py-1 text-sm font-semibold rounded-full text-gray-700 hover:text-green-600 transition" data-lang-switch="es" aria-pressed="false" id="langToggleEsCompact">
-                            ES
-                        </button>
+                <!-- Mobile Controls (Lang + Menu) -->
+                <div class="flex items-center lg:hidden space-x-3">
+                     <div class="flex items-center bg-gray-100 rounded-full p-1">
+                        <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
+                        <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
                     </div>
-                    <button class="text-gray-700" onclick="toggleMobileMenu()" aria-label="Toggle mobile menu" aria-controls="mobileMenu" aria-expanded="false">
+                    <button class="text-gray-700 focus:outline-none" onclick="toggleMobileMenu()" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </nav>
         </div>
-
-        <div id="mobileMenu" class="hidden bg-white border-t shadow-lg">
-            <div class="container mx-auto px-4 py-4 space-y-3">
-                <a href="#services" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.services">Services</a>
-                <a href="#gallery" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.work">Our Work</a>
-                <a href="#pricing" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()">Pricing</a>
-                <a href="#testimonials" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.reviews">Reviews</a>
-                <a href="#service-area" class="block text-gray-700 hover:text-green-600 py-2" onclick="toggleMobileMenu()" data-i18n-key="nav.serviceArea">Service Area</a>
-                <a href="#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold hover:bg-green-700 transition" onclick="toggleMobileMenu()" data-i18n-key="nav.freeQuote">Get Free Quote</a>
-                <a href="tel:815-501-1478" class="block text-green-600 font-bold text-center py-3 text-lg border-t mt-2">
-                    <i class="fas fa-phone"></i> (815) 501-1478
-                </a>
-                <div class="flex justify-center space-x-2 pt-2">
-                    <button type="button" class="px-3 py-1 text-sm font-semibold rounded-full bg-green-600 text-white transition hover:text-green-600" data-lang-switch="en" aria-pressed="true" id="langToggleEnMobile">
-                        EN
-                    </button>
-                    <button type="button" class="px-3 py-1 text-sm font-semibold rounded-full text-gray-700 hover:text-green-600 transition" data-lang-switch="es" aria-pressed="false" id="langToggleEsMobile">
-                        ES
-                    </button>
-                </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg">
+            <div class="container mx-auto px-4 py-4 space-y-4">
+                <a href="#services" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.services">Services</a>
+                <a href="gallery.html" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.work">Our Work</a>
+                <a href="videos.html" class="block text-green-600 font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.videos">Videos</a>
+                <a href="#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.freeQuote">Get Quote</a>
             </div>
         </div>
     </header>
 
-    <section class="hero-bg min-h-screen flex items-center relative mt-16">
-        <div class="container mx-auto px-4 text-center text-white relative z-10 hero-text-shadow">
-            <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight" data-i18n-key="hero.heading">
-                Transform Your<br>
-                <span class="text-green-400">Outdoor Space</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto" data-i18n-key="hero.subheading">
-                Professional landscaping and tree services in DeKalb County.
-                Family-owned, fully insured, and committed to excellence.
-            </p>
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center text-center text-white">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="hernandez_images/web_After1.jpeg" alt="Beautiful landscaping transformation" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-black/30"></div>
+        </div>
 
-            <div class="space-y-4 md:space-y-0 md:space-x-4 md:flex md:justify-center">
-                <a href="#instant-quote" class="floating bg-green-600 text-white px-8 py-4 rounded-full text-xl font-bold inline-block hover:bg-green-700 transition shadow-lg">
-                    <i class="fas fa-calculator"></i> <span data-i18n-key="hero.cta.instant">Get Instant Quote</span>
-                </a>
-                <a href="tel:815-501-1478" class="bg-white text-green-800 px-8 py-4 rounded-full text-xl font-bold inline-block hover:bg-gray-100 transition shadow-lg">
-                    <i class="fas fa-phone"></i> <span data-i18n-key="hero.cta.call">Call Now</span>
-                </a>
-            </div>
+        <div class="container mx-auto px-4 relative z-10 pt-20">
+            <div class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-1000 ease-out">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight drop-shadow-lg">
+                    <span class="block text-white" data-i18n-key="hero.transform">Transform Your</span>
+                    <span class="block text-green-400 drop-shadow-md" data-i18n-key="hero.outdoor">Outdoor Space</span>
+                </h1>
+                
+                <p class="text-lg md:text-2xl mb-10 max-w-2xl mx-auto text-gray-100 font-medium drop-shadow-md" data-i18n-key="hero.subtitle">
+                    Professional, family-owned landscaping in DeKalb County. committed to excellence since 2019.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#contact" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-xl flex items-center justify-center">
+                        <i class="fas fa-calculator mr-2"></i>
+                        <span data-i18n-key="hero.cta">Get Instant Quote</span>
+                    </a>
+                    <a href="tel:18155011478" class="bg-white hover:bg-gray-100 text-green-800 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-xl flex items-center justify-center">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        <span data-i18n-key="hero.call">Call Now</span>
+                    </a>
+                </div>
 
-            <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 text-sm">
-                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                    <i class="fas fa-shield-alt text-green-400 text-xl"></i>
-                    <span data-i18n-key="hero.badge.insured">Fully Insured</span>
-                </div>
-                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                    <i class="fas fa-award text-green-400 text-xl"></i>
-                    <span data-i18n-key="hero.badge.licensed">Licensed LLC</span>
-                </div>
-                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                    <i class="fas fa-users text-green-400 text-xl"></i>
-                    <span data-i18n-key="hero.badge.family">Family Owned</span>
-                </div>
-                <div class="trust-badge flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
-                    <i class="fas fa-language text-green-400 text-xl"></i>
-                    <span data-i18n-key="hero.badge.bilingual">Se Habla Español</span>
+                <!-- Trust Badges -->
+                <div class="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 opacity-90">
+                    <div class="flex items-center bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                        <i class="fas fa-shield-alt text-green-400 mr-2"></i>
+                        <span class="text-sm font-semibold" data-i18n-key="hero.insured">Fully Insured</span>
+                    </div>
+                    <div class="flex items-center bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                        <i class="fas fa-certificate text-green-400 mr-2"></i>
+                        <span class="text-sm font-semibold" data-i18n-key="hero.licensed">Licensed LLC</span>
+                    </div>
+                    <div class="flex items-center bg-black/40 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+                        <i class="fas fa-users text-green-400 mr-2"></i>
+                        <span class="text-sm font-semibold" data-i18n-key="hero.family">Family Owned</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
-            <i class="fas fa-chevron-down text-2xl"></i>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#services" class="text-white opacity-70 hover:opacity-100 transition-opacity">
+                <i class="fas fa-chevron-down text-3xl"></i>
+            </a>
         </div>
     </section>
 
@@ -631,10 +263,10 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
                     <div class="h-48 bg-green-600 flex items-center justify-center">
-                        <img src="hernandez_images/web_After1.jpeg"
+                        <img src="hernandez_images/web_IMG_2048.webp"
                              alt="Lawn care service, perfectly mowed lawn"
                              class="w-full h-full object-cover"
-                             width="800" height="600" loading="lazy">
+                             loading="lazy">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-3" data-i18n-key="services.lawn.title">Lawn Care</h3>
@@ -652,10 +284,10 @@
 
                 <div class="service-card bg-white rounded-lg overflow-hidden shadow-lg">
                     <div class="h-48 bg-green-700 flex items-center justify-center">
-                        <img src="hernandez_images/web_IMG_9256.jpeg"
-                             alt="Tree service with truck and equipment"
+                        <img src="hernandez_images/web_IMG_2056_poster.jpg"
+                             alt="Professional tree trimming service"
                              class="w-full h-full object-cover"
-                             width="800" height="600" loading="lazy">
+                             loading="lazy">
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-3" data-i18n-key="services.tree.title">Tree Service</h3>
@@ -863,9 +495,71 @@
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition" aria-label="See more projects on Facebook">
+            <div class="text-center mt-12 space-x-4">
+                <a href="gallery.html" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                    <i class="fas fa-images mr-2"></i> View Full Gallery
+                </a>
+                <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition" aria-label="See more projects on Facebook">
                     <i class="fab fa-facebook mr-2"></i> <span data-i18n-key="gallery.facebookCta">See More on Facebook</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Video Section -->
+    <section id="videos" class="video-section reveal">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4" data-i18n-key="video.heading">Project Video Tours</h2>
+                <p class="text-xl text-gray-600" data-i18n-key="video.subheading">Watch our team in action and see the details of our work.</p>
+            </div>
+            <div class="video-grid">
+                <!-- Duplicate IMG_0434-1 removed -->
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_0434_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_0434.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_1095_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_1095.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-card group">
+                    <div class="video-wrapper relative">
+                        <video controls preload="metadata" poster="hernandez_images/web_IMG_2055_poster.jpg" class="w-full h-full object-cover">
+                            <source src="hernandez_images/web_IMG_2055.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
+                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+             <div class="text-center mt-12 space-x-4">
+                <a href="videos.html" class="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
+                    <i class="fas fa-video mr-2"></i> <span data-i18n-key="video.viewAll">View All Videos</span>
+                </a>
+                <a href="#quote" class="inline-block bg-white text-green-600 border-2 border-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-green-50 transition">
+                    <i class="fas fa-calculator mr-2"></i> <span data-i18n-key="nav.freeQuote">Get Free Quote</span>
                 </a>
             </div>
         </div>
@@ -1133,28 +827,96 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="md:flex md:items-start md:justify-between text-center md:text-left space-y-8 md:space-y-0">
-                <div>
-                    <p class="mb-2" data-i18n-key="footer.copy">© 2025 Hernandez Landscape & Tree Service LLC</p>
-                    <p class="text-gray-400" data-i18n-key="footer.license">Illinois LLC #13934835 • Licensed & Insured</p>
-                    <p class="text-gray-400 mt-2" data-i18n-key="footer.tagline">Professional Landscaping Services in DeKalb County</p>
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Column 1: Brand & About -->
+                <div class="space-y-4">
+                    <img src="hernandez_images/web_Logo_New.png" alt="Hernandez Landscape Logo" class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110">
+                    <p class="text-gray-400 text-sm leading-relaxed" data-i18n-key="footer.about">
+                        Transforming outdoor spaces in DeKalb County with professional craftsmanship and family values since 2019.
+                    </p>
+                    <div class="pt-2">
+                        <p class="text-green-500 font-semibold text-sm">Licensed & Insured</p>
+                        <p class="text-gray-500 text-xs">Auth #13934835</p>
+                    </div>
                 </div>
+
+                <!-- Column 2: Quick Links -->
                 <div>
-                    <h3 class="text-lg font-semibold" data-i18n-key="footer.follow">Follow Us</h3>
-                    <ul class="mt-3 space-y-2">
-                        <li>
-                            <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white transition">
-                                <i class="fab fa-facebook-square mr-2"></i> <span data-i18n-key="footer.facebook">Facebook</span>
+                    <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.links">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.home">Home</span></a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.services">Services</span></a></li>
+                        <li><a href="gallery.html" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.gallery">Our Work</span></a></li>
+                        <li><a href="videos.html" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.videos">Videos</span></a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.contact">Contact</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.contact">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                            <a href="https://goo.gl/maps/YOUR_MAP_LINK" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                                1029 Lewis St<br>DeKalb, IL 60115
                             </a>
                         </li>
-                        <li>
-                            <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-300 hover:text-white transition">
-                                <i class="fas fa-map-marker-alt mr-2"></i> <span data-i18n-key="footer.maps">Google Maps</span>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-green-500 mr-3"></i>
+                            <a href="tel:18155011478" class="text-gray-400 hover:text-white transition-colors font-semibold">
+                                (815) 501-1478
                             </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-green-500 mr-3"></i>
+                            <a href="mailto:hernandezlandscapetreeservices@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
+                                hernandezlandscapetreeservices@gmail.com
+                            </a>
+                        </li>
+                        <li class="flex items-start">
+                             <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
+                             <div class="text-sm text-gray-400">
+                                 <span class="block">Mon-Fri: 7AM - 6PM</span>
+                                 <span class="block">Sat: 8AM - 4PM</span>
+                             </div>
                         </li>
                     </ul>
+                </div>
+
+                <!-- Column 4: Service Areas & Social -->
+                <div>
+                    <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.areas">Service Areas</h3>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">DeKalb</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Sycamore</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Cortland</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Genoa</span>
+                        <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Malta</span>
+                    </div>
+                    
+                    <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
+                            <i class="fab fa-google"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8 mt-8 text-center md:flex md:justify-between md:items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Hernandez Landscape & Tree Service LLC. <span data-i18n-key="footer.rights">All Rights Reserved.</span>
+                </p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors" data-i18n-key="footer.privacy">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors" data-i18n-key="footer.terms">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -1173,321 +935,7 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script>
-        const modal = document.getElementById('customModal');
-        const modalContent = modal ? modal.querySelector('.modal-content') : null;
-        let lastFocusedElement = null;
-
-        function showModal(message) {
-            if (!modal || !modalContent) {
-                console.warn('Modal elements unavailable.');
-                return;
-            }
-            lastFocusedElement = document.activeElement;
-            document.getElementById('modalMessage').textContent = message;
-            modal.classList.remove('hidden');
-            modal.style.display = 'flex';
-            modalContent.setAttribute('tabindex', '-1');
-            modalContent.focus();
-        }
-
-        function hideModal() {
-            if (!modal || !modalContent) {
-                return;
-            }
-            modal.classList.add('hidden');
-            modal.style.display = 'none';
-            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-                lastFocusedElement.focus();
-            }
-        }
-
-        if (modalContent) {
-            modalContent.addEventListener('keydown', (event) => {
-                if (event.key !== 'Tab') {
-                    return;
-                }
-                const focusableSelectors = [
-                    'a[href]',
-                    'button:not([disabled])',
-                    'textarea:not([disabled])',
-                    'input:not([disabled])',
-                    '[tabindex]:not([tabindex="-1"])'
-                ];
-                const focusableElements = modalContent.querySelectorAll(focusableSelectors.join(','));
-                if (!focusableElements.length) {
-                    event.preventDefault();
-                    return;
-                }
-                const firstEl = focusableElements[0];
-                const lastEl = focusableElements[focusableElements.length - 1];
-                if (event.shiftKey && document.activeElement === firstEl) {
-                    event.preventDefault();
-                    lastEl.focus();
-                } else if (!event.shiftKey && document.activeElement === lastEl) {
-                    event.preventDefault();
-                    firstEl.focus();
-                }
-            });
-        }
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
-                hideModal();
-            }
-        });
-
-        const siteI18n = window.siteI18n || null;
-        const getMessage = (key, fallback) => {
-            if (siteI18n && typeof siteI18n.t === 'function') {
-                const value = siteI18n.t(key);
-                if (value) {
-                    return value;
-                }
-            }
-            return fallback;
-        };
-
-        window.addEventListener('scroll', function() {
-            const header = document.getElementById('header');
-            if (header) {
-                header.classList.toggle('header-scrolled', window.scrollY > 100);
-            }
-            const backToTopBtn = document.getElementById('backToTopBtn');
-            if (backToTopBtn) {
-                backToTopBtn.classList.toggle('show', window.scrollY > 300);
-            }
-        });
-
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const toggleButton = document.querySelector('button[aria-controls="mobileMenu"]');
-            if (!menu || !toggleButton) {
-                return;
-            }
-            const isHidden = menu.classList.toggle('hidden');
-            toggleButton.setAttribute('aria-expanded', String(!isHidden));
-            if (!isHidden) {
-                const focusable = menu.querySelector('a, button');
-                if (focusable) {
-                    focusable.focus();
-                }
-            } else {
-                toggleButton.focus();
-            }
-        }
-
-        const slider = document.getElementById('beforeAfterSlider');
-        const handle = document.getElementById('sliderHandle');
-        if (slider && handle) {
-            let isSliding = false;
-            const afterImage = slider.querySelector('.after-image');
-
-            const updateSlider = (percentage) => {
-                if (!afterImage) {
-                    return;
-                }
-                const constrained = Math.max(0, Math.min(100, percentage));
-                afterImage.style.clipPath = `polygon(${constrained}% 0, 100% 0, 100% 100%, ${constrained}% 100%)`;
-                handle.style.left = `${constrained}%`;
-                handle.setAttribute('aria-valuenow', String(Math.round(constrained)));
-            };
-
-            handle.addEventListener('mousedown', () => { isSliding = true; });
-            window.addEventListener('mouseup', () => { isSliding = false; });
-            window.addEventListener('mousemove', (e) => {
-                if (!isSliding) return;
-                const rect = slider.getBoundingClientRect();
-                const percentage = ((e.clientX - rect.left) / rect.width) * 100;
-                updateSlider(percentage);
-            });
-
-            handle.addEventListener('touchstart', () => { isSliding = true; }, { passive: true });
-            window.addEventListener('touchend', () => { isSliding = false; }, { passive: true });
-            window.addEventListener('touchmove', (e) => {
-                if (!isSliding) return;
-                const rect = slider.getBoundingClientRect();
-                const percentage = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
-                updateSlider(percentage);
-            }, { passive: true });
-
-            handle.addEventListener('keydown', (event) => {
-                if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-                    event.preventDefault();
-                    const currentValue = Number(handle.getAttribute('aria-valuenow')) || 50;
-                    const delta = event.key === 'ArrowLeft' ? -5 : 5;
-                    updateSlider(currentValue + delta);
-                }
-            });
-
-            updateSlider(50);
-        }
-
-        let currentTestimonial = 0;
-        const testimonialTrack = document.getElementById('testimonialTrack');
-        const testimonialDots = document.querySelectorAll('.flex.justify-center.mt-6 button');
-        const totalTestimonials = testimonialDots.length;
-
-        function goToTestimonial(index) {
-            if (!testimonialTrack || !testimonialDots.length) {
-                return;
-            }
-            currentTestimonial = index;
-            testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
-            testimonialDots.forEach((dot, i) => {
-                dot.className = i === index ? 'w-3 h-3 bg-green-600 rounded-full' : 'w-3 h-3 bg-gray-300 rounded-full';
-            });
-        }
-
-        if (testimonialTrack && testimonialDots.length) {
-            setInterval(() => {
-                goToTestimonial((currentTestimonial + 1) % totalTestimonials);
-            }, 5000);
-        }
-
-        const quoteResult = document.getElementById('quoteResult');
-
-        function calculateQuote() {
-            const service = document.getElementById('serviceType');
-            const size = document.getElementById('propertySize');
-            const zip = document.getElementById('zipCode');
-
-            if (!service || !size || !zip) {
-                console.warn('Quote form elements unavailable.');
-                return;
-            }
-
-            if (!service.value || !size.value || !zip.value || !zip.checkValidity()) {
-                showModal(getMessage('alerts.instant.missing', 'Please select a service type, property size, and enter your ZIP code.'));
-                service.classList.toggle('border-red-500', !service.value);
-                size.classList.toggle('border-red-500', !size.value);
-                zip.classList.toggle('border-red-500', !zip.value || !zip.checkValidity());
-                return;
-            }
-
-            service.classList.remove('border-red-500');
-            size.classList.remove('border-red-500');
-            zip.classList.remove('border-red-500');
-
-            const basePrices = {
-                lawn: { small: 40, medium: 60, large: 80, xlarge: 120 },
-                tree: { small: 200, medium: 350, large: 500, xlarge: 800 },
-                landscaping: { small: 500, medium: 1000, large: 2000, xlarge: 3500 },
-                cleanup: { small: 150, medium: 250, large: 400, xlarge: 600 },
-                snow: { small: 50, medium: 80, large: 120, xlarge: 200 }
-            };
-
-            const priceMap = basePrices[service.value];
-            if (!priceMap) {
-                showModal(getMessage('alerts.instant.missing', 'Please select a valid service.'));
-                return;
-            }
-            const basePrice = priceMap[size.value];
-            if (!basePrice) {
-                showModal(getMessage('alerts.instant.missing', 'Please select a valid property size.'));
-                return;
-            }
-
-            const minPrice = Math.floor(basePrice * 0.8);
-            const maxPrice = Math.floor(basePrice * 1.2);
-
-            const priceRangeEl = document.getElementById('priceRange');
-            if (priceRangeEl) {
-                priceRangeEl.textContent = `$${minPrice} - $${maxPrice}`;
-            }
-            if (quoteResult) {
-                quoteResult.classList.remove('hidden');
-            }
-        }
-
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-
-                const contactName = document.getElementById('contactName');
-                const contactPhone = document.getElementById('contactPhone');
-                const contactService = document.getElementById('contactService');
-                const projectDetails = document.getElementById('projectDetails');
-
-                let isValid = true;
-
-                if (!contactName.value) { contactName.classList.add('border-red-500'); isValid = false; } else { contactName.classList.remove('border-red-500'); }
-                if (!contactPhone.value || !contactPhone.checkValidity()) { contactPhone.classList.add('border-red-500'); isValid = false; } else { contactPhone.classList.remove('border-red-500'); }
-                if (!contactService.value) { contactService.classList.add('border-red-500'); isValid = false; } else { contactService.classList.remove('border-red-500'); }
-                if (!projectDetails.value) { projectDetails.classList.add('border-red-500'); isValid = false; } else { projectDetails.classList.remove('border-red-500'); }
-
-                if (!isValid) {
-                    showModal(getMessage('alerts.contact.invalid', 'Please fill in all required fields correctly.'));
-                    return;
-                }
-
-                const button = this.querySelector('button[type="submit"]');
-                const originalText = button ? button.textContent : '';
-                if (button) {
-                    button.disabled = true;
-                    button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage('contact.sending', 'Sending...')}`;
-                }
-
-                const formData = new FormData(this);
-
-                try {
-                    const response = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const data = await response.json();
-
-                    if (data.success) {
-                        showModal(getMessage('alerts.contact.success', 'Thank you for your interest! We will call you within 24 hours.'));
-                        this.reset();
-                    } else {
-                        showModal(getMessage('alerts.contact.error', 'There was an error sending your request. Please call us at 815-501-1478.'));
-                    }
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    showModal(getMessage('alerts.contact.error', 'There was an error sending your request. Please call us at 815-501-1478.'));
-                } finally {
-                    if (button) {
-                        button.disabled = false;
-                        button.textContent = originalText;
-                    }
-                }
-            });
-        }
-
-        const backToTopBtn = document.getElementById('backToTopBtn');
-        if (backToTopBtn) {
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-
-        // Scroll reveal animations using Intersection Observer
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-        if (revealElements.length > 0 && 'IntersectionObserver' in window) {
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        revealObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-
-            revealElements.forEach(el => revealObserver.observe(el));
-        } else {
-            // Fallback for browsers without IntersectionObserver
-            revealElements.forEach(el => el.classList.add('active'));
-        }
-    </script>
+    <script src="assets/js/main.js" defer></script>
 
     <script src="assets/js/i18n.js" defer></script>
     <script src="assets/js/static-gallery.js" defer></script>
@@ -1582,6 +1030,9 @@
         }
     }
     </script>
+    <script src="assets/js/i18n.js" defer></script>
+    <script src="assets/js/static-gallery.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
 <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {

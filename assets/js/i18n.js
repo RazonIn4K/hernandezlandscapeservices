@@ -65,6 +65,14 @@
       "gallery.loadMore": "Load more photos",
       "gallery.loadingButton": "Loading...",
       "serviceArea.mapNote": "Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.",
+      
+      "video.heading": "Project Video Tours",
+      "video.subheading": "Watch our team in action and see the details of our work.",
+      
+      "gallery.recent.heading": "Recent Projects",
+      "gallery.item.project": "Project",
+      "nav.videos": "Videos",
+      "video.viewAll": "View All Videos"
     },
     es: {
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -147,6 +155,7 @@
       "admin.message.filesAdded.other": "Se añadieron {{count}} archivos a la lista.",
       "nav.services": "Servicios",
       "nav.work": "Nuestro Trabajo",
+      "nav.videos": "Videos",
       "nav.reviews": "Reseñas",
       "nav.serviceArea": "Zonas de Servicio",
       "nav.freeQuote": "Solicitar Cotización",
@@ -298,6 +307,13 @@
       "alerts.contact.error":
         "Hubo un error al enviar tu solicitud. Llámanos al 815-501-1478.",
       "contact.sending": "Enviando...",
+      
+      "video.heading": "Recorridos en Video de Proyectos",
+      "video.subheading": "Vea a nuestro equipo en acción y observe los detalles de nuestro trabajo.",
+      "video.viewAll": "Ver Todos los Videos",
+      
+      "gallery.recent.heading": "Proyectos Recientes",
+      "gallery.item.project": "Proyecto"
     },
   };
 
