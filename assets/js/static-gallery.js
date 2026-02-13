@@ -25,24 +25,29 @@
     // Static image list - these are the actual photos in hernandez_images/
     const staticImages = [
       {
-        src: 'hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg',
-        alt: 'Professional landscaping work by Hernandez Landscape & Tree Service',
-        caption: 'Transform your outdoor space with expert landscaping design and installation'
+        src: 'hernandez_images/web_IMG_2048.webp',
+        alt: 'Immaculately mowed lawn with diagonal striping pattern',
+        caption: 'Precision lawn mowing and maintenance'
       },
       {
-        src: 'hernandez_images/web_Wideshot_Bestlandscape.jpg',
-        alt: 'Beautiful landscape design and installation',
-        caption: 'Complete landscape renovation with premium materials and craftsmanship'
+        src: 'hernandez_images/web_IMG_2056.webp',
+        alt: 'Professional tree trimming service in action',
+        caption: 'Safe and efficient tree trimming'
       },
       {
-        src: 'hernandez_images/web_Wideshot_Bestlandscape2.jpeg',
-        alt: 'Professional landscape maintenance',
-        caption: 'Regular maintenance keeps your property looking its best year-round'
+        src: 'hernandez_images/web_IMG_2112.webp',
+        alt: 'Beautifully landscaped backyard garden',
+        caption: 'Custom garden transformation'
       },
       {
-        src: 'hernandez_images/web_Before1.jpeg',
-        alt: 'Before landscape renovation',
-        caption: 'Before: See the potential for transformation'
+        src: 'hernandez_images/web_IMG_1953.webp',
+        alt: 'Clean and manicured residential property',
+        caption: 'Quality residential lawn care'
+      },
+      {
+        src: 'hernandez_images/web_IMG_0700.webp',
+        alt: 'Tree removal service with equipment',
+        caption: 'Professional equipment for big jobs'
       },
       {
         src: 'hernandez_images/web_After1.jpeg',
@@ -50,19 +55,14 @@
         caption: 'After: Beautiful, functional outdoor space completed'
       },
       {
+        src: 'hernandez_images/web_Wideshot_Bestlandscape.jpg',
+        alt: 'Beautiful landscape design and installation',
+        caption: 'Complete landscape renovation with premium materials and craftsmanship'
+      },
+      {
         src: 'hernandez_images/web_IMG_9256.jpeg',
         alt: 'Professional tree trimming service',
         caption: 'Expert tree care and maintenance for healthy, beautiful trees'
-      },
-      {
-        src: 'hernandez_images/web_IMG_9259.jpeg',
-        alt: 'Tree removal and cleanup',
-        caption: 'Safe and efficient tree removal with thorough cleanup'
-      },
-      {
-        src: 'hernandez_images/web_Logo.jpg',
-        alt: 'Hernandez Landscape & Tree Service Logo',
-        caption: 'Professional landscaping and tree services in DeKalb County'
       }
     ];
 
