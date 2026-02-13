@@ -25,44 +25,34 @@
     // Static image list - these are the actual photos in hernandez_images/
     const staticImages = [
       {
-        src: 'hernandez_images/web_IMG_2048.webp',
-        alt: 'Immaculately mowed lawn with diagonal striping pattern',
-        caption: 'Precision lawn mowing and maintenance'
+        src: 'hernandez_images/web_Wideshot_Bestlandscape.jpg',
+        alt: 'Beautiful landscape design and installation',
+        caption: 'Complete landscape renovation with premium materials'
       },
       {
-        src: 'hernandez_images/web_IMG_2056.webp',
-        alt: 'Professional tree trimming service in action',
-        caption: 'Safe and efficient tree trimming'
+        src: 'hernandez_images/web_Wideshot_Bestlandscape2.jpeg',
+        alt: 'Professional landscape maintenance',
+        caption: 'Detailed yard maintenance and design'
       },
       {
-        src: 'hernandez_images/web_IMG_2112.webp',
-        alt: 'Beautifully landscaped backyard garden',
-        caption: 'Custom garden transformation'
-      },
-      {
-        src: 'hernandez_images/web_IMG_1953.webp',
-        alt: 'Clean and manicured residential property',
-        caption: 'Quality residential lawn care'
-      },
-      {
-        src: 'hernandez_images/web_IMG_0700.webp',
-        alt: 'Tree removal service with equipment',
-        caption: 'Professional equipment for big jobs'
+        src: 'hernandez_images/web_aa887070-da60-4863-9be9-16d2c90d6841.webp',
+        alt: 'Clean, modern outdoor patio and landscape',
+        caption: 'Modern outdoor living space transformation'
       },
       {
         src: 'hernandez_images/web_After1.jpeg',
         alt: 'After landscape renovation',
-        caption: 'After: Beautiful, functional outdoor space completed'
-      },
-      {
-        src: 'hernandez_images/web_Wideshot_Bestlandscape.jpg',
-        alt: 'Beautiful landscape design and installation',
-        caption: 'Complete landscape renovation with premium materials and craftsmanship'
+        caption: 'Lush green lawn transformation'
       },
       {
         src: 'hernandez_images/web_IMG_9256.jpeg',
         alt: 'Professional tree trimming service',
-        caption: 'Expert tree care and maintenance for healthy, beautiful trees'
+        caption: 'Expert tree care and safety maintenance'
+      },
+      {
+        src: 'hernandez_images/web_IMG_9259.jpeg',
+        alt: 'Garden bed installation',
+        caption: 'Custom garden bed design and installation'
       }
     ];
 
