@@ -72,7 +72,16 @@
       "gallery.recent.heading": "Recent Projects",
       "gallery.item.project": "Project",
       "nav.videos": "Videos",
-      "video.viewAll": "View All Videos"
+      "video.viewAll": "View All Videos",
+
+      "hero.transform": "Transform Your",
+      "hero.outdoor": "Outdoor Space",
+      "hero.subtitle": "Professional, family-owned landscaping in DeKalb County. Committed to excellence since 2019.",
+      "hero.cta": "Get Instant Quote",
+      "hero.call": "Call Now",
+      "hero.insured": "Fully Insured",
+      "hero.licensed": "Licensed LLC",
+      "hero.family": "Family Owned"
     },
     es: {
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -313,7 +322,16 @@
       "video.viewAll": "Ver Todos los Videos",
       
       "gallery.recent.heading": "Proyectos Recientes",
-      "gallery.item.project": "Proyecto"
+      "gallery.item.project": "Proyecto",
+
+      "hero.transform": "Transforma tu",
+      "hero.outdoor": "Espacio Exterior",
+      "hero.subtitle": "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
+      "hero.cta": "Obtén cotización instantánea",
+      "hero.call": "Llámanos ahora",
+      "hero.insured": "Totalmente asegurados",
+      "hero.licensed": "LLC con licencia",
+      "hero.family": "Negocio familiar"
     },
   };
 
