@@ -4,8 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build-css",
-    "build-css": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
-    "watch-css": "tailwindcss -i ./src/input.css -o ./styles.css --watch",
+    "build-css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify",
+    "watch-css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:ci": "playwright test --reporter=dot",
