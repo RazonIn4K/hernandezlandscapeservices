@@ -3,13 +3,13 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const galleryContainer = document.getElementById('gallery-container');
-    if (!galleryContainer) {
-      return;
-    }
-
     const latestCarousel = document.getElementById('latest-uploads-carousel');
     const latestTrack = document.getElementById('latest-uploads-track');
     const latestEmpty = document.getElementById('latest-uploads-empty');
+
+    if (!galleryContainer && !latestCarousel) {
+      return;
+    }
 
     const i18n = window.siteI18n || null;
     const getText = (key, fallback) => {
@@ -56,11 +56,12 @@
       }
     ];
 
-    const placeholder = document.createElement('p');
-    placeholder.className = 'text-gray-500 text-center col-span-full';
-    placeholder.textContent = getText('gallery.placeholder', 'Loading gallery...');
-
-    galleryContainer.appendChild(placeholder);
+    if (galleryContainer) {
+      const placeholder = document.createElement('p');
+      placeholder.className = 'text-gray-500 text-center col-span-full';
+      placeholder.textContent = getText('gallery.placeholder', 'Loading gallery...');
+      galleryContainer.appendChild(placeholder);
+    }
 
     function createImageCard(image, index) {
       const card = document.createElement('div');
@@ -85,6 +86,7 @@
     }
 
     function renderGallery() {
+      if (!galleryContainer) return;
       galleryContainer.innerHTML = '';
       
       if (staticImages.length === 0) {
