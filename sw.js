@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v7';
+const CACHE_NAME = 'hernandez-landscape-v8';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
@@ -14,8 +14,9 @@ const URLS_TO_CACHE = [
   '/hernandez_images/web_hero_mobile.jpg',
   '/hernandez_images/web_After1.jpeg',
   '/hernandez_images/web_Before1.jpeg',
-  '/hernandez_images/web_IMG_9256.jpeg',
-  '/hernandez_images/web_IMG_9259.jpeg',
+  '/hernandez_images/web_IMG_1953.webp',
+  '/hernandez_images/web_IMG_1464_poster.jpg',
+  '/hernandez_images/web_IMG_0434_poster.jpg',
   '/hernandez_images/web_Wideshot_Bestlandscape.jpg',
   '/hernandez_images/web_Wideshot_Bestlandscape2.jpeg'
 ];

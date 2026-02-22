@@ -35,7 +35,7 @@
         caption: 'Detailed yard maintenance and design'
       },
       {
-        src: 'hernandez_images/web_aa887070-da60-4863-9be9-16d2c90d6841.webp',
+        src: 'hernandez_images/web_IMG_0434_poster.jpg',
         alt: 'Clean, modern outdoor patio and landscape',
         caption: 'Modern outdoor living space transformation'
       },
@@ -45,12 +45,12 @@
         caption: 'Lush green lawn transformation'
       },
       {
-        src: 'hernandez_images/web_IMG_9256.jpeg',
+        src: 'hernandez_images/web_IMG_1953.webp',
         alt: 'Professional tree trimming service',
         caption: 'Expert tree care and safety maintenance'
       },
       {
-        src: 'hernandez_images/web_IMG_9259.jpeg',
+        src: 'hernandez_images/web_IMG_1464_poster.jpg',
         alt: 'Garden bed installation',
         caption: 'Custom garden bed design and installation'
       }
