@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Free Estimate - Hernandez Landscape</title>
+        <style>
+            @page {
+                size: letter;
+                margin: 0.5in;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                background: #fff;
+                color: #000;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .page-container {
+                width: 8.5in;
+                height: 11in;
+                margin: 0 auto;
+                padding: 40px;
+                box-sizing: border-box;
+            }
+            .header-red {
+                color: #d12c32;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 700;
+                margin-bottom: 20px;
+            }
+            .company-header {
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .logo-img {
+                max-width: 300px;
+                margin-bottom: 10px;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .customer-line {
+                display: flex;
+                align-items: baseline;
+                font-weight: 700;
+                font-style: italic;
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            .line-blank {
+                flex-grow: 1;
+                border-bottom: 1px solid #000;
+                margin-left: 10px;
+            }
+            .lines-container {
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+            .estimate-line {
+                border-bottom: 1px solid #000;
+                height: 28px;
+            }
+            .footer {
+                margin-top: 30px;
+                text-align: center;
+                font-size: 14px;
+                font-weight: 700;
+                font-style: italic;
+            }
+            .footer-red {
+                color: #d12c32;
+                margin-top: 10px;
+                font-size: 16px;
+                text-transform: uppercase;
+            }
+            @media print {
+                body {
+                    background: #fff;
+                }
+                .page-container {
+                    margin: 0;
+                    padding: 20px;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="header-red">Free Estimate for Commercial and Residential Properties</div>
+            <div class="company-header">
+                <img
+                    src="hernandez_images/web_Logo_New.png"
+                    alt="Hernandez Logo"
+                    class="logo-img"
+                    onerror="
+                        this.src = 'hernandez_images/Logo.png';
+                        this.onerror = null;
+                    "
+                />
+            </div>
+
+            <div class="customer-line">
+                Customer :
+                <div class="line-blank"></div>
+            </div>
+            <div class="customer-line" style="margin-bottom: 30px">
+                <div class="line-blank"></div>
+            </div>
+
+            <div class="lines-container">
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+                <div class="estimate-line"></div>
+            </div>
+
+            <div class="footer">
+                If you have any questions regarding the estimate,<br />
+                Please do not hesitate to contact Gilberto Hernandez at 815-501-1478
+                <div class="footer-red">THANK YOU FOR YOUR BUSINESS!</div>
+            </div>
+        </div>
+    </body>
+</html>

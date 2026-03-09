@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Invoice - Hernandez Landscape</title>
+        <style>
+            @page {
+                size: letter;
+                margin: 0.5in;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                background: #fff;
+                color: #000;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .page-container {
+                width: 8.5in;
+                height: 11in;
+                margin: 0 auto;
+                padding: 30px;
+                box-sizing: border-box;
+            }
+            .header-section {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 20px;
+            }
+            .logo-img {
+                max-width: 300px;
+                display: block;
+            }
+            .company-info .customer-line {
+                display: flex;
+                align-items: baseline;
+                font-weight: 700;
+                font-size: 14px;
+                margin-top: 10px;
+                width: 350px;
+            }
+            .line-blank {
+                flex-grow: 1;
+                border-bottom: 1px solid #000;
+                margin-left: 10px;
+            }
+            .invoice-box {
+                width: 300px;
+                text-align: center;
+            }
+            .invoice-title {
+                font-weight: 700;
+                font-size: 20px;
+                margin-bottom: 5px;
+                letter-spacing: 1px;
+            }
+            .address-box {
+                border: 2px solid #000;
+                border-radius: 8px;
+                padding: 10px;
+                text-align: left;
+                height: 80px;
+            }
+            .address-line {
+                border-bottom: 1px solid #000;
+                height: 20px;
+                margin-top: 5px;
+            }
+            .date-section {
+                text-align: right;
+                font-size: 10px;
+                font-weight: 700;
+                margin-top: -30px;
+                margin-bottom: 10px;
+                line-height: 1.6;
+            }
+            .table-container {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 12px;
+                border: 2px solid #000;
+            }
+            .table-container th {
+                background-color: #000;
+                color: #fff;
+                padding: 5px;
+                font-weight: 700;
+                text-transform: uppercase;
+                border: 1px solid #000;
+            }
+            .table-container td {
+                border: 1px solid #000;
+                padding: 4px;
+                height: 22px;
+            }
+            .col-check {
+                width: 30px;
+                text-align: center;
+            }
+            .col-work {
+                width: 140px;
+                font-weight: 700;
+            }
+            .col-freq {
+                width: 80px;
+            }
+            .col-desc {
+                width: auto;
+            }
+            .col-unit {
+                width: 50px;
+            }
+            .col-amount {
+                width: 60px;
+            }
+            .col-price {
+                width: 60px;
+            }
+            .checkbox {
+                width: 14px;
+                height: 14px;
+                border: 2px solid #000;
+                display: inline-block;
+            }
+            .footer-grid {
+                display: grid;
+                grid-template-columns: 1fr 180px;
+                border: 2px solid #000;
+                border-top: none;
+                font-size: 12px;
+            }
+            .footer-left {
+                padding: 5px;
+            }
+            .footer-right {
+                border-left: 2px solid #000;
+            }
+            .totals-row {
+                display: flex;
+                border-bottom: 1px solid #000;
+                height: 24px;
+                line-height: 24px;
+            }
+            .totals-row:last-child {
+                border-bottom: none;
+            }
+            .totals-label {
+                width: 100px;
+                text-align: center;
+                border-right: 1px solid #000;
+                font-weight: 700;
+            }
+            .totals-value {
+                flex: 1;
+            }
+            .contact-info {
+                text-align: center;
+                margin-top: 15px;
+                font-size: 12px;
+                font-weight: 700;
+            }
+            .thank-you {
+                text-align: center;
+                font-weight: 900;
+                font-size: 14px;
+                margin-top: 15px;
+            }
+            @media print {
+                .page-container {
+                    margin: 0;
+                    padding: 10px;
+                    width: 100%;
+                    height: auto;
+                    box-shadow: none;
+                    border: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page-container">
+            <div class="header-section">
+                <div class="company-info">
+                    <img
+                        src="hernandez_images/web_Logo_New.png"
+                        alt="Hernandez Logo"
+                        class="logo-img"
+                        onerror="
+                            this.src = 'hernandez_images/Logo.png';
+                            this.onerror = null;
+                        "
+                    />
+                    <div class="customer-line">
+                        Customer: <div class="line-blank"></div>
+                    </div>
+                    <div class="customer-line" style="margin-top: 5px">
+                        <div class="line-blank"></div>
+                    </div>
+                </div>
+                <div class="invoice-box">
+                    <div class="invoice-title">INVOICE</div>
+                    <div class="address-box">
+                        <span style="font-size: 12px; font-weight: 700">Address:</span>
+                        <div class="address-line"></div>
+                        <div class="address-line"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="date-section">
+                JAN • FEB • MAR • APR • MAY • JUNE<br />
+                JULY • AUG • SEP • OCT • NOV • DEC<br />
+                2026<br />
+                1 • 2 • 3 • 4 • 5 • 6 • 7 • 8 • 9 • 10 • 11<br />
+                12 • 13 • 14 • 15 • 16 • 17 • 18 • 19 • 20 • 21<br />
+                22 • 23 • 24 • 25 • 26 • 27 • 28 • 29 • 30 • 31
+            </div>
+
+            <table class="table-container">
+                <thead>
+                    <tr>
+                        <th class="col-check"></th>
+                        <th class="col-work">WORK DONE</th>
+                        <th class="col-freq">FREQUENCY</th>
+                        <th class="col-desc">DESCRIPTION / MATERIALS USED</th>
+                        <th class="col-unit">UNIT</th>
+                        <th class="col-amount">AMOUNT</th>
+                        <th class="col-price">PRICE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Lawn Mowing</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Edging</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Spring Clean up</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Fall Clean up</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Mulch</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Core Aeration</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Power Rake</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Sod Installing</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Seeding</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Design & Planting</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Maintenance</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Patios</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Retaining Walls</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Leaf Removal</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Tree Removal</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Gutter Cleaning</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Seasonal Clean-up</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Shrub & Tree Trimming</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Snow Removal</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Salt</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"><div class="checkbox"></div></td><td class="col-work">Extra</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"></td><td class="col-work"></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td class="col-check"></td><td class="col-work"></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+
+            <div class="footer-grid">
+                <div class="footer-left">
+                    <strong>Make all checks payable to HERNANDEZ LANDSCAPE & TREE SERVICE LLC</strong>
+                </div>
+                <div class="footer-right">
+                    <div class="totals-row">
+                        <div class="totals-label">Tax rate</div>
+                        <div class="totals-value"></div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Additional costs</div>
+                        <div class="totals-value"></div>
+                    </div>
+                    <div class="totals-row">
+                        <div class="totals-label">Total costs</div>
+                        <div class="totals-value"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                If you have any questions concerning this Invoice, use the following contact information:<br />
+                GILBERTO HERNANDEZ - 815-501-1478
+            </div>
+            <div class="thank-you">THANK YOU FOR YOUR BUSINESS!</div>
+        </div>
+    </body>
+</html>
