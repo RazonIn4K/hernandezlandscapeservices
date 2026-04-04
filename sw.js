@@ -1,11 +1,16 @@
-const CACHE_NAME = 'hernandez-landscape-v8';
+const CACHE_NAME = 'hernandez-landscape-v9';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.css',
+  '/gallery.html',
+  '/videos.html',
+  '/assets/css/styles.css',
+  '/assets/css/gallery.css',
+  '/assets/css/video.css',
   '/pricing.html',
   '/pay/success.html',
   '/pay/cancel.html',
+  '/assets/js/main.js',
   '/assets/js/static-gallery.js',
   '/assets/js/i18n.js',
   '/manifest.json',
@@ -44,6 +49,14 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  const isRangeRequest = event.request.headers.has('range');
+  const isMediaRequest = /\.(mp4|webm|mov|m4v|mp3|wav|ogg)$/i.test(requestURL.pathname);
+
+  if (isRangeRequest || isMediaRequest) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
   if (event.request.mode === 'navigate' || requestURL.pathname === '/' || requestURL.pathname.endsWith('.html')) {
     event.respondWith(networkFirst(event.request));
   } else {
@@ -55,8 +68,7 @@ self.addEventListener('fetch', event => {
 async function networkFirst(request) {
   try {
     const networkResponse = await fetch(request);
-    const cache = await caches.open(CACHE_NAME);
-    cache.put(request, networkResponse.clone());
+    await cacheResponseIfSafe(request, networkResponse);
     return networkResponse;
   } catch (error) {
     const cachedResponse = await caches.match(request);
@@ -73,9 +85,16 @@ async function cacheFirst(request) {
     return cachedResponse;
   }
   const networkResponse = await fetch(request);
-  const cache = await caches.open(CACHE_NAME);
-  cache.put(request, networkResponse.clone());
+  await cacheResponseIfSafe(request, networkResponse);
   return networkResponse;
+}
+
+async function cacheResponseIfSafe(request, response) {
+  if (!response || response.status !== 200 || response.type === 'opaque') {
+    return;
+  }
+  const cache = await caches.open(CACHE_NAME);
+  await cache.put(request, response.clone());
 }
 
 self.addEventListener('activate', event => {

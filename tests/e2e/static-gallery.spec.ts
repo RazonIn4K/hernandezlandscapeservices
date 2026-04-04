@@ -1,5 +1,23 @@
 import { expect, test } from './fixtures';
 
+const responsiveViewports = [
+  { name: 'mobile', width: 375, height: 812 },
+  { name: 'tablet', width: 768, height: 1024 },
+  { name: 'desktop', width: 1440, height: 900 }
+];
+
+const getCardHeightSpread = async (page, selector: string) => {
+  const heights = await page.$$eval(selector, (elements) =>
+    elements.map((element) => Math.round(element.getBoundingClientRect().height))
+  );
+
+  if (!heights.length) {
+    return Number.POSITIVE_INFINITY;
+  }
+
+  return Math.max(...heights) - Math.min(...heights);
+};
+
 test.describe('Static Gallery Functionality', () => {
   test.beforeEach(async ({ page }) => {
     // Capture console logs for debugging
@@ -9,24 +27,13 @@ test.describe('Static Gallery Functionality', () => {
     await page.goto('/');
   });
 
-  test('loads gallery with actual images', async ({ page }) => {
-    // Wait for gallery to load
-    await page.waitForSelector('#gallery-container');
-    
-    // Check that gallery container exists
-    const galleryContainer = page.locator('#gallery-container');
-    await expect(galleryContainer).toBeVisible();
-    
-    // Wait for images to load
-    await page.waitForSelector('img[src*="hernandez_images"]');
-    
-    // Check that images are present
-    const images = page.locator('#gallery-container img');
-    await expect(images).toHaveCount(8); // Should match staticImages array
+  test('loads homepage gallery and latest upload images', async ({ page }) => {
+    await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 img');
+    await expect(page.locator('#gallery .grid.md\\:grid-cols-3 img')).toHaveCount(3);
 
-    // Verify first image points at the static image directory
-    const firstImage = images.first();
-    await expect(firstImage).toHaveAttribute('src', /hernandez_images\//);
+    // Latest uploads are rendered dynamically by static-gallery.js
+    await page.waitForSelector('#latest-uploads-track img');
+    await expect(page.locator('#latest-uploads-track img')).toHaveCount(6);
   });
 
   test('displays latest uploads carousel', async ({ page }) => {
@@ -106,20 +113,55 @@ test.describe('Static Gallery Functionality', () => {
     await expect(mobileNavLinks).not.toHaveCount(0); // Any links rendered
   });
 
+  test('photo layouts remain aligned across breakpoints', async ({ page }) => {
+    for (const viewport of responsiveViewports) {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+
+      await page.goto('/');
+      await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
+
+      const homeOverflow = await page.evaluate(() =>
+        document.documentElement.scrollWidth - document.documentElement.clientWidth
+      );
+      expect(homeOverflow, `Home overflow at ${viewport.name}`).toBeLessThanOrEqual(1);
+
+      const homeSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
+      expect(homeSpread, `Home card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
+
+      await page.goto('/gallery.html');
+      const galleryCardCount = await page.locator('.gallery-item').count();
+
+      // In SPA fallback environments, /gallery.html can resolve to the homepage.
+      if (galleryCardCount > 0) {
+        const galleryOverflow = await page.evaluate(() =>
+          document.documentElement.scrollWidth - document.documentElement.clientWidth
+        );
+        expect(galleryOverflow, `Gallery overflow at ${viewport.name}`).toBeLessThanOrEqual(1);
+
+        const gallerySpread = await getCardHeightSpread(page, '.gallery-item');
+        expect(gallerySpread, `Gallery card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
+      } else {
+        await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
+        const fallbackSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
+        expect(fallbackSpread, `Fallback gallery spread at ${viewport.name}`).toBeLessThanOrEqual(1);
+      }
+    }
+  });
+
   test('language toggle functionality', async ({ page }) => {
     // Check language toggle buttons exist
-    const enButton = page.locator('#langToggleEnDesktop');
-    const esButton = page.locator('#langToggleEsDesktop');
+    const enButton = page.locator('[data-lang-switch="en"]').first();
+    const esButton = page.locator('[data-lang-switch="es"]').first();
     
     await expect(enButton).toBeVisible();
     await expect(esButton).toBeVisible();
     
     // Test switching to Spanish
     await esButton.click();
-    await expect(esButton).toHaveClass(/bg-green-600/);
+    await expect(esButton).toHaveAttribute('aria-pressed', 'true');
     
     // Test switching back to English
     await enButton.click();
-    await expect(enButton).toHaveClass(/bg-green-600/);
+    await expect(enButton).toHaveAttribute('aria-pressed', 'true');
   });
 });

@@ -25,6 +25,16 @@
     // Static image list - these are the actual photos in hernandez_images/
     const staticImages = [
       {
+        src: 'hernandez_images/web_IMG_3362_2.webp',
+        alt: 'Freshly finished landscape bed and lawn edging',
+        caption: 'Recent landscape refresh with clean borders and healthy planting beds'
+      },
+      {
+        src: 'hernandez_images/web_IMG_3360_2.webp',
+        alt: 'Fresh mulch installation framing a neat front yard',
+        caption: 'Newly completed curb appeal upgrade with crisp mulch lines'
+      },
+      {
         src: 'hernandez_images/web_Wideshot_Bestlandscape.jpg',
         alt: 'Beautiful landscape design and installation',
         caption: 'Complete landscape renovation with premium materials'
@@ -122,7 +132,7 @@
 
       latestItems.forEach((image) => {
         const slide = document.createElement('div');
-        slide.className = 'flex-shrink-0 w-64 h-48 bg-gray-200 rounded-lg overflow-hidden';
+        slide.className = 'latest-upload-slide bg-gray-200 rounded-lg overflow-hidden snap-start';
         
         const img = document.createElement('img');
         img.src = image.src;
