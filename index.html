@@ -108,7 +108,7 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center text-center text-white pt-28 pb-24 md:pt-32 md:pb-28">
         <!-- Background Image with Overlay: tree hero on mobile, wideshot on desktop -->
         <div class="absolute inset-0 z-0">
-            <img src="hernandez_images/web_hero_mobile.png" alt="Arborist at work in tree" class="w-full h-full object-cover md:hidden">
+            <img src="hernandez_images/web_hero_mobile.jpg" alt="Arborist at work in tree" class="w-full h-full object-cover md:hidden">
             <img src="hernandez_images/web_hero_desktop.png" alt="Landscaping at residential property" class="w-full h-full object-cover hidden md:block">
             <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/75 to-black/85"></div>
         </div>
@@ -119,11 +119,11 @@
                     <span class="block text-white" data-i18n-key="hero.transform">Transform Your</span>
                     <span class="block text-green-300" data-i18n-key="hero.outdoor">Outdoor Space</span>
                 </h1>
-                
+
                 <p class="hero-subtitle text-lg md:text-2xl mb-14 md:mb-16 max-w-2xl mx-auto text-gray-100 font-medium" data-i18n-key="hero.subtitle">
                     Professional, family-owned landscaping in DeKalb County. committed to excellence since 2019.
                 </p>
-                
+
                 <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
                     <a href="#contact" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 shadow-xl flex items-center justify-center">
                         <i class="fas fa-calculator mr-2"></i>
@@ -152,7 +152,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Scroll Indicator -->
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <a href="#services" class="text-white opacity-70 hover:opacity-100 transition-opacity">
@@ -448,7 +448,7 @@
                     <img src="hernandez_images/web_hero_desktop.png"
                          alt="Beautiful paver patio and retaining wall"
                          class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                         width="1200" height="900" loading="lazy">
+                         width="1200" height="868" loading="lazy">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition">
                         <div class="absolute bottom-4 left-4 text-white">
                             <h4 class="font-bold" data-i18n-key="gallery.card1.title">Complete Yard Makeover</h4>
@@ -487,8 +487,8 @@
             <div class="pt-16 border-t border-gray-200">
                 <h3 class="text-3xl font-bold text-center mb-8" data-i18n-key="gallery.latestHeading">Latest Uploads</h3>
                 <p id="latest-uploads-empty" class="text-gray-500 text-center" data-i18n-key="gallery.placeholder">Your new photos will appear here after you upload them.</p>
-                <div id="latest-uploads-carousel" class="hidden overflow-x-auto pb-6 -mx-4 px-4">
-                    <div id="latest-uploads-track" class="flex gap-6 snap-x snap-mandatory"></div>
+                <div id="latest-uploads-carousel" class="hidden latest-uploads-carousel overflow-x-auto pb-6">
+                    <div id="latest-uploads-track" class="flex gap-4 sm:gap-6 snap-x snap-mandatory px-1 sm:px-0"></div>
                 </div>
 
             </div>
@@ -712,36 +712,36 @@
                         <h3 class="text-2xl font-bold mb-6" data-i18n-key="quote.contactHeading">Get in Touch</h3>
 
                         <div class="space-y-4 mb-8">
-                            <a href="tel:815-501-1478" class="flex items-center space-x-3 hover:text-green-200 transition">
+                            <a href="tel:815-501-1478" class="flex w-full items-start space-x-3 hover:text-green-200 transition">
                                 <i class="fas fa-phone text-2xl"></i>
-                                <div>
+                                <div class="min-w-0">
                                     <p class="font-semibold" data-i18n-key="quote.phoneLabel">Call or Text</p>
-                                    <p class="text-xl">(815) 501-1478</p>
+                                    <p class="text-xl break-words">(815) 501-1478</p>
                                 </div>
                             </a>
 
-                            <div class="flex items-center space-x-3">
+                            <div class="flex w-full items-start space-x-3">
                                 <i class="fas fa-envelope text-2xl"></i>
-                                <div>
+                                <div class="min-w-0">
                                     <p class="font-semibold" data-i18n-key="quote.emailLabel">Email</p>
-                                    <p>hernandezlandscapetreeservices@gmail.com</p>
+                                    <p class="break-all">hernandezlandscapetreeservices@gmail.com</p>
                                 </div>
                             </div>
 
-                            <div class="flex items-center space-x-3">
+                            <div class="flex w-full items-start space-x-3">
                                 <i class="fas fa-clock text-2xl"></i>
-                                <div>
+                                <div class="min-w-0">
                                     <p class="font-semibold" data-i18n-key="quote.hoursLabel">Business Hours</p>
                                     <p data-i18n-key="quote.hoursWeekdays">Mon-Fri: 7AM-6PM</p>
                                     <p data-i18n-key="quote.hoursSaturday">Saturday: 8AM-4PM</p>
                                 </div>
                             </div>
 
-                            <div class="flex items-center space-x-3">
+                            <div class="flex w-full items-start space-x-3">
                                 <i class="fas fa-map-marker-alt text-2xl"></i>
-                                <div>
+                                <div class="min-w-0">
                                     <p class="font-semibold" data-i18n-key="quote.locationLabel">Location</p>
-                                    <p>1029 Lewis St, DeKalb, IL 60115</p>
+                                    <p class="break-words">1029 Lewis St, DeKalb, IL 60115</p>
                                 </div>
                             </div>
                         </div>
@@ -894,7 +894,7 @@
                         <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Genoa</span>
                         <span class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700">Malta</span>
                     </div>
-                    
+
                     <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Follow Us</h4>
                     <div class="flex space-x-4">
                         <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
@@ -1028,9 +1028,6 @@
         }
     }
     </script>
-    <script src="assets/js/i18n.js" defer></script>
-    <script src="assets/js/static-gallery.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
 <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
