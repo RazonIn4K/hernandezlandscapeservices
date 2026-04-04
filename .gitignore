@@ -1,4 +1,7 @@
+# Dependencies
 node_modules/
+vendor/
+.venv/
 
 # Development and testing files
 *.txt
@@ -28,12 +31,22 @@ message_*.txt
 *_instructions.txt
 *_report.txt
 
+# Environment variables
+.env
+.env.local
+
+# Build artifacts
+dist/
+build/
+.next/
+__pycache__/
+
 # IDE and OS files
 .DS_Store
 .vscode/
 .idea/
+*.swp
 .npm
-.DS_Store
 .claude/
 .playwright-mcp/
 .windsurf/
@@ -50,8 +63,6 @@ hernandez_images/unprocessed-assets/
 playwright-report/
 test-results/
 tests/test-data/
-
-.env
 
 # Snyk Security Extension - AI Rules (auto-generated)
 .windsurf/rules/snyk_rules.md
