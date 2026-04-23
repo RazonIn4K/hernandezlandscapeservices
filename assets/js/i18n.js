@@ -12,21 +12,26 @@
       "admin.file.titleLabel": "Title (optional)",
       "admin.file.titlePlaceholder": "Project title",
       "admin.file.descriptionLabel": "Description (optional)",
-      "admin.file.descriptionPlaceholder": "Add a short note about this upload.",
+      "admin.file.descriptionPlaceholder":
+        "Add a short note about this upload.",
       "admin.file.type.image": "Photo",
       "admin.file.type.video": "Video",
-      "admin.upload.instructions": "Drag and drop your photos or videos, or choose them from your device.",
+      "admin.upload.instructions":
+        "Drag and drop your photos or videos, or choose them from your device.",
       "admin.dropzone.prompt": "Drop your files here or",
       "admin.dropzone.button": "Choose files",
       "admin.upload.button": "Upload media",
       "admin.publish.label": "Publish immediately",
       "admin.message.selectImage": "Select at least one media file to upload.",
       "admin.message.uploading": "Uploading your media...",
-      "admin.message.uploadSuccess": "All set! Your media is now in the gallery.",
+      "admin.message.uploadSuccess":
+        "All set! Your media is now in the gallery.",
       "admin.message.duplicates": "Those files were already on the list.",
       "admin.message.skipped": "Only photo or video files are allowed.",
-      "admin.message.filesAdded.one": "Added {{count}} media item to the upload list.",
-      "admin.message.filesAdded.other": "Added {{count}} media items to the upload list.",
+      "admin.message.filesAdded.one":
+        "Added {{count}} media item to the upload list.",
+      "admin.message.filesAdded.other":
+        "Added {{count}} media items to the upload list.",
       "gallery.latest.videoTag": "Video",
       "admin.manager.heading": "Manage gallery media",
       "admin.manager.filter.all": "All items",
@@ -39,10 +44,13 @@
       "admin.manager.unpublish": "Set as draft",
       "admin.manager.view": "Open",
       "admin.manager.delete": "Delete",
-      "admin.manager.errorLoad": "Unable to load existing media items. Please refresh.",
-      "admin.manager.errorUpdate": "Unable to update publish status. Try again.",
+      "admin.manager.errorLoad":
+        "Unable to load existing media items. Please refresh.",
+      "admin.manager.errorUpdate":
+        "Unable to update publish status. Try again.",
       "admin.manager.errorDelete": "Unable to delete media item. Try again.",
-      "admin.manager.confirmDelete": "Delete this media item? This cannot be undone.",
+      "admin.manager.confirmDelete":
+        "Delete this media item? This cannot be undone.",
       "admin.manager.deleteSuccess": "Media item deleted.",
       "admin.manager.publishSuccess": "Item published.",
       "admin.manager.unpublishSuccess": "Item marked as draft.",
@@ -64,45 +72,68 @@
         "We could not load the photos right now. Please try again.",
       "gallery.loadMore": "Load more photos",
       "gallery.loadingButton": "Loading...",
-      "serviceArea.mapNote": "Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.",
-      
+      "serviceArea.mapNote":
+        "Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.",
+
       "video.heading": "Project Video Tours",
-      "video.subheading": "Watch our team in action and see the details of our work.",
-      
+      "video.subheading":
+        "Watch our team in action and see the details of our work.",
+
       "gallery.recent.heading": "Recent Projects",
       "gallery.item.project": "Project",
       "nav.videos": "Videos",
       "video.viewAll": "View All Videos",
 
+      "hero.eyebrow": "DeKalb County Landscaping & Tree Service",
       "hero.transform": "Transform Your",
       "hero.outdoor": "Outdoor Space",
-      "hero.subtitle": "Professional, family-owned landscaping in DeKalb County. Committed to excellence since 2019.",
+      "hero.subtitle":
+        "Professional, family-owned landscaping in DeKalb County. Committed to excellence since 2019.",
       "hero.cta": "Get Instant Quote",
       "hero.call": "Call Now",
       "hero.insured": "Fully Insured",
       "hero.licensed": "Licensed LLC",
-      "hero.family": "Family Owned"
+      "hero.family": "Family Owned",
+      "hero.bilingual": "Se Habla Español",
+      "instant.button.calculate": "Request Free Estimate",
+      "testimonials.heading": "What Our Clients Say",
+      "testimonials.subheading":
+        "Local homeowners count on fast communication, clean work, and fair estimates for repeat yard care and one-time projects.",
+      "testimonials.quote1":
+        '"They cleaned up our overgrown yard, edged the beds, and left everything looking sharp before the weekend. Clear price and easy scheduling."',
+      "testimonials.author1": "- Maria G., DeKalb",
+      "testimonials.quote2":
+        '"After a storm dropped branches near our driveway, they responded quickly, trimmed what was unsafe, and cleaned up the debris the same day."',
+      "testimonials.author2": "- John D., Sycamore",
+      "testimonials.quote3":
+        '"Our lawn maintenance has been reliable all season. They confirm the visit, show up on time, and speak Spanish with my family when needed."',
+      "testimonials.author3": "- Rosa M., Cortland",
     },
     es: {
       "admin.file.empty": "No hay archivos seleccionados todavía.",
       "admin.file.titleLabel": "Título (opcional)",
       "admin.file.titlePlaceholder": "Título breve del proyecto",
       "admin.file.descriptionLabel": "Descripción (opcional)",
-      "admin.file.descriptionPlaceholder": "Agrega una nota rápida sobre este archivo.",
+      "admin.file.descriptionPlaceholder":
+        "Agrega una nota rápida sobre este archivo.",
       "admin.file.type.image": "Foto",
       "admin.file.type.video": "Video",
-      "admin.upload.instructions": "Arrastra y suelta tus fotos o videos, o selecciónalos desde tu dispositivo.",
+      "admin.upload.instructions":
+        "Arrastra y suelta tus fotos o videos, o selecciónalos desde tu dispositivo.",
       "admin.dropzone.prompt": "Suelta los archivos aquí o",
       "admin.dropzone.button": "Elegir archivos",
       "admin.upload.button": "Subir archivos",
       "admin.publish.label": "Publicar de inmediato",
-      "admin.message.selectImage": "Selecciona al menos un archivo multimedia para subir.",
+      "admin.message.selectImage":
+        "Selecciona al menos un archivo multimedia para subir.",
       "admin.message.uploading": "Subiendo tus archivos...",
-      "admin.message.uploadSuccess": "¡Listo! Tus archivos ya están en la galería.",
+      "admin.message.uploadSuccess":
+        "¡Listo! Tus archivos ya están en la galería.",
       "admin.message.duplicates": "Estos archivos ya estaban en la lista.",
       "admin.message.skipped": "Solo se permiten archivos de foto o video.",
       "admin.message.filesAdded.one": "Se añadió {{count}} archivo a la lista.",
-      "admin.message.filesAdded.other": "Se añadieron {{count}} archivos a la lista.",
+      "admin.message.filesAdded.other":
+        "Se añadieron {{count}} archivos a la lista.",
       "gallery.latest.videoTag": "Video",
       "admin.manager.heading": "Administrar la galería",
       "admin.manager.filter.all": "Todos los elementos",
@@ -115,16 +146,21 @@
       "admin.manager.unpublish": "Marcar como borrador",
       "admin.manager.view": "Abrir",
       "admin.manager.delete": "Eliminar",
-      "admin.manager.errorLoad": "No se pudieron cargar los archivos. Vuelve a intentarlo.",
-      "admin.manager.errorUpdate": "No se pudo actualizar el estado de publicación.",
-      "admin.manager.errorDelete": "No se pudo eliminar el archivo. Inténtalo nuevamente.",
-      "admin.manager.confirmDelete": "¿Eliminar este archivo? Esta acción no se puede deshacer.",
+      "admin.manager.errorLoad":
+        "No se pudieron cargar los archivos. Vuelve a intentarlo.",
+      "admin.manager.errorUpdate":
+        "No se pudo actualizar el estado de publicación.",
+      "admin.manager.errorDelete":
+        "No se pudo eliminar el archivo. Inténtalo nuevamente.",
+      "admin.manager.confirmDelete":
+        "¿Eliminar este archivo? Esta acción no se puede deshacer.",
       "admin.manager.deleteSuccess": "Archivo eliminado.",
       "admin.manager.publishSuccess": "Archivo publicado.",
       "admin.manager.unpublishSuccess": "Archivo marcado como borrador.",
 
       "admin.heading": "Sube tus fotos",
-      "admin.subheading": "Inicia sesión con tu número para compartir nuevos proyectos.",
+      "admin.subheading":
+        "Inicia sesión con tu número para compartir nuevos proyectos.",
       "admin.phone.label": "Número de teléfono",
       "admin.phone.placeholder": "+1 815 555 1234",
       "admin.phone.send": "Enviar código",
@@ -133,7 +169,8 @@
       "admin.code.verify": "Verificar e ingresar",
       "admin.upload.heading": "Subir fotografías",
       "admin.logout": "Cerrar sesión",
-      "admin.upload.instructions": "Arrastra y suelta tus fotos o videos, o selecciónalos desde tu dispositivo.",
+      "admin.upload.instructions":
+        "Arrastra y suelta tus fotos o videos, o selecciónalos desde tu dispositivo.",
       "admin.dropzone.prompt": "Suelta tus archivos aquí o",
       "admin.dropzone.button": "Elegir fotos",
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -142,26 +179,34 @@
       "admin.message.invalidPhone":
         "Introduce un número válido. Ejemplo: 8155551234 o +18155551234.",
       "admin.message.sendingCode": "Enviando código por SMS...",
-      "admin.message.codeSent": "Código enviado. Revisa tu teléfono e ingrésalo abajo.",
+      "admin.message.codeSent":
+        "Código enviado. Revisa tu teléfono e ingrésalo abajo.",
       "admin.message.smsError":
         "No pudimos enviar el SMS. Verifica el número o inténtalo más tarde.",
-      "admin.message.requestCodeFirst": "Solicita un nuevo código antes de confirmar.",
-      "admin.message.enterCode": "Ingresa el código de 6 dígitos recibido por SMS.",
+      "admin.message.requestCodeFirst":
+        "Solicita un nuevo código antes de confirmar.",
+      "admin.message.enterCode":
+        "Ingresa el código de 6 dígitos recibido por SMS.",
       "admin.message.verifying": "Verificando código...",
       "admin.message.loginSuccess": "Sesión iniciada. ¡Listo para subir fotos!",
-      "admin.message.invalidCode": "Código incorrecto o vencido. Solicita uno nuevo.",
-      "admin.message.notAllowed": "Este número no tiene permiso para subir fotos.",
+      "admin.message.invalidCode":
+        "Código incorrecto o vencido. Solicita uno nuevo.",
+      "admin.message.notAllowed":
+        "Este número no tiene permiso para subir fotos.",
       "admin.message.selectImage": "Selecciona al menos un archivo multimedia.",
       "admin.message.uploading": "Subiendo tus archivos...",
-      "admin.message.uploadFailedList": "No pudimos subir estas imágenes: {{list}}.",
+      "admin.message.uploadFailedList":
+        "No pudimos subir estas imágenes: {{list}}.",
       "admin.message.uploadFailedGeneric":
         "Ocurrió un problema con algunas imágenes. Intenta de nuevo.",
-      "admin.message.uploadSuccess": "¡Listo! Tus archivos ya están en la galería.",
+      "admin.message.uploadSuccess":
+        "¡Listo! Tus archivos ya están en la galería.",
       "admin.message.noUploads": "No se subió ninguna imagen.",
       "admin.message.duplicates": "Estos archivos ya estaban en la lista.",
       "admin.message.skipped": "Solo se permiten archivos de foto o video.",
       "admin.message.filesAdded.one": "Se añadió {{count}} archivo a la lista.",
-      "admin.message.filesAdded.other": "Se añadieron {{count}} archivos a la lista.",
+      "admin.message.filesAdded.other":
+        "Se añadieron {{count}} archivos a la lista.",
       "nav.services": "Servicios",
       "nav.work": "Nuestro Trabajo",
       "nav.videos": "Videos",
@@ -197,7 +242,7 @@
       "instant.label.zip": "Tu código postal",
       "instant.placeholder.zip": "ej., 60115",
       "instant.title.zip": "Ingresa un código postal válido de 5 dígitos",
-      "instant.button.calculate": "Calcular estimado",
+      "instant.button.calculate": "Solicitar estimado gratis",
       "instant.result.heading": "Rango de precio estimado:",
       "instant.result.disclaimer":
         "Este es un estimado. El precio final depende de requisitos específicos y de la evaluación en sitio.",
@@ -252,14 +297,16 @@
       "gallery.loadingButton": "Cargando...",
 
       "testimonials.heading": "Lo que dicen nuestros clientes",
+      "testimonials.subheading":
+        "Clientes locales cuentan con comunicación rápida, trabajo limpio y estimados justos para mantenimiento frecuente y proyectos de una sola vez.",
       "testimonials.quote1":
-        '"¡Servicio excelente! Transformaron nuestro jardín descuidado en un paisaje hermoso. Muy profesionales y el precio fue justo. ¡Altamente recomendados!"',
+        '"Limpiaron nuestro jardín descuidado, marcaron los bordes y dejaron todo listo antes del fin de semana. Precio claro y agenda fácil."',
       "testimonials.author1": "- Maria G., DeKalb",
       "testimonials.quote2":
-        '"Respuesta rápida para remover un árbol después de la tormenta. Trabajaron de forma segura, eficiente y dejaron todo limpio. ¡El mejor servicio de árboles de la zona!"',
+        '"Después de una tormenta, respondieron rápido, cortaron las ramas peligrosas cerca de la entrada y recogieron los restos el mismo día."',
       "testimonials.author2": "- John D., Sycamore",
       "testimonials.quote3":
-        '"Se encargan de nuestro mantenimiento semanal del césped y siempre queda perfecto. Confiables, accesibles y hablan español, lo cual ayuda a mi familia."',
+        '"El mantenimiento del césped ha sido confiable toda la temporada. Confirman la visita, llegan a tiempo y hablan español con mi familia cuando hace falta."',
       "testimonials.author3": "- Rosa M., Cortland",
 
       "serviceArea.heading": "Zonas en las que trabajamos",
@@ -271,7 +318,8 @@
       "serviceArea.info":
         "¿No estás seguro si cubrimos tu área? ¡Llámanos! Seguimos ampliando nuestra zona de servicio.",
       "serviceArea.mapPlaceholder": "Mapa interactivo muy pronto",
-      "serviceArea.mapNote": "Haz zoom y explora nuestra base en DeKalb; atendemos todo el condado y comunidades cercanas.",
+      "serviceArea.mapNote":
+        "Haz zoom y explora nuestra base en DeKalb; atendemos todo el condado y comunidades cercanas.",
 
       "quote.heading": "¿Listo para transformar tu propiedad?",
       "quote.contactHeading": "Ponte en contacto",
@@ -316,22 +364,26 @@
       "alerts.contact.error":
         "Hubo un error al enviar tu solicitud. Llámanos al 815-501-1478.",
       "contact.sending": "Enviando...",
-      
+
       "video.heading": "Recorridos en Video de Proyectos",
-      "video.subheading": "Vea a nuestro equipo en acción y observe los detalles de nuestro trabajo.",
+      "video.subheading":
+        "Vea a nuestro equipo en acción y observe los detalles de nuestro trabajo.",
       "video.viewAll": "Ver Todos los Videos",
-      
+
       "gallery.recent.heading": "Proyectos Recientes",
       "gallery.item.project": "Proyecto",
 
+      "hero.eyebrow": "Jardinería y servicio de árboles en DeKalb County",
       "hero.transform": "Transforma tu",
       "hero.outdoor": "Espacio Exterior",
-      "hero.subtitle": "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
+      "hero.subtitle":
+        "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
       "hero.cta": "Obtén cotización instantánea",
       "hero.call": "Llámanos ahora",
       "hero.insured": "Totalmente asegurados",
       "hero.licensed": "LLC con licencia",
-      "hero.family": "Negocio familiar"
+      "hero.family": "Negocio familiar",
+      "hero.bilingual": "Se Habla Español",
     },
   };
 
