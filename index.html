@@ -271,7 +271,7 @@
             class="hero-subtitle text-lg md:text-2xl mb-10 md:mb-12 max-w-2xl text-gray-100 font-medium"
             data-i18n-key="hero.subtitle"
           >
-            Professional, family-owned landscaping in DeKalb County. committed
+            Professional, family-owned landscaping in DeKalb County. Committed
             to excellence since 2019.
           </p>
 
@@ -1320,107 +1320,73 @@
           class="text-4xl font-bold text-center mb-12"
           data-i18n-key="testimonials.heading"
         >
-          What Our Clients Say
+          What Homeowners Can Expect
         </h2>
         <p
           class="text-lg text-gray-600 text-center max-w-2xl mx-auto -mt-6 mb-10"
           data-i18n-key="testimonials.subheading"
         >
-          Local homeowners count on fast communication, clean work, and fair
-          estimates for repeat yard care and one-time projects.
+          Clear estimates, careful property cleanup, and responsive service for
+          repeat yard care and one-time projects.
         </p>
 
-        <div class="max-w-3xl mx-auto">
-          <div class="testimonial-slider relative">
-            <div class="testimonial-track" id="testimonialTrack">
-              <div class="testimonial-slide">
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                  <div class="flex mb-4" aria-label="5 star rating">
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                  </div>
-                  <p
-                    class="text-gray-700 mb-4"
-                    data-i18n-key="testimonials.quote1"
-                  >
-                    "They cleaned up our overgrown yard, edged the beds, and
-                    left everything looking sharp before the weekend. Clear
-                    price and easy scheduling."
-                  </p>
-                  <p class="font-semibold" data-i18n-key="testimonials.author1">
-                    - Maria G., DeKalb
-                  </p>
-                </div>
-              </div>
-
-              <div class="testimonial-slide">
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                  <div class="flex mb-4" aria-label="5 star rating">
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                  </div>
-                  <p
-                    class="text-gray-700 mb-4"
-                    data-i18n-key="testimonials.quote2"
-                  >
-                    "After a storm dropped branches near our driveway, they
-                    responded quickly, trimmed what was unsafe, and cleaned up
-                    the debris the same day."
-                  </p>
-                  <p class="font-semibold" data-i18n-key="testimonials.author2">
-                    - John D., Sycamore
-                  </p>
-                </div>
-              </div>
-
-              <div class="testimonial-slide">
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                  <div class="flex mb-4" aria-label="5 star rating">
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                    <i class="fas fa-star text-yellow-400"></i>
-                  </div>
-                  <p
-                    class="text-gray-700 mb-4"
-                    data-i18n-key="testimonials.quote3"
-                  >
-                    "Our lawn maintenance has been reliable all season. They
-                    confirm the visit, show up on time, and speak Spanish with
-                    my family when needed."
-                  </p>
-                  <p class="font-semibold" data-i18n-key="testimonials.author3">
-                    - Rosa M., Cortland
-                  </p>
-                </div>
-              </div>
+        <div class="grid gap-6 md:grid-cols-3">
+          <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
+            <div
+              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-700"
+              aria-hidden="true"
+            >
+              <i class="fas fa-clipboard-check text-xl"></i>
             </div>
+            <h3
+              class="text-xl font-bold mb-3"
+              data-i18n-key="testimonials.card1.title"
+            >
+              Clear Estimate Path
+            </h3>
+            <p class="text-gray-700" data-i18n-key="testimonials.card1.text">
+              Share the service, property size, ZIP code, and photos so the
+              team can respond with the right next step.
+            </p>
+          </article>
 
-            <div class="flex justify-center mt-6 space-x-2">
-              <button
-                onclick="goToTestimonial(0)"
-                class="w-3 h-3 bg-green-600 rounded-full"
-                aria-label="Go to testimonial 1"
-              ></button>
-              <button
-                onclick="goToTestimonial(1)"
-                class="w-3 h-3 bg-gray-300 rounded-full"
-                aria-label="Go to testimonial 2"
-              ></button>
-              <button
-                onclick="goToTestimonial(2)"
-                class="w-3 h-3 bg-gray-300 rounded-full"
-                aria-label="Go to testimonial 3"
-              ></button>
+          <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
+            <div
+              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-700"
+              aria-hidden="true"
+            >
+              <i class="fas fa-broom text-xl"></i>
             </div>
-          </div>
+            <h3
+              class="text-xl font-bold mb-3"
+              data-i18n-key="testimonials.card2.title"
+            >
+              Clean, Careful Work
+            </h3>
+            <p class="text-gray-700" data-i18n-key="testimonials.card2.text">
+              Lawn care, trimming, cleanup, and landscape work are handled with
+              attention to the details homeowners notice.
+            </p>
+          </article>
+
+          <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
+            <div
+              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-700"
+              aria-hidden="true"
+            >
+              <i class="fas fa-comments text-xl"></i>
+            </div>
+            <h3
+              class="text-xl font-bold mb-3"
+              data-i18n-key="testimonials.card3.title"
+            >
+              English + Spanish Service
+            </h3>
+            <p class="text-gray-700" data-i18n-key="testimonials.card3.text">
+              Bilingual communication keeps scheduling, estimates, and project
+              details easier for more local families.
+            </p>
+          </article>
         </div>
       </div>
     </section>
