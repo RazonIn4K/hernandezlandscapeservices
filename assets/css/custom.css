@@ -175,20 +175,6 @@ html {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Testimonial Slider */
-.testimonial-slider {
-  overflow: hidden;
-}
-.testimonial-track {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-.testimonial-slide {
-  min-width: 100%;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
 /* Loader */
 .loader {
   border: 3px solid #f3f3f3;
@@ -541,7 +527,8 @@ section h3 {
 .instant-card,
 #quote .bg-white,
 #service-area .bg-gray-100,
-.testimonial-slide > div {
+.testimonial-slide > div,
+.expectation-card {
   background: var(--panel) !important;
   border: 1px solid var(--line);
   border-radius: 8px !important;

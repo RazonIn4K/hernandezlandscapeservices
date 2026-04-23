@@ -172,33 +172,6 @@ if (slider && handle) {
   updateSlider(50);
 }
 
-let currentTestimonial = 0;
-const testimonialTrack = document.getElementById("testimonialTrack");
-const testimonialDots = document.querySelectorAll(
-  ".flex.justify-center.mt-6 button",
-);
-const totalTestimonials = testimonialDots.length;
-
-function goToTestimonial(index) {
-  if (!testimonialTrack || !testimonialDots.length) {
-    return;
-  }
-  currentTestimonial = index;
-  testimonialTrack.style.transform = `translateX(-${index * 100}%)`;
-  testimonialDots.forEach((dot, i) => {
-    dot.className =
-      i === index
-        ? "w-3 h-3 bg-green-600 rounded-full"
-        : "w-3 h-3 bg-gray-300 rounded-full";
-  });
-}
-
-if (testimonialTrack && testimonialDots.length) {
-  setInterval(() => {
-    goToTestimonial((currentTestimonial + 1) % totalTestimonials);
-  }, 5000);
-}
-
 const quoteResult = document.getElementById("quoteResult");
 
 function calculateQuote() {

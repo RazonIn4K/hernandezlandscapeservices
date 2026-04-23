@@ -96,18 +96,18 @@
       "hero.family": "Family Owned",
       "hero.bilingual": "Se Habla Español",
       "instant.button.calculate": "Request Free Estimate",
-      "testimonials.heading": "What Our Clients Say",
+      "testimonials.heading": "What Homeowners Can Expect",
       "testimonials.subheading":
-        "Local homeowners count on fast communication, clean work, and fair estimates for repeat yard care and one-time projects.",
-      "testimonials.quote1":
-        '"They cleaned up our overgrown yard, edged the beds, and left everything looking sharp before the weekend. Clear price and easy scheduling."',
-      "testimonials.author1": "- Maria G., DeKalb",
-      "testimonials.quote2":
-        '"After a storm dropped branches near our driveway, they responded quickly, trimmed what was unsafe, and cleaned up the debris the same day."',
-      "testimonials.author2": "- John D., Sycamore",
-      "testimonials.quote3":
-        '"Our lawn maintenance has been reliable all season. They confirm the visit, show up on time, and speak Spanish with my family when needed."',
-      "testimonials.author3": "- Rosa M., Cortland",
+        "Clear estimates, careful property cleanup, and responsive service for repeat yard care and one-time projects.",
+      "testimonials.card1.title": "Clear Estimate Path",
+      "testimonials.card1.text":
+        "Share the service, property size, ZIP code, and photos so the team can respond with the right next step.",
+      "testimonials.card2.title": "Clean, Careful Work",
+      "testimonials.card2.text":
+        "Lawn care, trimming, cleanup, and landscape work are handled with attention to the details homeowners notice.",
+      "testimonials.card3.title": "English + Spanish Service",
+      "testimonials.card3.text":
+        "Bilingual communication keeps scheduling, estimates, and project details easier for more local families.",
     },
     es: {
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -296,18 +296,18 @@
       "gallery.loadMore": "Cargar más fotos",
       "gallery.loadingButton": "Cargando...",
 
-      "testimonials.heading": "Lo que dicen nuestros clientes",
+      "testimonials.heading": "Lo que pueden esperar los dueños de casa",
       "testimonials.subheading":
-        "Clientes locales cuentan con comunicación rápida, trabajo limpio y estimados justos para mantenimiento frecuente y proyectos de una sola vez.",
-      "testimonials.quote1":
-        '"Limpiaron nuestro jardín descuidado, marcaron los bordes y dejaron todo listo antes del fin de semana. Precio claro y agenda fácil."',
-      "testimonials.author1": "- Maria G., DeKalb",
-      "testimonials.quote2":
-        '"Después de una tormenta, respondieron rápido, cortaron las ramas peligrosas cerca de la entrada y recogieron los restos el mismo día."',
-      "testimonials.author2": "- John D., Sycamore",
-      "testimonials.quote3":
-        '"El mantenimiento del césped ha sido confiable toda la temporada. Confirman la visita, llegan a tiempo y hablan español con mi familia cuando hace falta."',
-      "testimonials.author3": "- Rosa M., Cortland",
+        "Estimados claros, limpieza cuidadosa de la propiedad y servicio atento para mantenimiento frecuente y proyectos de una sola vez.",
+      "testimonials.card1.title": "Camino claro para el estimado",
+      "testimonials.card1.text":
+        "Comparte el servicio, tamaño de la propiedad, código postal y fotos para que el equipo responda con el siguiente paso correcto.",
+      "testimonials.card2.title": "Trabajo limpio y cuidadoso",
+      "testimonials.card2.text":
+        "El cuidado del césped, poda, limpieza y paisajismo se hacen con atención a los detalles que los dueños de casa notan.",
+      "testimonials.card3.title": "Servicio en inglés y español",
+      "testimonials.card3.text":
+        "La comunicación bilingüe facilita la agenda, los estimados y los detalles del proyecto para más familias locales.",
 
       "serviceArea.heading": "Zonas en las que trabajamos",
       "serviceArea.subheading": "Orgullosos de servir al condado de DeKalb",
