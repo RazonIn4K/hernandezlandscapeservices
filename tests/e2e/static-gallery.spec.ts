@@ -49,20 +49,23 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('navigation works correctly', async ({ page }) => {
-    // Test main navigation links
-    const navLinks = [
-      '#services',
-      '#gallery', 
-      '#pricing',
-      '#testimonials',
-      '#service-area',
-      '#quote'
-    ];
-    
-    for (const link of navLinks) {
+    const anchorLinks = ['#services', '#testimonials', '#service-area', '#quote'];
+
+    for (const link of anchorLinks) {
+      await page.goto('/');
       await page.click(`a[href="${link}"]`);
       await expect(page.locator(link)).toBeInViewport();
     }
+
+    await page.goto('/');
+    await page.click('a[href="gallery.html"]');
+    await expect(page).toHaveURL(/\/gallery(?:\.html)?$/);
+    await expect(page.locator('body')).toContainText(/Recent Projects|Project Video Tours|Gallery/i);
+
+    await page.goto('/');
+    await page.click('a[href="videos.html"]');
+    await expect(page).toHaveURL(/\/videos(?:\.html)?$/);
+    await expect(page.locator('body')).toContainText(/Project Video Tours|Videos/i);
   });
 
   test('pricing section displays correctly', async ({ page }) => {

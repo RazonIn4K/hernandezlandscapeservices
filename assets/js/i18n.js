@@ -89,7 +89,7 @@
       "hero.outdoor": "Outdoor Space",
       "hero.subtitle":
         "Professional, family-owned landscaping in DeKalb County. Committed to excellence since 2019.",
-      "hero.cta": "Get Instant Quote",
+      "hero.cta": "Request Free Estimate",
       "hero.call": "Call Now",
       "hero.insured": "Fully Insured",
       "hero.licensed": "Licensed LLC",
@@ -235,7 +235,7 @@
         'Transforma tu<br><span class="text-green-400">Espacio Exterior</span>',
       "hero.subheading":
         "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
-      "hero.cta.instant": "Obtén cotización instantánea",
+      "hero.cta.instant": "Solicitar estimado gratis",
       "hero.cta.call": "Llámanos ahora",
       "hero.badge.insured": "Totalmente asegurados",
       "hero.badge.licensed": "LLC con licencia",
@@ -412,7 +412,7 @@
       "hero.outdoor": "Espacio Exterior",
       "hero.subtitle":
         "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
-      "hero.cta": "Obtén cotización instantánea",
+      "hero.cta": "Solicitar estimado gratis",
       "hero.call": "Llámanos ahora",
       "hero.insured": "Totalmente asegurados",
       "hero.licensed": "LLC con licencia",
