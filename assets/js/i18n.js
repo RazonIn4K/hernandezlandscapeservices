@@ -96,18 +96,35 @@
       "hero.family": "Family Owned",
       "hero.bilingual": "Se Habla Español",
       "instant.button.calculate": "Request Free Estimate",
-      "testimonials.heading": "What Homeowners Can Expect",
+      "testimonials.heading": "Featured Customer Feedback",
       "testimonials.subheading":
-        "Clear estimates, careful property cleanup, and responsive service for repeat yard care and one-time projects.",
-      "testimonials.card1.title": "Clear Estimate Path",
-      "testimonials.card1.text":
-        "Share the service, property size, ZIP code, and photos so the team can respond with the right next step.",
-      "testimonials.card2.title": "Clean, Careful Work",
-      "testimonials.card2.text":
-        "Lawn care, trimming, cleanup, and landscape work are handled with attention to the details homeowners notice.",
-      "testimonials.card3.title": "English + Spanish Service",
-      "testimonials.card3.text":
-        "Bilingual communication keeps scheduling, estimates, and project details easier for more local families.",
+        "A recent published review for the DeKalb business listing, plus the service standards local homeowners usually want confirmed before they book.",
+      "testimonials.badge": "5.0 public review",
+      "testimonials.reviewLabel": "Published June 19",
+      "testimonials.reviewQuote":
+        "Robert Tolito praised the team for turning his lawn into a beautifully manicured space, working efficiently, and paying attention to the details he requested.",
+      "testimonials.reviewAuthor": "Robert Tolito",
+      "testimonials.reviewMeta":
+        "Public review tied to the Hernandez Landscape DeKalb business listing.",
+      "testimonials.reviewSource": "View source review",
+      "testimonials.supportTitle":
+        "What local homeowners want confirmed before they call",
+      "testimonials.support1":
+        "A clear response on pricing and next steps",
+      "testimonials.support2":
+        "Clean finish and detail-focused work on-site",
+      "testimonials.support3":
+        "Bilingual communication for scheduling and updates",
+      "testimonials.ctaEyebrow": "Ready for your quote?",
+      "testimonials.ctaText":
+        "Choose the service you need and send the property details. The team follows up with the right next step instead of a generic reply.",
+      "testimonials.ctaButton": "Request Free Quote",
+      "quote.prefill.prefix": "Selected service:",
+      "quote.prefill.helper":
+        "Add your property details below and the team can respond with the right next step.",
+      "quote.select.leaf": "Leaf Removal",
+      "quote.select.gutter": "Gutter Cleaning",
+      "quote.select.pressure": "Pressure Washing",
     },
     es: {
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -296,18 +313,29 @@
       "gallery.loadMore": "Cargar más fotos",
       "gallery.loadingButton": "Cargando...",
 
-      "testimonials.heading": "Lo que pueden esperar los dueños de casa",
+      "testimonials.heading": "Comentario destacado de un cliente",
       "testimonials.subheading":
-        "Estimados claros, limpieza cuidadosa de la propiedad y servicio atento para mantenimiento frecuente y proyectos de una sola vez.",
-      "testimonials.card1.title": "Camino claro para el estimado",
-      "testimonials.card1.text":
-        "Comparte el servicio, tamaño de la propiedad, código postal y fotos para que el equipo responda con el siguiente paso correcto.",
-      "testimonials.card2.title": "Trabajo limpio y cuidadoso",
-      "testimonials.card2.text":
-        "El cuidado del césped, poda, limpieza y paisajismo se hacen con atención a los detalles que los dueños de casa notan.",
-      "testimonials.card3.title": "Servicio en inglés y español",
-      "testimonials.card3.text":
-        "La comunicación bilingüe facilita la agenda, los estimados y los detalles del proyecto para más familias locales.",
+        "Una reseña pública reciente del perfil del negocio en DeKalb, junto con los puntos que los dueños de casa suelen querer confirmar antes de contratar.",
+      "testimonials.badge": "Reseña pública 5.0",
+      "testimonials.reviewLabel": "Publicada el 19 de junio",
+      "testimonials.reviewQuote":
+        "Robert Tolito destacó que el equipo dejó su jardín muy bien cuidado, trabajó con eficiencia y puso atención a los detalles que pidió.",
+      "testimonials.reviewAuthor": "Robert Tolito",
+      "testimonials.reviewMeta":
+        "Reseña pública asociada con la ficha de Hernandez Landscape en DeKalb.",
+      "testimonials.reviewSource": "Ver la reseña original",
+      "testimonials.supportTitle":
+        "Lo que los dueños de casa quieren confirmar antes de llamar",
+      "testimonials.support1":
+        "Una respuesta clara sobre precio y siguientes pasos",
+      "testimonials.support2":
+        "Trabajo limpio y atención a los detalles en la propiedad",
+      "testimonials.support3":
+        "Comunicación bilingüe para agenda y actualizaciones",
+      "testimonials.ctaEyebrow": "¿Listo para tu cotización?",
+      "testimonials.ctaText":
+        "Elige el servicio que necesitas y comparte los detalles de la propiedad. El equipo responde con el siguiente paso correcto, no con una respuesta genérica.",
+      "testimonials.ctaButton": "Solicitar cotización",
 
       "serviceArea.heading": "Zonas en las que trabajamos",
       "serviceArea.subheading": "Orgullosos de servir al condado de DeKalb",
@@ -332,6 +360,9 @@
       "quote.followLabel": "Síguenos",
       "quote.facebook": "Facebook",
       "quote.formHeading": "Solicita una cotización gratis",
+      "quote.prefill.prefix": "Servicio seleccionado:",
+      "quote.prefill.helper":
+        "Agrega los detalles de tu propiedad abajo y el equipo podrá responder con el siguiente paso correcto.",
       "quote.placeholder.name": "Tu nombre",
       "quote.placeholder.phone": "Número de teléfono",
       "quote.title.phone": "Ingresa un número de 10 dígitos (ej., 8155011478)",
@@ -341,6 +372,9 @@
       "quote.select.tree": "Servicio de árboles",
       "quote.select.landscaping": "Paisajismo",
       "quote.select.snow": "Remoción de nieve",
+      "quote.select.leaf": "Retiro de hojas",
+      "quote.select.gutter": "Limpieza de canaletas",
+      "quote.select.pressure": "Lavado a presión",
       "quote.select.multiple": "Múltiples servicios",
       "quote.placeholder.project": "Cuéntanos sobre tu proyecto...",
       "quote.submit": "Enviar solicitud de cotización",

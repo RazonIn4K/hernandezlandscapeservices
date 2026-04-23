@@ -97,6 +97,24 @@ test.describe('Static Gallery Functionality', () => {
     await expect(submitButton).toHaveText(/Send Quote Request/);
   });
 
+  test('also available chips prefill the quote form', async ({ page }) => {
+    await page.click('[data-prefill-service="snow-removal"]');
+
+    await expect(page.locator('#quote')).toBeInViewport();
+    await expect(page.locator('#quotePrefillNotice')).toBeVisible();
+    await expect(page.locator('#contactService')).toHaveValue('snow-removal');
+    await expect(page.locator('#quotePrefillText')).toContainText('Snow Removal');
+  });
+
+  test('testimonials section shows a sourced public review', async ({ page }) => {
+    const testimonials = page.locator('#testimonials');
+
+    await expect(testimonials).toContainText('Robert Tolito');
+    await expect(
+      testimonials.locator('a[href*="beautifullandscapes.net"]').first(),
+    ).toBeVisible();
+  });
+
   test('mobile responsiveness', async ({ page }) => {
     // Test mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });

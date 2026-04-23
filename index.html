@@ -130,6 +130,18 @@
               data-i18n-key="nav.videos"
               >Videos</a
             >
+            <a
+              href="#testimonials"
+              class="text-sm font-semibold hover:text-green-600 transition"
+              data-i18n-key="nav.reviews"
+              >Reviews</a
+            >
+            <a
+              href="#service-area"
+              class="text-sm font-semibold hover:text-green-600 transition"
+              data-i18n-key="nav.serviceArea"
+              >Service Area</a
+            >
             <!-- Language Toggle -->
             <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
               <button
@@ -212,6 +224,20 @@
             onclick="toggleMobileMenu()"
             data-i18n-key="nav.videos"
             >Videos</a
+          >
+          <a
+            href="#testimonials"
+            class="block text-gray-700 font-semibold"
+            onclick="toggleMobileMenu()"
+            data-i18n-key="nav.reviews"
+            >Reviews</a
+          >
+          <a
+            href="#service-area"
+            class="block text-gray-700 font-semibold"
+            onclick="toggleMobileMenu()"
+            data-i18n-key="nav.serviceArea"
+            >Service Area</a
           >
           <a
             href="#quote"
@@ -665,6 +691,7 @@
               </ul>
               <a
                 href="#quote"
+                data-prefill-service="lawn-care"
                 class="text-green-600 font-semibold hover:text-green-700"
               >
                 <span data-i18n-key="services.cta">Get Quote</span>
@@ -719,6 +746,7 @@
               </ul>
               <a
                 href="#quote"
+                data-prefill-service="tree-service"
                 class="text-green-600 font-semibold hover:text-green-700"
               >
                 <span data-i18n-key="services.cta">Get Quote</span>
@@ -775,6 +803,7 @@
               </ul>
               <a
                 href="#quote"
+                data-prefill-service="landscaping"
                 class="text-green-600 font-semibold hover:text-green-700"
               >
                 <span data-i18n-key="services.cta">Get Quote</span>
@@ -794,6 +823,7 @@
           <div class="flex flex-wrap justify-center gap-4">
             <a
               href="#quote"
+              data-prefill-service="snow-removal"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <i class="fas fa-snowflake mr-2"></i
@@ -801,6 +831,7 @@
             </a>
             <a
               href="#quote"
+              data-prefill-service="leaf-removal"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <i class="fas fa-leaf mr-2"></i
@@ -808,6 +839,7 @@
             </a>
             <a
               href="#quote"
+              data-prefill-service="gutter-cleaning"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <i class="fas fa-home mr-2"></i
@@ -817,6 +849,7 @@
             </a>
             <a
               href="#quote"
+              data-prefill-service="pressure-washing"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <i class="fas fa-spray-can mr-2"></i
@@ -1316,77 +1349,164 @@
 
     <section id="testimonials" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <h2
-          class="text-4xl font-bold text-center mb-12"
-          data-i18n-key="testimonials.heading"
-        >
-          What Homeowners Can Expect
-        </h2>
-        <p
-          class="text-lg text-gray-600 text-center max-w-2xl mx-auto -mt-6 mb-10"
-          data-i18n-key="testimonials.subheading"
-        >
-          Clear estimates, careful property cleanup, and responsive service for
-          repeat yard care and one-time projects.
-        </p>
+        <div class="mx-auto max-w-3xl text-center">
+          <h2
+            class="text-4xl font-bold mb-4"
+            data-i18n-key="testimonials.heading"
+          >
+            Featured Customer Feedback
+          </h2>
+          <p
+            class="text-lg text-gray-600 mb-12"
+            data-i18n-key="testimonials.subheading"
+          >
+            A recent published review for the DeKalb business listing, plus the
+            service standards local homeowners usually want confirmed before
+            they book.
+          </p>
+        </div>
 
-        <div class="grid gap-6 md:grid-cols-3">
-          <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
+        <div class="grid gap-6 lg:grid-cols-2">
+          <article class="testimonial-spotlight p-8">
             <div
-              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-700"
-              aria-hidden="true"
+              class="mb-6 flex flex-wrap items-center justify-between gap-4"
             >
-              <i class="fas fa-clipboard-check text-xl"></i>
+              <span
+                class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800"
+              >
+                <i class="fas fa-star text-amber-500" aria-hidden="true"></i>
+                <span data-i18n-key="testimonials.badge"
+                  >5.0 public review</span
+                >
+              </span>
+              <p
+                class="text-sm font-medium text-gray-500"
+                data-i18n-key="testimonials.reviewLabel"
+              >
+                Published June 19
+              </p>
             </div>
-            <h3
-              class="text-xl font-bold mb-3"
-              data-i18n-key="testimonials.card1.title"
+
+            <blockquote
+              class="mb-8 text-2xl font-semibold leading-snug text-gray-900"
+              data-i18n-key="testimonials.reviewQuote"
             >
-              Clear Estimate Path
-            </h3>
-            <p class="text-gray-700" data-i18n-key="testimonials.card1.text">
-              Share the service, property size, ZIP code, and photos so the
-              team can respond with the right next step.
-            </p>
+              Robert Tolito praised the team for turning his lawn into a
+              beautifully manicured space, working efficiently, and paying
+              attention to the details he requested.
+            </blockquote>
+
+            <div
+              class="border-t border-gray-200 pt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="flex h-14 w-14 items-center justify-center rounded-full bg-green-100 font-bold text-green-700"
+                  aria-hidden="true"
+                >
+                  RT
+                </div>
+                <div>
+                  <p
+                    class="text-lg font-bold text-gray-900"
+                    data-i18n-key="testimonials.reviewAuthor"
+                  >
+                    Robert Tolito
+                  </p>
+                  <p
+                    class="text-sm text-gray-600"
+                    data-i18n-key="testimonials.reviewMeta"
+                  >
+                    Public review tied to the Hernandez Landscape DeKalb
+                    business listing.
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href="https://beautifullandscapes.net/landscapers-near-me/hernandez-landscape-tree-service-llc"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="testimonial-source-link inline-flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800"
+              >
+                <span data-i18n-key="testimonials.reviewSource"
+                  >View source review</span
+                >
+                <i
+                  class="fas fa-arrow-up-right-from-square text-xs"
+                  aria-hidden="true"
+                ></i>
+              </a>
+            </div>
           </article>
 
-          <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
-            <div
-              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-700"
-              aria-hidden="true"
-            >
-              <i class="fas fa-broom text-xl"></i>
-            </div>
-            <h3
-              class="text-xl font-bold mb-3"
-              data-i18n-key="testimonials.card2.title"
-            >
-              Clean, Careful Work
-            </h3>
-            <p class="text-gray-700" data-i18n-key="testimonials.card2.text">
-              Lawn care, trimming, cleanup, and landscape work are handled with
-              attention to the details homeowners notice.
-            </p>
-          </article>
+          <div class="space-y-6">
+            <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
+              <h3
+                class="mb-4 text-xl font-bold"
+                data-i18n-key="testimonials.supportTitle"
+              >
+                What local homeowners want confirmed before they call
+              </h3>
+              <ul class="space-y-4 text-gray-700">
+                <li class="flex items-start gap-3">
+                  <i
+                    class="fas fa-check-circle mt-1 text-green-600"
+                    aria-hidden="true"
+                  ></i>
+                  <span data-i18n-key="testimonials.support1"
+                    >A clear response on pricing and next steps</span
+                  >
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="fas fa-check-circle mt-1 text-green-600"
+                    aria-hidden="true"
+                  ></i>
+                  <span data-i18n-key="testimonials.support2"
+                    >Clean finish and detail-focused work on-site</span
+                  >
+                </li>
+                <li class="flex items-start gap-3">
+                  <i
+                    class="fas fa-check-circle mt-1 text-green-600"
+                    aria-hidden="true"
+                  ></i>
+                  <span data-i18n-key="testimonials.support3"
+                    >Bilingual communication for scheduling and updates</span
+                  >
+                </li>
+              </ul>
+            </article>
 
-          <article class="expectation-card bg-white p-6 rounded-lg shadow-lg">
-            <div
-              class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-700"
-              aria-hidden="true"
+            <article
+              class="rounded-lg border border-green-100 bg-green-50 p-6 shadow-sm"
             >
-              <i class="fas fa-comments text-xl"></i>
-            </div>
-            <h3
-              class="text-xl font-bold mb-3"
-              data-i18n-key="testimonials.card3.title"
-            >
-              English + Spanish Service
-            </h3>
-            <p class="text-gray-700" data-i18n-key="testimonials.card3.text">
-              Bilingual communication keeps scheduling, estimates, and project
-              details easier for more local families.
-            </p>
-          </article>
+              <p
+                class="mb-2 text-sm font-semibold uppercase tracking-wide text-green-700"
+                data-i18n-key="testimonials.ctaEyebrow"
+              >
+                Ready for your quote?
+              </p>
+              <p
+                class="mb-4 text-gray-700"
+                data-i18n-key="testimonials.ctaText"
+              >
+                Choose the service you need and send the property details. The
+                team follows up with the right next step instead of a generic
+                reply.
+              </p>
+              <a
+                href="#quote"
+                class="inline-flex items-center gap-2 rounded-full bg-green-600 px-5 py-3 font-semibold text-white transition hover:bg-green-700"
+              >
+                <span data-i18n-key="testimonials.ctaButton"
+                  >Request Free Quote</span
+                >
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -1668,6 +1788,26 @@
                     value="Website Quote Form"
                   />
 
+                  <div
+                    id="quotePrefillNotice"
+                    class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900"
+                    aria-live="polite"
+                  >
+                    <div class="flex items-start gap-3">
+                      <i
+                        class="fas fa-check-circle mt-0.5 text-green-700"
+                        aria-hidden="true"
+                      ></i>
+                      <div>
+                        <p id="quotePrefillText" class="font-semibold"></p>
+                        <p data-i18n-key="quote.prefill.helper">
+                          Add your property details below and the team can
+                          respond with the right next step.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <label for="contactName" class="sr-only">Your Name</label>
                   <input
                     type="text"
@@ -1779,17 +1919,49 @@
                     <option value="" data-i18n-key="quote.select.placeholder">
                       Select Service Needed
                     </option>
-                    <option data-i18n-key="quote.select.lawn">Lawn Care</option>
-                    <option data-i18n-key="quote.select.tree">
+                    <option value="lawn-care" data-i18n-key="quote.select.lawn">
+                      Lawn Care
+                    </option>
+                    <option
+                      value="tree-service"
+                      data-i18n-key="quote.select.tree"
+                    >
                       Tree Service
                     </option>
-                    <option data-i18n-key="quote.select.landscaping">
+                    <option
+                      value="landscaping"
+                      data-i18n-key="quote.select.landscaping"
+                    >
                       Landscaping
                     </option>
-                    <option data-i18n-key="quote.select.snow">
+                    <option
+                      value="snow-removal"
+                      data-i18n-key="quote.select.snow"
+                    >
                       Snow Removal
                     </option>
-                    <option data-i18n-key="quote.select.multiple">
+                    <option
+                      value="leaf-removal"
+                      data-i18n-key="quote.select.leaf"
+                    >
+                      Leaf Removal
+                    </option>
+                    <option
+                      value="gutter-cleaning"
+                      data-i18n-key="quote.select.gutter"
+                    >
+                      Gutter Cleaning
+                    </option>
+                    <option
+                      value="pressure-washing"
+                      data-i18n-key="quote.select.pressure"
+                    >
+                      Pressure Washing
+                    </option>
+                    <option
+                      value="multiple-services"
+                      data-i18n-key="quote.select.multiple"
+                    >
                       Multiple Services
                     </option>
                   </select>

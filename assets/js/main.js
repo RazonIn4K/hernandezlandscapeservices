@@ -74,6 +74,109 @@ const getMessage = (key, fallback) => {
   return fallback;
 };
 
+const SERVICE_PREFILLS = {
+  "lawn-care": {
+    value: "lawn-care",
+    labelKey: "quote.select.lawn",
+    fallbackLabel: "Lawn Care",
+  },
+  "tree-service": {
+    value: "tree-service",
+    labelKey: "quote.select.tree",
+    fallbackLabel: "Tree Service",
+  },
+  landscaping: {
+    value: "landscaping",
+    labelKey: "quote.select.landscaping",
+    fallbackLabel: "Landscaping",
+  },
+  "snow-removal": {
+    value: "snow-removal",
+    labelKey: "quote.select.snow",
+    fallbackLabel: "Snow Removal",
+  },
+  "leaf-removal": {
+    value: "leaf-removal",
+    labelKey: "quote.select.leaf",
+    fallbackLabel: "Leaf Removal",
+  },
+  "gutter-cleaning": {
+    value: "gutter-cleaning",
+    labelKey: "quote.select.gutter",
+    fallbackLabel: "Gutter Cleaning",
+  },
+  "pressure-washing": {
+    value: "pressure-washing",
+    labelKey: "quote.select.pressure",
+    fallbackLabel: "Pressure Washing",
+  },
+};
+
+const quotePrefillNotice = document.getElementById("quotePrefillNotice");
+const quotePrefillText = document.getElementById("quotePrefillText");
+let activePrefillService = null;
+
+function renderQuotePrefillNotice(serviceKey) {
+  if (!quotePrefillNotice || !quotePrefillText) {
+    return;
+  }
+
+  const prefill = serviceKey ? SERVICE_PREFILLS[serviceKey] : null;
+  if (!prefill) {
+    quotePrefillText.textContent = "";
+    quotePrefillNotice.classList.add("hidden");
+    return;
+  }
+
+  const label = getMessage(prefill.labelKey, prefill.fallbackLabel);
+  quotePrefillText.textContent = `${getMessage("quote.prefill.prefix", "Selected service:")} ${label}`;
+  quotePrefillNotice.classList.remove("hidden");
+}
+
+function applyQuotePrefill(serviceKey) {
+  const prefill = SERVICE_PREFILLS[serviceKey];
+  const contactService = document.getElementById("contactService");
+
+  if (!prefill || !contactService) {
+    return false;
+  }
+
+  const optionExists = Array.from(contactService.options).some(
+    (option) => option.value === prefill.value,
+  );
+  if (!optionExists) {
+    return false;
+  }
+
+  contactService.value = prefill.value;
+  contactService.classList.remove("border-red-500");
+  activePrefillService = serviceKey;
+  renderQuotePrefillNotice(serviceKey);
+  return true;
+}
+
+document.querySelectorAll("[data-prefill-service]").forEach((link) => {
+  link.addEventListener("click", () => {
+    const serviceKey = link.getAttribute("data-prefill-service");
+    if (serviceKey) {
+      applyQuotePrefill(serviceKey);
+    }
+  });
+});
+
+const requestedService = new URLSearchParams(window.location.search).get(
+  "service",
+);
+if (requestedService) {
+  applyQuotePrefill(requestedService);
+}
+
+if (siteI18n && typeof siteI18n.onChange === "function") {
+  siteI18n.onChange(() => {
+    renderQuotePrefillNotice(activePrefillService);
+  });
+}
+
 window.addEventListener("scroll", function () {
   const header = document.getElementById("header");
   if (header) {
@@ -241,6 +344,22 @@ function calculateQuote() {
 
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {
+  const contactService = document.getElementById("contactService");
+  if (contactService) {
+    contactService.addEventListener("change", () => {
+      if (
+        activePrefillService &&
+        SERVICE_PREFILLS[activePrefillService]?.value === contactService.value
+      ) {
+        renderQuotePrefillNotice(activePrefillService);
+        return;
+      }
+
+      activePrefillService = null;
+      renderQuotePrefillNotice(null);
+    });
+  }
+
   contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
