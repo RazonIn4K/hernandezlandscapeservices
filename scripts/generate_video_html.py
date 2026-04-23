@@ -45,7 +45,7 @@ def generate_video_html():
         snippet = f"""
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="metadata" {poster_attr} class="w-full h-full object-cover">
+                        <video controls preload="none" {poster_attr} class="w-full h-full object-cover">
                             <source src="{video_src}" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
