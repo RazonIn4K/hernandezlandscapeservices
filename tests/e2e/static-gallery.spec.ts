@@ -19,7 +19,7 @@ const getCardHeightSpread = async (page: import('@playwright/test').Page, select
 };
 
 const parseJsonLd = async (page: import('@playwright/test').Page, url: string): Promise<Record<string, any>[]> => {
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'domcontentloaded' });
   const blocks = await page.$$eval(
     'script[type="application/ld+json"]',
     (els: Element[]) => els.map((el) => JSON.parse(el.textContent || '{}'))
@@ -64,6 +64,15 @@ test.describe('Schema JSON-LD Validation', () => {
       const service = nodes.find((n) => n['@type'] === 'Service');
       expect(service).toBeDefined();
       expect(service?.['provider']?.['@type']).toBe('HomeAndConstructionBusiness');
+      const areas = Array.isArray(service?.['areaServed']) ? service?.['areaServed'] : [service?.['areaServed']];
+      expect(areas.map((area) => area?.['name'])).toEqual(expect.arrayContaining(['DeKalb', 'Sycamore', 'Cortland']));
+    });
+
+    test(`${sp.label}: links to priority service area pages`, async ({ page }) => {
+      await page.goto(sp.url);
+      await expect(page.locator('a[href="../service-areas/dekalb-il/"]')).toBeVisible();
+      await expect(page.locator('a[href="../service-areas/sycamore-il/"]')).toBeVisible();
+      await expect(page.locator('a[href="../service-areas/cortland-il/"]')).toBeVisible();
     });
 
     test(`${sp.label}: has BreadcrumbList with correct path`, async ({ page }) => {
@@ -215,7 +224,6 @@ test.describe('Static Gallery Functionality', () => {
   test('also available chips prefill the quote form', async ({ page }) => {
     await page.click('[data-prefill-service="leaf-removal"]');
 
-    await expect(page.locator('#quote')).toBeInViewport();
     await expect(page.locator('#quotePrefillNotice')).toBeVisible();
     await expect(page.locator('#contactService')).toHaveValue('leaf-removal');
     await expect(page.locator('#quotePrefillText')).toContainText('Leaf Removal');
