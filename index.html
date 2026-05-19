@@ -138,7 +138,7 @@
               >Reviews</a
             >
             <a
-              href="#service-area"
+              href="/service-areas/"
               class="text-sm font-semibold hover:text-green-600 transition"
               data-i18n-key="nav.serviceArea"
               >Service Area</a
@@ -234,7 +234,7 @@
             >Reviews</a
           >
           <a
-            href="#service-area"
+            href="/service-areas/"
             class="block text-gray-700 font-semibold"
             onclick="toggleMobileMenu()"
             data-i18n-key="nav.serviceArea"
@@ -804,7 +804,7 @@
                 </li>
               </ul>
               <a
-                href="#quote"
+                href="?service=landscaping#quote"
                 data-prefill-service="landscaping"
                 class="text-green-600 font-semibold hover:text-green-700"
               >
@@ -831,7 +831,7 @@
               ><span>Snow Removal</span>
             </a>
             <a
-              href="#quote"
+              href="?service=leaf-removal#quote"
               data-prefill-service="leaf-removal"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
@@ -839,7 +839,7 @@
               ><span data-i18n-key="services.extra.leaf">Leaf Removal</span>
             </a>
             <a
-              href="#quote"
+              href="?service=gutter-cleaning#quote"
               data-prefill-service="gutter-cleaning"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
@@ -849,7 +849,7 @@
               >
             </a>
             <a
-              href="#quote"
+              href="?service=pressure-washing#quote"
               data-prefill-service="pressure-washing"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
@@ -2555,10 +2555,12 @@
           navigator.serviceWorker
             .register("/sw.js")
             .then((registration) => {
-              console.log(
-                "ServiceWorker registration successful with scope:",
-                registration.scope,
-              );
+              if (registration?.scope) {
+                console.log(
+                  "ServiceWorker registration successful with scope:",
+                  registration.scope,
+                );
+              }
             })
             .catch((error) => {
               console.error("ServiceWorker registration failed:", error);

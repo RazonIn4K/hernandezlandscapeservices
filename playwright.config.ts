@@ -9,6 +9,7 @@ export default defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'http://localhost:3000', // Changed from Firebase emulator
+    serviceWorkers: 'block',
     trace: 'on-first-retry',
   },
 

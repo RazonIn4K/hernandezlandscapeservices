@@ -139,13 +139,22 @@ test.describe('Schema JSON-LD Validation', () => {
 });
 
 test.describe('Static Gallery Functionality', () => {
-  test.beforeEach(async ({ page }) => {
+  const testsWithCustomNavigation = new Set([
+    'mobile responsiveness',
+    'photo layouts remain aligned across breakpoints',
+  ]);
+
+  test.beforeEach(async ({ page }, testInfo) => {
     // Capture console logs for debugging
     page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
     page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
+
+    if (testsWithCustomNavigation.has(testInfo.title)) {
+      return;
+    }
     
     await page.goto('/', { waitUntil: 'commit' });
-    await page.waitForSelector('body');
+    await page.waitForSelector('body', { state: 'attached' });
   });
 
   test('loads homepage gallery and latest upload images', async ({ page }) => {
@@ -170,27 +179,33 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('navigation works correctly', async ({ page }) => {
-    const anchorLinks = ['#services', '#testimonials', '#service-area', '#quote'];
+    const anchorLinks = ['#services', '#testimonials', '#quote'];
 
     for (const link of anchorLinks) {
-      await page.goto('/');
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
       await page.click(`a[href="${link}"]`);
       await expect(page.locator(link)).toBeInViewport();
     }
 
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const serviceAreaHubLink = page.locator('a[href="/service-areas/"]').filter({ hasText: /Service Area/i }).first();
+    await expect(serviceAreaHubLink).toBeVisible();
+    await serviceAreaHubLink.click();
+    await expect(page).toHaveURL(/\/service-areas\/$/);
+
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.click('a[href="gallery.html"]');
     await expect(page).toHaveURL(/\/gallery(?:\.html)?$/);
     await expect(page.locator('body')).toContainText(/Recent Projects|Project Video Tours|Gallery/i);
 
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.click('a[href="videos.html"]');
     await expect(page).toHaveURL(/\/videos(?:\.html)?$/);
     await expect(page.locator('body')).toContainText(/Project Video Tours|Videos/i);
   });
 
   test('pricing section displays correctly', async ({ page }) => {
-    await page.goto('/#pricing');
+    await page.goto('/#pricing', { waitUntil: 'domcontentloaded' });
 
     const pricingSection = page.locator('section#pricing');
     await expect(pricingSection).toBeVisible();
@@ -222,7 +237,9 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('also available chips prefill the quote form', async ({ page }) => {
-    await page.click('[data-prefill-service="leaf-removal"]');
+    const leafChip = page.locator('[data-prefill-service="leaf-removal"]');
+    await expect(leafChip).toBeVisible();
+    await leafChip.click();
 
     await expect(page.locator('#quotePrefillNotice')).toBeVisible();
     await expect(page.locator('#contactService')).toHaveValue('leaf-removal');
@@ -315,6 +332,8 @@ test.describe('Static Gallery Functionality', () => {
   test('mobile responsiveness', async ({ page }) => {
     // Test mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('body', { state: 'attached' });
     
     // Check mobile menu works
     const mobileMenuButton = page.locator('button[aria-label="Toggle mobile menu"]');
@@ -332,7 +351,7 @@ test.describe('Static Gallery Functionality', () => {
     for (const viewport of responsiveViewports) {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
-      await page.goto('/');
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
       await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
 
       const homeOverflow = await page.evaluate(() =>
@@ -343,7 +362,7 @@ test.describe('Static Gallery Functionality', () => {
       const homeSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
       expect(homeSpread, `Home card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
 
-      await page.goto('/gallery.html');
+      await page.goto('/gallery.html', { waitUntil: 'domcontentloaded' });
       const galleryCardCount = await page.locator('.gallery-item').count();
 
       // In SPA fallback environments, /gallery.html can resolve to the homepage.
@@ -365,8 +384,8 @@ test.describe('Static Gallery Functionality', () => {
 
   test('language toggle functionality', async ({ page }) => {
     // Check language toggle buttons exist
-    const enButton = page.locator('[data-lang-switch="en"]').first();
-    const esButton = page.locator('[data-lang-switch="es"]').first();
+    const enButton = page.getByRole('button', { name: 'EN' }).first();
+    const esButton = page.getByRole('button', { name: 'ES' }).first();
     
     await expect(enButton).toBeVisible();
     await expect(esButton).toBeVisible();
@@ -381,16 +400,16 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('first visit defaults to English', async ({ page }) => {
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
       window.localStorage.setItem('siteLanguage', 'es');
       window.sessionStorage.clear();
     });
-    await page.reload();
+    await page.reload({ waitUntil: 'domcontentloaded' });
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('body')).toHaveAttribute('data-language', 'en');
-    await expect(page.locator('[data-lang-switch="en"]').first()).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.getByRole('button', { name: 'EN' }).first()).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('[data-i18n-key="hero.cta"]').first()).toContainText('Request Free Estimate');
 
     const storedLanguage = await page.evaluate(() => ({
@@ -405,10 +424,10 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('language toggle translates quote prefill notice', async ({ page }) => {
-    await page.goto('/?service=tree-service#quote');
+    await page.goto('/?service=tree-service#quote', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
 
-    const esButton = page.locator('[data-lang-switch="es"]').first();
+    const esButton = page.getByRole('button', { name: 'ES' }).first();
     await esButton.click();
 
     await expect(page.locator('#quotePrefillText')).toContainText('Servicio seleccionado: Servicio de árboles');
