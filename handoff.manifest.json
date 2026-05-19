@@ -11,7 +11,7 @@
       "priority": "P0",
       "confidence": "high",
       "local_skill": "schema-generator-local-business",
-      "rationale": "Upgrade schema to LandscapingBusiness, add FAQPage and BreadcrumbList, fix og:type.",
+      "rationale": "Upgrade schema to HomeAndConstructionBusiness, add FAQPage and BreadcrumbList, fix og:type.",
       "estimated_impact": "Improves rich result eligibility and entity understanding."
     },
     {

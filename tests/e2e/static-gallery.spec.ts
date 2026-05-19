@@ -101,12 +101,45 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('also available chips prefill the quote form', async ({ page }) => {
-    await page.click('[data-prefill-service="snow-removal"]');
+    await page.click('[data-prefill-service="leaf-removal"]');
 
     await expect(page.locator('#quote')).toBeInViewport();
     await expect(page.locator('#quotePrefillNotice')).toBeVisible();
-    await expect(page.locator('#contactService')).toHaveValue('snow-removal');
-    await expect(page.locator('#quotePrefillText')).toContainText('Snow Removal');
+    await expect(page.locator('#contactService')).toHaveValue('leaf-removal');
+    await expect(page.locator('#quotePrefillText')).toContainText('Leaf Removal');
+  });
+
+  test('service page CTAs prefill the quote form', async ({ page }) => {
+    const services = [
+      {
+        path: '/tree-removal/',
+        href: '../?service=tree-service#quote',
+        value: 'tree-service',
+        label: 'Tree Service',
+      },
+      {
+        path: '/lawn-care/',
+        href: '../?service=lawn-care#quote',
+        value: 'lawn-care',
+        label: 'Lawn Care',
+      },
+      {
+        path: '/snow-removal/',
+        href: '../?service=snow-removal#quote',
+        value: 'snow-removal',
+        label: 'Snow Removal',
+      },
+    ];
+
+    for (const service of services) {
+      await page.goto(service.path);
+      await page.click(`a[href="${service.href}"]`);
+
+      await expect(page.locator('#quote')).toBeInViewport();
+      await expect(page.locator('#quotePrefillNotice')).toBeVisible();
+      await expect(page.locator('#contactService')).toHaveValue(service.value);
+      await expect(page.locator('#quotePrefillText')).toContainText(service.label);
+    }
   });
 
   test('testimonials section shows a sourced public review', async ({ page }) => {

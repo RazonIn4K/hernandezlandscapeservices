@@ -2,7 +2,7 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LandscapingBusiness",
+      "@type": "HomeAndConstructionBusiness",
       "@id": "https://hernandezlandscapeservices.com/#organization",
       "name": "Hernandez Landscape & Tree Service LLC",
       "description": "Professional landscaping, tree trimming, safe tree removal, lawn care, cleanup, and snow removal in DeKalb County, IL. Family-owned, licensed, insured, and bilingual.",
