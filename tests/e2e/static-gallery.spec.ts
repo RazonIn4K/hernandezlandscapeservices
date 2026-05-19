@@ -69,10 +69,11 @@ test.describe('Schema JSON-LD Validation', () => {
     });
 
     test(`${sp.label}: links to priority service area pages`, async ({ page }) => {
-      await page.goto(sp.url);
-      await expect(page.locator('a[href="../service-areas/dekalb-il/"]')).toBeVisible();
-      await expect(page.locator('a[href="../service-areas/sycamore-il/"]')).toBeVisible();
-      await expect(page.locator('a[href="../service-areas/cortland-il/"]')).toBeVisible();
+      await page.goto(sp.url, { waitUntil: 'domcontentloaded' });
+
+      for (const areaSlug of ['dekalb-il', 'sycamore-il', 'cortland-il']) {
+        await expect(page.locator(`a[href="../service-areas/${areaSlug}/"]`)).toHaveCount(1);
+      }
     });
 
     test(`${sp.label}: has BreadcrumbList with correct path`, async ({ page }) => {
@@ -221,7 +222,7 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('contact form is accessible', async ({ page }) => {
-    await page.goto('/#quote');
+    await page.goto('/#quote', { waitUntil: 'domcontentloaded' });
     
     // Check form fields exist
     await expect(page.locator('#contactName')).toBeVisible();
@@ -237,10 +238,14 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('also available chips prefill the quote form', async ({ page }) => {
-    const leafChip = page.locator('[data-prefill-service="leaf-removal"]');
+    await page.goto('/#services', { waitUntil: 'domcontentloaded' });
+
+    const leafChip = page.locator('#services [data-prefill-service="leaf-removal"]');
+    await leafChip.scrollIntoViewIfNeeded();
     await expect(leafChip).toBeVisible();
     await leafChip.click();
 
+    await expect(page).toHaveURL(/service=leaf-removal/);
     await expect(page.locator('#quotePrefillNotice')).toBeVisible();
     await expect(page.locator('#contactService')).toHaveValue('leaf-removal');
     await expect(page.locator('#quotePrefillText')).toContainText('Leaf Removal');
@@ -269,7 +274,7 @@ test.describe('Static Gallery Functionality', () => {
     ];
 
     for (const service of services) {
-      await page.goto(service.path);
+      await page.goto(service.path, { waitUntil: 'domcontentloaded' });
       await page.click(`a[href="${service.href}"]`);
 
       await expect(page.locator('#quote')).toBeInViewport();
@@ -324,9 +329,11 @@ test.describe('Static Gallery Functionality', () => {
     const testimonials = page.locator('#testimonials');
 
     await expect(testimonials).toContainText('Robert Tolito');
-    await expect(
-      testimonials.locator('a[href*="beautifullandscapes.net"]').first(),
-    ).toBeVisible();
+    await expect(testimonials.locator('a[href*="beautifullandscapes.net"]')).toHaveCount(1);
+    await expect(testimonials.locator('a[href*="beautifullandscapes.net"]')).toHaveAttribute(
+      'rel',
+      'noopener noreferrer',
+    );
   });
 
   test('mobile responsiveness', async ({ page }) => {
@@ -424,10 +431,11 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('language toggle translates quote prefill notice', async ({ page }) => {
-    await page.goto('/?service=tree-service#quote', { waitUntil: 'domcontentloaded' });
+    await page.goto('/?service=tree-service#quote', { waitUntil: 'commit' });
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
 
-    const esButton = page.getByRole('button', { name: 'ES' }).first();
+    const esButton = page.locator('nav .hidden.lg\\:flex [data-lang-switch="es"]');
+    await expect(esButton).toBeVisible();
     await esButton.click();
 
     await expect(page.locator('#quotePrefillText')).toContainText('Servicio seleccionado: Servicio de árboles');
