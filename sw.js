@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v15';
+const CACHE_NAME = 'hernandez-landscape-v16';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
@@ -10,6 +10,14 @@ const URLS_TO_CACHE = [
   '/lawn-care/index.html',
   '/snow-removal/',
   '/snow-removal/index.html',
+  '/service-areas/',
+  '/service-areas/index.html',
+  '/service-areas/dekalb-il/',
+  '/service-areas/dekalb-il/index.html',
+  '/service-areas/sycamore-il/',
+  '/service-areas/sycamore-il/index.html',
+  '/service-areas/cortland-il/',
+  '/service-areas/cortland-il/index.html',
   '/card.html',
   '/privacy.html',
   '/terms.html',
