@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v14';
+const CACHE_NAME = 'hernandez-landscape-v15';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
@@ -41,7 +41,9 @@ const URLS_TO_CACHE = [
   '/hernandez_images/google-profile-2026-tree-climber-roofline.jpg',
   '/hernandez_images/google-profile-2026-tree-climber-full-tree.jpg',
   '/hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
-  '/hernandez_images/google-profile-2026-equipment-trailers.jpg'
+  '/hernandez_images/google-profile-2026-equipment-trailers.jpg',
+  '/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
+  '/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg'
 ];
 
 self.addEventListener('install', event => {

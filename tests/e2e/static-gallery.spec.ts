@@ -113,7 +113,8 @@ test.describe('Static Gallery Functionality', () => {
     page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
     page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
     
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.goto('/', { waitUntil: 'commit' });
+    await page.waitForSelector('body');
   });
 
   test('loads homepage gallery and latest upload images', async ({ page }) => {
