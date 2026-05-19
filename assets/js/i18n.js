@@ -462,6 +462,30 @@
     });
   }
 
+  function clearLegacyLanguagePreference() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      // Ignore storage access errors so language setup still works.
+    }
+  }
+
+  function getSessionLanguagePreference() {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function setSessionLanguagePreference(lang) {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, lang);
+    } catch (error) {
+      console.warn("Unable to persist language preference.", error);
+    }
+  }
+
   function refreshTextContent(lang) {
     document.querySelectorAll("[data-i18n-key]").forEach((element) => {
       if (!elementOriginalContent.has(element)) {
@@ -517,11 +541,7 @@
     refreshTextContent(targetLang);
     updateToggleButtons(targetLang);
 
-    try {
-      localStorage.setItem(STORAGE_KEY, targetLang);
-    } catch (error) {
-      console.warn("Unable to persist language preference.", error);
-    }
+    setSessionLanguagePreference(targetLang);
 
     languageListeners.forEach((listener) => {
       try {
@@ -542,13 +562,8 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     initializeLanguageSelector();
-    const savedLanguage = (() => {
-      try {
-        return localStorage.getItem(STORAGE_KEY);
-      } catch (error) {
-        return null;
-      }
-    })();
+    clearLegacyLanguagePreference();
+    const savedLanguage = getSessionLanguagePreference();
     applyLanguage(savedLanguage === "es" ? "es" : DEFAULT_LANG);
   });
 
