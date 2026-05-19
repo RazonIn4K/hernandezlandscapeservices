@@ -31,7 +31,7 @@ export default defineConfig({
 
   // Static web server for testing
   webServer: {
-    command: 'npm run build && npx serve -s . -l 3000',
+    command: 'node node_modules/tailwindcss/lib/cli.js -i ./src/input.css -o ./assets/css/styles.css --minify && node node_modules/serve/build/main.js . -l 3000',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },

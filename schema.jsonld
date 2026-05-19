@@ -1,0 +1,187 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LandscapingBusiness",
+      "@id": "https://hernandezlandscapeservices.com/#organization",
+      "name": "Hernandez Landscape & Tree Service LLC",
+      "description": "Professional landscaping, tree trimming, safe tree removal, lawn care, cleanup, and snow removal in DeKalb County, IL. Family-owned, licensed, insured, and bilingual.",
+      "image": [
+        "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg",
+        "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-canopy.jpg",
+        "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg",
+        "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg",
+        "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New.png",
+        "https://hernandezlandscapeservices.com/hernandez_images/web_After1.jpeg"
+      ],
+      "logo": "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New.png",
+      "telephone": "+1-815-501-1478",
+      "email": "hernandezlandscapetreeservices@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1029 Lewis St",
+        "addressLocality": "DeKalb",
+        "addressRegion": "IL",
+        "postalCode": "60115",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.9294,
+        "longitude": -88.7504
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "07:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "16:00"
+        }
+      ],
+      "priceRange": "$$",
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "DeKalb",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        "Sycamore, IL",
+        "Cortland, IL",
+        "Malta, IL",
+        "Genoa, IL",
+        "Kingston, IL",
+        "Rochelle, IL",
+        "Hinckley, IL",
+        "St. Charles, IL",
+        "West Chicago, IL"
+      ],
+      "url": "https://hernandezlandscapeservices.com/",
+      "hasMap": "https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/",
+      "sameAs": [
+        "https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
+      ],
+      "knowsLanguage": ["English", "Spanish"],
+      "paymentAccepted": ["Cash", "Check", "Venmo", "Zelle"],
+      "currenciesAccepted": "USD",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Landscaping Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Lawn Care",
+              "description": "Weekly mowing, edging, fertilization, weed control"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Tree Service",
+              "description": "Tree trimming, removal, stump grinding, emergency service"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Landscaping",
+              "description": "Design & installation, mulching, planting, hardscaping"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Seasonal Cleanup",
+              "description": "Spring cleanup, fall cleanup, leaf removal, gutter cleaning, and pressure washing"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Snow Removal",
+              "description": "Residential and commercial snow removal by availability"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://hernandezlandscapeservices.com/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://hernandezlandscapeservices.com/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://hernandezlandscapeservices.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Do you provide free estimates for tree removal in DeKalb?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we provide free, no-obligation estimates for all tree removal, tree trimming, and landscaping projects in DeKalb County and surrounding areas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Hernandez Landscape & Tree Service licensed and insured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we are a fully licensed and insured LLC (Auth #13934835) protecting your property during all tree and landscaping work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you serve outside of DeKalb?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles, and West Chicago."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer emergency tree removal services?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we offer 24/7 emergency tree service for fallen or hazardous trees that pose an immediate threat to your home or property."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide snow removal for residential properties?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we offer seasonal snow removal services for both residential and commercial properties in the DeKalb area, subject to availability."
+          }
+        }
+      ]
+    }
+  ]
+}
