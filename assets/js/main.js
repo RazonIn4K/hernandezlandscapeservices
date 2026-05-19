@@ -63,8 +63,9 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-const siteI18n = window.siteI18n || null;
+const getSiteI18n = () => window.siteI18n || null;
 const getMessage = (key, fallback) => {
+  const siteI18n = getSiteI18n();
   if (siteI18n && typeof siteI18n.t === "function") {
     const value = siteI18n.t(key);
     if (value) {
@@ -213,9 +214,13 @@ if (requestedService) {
   }
 }
 
-if (siteI18n && typeof siteI18n.onChange === "function") {
-  siteI18n.onChange(() => {
+const languageApi = getSiteI18n();
+if (languageApi && typeof languageApi.onChange === "function") {
+  languageApi.onChange(() => {
     renderQuotePrefillNotice(activePrefillService);
+    if (activePrefillService && window.location.hash === "#quote") {
+      scheduleScrollElementBelowHeader("quote");
+    }
   });
 }
 
