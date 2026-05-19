@@ -1,10 +1,14 @@
-const CACHE_NAME = 'hernandez-landscape-v9';
+const CACHE_NAME = 'hernandez-landscape-v10';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
   '/gallery.html',
   '/videos.html',
+  '/card.html',
+  '/privacy.html',
+  '/terms.html',
   '/assets/css/styles.css',
+  '/assets/css/custom.css',
   '/assets/css/gallery.css',
   '/assets/css/video.css',
   '/pricing.html',
@@ -14,7 +18,7 @@ const URLS_TO_CACHE = [
   '/assets/js/static-gallery.js',
   '/assets/js/i18n.js',
   '/manifest.json',
-  '/hernandez_images/web_Logo.jpg',
+  '/hernandez_images/web_Logo_New.png',
   '/hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg',
   '/hernandez_images/web_hero_mobile.jpg',
   '/hernandez_images/web_After1.jpeg',
@@ -23,7 +27,14 @@ const URLS_TO_CACHE = [
   '/hernandez_images/web_IMG_1464_poster.jpg',
   '/hernandez_images/web_IMG_0434_poster.jpg',
   '/hernandez_images/web_Wideshot_Bestlandscape.jpg',
-  '/hernandez_images/web_Wideshot_Bestlandscape2.jpeg'
+  '/hernandez_images/web_Wideshot_Bestlandscape2.jpeg',
+  '/hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
+  '/hernandez_images/google-profile-2026-tree-climber-canopy.jpg',
+  '/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg',
+  '/hernandez_images/google-profile-2026-tree-climber-roofline.jpg',
+  '/hernandez_images/google-profile-2026-tree-climber-full-tree.jpg',
+  '/hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
+  '/hernandez_images/google-profile-2026-equipment-trailers.jpg'
 ];
 
 self.addEventListener('install', event => {

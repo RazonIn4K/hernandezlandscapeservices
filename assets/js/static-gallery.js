@@ -25,6 +25,41 @@
     // Static image list - these are the actual photos in hernandez_images/
     const staticImages = [
       {
+        src: 'hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
+        alt: 'Hernandez Landscape and Tree Service branded truck and trailers',
+        caption: 'Branded Hernandez crew trucks and trailers ready for field work'
+      },
+      {
+        src: 'hernandez_images/google-profile-2026-tree-climber-canopy.jpg',
+        alt: 'Tree service crew member working high in a tree canopy',
+        caption: 'Tree climbing and canopy work for safe trimming and removal'
+      },
+      {
+        src: 'hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg',
+        alt: 'Cut logs after tree removal cleanup',
+        caption: 'Tree removal cleanup with cut logs handled on site'
+      },
+      {
+        src: 'hernandez_images/google-profile-2026-tree-climber-roofline.jpg',
+        alt: 'Tree service crew working near a residential roofline',
+        caption: 'Careful tree work around homes, roofs, and yard structures'
+      },
+      {
+        src: 'hernandez_images/google-profile-2026-tree-climber-full-tree.jpg',
+        alt: 'Tree climber working in a tall residential tree',
+        caption: 'Full-tree service work for mature residential trees'
+      },
+      {
+        src: 'hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
+        alt: 'Completed yard work with Hernandez equipment on site',
+        caption: 'Recent completed yard work with equipment still on site'
+      },
+      {
+        src: 'hernandez_images/google-profile-2026-equipment-trailers.jpg',
+        alt: 'Hernandez Landscape equipment trailers parked for service work',
+        caption: 'Equipment trailers used for landscaping and tree service jobs'
+      },
+      {
         src: 'hernandez_images/web_IMG_3362_2.webp',
         alt: 'Freshly finished landscape bed and lawn edging',
         caption: 'Recent landscape refresh with clean borders and healthy planting beds'

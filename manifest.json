@@ -1,10 +1,10 @@
 {
-  "name": "Hernandez Landscape Services",
-  "short_name": "Hernandez",
-  "start_url": "/index.html",
+  "name": "Hernandez Landscape & Tree Service LLC",
+  "short_name": "Hernandez Landscape",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#153b2f",
+  "theme_color": "#153b2f",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

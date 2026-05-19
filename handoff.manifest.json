@@ -1,0 +1,62 @@
+{
+  "project": "Hernandez Landscape Services",
+  "audit_date": "2026-05-18",
+  "run_profile": "home_service",
+  "tasks": [
+    {
+      "id": "P0-001",
+      "change_type": "modify",
+      "target_file": "index.html",
+      "artifact_dependency": "schema.jsonld",
+      "priority": "P0",
+      "confidence": "high",
+      "local_skill": "schema-generator-local-business",
+      "rationale": "Upgrade schema to LandscapingBusiness, add FAQPage and BreadcrumbList, fix og:type.",
+      "estimated_impact": "Improves rich result eligibility and entity understanding."
+    },
+    {
+      "id": "P0-002",
+      "change_type": "add",
+      "target_file": "tree-removal/index.html",
+      "artifact_dependency": "none",
+      "priority": "P0",
+      "confidence": "high",
+      "local_skill": "service-page-generator",
+      "rationale": "Create dedicated service page for Tree Removal targeting DeKalb, IL.",
+      "estimated_impact": "Captures high-intent search traffic for tree removal services."
+    },
+    {
+      "id": "P0-003",
+      "change_type": "add",
+      "target_file": "lawn-care/index.html",
+      "artifact_dependency": "none",
+      "priority": "P0",
+      "confidence": "high",
+      "local_skill": "service-page-generator",
+      "rationale": "Create dedicated service page for Lawn Care targeting DeKalb, IL.",
+      "estimated_impact": "Captures high-intent search traffic for lawn care services."
+    },
+    {
+      "id": "P0-004",
+      "change_type": "add",
+      "target_file": "snow-removal/index.html",
+      "artifact_dependency": "none",
+      "priority": "P0",
+      "confidence": "high",
+      "local_skill": "service-page-generator",
+      "rationale": "Create dedicated service page for Snow Removal targeting DeKalb, IL.",
+      "estimated_impact": "Captures high-intent search traffic for snow removal services."
+    },
+    {
+      "id": "P0-005",
+      "change_type": "modify",
+      "target_file": "sitemap.xml",
+      "artifact_dependency": "target-sitemap.xml",
+      "priority": "P0",
+      "confidence": "high",
+      "local_skill": "sitemap-and-robots-maintainer",
+      "rationale": "Add the three new service pages to the XML sitemap.",
+      "estimated_impact": "Ensures rapid discovery and indexing of new revenue-driving pages."
+    }
+  ]
+}

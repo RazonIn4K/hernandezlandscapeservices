@@ -81,14 +81,15 @@
 
       "gallery.recent.heading": "Recent Projects",
       "gallery.item.project": "Project",
+      "nav.contact": "Contact",
       "nav.videos": "Videos",
       "video.viewAll": "View All Videos",
 
       "hero.eyebrow": "DeKalb County Landscaping & Tree Service",
-      "hero.transform": "Transform Your",
-      "hero.outdoor": "Outdoor Space",
+      "hero.transform": "Hernandez Landscape & Tree Service LLC",
+      "hero.outdoor": "DeKalb Landscaping & Tree Care",
       "hero.subtitle":
-        "Professional, family-owned landscaping in DeKalb County. Committed to excellence since 2019.",
+        "Tree trimming, removal, lawn care, and landscaping from a family-owned DeKalb County crew. Free estimates in English or Spanish.",
       "hero.cta": "Request Free Estimate",
       "hero.call": "Call Now",
       "hero.insured": "Fully Insured",
@@ -125,6 +126,13 @@
       "quote.select.leaf": "Leaf Removal",
       "quote.select.gutter": "Gutter Cleaning",
       "quote.select.pressure": "Pressure Washing",
+      "services.recent.eyebrow": "Fresh Profile Photos",
+      "services.recent.heading": "Recent Tree Service & Equipment Work",
+      "services.recent.copy":
+        "New project photos from the verified Hernandez Landscape & Tree Service LLC business profile.",
+      "services.recent.cta": "View Full Gallery",
+      "footer.privacy": "Privacy Policy",
+      "footer.terms": "Terms of Service",
     },
     es: {
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -230,6 +238,7 @@
       "nav.reviews": "Reseñas",
       "nav.serviceArea": "Zonas de Servicio",
       "nav.freeQuote": "Solicitar Cotización",
+      "nav.contact": "Contacto",
 
       "hero.heading":
         'Transforma tu<br><span class="text-green-400">Espacio Exterior</span>',
@@ -289,6 +298,11 @@
       "services.extra.leaf": "Recolección de hojas",
       "services.extra.gutter": "Limpieza de canaletas",
       "services.extra.pressure": "Lavado a presión",
+      "services.recent.eyebrow": "Fotos recientes del perfil",
+      "services.recent.heading": "Trabajo reciente de árboles y equipo",
+      "services.recent.copy":
+        "Nuevas fotos de proyectos del perfil verificado de Hernandez Landscape & Tree Service LLC.",
+      "services.recent.cta": "Ver galería completa",
 
       "gallery.heading": "Mira la diferencia que logramos",
       "gallery.subheading": "Desliza para ver nuestras transformaciones",
@@ -386,6 +400,8 @@
       "footer.follow": "Síguenos",
       "footer.facebook": "Facebook",
       "footer.maps": "Google Maps",
+      "footer.privacy": "Política de privacidad",
+      "footer.terms": "Términos de servicio",
 
       "modal.close": "Cerrar",
 
@@ -408,10 +424,10 @@
       "gallery.item.project": "Proyecto",
 
       "hero.eyebrow": "Jardinería y servicio de árboles en DeKalb County",
-      "hero.transform": "Transforma tu",
-      "hero.outdoor": "Espacio Exterior",
+      "hero.transform": "Hernandez Landscape & Tree Service LLC",
+      "hero.outdoor": "Jardinería y árboles en DeKalb",
       "hero.subtitle":
-        "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
+        "Poda, remoción de árboles, cuidado del césped y jardinería por un equipo familiar del condado de DeKalb. Estimados gratis en inglés o español.",
       "hero.cta": "Solicitar estimado gratis",
       "hero.call": "Llámanos ahora",
       "hero.insured": "Totalmente asegurados",
