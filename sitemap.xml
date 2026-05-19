@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://hernandezlandscapeservices.com/</loc>
     <lastmod>2026-05-19</lastmod>
@@ -87,6 +88,30 @@
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <video:video>
+      <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434_poster.jpg</video:thumbnail_loc>
+      <video:title>Hernandez Landscape project video tour</video:title>
+      <video:description>A Hernandez Landscape &amp; Tree Service LLC project video showing outdoor service work completed for a DeKalb County property.</video:description>
+      <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434.mp4</video:content_loc>
+      <video:publication_date>2026-05-19T00:00:00-05:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_1095_poster.jpg</video:thumbnail_loc>
+      <video:title>Hernandez Landscape crew project video</video:title>
+      <video:description>A Hernandez Landscape &amp; Tree Service LLC video showing recent landscaping and cleanup work in the DeKalb area.</video:description>
+      <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_1095.mp4</video:content_loc>
+      <video:publication_date>2026-05-19T00:00:00-05:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_2055_poster.jpg</video:thumbnail_loc>
+      <video:title>DeKalb landscaping and lawn care project video</video:title>
+      <video:description>A project video from Hernandez Landscape &amp; Tree Service LLC highlighting finished outdoor service work in DeKalb County.</video:description>
+      <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_2055.mp4</video:content_loc>
+      <video:publication_date>2026-05-19T00:00:00-05:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/card.html</loc>

@@ -93,6 +93,18 @@ test.describe('Schema JSON-LD Validation', () => {
     expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
     expect(nodes.find((n) => n['@type'] === 'BreadcrumbList')).toBeDefined();
   });
+
+  test('sitemap: includes video metadata for the videos page', async ({ request }) => {
+    const response = await request.get('/sitemap.xml');
+    expect(response.ok()).toBeTruthy();
+    const xml = await response.text();
+
+    expect(xml).toContain('xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/videos.html</loc>');
+    expect((xml.match(/<video:video>/g) ?? []).length).toBeGreaterThanOrEqual(3);
+    expect(xml).toContain('<video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434_poster.jpg</video:thumbnail_loc>');
+    expect(xml).toContain('<video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434.mp4</video:content_loc>');
+  });
 });
 
 test.describe('Static Gallery Functionality', () => {
