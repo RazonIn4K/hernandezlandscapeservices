@@ -51,7 +51,7 @@
       "id": "P0-005",
       "change_type": "modify",
       "target_file": "sitemap.xml",
-      "artifact_dependency": "target-sitemap.xml",
+      "artifact_dependency": "sitemap.xml",
       "priority": "P0",
       "confidence": "high",
       "local_skill": "sitemap-and-robots-maintainer",

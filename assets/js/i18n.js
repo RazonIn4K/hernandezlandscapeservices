@@ -393,7 +393,7 @@
       "quote.placeholder.project": "Cuéntanos sobre tu proyecto...",
       "quote.submit": "Enviar solicitud de cotización",
 
-      "footer.copy": "© 2025 Hernandez Landscape & Tree Service LLC",
+      "footer.copy": "© 2026 Hernandez Landscape & Tree Service LLC",
       "footer.license": "Illinois LLC #13934835 • Licencia y seguro vigentes",
       "footer.tagline":
         "Servicios profesionales de jardinería en el condado de DeKalb",
