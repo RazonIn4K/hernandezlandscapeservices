@@ -6,6 +6,7 @@ vendor/
 # Development and testing files
 *.txt
 !robots.txt
+!4860d66f-e230-4e8a-9a96-adb5aba6b220.txt
 audit_*.js
 quick_*.js
 test_*.js
