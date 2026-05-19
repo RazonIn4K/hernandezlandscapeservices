@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v11';
+const CACHE_NAME = 'hernandez-landscape-v12';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
@@ -25,6 +25,7 @@ const URLS_TO_CACHE = [
   '/assets/js/i18n.js',
   '/manifest.json',
   '/hernandez_images/web_Logo_New.png',
+  '/hernandez_images/web_hero_desktop.png',
   '/hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg',
   '/hernandez_images/web_hero_mobile.jpg',
   '/hernandez_images/web_After1.jpeg',

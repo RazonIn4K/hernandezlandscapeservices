@@ -155,11 +155,50 @@ function applyQuotePrefill(serviceKey) {
   return true;
 }
 
+function scrollElementBelowHeader(elementId) {
+  const target = document.getElementById(elementId);
+  if (!target) {
+    return;
+  }
+
+  const header = document.getElementById("header");
+  const headerHeight = header ? header.getBoundingClientRect().height : 0;
+  const targetTop = target.getBoundingClientRect().top + window.scrollY;
+  window.scrollTo({
+    top: Math.max(targetTop - headerHeight - 16, 0),
+    behavior: "auto",
+  });
+}
+
+function scheduleScrollElementBelowHeader(elementId) {
+  const scrollToElement = () => scrollElementBelowHeader(elementId);
+
+  window.requestAnimationFrame(scrollToElement);
+  window.setTimeout(scrollToElement, 150);
+
+  if (document.readyState === "complete") {
+    window.setTimeout(scrollToElement, 350);
+    return;
+  }
+
+  window.addEventListener(
+    "load",
+    () => {
+      window.setTimeout(scrollToElement, 0);
+      window.setTimeout(scrollToElement, 350);
+    },
+    { once: true },
+  );
+}
+
 document.querySelectorAll("[data-prefill-service]").forEach((link) => {
   link.addEventListener("click", () => {
     const serviceKey = link.getAttribute("data-prefill-service");
     if (serviceKey) {
       applyQuotePrefill(serviceKey);
+    }
+    if (link.hash === "#quote") {
+      scheduleScrollElementBelowHeader("quote");
     }
   });
 });
@@ -168,7 +207,10 @@ const requestedService = new URLSearchParams(window.location.search).get(
   "service",
 );
 if (requestedService) {
-  applyQuotePrefill(requestedService);
+  const didApplyPrefill = applyQuotePrefill(requestedService);
+  if (didApplyPrefill && window.location.hash === "#quote") {
+    scheduleScrollElementBelowHeader("quote");
+  }
 }
 
 if (siteI18n && typeof siteI18n.onChange === "function") {

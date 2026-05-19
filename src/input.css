@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        scroll-padding-top: 5.5rem;
+    }
+
+    section[id],
+    main[id] {
+        scroll-margin-top: 5.5rem;
+    }
+
+    #quote:target {
+        padding-top: 8.5rem;
+    }
+}
+
 @layer components {
     .gallery-grid {
         display: grid;
