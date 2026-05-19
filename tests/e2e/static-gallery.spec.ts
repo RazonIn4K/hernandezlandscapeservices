@@ -6,8 +6,8 @@ const responsiveViewports = [
   { name: 'desktop', width: 1440, height: 900 }
 ];
 
-const getCardHeightSpread = async (page, selector: string) => {
-  const heights = await page.$$eval(selector, (elements) =>
+const getCardHeightSpread = async (page: import('@playwright/test').Page, selector: string) => {
+  const heights = await page.$$eval(selector, (elements: Element[]) =>
     elements.map((element) => Math.round(element.getBoundingClientRect().height))
   );
 
@@ -17,6 +17,83 @@ const getCardHeightSpread = async (page, selector: string) => {
 
   return Math.max(...heights) - Math.min(...heights);
 };
+
+const parseJsonLd = async (page: import('@playwright/test').Page, url: string): Promise<Record<string, any>[]> => {
+  await page.goto(url);
+  const blocks = await page.$$eval(
+    'script[type="application/ld+json"]',
+    (els: Element[]) => els.map((el) => JSON.parse(el.textContent || '{}'))
+  );
+  return blocks as Record<string, any>[];
+};
+
+const flattenGraph = (blocks: Record<string, any>[]): Record<string, any>[] => {
+  const nodes: Record<string, any>[] = [];
+  for (const block of blocks) {
+    if (block['@graph']) {
+      nodes.push(...(block['@graph'] as Record<string, any>[]));
+    } else {
+      nodes.push(block);
+    }
+  }
+  return nodes;
+};
+
+test.describe('Schema JSON-LD Validation', () => {
+  const servicePages = [
+    { url: '/tree-removal/', label: 'tree-removal', breadcrumb: 'Tree Removal' },
+    { url: '/lawn-care/', label: 'lawn-care', breadcrumb: 'Lawn Care' },
+    { url: '/snow-removal/', label: 'snow-removal', breadcrumb: 'Snow Removal' },
+  ];
+
+  for (const sp of servicePages) {
+    test(`${sp.label}: JSON-LD parses without error`, async ({ page }) => {
+      const blocks = await parseJsonLd(page, sp.url);
+      expect(blocks.length).toBeGreaterThan(0);
+    });
+
+    test(`${sp.label}: has Service schema`, async ({ page }) => {
+      const blocks = await parseJsonLd(page, sp.url);
+      const nodes = flattenGraph(blocks);
+      const service = nodes.find((n) => n['@type'] === 'Service');
+      expect(service).toBeDefined();
+      expect(service?.['provider']?.['@type']).toBe('HomeAndConstructionBusiness');
+    });
+
+    test(`${sp.label}: has BreadcrumbList with correct path`, async ({ page }) => {
+      const blocks = await parseJsonLd(page, sp.url);
+      const nodes = flattenGraph(blocks);
+      const crumb = nodes.find((n) => n['@type'] === 'BreadcrumbList');
+      expect(crumb).toBeDefined();
+      const items = crumb?.['itemListElement'] ?? [];
+      expect(items).toHaveLength(2);
+      expect(items[0]['name']).toBe('Home');
+      expect(items[1]['name']).toBe(sp.breadcrumb);
+    });
+
+    test(`${sp.label}: has FAQPage schema with 3 questions`, async ({ page }) => {
+      const blocks = await parseJsonLd(page, sp.url);
+      const nodes = flattenGraph(blocks);
+      const faq = nodes.find((n) => n['@type'] === 'FAQPage');
+      expect(faq).toBeDefined();
+      const questions = faq?.['mainEntity'] ?? [];
+      expect(questions.length).toBeGreaterThanOrEqual(3);
+      for (const q of questions) {
+        expect(q['@type']).toBe('Question');
+        expect(q['name']).toBeTruthy();
+        expect(q['acceptedAnswer']?.['text']).toBeTruthy();
+      }
+    });
+  }
+
+  test('homepage: JSON-LD has HomeAndConstructionBusiness, FAQPage, and BreadcrumbList', async ({ page }) => {
+    const blocks = await parseJsonLd(page, '/');
+    const nodes = flattenGraph(blocks);
+    expect(nodes.find((n) => n['@type'] === 'HomeAndConstructionBusiness')).toBeDefined();
+    expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
+    expect(nodes.find((n) => n['@type'] === 'BreadcrumbList')).toBeDefined();
+  });
+});
 
 test.describe('Static Gallery Functionality', () => {
   test.beforeEach(async ({ page }) => {
