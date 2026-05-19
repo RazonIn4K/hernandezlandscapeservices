@@ -3,6 +3,9 @@
 
 User-agent: *
 Allow: /
+Disallow: /gallery_fragment.html
+Disallow: /video_fragment.html
+Disallow: /playwright-report/
 
 # Sitemap location
 Sitemap: https://hernandezlandscapeservices.com/sitemap.xml

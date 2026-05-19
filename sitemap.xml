@@ -1,56 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://hernandezlandscapeservices.com/</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg</image:loc>
+      <image:title>Hernandez Landscape service trucks in DeKalb</image:title>
+      <image:caption>Branded Hernandez Landscape &amp; Tree Service equipment for DeKalb County landscaping and tree work.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-canopy.jpg</image:loc>
+      <image:title>Tree service work in DeKalb County</image:title>
+      <image:caption>Hernandez tree service crew working safely in a mature tree canopy.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/web_After1.jpeg</image:loc>
+      <image:title>Finished lawn care project</image:title>
+      <image:caption>Clean finished lawn after Hernandez Landscape lawn care service.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/tree-removal/</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-canopy.jpg</image:loc>
+      <image:title>Professional tree removal in DeKalb</image:title>
+      <image:caption>Tree service crew working safely for Hernandez Landscape &amp; Tree Service LLC.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg</image:loc>
+      <image:title>Tree removal cleanup in DeKalb</image:title>
+      <image:caption>Cut logs and cleanup from a Hernandez Landscape tree removal project.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/lawn-care/</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/web_After1.jpeg</image:loc>
+      <image:title>Lawn care service in DeKalb</image:title>
+      <image:caption>Finished lawn care result from Hernandez Landscape &amp; Tree Service LLC.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/snow-removal/</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg</image:loc>
+      <image:title>Hernandez Landscape service truck and equipment</image:title>
+      <image:caption>Local Hernandez Landscape equipment used for seasonal service work in DeKalb County.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/gallery.html</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg</image:loc>
+      <image:title>Completed Hernandez Landscape yard project</image:title>
+      <image:caption>Completed yard work with Hernandez Landscape equipment on site.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-roofline.jpg</image:loc>
+      <image:title>Tree trimming near roofline</image:title>
+      <image:caption>Hernandez tree service work near a home roofline.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-equipment-trailers.jpg</image:loc>
+      <image:title>Hernandez Landscape equipment trailers</image:title>
+      <image:caption>Equipment trailers used by Hernandez Landscape &amp; Tree Service LLC.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/videos.html</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/card.html</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New.png</image:loc>
+      <image:title>Hernandez Landscape contact card</image:title>
+      <image:caption>Hernandez Landscape &amp; Tree Service LLC logo and quick contact card.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/privacy.html</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/terms.html</loc>
-    <lastmod>2026-05-18</lastmod>
+    <lastmod>2026-05-19</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>

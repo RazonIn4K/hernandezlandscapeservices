@@ -101,7 +101,7 @@ test.describe('Static Gallery Functionality', () => {
     page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
     page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
     
-    await page.goto('/');
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
   });
 
   test('loads homepage gallery and latest upload images', async ({ page }) => {
@@ -234,7 +234,7 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('quote anchors land below the fixed header', async ({ page }) => {
-    await page.goto('/?service=tree-service#quote');
+    await page.goto('/?service=tree-service#quote', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
     await page.waitForFunction(() => {
       const header = document.querySelector('#header');
