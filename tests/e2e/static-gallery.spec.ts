@@ -224,16 +224,26 @@ test.describe('Static Gallery Functionality', () => {
         return {
           headerBottom: Math.round(header?.getBoundingClientRect().bottom ?? 0),
           quoteHeadingTop: Math.round(quoteHeading?.getBoundingClientRect().top ?? 0),
+          viewportHeight: window.innerHeight,
         };
       });
 
       expect(positions.quoteHeadingTop).toBeGreaterThanOrEqual(positions.headerBottom);
+      expect(positions.quoteHeadingTop).toBeLessThanOrEqual(positions.viewportHeight);
     }
   });
 
   test('quote anchors land below the fixed header', async ({ page }) => {
     await page.goto('/?service=tree-service#quote');
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
+    await page.waitForFunction(() => {
+      const header = document.querySelector('#header');
+      const quoteHeading = document.querySelector('#quote h2');
+      const headerBottom = Math.round(header?.getBoundingClientRect().bottom ?? 0);
+      const quoteHeadingTop = Math.round(quoteHeading?.getBoundingClientRect().top ?? 0);
+
+      return quoteHeadingTop >= headerBottom && quoteHeadingTop <= window.innerHeight;
+    });
 
     const positions = await page.evaluate(() => {
       const header = document.querySelector('#header');
@@ -242,10 +252,12 @@ test.describe('Static Gallery Functionality', () => {
       return {
         headerBottom: Math.round(header?.getBoundingClientRect().bottom ?? 0),
         quoteHeadingTop: Math.round(quoteHeading?.getBoundingClientRect().top ?? 0),
+        viewportHeight: window.innerHeight,
       };
     });
 
     expect(positions.quoteHeadingTop).toBeGreaterThanOrEqual(positions.headerBottom);
+    expect(positions.quoteHeadingTop).toBeLessThanOrEqual(positions.viewportHeight);
   });
 
   test('testimonials section shows a sourced public review', async ({ page }) => {
@@ -323,5 +335,23 @@ test.describe('Static Gallery Functionality', () => {
     // Test switching back to English
     await enButton.click();
     await expect(enButton).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test('language toggle translates quote prefill notice', async ({ page }) => {
+    await page.goto('/?service=tree-service#quote');
+    await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
+
+    const esButton = page.locator('[data-lang-switch="es"]').first();
+    await esButton.click();
+
+    await expect(page.locator('#quotePrefillText')).toContainText('Servicio seleccionado: Servicio de árboles');
+    await page.waitForFunction(() => {
+      const header = document.querySelector('#header');
+      const quoteHeading = document.querySelector('#quote h2');
+      const headerBottom = Math.round(header?.getBoundingClientRect().bottom ?? 0);
+      const quoteHeadingTop = Math.round(quoteHeading?.getBoundingClientRect().top ?? 0);
+
+      return quoteHeadingTop >= headerBottom && quoteHeadingTop <= window.innerHeight;
+    });
   });
 });
