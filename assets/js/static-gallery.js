@@ -25,6 +25,16 @@
     // Static image list - these are the actual photos in hernandez_images/
     const staticImages = [
       {
+        src: 'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
+        alt: 'Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb',
+        caption: 'Finished lawn and fire pit area with clean edging and fresh turf'
+      },
+      {
+        src: 'hernandez_images/facebook-2026-side-yard-lawn-finish.jpg',
+        alt: 'Fresh green side yard lawn after Hernandez Landscape service',
+        caption: 'Fresh side yard lawn finish after cleanup and landscape work'
+      },
+      {
         src: 'hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
         alt: 'Hernandez Landscape and Tree Service branded truck and trailers',
         caption: 'Branded Hernandez crew trucks and trailers ready for field work'
