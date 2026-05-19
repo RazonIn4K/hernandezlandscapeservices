@@ -46,6 +46,12 @@ test.describe('Schema JSON-LD Validation', () => {
     { url: '/snow-removal/', label: 'snow-removal', breadcrumb: 'Snow Removal' },
   ];
 
+  const serviceAreaPages = [
+    { url: '/service-areas/dekalb-il/', label: 'service-area-dekalb', breadcrumb: 'DeKalb, IL' },
+    { url: '/service-areas/sycamore-il/', label: 'service-area-sycamore', breadcrumb: 'Sycamore, IL' },
+    { url: '/service-areas/cortland-il/', label: 'service-area-cortland', breadcrumb: 'Cortland, IL' },
+  ];
+
   for (const sp of servicePages) {
     test(`${sp.label}: JSON-LD parses without error`, async ({ page }) => {
       const blocks = await parseJsonLd(page, sp.url);
@@ -101,10 +107,26 @@ test.describe('Schema JSON-LD Validation', () => {
 
     expect(xml).toContain('xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/videos.html</loc>');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/</loc>');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/dekalb-il/</loc>');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/sycamore-il/</loc>');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/cortland-il/</loc>');
     expect((xml.match(/<video:video>/g) ?? []).length).toBeGreaterThanOrEqual(3);
     expect(xml).toContain('<video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434_poster.jpg</video:thumbnail_loc>');
     expect(xml).toContain('<video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434.mp4</video:content_loc>');
   });
+
+  for (const sp of serviceAreaPages) {
+    test(`${sp.label}: has local business schema, FAQPage, and breadcrumb`, async ({ page }) => {
+      const blocks = await parseJsonLd(page, sp.url);
+      const nodes = flattenGraph(blocks);
+      expect(nodes.find((n) => n['@type'] === 'HomeAndConstructionBusiness')).toBeDefined();
+      expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
+      const crumb = nodes.find((n) => n['@type'] === 'BreadcrumbList');
+      expect(crumb).toBeDefined();
+      expect(crumb?.['itemListElement']?.at(-1)?.['name']).toBe(sp.breadcrumb);
+    });
+  }
 });
 
 test.describe('Static Gallery Functionality', () => {

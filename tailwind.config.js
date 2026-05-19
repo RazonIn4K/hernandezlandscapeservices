@@ -5,6 +5,7 @@ module.exports = {
     './tree-removal/**/*.html',
     './lawn-care/**/*.html',
     './snow-removal/**/*.html',
+    './service-areas/**/*.html',
     './gallery.html',
     './gallery_fragment.html',
     './src/**/*.{html,js,ts,tsx}',
