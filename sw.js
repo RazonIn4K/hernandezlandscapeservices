@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v13';
+const CACHE_NAME = 'hernandez-landscape-v14';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',

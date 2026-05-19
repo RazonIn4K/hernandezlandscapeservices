@@ -337,6 +337,30 @@ test.describe('Static Gallery Functionality', () => {
     await expect(enButton).toHaveAttribute('aria-pressed', 'true');
   });
 
+  test('first visit defaults to English', async ({ page }) => {
+    await page.goto('/');
+    await page.evaluate(() => {
+      window.localStorage.setItem('siteLanguage', 'es');
+      window.sessionStorage.clear();
+    });
+    await page.reload();
+
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+    await expect(page.locator('body')).toHaveAttribute('data-language', 'en');
+    await expect(page.locator('[data-lang-switch="en"]').first()).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-i18n-key="hero.cta"]').first()).toContainText('Request Free Estimate');
+
+    const storedLanguage = await page.evaluate(() => ({
+      local: window.localStorage.getItem('siteLanguage'),
+      session: window.sessionStorage.getItem('siteLanguage'),
+    }));
+
+    expect(storedLanguage).toEqual({
+      local: null,
+      session: 'en',
+    });
+  });
+
   test('language toggle translates quote prefill notice', async ({ page }) => {
     await page.goto('/?service=tree-service#quote');
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
