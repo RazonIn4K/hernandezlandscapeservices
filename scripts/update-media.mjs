@@ -3,6 +3,8 @@
  * update-media.mjs — regenerate every gallery/media surface from media/gallery.json.
  *
  * Usage: npm run media:update   (or: node scripts/update-media.mjs)
+ *        npm run media:check    (--check: validate + exit 1 on drift, write nothing;
+ *                                run by CI so a manifest/page mismatch fails the deploy)
  *
  * media/gallery.json is the single source of truth for gallery/carousel/video
  * media. This script:
@@ -29,6 +31,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST_PATH = path.join(ROOT, 'media', 'gallery.json');
+const CHECK_MODE = process.argv.includes('--check');
 
 const MARKERS = {
   galleryPage: { start: '<!-- GALLERY:GENERATED:START -->', end: '<!-- GALLERY:GENERATED:END -->' },
@@ -40,6 +43,7 @@ const MARKERS = {
 
 const errors = [];
 const warnings = [];
+const drifted = [];
 const fail = (msg) => errors.push(msg);
 const warn = (msg) => warnings.push(msg);
 
@@ -318,6 +322,9 @@ function updateFile(relPath, transforms) {
   if (errors.length) return;
   if (updated === original) {
     console.log(`  ${relPath}: unchanged`);
+  } else if (CHECK_MODE) {
+    drifted.push(relPath);
+    console.log(`  ${relPath}: STALE (does not match media/gallery.json)`);
   } else {
     fs.writeFileSync(filePath, updated);
     console.log(`  ${relPath}: updated`);
@@ -350,4 +357,15 @@ if (errors.length) {
   process.exit(1);
 }
 for (const msg of warnings) console.warn(`  warning: ${msg}`);
-console.log('Done. Review the diff, then commit.');
+if (CHECK_MODE) {
+  if (drifted.length) {
+    console.error(
+      `Drift detected in ${drifted.length} file(s): generated regions do not match ` +
+      'media/gallery.json. Run `npm run media:update` and commit the result.'
+    );
+    process.exit(1);
+  }
+  console.log('All generated media surfaces match media/gallery.json.');
+} else {
+  console.log('Done. Review the diff, then commit.');
+}

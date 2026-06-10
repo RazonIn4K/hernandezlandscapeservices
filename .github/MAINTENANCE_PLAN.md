@@ -30,10 +30,14 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
 2. **Instant-estimate lead handoff** — the `#quoteForm` estimator collects address /
    owner-verification / best-time fields that are silently discarded. Turn it into a
    prefill step for the real Web3Forms form. (PR: `fix/instant-estimate-leads`)
-3. **Reproducible gallery/media workflow** — one manifest + one command. Today:
-   `gallery.html` hardcodes cards, `static-gallery.js` hardcodes a second list, the
-   Python generators write fragments nobody assembles, and `scripts/optimize_media.py`
-   has absolute paths into the previous developer's Mac (`/Users/davidortiz/...`).
+3. **Reproducible gallery/media workflow** — DONE 2026-06-10 (PR #24): `media/gallery.json`
+   + `npm run media:update` regenerate the gallery.html cards, videos.html players,
+   homepage carousel data, and sitemap media entries between GENERATED markers;
+   `scripts/optimize_media.py` is repo-relative now. See `docs/MEDIA-WORKFLOW.md`.
+   CI also runs `npm run media:check` and fails the deploy on manifest/page drift.
+   Open follow-ups: the index.html 3-card grid and the videos.html VideoObject
+   JSON-LD are still hand-maintained; five tracked mp4s are 54-94 MB and should be
+   re-encoded with the optimizer settings (GitHub hard-fails files at 100 MB).
 4. **Verify billing artifacts before touching them** — `pricing.html` + `/pay/*` are
    website-care billing (Stripe payment links). Confirm account ownership/liveness
    in Stripe, then either add test coverage (and fix the success page's missing
