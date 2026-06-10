@@ -36,11 +36,16 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    `scripts/optimize_media.py` is repo-relative now. See `docs/MEDIA-WORKFLOW.md`.
    CI also runs `npm run media:check` and fails the deploy on manifest/page drift.
    Open follow-ups: the index.html 3-card grid and the videos.html VideoObject
-   JSON-LD are still hand-maintained; five mp4s (web_IMG_1095/1096/1229/1268/0434-1)
-   ship at phone-original bitrates, 27-51 MB each on disk (older 54-94 MB versions
-   remain in git history), with one file over GitHub's 50 MB warning line.
-   Re-encoding them to the optimizer settings (1280 max width, crf 23) roughly
-   halves total weight with no resolution loss.
+   JSON-LD are still hand-maintained. The five large mp4s
+   (web_IMG_1095/1096/1229/1268/0434-1, 27-51 MB) must be LEFT AS-IS: they are
+   already libx264 outputs near their h264 size floor, and a measured re-encode
+   at optimizer settings (2026-06-10) inflated them ~27% because reproducing
+   prior compression artifacts costs more bits (two clips are 10-bit HLG).
+   Only web_IMG_1229.mp4 crosses GitHub's 50 MB warn line; the hard limit is
+   100 MB. If size ever truly matters, the real levers are: encode fresh from
+   the raw iCloud .MOV sources recoverable from git history (e.g.
+   `git show '146ada2:iCloud Photos/IMG_1095.MOV' > raw.mov`), trim the
+   2.5-minute clips, or add an AV1/HEVC <source> with h264 fallback.
 4. **Verify billing artifacts before touching them** — `pricing.html` + `/pay/*` are
    website-care billing (Stripe payment links). Confirm account ownership/liveness
    in Stripe, then either add test coverage (and fix the success page's missing
