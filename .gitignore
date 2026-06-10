@@ -13,6 +13,11 @@ test_*.js
 
 # Markdown files (local only)
 *.md
+!.github/**/*.md
+
+# Raw media (local only — optimized output lives in hernandez_images/)
+iCloud Photos/
+media/inbox/
 
 # Backup files
 *.backup-*
