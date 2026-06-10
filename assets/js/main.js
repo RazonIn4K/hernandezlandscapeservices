@@ -323,6 +323,7 @@ if (slider && handle) {
 }
 
 const quoteResult = document.getElementById("quoteResult");
+let lastInstantEstimate = null;
 
 function calculateQuote() {
   const service = document.getElementById("serviceType");
@@ -379,14 +380,77 @@ function calculateQuote() {
 
   const minPrice = Math.floor(basePrice * 0.8);
   const maxPrice = Math.floor(basePrice * 1.2);
+  const priceText = `$${minPrice} - $${maxPrice}`;
+
+  lastInstantEstimate = {
+    serviceValue: service.value,
+    serviceLabel:
+      service.selectedOptions[0]?.textContent.trim() || service.value,
+    sizeLabel: size.selectedOptions[0]?.textContent.trim() || size.value,
+    zip: zip.value.trim(),
+    priceText,
+  };
 
   const priceRangeEl = document.getElementById("priceRange");
   if (priceRangeEl) {
-    priceRangeEl.textContent = `$${minPrice} - $${maxPrice}`;
+    priceRangeEl.textContent = priceText;
   }
   if (quoteResult) {
     quoteResult.classList.remove("hidden");
   }
+}
+
+const INSTANT_SERVICE_TO_CONTACT = {
+  lawn: "lawn-care",
+  tree: "tree-service",
+  landscaping: "landscaping",
+  snow: "snow-removal",
+};
+
+const sendEstimateBtn = document.getElementById("sendEstimateBtn");
+if (sendEstimateBtn) {
+  sendEstimateBtn.addEventListener("click", () => {
+    if (!lastInstantEstimate) {
+      return;
+    }
+
+    const propertyAddress = document.getElementById("propertyAddress");
+    const isOwner = document.getElementById("isOwner");
+    const instantBestTime = document.getElementById("instantBestTime");
+    const contactAddress = document.getElementById("contactAddress");
+    const ownerVerify = document.getElementById("ownerVerify");
+    const contactBestTime = document.getElementById("bestTime");
+    const projectDetails = document.getElementById("projectDetails");
+
+    if (propertyAddress?.value && contactAddress) {
+      contactAddress.value = propertyAddress.value;
+      contactAddress.classList.remove("border-red-500");
+    }
+    if (isOwner && ownerVerify) {
+      ownerVerify.checked = isOwner.checked;
+    }
+    if (instantBestTime?.value && contactBestTime) {
+      contactBestTime.value = instantBestTime.value;
+    }
+
+    applyQuotePrefill(
+      INSTANT_SERVICE_TO_CONTACT[lastInstantEstimate.serviceValue],
+    );
+
+    if (projectDetails) {
+      const summary = `${getMessage("instant.handoff.prefix", "Instant estimate request:")} ${lastInstantEstimate.serviceLabel}, ${lastInstantEstimate.sizeLabel}, ZIP ${lastInstantEstimate.zip}. ${getMessage("instant.handoff.range", "Estimated range:")} ${lastInstantEstimate.priceText}.`;
+      projectDetails.value = projectDetails.value
+        ? `${projectDetails.value}\n\n${summary}`
+        : summary;
+      projectDetails.classList.remove("border-red-500");
+    }
+
+    scheduleScrollElementBelowHeader("quote");
+    const contactName = document.getElementById("contactName");
+    if (contactName) {
+      contactName.focus({ preventScroll: true });
+    }
+  });
 }
 
 const contactForm = document.getElementById("contactForm");

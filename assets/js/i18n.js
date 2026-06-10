@@ -63,6 +63,8 @@
       "alerts.contact.error":
         "There was an error sending your request. Please call us at 815-501-1478.",
       "contact.sending": "Sending...",
+      "instant.handoff.prefix": "Instant estimate request:",
+      "instant.handoff.range": "Estimated range:",
       "gallery.loading": "Loading gallery...",
       "gallery.error.configMissing":
         "Missing assets/js/firebase-config.js. Add it to load photos.",
@@ -273,6 +275,7 @@
       "instant.result.disclaimer":
         "Este es un estimado. El precio final depende de requisitos específicos y de la evaluación en sitio.",
       "instant.result.call": "Llama para una cotización exacta",
+      "instant.result.send": "Enviar mi solicitud de presupuesto",
 
       "services.heading": "Nuestros servicios profesionales",
       "services.subheading":
@@ -414,6 +417,8 @@
       "alerts.contact.error":
         "Hubo un error al enviar tu solicitud. Llámanos al 815-501-1478.",
       "contact.sending": "Enviando...",
+      "instant.handoff.prefix": "Solicitud de presupuesto instantáneo:",
+      "instant.handoff.range": "Rango estimado:",
 
       "video.heading": "Recorridos en Video de Proyectos",
       "video.subheading":

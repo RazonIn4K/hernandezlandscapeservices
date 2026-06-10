@@ -568,13 +568,13 @@
 
               <div>
                 <label
-                  for="bestTime"
+                  for="instantBestTime"
                   class="block text-gray-700 font-semibold mb-2"
                   data-i18n-key="instant.label.bestTime"
                   >Best Time to Call</label
                 >
                 <select
-                  id="bestTime"
+                  id="instantBestTime"
                   class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
                 >
                   <option value="morning">Morning (8am - 12pm)</option>
@@ -623,9 +623,19 @@
               This is an estimate. Final price depends on specific requirements
               and on-site assessment.
             </p>
+            <button
+              type="button"
+              id="sendEstimateBtn"
+              class="mt-4 mr-3 inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+            >
+              <i class="fas fa-paper-plane"></i>
+              <span data-i18n-key="instant.result.send"
+                >Send My Estimate Request</span
+              >
+            </button>
             <a
               href="tel:18155011478"
-              class="mt-4 inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+              class="mt-4 inline-block border-2 border-green-600 text-green-700 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
             >
               <i class="fas fa-phone"></i>
               <span data-i18n-key="instant.result.call"
