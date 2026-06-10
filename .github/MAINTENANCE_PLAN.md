@@ -36,8 +36,11 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    `scripts/optimize_media.py` is repo-relative now. See `docs/MEDIA-WORKFLOW.md`.
    CI also runs `npm run media:check` and fails the deploy on manifest/page drift.
    Open follow-ups: the index.html 3-card grid and the videos.html VideoObject
-   JSON-LD are still hand-maintained; five tracked mp4s are 54-94 MB and should be
-   re-encoded with the optimizer settings (GitHub hard-fails files at 100 MB).
+   JSON-LD are still hand-maintained; five mp4s (web_IMG_1095/1096/1229/1268/0434-1)
+   ship at phone-original bitrates, 27-51 MB each on disk (older 54-94 MB versions
+   remain in git history), with one file over GitHub's 50 MB warning line.
+   Re-encoding them to the optimizer settings (1280 max width, crf 23) roughly
+   halves total weight with no resolution loss.
 4. **Verify billing artifacts before touching them** — `pricing.html` + `/pay/*` are
    website-care billing (Stripe payment links). Confirm account ownership/liveness
    in Stripe, then either add test coverage (and fix the success page's missing
