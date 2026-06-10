@@ -10,8 +10,7 @@
     "test:headed": "playwright test --headed",
     "test:ci": "playwright test --reporter=dot",
     "dev": "npm run watch-css",
-    "submit-indexnow": "node scripts/submit-indexnow.mjs",
-    "send-renewal": "node scripts/send-renewal.js"
+    "submit-indexnow": "node scripts/submit-indexnow.mjs"
   },
   "repository": {
     "type": "git",
