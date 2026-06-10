@@ -35,17 +35,22 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    Python generators write fragments nobody assembles, and `scripts/optimize_media.py`
    has absolute paths into the previous developer's Mac (`/Users/davidortiz/...`).
 4. **Verify billing artifacts before touching them** — `pricing.html` + `/pay/*` are
-   website-care billing (Stripe payment links), `scripts/send-renewal.js` is
-   developer billing tooling (Doppler `local-mac-work`, Postmark). Confirm account
-   ownership/liveness in Stripe/Postmark/Doppler, then either add test coverage or
-   move them out of this repo. Do not delete before that check.
+   website-care billing (Stripe payment links). Confirm account ownership/liveness
+   in Stripe, then either add test coverage (and fix the success page's missing
+   `#sid` element) or retire the pages and remove them from the `sw.js` pre-cache.
+   Do not delete before that check. The payment-link inventory and decision log
+   live in the private `highencode-ops` repo (`billing/stripe-links.md`).
+   ~~`scripts/send-renewal.js`~~ moved to `highencode-ops/billing/` 2026-06-10 and
+   removed from this repo (it was developer billing tooling, not site code).
 5. **Remove stale artifacts (each needs one check first)** — Firebase env injection
    in `deploy.yml` (confirm the Firebase project is dead), placeholder Google-review
    URL in the QR/card flow (needs the real review link from the owner).
    ~~`_redirects`~~ removed 2026-06-10 after DNS check: apex + www both resolve to
    GitHub Pages (185.199.x.x / razonin4k.github.io); no Netlify deploy exists.
-   `old_index.html`, `proposal.html`, `estimate.html`, `invoice.html` are cleared
-   for removal (owner confirmed unused) — next cleanup PR.
+   ~~`old_index.html`, `proposal.html`, `estimate.html`, `invoice.html`~~ removed
+   2026-06-10 (owner confirmed unused; archived in `highencode-ops/clients/
+   hernandez/archive/`). `card.html` kept as the QR landing page but set to
+   `noindex, follow` and dropped from the sitemap.
 6. **Automate cache busting + indexing** — DONE 2026-06-10: deploy workflow now runs
    the Playwright suite (chromium) before building, stamps the `sw.js` cache name
    with the commit SHA (`scripts/stamp-sw-version.mjs` — committed file keeps a
