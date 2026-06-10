@@ -7,7 +7,7 @@ module.exports = {
     './snow-removal/**/*.html',
     './service-areas/**/*.html',
     './gallery.html',
-    './gallery_fragment.html',
+    './videos.html',
     './src/**/*.{html,js,ts,tsx}',
     './assets/js/**/*.{js,ts}',
     './tests/**/*.{js,ts,tsx}',

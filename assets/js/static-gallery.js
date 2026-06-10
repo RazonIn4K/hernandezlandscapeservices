@@ -22,8 +22,10 @@
       return fallback;
     };
 
-    // Static image list - these are the actual photos in hernandez_images/
+    // Static image list generated from media/gallery.json by scripts/update-media.mjs
+    // (npm run media:update). Do not edit between the markers.
     const staticImages = [
+      // GALLERY-DATA:GENERATED:START
       {
         src: 'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
         alt: 'Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb',
@@ -109,6 +111,7 @@
         alt: 'Garden bed installation',
         caption: 'Custom garden bed design and installation'
       }
+      // GALLERY-DATA:GENERATED:END
     ];
 
     if (galleryContainer) {
