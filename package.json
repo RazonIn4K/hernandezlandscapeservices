@@ -10,6 +10,7 @@
     "test:headed": "playwright test --headed",
     "test:ci": "playwright test --reporter=dot",
     "dev": "npm run watch-css",
+    "media:update": "node scripts/update-media.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs"
   },
   "repository": {
