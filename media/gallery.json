@@ -1,0 +1,651 @@
+{
+  "$comment": "Single source of truth for all gallery/carousel/video media on the site. Edit this file, then run `npm run media:update` to regenerate gallery.html, videos.html, assets/js/static-gallery.js, and the gallery/video entries in sitemap.xml. Never hand-edit the generated regions (between *:GENERATED:START/END markers). See docs/MEDIA-WORKFLOW.md.",
+  "baseUrl": "https://hernandezlandscapeservices.com",
+  "items": [
+    {
+      "id": "fire-pit-lawn-finish",
+      "type": "image",
+      "src": "hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg",
+      "alt": "Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb",
+      "caption": "Finished lawn and fire pit area with clean edging and fresh turf",
+      "tags": ["lawn-care", "landscaping"],
+      "featured": true,
+      "gallery": { "title": "Finished Lawn & Fire Pit" },
+      "sitemap": {
+        "title": "Finished lawn and fire pit project",
+        "caption": "Recent lawn and landscape finish from Hernandez Landscape & Tree Service LLC."
+      }
+    },
+    {
+      "id": "side-yard-lawn-finish",
+      "type": "image",
+      "src": "hernandez_images/facebook-2026-side-yard-lawn-finish.jpg",
+      "alt": "Fresh green side yard lawn after Hernandez Landscape service",
+      "caption": "Fresh side yard lawn finish after cleanup and landscape work",
+      "tags": ["lawn-care", "cleanup"],
+      "featured": true,
+      "gallery": { "title": "Fresh Side Yard Finish" },
+      "sitemap": {
+        "title": "Side yard lawn finish",
+        "caption": "Fresh side yard lawn finish from a Hernandez Landscape project."
+      }
+    },
+    {
+      "id": "branded-truck-trailers",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-branded-truck-trailers.jpg",
+      "alt": "Hernandez Landscape and Tree Service branded truck and trailers",
+      "caption": "Branded Hernandez crew trucks and trailers ready for field work",
+      "tags": ["equipment"],
+      "featured": true,
+      "gallery": { "title": "Branded Crew Equipment" }
+    },
+    {
+      "id": "tree-climber-canopy",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-tree-climber-canopy.jpg",
+      "alt": "Tree service crew member working high in a tree canopy",
+      "caption": "Tree climbing and canopy work for safe trimming and removal",
+      "tags": ["tree-service"],
+      "featured": true,
+      "gallery": { "title": "Tree Canopy Work" }
+    },
+    {
+      "id": "tree-removal-cut-logs",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg",
+      "alt": "Cut logs after tree removal cleanup",
+      "caption": "Tree removal cleanup with cut logs handled on site",
+      "tags": ["tree-service", "cleanup"],
+      "featured": true,
+      "gallery": {
+        "title": "Removal Cleanup",
+        "alt": "Cut logs after Hernandez tree removal cleanup"
+      }
+    },
+    {
+      "id": "tree-climber-roofline",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-tree-climber-roofline.jpg",
+      "alt": "Tree service crew working near a residential roofline",
+      "caption": "Careful tree work around homes, roofs, and yard structures",
+      "tags": ["tree-service"],
+      "featured": true,
+      "gallery": {
+        "title": "Roofline Tree Work",
+        "alt": "Tree service work near a residential roofline"
+      },
+      "sitemap": {
+        "title": "Tree trimming near roofline",
+        "caption": "Hernandez tree service work near a home roofline."
+      }
+    },
+    {
+      "id": "tree-climber-full-tree",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-tree-climber-full-tree.jpg",
+      "alt": "Tree climber working in a tall residential tree",
+      "caption": "Full-tree service work for mature residential trees",
+      "tags": ["tree-service"],
+      "featured": false,
+      "gallery": { "title": "Residential Tree Care" }
+    },
+    {
+      "id": "completed-yard-equipment",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-completed-yard-equipment.jpg",
+      "alt": "Completed yard work with Hernandez equipment on site",
+      "caption": "Recent completed yard work with equipment still on site",
+      "tags": ["lawn-care", "equipment"],
+      "featured": false,
+      "gallery": { "title": "Finished Yard Work" },
+      "sitemap": {
+        "title": "Completed Hernandez Landscape yard project",
+        "caption": "Completed yard work with Hernandez Landscape equipment on site."
+      }
+    },
+    {
+      "id": "equipment-trailers",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2026-equipment-trailers.jpg",
+      "alt": "Hernandez Landscape equipment trailers parked for service work",
+      "caption": "Equipment trailers used for landscaping and tree service jobs",
+      "tags": ["equipment"],
+      "featured": false,
+      "sitemap": {
+        "title": "Hernandez Landscape equipment trailers",
+        "caption": "Equipment trailers used by Hernandez Landscape & Tree Service LLC."
+      }
+    },
+    {
+      "id": "img-3362",
+      "type": "image",
+      "src": "hernandez_images/web_IMG_3362_2.webp",
+      "alt": "Freshly finished landscape bed and lawn edging",
+      "caption": "Recent landscape refresh with clean borders and healthy planting beds",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Outdoor Revival",
+        "alt": "Recent landscaping work"
+      }
+    },
+    {
+      "id": "img-3360",
+      "type": "image",
+      "src": "hernandez_images/web_IMG_3360_2.webp",
+      "alt": "Fresh mulch installation framing a neat front yard",
+      "caption": "Newly completed curb appeal upgrade with crisp mulch lines",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Yard Transformation",
+        "alt": "Beautiful landscaping project"
+      }
+    },
+    {
+      "id": "wideshot-bestlandscape",
+      "type": "image",
+      "src": "hernandez_images/web_Wideshot_Bestlandscape.jpg",
+      "alt": "Beautiful landscape design and installation",
+      "caption": "Complete landscape renovation with premium materials",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Breathtaking Front Yard",
+        "titleKey": "gallery.item.front_yard",
+        "alt": "Wide shot of a beautifully landscaped front yard"
+      }
+    },
+    {
+      "id": "wideshot-bestlandscape-person",
+      "type": "image",
+      "src": "hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg",
+      "alt": "Professional landscaper working on a garden bed",
+      "caption": "Professional landscaper working on a garden bed",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Expert Care",
+        "titleKey": "gallery.item.landscaper"
+      }
+    },
+    {
+      "id": "wideshot-bestlandscape2",
+      "type": "image",
+      "src": "hernandez_images/web_Wideshot_Bestlandscape2.jpeg",
+      "alt": "Professional landscape maintenance",
+      "caption": "Detailed yard maintenance and design",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Modern Design",
+        "titleKey": "gallery.item.modern_design",
+        "alt": "Landscaping design with mulch and retaining wall"
+      }
+    },
+    {
+      "id": "img-1953",
+      "type": "image",
+      "src": "hernandez_images/web_IMG_1953.webp",
+      "alt": "Professional tree trimming service",
+      "caption": "Expert tree care and safety maintenance",
+      "tags": ["tree-service"],
+      "featured": false,
+      "gallery": {
+        "title": "Professional Tree Care",
+        "titleKey": "gallery.item.tree_service",
+        "alt": "Tree removal service"
+      }
+    },
+    {
+      "id": "hero-desktop",
+      "type": "image",
+      "src": "hernandez_images/web_hero_desktop.png",
+      "alt": "Finished yard landscaping project",
+      "caption": "Finished yard landscaping project",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Beautiful Pavers",
+        "titleKey": "gallery.item.stone_work"
+      }
+    },
+    {
+      "id": "after1",
+      "type": "image",
+      "src": "hernandez_images/web_After1.jpeg",
+      "alt": "After landscape renovation",
+      "caption": "Lush green lawn transformation",
+      "tags": ["lawn-care"],
+      "featured": false,
+      "gallery": {
+        "title": "Pristine Lawns",
+        "titleKey": "gallery.item.lawn_care",
+        "alt": "Lush green lawn after care"
+      }
+    },
+    {
+      "id": "img-0434-poster",
+      "type": "image",
+      "src": "hernandez_images/web_IMG_0434_poster.jpg",
+      "alt": "Clean, modern outdoor patio and landscape",
+      "caption": "Modern outdoor living space transformation",
+      "tags": ["lawn-care"],
+      "featured": false,
+      "gallery": {
+        "title": "Precision Edging",
+        "alt": "Lawn edging and clean landscaping lines"
+      }
+    },
+    {
+      "id": "img-1464-poster",
+      "type": "image",
+      "src": "hernandez_images/web_IMG_1464_poster.jpg",
+      "alt": "Garden bed installation",
+      "caption": "Custom garden bed design and installation",
+      "tags": ["landscaping"],
+      "featured": false,
+      "gallery": {
+        "title": "Hedge Trimming",
+        "alt": "Worker trimming a large hedge"
+      }
+    },
+    {
+      "id": "video-0434",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_0434.mp4",
+      "poster": "hernandez_images/web_IMG_0434_poster.jpg",
+      "tags": ["project-video"],
+      "featured": true,
+      "sitemap": {
+        "title": "Hernandez Landscape project video tour",
+        "description": "A Hernandez Landscape & Tree Service LLC project video showing outdoor service work completed for a DeKalb County property.",
+        "publicationDate": "2026-05-19T00:00:00-05:00"
+      }
+    },
+    {
+      "id": "video-1095",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1095.mp4",
+      "poster": "hernandez_images/web_IMG_1095_poster.jpg",
+      "tags": ["project-video"],
+      "featured": true,
+      "sitemap": {
+        "title": "Hernandez Landscape crew project video",
+        "description": "A Hernandez Landscape & Tree Service LLC video showing recent landscaping and cleanup work in the DeKalb area.",
+        "publicationDate": "2026-05-19T00:00:00-05:00"
+      }
+    },
+    {
+      "id": "video-2055",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2055.mp4",
+      "poster": "hernandez_images/web_IMG_2055_poster.jpg",
+      "tags": ["project-video"],
+      "featured": true,
+      "sitemap": {
+        "title": "DeKalb landscaping and lawn care project video",
+        "description": "A project video from Hernandez Landscape & Tree Service LLC highlighting finished outdoor service work in DeKalb County.",
+        "publicationDate": "2026-05-19T00:00:00-05:00"
+      }
+    },
+    {
+      "id": "video-1139",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1139.mp4",
+      "poster": "hernandez_images/web_IMG_1139_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-1229",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1229.mp4",
+      "poster": "hernandez_images/web_IMG_1229_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-1268",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1268.mp4",
+      "poster": "hernandez_images/web_IMG_1268_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-1425",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1425.mp4",
+      "poster": "hernandez_images/web_IMG_1425_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-1464",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1464.mp4",
+      "poster": "hernandez_images/web_IMG_1464_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-1878",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1878.mp4",
+      "poster": "hernandez_images/web_IMG_1878_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-1953",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_1953.mp4",
+      "poster": "hernandez_images/web_IMG_1953_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2031",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2031.mp4",
+      "poster": "hernandez_images/web_IMG_2031_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2046",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2046.mp4",
+      "poster": "hernandez_images/web_IMG_2046_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2047",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2047.mp4",
+      "poster": "hernandez_images/web_IMG_2047_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2048",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2048.mp4",
+      "poster": "hernandez_images/web_IMG_2048_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2049",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2049.mp4",
+      "poster": "hernandez_images/web_IMG_2049_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2050",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2050.mp4",
+      "poster": "hernandez_images/web_IMG_2050_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2051",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2051.mp4",
+      "poster": "hernandez_images/web_IMG_2051_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2052",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2052.mp4",
+      "poster": "hernandez_images/web_IMG_2052_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2056",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2056.mp4",
+      "poster": "hernandez_images/web_IMG_2056_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2109",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2109.mp4",
+      "poster": "hernandez_images/web_IMG_2109_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2110",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2110.mp4",
+      "poster": "hernandez_images/web_IMG_2110_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2111",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2111.mp4",
+      "poster": "hernandez_images/web_IMG_2111_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2112",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2112.mp4",
+      "poster": "hernandez_images/web_IMG_2112_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2125",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2125.mp4",
+      "poster": "hernandez_images/web_IMG_2125_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2134",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2134.mp4",
+      "poster": "hernandez_images/web_IMG_2134_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2136",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2136.mp4",
+      "poster": "hernandez_images/web_IMG_2136_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2154",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2154.mp4",
+      "poster": "hernandez_images/web_IMG_2154_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2155",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2155.mp4",
+      "poster": "hernandez_images/web_IMG_2155_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2315",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2315.mp4",
+      "poster": "hernandez_images/web_IMG_2315_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-2395",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_2395.mp4",
+      "poster": "hernandez_images/web_IMG_2395_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-7968",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_7968.mp4",
+      "poster": "hernandez_images/web_IMG_7968_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-8116",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_8116.mp4",
+      "poster": "hernandez_images/web_IMG_8116_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-aaac6c86",
+      "type": "video",
+      "src": "hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2.mp4",
+      "poster": "hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-3587",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_3587.mp4",
+      "poster": "hernandez_images/web_IMG_3587_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-3597",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_3597.mp4",
+      "poster": "hernandez_images/web_IMG_3597_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    },
+    {
+      "id": "video-3611",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_3611.mp4",
+      "poster": "hernandez_images/web_IMG_3611_poster.jpg",
+      "tags": ["project-video"],
+      "featured": false
+    }
+  ],
+  "surfaces": {
+    "$comment": "Each surface is an ordered list of item ids and maps to one generated region. galleryPage -> gallery.html cards; homeGallery -> staticImages array in assets/js/static-gallery.js (the homepage Latest Uploads carousel shows its first 6 entries); videosPage -> videos.html cards; sitemapGalleryImages -> image entries under the gallery.html url in sitemap.xml; sitemapVideos -> video entries under the videos.html url in sitemap.xml. video-2055 appears twice in videosPage because today's hand-maintained videos.html lists it twice; remove one entry whenever the owner wants to drop the duplicate card.",
+    "galleryPage": [
+      "fire-pit-lawn-finish",
+      "side-yard-lawn-finish",
+      "branded-truck-trailers",
+      "tree-climber-canopy",
+      "tree-removal-cut-logs",
+      "tree-climber-roofline",
+      "tree-climber-full-tree",
+      "completed-yard-equipment",
+      "wideshot-bestlandscape",
+      "wideshot-bestlandscape-person",
+      "wideshot-bestlandscape2",
+      "img-1953",
+      "hero-desktop",
+      "after1",
+      "img-0434-poster",
+      "img-1464-poster",
+      "img-3360",
+      "img-3362"
+    ],
+    "homeGallery": [
+      "fire-pit-lawn-finish",
+      "side-yard-lawn-finish",
+      "branded-truck-trailers",
+      "tree-climber-canopy",
+      "tree-removal-cut-logs",
+      "tree-climber-roofline",
+      "tree-climber-full-tree",
+      "completed-yard-equipment",
+      "equipment-trailers",
+      "img-3362",
+      "img-3360",
+      "wideshot-bestlandscape",
+      "wideshot-bestlandscape2",
+      "img-0434-poster",
+      "after1",
+      "img-1953",
+      "img-1464-poster"
+    ],
+    "videosPage": [
+      "video-0434",
+      "video-1095",
+      "video-2055",
+      "video-1139",
+      "video-1229",
+      "video-1268",
+      "video-1425",
+      "video-1464",
+      "video-1878",
+      "video-1953",
+      "video-2031",
+      "video-2046",
+      "video-2047",
+      "video-2048",
+      "video-2049",
+      "video-2050",
+      "video-2051",
+      "video-2052",
+      "video-2055",
+      "video-2056",
+      "video-2109",
+      "video-2110",
+      "video-2111",
+      "video-2112",
+      "video-2125",
+      "video-2134",
+      "video-2136",
+      "video-2154",
+      "video-2155",
+      "video-2315",
+      "video-2395",
+      "video-7968",
+      "video-8116",
+      "video-aaac6c86",
+      "video-3587",
+      "video-3597",
+      "video-3611"
+    ],
+    "sitemapGalleryImages": [
+      "completed-yard-equipment",
+      "tree-climber-roofline",
+      "equipment-trailers",
+      "fire-pit-lawn-finish",
+      "side-yard-lawn-finish"
+    ],
+    "sitemapVideos": [
+      "video-0434",
+      "video-1095",
+      "video-2055"
+    ]
+  }
+}

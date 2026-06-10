@@ -126,6 +126,7 @@
     <lastmod>2026-05-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <!-- GALLERY-IMAGES:GENERATED:START -->
     <image:image>
       <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg</image:loc>
       <image:title>Completed Hernandez Landscape yard project</image:title>
@@ -151,12 +152,14 @@
       <image:title>Side yard lawn finish</image:title>
       <image:caption>Fresh side yard lawn finish from a Hernandez Landscape project.</image:caption>
     </image:image>
+    <!-- GALLERY-IMAGES:GENERATED:END -->
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/videos.html</loc>
     <lastmod>2026-05-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <!-- GALLERY-VIDEOS:GENERATED:START -->
     <video:video>
       <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434_poster.jpg</video:thumbnail_loc>
       <video:title>Hernandez Landscape project video tour</video:title>
@@ -181,6 +184,7 @@
       <video:publication_date>2026-05-19T00:00:00-05:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
+    <!-- GALLERY-VIDEOS:GENERATED:END -->
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/privacy.html</loc>

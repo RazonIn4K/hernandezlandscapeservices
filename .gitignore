@@ -14,6 +14,7 @@ test_*.js
 # Markdown files (local only)
 *.md
 !.github/**/*.md
+!docs/MEDIA-WORKFLOW.md
 
 # Raw media (local only — optimized output lives in hernandez_images/)
 iCloud Photos/
