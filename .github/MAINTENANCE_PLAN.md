@@ -40,12 +40,14 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    ownership/liveness in Stripe/Postmark/Doppler, then either add test coverage or
    move them out of this repo. Do not delete before that check.
 5. **Remove stale artifacts (each needs one check first)** — Firebase env injection
-   in `deploy.yml` (confirm the Firebase project is dead), `_redirects` (confirm no
-   parallel Netlify deploy), `old_index.html`, `proposal.html`, `estimate.html`,
-   `invoice.html` (unused print templates per owner — delete or move under an
-   internal path), placeholder Google-review URL in the QR/card flow.
-6. **Automate cache busting + indexing** — `sw.js` cache name (`v16`) is bumped by
-   hand; derive it from the git SHA at build time instead. `npm run submit-indexnow`
-   is manual and undocumented; add a post-deploy hook or a documented release step.
-   Consider running `npm run test:ci` in the deploy workflow — tests currently never
-   run in CI.
+   in `deploy.yml` (confirm the Firebase project is dead), placeholder Google-review
+   URL in the QR/card flow (needs the real review link from the owner).
+   ~~`_redirects`~~ removed 2026-06-10 after DNS check: apex + www both resolve to
+   GitHub Pages (185.199.x.x / razonin4k.github.io); no Netlify deploy exists.
+   `old_index.html`, `proposal.html`, `estimate.html`, `invoice.html` are cleared
+   for removal (owner confirmed unused) — next cleanup PR.
+6. **Automate cache busting + indexing** — DONE 2026-06-10: deploy workflow now runs
+   the Playwright suite (chromium) before building, stamps the `sw.js` cache name
+   with the commit SHA (`scripts/stamp-sw-version.mjs` — committed file keeps a
+   readable fallback name), and a post-deploy job submits sitemap URLs to IndexNow
+   (`scripts/submit-indexnow.mjs`, key file served from the site root).
