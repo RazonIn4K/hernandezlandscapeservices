@@ -11,6 +11,7 @@
     "test:ci": "playwright test --reporter=dot",
     "dev": "npm run watch-css",
     "media:update": "node scripts/update-media.mjs",
+    "media:check": "node scripts/update-media.mjs --check",
     "submit-indexnow": "node scripts/submit-indexnow.mjs"
   },
   "repository": {
