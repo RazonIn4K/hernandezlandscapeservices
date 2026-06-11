@@ -67,3 +67,7 @@ regenerates all the places that media appears, so the pages never drift apart.
   optimized output in `hernandez_images/` is committed.
 - `scripts/optimize_media.py` is optional and local-only; `npm run
   media:update` never requires it.
+- CI runs `npm run media:check` on every deploy and fails the build if any
+  generated region drifted from `media/gallery.json` (for example after a
+  hand edit inside the markers, or a manifest change committed without
+  regenerating). Fix by running `npm run media:update` and committing.
