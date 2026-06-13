@@ -20,6 +20,8 @@ test_*.js
 # Raw media (local only — optimized output lives in hernandez_images/)
 iCloud Photos/
 media/inbox/
+apify-facebook-actual-page-photos-*/
+google-profile-upload-candidates-*/
 
 # Backup files
 *.backup-*
