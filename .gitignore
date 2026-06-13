@@ -15,6 +15,7 @@ test_*.js
 *.md
 !.github/**/*.md
 !docs/MEDIA-WORKFLOW.md
+!docs/GITLAB-CI.md
 
 # Raw media (local only — optimized output lives in hernandez_images/)
 iCloud Photos/
