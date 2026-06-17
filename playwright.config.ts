@@ -1,5 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const playwrightPort = process.env.PLAYWRIGHT_PORT ?? '3000';
+const playwrightBaseURL = `http://127.0.0.1:${playwrightPort}`;
+
 export default defineConfig({
   testDir: './tests/e2e',
   fullyParallel: true,
@@ -8,7 +11,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    baseURL: 'http://localhost:3000', // Changed from Firebase emulator
+    baseURL: playwrightBaseURL,
     serviceWorkers: 'block',
     trace: 'on-first-retry',
   },
@@ -32,8 +35,8 @@ export default defineConfig({
 
   // Static web server for testing
   webServer: {
-    command: 'node node_modules/tailwindcss/lib/cli.js -i ./src/input.css -o ./assets/css/styles.css --minify && node node_modules/serve/build/main.js . -l 3000',
-    url: 'http://localhost:3000',
+    command: `node node_modules/tailwindcss/lib/cli.js -i ./src/input.css -o ./assets/css/styles.css --minify && node node_modules/serve/build/main.js . -l ${playwrightPort}`,
+    url: playwrightBaseURL,
     reuseExistingServer: !process.env.CI,
   },
 });
