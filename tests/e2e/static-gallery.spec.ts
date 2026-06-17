@@ -281,6 +281,14 @@ test.describe('Static Gallery Functionality', () => {
       await expect(page.locator('#quotePrefillNotice')).toBeVisible();
       await expect(page.locator('#contactService')).toHaveValue(service.value);
       await expect(page.locator('#quotePrefillText')).toContainText(service.label);
+      await page.waitForFunction(() => {
+        const header = document.querySelector('#header');
+        const quoteHeading = document.querySelector('#quote h2');
+        const headerBottom = Math.round(header?.getBoundingClientRect().bottom ?? 0);
+        const quoteHeadingTop = Math.round(quoteHeading?.getBoundingClientRect().top ?? 0);
+
+        return quoteHeadingTop >= headerBottom && quoteHeadingTop <= window.innerHeight;
+      });
 
       const positions = await page.evaluate(() => {
         const header = document.querySelector('#header');
