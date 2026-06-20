@@ -22,6 +22,8 @@ site_quality:
     - npm ci
     - npm run build
     - npm run test:ci -- --project=chromium
+    - npm run publish:prepare
+    - npm run publish:check-layout
   artifacts:
     when: on_failure
     paths:

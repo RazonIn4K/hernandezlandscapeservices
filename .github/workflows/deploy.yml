@@ -46,6 +46,9 @@ jobs:
       - name: Prepare publish directory
         run: npm run publish:prepare
 
+      - name: Check publish layout
+        run: npm run publish:check-layout
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:

@@ -14,6 +14,7 @@
     "media:check": "node scripts/update-media.mjs --check",
     "media:budget": "node scripts/check-media-budget.mjs",
     "publish:prepare": "node scripts/prepare-publish.mjs",
+    "publish:check-layout": "node scripts/check-publish-layout.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs"
   },
   "repository": {

@@ -1,21 +1,20 @@
-        @media print {
-            @page { margin: 0.5in; size: letter; }
-            body { margin: 0; }
-            .no-print { display: none; }
+        body {
+            font-family: sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            overflow-x: hidden;
         }
-        body { font-family: sans-serif; background: #f0f0f0; }
         .sheet {
             background: white;
-            width: 8.5in;
-            height: 11in;
-            margin: 2rem auto;
-            padding: 0.5in; /* Avery Standard Margin */
+            width: min(8.5in, calc(100vw - 1rem));
+            min-height: calc(min(8.5in, calc(100vw - 1rem)) * 11 / 8.5);
+            margin: 1rem auto 2rem;
+            padding: clamp(0.15in, 5.882vw, 0.5in);
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             display: grid;
-            grid-template-columns: repeat(3, 2.625in); /* Avery 8160 Width */
-            grid-auto-rows: 1in; /* Avery 8160 Height */
-            column-gap: 0.125in;
-            row-gap: 0;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+            box-sizing: border-box;
         }
         .sticker {
             border: 1px dashed #eee; /* Helper for cutting, invisible if aligned perfectly or removed */
@@ -25,6 +24,7 @@
             padding: 0.1in;
             box-sizing: border-box;
             overflow: hidden;
+            aspect-ratio: 2.625 / 1;
         }
         .sticker-content {
             display: flex;
@@ -43,5 +43,42 @@
         .cta { font-size: 8pt; color: #333; margin-top: 2px; }
         .phone { font-size: 9pt; font-weight: bold; margin-top: 2px; }
         
-        .controls { text-align: center; margin: 2rem; }
+        .controls {
+            text-align: center;
+            margin: 1rem auto;
+            max-width: min(42rem, calc(100vw - 2rem));
+        }
         .btn { background: #15803d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; cursor: pointer; border:none; font-size: 1rem;}
+
+        @media screen and (max-width: 480px) {
+            .sheet {
+                width: min(3.5in, calc(100vw - 1rem));
+                min-height: auto;
+                padding: 0.15in;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            @page { margin: 0.5in; size: letter; }
+            body {
+                margin: 0;
+                overflow: visible;
+            }
+            .no-print { display: none; }
+            .sheet {
+                width: 8.5in;
+                height: 11in;
+                min-height: 11in;
+                margin: 0;
+                padding: 0.5in; /* Avery Standard Margin */
+                box-shadow: none;
+                grid-template-columns: repeat(3, 2.625in); /* Avery 8160 Width */
+                grid-auto-rows: 1in; /* Avery 8160 Height */
+                column-gap: 0.125in;
+                row-gap: 0;
+            }
+            .sticker {
+                aspect-ratio: auto;
+            }
+        }
