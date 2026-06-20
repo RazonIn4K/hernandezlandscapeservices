@@ -96,7 +96,7 @@
           <div class="flex items-center space-x-3">
             <a href="index.html">
               <img
-                src="hernandez_images/web_Logo_New.png"
+                src="hernandez_images/web_Logo_New_256.png"
                 alt="Hernandez Landscape & Tree Service LLC Logo"
                 class="h-12 w-auto object-contain"
               />
@@ -258,16 +258,21 @@
     >
       <!-- Background Image with Overlay: tree hero on mobile, wideshot on desktop -->
       <div class="absolute inset-0 z-0">
-        <img
-          src="hernandez_images/web_hero_mobile.jpg"
-          alt="Arborist at work in tree"
-          class="w-full h-full object-cover md:hidden"
-        />
-        <img
-          src="hernandez_images/web_hero_desktop.png"
-          alt="Landscaping at residential property"
-          class="w-full h-full object-cover hidden md:block"
-        />
+        <picture class="block h-full w-full">
+          <source
+            media="(min-width: 768px)"
+            srcset="hernandez_images/web_hero_desktop.jpg"
+          />
+          <img
+            src="hernandez_images/web_hero_mobile.jpg"
+            alt="Hernandez Landscape crew working on residential landscaping and tree care"
+            class="h-full w-full object-cover"
+            width="1200"
+            height="1600"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </picture>
         <div
           class="site-hero-overlay absolute inset-0 bg-gradient-to-b from-black/65 via-black/75 to-black/85"
         ></div>
@@ -1213,7 +1218,7 @@
               class="group relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]"
             >
               <img
-                src="hernandez_images/web_hero_desktop.png"
+                src="hernandez_images/web_hero_desktop.jpg"
                 alt="Beautiful paver patio and retaining wall"
                 class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
                 width="1200"
@@ -1261,11 +1266,11 @@
               class="group relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]"
             >
               <img
-                src="hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg"
-                alt="Professional landscaper working on custom garden"
+                src="hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg"
+                alt="Finished lawn and fire pit area completed by Hernandez Landscape"
                 class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                width="800"
-                height="600"
+                width="1050"
+                height="1400"
                 loading="lazy"
               />
               <div
@@ -2118,7 +2123,7 @@
           <!-- Column 1: Brand & About -->
           <div class="space-y-4">
             <img
-              src="hernandez_images/web_Logo_New.png"
+              src="hernandez_images/web_Logo_New_256.png"
               alt="Hernandez Landscape Logo"
               class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110"
             />
@@ -2384,10 +2389,10 @@
               "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg",
               "https://hernandezlandscapeservices.com/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg",
               "https://hernandezlandscapeservices.com/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg",
-              "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New.png",
+              "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New_256.png",
               "https://hernandezlandscapeservices.com/hernandez_images/web_After1.jpeg"
             ],
-            "logo": "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New.png",
+            "logo": "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New_256.png",
             "telephone": "+1-815-501-1478",
             "email": "hernandezlandscapetreeservices@gmail.com",
             "address": {

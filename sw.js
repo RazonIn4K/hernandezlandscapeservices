@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v16';
+const CACHE_NAME = 'hernandez-landscape-v17';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
@@ -32,26 +32,7 @@ const URLS_TO_CACHE = [
   '/assets/js/static-gallery.js',
   '/assets/js/i18n.js',
   '/manifest.json',
-  '/hernandez_images/web_Logo_New.png',
-  '/hernandez_images/web_hero_desktop.png',
-  '/hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg',
-  '/hernandez_images/web_hero_mobile.jpg',
-  '/hernandez_images/web_After1.jpeg',
-  '/hernandez_images/web_Before1.jpeg',
-  '/hernandez_images/web_IMG_1953.webp',
-  '/hernandez_images/web_IMG_1464_poster.jpg',
-  '/hernandez_images/web_IMG_0434_poster.jpg',
-  '/hernandez_images/web_Wideshot_Bestlandscape.jpg',
-  '/hernandez_images/web_Wideshot_Bestlandscape2.jpeg',
-  '/hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
-  '/hernandez_images/google-profile-2026-tree-climber-canopy.jpg',
-  '/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg',
-  '/hernandez_images/google-profile-2026-tree-climber-roofline.jpg',
-  '/hernandez_images/google-profile-2026-tree-climber-full-tree.jpg',
-  '/hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
-  '/hernandez_images/google-profile-2026-equipment-trailers.jpg',
-  '/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
-  '/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg'
+  '/hernandez_images/web_Logo_New_256.png'
 ];
 
 self.addEventListener('install', event => {

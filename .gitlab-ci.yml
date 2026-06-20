@@ -15,6 +15,22 @@ include:
 variables:
   DAST_WEBSITE: "https://razonin4k.github.io/hernandezlandscapeservices/"
 
+site_quality:
+  stage: test
+  image: mcr.microsoft.com/playwright:v1.59.1-noble
+  script:
+    - npm ci
+    - npm run build
+    - npm run test:ci -- --project=chromium
+  artifacts:
+    when: on_failure
+    paths:
+      - test-results/
+      - playwright-report/
+    expire_in: 1 week
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+
 dast:
   stage: dast
   rules:

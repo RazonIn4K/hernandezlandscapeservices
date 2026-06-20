@@ -54,6 +54,7 @@ regenerates all the places that media appears, so the pages never drift apart.
 
    ```sh
    git diff
+   npm run media:budget
    npm test
    ```
 
@@ -71,3 +72,6 @@ regenerates all the places that media appears, so the pages never drift apart.
   generated region drifted from `media/gallery.json` (for example after a
   hand edit inside the markers, or a manifest change committed without
   regenerating). Fix by running `npm run media:update` and committing.
+- Run `npm run media:budget` after adding photos or videos. It checks only
+  manifest-referenced public assets and fails if a new gallery image, poster,
+  individual video, or total media surface becomes too heavy.

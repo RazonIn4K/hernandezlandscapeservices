@@ -64,6 +64,19 @@
       }
     },
     {
+      "id": "brush-clearing-cleanup",
+      "type": "image",
+      "src": "hernandez_images/google-photos-2026-brush-clearing.webp",
+      "alt": "Brush and branch clearing pile after Hernandez yard cleanup work",
+      "caption": "Brush and branch clearing work staged for yard cleanup",
+      "tags": ["cleanup", "tree-service"],
+      "featured": false,
+      "gallery": {
+        "title": "Brush Clearing Cleanup",
+        "alt": "Brush and branch clearing pile after yard cleanup"
+      }
+    },
+    {
       "id": "tree-climber-roofline",
       "type": "image",
       "src": "hernandez_images/google-profile-2026-tree-climber-roofline.jpg",
@@ -201,7 +214,7 @@
     {
       "id": "hero-desktop",
       "type": "image",
-      "src": "hernandez_images/web_hero_desktop.png",
+      "src": "hernandez_images/web_hero_desktop.jpg",
       "alt": "Finished yard landscaping project",
       "caption": "Finished yard landscaping project",
       "tags": ["landscaping"],
@@ -556,13 +569,14 @@
     }
   ],
   "surfaces": {
-    "$comment": "Each surface is an ordered list of item ids and maps to one generated region. galleryPage -> gallery.html cards; homeGallery -> staticImages array in assets/js/static-gallery.js (the homepage Latest Uploads carousel shows its first 6 entries); videosPage -> videos.html cards; sitemapGalleryImages -> image entries under the gallery.html url in sitemap.xml; sitemapVideos -> video entries under the videos.html url in sitemap.xml. video-2055 appears twice in videosPage because today's hand-maintained videos.html lists it twice; remove one entry whenever the owner wants to drop the duplicate card.",
+    "$comment": "Each surface is an ordered list of item ids and maps to one generated region. galleryPage -> gallery.html cards; homeGallery -> staticImages array in assets/js/static-gallery.js (the homepage Latest Uploads carousel shows its first 6 entries); videosPage -> videos.html cards; sitemapGalleryImages -> image entries under the gallery.html url in sitemap.xml; sitemapVideos -> video entries under the videos.html url in sitemap.xml.",
     "galleryPage": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
       "branded-truck-trailers",
       "tree-climber-canopy",
       "tree-removal-cut-logs",
+      "brush-clearing-cleanup",
       "tree-climber-roofline",
       "tree-climber-full-tree",
       "completed-yard-equipment",
@@ -615,7 +629,6 @@
       "video-2050",
       "video-2051",
       "video-2052",
-      "video-2055",
       "video-2056",
       "video-2109",
       "video-2110",

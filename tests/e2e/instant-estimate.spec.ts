@@ -3,7 +3,7 @@ import { expect, test } from './fixtures';
 const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page.fill('#propertyAddress', '1234 Main St, DeKalb');
-  await page.check('#isOwner');
+  await page.locator('#isOwner').setChecked(true, { force: true });
   await page.selectOption('#serviceType', 'tree');
   await page.selectOption('#propertySize', 'medium');
   await page.fill('#zipCode', '60115');

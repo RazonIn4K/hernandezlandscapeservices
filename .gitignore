@@ -48,6 +48,7 @@ message_*.txt
 # Build artifacts
 dist/
 build/
+publish/
 .next/
 __pycache__/
 
@@ -76,3 +77,6 @@ tests/test-data/
 
 # Snyk Security Extension - AI Rules (auto-generated)
 .windsurf/rules/snyk_rules.md
+
+# Archived unreferenced media (local backup, not deployed)
+_media-archive/

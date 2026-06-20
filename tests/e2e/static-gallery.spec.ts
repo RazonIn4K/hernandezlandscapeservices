@@ -1,6 +1,7 @@
 import { expect, test } from './fixtures';
 
 const responsiveViewports = [
+  { name: 'narrow-mobile', width: 320, height: 740 },
   { name: 'mobile', width: 375, height: 812 },
   { name: 'tablet', width: 768, height: 1024 },
   { name: 'desktop', width: 1440, height: 900 }

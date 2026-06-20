@@ -25,6 +25,10 @@ html {
   scroll-behavior: smooth;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 /* Hero Section */
 .hero-bg {
   /* Using Wideshot_Bestlandscape_Person.jpg for the hero background */
@@ -364,6 +368,14 @@ textarea:focus-visible {
   max-width: 1180px;
 }
 
+.site-header nav > div:first-child {
+  min-width: 0;
+}
+
+.site-header nav > div:first-child > div {
+  min-width: 0;
+}
+
 .header-scrolled {
   background: rgba(255, 255, 255, 0.96) !important;
   backdrop-filter: blur(14px);
@@ -420,8 +432,15 @@ textarea:focus-visible {
 }
 
 .site-hero {
-  min-height: calc(100vh - 56px) !important;
+  min-height: calc(100vh - 5rem) !important;
+  min-height: min(760px, calc(100svh - 4rem)) !important;
+  padding-top: clamp(5.5rem, 8vw, 6.5rem) !important;
+  padding-bottom: clamp(3.75rem, 6vw, 4.75rem) !important;
   background-color: #102019;
+}
+
+.site-hero > .container {
+  padding-top: 0 !important;
 }
 
 .site-hero > .absolute img {
@@ -457,7 +476,7 @@ textarea:focus-visible {
 }
 
 .hero-heading {
-  max-width: 780px;
+  max-width: 900px;
 }
 
 .hero-heading .text-green-300 {
@@ -676,22 +695,98 @@ footer .bg-gray-800 {
 }
 
 @media (max-width: 640px) {
+  html {
+    scroll-padding-top: 4.75rem;
+  }
+
+  section[id],
+  main[id] {
+    scroll-margin-top: 4.75rem;
+  }
+
+  .site-header .container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  .site-header nav {
+    gap: 0.5rem;
+  }
+
+  .site-header nav > div:first-child {
+    flex: 1 1 auto;
+    margin-right: 0.25rem;
+  }
+
+  .site-header nav > div:first-child img {
+    height: 2.25rem !important;
+    flex: 0 0 auto;
+  }
+
+  .site-header nav > div:first-child p:first-child {
+    max-width: 100%;
+    font-size: clamp(0.78rem, 3.35vw, 0.95rem) !important;
+    line-height: 1.05 !important;
+    white-space: normal;
+  }
+
+  .site-header .lg\:hidden {
+    flex: 0 0 auto;
+    gap: 0.45rem !important;
+  }
+
+  .site-header [data-lang-switch] {
+    padding: 0.22rem 0.45rem !important;
+  }
+
   .site-hero {
     min-height: calc(100vh - 42px) !important;
-    padding-top: 5.25rem !important;
-    padding-bottom: 2.25rem !important;
+    padding-top: 5.35rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .site-hero > .container {
+    padding-top: 0 !important;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 0.9rem !important;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.68rem !important;
+    line-height: 1.15;
   }
 
   .hero-heading {
-    margin-bottom: 1.25rem !important;
+    font-size: clamp(1.9rem, 9vw, 2.35rem) !important;
+    line-height: 1.06 !important;
+    max-width: 18rem;
+    margin-bottom: 1rem !important;
   }
 
   .hero-subtitle {
-    margin-bottom: 1.5rem !important;
+    max-width: 18.5rem;
+    font-size: 0.98rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 1.2rem !important;
   }
 
   .hero-actions {
-    margin-top: 1.25rem !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .primary-cta,
+  .secondary-cta {
+    min-height: 2.9rem;
+    padding: 0.8rem 1rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .primary-cta i,
+  .secondary-cta i {
+    font-size: 1rem !important;
+    margin-right: 0.55rem !important;
   }
 
   .hero-trust-grid {
@@ -709,6 +804,49 @@ footer .bg-gray-800 {
   .trust-chip span {
     font-size: 0.76rem !important;
     line-height: 1.1;
+  }
+
+  .site-hero .animate-bounce {
+    display: none;
+  }
+
+  section {
+    padding-top: 3.25rem !important;
+    padding-bottom: 3.25rem !important;
+  }
+
+  section h2 {
+    font-size: clamp(1.65rem, 8vw, 2rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  section h3 {
+    line-height: 1.18 !important;
+  }
+
+  .instant-card,
+  .testimonial-spotlight,
+  .expectation-card,
+  #quote .bg-white {
+    padding: 1.25rem !important;
+  }
+
+  #quoteResult button,
+  #quoteResult a {
+    display: flex !important;
+    width: 100%;
+    justify-content: center;
+    margin-right: 0 !important;
+  }
+
+  #service-area .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  footer a[href^="mailto:"],
+  footer .text-gray-400 {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 @media (max-width: 768px) {

@@ -1,9 +1,16 @@
 # GitLab CI/CD Security Integration - hernandezlandscapeservices
 
-This project is integrated with GitLab CI/CD (mirroring to `gitlab.com/razonin4k/hernandezlandscapeservices-ci`) to run automated security scanning and vulnerability checks.
+This project is integrated with GitLab CI/CD (mirroring to `gitlab.com/razonin4k/hernandezlandscapeservices-ci`) to run automated site quality checks, security scanning, and vulnerability checks.
 
 ## Pipeline Scoping
 To optimize runner usage and prevent scanner noise on feature branches, the pipeline is configured with a global `workflow:rules` constraint. Pipelines will **only run on commits to the `main` branch**.
+
+## Site Quality
+
+### 1. Chromium Playwright + Media Checks
+- **Purpose:** Builds the static CSS, checks generated media surfaces and media budgets, then runs the Chromium Playwright suite against the local static site.
+- **Job:** `site_quality`
+- **Artifacts:** On failure, uploads `test-results/` and `playwright-report/` for debugging.
 
 ## Security Scanners Enabled
 

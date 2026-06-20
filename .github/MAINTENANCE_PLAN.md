@@ -13,7 +13,9 @@ deploy does not publish it.
 - Deploys: push to `main` → `.github/workflows/deploy.yml` → GitHub Pages.
 - Leads: `#contactForm` on `index.html` POSTs to Web3Forms (key in the page; recipient
   configured in the Web3Forms dashboard). Confirmed delivering as of June 2026.
-- Tests: `npm test` (Playwright, e2e only, NOT run in CI).
+- Tests: `npm test` runs the full local Playwright matrix. The GitHub Pages
+  deploy workflow runs `npm run test:ci -- --project=chromium`, which includes
+  generated-media drift checks and media-budget checks before Chromium tests.
 
 ## Known machine quirk (Windows dev box)
 
@@ -34,18 +36,11 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    + `npm run media:update` regenerate the gallery.html cards, videos.html players,
    homepage carousel data, and sitemap media entries between GENERATED markers;
    `scripts/optimize_media.py` is repo-relative now. See `docs/MEDIA-WORKFLOW.md`.
-   CI also runs `npm run media:check` and fails the deploy on manifest/page drift.
-   Open follow-ups: the index.html 3-card grid and the videos.html VideoObject
-   JSON-LD are still hand-maintained. The five large mp4s
-   (web_IMG_1095/1096/1229/1268/0434-1, 27-51 MB) must be LEFT AS-IS: they are
-   already libx264 outputs near their h264 size floor, and a measured re-encode
-   at optimizer settings (2026-06-10) inflated them ~27% because reproducing
-   prior compression artifacts costs more bits (two clips are 10-bit HLG).
-   Only web_IMG_1229.mp4 crosses GitHub's 50 MB warn line; the hard limit is
-   100 MB. If size ever truly matters, the real levers are: encode fresh from
-   the raw iCloud .MOV sources recoverable from git history (e.g.
-   `git show '146ada2:iCloud Photos/IMG_1095.MOV' > raw.mov`), trim the
-   2.5-minute clips, or add an AV1/HEVC <source> with h264 fallback.
+   CI runs `npm run media:check` and `npm run media:budget` through `test:ci`,
+   failing the deploy on manifest/page drift, duplicate surface IDs, or media
+   budget regressions. A June 2026 media pass compressed referenced photos,
+   posters, and videos in place; do not re-add raw originals to generated
+   surfaces unless they are optimized first.
 4. **Verify billing artifacts before touching them** — `pricing.html` + `/pay/*` are
    website-care billing (Stripe payment links). Confirm account ownership/liveness
    in Stripe, then either add test coverage (and fix the success page's missing
@@ -68,3 +63,7 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    with the commit SHA (`scripts/stamp-sw-version.mjs` — committed file keeps a
    readable fallback name), and a post-deploy job submits sitemap URLs to IndexNow
    (`scripts/submit-indexnow.mjs`, key file served from the site root).
+   June 2026 update: deploy artifacts are built through `npm run publish:prepare`,
+   which copies public runtime files and referenced `hernandez_images/*` assets
+   only, keeping tests, scripts, docs, raw media folders, and local tooling out of
+   GitHub Pages.

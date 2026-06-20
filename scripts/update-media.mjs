@@ -121,7 +121,13 @@ const resolveSurface = (name, expectedType) => {
     return [];
   }
   const resolved = [];
+  const seenIds = new Set();
   for (const id of list) {
+    if (seenIds.has(id)) {
+      fail(`surfaces.${name}: duplicate item id "${id}"`);
+      continue;
+    }
+    seenIds.add(id);
     const item = byId.get(id);
     if (!item) {
       fail(`surfaces.${name}: unknown item id "${id}"`);
@@ -202,13 +208,14 @@ const absUrl = (relPath) => `${baseUrl}/${relPath}`;
 
 function renderGalleryCards(list) {
   const cards = list.map((item, index) => {
-    const loading = index < 5 ? 'eager' : 'lazy';
+    const loading = index < 3 ? 'eager' : 'lazy';
+    const fetchPriority = index === 0 ? ' fetchpriority="high"' : '';
     const alt = item.gallery?.alt ?? item.alt;
     const keyAttr = item.gallery?.titleKey ? ` data-i18n-key="${escapeHtml(item.gallery.titleKey)}"` : '';
     const title = item.gallery?.title ?? '';
     return [
       '                <div class="gallery-item group">',
-      `                    <img src="${escapeHtml(item.src)}" loading="${loading}" alt="${escapeHtml(alt)}" class="">`,
+      `                    <img src="${escapeHtml(item.src)}" loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
       '                    <div class="gallery-overlay">',
       '                        <div class="text-center p-4">',
       `                            <h3${keyAttr}>${escapeHtml(title)}</h3>`,

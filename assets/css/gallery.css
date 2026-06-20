@@ -2,6 +2,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; background-color: #f9fafb; color: #1f2937; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        header nav > div:first-child,
+        header nav > div:first-child > div {
+            min-width: 0;
+        }
         
         /* Hero */
         .hero-bg {
@@ -148,3 +152,90 @@
         .nav-link { color: #374151; font-weight: 600; transition: color 0.2s; }
         .nav-link:hover { color: #16a34a; }
         .nav-link.active { color: #16a34a; }
+
+        footer a[href^="mailto:"] {
+            overflow-wrap: anywhere;
+            word-break: break-word;
+        }
+
+        @media (max-width: 640px) {
+            header .container {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+
+            header nav {
+                gap: 0.5rem;
+            }
+
+            header nav > div:first-child {
+                flex: 1 1 auto;
+                margin-right: 0.25rem;
+            }
+
+            header nav > div:first-child img {
+                height: 2.25rem !important;
+                flex: 0 0 auto;
+            }
+
+            header nav > div:first-child p:first-child {
+                max-width: 100%;
+                font-size: clamp(0.78rem, 3.35vw, 0.95rem) !important;
+                line-height: 1.05 !important;
+                white-space: normal;
+            }
+
+            header .lg\:hidden {
+                flex: 0 0 auto;
+                gap: 0.45rem !important;
+            }
+
+            header [data-lang-switch] {
+                padding: 0.22rem 0.45rem !important;
+            }
+
+            .hero-bg {
+                min-height: auto;
+                padding-top: 2.5rem;
+                padding-bottom: 2.5rem;
+            }
+
+            .hero-bg > div {
+                max-width: 100%;
+                padding-top: 3rem !important;
+                padding-bottom: 3rem !important;
+            }
+
+            .hero-bg h1 {
+                font-size: clamp(2rem, 10vw, 2.6rem) !important;
+                line-height: 1.05 !important;
+                overflow-wrap: break-word;
+            }
+
+            .hero-bg p {
+                font-size: 1rem !important;
+                line-height: 1.45 !important;
+            }
+
+            section {
+                padding-top: 3.25rem !important;
+                padding-bottom: 3.25rem !important;
+            }
+
+            section h2 {
+                font-size: clamp(1.65rem, 8vw, 2rem) !important;
+                line-height: 1.12 !important;
+            }
+
+            .before-after-slider {
+                min-height: 200px;
+            }
+
+            .gallery-overlay {
+                padding: 1rem;
+            }
+
+            .gallery-overlay h3 {
+                font-size: 1rem;
+            }
+        }
