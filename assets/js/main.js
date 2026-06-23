@@ -324,6 +324,47 @@ if (slider && handle) {
 
 const quoteResult = document.getElementById("quoteResult");
 let lastInstantEstimate = null;
+const FORM_CC_RECIPIENT = "tiogilh@gmail.com";
+const SPAM_PHRASE_PATTERNS = [
+  /ai agent/i,
+  /ai implementation/i,
+  /convert them/i,
+  /getdandy/i,
+  /google business profile/i,
+  /schedule-a-chat/i,
+  /trained it on/i,
+  /unsubscribe/i,
+  /15 minutes today or tomorrow/i,
+];
+
+function countUrls(value) {
+  return (value.match(/https?:\/\/|www\./gi) || []).length;
+}
+
+function isLikelySpamLead(formData) {
+  const message = String(formData.get("message") || "");
+  const email = String(formData.get("email") || "");
+  const website = String(formData.get("website") || "");
+  const botcheck = formData.get("botcheck");
+  const formLoadedAt = Number(formData.get("form_loaded_at") || 0);
+  const submittedTooFast =
+    Number.isFinite(formLoadedAt) &&
+    formLoadedAt > 0 &&
+    Date.now() - formLoadedAt < 1500;
+
+  let spamScore = 0;
+  if (website.trim() || botcheck) spamScore += 4;
+  if (submittedTooFast) spamScore += 1;
+  if (countUrls(message) >= 3) spamScore += 2;
+  else if (countUrls(message) === 2) spamScore += 1; // two links alone needs a second signal to trip
+  if (/getdandy/i.test(email)) spamScore += 2;
+
+  for (const pattern of SPAM_PHRASE_PATTERNS) {
+    if (pattern.test(message)) spamScore += 1;
+  }
+
+  return spamScore >= 2;
+}
 
 function calculateQuote() {
   const service = document.getElementById("serviceType");
@@ -353,11 +394,14 @@ function calculateQuote() {
   zip.classList.remove("border-red-500");
 
   const basePrices = {
-    lawn: { small: 40, medium: 60, large: 80, xlarge: 120 },
-    tree: { small: 200, medium: 350, large: 500, xlarge: 800 },
+    "lawn-care": { small: 40, medium: 60, large: 80, xlarge: 120 },
+    "tree-service": { small: 200, medium: 350, large: 500, xlarge: 800 },
     landscaping: { small: 500, medium: 1000, large: 2000, xlarge: 3500 },
-    cleanup: { small: 150, medium: 250, large: 400, xlarge: 600 },
-    snow: { small: 50, medium: 80, large: 120, xlarge: 200 },
+    "snow-removal": { small: 50, medium: 80, large: 120, xlarge: 200 },
+    "leaf-removal": { small: 150, medium: 250, large: 400, xlarge: 600 },
+    "gutter-cleaning": { small: 100, medium: 150, large: 225, xlarge: 325 },
+    "pressure-washing": { small: 150, medium: 250, large: 400, xlarge: 650 },
+    "multiple-services": { small: 250, medium: 500, large: 900, xlarge: 1500 },
   };
 
   const priceMap = basePrices[service.value];
@@ -400,13 +444,6 @@ function calculateQuote() {
   }
 }
 
-const INSTANT_SERVICE_TO_CONTACT = {
-  lawn: "lawn-care",
-  tree: "tree-service",
-  landscaping: "landscaping",
-  snow: "snow-removal",
-};
-
 const sendEstimateBtn = document.getElementById("sendEstimateBtn");
 if (sendEstimateBtn) {
   sendEstimateBtn.addEventListener("click", () => {
@@ -433,9 +470,7 @@ if (sendEstimateBtn) {
       contactBestTime.value = instantBestTime.value;
     }
 
-    applyQuotePrefill(
-      INSTANT_SERVICE_TO_CONTACT[lastInstantEstimate.serviceValue],
-    );
+    applyQuotePrefill(lastInstantEstimate.serviceValue);
 
     if (projectDetails) {
       const summary = `${getMessage("instant.handoff.prefix", "Instant estimate request:")} ${lastInstantEstimate.serviceLabel}, ${lastInstantEstimate.sizeLabel}, ZIP ${lastInstantEstimate.zip}. ${getMessage("instant.handoff.range", "Estimated range:")} ${lastInstantEstimate.priceText}.`;
@@ -455,6 +490,11 @@ if (sendEstimateBtn) {
 
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {
+  const formLoadedAt = document.getElementById("formLoadedAt");
+  if (formLoadedAt) {
+    formLoadedAt.value = String(Date.now());
+  }
+
   const contactService = document.getElementById("contactService");
   if (contactService) {
     contactService.addEventListener("change", () => {
@@ -524,6 +564,26 @@ if (contactForm) {
     }
 
     const formData = new FormData(this);
+    formData.set("ccemail", FORM_CC_RECIPIENT);
+    formData.set("form_loaded_at", formLoadedAt?.value || String(Date.now()));
+
+    if (isLikelySpamLead(formData)) {
+      showModal(
+        getMessage(
+          "alerts.contact.success",
+          "Thank you for your interest! We will call you within 24 hours.",
+        ),
+      );
+      this.reset();
+      if (formLoadedAt) {
+        formLoadedAt.value = String(Date.now());
+      }
+      if (button) {
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+      return;
+    }
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -541,6 +601,9 @@ if (contactForm) {
           ),
         );
         this.reset();
+        if (formLoadedAt) {
+          formLoadedAt.value = String(Date.now());
+        }
       } else {
         showModal(
           getMessage(

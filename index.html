@@ -394,13 +394,14 @@
           class="text-4xl font-bold text-center mb-4"
           data-i18n-key="instant.heading"
         >
-          Get Your Instant Estimate
+          Start Your Quote Request
         </h2>
         <p
           class="text-center text-gray-600 mb-8 max-w-xl mx-auto"
           data-i18n-key="instant.subtitle"
         >
-          No obligation, no pressure. See estimated pricing in seconds.
+          Use this quick starter to fill the final quote form below. Nothing is
+          sent until you submit the final request.
         </p>
 
         <div
@@ -482,26 +483,47 @@
                   >
                     Select a service...
                   </option>
-                  <option value="lawn" data-i18n-key="instant.option.lawn">
-                    Lawn Mowing (Weekly)
+                  <option value="lawn-care" data-i18n-key="quote.select.lawn">
+                    Lawn Care
                   </option>
-                  <option value="tree" data-i18n-key="instant.option.tree">
+                  <option
+                    value="tree-service"
+                    data-i18n-key="quote.select.tree"
+                  >
                     Tree Service
                   </option>
                   <option
                     value="landscaping"
-                    data-i18n-key="instant.option.landscaping"
+                    data-i18n-key="quote.select.landscaping"
                   >
-                    Landscaping Design
+                    Landscaping
                   </option>
                   <option
-                    value="cleanup"
-                    data-i18n-key="instant.option.cleanup"
+                    value="snow-removal"
+                    data-i18n-key="quote.select.snow"
                   >
-                    Spring/Fall Cleanup
-                  </option>
-                  <option value="snow" data-i18n-key="instant.option.snow">
                     Snow Removal
+                  </option>
+                  <option value="leaf-removal" data-i18n-key="quote.select.leaf">
+                    Leaf Removal
+                  </option>
+                  <option
+                    value="gutter-cleaning"
+                    data-i18n-key="quote.select.gutter"
+                  >
+                    Gutter Cleaning
+                  </option>
+                  <option
+                    value="pressure-washing"
+                    data-i18n-key="quote.select.pressure"
+                  >
+                    Pressure Washing
+                  </option>
+                  <option
+                    value="multiple-services"
+                    data-i18n-key="quote.select.multiple"
+                  >
+                    Multiple Services
                   </option>
                 </select>
               </div>
@@ -594,14 +616,14 @@
                 class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
                 data-i18n-key="instant.button.calculate"
               >
-                Request Free Estimate
+                See Starting Range
               </button>
               <p
                 class="text-xs text-gray-500 text-center mt-3"
                 data-i18n-key="instant.privacy"
               >
-                <i class="fas fa-lock mr-1"></i>We never share your information.
-                Your privacy is protected.
+                <i class="fas fa-lock mr-1"></i>This starter does not send a
+                message. Review and submit the final quote form below.
               </p>
             </div>
           </form>
@@ -616,7 +638,7 @@
               class="text-2xl font-bold text-green-800 mb-2"
               data-i18n-key="instant.result.heading"
             >
-              Estimated Price Range:
+              Starting Price Range:
             </h3>
             <p class="text-3xl font-black text-green-600" id="priceRange">
               $0 - $0
@@ -625,8 +647,8 @@
               class="text-gray-700 mt-2"
               data-i18n-key="instant.result.disclaimer"
             >
-              This is an estimate. Final price depends on specific requirements
-              and on-site assessment.
+              This starter range helps set expectations. Final pricing depends
+              on access, scope, disposal, and the on-site assessment.
             </p>
             <button
               type="button"
@@ -635,7 +657,7 @@
             >
               <i class="fas fa-paper-plane"></i>
               <span data-i18n-key="instant.result.send"
-                >Send My Estimate Request</span
+                >Continue to Final Quote Form</span
               >
             </button>
             <a
@@ -1900,6 +1922,12 @@
                     name="from_name"
                     value="Website Quote Form"
                   />
+                  <input
+                    type="hidden"
+                    name="ccemail"
+                    value="tiogilh@gmail.com"
+                  />
+                  <input type="hidden" name="form_loaded_at" id="formLoadedAt" />
 
                   <div
                     id="quotePrefillNotice"
@@ -2099,6 +2127,20 @@
                     class="hidden"
                     style="display: none"
                   />
+                  <label
+                    class="hidden"
+                    aria-hidden="true"
+                    tabindex="-1"
+                  >
+                    Website
+                    <input
+                      type="text"
+                      name="website"
+                      id="websiteField"
+                      autocomplete="off"
+                      tabindex="-1"
+                    />
+                  </label>
 
                   <button
                     type="submit"

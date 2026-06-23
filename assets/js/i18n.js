@@ -253,7 +253,9 @@
       "hero.badge.family": "Negocio familiar",
       "hero.badge.bilingual": "Hablamos Español",
 
-      "instant.heading": "Obtén tu estimado al instante",
+      "instant.heading": "Inicia una sola solicitud de cotización",
+      "instant.subtitle":
+        "Usa este inicio rápido para llenar el formulario final. Nada se envía hasta que revises y envíes la solicitud final.",
       "instant.label.serviceType": "Tipo de servicio",
       "instant.option.servicePlaceholder": "Selecciona un servicio...",
       "instant.option.lawn": "Corte de césped (semanal)",
@@ -270,12 +272,12 @@
       "instant.label.zip": "Tu código postal",
       "instant.placeholder.zip": "ej., 60115",
       "instant.title.zip": "Ingresa un código postal válido de 5 dígitos",
-      "instant.button.calculate": "Solicitar estimado gratis",
-      "instant.result.heading": "Rango de precio estimado:",
+      "instant.button.calculate": "Ver rango inicial",
+      "instant.result.heading": "Rango de precio inicial:",
       "instant.result.disclaimer":
-        "Este es un estimado. El precio final depende de requisitos específicos y de la evaluación en sitio.",
+        "Este rango inicial ayuda a orientar. El precio final depende del acceso, alcance, retiro de material y evaluación en sitio.",
       "instant.result.call": "Llama para una cotización exacta",
-      "instant.result.send": "Enviar mi solicitud de presupuesto",
+      "instant.result.send": "Continuar al formulario final",
 
       "services.heading": "Nuestros servicios profesionales",
       "services.subheading":

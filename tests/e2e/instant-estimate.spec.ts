@@ -3,8 +3,12 @@ import { expect, test } from './fixtures';
 const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page.fill('#propertyAddress', '1234 Main St, DeKalb');
-  await page.locator('#isOwner').setChecked(true, { force: true });
-  await page.selectOption('#serviceType', 'tree');
+  await page.locator('#isOwner').evaluate((checkbox) => {
+    const input = checkbox as HTMLInputElement;
+    input.checked = true;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await page.selectOption('#serviceType', 'tree-service');
   await page.selectOption('#propertySize', 'medium');
   await page.fill('#zipCode', '60115');
   await page.selectOption('#instantBestTime', 'evening');
@@ -58,6 +62,8 @@ test.describe('Instant estimate lead handoff', () => {
     expect(submittedBody).toContain('evening');
     expect(submittedBody).toContain('$280 - $420');
     expect(submittedBody).toContain('owner_verified');
+    expect(submittedBody).toContain('name="ccemail"');
+    expect(submittedBody).toContain('tiogilh@gmail.com');
   });
 
   test('calculating an estimate alone sends no network request', async ({ page }) => {
@@ -76,5 +82,51 @@ test.describe('Instant estimate lead handoff', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#bestTime')).toHaveCount(1);
     await expect(page.locator('#instantBestTime')).toHaveCount(1);
+  });
+
+  test('starter and final quote form use the same service options', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+    const starterValues = await page.locator('#serviceType option').evaluateAll((options) =>
+      options.map((option) => (option as HTMLOptionElement).value).filter(Boolean),
+    );
+    const finalValues = await page.locator('#contactService option').evaluateAll((options) =>
+      options.map((option) => (option as HTMLOptionElement).value).filter(Boolean),
+    );
+
+    expect(starterValues).toEqual(finalValues);
+  });
+
+  test('sales outreach spam is not sent to Web3Forms', async ({ page }) => {
+    const web3formsRequests: string[] = [];
+    await page.route('**/api.web3forms.com/**', async (route) => {
+      web3formsRequests.push(route.request().url());
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await page.goto('/#quote', { waitUntil: 'domcontentloaded' });
+    await page.fill('#contactName', 'Jennifer Obrien');
+    await page.fill('#contactPhone', '9499797488');
+    await page.fill('#contactEmail', 'ob-jennifer@getdandynow.com');
+    await page.fill('#contactAddress', '9891 Irvine Center Drive');
+    await page.locator('#ownerVerify').evaluate((checkbox) => {
+      const input = checkbox as HTMLInputElement;
+      input.checked = true;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    await page.selectOption('#bestTime', 'afternoon');
+    await page.selectOption('#contactService', 'lawn-care');
+    await page.fill(
+      '#projectDetails',
+      'I made an AI agent for Hernandez Landscape and can add it to your Google Business Profile. Grab a time here: https://getdandy.com/schedule-a-chat/ Unsubscribe: https://bit.ly/42wnUsa',
+    );
+    await page.click('#contactForm button[type="submit"]');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    expect(web3formsRequests).toHaveLength(0);
   });
 });
