@@ -60,15 +60,78 @@
             "name": "Illinois"
           }
         },
-        "Sycamore, IL",
-        "Cortland, IL",
-        "Malta, IL",
-        "Genoa, IL",
-        "Kingston, IL",
-        "Rochelle, IL",
-        "Hinckley, IL",
-        "St. Charles, IL",
-        "West Chicago, IL"
+        {
+          "@type": "City",
+          "name": "Sycamore",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Cortland",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Malta",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Genoa",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Kingston",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Rochelle",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "Hinckley",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "St. Charles",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        },
+        {
+          "@type": "City",
+          "name": "West Chicago",
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Illinois"
+          }
+        }
       ],
       "url": "https://hernandezlandscapeservices.com/",
       "hasMap": "https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/",
@@ -124,6 +187,37 @@
           }
         ]
       }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hernandezlandscapeservices.com/#website",
+      "url": "https://hernandezlandscapeservices.com/",
+      "name": "Hernandez Landscape & Tree Service LLC",
+      "publisher": {
+        "@id": "https://hernandezlandscapeservices.com/#organization"
+      },
+      "inLanguage": ["en", "es"]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://hernandezlandscapeservices.com/#webpage",
+      "url": "https://hernandezlandscapeservices.com/",
+      "name": "DeKalb Tree Removal & Landscaping | Hernandez Landscape",
+      "description": "Professional tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured.",
+      "isPartOf": {
+        "@id": "https://hernandezlandscapeservices.com/#website"
+      },
+      "about": {
+        "@id": "https://hernandezlandscapeservices.com/#organization"
+      },
+      "mainEntity": {
+        "@id": "https://hernandezlandscapeservices.com/#organization"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg"
+      },
+      "inLanguage": ["en", "es"]
     },
     {
       "@type": "BreadcrumbList",

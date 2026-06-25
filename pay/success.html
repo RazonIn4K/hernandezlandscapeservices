@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful | Hernandez Landscape</title>
+    <meta name="description" content="Payment confirmation page for Hernandez Landscape & Tree Service LLC website care plan checkout.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://hernandezlandscapeservices.com/pay/success.html">
     <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
         .success-container {
@@ -110,12 +113,14 @@
         const urlParams = new URLSearchParams(window.location.search);
         const sessionId = urlParams.get('session_id');
         
-        if (sessionId) {
-            document.getElementById('sid').textContent = sessionId;
+        const sessionIdElement = document.getElementById('sid');
+        if (sessionId && sessionIdElement) {
+            sessionIdElement.textContent = sessionId;
         }
         
         // Optional: Track conversion with analytics
         console.log('Payment conversion tracked');
     </script>
+<script src="/assets/js/mobile-call-cta.js" defer></script>
 </body>
 </html>

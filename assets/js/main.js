@@ -444,6 +444,13 @@ function calculateQuote() {
   }
 }
 
+window.calculateQuote = calculateQuote;
+
+const calculateQuoteBtn = document.getElementById("calculateQuoteBtn");
+if (calculateQuoteBtn) {
+  calculateQuoteBtn.addEventListener("click", calculateQuote);
+}
+
 const sendEstimateBtn = document.getElementById("sendEstimateBtn");
 if (sendEstimateBtn) {
   sendEstimateBtn.addEventListener("click", () => {

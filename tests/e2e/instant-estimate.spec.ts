@@ -12,7 +12,7 @@ const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
   await page.selectOption('#propertySize', 'medium');
   await page.fill('#zipCode', '60115');
   await page.selectOption('#instantBestTime', 'evening');
-  await page.click('button[onclick="calculateQuote()"]');
+  await page.click('#calculateQuoteBtn');
   await expect(page.locator('#quoteResult')).toBeVisible();
   await expect(page.locator('#priceRange')).toHaveText('$280 - $420');
 };

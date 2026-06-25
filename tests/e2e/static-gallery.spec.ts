@@ -143,6 +143,7 @@ test.describe('Schema JSON-LD Validation', () => {
 test.describe('Static Gallery Functionality', () => {
   const testsWithCustomNavigation = new Set([
     'mobile responsiveness',
+    'mobile call CTA is available across key public pages',
     'photo layouts remain aligned across breakpoints',
   ]);
 
@@ -345,11 +346,28 @@ test.describe('Static Gallery Functionality', () => {
     );
   });
 
+  test('mobile call CTA is available across key public pages', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+
+    for (const path of ['/', '/tree-removal/', '/service-areas/', '/pay/success.html']) {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+
+      const callCta = page.locator('[data-mobile-call-cta]');
+      await expect(callCta).toBeVisible();
+      await expect(callCta).toHaveAttribute('href', 'tel:18155011478');
+      await expect(callCta).toContainText('Call Now');
+    }
+  });
+
   test('mobile responsiveness', async ({ page }) => {
     // Test mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('body', { state: 'attached' });
+
+    const callCta = page.locator('[data-mobile-call-cta]');
+    await expect(callCta).toBeVisible();
+    await expect(callCta).toHaveAttribute('href', 'tel:18155011478');
     
     // Check mobile menu works
     const mobileMenuButton = page.locator('button[aria-label="Toggle mobile menu"]');
@@ -399,12 +417,20 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('language toggle functionality', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.evaluate(() => {
+      window.localStorage.clear();
+      window.sessionStorage.clear();
+    });
+    await page.reload({ waitUntil: 'domcontentloaded' });
+
     // Check language toggle buttons exist
     const enButton = page.getByRole('button', { name: 'EN' }).first();
     const esButton = page.getByRole('button', { name: 'ES' }).first();
     
     await expect(enButton).toBeVisible();
     await expect(esButton).toBeVisible();
+    await expect(enButton).toHaveAttribute('aria-pressed', 'true');
     
     // Test switching to Spanish
     await esButton.click();

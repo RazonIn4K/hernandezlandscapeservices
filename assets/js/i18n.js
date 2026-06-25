@@ -88,8 +88,8 @@
       "video.viewAll": "View All Videos",
 
       "hero.eyebrow": "DeKalb County Landscaping & Tree Service",
-      "hero.transform": "Hernandez Landscape & Tree Service LLC",
-      "hero.outdoor": "DeKalb Landscaping & Tree Care",
+      "hero.transform": "Tree Removal, Lawn Care &",
+      "hero.outdoor": "Landscaping in DeKalb, IL",
       "hero.subtitle":
         "Tree trimming, removal, lawn care, and landscaping from a family-owned DeKalb County crew. Free estimates in English or Spanish.",
       "hero.cta": "Request Free Estimate",
@@ -431,8 +431,8 @@
       "gallery.item.project": "Proyecto",
 
       "hero.eyebrow": "Jardinería y servicio de árboles en DeKalb County",
-      "hero.transform": "Hernandez Landscape & Tree Service LLC",
-      "hero.outdoor": "Jardinería y árboles en DeKalb",
+      "hero.transform": "Remoción de árboles, césped y",
+      "hero.outdoor": "jardinería en DeKalb, IL",
       "hero.subtitle":
         "Poda, remoción de árboles, cuidado del césped y jardinería por un equipo familiar del condado de DeKalb. Estimados gratis en inglés o español.",
       "hero.cta": "Solicitar estimado gratis",

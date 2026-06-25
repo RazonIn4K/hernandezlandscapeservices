@@ -151,7 +151,15 @@ const inspectPage = async (page, baseURL) => page.evaluate((origin) => {
 
     const style = getComputedStyle(el);
     if (style.display === 'none' || style.visibility === 'hidden') continue;
-    if (style.position === 'fixed' && (el.id === 'mobileMenu' || el.id === 'mobile-menu')) continue;
+    if (
+      style.position === 'fixed' &&
+      (el.id === 'mobileMenu' ||
+        el.id === 'mobile-menu' ||
+        el.dataset.layoutIgnore === 'fixed-cta' ||
+        el.classList.contains('mobile-call-cta'))
+    ) {
+      continue;
+    }
 
     const rect = el.getBoundingClientRect();
     if (rect.width < 4 || rect.height < 4) continue;

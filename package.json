@@ -8,11 +8,12 @@
     "watch-css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "test:ci": "npm run media:check && npm run media:budget && playwright test --reporter=dot",
+    "test:ci": "npm run media:check && npm run media:budget && npm run seo:check && playwright test --reporter=dot",
     "dev": "npm run watch-css",
     "media:update": "node scripts/update-media.mjs",
     "media:check": "node scripts/update-media.mjs --check",
     "media:budget": "node scripts/check-media-budget.mjs",
+    "seo:check": "node scripts/check-seo.mjs",
     "publish:prepare": "node scripts/prepare-publish.mjs",
     "publish:check-layout": "node scripts/check-publish-layout.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs"

@@ -740,7 +740,7 @@ footer .bg-gray-800 {
   }
 
   .site-hero {
-    min-height: calc(100vh - 42px) !important;
+    min-height: auto !important;
     padding-top: 5.35rem !important;
     padding-bottom: 2rem !important;
   }
@@ -783,6 +783,10 @@ footer .bg-gray-800 {
     font-size: 0.95rem !important;
   }
 
+  .secondary-cta {
+    display: none !important;
+  }
+
   .primary-cta i,
   .secondary-cta i {
     font-size: 1rem !important;
@@ -813,6 +817,10 @@ footer .bg-gray-800 {
   section {
     padding-top: 3.25rem !important;
     padding-bottom: 3.25rem !important;
+  }
+
+  #services {
+    padding-top: 0.95rem !important;
   }
 
   section h2 {
