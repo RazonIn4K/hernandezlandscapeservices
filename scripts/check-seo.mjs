@@ -142,16 +142,29 @@ for (const relPath of htmlFiles) {
       const ogTitle = extractProperty(html, 'og:title');
       const ogDescription = extractProperty(html, 'og:description');
       const ogImage = extractProperty(html, 'og:image');
+      const ogImageAlt = extractProperty(html, 'og:image:alt');
       const ogUrl = extractProperty(html, 'og:url');
       const twitterCard = extractMeta(html, 'twitter:card');
+      const twitterTitle = extractMeta(html, 'twitter:title');
+      const twitterDescription = extractMeta(html, 'twitter:description');
+      const twitterImage = extractMeta(html, 'twitter:image');
+      const twitterImageAlt = extractMeta(html, 'twitter:image:alt');
 
       if (!ogTitle) fail(`${relPath}: missing og:title`);
       if (!ogDescription) fail(`${relPath}: missing og:description`);
       if (!ogImage) fail(`${relPath}: missing og:image`);
+      if (!ogImageAlt) fail(`${relPath}: missing og:image:alt`);
       if (!ogUrl) fail(`${relPath}: missing og:url`);
       if (!twitterCard) fail(`${relPath}: missing twitter:card`);
+      if (!twitterTitle) fail(`${relPath}: missing twitter:title`);
+      if (!twitterDescription) fail(`${relPath}: missing twitter:description`);
+      if (!twitterImage) fail(`${relPath}: missing twitter:image`);
+      if (!twitterImageAlt) fail(`${relPath}: missing twitter:image:alt`);
       if (ogImage && !fileExistsForPublicUrl(ogImage)) {
         fail(`${relPath}: og:image does not map to a local public file: ${ogImage}`);
+      }
+      if (twitterImage && !fileExistsForPublicUrl(twitterImage)) {
+        fail(`${relPath}: twitter:image does not map to a local public file: ${twitterImage}`);
       }
     }
   }

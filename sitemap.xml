@@ -5,7 +5,7 @@
   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://hernandezlandscapeservices.com/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/tree-removal/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -47,7 +47,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/lawn-care/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/snow-removal/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
     <image:image>
@@ -79,7 +79,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/service-areas/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -90,7 +90,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/service-areas/dekalb-il/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
     <image:image>
@@ -101,7 +101,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/service-areas/sycamore-il/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -112,7 +112,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/service-areas/cortland-il/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -123,25 +123,10 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/gallery.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <!-- GALLERY-IMAGES:GENERATED:START -->
-    <image:image>
-      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg</image:loc>
-      <image:title>Completed Hernandez Landscape yard project</image:title>
-      <image:caption>Completed yard work with Hernandez Landscape equipment on site.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-roofline.jpg</image:loc>
-      <image:title>Tree trimming near roofline</image:title>
-      <image:caption>Hernandez tree service work near a home roofline.</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-equipment-trailers.jpg</image:loc>
-      <image:title>Hernandez Landscape equipment trailers</image:title>
-      <image:caption>Equipment trailers used by Hernandez Landscape &amp; Tree Service LLC.</image:caption>
-    </image:image>
     <image:image>
       <image:loc>https://hernandezlandscapeservices.com/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg</image:loc>
       <image:title>Finished lawn and fire pit project</image:title>
@@ -152,11 +137,41 @@
       <image:title>Side yard lawn finish</image:title>
       <image:caption>Fresh side yard lawn finish from a Hernandez Landscape project.</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-canopy.jpg</image:loc>
+      <image:title>Tree canopy service work</image:title>
+      <image:caption>Hernandez Landscape tree service crew member working high in a residential tree canopy.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg</image:loc>
+      <image:title>Tree removal cleanup with cut logs</image:title>
+      <image:caption>Cut logs and debris staged after a Hernandez Landscape tree removal cleanup.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-photos-2026-brush-clearing.webp</image:loc>
+      <image:title>Brush and branch clearing cleanup</image:title>
+      <image:caption>Brush and branch clearing work staged after Hernandez Landscape yard cleanup service.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-roofline.jpg</image:loc>
+      <image:title>Tree trimming near roofline</image:title>
+      <image:caption>Hernandez tree service work near a home roofline.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg</image:loc>
+      <image:title>Completed Hernandez Landscape yard project</image:title>
+      <image:caption>Completed yard work with Hernandez Landscape equipment on site.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-equipment-trailers.jpg</image:loc>
+      <image:title>Hernandez Landscape equipment trailers</image:title>
+      <image:caption>Equipment trailers used by Hernandez Landscape &amp; Tree Service LLC.</image:caption>
+    </image:image>
     <!-- GALLERY-IMAGES:GENERATED:END -->
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/videos.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <!-- GALLERY-VIDEOS:GENERATED:START -->

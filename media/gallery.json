@@ -48,7 +48,11 @@
       "caption": "Tree climbing and canopy work for safe trimming and removal",
       "tags": ["tree-service"],
       "featured": true,
-      "gallery": { "title": "Tree Canopy Work" }
+      "gallery": { "title": "Tree Canopy Work" },
+      "sitemap": {
+        "title": "Tree canopy service work",
+        "caption": "Hernandez Landscape tree service crew member working high in a residential tree canopy."
+      }
     },
     {
       "id": "tree-removal-cut-logs",
@@ -61,6 +65,10 @@
       "gallery": {
         "title": "Removal Cleanup",
         "alt": "Cut logs after Hernandez tree removal cleanup"
+      },
+      "sitemap": {
+        "title": "Tree removal cleanup with cut logs",
+        "caption": "Cut logs and debris staged after a Hernandez Landscape tree removal cleanup."
       }
     },
     {
@@ -74,6 +82,10 @@
       "gallery": {
         "title": "Brush Clearing Cleanup",
         "alt": "Brush and branch clearing pile after yard cleanup"
+      },
+      "sitemap": {
+        "title": "Brush and branch clearing cleanup",
+        "caption": "Brush and branch clearing work staged after Hernandez Landscape yard cleanup service."
       }
     },
     {
@@ -649,11 +661,14 @@
       "video-3611"
     ],
     "sitemapGalleryImages": [
-      "completed-yard-equipment",
-      "tree-climber-roofline",
-      "equipment-trailers",
       "fire-pit-lawn-finish",
-      "side-yard-lawn-finish"
+      "side-yard-lawn-finish",
+      "tree-climber-canopy",
+      "tree-removal-cut-logs",
+      "brush-clearing-cleanup",
+      "tree-climber-roofline",
+      "completed-yard-equipment",
+      "equipment-trailers"
     ],
     "sitemapVideos": [
       "video-0434",
