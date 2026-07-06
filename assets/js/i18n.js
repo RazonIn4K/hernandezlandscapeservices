@@ -316,8 +316,8 @@
       "gallery.card1.subtitle": "Equipo del condado de DeKalb",
       "gallery.card2.title": "Césped recién terminado",
       "gallery.card2.subtitle": "Casa cerca de Cortland",
-      "gallery.card3.title": "Cama de mulch y borde",
-      "gallery.card3.subtitle": "Casa del condado de DeKalb",
+      "gallery.card3.title": "Limpieza de patio",
+      "gallery.card3.subtitle": "Trabajo en el norte de Illinois",
       "gallery.latestHeading": "Últimas fotos subidas",
       "gallery.placeholder":
         "Tus nuevas fotos aparecerán aquí después de subirlas.",

@@ -487,11 +487,12 @@ if (sendEstimateBtn) {
       projectDetails.classList.remove("border-red-500");
     }
 
-    scheduleScrollElementBelowHeader("quote");
     const contactName = document.getElementById("contactName");
     if (contactName) {
       contactName.focus({ preventScroll: true });
     }
+    scrollElementBelowHeader("quote");
+    scheduleScrollElementBelowHeader("quote");
   });
 }
 

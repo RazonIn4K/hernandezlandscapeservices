@@ -45,6 +45,48 @@
       }
     },
     {
+      "id": "brush-pile-removal",
+      "type": "image",
+      "src": "hernandez_images/google-photos-2026-brush-pile-removal.webp",
+      "alt": "Brush pile and tree debris staged after Hernandez Landscape cleanup",
+      "caption": "Brush pile and tree debris staged for removal after yard cleanup",
+      "tags": ["cleanup", "tree-service"],
+      "featured": true,
+      "gallery": { "title": "Brush Pile Removal" },
+      "sitemap": {
+        "title": "Brush pile removal project",
+        "caption": "Brush pile and tree debris staged after Hernandez Landscape cleanup service."
+      }
+    },
+    {
+      "id": "woodpile-yard-cleanup",
+      "type": "image",
+      "src": "hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp",
+      "alt": "Woodpile and overgrown yard area before Hernandez cleanup work",
+      "caption": "Woodpile and overgrown yard area cleared during a cleanup project",
+      "tags": ["cleanup", "tree-service"],
+      "featured": true,
+      "gallery": { "title": "Woodpile Yard Cleanup" },
+      "sitemap": {
+        "title": "Woodpile yard cleanup",
+        "caption": "Woodpile and overgrown yard area prepared for Hernandez Landscape cleanup work."
+      }
+    },
+    {
+      "id": "backyard-lawn-finish",
+      "type": "image",
+      "src": "hernandez_images/google-photos-2026-backyard-lawn-finish.webp",
+      "alt": "Fresh backyard lawn finish after Hernandez Landscape service",
+      "caption": "Fresh backyard lawn finish with clean mowing around trees and planting beds",
+      "tags": ["lawn-care", "landscaping"],
+      "featured": true,
+      "gallery": { "title": "Backyard Lawn Finish" },
+      "sitemap": {
+        "title": "Backyard lawn finish",
+        "caption": "Fresh backyard lawn finish after Hernandez Landscape lawn care service."
+      }
+    },
+    {
       "id": "branded-truck-trailers",
       "type": "image",
       "src": "hernandez_images/google-profile-2026-branded-truck-trailers.jpg",
@@ -599,6 +641,9 @@
     "galleryPage": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
+      "brush-pile-removal",
+      "woodpile-yard-cleanup",
+      "backyard-lawn-finish",
       "mulch-bed-edging",
       "branded-truck-trailers",
       "tree-climber-canopy",
@@ -621,6 +666,9 @@
     "homeGallery": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
+      "brush-pile-removal",
+      "woodpile-yard-cleanup",
+      "backyard-lawn-finish",
       "mulch-bed-edging",
       "branded-truck-trailers",
       "tree-climber-canopy",
@@ -631,10 +679,7 @@
       "equipment-trailers",
       "img-3362",
       "img-3360",
-      "wideshot-bestlandscape",
-      "wideshot-bestlandscape2",
       "img-0434-poster",
-      "after1",
       "img-1953",
       "img-1464-poster"
     ],
@@ -679,6 +724,9 @@
     "sitemapGalleryImages": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
+      "brush-pile-removal",
+      "woodpile-yard-cleanup",
+      "backyard-lawn-finish",
       "mulch-bed-edging",
       "tree-climber-canopy",
       "tree-removal-cut-logs",
