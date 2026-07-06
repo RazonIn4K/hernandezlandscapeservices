@@ -101,12 +101,12 @@
 ### P0 — critical/high, unblocked
 
 - [x] P0-1 Stop silently dropping borderline leads: in assets/js/main.js (isLikelySpamLead 344-367; invocation 578-594), keep honeypot/`botcheck`/timing as hard-block, but for phrase/URL-score-only trips still POST to Web3Forms with a `[Possible Spam]` subject tag instead of returning early with a fake success modal. *Accept:* a message containing 2 URLs + one SPAM_PHRASE reaches Web3Forms tagged; honeypot-filled submission still blocked; tests/e2e/instant-estimate.spec.ts updated and green.
-- [ ] P0-2 Fix duplicate `#organization` @id conflicts: service-areas/{index,dekalb-il,sycamore-il,cortland-il}/index.html re-declare `https://hernandezlandscapeservices.com/#organization` with conflicting url/image/areaServed — replace with `{"@id": ".../#organization"}` references (pattern already correct at videos.html:664). *Accept:* only index.html/schema.jsonld fully define the org node; `npm run seo:check` green.
+- [x] P0-2 Fix duplicate `#organization` @id conflicts: service-areas/{index,dekalb-il,sycamore-il,cortland-il}/index.html re-declare `https://hernandezlandscapeservices.com/#organization` with conflicting url/image/areaServed — replace with `{"@id": ".../#organization"}` references (pattern already correct at videos.html:664). *Accept:* only index.html/schema.jsonld fully define the org node; `npm run seo:check` green.
 - [ ] P0-3 Build `/service-areas/malta-il/`, `/service-areas/genoa-il/`, `/service-areas/kingston-il/` by cloning service-areas/dekalb-il/index.html (HomeAndConstructionBusiness ref per P0-2 + 3-level BreadcrumbList + FAQPage matching visible copy). Add to sitemap.xml, service-areas hub grid + ItemList (service-areas/index.html:74-86,132-137), and convert footer spans (index.html:2331-2338) to links. *Accept:* pages exist with unique title/description/canonical; `seo:check` + `publish:check-layout` green; hub and footer link all 6 cities.
-- [ ] P0-4 Add Malta/Genoa/Kingston City entries to Service.areaServed on lawn-care/index.html:175-200, snow-removal/index.html:175-200, tree-removal/index.html:174-199 — matching the visible FAQ copy already on those pages (e.g. lawn-care:133). *Accept:* areaServed matches on-page copy; JSON-LD valid.
+- [x] P0-4 Add Malta/Genoa/Kingston City entries to Service.areaServed on lawn-care/index.html:175-200, snow-removal/index.html:175-200, tree-removal/index.html:174-199 — matching the visible FAQ copy already on those pages (e.g. lawn-care:133). *Accept:* areaServed matches on-page copy; JSON-LD valid.
 - [ ] P0-5 Add a visible homepage FAQ section using the exact 5 Q&A pairs already in index.html:2669-2714 JSON-LD (mirror the accordion pattern from tree-removal/). *Accept:* rendered FAQ text matches schema verbatim; `publish:check-layout` green at 320px.
 - [ ] P0-6 24/7 emergency CTA prominence: add a distinct emergency strip ("Storm damage? 24/7 emergency tree removal — Call now" + tel link) near the top of index.html and tree-removal/index.html. No brand-color/typography changes — use existing utility classes. *Accept:* banner visible above the fold at 320px; tel:18155011478.
-- [ ] P0-7 Narrow `inLanguage` to `"en"` on WebSite/WebPage nodes (index.html:2634,2655; schema.jsonld:205,226) until crawlable /es/ pages exist. *Accept:* no bilingual claim in schema; visible "Se Habla Español" copy untouched.
+- [x] P0-7 Narrow `inLanguage` to `"en"` on WebSite/WebPage nodes (index.html:2634,2655; schema.jsonld:205,226) until crawlable /es/ pages exist. *Accept:* no bilingual claim in schema; visible "Se Habla Español" copy untouched.
 
 ### P1 — high/medium
 
@@ -123,8 +123,8 @@
 
 ### P2 — low / hygiene
 
-- [ ] P2-1 Remove the single-item homepage BreadcrumbList (index.html:2657-2668; schema.jsonld:228-239). *Accept:* JSON-LD valid; subpage breadcrumbs untouched.
-- [ ] P2-2 gallery.html:462-466 — change `about` to `{"@id": ".../#organization"}` (drop anonymous LocalBusiness re-declaration). *Accept:* matches videos.html:664 pattern.
+- [x] P2-1 Remove the single-item homepage BreadcrumbList (index.html:2657-2668; schema.jsonld:228-239). *Accept:* JSON-LD valid; subpage breadcrumbs untouched.
+- [x] P2-2 gallery.html:462-466 — change `about` to `{"@id": ".../#organization"}` (drop anonymous LocalBusiness re-declaration). *Accept:* matches videos.html:664 pattern.
 - [ ] P2-3 Backfill VideoObject markup for the ~30 videos.html videos missing schema (3 of ~33 covered at videos.html:666-747) — generate from media/gallery.json via update-media.mjs so it can't drift. *Accept:* every rendered video card has a VideoObject; `media:check` green.
 - [ ] P2-4 Delete orphaned assets/css/proposal.css (proposal.html removed 2026-06-10 per MAINTENANCE_PLAN.md:57; zero references remain). *Accept:* no grep hits; publish artifact shrinks.
 - [ ] P2-5 Remove dead `Disallow: /playwright-report/` (robots.txt:6) — path never in the publish allowlist. *Accept:* robots.txt still passes seo:check.

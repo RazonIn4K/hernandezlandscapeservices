@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_ORIGIN = 'https://hernandezlandscapeservices.com';
 const EXCLUDED_DIRS = new Set([
+  '.claude',
   '.git',
   '_media-archive',
   'node_modules',

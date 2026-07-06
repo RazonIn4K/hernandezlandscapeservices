@@ -66,7 +66,9 @@ test.describe('Schema JSON-LD Validation', () => {
       expect(service).toBeDefined();
       expect(service?.['provider']?.['@type']).toBe('HomeAndConstructionBusiness');
       const areas = Array.isArray(service?.['areaServed']) ? service?.['areaServed'] : [service?.['areaServed']];
-      expect(areas.map((area) => area?.['name'])).toEqual(expect.arrayContaining(['DeKalb', 'Sycamore', 'Cortland']));
+      expect(areas.map((area) => area?.['name'])).toEqual(
+        expect.arrayContaining(['DeKalb', 'Sycamore', 'Cortland', 'Malta', 'Genoa', 'Kingston'])
+      );
     });
 
     test(`${sp.label}: links to priority service area pages`, async ({ page }) => {
@@ -103,12 +105,13 @@ test.describe('Schema JSON-LD Validation', () => {
     });
   }
 
-  test('homepage: JSON-LD has HomeAndConstructionBusiness, FAQPage, and BreadcrumbList', async ({ page }) => {
+  test('homepage: JSON-LD has HomeAndConstructionBusiness and FAQPage, no single-item breadcrumb', async ({ page }) => {
     const blocks = await parseJsonLd(page, '/');
     const nodes = flattenGraph(blocks);
     expect(nodes.find((n) => n['@type'] === 'HomeAndConstructionBusiness')).toBeDefined();
     expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
-    expect(nodes.find((n) => n['@type'] === 'BreadcrumbList')).toBeDefined();
+    // Removed on purpose (SEO_AUDIT_PLAN.md P2-1): a one-item breadcrumb adds no value.
+    expect(nodes.find((n) => n['@type'] === 'BreadcrumbList')).toBeUndefined();
   });
 
   test('sitemap: includes video metadata for the videos page', async ({ request }) => {
@@ -128,10 +131,14 @@ test.describe('Schema JSON-LD Validation', () => {
   });
 
   for (const sp of serviceAreaPages) {
-    test(`${sp.label}: has local business schema, FAQPage, and breadcrumb`, async ({ page }) => {
+    test(`${sp.label}: references org schema by @id, has FAQPage and breadcrumb`, async ({ page }) => {
       const blocks = await parseJsonLd(page, sp.url);
       const nodes = flattenGraph(blocks);
-      expect(nodes.find((n) => n['@type'] === 'HomeAndConstructionBusiness')).toBeDefined();
+      // Per SEO_AUDIT_PLAN.md P0-2 the org node is fully defined only on the
+      // homepage/schema.jsonld; subpages carry a bare @id reference.
+      const orgRef = nodes.find((n) => n['@id'] === 'https://hernandezlandscapeservices.com/#organization');
+      expect(orgRef).toBeDefined();
+      expect(orgRef?.['@type']).toBeUndefined();
       expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
       const crumb = nodes.find((n) => n['@type'] === 'BreadcrumbList');
       expect(crumb).toBeDefined();
