@@ -16,7 +16,10 @@ const EXCLUDED_DIRS = new Set([
   'test-results',
   'tmp',
 ]);
-const UTILITY_INDEXABLE = new Set(['privacy.html', 'terms.html']);
+// privacy/terms are utility pages; gallery.html/videos.html are meta-refresh
+// redirect stubs for the old .html routes (canonical points at /gallery/ and
+// /videos/) — none of them need the full OG/Twitter card set.
+const UTILITY_INDEXABLE = new Set(['privacy.html', 'terms.html', 'gallery.html', 'videos.html']);
 const BANNED_EXTERNAL_LINKS = [
   {
     label: 'incorrect Yelp entity link',

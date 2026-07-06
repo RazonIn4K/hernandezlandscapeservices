@@ -33,7 +33,7 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    owner-verification / best-time fields that are silently discarded. Turn it into a
    prefill step for the real Web3Forms form. (PR: `fix/instant-estimate-leads`)
 3. **Reproducible gallery/media workflow** — DONE 2026-06-10 (PR #24): `media/gallery.json`
-   + `npm run media:update` regenerate the gallery.html cards, videos.html players,
+   + `npm run media:update` regenerate the gallery/index.html cards, videos/index.html players,
    homepage carousel data, and sitemap media entries between GENERATED markers;
    `scripts/optimize_media.py` is repo-relative now. See `docs/MEDIA-WORKFLOW.md`.
    CI runs `npm run media:check` and `npm run media:budget` through `test:ci`,

@@ -120,7 +120,7 @@ test.describe('Schema JSON-LD Validation', () => {
     const xml = await response.text();
 
     expect(xml).toContain('xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"');
-    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/videos.html</loc>');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/videos/</loc>');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/</loc>');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/dekalb-il/</loc>');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/sycamore-il/</loc>');
@@ -204,13 +204,13 @@ test.describe('Static Gallery Functionality', () => {
     await expect(page).toHaveURL(/\/service-areas\/$/);
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.click('a[href="gallery.html"]');
-    await expect(page).toHaveURL(/\/gallery(?:\.html)?$/);
+    await page.click('a[href="/gallery/"]');
+    await expect(page).toHaveURL(/\/gallery\/$/);
     await expect(page.locator('body')).toContainText(/Recent Projects|Project Video Tours|Gallery/i);
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.click('a[href="videos.html"]');
-    await expect(page).toHaveURL(/\/videos(?:\.html)?$/);
+    await page.click('a[href="/videos/"]');
+    await expect(page).toHaveURL(/\/videos\/$/);
     await expect(page.locator('body')).toContainText(/Project Video Tours|Videos/i);
   });
 
@@ -403,10 +403,10 @@ test.describe('Static Gallery Functionality', () => {
       const homeSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
       expect(homeSpread, `Home card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
 
-      await page.goto('/gallery.html', { waitUntil: 'domcontentloaded' });
+      await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });
       const galleryCardCount = await page.locator('.gallery-item').count();
 
-      // In SPA fallback environments, /gallery.html can resolve to the homepage.
+      // In SPA fallback environments, /gallery/ can resolve to the homepage.
       if (galleryCardCount > 0) {
         const galleryOverflow = await page.evaluate(() =>
           document.documentElement.scrollWidth - document.documentElement.clientWidth

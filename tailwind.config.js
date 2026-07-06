@@ -10,6 +10,8 @@ module.exports = {
     './gutter-cleaning/**/*.html',
     './pressure-washing/**/*.html',
     './service-areas/**/*.html',
+    './gallery/**/*.html',
+    './videos/**/*.html',
     './gallery.html',
     './videos.html',
     './src/**/*.{html,js,ts,tsx}',

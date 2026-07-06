@@ -29,12 +29,12 @@ regenerates all the places that media appears, so the pages never drift apart.
      `description`, `publicationDate` for videos).
    - Add the item's `id` to the `surfaces` lists where it should appear
      (ordered; first entry renders first):
-     - `galleryPage` → photo cards on `gallery.html`
+     - `galleryPage` → photo cards on `gallery/index.html`
      - `homeGallery` → `staticImages` in `assets/js/static-gallery.js`
        (the homepage "Latest Uploads" carousel shows the first 6)
-     - `videosPage` → video cards on `videos.html`
+     - `videosPage` → video cards on `videos/index.html`
      - `sitemapGalleryImages` / `sitemapVideos` → media entries in
-       `sitemap.xml` under the gallery.html / videos.html URLs
+       `sitemap.xml` under the /gallery/ and /videos/ URLs
 4. **Regenerate**:
 
    ```sh
@@ -48,7 +48,7 @@ regenerates all the places that media appears, so the pages never drift apart.
    files — including the hand-maintained page entries in `sitemap.xml` — is
    left untouched. Running it twice produces zero diff.
 5. **Review the diff, run the tests, commit** (including the regenerated
-   `gallery.html`, `videos.html`, `assets/js/static-gallery.js`,
+   `gallery/index.html`, `videos/index.html`, `assets/js/static-gallery.js`,
    `sitemap.xml`, the new files in `hernandez_images/`, and
    `media/gallery.json` itself):
 

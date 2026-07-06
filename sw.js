@@ -2,8 +2,10 @@ const CACHE_NAME = 'hernandez-landscape-v17';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
-  '/gallery.html',
-  '/videos.html',
+  '/gallery/',
+  '/gallery/index.html',
+  '/videos/',
+  '/videos/index.html',
   '/tree-removal/',
   '/tree-removal/index.html',
   '/lawn-care/',

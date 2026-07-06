@@ -199,7 +199,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://hernandezlandscapeservices.com/gallery.html</loc>
+    <loc>https://hernandezlandscapeservices.com/gallery/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -267,7 +267,7 @@
     <!-- GALLERY-IMAGES:GENERATED:END -->
   </url>
   <url>
-    <loc>https://hernandezlandscapeservices.com/videos.html</loc>
+    <loc>https://hernandezlandscapeservices.com/videos/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
