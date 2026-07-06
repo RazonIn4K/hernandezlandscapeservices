@@ -37,6 +37,26 @@
         caption: 'Fresh side yard lawn finish after cleanup and landscape work'
       },
       {
+        src: 'hernandez_images/google-photos-2026-brush-pile-removal.webp',
+        alt: 'Brush pile and tree debris staged after Hernandez Landscape cleanup',
+        caption: 'Brush pile and tree debris staged for removal after yard cleanup'
+      },
+      {
+        src: 'hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp',
+        alt: 'Woodpile and overgrown yard area before Hernandez cleanup work',
+        caption: 'Woodpile and overgrown yard area cleared during a cleanup project'
+      },
+      {
+        src: 'hernandez_images/google-photos-2026-backyard-lawn-finish.webp',
+        alt: 'Fresh backyard lawn finish after Hernandez Landscape service',
+        caption: 'Fresh backyard lawn finish with clean mowing around trees and planting beds'
+      },
+      {
+        src: 'hernandez_images/google-profile-2024-mulch-bed-edging.jpg',
+        alt: 'Fresh red mulch bed with stone edging after Hernandez Landscape service',
+        caption: 'Fresh mulch bed, stone edging, and planting cleanup around a DeKalb County home'
+      },
+      {
         src: 'hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
         alt: 'Hernandez Landscape and Tree Service branded truck and trailers',
         caption: 'Branded Hernandez crew trucks and trailers ready for field work'
@@ -82,24 +102,9 @@
         caption: 'Newly completed curb appeal upgrade with crisp mulch lines'
       },
       {
-        src: 'hernandez_images/web_Wideshot_Bestlandscape.jpg',
-        alt: 'Beautiful landscape design and installation',
-        caption: 'Complete landscape renovation with premium materials'
-      },
-      {
-        src: 'hernandez_images/web_Wideshot_Bestlandscape2.jpeg',
-        alt: 'Professional landscape maintenance',
-        caption: 'Detailed yard maintenance and design'
-      },
-      {
         src: 'hernandez_images/web_IMG_0434_poster.jpg',
         alt: 'Clean, modern outdoor patio and landscape',
         caption: 'Modern outdoor living space transformation'
-      },
-      {
-        src: 'hernandez_images/web_After1.jpeg',
-        alt: 'After landscape renovation',
-        caption: 'Lush green lawn transformation'
       },
       {
         src: 'hernandez_images/web_IMG_1953.webp',
