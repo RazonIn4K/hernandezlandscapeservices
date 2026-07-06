@@ -31,6 +31,20 @@
       }
     },
     {
+      "id": "mulch-bed-edging",
+      "type": "image",
+      "src": "hernandez_images/google-profile-2024-mulch-bed-edging.jpg",
+      "alt": "Fresh red mulch bed with stone edging after Hernandez Landscape service",
+      "caption": "Fresh mulch bed, stone edging, and planting cleanup around a DeKalb County home",
+      "tags": ["landscaping", "mulching"],
+      "featured": true,
+      "gallery": { "title": "Mulch Bed & Edging" },
+      "sitemap": {
+        "title": "Mulch bed edging project",
+        "caption": "Fresh mulch bed and stone edging completed by Hernandez Landscape & Tree Service LLC."
+      }
+    },
+    {
       "id": "branded-truck-trailers",
       "type": "image",
       "src": "hernandez_images/google-profile-2026-branded-truck-trailers.jpg",
@@ -585,6 +599,7 @@
     "galleryPage": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
+      "mulch-bed-edging",
       "branded-truck-trailers",
       "tree-climber-canopy",
       "tree-removal-cut-logs",
@@ -606,6 +621,7 @@
     "homeGallery": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
+      "mulch-bed-edging",
       "branded-truck-trailers",
       "tree-climber-canopy",
       "tree-removal-cut-logs",
@@ -663,6 +679,7 @@
     "sitemapGalleryImages": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
+      "mulch-bed-edging",
       "tree-climber-canopy",
       "tree-removal-cut-logs",
       "brush-clearing-cleanup",

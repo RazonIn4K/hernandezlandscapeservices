@@ -37,6 +37,11 @@
         caption: 'Fresh side yard lawn finish after cleanup and landscape work'
       },
       {
+        src: 'hernandez_images/google-profile-2024-mulch-bed-edging.jpg',
+        alt: 'Fresh red mulch bed with stone edging after Hernandez Landscape service',
+        caption: 'Fresh mulch bed, stone edging, and planting cleanup around a DeKalb County home'
+      },
+      {
         src: 'hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
         alt: 'Hernandez Landscape and Tree Service branded truck and trailers',
         caption: 'Branded Hernandez crew trucks and trailers ready for field work'
