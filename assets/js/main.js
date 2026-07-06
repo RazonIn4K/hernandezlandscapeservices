@@ -341,7 +341,16 @@ function countUrls(value) {
   return (value.match(/https?:\/\/|www\./gi) || []).length;
 }
 
-function isLikelySpamLead(formData) {
+/**
+ * Classify a lead submission.
+ * - "block": bot signals (honeypot field, botcheck box, or an inhumanly fast
+ *   submit) — never sent, bot sees a fake success so it does not retry.
+ * - "flag": content heuristics only (URL count, spam phrases) — still sent to
+ *   Web3Forms with a "[Possible Spam]" subject tag so a borderline real lead
+ *   is never silently dropped.
+ * - "ok": clean lead, sent as-is.
+ */
+function classifyLeadSpam(formData) {
   const message = String(formData.get("message") || "");
   const email = String(formData.get("email") || "");
   const website = String(formData.get("website") || "");
@@ -352,9 +361,11 @@ function isLikelySpamLead(formData) {
     formLoadedAt > 0 &&
     Date.now() - formLoadedAt < 1500;
 
+  if (website.trim() || botcheck || submittedTooFast) {
+    return "block";
+  }
+
   let spamScore = 0;
-  if (website.trim() || botcheck) spamScore += 4;
-  if (submittedTooFast) spamScore += 1;
   if (countUrls(message) >= 3) spamScore += 2;
   else if (countUrls(message) === 2) spamScore += 1; // two links alone needs a second signal to trip
   if (/getdandy/i.test(email)) spamScore += 2;
@@ -363,7 +374,7 @@ function isLikelySpamLead(formData) {
     if (pattern.test(message)) spamScore += 1;
   }
 
-  return spamScore >= 2;
+  return spamScore >= 2 ? "flag" : "ok";
 }
 
 function calculateQuote() {
@@ -575,7 +586,9 @@ if (contactForm) {
     formData.set("ccemail", FORM_CC_RECIPIENT);
     formData.set("form_loaded_at", formLoadedAt?.value || String(Date.now()));
 
-    if (isLikelySpamLead(formData)) {
+    const spamVerdict = classifyLeadSpam(formData);
+
+    if (spamVerdict === "block") {
       showModal(
         getMessage(
           "alerts.contact.success",
@@ -591,6 +604,14 @@ if (contactForm) {
         button.textContent = originalText;
       }
       return;
+    }
+
+    if (spamVerdict === "flag") {
+      const baseSubject = String(
+        formData.get("subject") ||
+          "New Quote Request - Hernandez Landscape Services",
+      );
+      formData.set("subject", `[Possible Spam] ${baseSubject}`);
     }
 
     try {
