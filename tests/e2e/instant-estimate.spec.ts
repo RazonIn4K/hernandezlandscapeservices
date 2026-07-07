@@ -139,9 +139,13 @@ test.describe('Instant estimate lead handoff', () => {
     expect(starterValues).toEqual(finalValues);
   });
 
-  test('sales outreach spam still reaches Web3Forms tagged as possible spam', async ({ page }) => {
+  test('stacked-signal campaign spam is hard-blocked and never sent (quota guard)', async ({ page }) => {
     const captured = await mockWeb3Forms(page);
 
+    // getdandy sender + multiple URLs + several spam phrases stacks the content
+    // score to >= 4: high enough confidence to hard-block (fake success, zero
+    // Web3Forms calls) so a campaign cannot drain the submission quota.
+    // Borderline scores (2-3) are still delivered tagged — see the next test.
     await fillQuoteForm(page, {
       email: 'ob-jennifer@getdandynow.com',
       message:
@@ -152,11 +156,7 @@ test.describe('Instant estimate lead handoff', () => {
 
     await expect(page.locator('#customModal')).toBeVisible();
     await expect(page.locator('#modalMessage')).toContainText('Thank you for your interest');
-    expect(captured.bodies).toHaveLength(1);
-    expect(captured.bodies[0]).toContain(
-      '[Possible Spam] New Quote Request - Hernandez Landscape Services',
-    );
-    expect(captured.bodies[0]).toContain('getdandy.com/schedule-a-chat');
+    expect(captured.bodies).toHaveLength(0);
   });
 
   test('two links plus one spam phrase reaches Web3Forms tagged', async ({ page }) => {

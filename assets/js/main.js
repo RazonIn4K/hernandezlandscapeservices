@@ -345,9 +345,12 @@ function countUrls(value) {
  * Classify a lead submission.
  * - "block": bot signals (honeypot field, botcheck box, or an inhumanly fast
  *   submit) — never sent, bot sees a fake success so it does not retry.
- * - "flag": content heuristics only (URL count, spam phrases) — still sent to
- *   Web3Forms with a "[Possible Spam]" subject tag so a borderline real lead
- *   is never silently dropped.
+ * - "flag": borderline content heuristics (score 2-3: URL count, spam phrases)
+ *   — still sent to Web3Forms with a "[Possible Spam]" subject tag so a
+ *   borderline real lead is never silently dropped.
+ * - "block" (score >= 4): multiple strong content signals stacked — high enough
+ *   confidence to hard-block so a spam campaign cannot drain the Web3Forms
+ *   submission quota that real leads depend on.
  * - "ok": clean lead, sent as-is.
  */
 function classifyLeadSpam(formData) {
@@ -374,6 +377,7 @@ function classifyLeadSpam(formData) {
     if (pattern.test(message)) spamScore += 1;
   }
 
+  if (spamScore >= 4) return "block";
   return spamScore >= 2 ? "flag" : "ok";
 }
 

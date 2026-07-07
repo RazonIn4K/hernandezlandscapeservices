@@ -126,12 +126,22 @@ function checkText(relPath, text) {
     }
   }
 
-  // Display / schema phone formats: (815) 501-1478, 815-501-1478, +1-815-501-1478
-  for (const match of text.matchAll(/(?<![\d-])(?:\+1[-. ])?\(?\d{3}\)?[-. ]\d{3}[-. ]\d{4}(?![\d-])/g)) {
+  // Display / schema phone formats: (815) 501-1478, (815)501-1478, 815-501-1478,
+  // +1-815-501-1478 — the paren form matches with or without a following space.
+  for (const match of text.matchAll(/(?<![\d-])(?:\+1[-. ]?)?(?:\(\d{3}\)\s?|\d{3}[-. ])\d{3}[-. ]\d{4}(?![\d-])/g)) {
     const digits = digitsOf(match[0]);
     if (digits.length < 10 || digits.length > 11) continue;
     if (!phoneAllowed(relPath, digits)) {
       fail(`${relPath}: phone number does not match the confirmed NAP phone: "${match[0]}"`);
+    }
+  }
+
+  // Bare 10/11-digit runs (e.g. "3316451372") in isolation are phone candidates
+  // too; word-char guards keep hex hashes, IDs, and URL tokens from matching.
+  for (const match of text.matchAll(/(?<![\w.\-])1?\d{10}(?![\w.\-])/g)) {
+    const digits = digitsOf(match[0]);
+    if (!phoneAllowed(relPath, digits)) {
+      fail(`${relPath}: bare digit run looks like an unconfirmed phone number: "${match[0]}"`);
     }
   }
 
@@ -149,13 +159,16 @@ function checkText(relPath, text) {
     }
   }
 
-  // Visible opening-hours copy (e.g. "Mon-Fri: 7AM-6PM", "Sat: 8AM - 4PM").
-  for (const line of text.split('\n')) {
+  // Visible opening-hours copy (e.g. "Mon-Fri: 7AM-6PM", "Mon–Fri: 7:00 AM - 6:00 PM").
+  // Unicode dashes are normalized first so an en/em-dash cannot dodge the weekday
+  // match, and ":00" minute forms of the correct hours are accepted.
+  for (const rawLine of text.split('\n')) {
+    const line = rawLine.replace(/[‐-―−]/g, '-');
     if (!/\d\s*[AP]M/i.test(line)) continue;
-    if (/Mon\s*-?\s*Fri/i.test(line) && !(/7\s*AM/i.test(line) && /6\s*PM/i.test(line))) {
+    if (/Mon\s*-?\s*Fri/i.test(line) && !(/\b7(?::00)?\s*AM/i.test(line) && /\b6(?::00)?\s*PM/i.test(line))) {
       fail(`${relPath}: weekday hours drift (expected 7AM-6PM): "${line.trim()}"`);
     }
-    if (/\bSat(urday)?\b/i.test(line) && !(/8\s*AM/i.test(line) && /4\s*PM/i.test(line))) {
+    if (/\bSat(urday)?\b/i.test(line) && !(/\b8(?::00)?\s*AM/i.test(line) && /\b4(?::00)?\s*PM/i.test(line))) {
       fail(`${relPath}: Saturday hours drift (expected 8AM-4PM): "${line.trim()}"`);
     }
   }

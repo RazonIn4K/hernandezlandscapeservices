@@ -45,12 +45,19 @@ test.describe('Schema JSON-LD Validation', () => {
     { url: '/tree-removal/', label: 'tree-removal', breadcrumb: 'Tree Removal' },
     { url: '/lawn-care/', label: 'lawn-care', breadcrumb: 'Lawn Care' },
     { url: '/snow-removal/', label: 'snow-removal', breadcrumb: 'Snow Removal' },
+    { url: '/landscaping-design/', label: 'landscaping-design', breadcrumb: 'Landscaping Design' },
+    { url: '/leaf-removal/', label: 'leaf-removal', breadcrumb: 'Leaf Removal' },
+    { url: '/gutter-cleaning/', label: 'gutter-cleaning', breadcrumb: 'Gutter Cleaning' },
+    { url: '/pressure-washing/', label: 'pressure-washing', breadcrumb: 'Pressure Washing' },
   ];
 
   const serviceAreaPages = [
     { url: '/service-areas/dekalb-il/', label: 'service-area-dekalb', breadcrumb: 'DeKalb, IL' },
     { url: '/service-areas/sycamore-il/', label: 'service-area-sycamore', breadcrumb: 'Sycamore, IL' },
     { url: '/service-areas/cortland-il/', label: 'service-area-cortland', breadcrumb: 'Cortland, IL' },
+    { url: '/service-areas/malta-il/', label: 'service-area-malta', breadcrumb: 'Malta, IL' },
+    { url: '/service-areas/genoa-il/', label: 'service-area-genoa', breadcrumb: 'Genoa, IL' },
+    { url: '/service-areas/kingston-il/', label: 'service-area-kingston', breadcrumb: 'Kingston, IL' },
   ];
 
   for (const sp of servicePages) {
@@ -64,7 +71,13 @@ test.describe('Schema JSON-LD Validation', () => {
       const nodes = flattenGraph(blocks);
       const service = nodes.find((n) => n['@type'] === 'Service');
       expect(service).toBeDefined();
-      expect(service?.['provider']?.['@type']).toBe('HomeAndConstructionBusiness');
+      // provider is either inlined (legacy service pages) or an @id reference
+      // that must resolve to the org node embedded in the same page's graph.
+      const provider = service?.['provider'];
+      const providerNode = provider?.['@type']
+        ? provider
+        : nodes.find((n) => n['@id'] === provider?.['@id']);
+      expect(providerNode?.['@type']).toBe('HomeAndConstructionBusiness');
       const areas = Array.isArray(service?.['areaServed']) ? service?.['areaServed'] : [service?.['areaServed']];
       expect(areas.map((area) => area?.['name'])).toEqual(
         expect.arrayContaining(['DeKalb', 'Sycamore', 'Cortland', 'Malta', 'Genoa', 'Kingston'])
@@ -131,14 +144,16 @@ test.describe('Schema JSON-LD Validation', () => {
   });
 
   for (const sp of serviceAreaPages) {
-    test(`${sp.label}: references org schema by @id, has FAQPage and breadcrumb`, async ({ page }) => {
+    test(`${sp.label}: carries a resolvable org node, FAQPage and breadcrumb`, async ({ page }) => {
       const blocks = await parseJsonLd(page, sp.url);
       const nodes = flattenGraph(blocks);
-      // Per SEO_AUDIT_PLAN.md P0-2 the org node is fully defined only on the
-      // homepage/schema.jsonld; subpages carry a bare @id reference.
+      // Per the 2026-07-06 review round every local landing page embeds a slim
+      // but resolvable org node (validators process each page in isolation);
+      // the exhaustive org definition still lives on the homepage/schema.jsonld.
       const orgRef = nodes.find((n) => n['@id'] === 'https://hernandezlandscapeservices.com/#organization');
       expect(orgRef).toBeDefined();
-      expect(orgRef?.['@type']).toBeUndefined();
+      expect(orgRef?.['@type']).toBe('HomeAndConstructionBusiness');
+      expect(orgRef?.['telephone']).toBe('+1-815-501-1478');
       expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
       const crumb = nodes.find((n) => n['@type'] === 'BreadcrumbList');
       expect(crumb).toBeDefined();

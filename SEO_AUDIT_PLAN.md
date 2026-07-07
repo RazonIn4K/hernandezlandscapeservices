@@ -137,6 +137,18 @@
 - [x] P2-12 Make JSON-LD WebPage.description (index.html:2641) byte-identical to the (shortened, per P1-2) meta description. *Accept:* strings match.
 - [x] P2-13 Resolve schema.jsonld's role: wire it as the generation source for index.html's embedded block, or document it as a manually-synced reference copy in MAINTENANCE_PLAN.md. *Accept:* documented or automated; P1-3 gate protects sync either way.
 
+### Review round 2026-07-06 (independent multi-agent review of the PR diff)
+
+- [x] R-1 `verify-nap` hardened: paren-no-space phone forms ("(331)645-1372") and bare 10/11-digit runs are now caught; hours check normalizes unicode dashes and accepts ":00" forms of the correct hours (was a false-positive/false-negative trap).
+- [x] R-2 Every city page (all 6 + hub) and all 4 new service pages now embed a slim but **resolvable** `#organization` node (canonical NAP, byte-identical) — the P0-2 bare `@id` refs were unresolvable to per-page validators, silently removing LocalBusiness from the exact pages this PR targets. The exhaustive org definition still lives on the homepage/schema.jsonld.
+- [x] R-3 `hasOfferCatalog` (index.html + schema.jsonld, identical) extended with the 4 new services using the pages' own descriptions + URLs.
+- [x] R-4 404.html asset refs absolutized — nested missing URLs (e.g. `/gutter-cleaning/typo`) previously rendered the 404 unstyled with its script never running.
+- [x] R-5 Lead-spam tiering: content score ≥4 (stacked signals, e.g. the real getdandy campaign shape) is hard-blocked again so spam cannot drain the Web3Forms quota; borderline scores (2–3) still deliver tagged. e2e updated — 9/9 lead-form + 66 schema/gallery tests pass locally via Chrome channel.
+- [x] R-6 Service-worker precache halved: canonical `/x/` forms only (was fetching 14 pages twice per install).
+- [x] R-7 e2e schema coverage extended to all 7 new pages; provider assertion resolves `@id` refs in-graph; org-node assertions match R-2.
+- Declined (with evidence): bumping `CACHE_NAME` — `scripts/stamp-sw-version.mjs` SHA-stamps it on every deploy, so the committed name is a local fallback and stale caches are already evicted per deploy.
+- [ ] P2-14 Extract shared walk/EXCLUDED_DIRS/read helpers for `check-seo.mjs` + `verify-nap.mjs` (review finding: duplicated gate plumbing already diverging). *(deferred 2026-07-06: gate refactor deserves a focused pass, not an end-of-session change)*
+
 ### Blocked on owner (do not start until the named value lands)
 
 - [ ] B-1 Replace `https://g.page/r/YOUR_GOOGLE_REVIEW_LINK` at card.html:58 with the real GBP review short-link. **Blocked on:** real review link (Section 3). Then remove/keep the P1-10 lint exception.
