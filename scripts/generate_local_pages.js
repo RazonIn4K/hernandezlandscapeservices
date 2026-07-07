@@ -55,9 +55,9 @@ const CITY_PAGES = [
     ownsEn: false,
     image: '/hernandez_images/google-profile-2026-tree-climber-canopy.jpg',
     es: {
-      title: 'Jardinería y servicio de árboles en Sycamore, IL | Hernandez Landscape',
+      title: 'Jardinería y árboles en Sycamore, IL | Hernandez Landscape',
       description:
-        'Hernandez Landscape & Tree Service LLC atiende Sycamore, IL con corte de pasto, jardinería, poda y retiro de árboles, limpieza y servicio de nieve. Llame al (815) 501-1478.',
+        'Corte de pasto, jardinería, poda y retiro de árboles y limpieza en Sycamore, IL. Hernandez Landscape — llame al (815) 501-1478.',
       ogDescription:
         'Corte de pasto, jardinería, servicio de árboles y limpieza en Sycamore — empresa familiar local, se habla español.',
       imageAlt: 'Trabajador del equipo de árboles en la copa de un árbol cerca de casas en Sycamore',
@@ -92,9 +92,9 @@ const CITY_PAGES = [
     ownsEn: false,
     image: '/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg',
     es: {
-      title: 'Corte de pasto y jardinería en Cortland, IL | Hernandez Landscape',
+      title: 'Jardinería y pasto en Cortland, IL | Hernandez Landscape',
       description:
-        'Corte de pasto, limpieza de jardines, mantillo y servicio de árboles para casas de Cortland, IL. Hernandez Landscape & Tree Service LLC — llame al (815) 501-1478.',
+        'Corte de pasto, limpieza de jardines, mantillo y servicio de árboles para casas de Cortland, IL. Hernandez Landscape — llame al (815) 501-1478.',
       ogDescription:
         'Corte de pasto, renovación de jardines, limpieza y servicio de árboles para propiedades de Cortland.',
       imageAlt: 'Pasto verde recién terminado en un patio lateral cerca de Cortland, Illinois',
@@ -126,7 +126,9 @@ const CITY_PAGES = [
   },
   {
     slug: 'malta-il',
-    ownsEn: true,
+    // EN ownership moved to the hand-written Phase-2 page (PR #31) per PR #33 note;
+    // generator keeps owning the ES page + hreflang injection.
+    ownsEn: false,
     image: '/hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
     en: {
       title: 'Landscaping & Tree Service in Malta, IL | Hernandez Landscape',
@@ -161,7 +163,7 @@ const CITY_PAGES = [
       sitemapImageCaption: 'Completed yard work from Hernandez Landscape & Tree Service LLC for the Malta service area.'
     },
     es: {
-      title: 'Jardinería y servicio de árboles en Malta, IL | Hernandez Landscape',
+      title: 'Jardinería y árboles en Malta, IL | Hernandez Landscape',
       description:
         'Corte de pasto, jardinería, poda y retiro de árboles y limpieza de patios para Malta, IL. Hernandez Landscape & Tree Service LLC — llame al (815) 501-1478.',
       ogDescription:
@@ -315,6 +317,11 @@ ${BANNER}
     <meta name="twitter:image" content="${SITE}${city.image}" />
     <meta name="twitter:image:alt" content="${t.imageAlt}" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#153b2f" />
     <link rel="stylesheet" href="/assets/css/styles.css?v=20260519" />
     <link rel="stylesheet" href="/assets/css/custom.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media = 'all'" />
@@ -406,7 +413,8 @@ function injectHreflang(html, city) {
     const endIdx = html.indexOf(HREFLANG_END);
     if (endIdx === -1) throw new Error(`${city.slug}: HREFLANG start marker without end marker`);
     const before = html.slice(0, html.lastIndexOf('\n', startIdx) + 1);
-    const after = html.slice(html.indexOf('\n', endIdx));
+    const nnl = html.indexOf('\n', endIdx);
+    const after = nnl !== -1 ? html.slice(nnl) : html.slice(endIdx + HREFLANG_END.length);
     return `${before}${block}${after}`;
   }
 
@@ -453,7 +461,8 @@ function updateSitemap(xml) {
     const endIdx = xml.indexOf(SITEMAP_END);
     if (endIdx === -1) throw new Error('sitemap.xml: LOCAL-PAGES start marker without end marker');
     const before = xml.slice(0, xml.lastIndexOf('\n', startIdx) + 1);
-    const after = xml.slice(xml.indexOf('\n', endIdx));
+    const nnl = xml.indexOf('\n', endIdx);
+    const after = nnl !== -1 ? xml.slice(nnl) : xml.slice(endIdx + SITEMAP_END.length);
     return `${before}${block}${after}`;
   }
   return xml.replace(/^<\/urlset>/m, `${block}\n</urlset>`);

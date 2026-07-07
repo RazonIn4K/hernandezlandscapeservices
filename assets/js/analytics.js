@@ -21,7 +21,7 @@
   }
   window.hlsTrack = track;
 
-  if (/^GTM-[A-Z0-9]+$/.test(GTM_CONTAINER_ID)) {
+  if (/^GTM-[A-Z0-9]+$/i.test(GTM_CONTAINER_ID)) {
     window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
     var script = document.createElement("script");
     script.async = true;
