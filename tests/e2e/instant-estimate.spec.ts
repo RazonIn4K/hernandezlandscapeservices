@@ -200,10 +200,15 @@ test.describe('Instant estimate lead handoff', () => {
       email: 'homeowner@example.com',
       message: 'Please give me a quote for weekly lawn mowing.',
     });
-    await page.locator('#formLoadedAt').evaluate((input) => {
-      (input as HTMLInputElement).value = String(Date.now());
+    // Set the timer and submit in the SAME browser task: page.click()'s
+    // actionability wait can eat >1500ms on slow CI runners (deferred scripts
+    // shifting layout), which turns an "inhumanly fast" submit into a slow one
+    // and defeats the point of the test.
+    await page.locator('#contactForm').evaluate((form) => {
+      const input = form.querySelector('#formLoadedAt') as HTMLInputElement;
+      input.value = String(Date.now());
+      (form as HTMLFormElement).requestSubmit();
     });
-    await page.click('#contactForm button[type="submit"]');
 
     await expect(page.locator('#customModal')).toBeVisible();
     expect(captured.bodies).toHaveLength(0);
