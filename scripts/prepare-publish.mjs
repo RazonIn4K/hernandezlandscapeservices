@@ -42,12 +42,17 @@ const ROOT_FILES = [
 
 const DIRECTORIES = [
   'assets',
-  'es',
+  'gallery',
+  'gutter-cleaning',
+  'landscaping-design',
   'lawn-care',
+  'leaf-removal',
   'pay',
+  'pressure-washing',
   'service-areas',
   'snow-removal',
   'tree-removal',
+  'videos',
 ];
 
 const TEXT_EXTENSIONS = new Set([

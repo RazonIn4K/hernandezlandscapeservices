@@ -17,6 +17,25 @@ deploy does not publish it.
   deploy workflow runs `npm run test:ci -- --project=chromium`, which includes
   generated-media drift checks and media-budget checks before Chromium tests.
 
+## schema.jsonld (root) — manually-synced reference copy
+
+`schema.jsonld` at the repo root is a **manually-synced reference copy** of the
+JSON-LD `@graph` embedded in `index.html` (it is published alongside the site by
+`scripts/prepare-publish.mjs` but no page links to it). It is NOT generated:
+whenever the homepage's embedded JSON-LD block changes, apply the identical
+change to `schema.jsonld` in the same commit. Sync is enforced by the NAP drift
+gate — `scripts/verify-nap.mjs` (`npm run nap:check`, part of `test:ci`) diffs
+`schema.jsonld` against `index.html`'s embedded graph and fails CI on any
+divergence, and also fails on any NAP (address/phone/email/hours) drift across
+all shipped HTML. Decision 2026-07-06 (SEO_AUDIT_PLAN.md P2-13): documented as
+manual copy rather than wiring a generator, since the gate makes silent drift
+impossible.
+
+`sitemap.xml` `<lastmod>` values are maintained by `npm run sitemap:lastmod`
+(`scripts/update-sitemap-lastmod.mjs`), which reads each page's last commit
+date from git (dirty files get today's date). Run it when committing page
+changes.
+
 ## Known machine quirk (Windows dev box)
 
 Windows Defender's `Trojan:HTML/FakeLogin.AK!atmn` heuristic false-positives on
@@ -33,7 +52,7 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    owner-verification / best-time fields that are silently discarded. Turn it into a
    prefill step for the real Web3Forms form. (PR: `fix/instant-estimate-leads`)
 3. **Reproducible gallery/media workflow** — DONE 2026-06-10 (PR #24): `media/gallery.json`
-   + `npm run media:update` regenerate the gallery.html cards, videos.html players,
+   + `npm run media:update` regenerate the gallery/index.html cards, videos/index.html players,
    homepage carousel data, and sitemap media entries between GENERATED markers;
    `scripts/optimize_media.py` is repo-relative now. See `docs/MEDIA-WORKFLOW.md`.
    CI runs `npm run media:check` and `npm run media:budget` through `test:ci`,
@@ -43,8 +62,9 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    surfaces unless they are optimized first.
 4. **Verify billing artifacts before touching them** — `pricing.html` + `/pay/*` are
    website-care billing (Stripe payment links). Confirm account ownership/liveness
-   in Stripe, then either add test coverage (and fix the success page's missing
-   `#sid` element) or retire the pages and remove them from the `sw.js` pre-cache.
+   in Stripe, then either add test coverage or retire the pages and remove them
+   from the `sw.js` pre-cache (the success page's missing `#sid` element was
+   fixed 2026-07-06; the keep/retire decision itself is still open).
    Do not delete before that check. The payment-link inventory and decision log
    live in the private `highencode-ops` repo (`billing/stripe-links.md`).
    ~~`scripts/send-renewal.js`~~ moved to `highencode-ops/billing/` 2026-06-10 and
