@@ -8,6 +8,7 @@
  *
  * Confirmed values (never change these without owner confirmation):
  *   Address : 1029 Lewis St, DeKalb, IL 60115
+ *   Geo     : 41.935162495016, -88.740720124283
  *   Phone   : (815) 501-1478  /  +1-815-501-1478  /  tel:18155011478
  *   Email   : hernandezlandscapetreeservices@gmail.com
  *   Hours   : Mon-Fri 07:00-18:00, Sat 08:00-16:00
@@ -54,6 +55,10 @@ const CONFIRMED = {
   locality: 'DeKalb',
   region: 'IL',
   postalCode: '60115',
+  geo: {
+    latitude: 41.935162495016,
+    longitude: -88.740720124283,
+  },
   weekdayHours: { opens: '07:00', closes: '18:00' },
   saturdayHours: { opens: '08:00', closes: '16:00' },
 };
@@ -197,6 +202,11 @@ function checkJsonLd(relPath, data) {
       }
       if (node.addressLocality !== CONFIRMED.locality || node.addressRegion !== CONFIRMED.region || node.postalCode !== CONFIRMED.postalCode) {
         fail(`${relPath}: JSON-LD postal address drift (expected ${CONFIRMED.locality}, ${CONFIRMED.region} ${CONFIRMED.postalCode})`);
+      }
+    }
+    if (node['@type'] === 'GeoCoordinates') {
+      if (node.latitude !== CONFIRMED.geo.latitude || node.longitude !== CONFIRMED.geo.longitude) {
+        fail(`${relPath}: JSON-LD geo must be ${CONFIRMED.geo.latitude}, ${CONFIRMED.geo.longitude}; found ${node.latitude}, ${node.longitude}`);
       }
     }
     if (node['@type'] === 'OpeningHoursSpecification') {
