@@ -42,6 +42,7 @@ const ROOT_FILES = [
 
 const DIRECTORIES = [
   'assets',
+  'es',
   'lawn-care',
   'pay',
   'service-areas',

@@ -18,6 +18,14 @@ const URLS_TO_CACHE = [
   '/service-areas/sycamore-il/index.html',
   '/service-areas/cortland-il/',
   '/service-areas/cortland-il/index.html',
+  '/service-areas/malta-il/',
+  '/service-areas/malta-il/index.html',
+  '/es/service-areas/sycamore-il/',
+  '/es/service-areas/sycamore-il/index.html',
+  '/es/service-areas/cortland-il/',
+  '/es/service-areas/cortland-il/index.html',
+  '/es/service-areas/malta-il/',
+  '/es/service-areas/malta-il/index.html',
   '/card.html',
   '/privacy.html',
   '/terms.html',
@@ -31,6 +39,7 @@ const URLS_TO_CACHE = [
   '/assets/js/main.js',
   '/assets/js/static-gallery.js',
   '/assets/js/i18n.js',
+  '/assets/js/analytics.js',
   '/manifest.json',
   '/hernandez_images/web_Logo_New_256.png'
 ];
