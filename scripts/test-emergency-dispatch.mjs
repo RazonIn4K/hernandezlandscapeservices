@@ -8,10 +8,15 @@
  * Run: npm run test:dispatch
  */
 import assert from 'node:assert/strict';
+import { webcrypto } from 'node:crypto';
 import {
   handleEmergencyDispatch,
   _resetRateLimiter
 } from '../functions/emergency-dispatch.mjs';
+
+// Node 18 (CI) has no global `crypto`; Workers runtime and Node 19+ do. The
+// handler calls crypto.randomUUID(), so polyfill it for the harness only.
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
 const ENDPOINT = 'https://dispatch.example.com/api/emergency-dispatch';
 const ORIGIN = 'https://hernandezlandscapeservices.com';
