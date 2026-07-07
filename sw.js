@@ -16,6 +16,9 @@ const URLS_TO_CACHE = [
   '/service-areas/malta-il/',
   '/service-areas/genoa-il/',
   '/service-areas/kingston-il/',
+  '/es/service-areas/sycamore-il/',
+  '/es/service-areas/cortland-il/',
+  '/es/service-areas/malta-il/',
   '/landscaping-design/',
   '/leaf-removal/',
   '/gutter-cleaning/',
@@ -35,6 +38,7 @@ const URLS_TO_CACHE = [
   '/assets/js/i18n.js',
   '/assets/js/gallery.js',
   '/assets/js/mobile-call-cta.js',
+  '/assets/js/analytics.js',
   '/assets/js/emergency-dispatch.js',
   '/manifest.json',
   '/hernandez_images/web_Logo_New_256.png'

@@ -627,6 +627,9 @@ if (contactForm) {
       const data = await response.json();
 
       if (data.success) {
+        if (typeof window.hlsTrack === "function") {
+          window.hlsTrack("lead_submit_success", { source: "quote_form" });
+        }
         showModal(
           getMessage(
             "alerts.contact.success",

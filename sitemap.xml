@@ -310,4 +310,39 @@
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
+  <!-- LOCAL-PAGES:GENERATED:START -->
+  <url>
+    <loc>https://hernandezlandscapeservices.com/es/service-areas/sycamore-il/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-canopy.jpg</image:loc>
+      <image:title>Servicio de árboles en Sycamore IL</image:title>
+      <image:caption>Trabajo del equipo de árboles de Hernandez Landscape &amp; Tree Service LLC cerca del área de Sycamore.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hernandezlandscapeservices.com/es/service-areas/cortland-il/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg</image:loc>
+      <image:title>Corte de pasto en Cortland IL</image:title>
+      <image:caption>Pasto recién terminado por Hernandez Landscape &amp; Tree Service LLC para el área de Cortland.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hernandezlandscapeservices.com/es/service-areas/malta-il/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-completed-yard-equipment.jpg</image:loc>
+      <image:title>Servicio de patio en Malta IL</image:title>
+      <image:caption>Trabajo de patio terminado por Hernandez Landscape &amp; Tree Service LLC para el área de Malta.</image:caption>
+    </image:image>
+  </url>
+  <!-- LOCAL-PAGES:GENERATED:END -->
 </urlset>
