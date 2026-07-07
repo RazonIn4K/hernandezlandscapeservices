@@ -3,7 +3,6 @@
 
 User-agent: *
 Allow: /
-Disallow: /playwright-report/
 
 # Sitemap location
 Sitemap: https://hernandezlandscapeservices.com/sitemap.xml

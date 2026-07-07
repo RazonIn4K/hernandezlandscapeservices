@@ -11,8 +11,8 @@
  *   1. validates the manifest (required fields, files exist on disk, surface
  *      lists reference real items of the right type);
  *   2. regenerates, between explicit START/END markers:
- *        - the photo cards in gallery.html        (GALLERY:GENERATED)
- *        - the video cards in videos.html         (VIDEOS:GENERATED)
+ *        - the photo cards in gallery/index.html  (GALLERY:GENERATED)
+ *        - the video cards in videos/index.html   (VIDEOS:GENERATED)
  *        - the staticImages array in assets/js/static-gallery.js
  *                                                 (GALLERY-DATA:GENERATED)
  *        - the gallery <image:image> entries and the videos <video:video>
@@ -215,7 +215,7 @@ function renderGalleryCards(list) {
     const title = item.gallery?.title ?? '';
     return [
       '                <div class="gallery-item group">',
-      `                    <img src="${escapeHtml(item.src)}" loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
+      `                    <img src="/${escapeHtml(item.src)}" loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
       '                    <div class="gallery-overlay">',
       '                        <div class="text-center p-4">',
       `                            <h3${keyAttr}>${escapeHtml(title)}</h3>`,
@@ -231,8 +231,8 @@ function renderVideoCards(list) {
   const cards = list.map((item) => [
     '                <div class="video-card group">',
     '                    <div class="video-wrapper relative">',
-    `                        <video controls preload="none" poster="${escapeHtml(item.poster)}" class="w-full h-full object-cover">`,
-    `                            <source src="${escapeHtml(item.src)}" type="video/mp4">`,
+    `                        <video controls preload="none" poster="/${escapeHtml(item.poster)}" class="w-full h-full object-cover">`,
+    `                            <source src="/${escapeHtml(item.src)}" type="video/mp4">`,
     '                            Your browser does not support the video tag.',
     '                        </video>',
     '                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">',
@@ -344,10 +344,10 @@ console.log(
   `${[...byId.values()].filter((i) => i.type === 'video').length} videos)`
 );
 
-updateFile('gallery.html', [
+updateFile('gallery/index.html', [
   { marker: MARKERS.galleryPage, body: renderGalleryCards(galleryPageItems) },
 ]);
-updateFile('videos.html', [
+updateFile('videos/index.html', [
   { marker: MARKERS.videosPage, body: renderVideoCards(videosPageItems) },
 ]);
 updateFile('assets/js/static-gallery.js', [

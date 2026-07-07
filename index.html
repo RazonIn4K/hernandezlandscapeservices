@@ -6,7 +6,7 @@
     <title>DeKalb Tree Removal &amp; Landscaping | Hernandez Landscape</title>
     <meta
       name="description"
-      content="Professional tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured. Free estimates: (815) 501-1478."
+      content="Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured. Free estimates: (815) 501-1478."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <!-- Open Graph meta tags for social media -->
@@ -27,7 +27,7 @@
       content="Hernandez Landscape and Tree Service branded trucks and trailers in DeKalb County"
     />
     <meta property="og:url" content="https://hernandezlandscapeservices.com/" />
-    <meta property="og:type" content="business.business" />
+    <meta property="og:type" content="website" />
     <meta
       property="og:site_name"
       content="Hernandez Landscape & Tree Service LLC"
@@ -68,7 +68,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
 
     <!-- Load external stylesheets -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260519" />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <link rel="stylesheet" href="assets/css/video.css" />
 
@@ -125,13 +125,13 @@
               >Services</a
             >
             <a
-              href="gallery.html"
+              href="/gallery/"
               class="text-sm font-semibold hover:text-green-600 transition"
               data-i18n-key="nav.work"
               >Our Work</a
             >
             <a
-              href="videos.html"
+              href="/videos/"
               class="text-sm font-semibold hover:text-green-600 transition"
               data-i18n-key="nav.videos"
               >Videos</a
@@ -218,14 +218,14 @@
             >Services</a
           >
           <a
-            href="gallery.html"
+            href="/gallery/"
             class="block text-gray-700 font-semibold"
             onclick="toggleMobileMenu()"
             data-i18n-key="nav.work"
             >Our Work</a
           >
           <a
-            href="videos.html"
+            href="/videos/"
             class="block text-gray-700 font-semibold"
             onclick="toggleMobileMenu()"
             data-i18n-key="nav.videos"
@@ -285,6 +285,23 @@
 
       <div class="container mx-auto px-4 relative z-10 pt-10 md:pt-16">
         <div class="hero-content max-w-4xl">
+          <!-- 24/7 emergency tree service strip (SEO_AUDIT_PLAN P0-6) -->
+          <div
+            class="mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center"
+          >
+            <p class="font-bold text-white">
+              <i
+                class="fas fa-exclamation-triangle text-green-400 mr-2"
+                aria-hidden="true"
+              ></i
+              >Storm damage? 24/7 emergency tree removal
+            </p>
+            <a
+              href="tel:18155011478"
+              class="rounded-full bg-green-600 hover:bg-green-500 px-5 py-2 font-bold text-white transition"
+              >Call (815) 501-1478</a
+            >
+          </div>
           <p
             class="hero-eyebrow mb-5 inline-flex items-center gap-2 text-sm font-bold uppercase"
           >
@@ -561,14 +578,23 @@
                   >
                 </li>
               </ul>
-              <a
-                href="?service=landscaping#quote"
-                data-prefill-service="landscaping"
-                class="text-green-600 font-semibold hover:text-green-700"
-              >
-                <span data-i18n-key="services.cta">Get Quote</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
+              <div class="flex items-center gap-4">
+                <a
+                  href="landscaping-design/"
+                  class="text-green-600 font-semibold hover:text-green-700"
+                >
+                  <span>Learn More</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+                <a
+                  href="?service=landscaping#quote"
+                  data-prefill-service="landscaping"
+                  class="text-green-600 font-semibold hover:text-green-700"
+                >
+                  <span data-i18n-key="services.cta">Get Quote</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -588,34 +614,67 @@
               <i class="fas fa-snowflake mr-2"></i
               ><span>Snow Removal</span>
             </a>
-            <a
-              href="?service=leaf-removal#quote"
-              data-prefill-service="leaf-removal"
-              class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+            <span
+              class="inline-flex flex-wrap items-center justify-center gap-2"
             >
-              <i class="fas fa-leaf mr-2"></i
-              ><span data-i18n-key="services.extra.leaf">Leaf Removal</span>
-            </a>
-            <a
-              href="?service=gutter-cleaning#quote"
-              data-prefill-service="gutter-cleaning"
-              class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
-            >
-              <i class="fas fa-home mr-2"></i
-              ><span data-i18n-key="services.extra.gutter"
-                >Gutter Cleaning</span
+              <a
+                href="leaf-removal/"
+                class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
               >
-            </a>
-            <a
-              href="?service=pressure-washing#quote"
-              data-prefill-service="pressure-washing"
-              class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
-            >
-              <i class="fas fa-spray-can mr-2"></i
-              ><span data-i18n-key="services.extra.pressure"
-                >Pressure Washing</span
+                <i class="fas fa-leaf mr-2"></i
+                ><span data-i18n-key="services.extra.leaf">Leaf Removal</span>
+              </a>
+              <a
+                href="?service=leaf-removal#quote"
+                data-prefill-service="leaf-removal"
+                class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm"
               >
-            </a>
+                <i class="fas fa-calculator mr-2"></i
+                ><span data-i18n-key="services.cta">Get Quote</span>
+              </a>
+            </span>
+            <span
+              class="inline-flex flex-wrap items-center justify-center gap-2"
+            >
+              <a
+                href="gutter-cleaning/"
+                class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+              >
+                <i class="fas fa-home mr-2"></i
+                ><span data-i18n-key="services.extra.gutter"
+                  >Gutter Cleaning</span
+                >
+              </a>
+              <a
+                href="?service=gutter-cleaning#quote"
+                data-prefill-service="gutter-cleaning"
+                class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm"
+              >
+                <i class="fas fa-calculator mr-2"></i
+                ><span data-i18n-key="services.cta">Get Quote</span>
+              </a>
+            </span>
+            <span
+              class="inline-flex flex-wrap items-center justify-center gap-2"
+            >
+              <a
+                href="pressure-washing/"
+                class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
+              >
+                <i class="fas fa-spray-can mr-2"></i
+                ><span data-i18n-key="services.extra.pressure"
+                  >Pressure Washing</span
+                >
+              </a>
+              <a
+                href="?service=pressure-washing#quote"
+                data-prefill-service="pressure-washing"
+                class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm"
+              >
+                <i class="fas fa-calculator mr-2"></i
+                ><span data-i18n-key="services.cta">Get Quote</span>
+              </a>
+            </span>
           </div>
         </div>
 
@@ -645,7 +704,7 @@
               </p>
             </div>
             <a
-              href="gallery.html"
+              href="/gallery/"
               class="inline-flex items-center justify-center rounded-full border-2 border-green-600 px-5 py-2 font-semibold text-green-700 transition hover:bg-green-50"
             >
               <i class="fas fa-images mr-2" aria-hidden="true"></i>
@@ -1349,7 +1408,7 @@
           class="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4 sm:px-0"
         >
           <a
-            href="gallery.html"
+            href="/gallery/"
             class="bg-green-600 border-2 border-transparent text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center"
           >
             <i class="fas fa-images mr-2"></i> View Full Gallery
@@ -1459,7 +1518,7 @@
           class="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4 sm:px-0"
         >
           <a
-            href="videos.html"
+            href="/videos/"
             class="bg-green-600 border-2 border-transparent text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center"
           >
             <i class="fas fa-video mr-2"></i>
@@ -1804,6 +1863,65 @@
             >
               Zoom in on our DeKalb base; we cover all of DeKalb County and
               nearby communities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section: visible copy mirrors the FAQPage JSON-LD verbatim (SEO_AUDIT_PLAN P0-5) -->
+    <section id="faq" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-12">
+          Frequently Asked Questions
+        </h2>
+        <div class="max-w-4xl mx-auto space-y-6">
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-bold text-lg text-gray-800">
+              Do you provide free estimates for tree removal in DeKalb?
+            </h3>
+            <p class="mt-2 text-gray-600">
+              Yes, we provide free, no-obligation estimates for all tree
+              removal, tree trimming, and landscaping projects in DeKalb County
+              and surrounding areas.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-bold text-lg text-gray-800">
+              Is Hernandez Landscape & Tree Service licensed and insured?
+            </h3>
+            <p class="mt-2 text-gray-600">
+              Yes, we are a fully licensed and insured LLC (Auth #13934835)
+              protecting your property during all tree and landscaping work.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-bold text-lg text-gray-800">
+              What areas do you serve outside of DeKalb?
+            </h3>
+            <p class="mt-2 text-gray-600">
+              Our primary service areas are DeKalb and Sycamore. We also serve
+              Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St.
+              Charles, and West Chicago.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-bold text-lg text-gray-800">
+              Do you offer emergency tree removal services?
+            </h3>
+            <p class="mt-2 text-gray-600">
+              Yes, we offer 24/7 emergency tree service for fallen or hazardous
+              trees that pose an immediate threat to your home or property.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h3 class="font-bold text-lg text-gray-800">
+              Do you provide snow removal for residential properties?
+            </h3>
+            <p class="mt-2 text-gray-600">
+              Yes, we offer seasonal snow removal services for both residential
+              and commercial properties in the DeKalb area, subject to
+              availability.
             </p>
           </div>
         </div>
@@ -2226,7 +2344,7 @@
               </li>
               <li>
                 <a
-                  href="gallery.html"
+                  href="/gallery/"
                   class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
@@ -2236,7 +2354,7 @@
               </li>
               <li>
                 <a
-                  href="videos.html"
+                  href="/videos/"
                   class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
@@ -2328,13 +2446,20 @@
                 class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700"
                 >Cortland</a
               >
-              <span
+              <a
+                href="/service-areas/genoa-il/"
                 class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700"
-                >Genoa</span
+                >Genoa</a
               >
-              <span
+              <a
+                href="/service-areas/malta-il/"
                 class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700"
-                >Malta</span
+                >Malta</a
+              >
+              <a
+                href="/service-areas/kingston-il/"
+                class="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full border border-gray-700"
+                >Kingston</a
               >
             </div>
 
@@ -2619,6 +2744,42 @@
                     "name": "Snow Removal",
                     "description": "Residential and commercial snow removal by availability"
                   }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Landscaping Design",
+                    "description": "Custom garden design, mulch and rock installation, sod installation, and seasonal cleanup in DeKalb County, IL.",
+                    "url": "https://hernandezlandscapeservices.com/landscaping-design/"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Leaf Removal",
+                    "description": "Seasonal leaf removal and yard cleanup for homes and businesses in DeKalb County, IL.",
+                    "url": "https://hernandezlandscapeservices.com/leaf-removal/"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Gutter Cleaning",
+                    "description": "Gutter and downspout cleaning for homes in DeKalb County, IL.",
+                    "url": "https://hernandezlandscapeservices.com/gutter-cleaning/"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Pressure Washing",
+                    "description": "Pressure washing for driveways, walkways, patios, and other hard exterior surfaces in DeKalb County, IL.",
+                    "url": "https://hernandezlandscapeservices.com/pressure-washing/"
+                  }
                 }
               ]
             }
@@ -2631,14 +2792,14 @@
             "publisher": {
               "@id": "https://hernandezlandscapeservices.com/#organization"
             },
-            "inLanguage": ["en", "es"]
+            "inLanguage": "en"
           },
           {
             "@type": "WebPage",
             "@id": "https://hernandezlandscapeservices.com/#webpage",
             "url": "https://hernandezlandscapeservices.com/",
             "name": "DeKalb Tree Removal & Landscaping | Hernandez Landscape",
-            "description": "Professional tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured.",
+            "description": "Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured. Free estimates: (815) 501-1478.",
             "isPartOf": {
               "@id": "https://hernandezlandscapeservices.com/#website"
             },
@@ -2652,19 +2813,7 @@
               "@type": "ImageObject",
               "url": "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg"
             },
-            "inLanguage": ["en", "es"]
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://hernandezlandscapeservices.com/#breadcrumb",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://hernandezlandscapeservices.com/"
-              }
-            ]
+            "inLanguage": "en"
           },
           {
             "@type": "FAQPage",

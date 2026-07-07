@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_ORIGIN = 'https://hernandezlandscapeservices.com';
 const EXCLUDED_DIRS = new Set([
+  '.claude',
   '.git',
   '_media-archive',
   'node_modules',
@@ -15,11 +16,50 @@ const EXCLUDED_DIRS = new Set([
   'test-results',
   'tmp',
 ]);
-const UTILITY_INDEXABLE = new Set(['privacy.html', 'terms.html']);
+// privacy/terms are utility pages; gallery.html/videos.html are meta-refresh
+// redirect stubs for the old .html routes (canonical points at /gallery/ and
+// /videos/) — none of them need the full OG/Twitter card set.
+const UTILITY_INDEXABLE = new Set(['privacy.html', 'terms.html', 'gallery.html', 'videos.html']);
 const BANNED_EXTERNAL_LINKS = [
   {
     label: 'incorrect Yelp entity link',
     pattern: /yelp\.com\/biz\/hernandez-lawn-care-chicago/i,
+  },
+];
+
+// SERP display limits (measured on entity-decoded text).
+const TITLE_MAX_LENGTH = 60;
+const DESCRIPTION_MIN_LENGTH = 70;
+const DESCRIPTION_MAX_LENGTH = 155;
+
+// Standard favicon/manifest head block — the exact asset set index.html ships.
+// Every shipped page must reference all of these (P1-8).
+const FAVICON_REQUIREMENTS = [
+  { label: 'favicon.ico icon link', pattern: /<link\b[^>]*rel=["']icon["'][^>]*href=["']\/favicon\.ico["'][^>]*>/i },
+  { label: 'favicon-32x32.png icon link', pattern: /<link\b[^>]*rel=["']icon["'][^>]*href=["']\/favicon-32x32\.png["'][^>]*>/i },
+  { label: 'favicon-16x16.png icon link', pattern: /<link\b[^>]*rel=["']icon["'][^>]*href=["']\/favicon-16x16\.png["'][^>]*>/i },
+  { label: 'apple-touch-icon link', pattern: /<link\b[^>]*rel=["']apple-touch-icon["'][^>]*href=["']\/apple-touch-icon\.png["'][^>]*>/i },
+  { label: 'manifest link', pattern: /<link\b[^>]*rel=["']manifest["'][^>]*href=["']\/manifest\.json["'][^>]*>/i },
+  { label: 'theme-color meta', pattern: /<meta\b[^>]*name=["']theme-color["'][^>]*>/i },
+];
+
+// Placeholder-href lint (P1-10): hrefs must never ship placeholder values.
+const PLACEHOLDER_HREF_PATTERN = /YOUR_|PLACEHOLDER|g\.page\/r\/YOUR|\{\{/i;
+// ============================================================================
+// LOUD EXCEPTION — remove when B-1 lands (SEO_AUDIT_PLAN.md "Blocked on owner").
+// card.html's printed-QR "Reviews" button still carries the literal
+// https://g.page/r/YOUR_GOOGLE_REVIEW_LINK placeholder because the owner has
+// not yet provided the real Google Business Profile review short-link (B-1).
+// The exception below allows EXACTLY that one href, ONLY in card.html, and
+// ONLY while the anchoring "TODO(B-1)" comment sits directly above it.
+// When B-1 lands: replace the href in card.html, delete its TODO(B-1)
+// comment, and delete this exception so the lint guards card.html again.
+// ============================================================================
+const PLACEHOLDER_HREF_EXCEPTIONS = [
+  {
+    file: 'card.html',
+    href: 'https://g.page/r/YOUR_GOOGLE_REVIEW_LINK',
+    anchorComment: 'TODO(B-1)',
   },
 ];
 
@@ -85,6 +125,42 @@ function extractTitle(html) {
   return html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() ?? '';
 }
 
+// Decode the handful of entities used in this repo so length checks measure
+// rendered characters (e.g. "&amp;" counts as 1), matching what SERPs show.
+function decodeEntities(text) {
+  return text
+    .replace(/&amp;|&#38;/gi, '&')
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&nbsp;/gi, ' ');
+}
+
+function checkPlaceholderHrefs(relPath, html) {
+  const lines = html.split('\n');
+  for (let i = 0; i < lines.length; i++) {
+    for (const match of lines[i].matchAll(/href=["']([^"']*)["']/gi)) {
+      const href = match[1];
+      if (!PLACEHOLDER_HREF_PATTERN.test(href)) continue;
+
+      const exception = PLACEHOLDER_HREF_EXCEPTIONS.find(
+        (entry) => entry.file === relPath && entry.href === href,
+      );
+      if (exception) {
+        // The exception only holds while its TODO comment is anchored within
+        // the 5 lines directly above the placeholder href.
+        const context = lines.slice(Math.max(0, i - 5), i).join('\n');
+        if (context.includes(exception.anchorComment)) {
+          warn(`${relPath}:${i + 1}: placeholder href allowed by documented ${exception.anchorComment} exception (pending B-1): ${href}`);
+          continue;
+        }
+      }
+      fail(`${relPath}:${i + 1}: placeholder href must not ship: ${href}`);
+    }
+  }
+}
+
 function isGoogleVerification(html) {
   return html.trim().startsWith('google-site-verification:');
 }
@@ -121,7 +197,18 @@ for (const relPath of htmlFiles) {
   const h1Count = (html.match(/<h1\b/gi) ?? []).length;
 
   if (!title) fail(`${relPath}: missing <title>`);
+  if (title && decodeEntities(title).length > TITLE_MAX_LENGTH) {
+    fail(`${relPath}: title is ${decodeEntities(title).length} characters (max ${TITLE_MAX_LENGTH})`);
+  }
   if (h1Count !== 1) fail(`${relPath}: expected exactly one <h1>, found ${h1Count}`);
+
+  for (const requirement of FAVICON_REQUIREMENTS) {
+    if (!requirement.pattern.test(html)) {
+      fail(`${relPath}: missing ${requirement.label} (standard favicon head block)`);
+    }
+  }
+
+  checkPlaceholderHrefs(relPath, html);
 
   if (canonical && !canonical.startsWith(`${SITE_ORIGIN}/`)) {
     fail(`${relPath}: canonical must be an absolute ${SITE_ORIGIN} URL`);
@@ -133,8 +220,11 @@ for (const relPath of htmlFiles) {
   } else {
     if (!description) fail(`${relPath}: indexable page is missing meta description`);
     if (!canonical) fail(`${relPath}: indexable page is missing canonical link`);
-    if (description && (description.length < 70 || description.length > 180)) {
-      warn(`${relPath}: meta description length is ${description.length} characters`);
+    if (description) {
+      const decodedLength = decodeEntities(description).length;
+      if (decodedLength < DESCRIPTION_MIN_LENGTH || decodedLength > DESCRIPTION_MAX_LENGTH) {
+        fail(`${relPath}: meta description is ${decodedLength} characters (must be ${DESCRIPTION_MIN_LENGTH}-${DESCRIPTION_MAX_LENGTH})`);
+      }
     }
     if (canonical) indexableCanonicals.set(canonical, relPath);
 

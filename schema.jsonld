@@ -190,6 +190,42 @@
               "name": "Snow Removal",
               "description": "Residential and commercial snow removal by availability"
             }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Landscaping Design",
+              "description": "Custom garden design, mulch and rock installation, sod installation, and seasonal cleanup in DeKalb County, IL.",
+              "url": "https://hernandezlandscapeservices.com/landscaping-design/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Leaf Removal",
+              "description": "Seasonal leaf removal and yard cleanup for homes and businesses in DeKalb County, IL.",
+              "url": "https://hernandezlandscapeservices.com/leaf-removal/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Gutter Cleaning",
+              "description": "Gutter and downspout cleaning for homes in DeKalb County, IL.",
+              "url": "https://hernandezlandscapeservices.com/gutter-cleaning/"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Pressure Washing",
+              "description": "Pressure washing for driveways, walkways, patios, and other hard exterior surfaces in DeKalb County, IL.",
+              "url": "https://hernandezlandscapeservices.com/pressure-washing/"
+            }
           }
         ]
       }
@@ -202,14 +238,14 @@
       "publisher": {
         "@id": "https://hernandezlandscapeservices.com/#organization"
       },
-      "inLanguage": ["en", "es"]
+      "inLanguage": "en"
     },
     {
       "@type": "WebPage",
       "@id": "https://hernandezlandscapeservices.com/#webpage",
       "url": "https://hernandezlandscapeservices.com/",
       "name": "DeKalb Tree Removal & Landscaping | Hernandez Landscape",
-      "description": "Professional tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured.",
+      "description": "Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured. Free estimates: (815) 501-1478.",
       "isPartOf": {
         "@id": "https://hernandezlandscapeservices.com/#website"
       },
@@ -223,19 +259,7 @@
         "@type": "ImageObject",
         "url": "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg"
       },
-      "inLanguage": ["en", "es"]
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://hernandezlandscapeservices.com/#breadcrumb",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://hernandezlandscapeservices.com/"
-        }
-      ]
+      "inLanguage": "en"
     },
     {
       "@type": "FAQPage",

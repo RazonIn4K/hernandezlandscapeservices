@@ -45,12 +45,19 @@ test.describe('Schema JSON-LD Validation', () => {
     { url: '/tree-removal/', label: 'tree-removal', breadcrumb: 'Tree Removal' },
     { url: '/lawn-care/', label: 'lawn-care', breadcrumb: 'Lawn Care' },
     { url: '/snow-removal/', label: 'snow-removal', breadcrumb: 'Snow Removal' },
+    { url: '/landscaping-design/', label: 'landscaping-design', breadcrumb: 'Landscaping Design' },
+    { url: '/leaf-removal/', label: 'leaf-removal', breadcrumb: 'Leaf Removal' },
+    { url: '/gutter-cleaning/', label: 'gutter-cleaning', breadcrumb: 'Gutter Cleaning' },
+    { url: '/pressure-washing/', label: 'pressure-washing', breadcrumb: 'Pressure Washing' },
   ];
 
   const serviceAreaPages = [
     { url: '/service-areas/dekalb-il/', label: 'service-area-dekalb', breadcrumb: 'DeKalb, IL' },
     { url: '/service-areas/sycamore-il/', label: 'service-area-sycamore', breadcrumb: 'Sycamore, IL' },
     { url: '/service-areas/cortland-il/', label: 'service-area-cortland', breadcrumb: 'Cortland, IL' },
+    { url: '/service-areas/malta-il/', label: 'service-area-malta', breadcrumb: 'Malta, IL' },
+    { url: '/service-areas/genoa-il/', label: 'service-area-genoa', breadcrumb: 'Genoa, IL' },
+    { url: '/service-areas/kingston-il/', label: 'service-area-kingston', breadcrumb: 'Kingston, IL' },
   ];
 
   for (const sp of servicePages) {
@@ -64,9 +71,17 @@ test.describe('Schema JSON-LD Validation', () => {
       const nodes = flattenGraph(blocks);
       const service = nodes.find((n) => n['@type'] === 'Service');
       expect(service).toBeDefined();
-      expect(service?.['provider']?.['@type']).toBe('HomeAndConstructionBusiness');
+      // provider is either inlined (legacy service pages) or an @id reference
+      // that must resolve to the org node embedded in the same page's graph.
+      const provider = service?.['provider'];
+      const providerNode = provider?.['@type']
+        ? provider
+        : nodes.find((n) => n['@id'] === provider?.['@id']);
+      expect(providerNode?.['@type']).toBe('HomeAndConstructionBusiness');
       const areas = Array.isArray(service?.['areaServed']) ? service?.['areaServed'] : [service?.['areaServed']];
-      expect(areas.map((area) => area?.['name'])).toEqual(expect.arrayContaining(['DeKalb', 'Sycamore', 'Cortland']));
+      expect(areas.map((area) => area?.['name'])).toEqual(
+        expect.arrayContaining(['DeKalb', 'Sycamore', 'Cortland', 'Malta', 'Genoa', 'Kingston'])
+      );
     });
 
     test(`${sp.label}: links to priority service area pages`, async ({ page }) => {
@@ -103,12 +118,13 @@ test.describe('Schema JSON-LD Validation', () => {
     });
   }
 
-  test('homepage: JSON-LD has HomeAndConstructionBusiness, FAQPage, and BreadcrumbList', async ({ page }) => {
+  test('homepage: JSON-LD has HomeAndConstructionBusiness and FAQPage, no single-item breadcrumb', async ({ page }) => {
     const blocks = await parseJsonLd(page, '/');
     const nodes = flattenGraph(blocks);
     expect(nodes.find((n) => n['@type'] === 'HomeAndConstructionBusiness')).toBeDefined();
     expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
-    expect(nodes.find((n) => n['@type'] === 'BreadcrumbList')).toBeDefined();
+    // Removed on purpose (SEO_AUDIT_PLAN.md P2-1): a one-item breadcrumb adds no value.
+    expect(nodes.find((n) => n['@type'] === 'BreadcrumbList')).toBeUndefined();
   });
 
   test('sitemap: includes video metadata for the videos page', async ({ request }) => {
@@ -117,7 +133,7 @@ test.describe('Schema JSON-LD Validation', () => {
     const xml = await response.text();
 
     expect(xml).toContain('xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"');
-    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/videos.html</loc>');
+    expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/videos/</loc>');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/</loc>');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/dekalb-il/</loc>');
     expect(xml).toContain('<loc>https://hernandezlandscapeservices.com/service-areas/sycamore-il/</loc>');
@@ -128,10 +144,16 @@ test.describe('Schema JSON-LD Validation', () => {
   });
 
   for (const sp of serviceAreaPages) {
-    test(`${sp.label}: has local business schema, FAQPage, and breadcrumb`, async ({ page }) => {
+    test(`${sp.label}: carries a resolvable org node, FAQPage and breadcrumb`, async ({ page }) => {
       const blocks = await parseJsonLd(page, sp.url);
       const nodes = flattenGraph(blocks);
-      expect(nodes.find((n) => n['@type'] === 'HomeAndConstructionBusiness')).toBeDefined();
+      // Per the 2026-07-06 review round every local landing page embeds a slim
+      // but resolvable org node (validators process each page in isolation);
+      // the exhaustive org definition still lives on the homepage/schema.jsonld.
+      const orgRef = nodes.find((n) => n['@id'] === 'https://hernandezlandscapeservices.com/#organization');
+      expect(orgRef).toBeDefined();
+      expect(orgRef?.['@type']).toBe('HomeAndConstructionBusiness');
+      expect(orgRef?.['telephone']).toBe('+1-815-501-1478');
       expect(nodes.find((n) => n['@type'] === 'FAQPage')).toBeDefined();
       const crumb = nodes.find((n) => n['@type'] === 'BreadcrumbList');
       expect(crumb).toBeDefined();
@@ -197,13 +219,13 @@ test.describe('Static Gallery Functionality', () => {
     await expect(page).toHaveURL(/\/service-areas\/$/);
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.click('a[href="gallery.html"]');
-    await expect(page).toHaveURL(/\/gallery(?:\.html)?$/);
+    await page.click('a[href="/gallery/"]');
+    await expect(page).toHaveURL(/\/gallery\/$/);
     await expect(page.locator('body')).toContainText(/Recent Projects|Project Video Tours|Gallery/i);
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.click('a[href="videos.html"]');
-    await expect(page).toHaveURL(/\/videos(?:\.html)?$/);
+    await page.click('a[href="/videos/"]');
+    await expect(page).toHaveURL(/\/videos\/$/);
     await expect(page.locator('body')).toContainText(/Project Video Tours|Videos/i);
   });
 
@@ -396,10 +418,10 @@ test.describe('Static Gallery Functionality', () => {
       const homeSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
       expect(homeSpread, `Home card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
 
-      await page.goto('/gallery.html', { waitUntil: 'domcontentloaded' });
+      await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });
       const galleryCardCount = await page.locator('.gallery-item').count();
 
-      // In SPA fallback environments, /gallery.html can resolve to the homepage.
+      // In SPA fallback environments, /gallery/ can resolve to the homepage.
       if (galleryCardCount > 0) {
         const galleryOverflow = await page.evaluate(() =>
           document.documentElement.scrollWidth - document.documentElement.clientWidth

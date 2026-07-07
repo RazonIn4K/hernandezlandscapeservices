@@ -1,5 +1,5 @@
 {
-  "$comment": "Single source of truth for all gallery/carousel/video media on the site. Edit this file, then run `npm run media:update` to regenerate gallery.html, videos.html, assets/js/static-gallery.js, and the gallery/video entries in sitemap.xml. Never hand-edit the generated regions (between *:GENERATED:START/END markers). See docs/MEDIA-WORKFLOW.md.",
+  "$comment": "Single source of truth for all gallery/carousel/video media on the site. Edit this file, then run `npm run media:update` to regenerate gallery/index.html, videos/index.html, assets/js/static-gallery.js, and the gallery/video entries in sitemap.xml. Never hand-edit the generated regions (between *:GENERATED:START/END markers). See docs/MEDIA-WORKFLOW.md.",
   "baseUrl": "https://hernandezlandscapeservices.com",
   "items": [
     {
@@ -637,7 +637,7 @@
     }
   ],
   "surfaces": {
-    "$comment": "Each surface is an ordered list of item ids and maps to one generated region. galleryPage -> gallery.html cards; homeGallery -> staticImages array in assets/js/static-gallery.js (the homepage Latest Uploads carousel shows its first 6 entries); videosPage -> videos.html cards; sitemapGalleryImages -> image entries under the gallery.html url in sitemap.xml; sitemapVideos -> video entries under the videos.html url in sitemap.xml.",
+    "$comment": "Each surface is an ordered list of item ids and maps to one generated region. galleryPage -> gallery/index.html cards; homeGallery -> staticImages array in assets/js/static-gallery.js (the homepage Latest Uploads carousel shows its first 6 entries); videosPage -> videos/index.html cards; sitemapGalleryImages -> image entries under the /gallery/ url in sitemap.xml; sitemapVideos -> video entries under the /videos/ url in sitemap.xml.",
     "galleryPage": [
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
