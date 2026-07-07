@@ -15,6 +15,7 @@
     "media:budget": "node scripts/check-media-budget.mjs",
     "seo:check": "node scripts/check-seo.mjs",
     "nap:check": "node scripts/verify-nap.mjs",
+    "sitemap:lastmod": "node scripts/update-sitemap-lastmod.mjs",
     "publish:prepare": "node scripts/prepare-publish.mjs",
     "publish:check-layout": "node scripts/check-publish-layout.mjs",
     "submit-indexnow": "node scripts/submit-indexnow.mjs"
