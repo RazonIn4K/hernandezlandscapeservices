@@ -218,3 +218,90 @@ node -e "const s=require('fs').readFileSync('schema.jsonld','utf8'); JSON.parse(
 - Noindex set (pricing, card, pay/*, 404, qr-stickers-print) and their sitemap exclusion are deliberate — preserve.
 - Blast radius: no typography, brand-color, or logo changes anywhere in Phase 2.
 - NAP: use only the confirmed values (1029 Lewis St, DeKalb, IL 60115 / (815) 501-1478 / hernandezlandscapetreeservices@gmail.com / Mon-Fri 7am-6pm, Sat 8am-4pm) or `{{PLACEHOLDER}}` tokens pending Section 3 answers — never guess.
+
+## 9. AUTOMATION HANDOFF (Phase 3 — 2026-07-06)
+
+Target CTA: **24/7 Emergency Tree Service** (P0-6 strip + new dispatch panel on `/tree-removal/`).
+Security posture reference: `SECURITY_POSTURE.md`.
+
+### Pipeline
+
+```
+Visitor (tree-removal/#emergency-dispatch form, opt-in geolocation or address/ZIP)
+  → POST /api/emergency-dispatch  (functions/emergency-dispatch.mjs — Cloudflare Worker)
+  → n8n Webhook (N8N_WEBHOOK_URL_LANDSCAPE)
+  → n8n: drive-time from dispatch base (1029 Lewis St) → owner SMS/call page-out → lead log
+Fallback at every stage: tel:18155011478 (primary emergency CTA) and Web3Forms email.
+```
+
+Until the Worker is deployed, the form's `data-endpoint` attribute is `""` and submissions flow through the existing **Web3Forms** email path (with the geolocation fields attached), so the CTA is live today.
+
+### Deploy the endpoint (owner/ops, ~10 min)
+
+```bash
+# 1. Cloudflare Worker (functions/emergency-dispatch.mjs is the module entry)
+npx wrangler deploy functions/emergency-dispatch.mjs --name hernandez-emergency-dispatch --compatibility-date 2026-07-01
+npx wrangler secret put N8N_WEBHOOK_URL_LANDSCAPE   # paste the n8n production webhook URL
+# optional: ALLOWED_ORIGINS env var (comma-separated) if more origins ever need access
+
+# 2. Point the form at it — tree-removal/index.html, one attribute:
+#    data-endpoint="https://hernandez-emergency-dispatch.<account>.workers.dev/api/emergency-dispatch"
+
+# 3. Smoke tests
+curl -s -X POST 'https://<worker-host>/api/emergency-dispatch' \
+  -H 'Content-Type: application/json' -H 'Origin: https://hernandezlandscapeservices.com' \
+  -d '{"name":"Dispatch Test","phone":"8155550100","emergencyType":"fallen-tree","zip":"60115"}'   # expect 200 {ok,dispatchId}
+curl -s -X POST 'https://<worker-host>/api/emergency-dispatch' \
+  -H 'Content-Type: application/json' -H 'Origin: https://hernandezlandscapeservices.com' \
+  -d '{"name":"X"}'                                                                                # expect 400 validation
+```
+
+### Webhook event schema (`POST` body sent to n8n) — `schemaVersion: 2026-07-06`
+
+```json
+{
+  "schemaVersion": "2026-07-06",
+  "event": "emergency_dispatch",
+  "priority": "emergency",
+  "dispatchId": "uuid-v4",
+  "receivedAt": "2026-07-06T18:00:00.000Z",
+  "source": { "site": "hernandezlandscapeservices.com", "channel": "web_form", "page": "/tree-removal/", "endpoint": "/api/emergency-dispatch" },
+  "contact": { "name": "string (2-100, sanitized)", "phone": "string (7-15 digits)" },
+  "incident": {
+    "type": "fallen-tree | tree-on-structure | hanging-limb | blocking-access | near-power-line | storm-damage | other",
+    "typeDetail": "string | null (original value when normalized to other)",
+    "details": "string | null (<=1000 chars, sanitized)"
+  },
+  "location": {
+    "zip": "string | null (5-digit, optional +4)",
+    "address": "string | null (<=200 chars)",
+    "geo": { "lat": 41.93, "lng": -88.75, "accuracyM": 12 }
+  },
+  "dispatch": {
+    "base": { "label": "1029 Lewis St, DeKalb, IL 60115", "geo": { "lat": 41.92134, "lng": -88.7576 } },
+    "hints": ["compute_drive_time_from_base", "notify_owner_immediately", "after_hours_escalation"]
+  },
+  "meta": { "ip": "string", "userAgent": "string (<=300)" }
+}
+```
+
+`location` is guaranteed to contain at least one of `zip`/`address`/`geo` (validated server-side). Drive-time node: prefer `geo` when present (browser GPS, opt-in), else geocode `address`/`zip`; origin = `dispatch.base.geo`.
+
+### API responses
+
+| Case | Status | Body |
+|---|---|---|
+| accepted + forwarded | 200 | `{"ok":true,"dispatchId":"<uuid>"}` |
+| honeypot tripped | 200 | `{"ok":true,...}` (nothing forwarded) |
+| invalid payload | 400 | `{"error":"validation","fields":["..."]}` |
+| non-JSON / wrong type | 400 / 415 | `{"error":"bad_request"|"unsupported_media_type"}` |
+| foreign Origin | 403 | `{"error":"origin_not_allowed"}` |
+| rate limited (3/5min/IP) | 429 | `{"error":"rate_limited"}` + `Retry-After: 300` |
+| webhook env missing | 503 | `{"error":"not_configured"}` (frontend then falls back to Web3Forms) |
+| webhook down/non-2xx | 502 | `{"error":"upstream"}` (same fallback) |
+
+### Local verification (no deploy needed)
+
+```bash
+npm run test:dispatch   # 15-case suite over the handler (wired into test:ci)
+```
