@@ -19,6 +19,8 @@ const URLS_TO_CACHE = [
   '/es/service-areas/sycamore-il/',
   '/es/service-areas/cortland-il/',
   '/es/service-areas/malta-il/',
+  '/es/service-areas/genoa-il/',
+  '/es/service-areas/kingston-il/',
   '/landscaping-design/',
   '/leaf-removal/',
   '/gutter-cleaning/',
