@@ -324,7 +324,9 @@ if (slider && handle) {
 
 const quoteResult = document.getElementById("quoteResult");
 let lastInstantEstimate = null;
-const FORM_CC_RECIPIENT = "tiogilh@gmail.com";
+// NOTE: do NOT add a "ccemail" field to the Web3Forms payload — it is a Pro-only
+// feature and the API hard-rejects the whole submission with 400 on free tier
+// (every lead bounced 2026-06-23 → 2026-07-08 because of this).
 const SPAM_PHRASE_PATTERNS = [
   /ai agent/i,
   /ai implementation/i,
@@ -587,7 +589,6 @@ if (contactForm) {
     }
 
     const formData = new FormData(this);
-    formData.set("ccemail", FORM_CC_RECIPIENT);
     formData.set("form_loaded_at", formLoadedAt?.value || String(Date.now()));
 
     const spamVerdict = classifyLeadSpam(formData);

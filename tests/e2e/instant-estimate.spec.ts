@@ -104,8 +104,9 @@ test.describe('Instant estimate lead handoff', () => {
     expect(submittedBody).toContain('evening');
     expect(submittedBody).toContain('$280 - $420');
     expect(submittedBody).toContain('owner_verified');
-    expect(submittedBody).toContain('name="ccemail"');
-    expect(submittedBody).toContain('tiogilh@gmail.com');
+    // Regression guard: ccemail is a Web3Forms Pro-only field — including it makes
+    // the API reject every submission with 400 on the free tier (2026-07-08 incident).
+    expect(submittedBody).not.toContain('name="ccemail"');
   });
 
   test('calculating an estimate alone sends no network request', async ({ page }) => {
