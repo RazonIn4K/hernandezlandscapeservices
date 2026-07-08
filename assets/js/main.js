@@ -630,6 +630,29 @@ if (contactForm) {
         if (typeof window.hlsTrack === "function") {
           window.hlsTrack("lead_submit_success", { source: "quote_form" });
         }
+        // Instant owner Telegram alert, on top of the Web3Forms email above.
+        // Fire-and-forget + production host only, so tests/localhost never ping.
+        try {
+          if (location.hostname.endsWith("hernandezlandscapeservices.com")) {
+            fetch("https://34-172-247-12.sslip.io/webhook/website-lead", {
+              method: "POST",
+              keepalive: true,
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                token: "wlk7Rp2mX9qV4tB8nZ6yHsDc3F",
+                site: "hernandezlandscapeservices.com",
+                name: String(formData.get("name") || ""),
+                phone: String(formData.get("phone") || ""),
+                email: String(formData.get("email") || ""),
+                service: String(formData.get("service") || ""),
+                message: String(formData.get("message") || ""),
+                sourceUrl: "quote_form"
+              })
+            }).catch(function () {});
+          }
+        } catch (e) {
+          /* best-effort */
+        }
         showModal(
           getMessage(
             "alerts.contact.success",
