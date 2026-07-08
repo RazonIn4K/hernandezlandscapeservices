@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * generate_local_pages.js — bilingual local service-area pages for
- * hernandezlandscapeservices.com (Sycamore, Cortland, Malta).
+ * hernandezlandscapeservices.com (Sycamore, Cortland, Malta, Genoa, Kingston).
  *
  * Usage: node scripts/generate_local_pages.js          (write pages + sitemap)
  *        node scripts/generate_local_pages.js --check  (exit 1 on drift, CI-safe)
@@ -193,6 +193,80 @@ const CITY_PAGES = [
       breadcrumbCity: 'Malta, IL',
       sitemapImageTitle: 'Servicio de patio en Malta IL',
       sitemapImageCaption: 'Trabajo de patio terminado por Hernandez Landscape & Tree Service LLC para el área de Malta.'
+    }
+  },
+  {
+    slug: 'genoa-il',
+    ownsEn: false,
+    image: '/hernandez_images/google-profile-2026-tree-climber-roofline.jpg',
+    es: {
+      title: 'Jardinería y árboles en Genoa, IL | Hernandez Landscape',
+      description:
+        'Corte de pasto, poda y retiro de árboles, limpieza de patios y nieve en Genoa, IL. Hernandez Landscape — llame al (815) 501-1478.',
+      ogDescription:
+        'Corte de pasto, servicio de árboles, limpieza y nieve de temporada para casas y negocios de Genoa.',
+      imageAlt: 'Miembro del equipo de Hernandez trabajando en un árbol cerca del techo de una casa',
+      kicker: 'Genoa, Illinois',
+      h1: 'Corte de pasto, árboles y limpieza en Genoa',
+      intro:
+        'Hernandez Landscape & Tree Service LLC, un equipo familiar del condado de DeKalb, atiende casas y negocios de Genoa con corte de pasto, poda y retiro de árboles, limpieza de patios y servicio de nieve en invierno. Lo atendemos en español.',
+      ctaText: 'Pida su presupuesto en Genoa',
+      ctaHref: '/?service=tree-service#quote',
+      cardsTitle: 'Servicios disponibles en Genoa',
+      cards: [
+        { href: '/lawn-care/', h3: 'Mantenimiento de pasto', p: 'Corte, orillado y recorte regular para mantener sano el pasto de Genoa de primavera a otoño.' },
+        { href: '/tree-removal/', h3: 'Poda y retiro de árboles', p: 'Poda cuidadosa, retiros completos, destoconado y limpieza — incluye respuesta de emergencia 24/7 por tormentas.' },
+        { href: '/snow-removal/', h3: 'Servicio de nieve en invierno', p: 'Retiro de nieve de entradas y lotes pequeños en Genoa durante las tormentas, según disponibilidad.' }
+      ],
+      nearH2: 'Un equipo del condado de DeKalb que cubre Genoa',
+      nearP:
+        'El negocio opera desde DeKalb y programa trabajo en todo el condado, así que en Genoa es fácil pedir limpiezas de una sola vez, visitas regulares de pasto o trabajo de árboles.',
+      faqTitle: 'Preguntas frecuentes en Genoa',
+      faq: [
+        { q: '¿Van a Genoa para presupuestos?', a: 'Sí. Los presupuestos son gratis para propiedades de Genoa, y los trabajos grandes o combinados se programan con anticipación.' },
+        { q: '¿Pueden retirar un árbol dañado en Genoa?', a: 'Sí. El equipo hace poda, retiro, destoconado y limpieza después de tormentas, incluido el servicio de emergencia 24/7.' },
+        { q: '¿Atienden en español?', a: 'Sí. Llame al (815) 501-1478 y explique su proyecto en español con confianza.' }
+      ],
+      breadcrumbCity: 'Genoa, IL',
+      sitemapImageTitle: 'Servicio de árboles en Genoa IL',
+      sitemapImageCaption: 'Trabajo de árboles de Hernandez Landscape & Tree Service LLC para el área de Genoa.'
+    }
+  },
+  {
+    slug: 'kingston-il',
+    ownsEn: false,
+    image: '/hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
+    es: {
+      title: 'Pasto y jardinería en Kingston, IL | Hernandez Landscape',
+      description:
+        'Corte de pasto, jardinería, retiro de árboles y limpieza de temporada para Kingston, IL. Hernandez Landscape — llame al (815) 501-1478.',
+      ogDescription:
+        'Corte de pasto, jardinería, retiro de árboles y limpieza de temporada para propiedades de Kingston.',
+      imageAlt: 'Trabajo de patio terminado con equipo de Hernandez Landscape en el sitio',
+      kicker: 'Kingston, Illinois',
+      h1: 'Corte de pasto, árboles y limpieza en Kingston',
+      intro:
+        'Las casas y negocios de Kingston pueden contar con Hernandez Landscape & Tree Service LLC para corte de pasto, mantenimiento de jardines, poda y retiro de árboles, limpieza de temporada y servicio de nieve — todo coordinado desde la base en DeKalb. Lo atendemos en español.',
+      ctaText: 'Pida su presupuesto en Kingston',
+      ctaHref: '/?service=landscaping#quote',
+      cardsTitle: 'Servicios de patio en Kingston',
+      cards: [
+        { href: '/lawn-care/', h3: 'Corte de pasto', p: 'Rutas confiables de corte, recorte y orillado para los patios de Kingston durante la temporada.' },
+        { href: '/tree-removal/', h3: 'Retiro y poda de árboles', p: 'Poda de ramas problemáticas, retiro completo, destoconado y acarreo con la limpieza incluida.' },
+        { href: '/snow-removal/', h3: 'Limpieza de temporada y nieve', p: 'Limpiezas de primavera y otoño más retiro de nieve para entradas de Kingston, según disponibilidad.' }
+      ],
+      nearH2: 'Coordinado desde la base en DeKalb',
+      nearP:
+        'El equipo programa el trabajo de Kingston desde DeKalb, así que las visitas regulares de pasto, las limpiezas y el trabajo de árboles se agendan sin complicaciones.',
+      faqTitle: 'Preguntas frecuentes en Kingston',
+      faq: [
+        { q: '¿Cortan pasto en Kingston?', a: 'Sí. Hay rutas de corte y recorte disponibles en Kingston según la temporada y la disponibilidad.' },
+        { q: '¿Hacen limpieza de primavera u otoño?', a: 'Sí. La limpieza puede incluir hojas, ramas, camas de jardín y renovación general del patio.' },
+        { q: '¿Atienden en español?', a: 'Sí. Llame al (815) 501-1478 y con gusto revisamos su proyecto en español.' }
+      ],
+      breadcrumbCity: 'Kingston, IL',
+      sitemapImageTitle: 'Servicio de patio en Kingston IL',
+      sitemapImageCaption: 'Trabajo de patio terminado por Hernandez Landscape & Tree Service LLC para el área de Kingston.'
     }
   }
 ];
