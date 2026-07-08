@@ -3,7 +3,7 @@
   // (see SEO_AUDIT_PLAN.md). While empty, NO third-party script loads and the
   // site makes zero extra requests; events still queue in window.dataLayer so
   // they flow into GTM the moment a real id is filled in and deployed.
-  var GTM_CONTAINER_ID = ""; // e.g. "GTM-XXXXXXX"
+  var GTM_CONTAINER_ID = "GTM-NJ4DPSC9"; // e.g. "GTM-XXXXXXX"
 
   window.dataLayer = window.dataLayer || [];
 
