@@ -6,6 +6,26 @@
         header nav > div:first-child > div {
             min-width: 0;
         }
+
+        .skip-link {
+            position: fixed;
+            top: 0.75rem;
+            left: 0.75rem;
+            z-index: 100;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            background: #14532d;
+            color: #fff;
+            font-weight: 700;
+            transform: translateY(calc(-100% - 1rem));
+            transition: transform 0.15s ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+            outline: 3px solid #facc15;
+            outline-offset: 2px;
+        }
         
         /* Hero */
         .hero-bg {
@@ -63,6 +83,12 @@
             cursor: ew-resize;
             transform: translateX(-50%);
             z-index: 10;
+            touch-action: none;
+        }
+
+        .slider-handle:focus-visible {
+            outline: 3px solid #166534;
+            outline-offset: 4px;
         }
         .slider-handle::before {
             content: '\f337'; /* FontAwesome arrows */
@@ -95,7 +121,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Polished spring feel */
             aspect-ratio: 4/3; /* Consistent aspect ratio */
-            cursor: pointer;
         }
 
         .gallery-item:hover {
@@ -123,6 +148,7 @@
             display: flex;
             align-items: flex-end;
             padding: 2rem;
+            pointer-events: none;
         }
 
         .gallery-item:hover .gallery-overlay {
@@ -146,6 +172,33 @@
         .gallery-item:hover .gallery-overlay h3 {
             transform: translateY(0);
             opacity: 1;
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            .gallery-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.5) 42%, transparent 72%);
+            }
+
+            .gallery-overlay h3 {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .skip-link,
+            .gallery-item,
+            .gallery-item img,
+            .gallery-overlay,
+            .gallery-overlay h3 {
+                transition: none;
+            }
+
+            .gallery-item:hover,
+            .gallery-item:hover img {
+                transform: none;
+            }
         }
 
         /* Nav specific */

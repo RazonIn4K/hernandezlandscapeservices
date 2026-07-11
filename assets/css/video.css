@@ -1,4 +1,23 @@
 /* Video Section Styles */
+.skip-link {
+    background: #153b2f;
+    color: #ffffff;
+    font-weight: 700;
+    left: 1rem;
+    padding: 0.75rem 1rem;
+    position: fixed;
+    top: 0;
+    transform: translateY(-150%);
+    transition: transform 0.15s ease;
+    z-index: 100;
+}
+
+.skip-link:focus-visible {
+    outline: 3px solid #facc15;
+    outline-offset: 2px;
+    transform: translateY(0.75rem);
+}
+
 .video-section {
     background-color: #f8fafc; /* Very light cool gray/white for clean look */
     padding: clamp(3rem, 7vw, 4rem) 0;
@@ -52,6 +71,11 @@
     transform: scale(1.02);
 }
 
+.video-card:focus-within .video-wrapper > div,
+.video-card.is-playing .video-wrapper > div {
+    opacity: 0;
+}
+
 .video-caption {
     padding: 1rem;
     text-align: center;
@@ -68,6 +92,19 @@
 
 @media (max-width: 640px) {
     .video-card:hover .video-wrapper {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .video-wrapper,
+    .video-wrapper video,
+    .video-wrapper > div {
+        transition: none !important;
+    }
+
+    .video-card:hover .video-wrapper,
+    .video-card:hover video {
         transform: none;
     }
 }

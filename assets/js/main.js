@@ -2,13 +2,17 @@ const modal = document.getElementById("customModal");
 const modalContent = modal ? modal.querySelector(".modal-content") : null;
 let lastFocusedElement = null;
 
-function showModal(message) {
+function showModal(message, { showCall = false } = {}) {
   if (!modal || !modalContent) {
     console.warn("Modal elements unavailable.");
     return;
   }
   lastFocusedElement = document.activeElement;
   document.getElementById("modalMessage").textContent = message;
+  const modalCallAction = document.getElementById("modalCallAction");
+  if (modalCallAction) {
+    modalCallAction.classList.toggle("hidden", !showCall);
+  }
   modal.classList.remove("hidden");
   modal.style.display = "flex";
   modalContent.setAttribute("tabindex", "-1");
@@ -165,17 +169,33 @@ function scrollElementBelowHeader(elementId) {
   const header = document.getElementById("header");
   const headerHeight = header ? header.getBoundingClientRect().height : 0;
   const targetTop = target.getBoundingClientRect().top + window.scrollY;
-  window.scrollTo({
-    top: Math.max(targetTop - headerHeight - 16, 0),
-    behavior: "auto",
-  });
+  window.scrollTo(0, Math.max(targetTop - headerHeight - 16, 0));
 }
+
+let activeScrollStabilizer = null;
+let activeScrollStabilizerTimer = null;
 
 function scheduleScrollElementBelowHeader(elementId) {
   const scrollToElement = () => scrollElementBelowHeader(elementId);
 
   window.requestAnimationFrame(scrollToElement);
   window.setTimeout(scrollToElement, 150);
+
+  if ("ResizeObserver" in window && document.body) {
+    if (activeScrollStabilizer) {
+      activeScrollStabilizer.disconnect();
+    }
+    if (activeScrollStabilizerTimer) {
+      window.clearTimeout(activeScrollStabilizerTimer);
+    }
+    activeScrollStabilizer = new ResizeObserver(scrollToElement);
+    activeScrollStabilizer.observe(document.body);
+    activeScrollStabilizerTimer = window.setTimeout(() => {
+      activeScrollStabilizer?.disconnect();
+      activeScrollStabilizer = null;
+      activeScrollStabilizerTimer = null;
+    }, 2500);
+  }
 
   if (document.readyState === "complete") {
     window.setTimeout(scrollToElement, 350);
@@ -235,24 +255,63 @@ window.addEventListener("scroll", function () {
   }
 });
 
-function toggleMobileMenu() {
-  const menu = document.getElementById("mobileMenu");
-  const toggleButton = document.querySelector(
-    'button[aria-controls="mobileMenu"]',
-  );
-  if (!menu || !toggleButton) {
+const mobileMenu = document.getElementById("mobileMenu");
+const mobileMenuButton = document.getElementById("mobileMenuButton");
+
+function setMobileMenuOpen(isOpen, { returnFocus = false } = {}) {
+  if (!mobileMenu || !mobileMenuButton) {
     return;
   }
-  const isHidden = menu.classList.toggle("hidden");
-  toggleButton.setAttribute("aria-expanded", String(!isHidden));
-  if (!isHidden) {
-    const focusable = menu.querySelector("a, button");
-    if (focusable) {
-      focusable.focus();
-    }
-  } else {
-    toggleButton.focus();
+
+  mobileMenu.classList.toggle("hidden", !isOpen);
+  mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+  mobileMenuButton.setAttribute("aria-expanded", String(isOpen));
+
+  if (isOpen) {
+    mobileMenu.querySelector("a, button")?.focus();
+  } else if (returnFocus) {
+    mobileMenuButton.focus();
   }
+}
+
+function toggleMobileMenu() {
+  const isOpen = mobileMenuButton?.getAttribute("aria-expanded") === "true";
+  setMobileMenuOpen(!isOpen, { returnFocus: isOpen });
+}
+
+window.toggleMobileMenu = toggleMobileMenu;
+
+if (mobileMenu && mobileMenuButton) {
+  mobileMenu.setAttribute("aria-hidden", "true");
+  mobileMenuButton.addEventListener("click", toggleMobileMenu);
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMobileMenuOpen(false));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (
+      mobileMenuButton.getAttribute("aria-expanded") === "true" &&
+      !mobileMenu.contains(event.target) &&
+      !mobileMenuButton.contains(event.target)
+    ) {
+      setMobileMenuOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      mobileMenuButton.getAttribute("aria-expanded") === "true"
+    ) {
+      setMobileMenuOpen(false, { returnFocus: true });
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024) {
+      setMobileMenuOpen(false);
+    }
+  });
 }
 
 const slider = document.getElementById("beforeAfterSlider");
@@ -268,7 +327,15 @@ if (slider && handle) {
     const constrained = Math.max(0, Math.min(100, percentage));
     afterImage.style.clipPath = `polygon(${constrained}% 0, 100% 0, 100% 100%, ${constrained}% 100%)`;
     handle.style.left = `${constrained}%`;
-    handle.setAttribute("aria-valuenow", String(Math.round(constrained)));
+    const rounded = Math.round(constrained);
+    handle.setAttribute("aria-valuenow", String(rounded));
+    handle.setAttribute(
+      "aria-valuetext",
+      getMessage(
+        "gallery.slider.value",
+        "Comparison divider at {{value}}%",
+      ).replace("{{value}}", String(rounded)),
+    );
   };
 
   handle.addEventListener("mousedown", () => {
@@ -311,12 +378,21 @@ if (slider && handle) {
   );
 
   handle.addEventListener("keydown", (event) => {
-    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
-      event.preventDefault();
-      const currentValue = Number(handle.getAttribute("aria-valuenow")) || 50;
-      const delta = event.key === "ArrowLeft" ? -5 : 5;
-      updateSlider(currentValue + delta);
-    }
+    const parsedValue = Number(handle.getAttribute("aria-valuenow"));
+    const currentValue = Number.isFinite(parsedValue) ? parsedValue : 50;
+    const keyActions = {
+      ArrowLeft: currentValue - 5,
+      ArrowDown: currentValue - 5,
+      ArrowRight: currentValue + 5,
+      ArrowUp: currentValue + 5,
+      PageDown: currentValue - 10,
+      PageUp: currentValue + 10,
+      Home: 0,
+      End: 100,
+    };
+    if (!(event.key in keyActions)) return;
+    event.preventDefault();
+    updateSlider(keyActions[event.key]);
   });
 
   updateSlider(50);
@@ -345,14 +421,11 @@ function countUrls(value) {
 
 /**
  * Classify a lead submission.
- * - "block": bot signals (honeypot field, botcheck box, or an inhumanly fast
- *   submit) — never sent, bot sees a fake success so it does not retry.
- * - "flag": borderline content heuristics (score 2-3: URL count, spam phrases)
- *   — still sent to Web3Forms with a "[Possible Spam]" subject tag so a
- *   borderline real lead is never silently dropped.
- * - "block" (score >= 4): multiple strong content signals stacked — high enough
- *   confidence to hard-block so a spam campaign cannot drain the Web3Forms
- *   submission quota that real leads depend on.
+ * - "block": high-confidence bot signals (honeypot field or botcheck box) are
+ *   never sent; the bot sees a fake success so it does not retry.
+ * - "flag": timing and content heuristics are delivered with a warning so fast
+ *   autofill, unusual real requests, and false-positive phrase matches are never
+ *   silently lost. Provider-side controls should protect submission quota.
  * - "ok": clean lead, sent as-is.
  */
 function classifyLeadSpam(formData) {
@@ -366,11 +439,12 @@ function classifyLeadSpam(formData) {
     formLoadedAt > 0 &&
     Date.now() - formLoadedAt < 1500;
 
-  if (website.trim() || botcheck || submittedTooFast) {
+  if (website.trim() || botcheck) {
     return "block";
   }
 
   let spamScore = 0;
+  if (submittedTooFast) spamScore += 2;
   if (countUrls(message) >= 3) spamScore += 2;
   else if (countUrls(message) === 2) spamScore += 1; // two links alone needs a second signal to trip
   if (/getdandy/i.test(email)) spamScore += 2;
@@ -379,17 +453,22 @@ function classifyLeadSpam(formData) {
     if (pattern.test(message)) spamScore += 1;
   }
 
-  if (spamScore >= 4) return "block";
   return spamScore >= 2 ? "flag" : "ok";
 }
 
 function calculateQuote() {
+  const instantQuoteForm = document.getElementById("quoteForm");
   const service = document.getElementById("serviceType");
   const size = document.getElementById("propertySize");
   const zip = document.getElementById("zipCode");
 
   if (!service || !size || !zip) {
     console.warn("Quote form elements unavailable.");
+    return;
+  }
+
+  if (instantQuoteForm && !instantQuoteForm.checkValidity()) {
+    instantQuoteForm.reportValidity();
     return;
   }
 
@@ -463,9 +542,12 @@ function calculateQuote() {
 
 window.calculateQuote = calculateQuote;
 
-const calculateQuoteBtn = document.getElementById("calculateQuoteBtn");
-if (calculateQuoteBtn) {
-  calculateQuoteBtn.addEventListener("click", calculateQuote);
+const instantQuoteForm = document.getElementById("quoteForm");
+if (instantQuoteForm) {
+  instantQuoteForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    calculateQuote();
+  });
 }
 
 const sendEstimateBtn = document.getElementById("sendEstimateBtn");
@@ -519,6 +601,22 @@ if (contactForm) {
   if (formLoadedAt) {
     formLoadedAt.value = String(Date.now());
   }
+
+  contactForm.addEventListener(
+    "invalid",
+    (event) => {
+      event.target.setAttribute("aria-invalid", "true");
+    },
+    true,
+  );
+  ["input", "change"].forEach((eventName) => {
+    contactForm.addEventListener(eventName, (event) => {
+      if (event.target.validity?.valid) {
+        event.target.removeAttribute("aria-invalid");
+        event.target.classList.remove("border-red-500");
+      }
+    });
+  });
 
   const contactService = document.getElementById("contactService");
   if (contactService) {
@@ -619,40 +717,22 @@ if (contactForm) {
       formData.set("subject", `[Possible Spam] ${baseSubject}`);
     }
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+    this.setAttribute("aria-busy", "true");
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
+        signal: controller.signal,
       });
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({ success: false }));
 
-      if (data.success) {
+      if (response.ok && data.success) {
         if (typeof window.hlsTrack === "function") {
           window.hlsTrack("lead_submit_success", { source: "quote_form" });
-        }
-        // Instant owner Telegram alert, on top of the Web3Forms email above.
-        // Fire-and-forget + production host only, so tests/localhost never ping.
-        try {
-          if (location.hostname.endsWith("hernandezlandscapeservices.com")) {
-            fetch("https://34-172-247-12.sslip.io/webhook/website-lead", {
-              method: "POST",
-              keepalive: true,
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                token: "wlk7Rp2mX9qV4tB8nZ6yHsDc3F",
-                site: "hernandezlandscapeservices.com",
-                name: String(formData.get("name") || ""),
-                phone: String(formData.get("phone") || ""),
-                email: String(formData.get("email") || ""),
-                service: String(formData.get("service") || ""),
-                message: String(formData.get("message") || ""),
-                sourceUrl: "quote_form"
-              })
-            }).catch(function () {});
-          }
-        } catch (e) {
-          /* best-effort */
         }
         showModal(
           getMessage(
@@ -670,17 +750,24 @@ if (contactForm) {
             "alerts.contact.error",
             "There was an error sending your request. Please call us at 815-501-1478.",
           ),
+          { showCall: true },
         );
       }
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error(
+        "Form submission failed:",
+        error instanceof DOMException ? error.name : "request_error",
+      );
       showModal(
         getMessage(
           "alerts.contact.error",
           "There was an error sending your request. Please call us at 815-501-1478.",
         ),
+        { showCall: true },
       );
     } finally {
+      window.clearTimeout(timeoutId);
+      this.removeAttribute("aria-busy");
       if (button) {
         button.disabled = false;
         button.textContent = originalText;
@@ -692,9 +779,12 @@ if (contactForm) {
 const backToTopBtn = document.getElementById("backToTopBtn");
 if (backToTopBtn) {
   backToTopBtn.addEventListener("click", () => {
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: reduceMotion ? "auto" : "smooth",
     });
   });
 }

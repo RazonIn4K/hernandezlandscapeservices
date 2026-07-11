@@ -22,7 +22,7 @@
  *
  * The script is idempotent: running it twice produces zero diff. It is
  * build-time generation into committed HTML (not runtime JS rendering), so
- * crawlers see the full markup. Requires Node 18+; no dependencies.
+ * crawlers see the full markup. Requires Node 22+; no dependencies.
  */
 
 import fs from 'node:fs';
@@ -228,10 +228,15 @@ function renderGalleryCards(list) {
 }
 
 function renderVideoCards(list) {
-  const cards = list.map((item) => [
+  const cards = list.map((item, index) => {
+    const posterAttr = index < 3
+      ? `poster="/${escapeHtml(item.poster)}"`
+      : `data-poster="/${escapeHtml(item.poster)}"`;
+    const label = item.sitemap?.title || `Hernandez Landscape project video ${index + 1}`;
+    return [
     '                <div class="video-card group">',
     '                    <div class="video-wrapper relative">',
-    `                        <video controls preload="none" poster="/${escapeHtml(item.poster)}" class="w-full h-full object-cover">`,
+    `                        <video controls playsinline preload="none" ${posterAttr} aria-label="${escapeHtml(label)}" class="w-full h-full object-cover">`,
     `                            <source src="/${escapeHtml(item.src)}" type="video/mp4">`,
     '                            Your browser does not support the video tag.',
     '                        </video>',
@@ -240,7 +245,8 @@ function renderVideoCards(list) {
     '                        </div>',
     '                    </div>',
     '                </div>',
-  ].join('\n'));
+    ].join('\n');
+  });
   return cards.join('\n\n');
 }
 

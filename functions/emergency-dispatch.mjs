@@ -9,7 +9,7 @@
  *     https://dispatch.<zone>/api/emergency-dispatch or a workers.dev URL,
  *     set N8N_WEBHOOK_URL_LANDSCAPE as a secret, then point the form's
  *     data-endpoint attribute at it (see assets/js/emergency-dispatch.js).
- *   - Any Node 18+ host: import { handleEmergencyDispatch } and adapt
+ *   - Any Node 22+ host: import { handleEmergencyDispatch } and adapt
  *     (scripts/test-emergency-dispatch.mjs shows the calling convention).
  *
  * Until the endpoint is deployed the frontend falls back to the existing

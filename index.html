@@ -87,23 +87,29 @@
 
     <!-- Load Google Fonts with font-display: swap -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body class="site-body bg-gray-50">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header
       id="header"
       class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow"
     >
       <div class="container mx-auto px-4">
-        <nav class="flex justify-between items-center py-3">
+        <nav
+          class="flex justify-between items-center py-3"
+          aria-label="Primary navigation"
+        >
           <div class="flex items-center space-x-3">
-            <a href="index.html">
+            <a href="/" aria-label="Hernandez Landscape home">
               <img
                 src="hernandez_images/web_Logo_New_256.png"
                 alt="Hernandez Landscape & Tree Service LLC Logo"
                 class="h-12 w-auto object-contain"
+                width="256"
+                height="192"
               />
             </a>
             <div>
@@ -117,7 +123,7 @@
           </div>
 
           <!-- Desktop Nav -->
-          <div class="hidden lg:flex items-center space-x-4">
+          <div class="desktop-nav hidden lg:flex items-center space-x-4">
             <a
               href="#services"
               class="text-sm font-semibold hover:text-green-600 transition"
@@ -151,16 +157,20 @@
             <!-- Language Toggle -->
             <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
               <button
+                type="button"
                 data-lang-switch="en"
                 class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow"
                 aria-pressed="true"
+                aria-label="Use English"
               >
                 EN
               </button>
               <button
+                type="button"
                 data-lang-switch="es"
                 class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300"
                 aria-pressed="false"
+                aria-label="Usar español"
               >
                 ES
               </button>
@@ -178,28 +188,34 @@
           <div class="flex items-center lg:hidden space-x-3">
             <div class="flex items-center bg-gray-100 rounded-full p-1">
               <button
+                type="button"
                 data-lang-switch="en"
                 class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow"
                 aria-pressed="true"
+                aria-label="Use English"
               >
                 EN
               </button>
               <button
+                type="button"
                 data-lang-switch="es"
                 class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300"
                 aria-pressed="false"
+                aria-label="Usar español"
               >
                 ES
               </button>
             </div>
             <button
+              id="mobileMenuButton"
+              type="button"
               class="text-gray-700 focus:outline-none"
-              onclick="toggleMobileMenu()"
               aria-controls="mobileMenu"
               aria-expanded="false"
               aria-label="Toggle mobile menu"
+              data-i18n-aria-label="nav.menuToggle"
             >
-              <i class="fas fa-bars text-2xl"></i>
+              <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
             </button>
           </div>
         </nav>
@@ -208,47 +224,43 @@
       <div
         id="mobileMenu"
         class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg"
+        role="navigation"
+        aria-label="Mobile navigation"
       >
         <div class="container mx-auto px-4 py-4 space-y-4">
           <a
             href="#services"
             class="block text-gray-700 font-semibold"
-            onclick="toggleMobileMenu()"
             data-i18n-key="nav.services"
             >Services</a
           >
           <a
             href="/gallery/"
             class="block text-gray-700 font-semibold"
-            onclick="toggleMobileMenu()"
             data-i18n-key="nav.work"
             >Our Work</a
           >
           <a
             href="/videos/"
             class="block text-gray-700 font-semibold"
-            onclick="toggleMobileMenu()"
             data-i18n-key="nav.videos"
             >Videos</a
           >
           <a
             href="#testimonials"
             class="block text-gray-700 font-semibold"
-            onclick="toggleMobileMenu()"
             data-i18n-key="nav.reviews"
             >Reviews</a
           >
           <a
             href="/service-areas/"
             class="block text-gray-700 font-semibold"
-            onclick="toggleMobileMenu()"
             data-i18n-key="nav.serviceArea"
             >Service Area</a
           >
           <a
             href="#quote"
             class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold"
-            onclick="toggleMobileMenu()"
             data-i18n-key="nav.freeQuote"
             >Get Quote</a
           >
@@ -256,6 +268,7 @@
       </div>
     </header>
 
+    <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section
       id="home"
@@ -287,19 +300,23 @@
         <div class="hero-content max-w-4xl">
           <!-- 24/7 emergency tree service strip (SEO_AUDIT_PLAN P0-6) -->
           <div
-            class="mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center"
+            class="emergency-strip mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center"
           >
             <p class="font-bold text-white">
               <i
                 class="fas fa-exclamation-triangle text-green-400 mr-2"
                 aria-hidden="true"
               ></i
-              >Storm damage? 24/7 emergency tree removal
+              ><span data-i18n-key="hero.emergency"
+                >Storm damage? 24/7 emergency tree service</span
+              >
             </p>
             <a
               href="tel:18155011478"
               class="rounded-full bg-green-600 hover:bg-green-500 px-5 py-2 font-bold text-white transition"
-              >Call (815) 501-1478</a
+              ><span data-i18n-key="hero.emergencyCall"
+                >Call (815) 501-1478</span
+              ></a
             >
           </div>
           <p
@@ -337,14 +354,17 @@
               href="#instant-quote"
               class="primary-cta w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(22,163,74,0.3)] flex items-center justify-center border border-transparent"
             >
-              <i class="fas fa-calculator mr-3 text-xl"></i>
-              <span data-i18n-key="hero.cta">Request Free Estimate</span>
+              <i class="fas fa-calculator mr-3 text-xl" aria-hidden="true"></i>
+              <span data-i18n-key="hero.cta">See Starting Range</span>
             </a>
             <a
               href="tel:18155011478"
               class="secondary-cta w-full sm:w-auto bg-white/95 hover:bg-white text-green-800 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center border border-transparent"
             >
-              <i class="fas fa-phone-alt mr-3 text-xl text-green-600"></i>
+              <i
+                class="fas fa-phone-alt mr-3 text-xl text-green-600"
+                aria-hidden="true"
+              ></i>
               <span data-i18n-key="hero.call">Call Now</span>
             </a>
           </div>
@@ -356,7 +376,10 @@
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
-              <i class="fas fa-shield-alt text-green-400 mr-2.5"></i>
+              <i
+                class="fas fa-shield-alt text-green-400 mr-2.5"
+                aria-hidden="true"
+              ></i>
               <span
                 class="text-sm font-medium tracking-wide text-gray-100"
                 data-i18n-key="hero.insured"
@@ -366,7 +389,10 @@
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
-              <i class="fas fa-certificate text-green-400 mr-2.5"></i>
+              <i
+                class="fas fa-certificate text-green-400 mr-2.5"
+                aria-hidden="true"
+              ></i>
               <span
                 class="text-sm font-medium tracking-wide text-gray-100"
                 data-i18n-key="hero.licensed"
@@ -376,7 +402,10 @@
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
-              <i class="fas fa-users text-green-400 mr-2.5"></i>
+              <i
+                class="fas fa-users text-green-400 mr-2.5"
+                aria-hidden="true"
+              ></i>
               <span
                 class="text-sm font-medium tracking-wide text-gray-100"
                 data-i18n-key="hero.family"
@@ -386,7 +415,10 @@
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
-              <i class="fas fa-comments text-green-400 mr-2.5"></i>
+              <i
+                class="fas fa-comments text-green-400 mr-2.5"
+                aria-hidden="true"
+              ></i>
               <span
                 class="text-sm font-medium tracking-wide text-gray-100"
                 data-i18n-key="hero.bilingual"
@@ -404,8 +436,9 @@
         <a
           href="#services"
           class="text-white opacity-70 hover:opacity-100 transition-opacity"
+          aria-label="Explore our services"
         >
-          <i class="fas fa-chevron-down text-3xl"></i>
+          <i class="fas fa-chevron-down text-3xl" aria-hidden="true"></i>
         </a>
       </div>
     </section>
@@ -417,7 +450,7 @@
             Our Professional Services
           </h2>
           <p class="text-xl text-gray-600" data-i18n-key="services.subheading">
-            Serving DeKalb County since 2019 — Over 500 properties transformed
+            Serving DeKalb County since 2019 — Free estimates in English or Spanish
           </p>
         </div>
 
@@ -470,7 +503,7 @@
                 href="lawn-care/"
                 class="text-green-600 font-semibold hover:text-green-700"
               >
-                <span>Learn More</span>
+                <span data-i18n-key="services.learnMore">Learn More</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
             </div>
@@ -526,7 +559,7 @@
                 href="tree-removal/"
                 class="text-green-600 font-semibold hover:text-green-700"
               >
-                <span>Learn More</span>
+                <span data-i18n-key="services.learnMore">Learn More</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
             </div>
@@ -583,7 +616,7 @@
                   href="landscaping-design/"
                   class="text-green-600 font-semibold hover:text-green-700"
                 >
-                  <span>Learn More</span>
+                  <span data-i18n-key="services.learnMore">Learn More</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
                 <a
@@ -806,10 +839,10 @@
               class="text-xl font-bold mb-2"
               data-i18n-key="whyChoose.feature1.title"
             >
-              Same-Day Quotes
+              Clear, Prompt Quotes
             </h3>
             <p class="text-gray-600" data-i18n-key="whyChoose.feature1.desc">
-              Request a quote today, get a response within hours — not days.
+              Tell us what you need and we will confirm timing, scope, and next steps.
             </p>
           </div>
 
@@ -1011,6 +1044,8 @@
                 <input
                   type="text"
                   id="propertyAddress"
+                  autocomplete="street-address"
+                  maxlength="200"
                   placeholder="e.g., 1234 Main St, DeKalb"
                   class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
                   required
@@ -1157,6 +1192,9 @@
                 <input
                   type="text"
                   id="zipCode"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  maxlength="10"
                   placeholder="e.g., 60115"
                   class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
                   pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
@@ -1185,7 +1223,7 @@
               </div>
 
               <button
-                type="button"
+                type="submit"
                 id="calculateQuoteBtn"
                 class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
                 data-i18n-key="instant.button.calculate"
@@ -1285,12 +1323,22 @@
                 role="slider"
                 tabindex="0"
                 aria-label="Reveal after photo"
+                data-i18n-aria-label="gallery.slider.label"
                 aria-valuemin="0"
                 aria-valuemax="100"
                 aria-valuenow="50"
+                aria-valuetext="Comparison divider at 50%"
+                aria-describedby="homepageComparisonInstructions"
               ></div>
             </div>
           </div>
+          <p
+            id="homepageComparisonInstructions"
+            class="text-center text-sm text-gray-500"
+            data-i18n-key="gallery.featured.instructions"
+          >
+            Drag the handle or use the arrow keys to compare the before and after photos.
+          </p>
         </div>
 
         <!-- Gallery Section -->
@@ -1416,6 +1464,7 @@
           <a
             href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
             target="_blank"
+            rel="noopener noreferrer"
             class="bg-blue-600 border-2 border-transparent text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"
             aria-label="See more projects on Facebook"
           >
@@ -1537,8 +1586,16 @@
 
     <section id="pricing" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4 text-center">
-        <h2 class="text-4xl font-bold mb-6">Custom Landscaping Pricing</h2>
-        <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-8">
+        <h2
+          class="text-4xl font-bold mb-6"
+          data-i18n-key="pricing.heading"
+        >
+          Custom Landscaping Pricing
+        </h2>
+        <p
+          class="text-lg text-gray-700 max-w-3xl mx-auto mb-8"
+          data-i18n-key="pricing.copy"
+        >
           Every yard, project, and season is different. We build tailored
           estimates after learning about your property and goals so you only pay
           for the services you need.
@@ -1547,7 +1604,9 @@
           href="#quote"
           class="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full transition"
         >
-          Request a Personalized Quote
+          <span data-i18n-key="pricing.cta"
+            >Request a Personalized Quote</span
+          >
         </a>
       </div>
     </section>
@@ -1872,58 +1931,71 @@
     <!-- FAQ Section: visible copy mirrors the FAQPage JSON-LD verbatim (SEO_AUDIT_PLAN P0-5) -->
     <section id="faq" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-12">
+        <h2
+          class="text-4xl font-bold text-center mb-12"
+          data-i18n-key="faq.heading"
+        >
           Frequently Asked Questions
         </h2>
-        <div class="max-w-4xl mx-auto space-y-6">
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="font-bold text-lg text-gray-800">
-              Do you provide free estimates for tree removal in DeKalb?
-            </h3>
-            <p class="mt-2 text-gray-600">
+        <div class="faq-list max-w-4xl mx-auto space-y-4">
+          <details class="faq-item" open>
+            <summary>
+              <span data-i18n-key="faq.q1"
+                >Do you provide free estimates for tree removal in DeKalb?</span
+              >
+            </summary>
+            <p data-i18n-key="faq.a1">
               Yes, we provide free, no-obligation estimates for all tree
               removal, tree trimming, and landscaping projects in DeKalb County
               and surrounding areas.
             </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="font-bold text-lg text-gray-800">
-              Is Hernandez Landscape & Tree Service licensed and insured?
-            </h3>
-            <p class="mt-2 text-gray-600">
+          </details>
+          <details class="faq-item">
+            <summary>
+              <span data-i18n-key="faq.q2"
+                >Is Hernandez Landscape & Tree Service licensed and insured?</span
+              >
+            </summary>
+            <p data-i18n-key="faq.a2">
               Yes, we are a fully licensed and insured LLC (Auth #13934835)
               protecting your property during all tree and landscaping work.
             </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="font-bold text-lg text-gray-800">
-              What areas do you serve outside of DeKalb?
-            </h3>
-            <p class="mt-2 text-gray-600">
+          </details>
+          <details class="faq-item">
+            <summary>
+              <span data-i18n-key="faq.q3"
+                >What areas do you serve outside of DeKalb?</span
+              >
+            </summary>
+            <p data-i18n-key="faq.a3">
               Our primary service areas are DeKalb and Sycamore. We also serve
               Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St.
               Charles, and West Chicago.
             </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="font-bold text-lg text-gray-800">
-              Do you offer emergency tree removal services?
-            </h3>
-            <p class="mt-2 text-gray-600">
+          </details>
+          <details class="faq-item">
+            <summary>
+              <span data-i18n-key="faq.q4"
+                >Do you offer emergency tree removal services?</span
+              >
+            </summary>
+            <p data-i18n-key="faq.a4">
               Yes, we offer 24/7 emergency tree service for fallen or hazardous
               trees that pose an immediate threat to your home or property.
             </p>
-          </div>
-          <div class="bg-white p-6 rounded-lg shadow-lg">
-            <h3 class="font-bold text-lg text-gray-800">
-              Do you provide snow removal for residential properties?
-            </h3>
-            <p class="mt-2 text-gray-600">
+          </details>
+          <details class="faq-item">
+            <summary>
+              <span data-i18n-key="faq.q5"
+                >Do you provide snow removal for residential properties?</span
+              >
+            </summary>
+            <p data-i18n-key="faq.a5">
               Yes, we offer seasonal snow removal services for both residential
               and commercial properties in the DeKalb area, subject to
               availability.
             </p>
-          </div>
+          </details>
         </div>
       </div>
     </section>
@@ -2008,6 +2080,7 @@
                 <a
                   href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="inline-block bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition"
                   aria-label="Visit our Facebook page"
                 >
@@ -2019,16 +2092,25 @@
 
             <div class="bg-white text-gray-800 p-6 rounded-lg">
               <h3
-                class="text-2xl font-bold mb-4"
+                class="text-2xl font-bold mb-2"
                 data-i18n-key="quote.formHeading"
               >
                 Request a Free Quote
               </h3>
+              <p
+                id="quoteFormHelper"
+                class="mb-5 text-sm leading-relaxed text-gray-600"
+                data-i18n-key="quote.formHelper"
+              >
+                Tell us what you need. We usually respond within 24 hours, and
+                there is no obligation.
+              </p>
 
               <form
                 id="contactForm"
                 action="https://api.web3forms.com/submit"
                 method="POST"
+                aria-describedby="quoteFormHelper quotePrivacyNote"
               >
                 <div class="space-y-4">
                   <!-- Web3Forms Access Key -->
@@ -2074,22 +2156,38 @@
                     </div>
                   </div>
 
-                  <label for="contactName" class="sr-only">Your Name</label>
+                  <label
+                    for="contactName"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.name"
+                    >Your Name</label
+                  >
                   <input
                     type="text"
                     id="contactName"
                     name="name"
+                    autocomplete="name"
+                    minlength="2"
+                    maxlength="100"
                     placeholder="Your Name"
                     class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                     required
                     data-i18n-placeholder="quote.placeholder.name"
                   />
 
-                  <label for="contactPhone" class="sr-only">Phone Number</label>
+                  <label
+                    for="contactPhone"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.phone"
+                    >Phone Number</label
+                  >
                   <input
                     type="tel"
                     id="contactPhone"
                     name="phone"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="25"
                     placeholder="Phone Number"
                     class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                     pattern="^\+?[0-9 \(\)\-]{10,}$"
@@ -2099,26 +2197,37 @@
                     data-i18n-title="quote.title.phone"
                   />
 
-                  <label for="contactEmail" class="sr-only"
+                  <label
+                    for="contactEmail"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.email"
                     >Email (optional)</label
                   >
                   <input
                     type="email"
                     id="contactEmail"
                     name="email"
+                    autocomplete="email"
+                    maxlength="254"
                     placeholder="Email (optional)"
                     class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                     data-i18n-placeholder="quote.placeholder.email"
                   />
 
                   <!-- Property Address (scam filter) -->
-                  <label for="contactAddress" class="sr-only"
+                  <label
+                    for="contactAddress"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.address"
                     >Property Address</label
                   >
                   <input
                     type="text"
                     id="contactAddress"
                     name="address"
+                    autocomplete="street-address"
+                    minlength="5"
+                    maxlength="200"
                     placeholder="Property Address (required for quote)"
                     class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                     required
@@ -2147,7 +2256,10 @@
                   </div>
 
                   <!-- Best Time to Call (scam filter) -->
-                  <label for="bestTime" class="sr-only"
+                  <label
+                    for="bestTime"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.bestTime"
                     >Best Time to Call</label
                   >
                   <select
@@ -2173,7 +2285,10 @@
                     </option>
                   </select>
 
-                  <label for="contactService" class="sr-only"
+                  <label
+                    for="contactService"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.service"
                     >Select Service Needed</label
                   >
                   <select
@@ -2232,14 +2347,18 @@
                     </option>
                   </select>
 
-                  <label for="projectDetails" class="sr-only"
-                    >Tell us about your project...</label
+                  <label
+                    for="projectDetails"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.project"
+                    >Tell us about your project</label
                   >
                   <textarea
                     id="projectDetails"
                     name="message"
                     placeholder="Tell us about your project..."
                     rows="4"
+                    maxlength="2000"
                     class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                     required
                     data-i18n-placeholder="quote.placeholder.project"
@@ -2274,6 +2393,13 @@
                   >
                     Send Quote Request
                   </button>
+                  <p
+                    id="quotePrivacyNote"
+                    class="text-center text-xs leading-relaxed text-gray-500"
+                    data-i18n-key="quote.privacyNote"
+                  >
+                    Your details are used only to respond to this request.
+                  </p>
                 </div>
               </form>
             </div>
@@ -2281,6 +2407,8 @@
         </div>
       </div>
     </section>
+
+    </main>
 
     <footer class="bg-gray-900 text-white pt-16 pb-8">
       <div class="container mx-auto px-4 lg:px-8">
@@ -2293,6 +2421,9 @@
               src="hernandez_images/web_Logo_New_256.png"
               alt="Hernandez Landscape Logo"
               class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110"
+              width="256"
+              height="192"
+              loading="lazy"
             />
             <p
               class="text-gray-400 text-sm leading-relaxed"
@@ -2320,7 +2451,7 @@
             <ul class="space-y-3">
               <li>
                 <a
-                  href="index.html"
+                  href="/"
                   class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
@@ -2385,6 +2516,7 @@
                 <a
                   href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/"
                   target="_blank"
+                  rel="noopener noreferrer"
                   class="text-gray-400 hover:text-white transition-colors"
                 >
                   1029 Lewis St<br />DeKalb, IL 60115
@@ -2469,6 +2601,7 @@
               <a
                 href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Facebook"
                 class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg"
               >
@@ -2477,6 +2610,7 @@
               <a
                 href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Google"
                 class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg"
               >
@@ -2529,6 +2663,14 @@
           id="modalMessage"
           class="text-lg font-semibold mb-4 text-gray-800"
         ></p>
+        <a
+          id="modalCallAction"
+          href="tel:18155011478"
+          class="mb-3 hidden rounded-full bg-amber-500 px-6 py-2 font-bold text-amber-950 hover:bg-amber-400"
+          data-i18n-key="modal.call"
+        >
+          Call (815) 501-1478
+        </a>
         <button
           onclick="hideModal()"
           class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
@@ -2539,8 +2681,8 @@
       </div>
     </div>
 
-    <button id="backToTopBtn" aria-label="Back to top">
-      <i class="fas fa-arrow-up"></i>
+    <button id="backToTopBtn" type="button" aria-label="Back to top">
+      <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <script src="assets/js/i18n.js" defer></script>
