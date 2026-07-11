@@ -74,6 +74,9 @@
         "We could not load the photos right now. Please try again.",
       "gallery.loadMore": "Load more photos",
       "gallery.loadingButton": "Loading...",
+      "gallery.slider.value": "Comparison divider at {{value}}%",
+      "gallery.slider.label": "Reveal the after photo",
+      "nav.menuToggle": "Toggle mobile menu",
       "serviceArea.mapNote":
         "Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.",
 
@@ -86,19 +89,22 @@
       "nav.contact": "Contact",
       "nav.videos": "Videos",
       "video.viewAll": "View All Videos",
+      "video.control.label": "Hernandez Landscape project video {{number}}",
 
       "hero.eyebrow": "DeKalb County Landscaping & Tree Service",
       "hero.transform": "Tree Removal, Lawn Care &",
       "hero.outdoor": "Landscaping in DeKalb, IL",
       "hero.subtitle":
         "Tree trimming, removal, lawn care, and landscaping from a family-owned DeKalb County crew. Free estimates in English or Spanish.",
-      "hero.cta": "Request Free Estimate",
+      "hero.emergency": "Storm damage? 24/7 emergency tree service",
+      "hero.emergencyCall": "Call (815) 501-1478",
+      "hero.cta": "See Starting Range",
       "hero.call": "Call Now",
       "hero.insured": "Fully Insured",
       "hero.licensed": "Licensed LLC",
       "hero.family": "Family Owned",
       "hero.bilingual": "Se Habla Español",
-      "instant.button.calculate": "Request Free Estimate",
+      "instant.button.calculate": "See Starting Range",
       "testimonials.heading": "Featured Customer Feedback",
       "testimonials.subheading":
         "A recent published review for the DeKalb business listing, plus the service standards local homeowners usually want confirmed before they book.",
@@ -125,6 +131,38 @@
       "quote.prefill.prefix": "Selected service:",
       "quote.prefill.helper":
         "Add your property details below and the team can respond with the right next step.",
+      "quote.formHelper":
+        "Tell us what you need. We usually respond within 24 hours, and there is no obligation.",
+      "quote.label.name": "Your Name",
+      "quote.label.phone": "Phone Number",
+      "quote.label.email": "Email (optional)",
+      "quote.label.address": "Property Address",
+      "quote.label.bestTime": "Best Time to Call",
+      "quote.label.service": "Select Service Needed",
+      "quote.label.project": "Tell us about your project",
+      "quote.privacyNote":
+        "Your details are used only to respond to this request.",
+      "services.learnMore": "Learn More",
+      "pricing.heading": "Custom Landscaping Pricing",
+      "pricing.copy":
+        "Every yard, project, and season is different. We build tailored estimates after learning about your property and goals so you only pay for the services you need.",
+      "pricing.cta": "Request a Personalized Quote",
+      "faq.heading": "Frequently Asked Questions",
+      "faq.q1": "Do you provide free estimates for tree removal in DeKalb?",
+      "faq.a1":
+        "Yes, we provide free, no-obligation estimates for all tree removal, tree trimming, and landscaping projects in DeKalb County and surrounding areas.",
+      "faq.q2": "Is Hernandez Landscape & Tree Service licensed and insured?",
+      "faq.a2":
+        "Yes, we are a fully licensed and insured LLC (Auth #13934835) protecting your property during all tree and landscaping work.",
+      "faq.q3": "What areas do you serve outside of DeKalb?",
+      "faq.a3":
+        "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles, and West Chicago.",
+      "faq.q4": "Do you offer emergency tree removal services?",
+      "faq.a4":
+        "Yes, we offer 24/7 emergency tree service for fallen or hazardous trees that pose an immediate threat to your home or property.",
+      "faq.q5": "Do you provide snow removal for residential properties?",
+      "faq.a5":
+        "Yes, we offer seasonal snow removal services for both residential and commercial properties in the DeKalb area, subject to availability.",
       "quote.select.leaf": "Leaf Removal",
       "quote.select.gutter": "Gutter Cleaning",
       "quote.select.pressure": "Pressure Washing",
@@ -241,6 +279,8 @@
       "nav.serviceArea": "Zonas de Servicio",
       "nav.freeQuote": "Solicitar Cotización",
       "nav.contact": "Contacto",
+      "nav.home": "Inicio",
+      "nav.gallery": "Nuestro trabajo",
 
       "hero.heading":
         'Transforma tu<br><span class="text-green-400">Espacio Exterior</span>',
@@ -256,6 +296,12 @@
       "instant.heading": "Inicia una sola solicitud de cotización",
       "instant.subtitle":
         "Usa este inicio rápido para llenar el formulario final. Nada se envía hasta que revises y envíes la solicitud final.",
+      "instant.trust.free": "Estimado gratis y sin compromiso",
+      "instant.trust.response": "Respuesta en menos de 24 horas",
+      "instant.label.address": "Dirección de la propiedad",
+      "instant.placeholder.address": "ej., 1234 Main St, DeKalb",
+      "instant.label.isOwner":
+        "Soy el propietario y estaré presente durante el estimado.",
       "instant.label.serviceType": "Tipo de servicio",
       "instant.option.servicePlaceholder": "Selecciona un servicio...",
       "instant.option.lawn": "Corte de césped (semanal)",
@@ -272,16 +318,19 @@
       "instant.label.zip": "Tu código postal",
       "instant.placeholder.zip": "ej., 60115",
       "instant.title.zip": "Ingresa un código postal válido de 5 dígitos",
+      "instant.label.bestTime": "Mejor hora para llamar",
       "instant.button.calculate": "Ver rango inicial",
       "instant.result.heading": "Rango de precio inicial:",
       "instant.result.disclaimer":
         "Este rango inicial ayuda a orientar. El precio final depende del acceso, alcance, retiro de material y evaluación en sitio.",
       "instant.result.call": "Llama para una cotización exacta",
       "instant.result.send": "Continuar al formulario final",
+      "instant.privacy":
+        "Este inicio no envía ningún mensaje. Revisa y envía el formulario final.",
 
       "services.heading": "Nuestros servicios profesionales",
       "services.subheading":
-        "Trabajo de calidad, precios competitivos y satisfacción garantizada",
+        "Atendemos el condado de DeKalb desde 2019 — estimados gratis en inglés o español",
       "services.lawn.title": "Cuidado del césped",
       "services.lawn.item1": "Corte y bordes semanales",
       "services.lawn.item2": "Programas de fertilización",
@@ -309,6 +358,35 @@
         "Nuevas fotos de proyectos del perfil verificado de Hernandez Landscape & Tree Service LLC.",
       "services.recent.cta": "Ver galería completa",
 
+      "whyChoose.heading": "¿Por qué elegir a Hernandez?",
+      "whyChoose.subheading":
+        "Un equipo local y asegurado, con comunicación clara desde el primer estimado hasta la limpieza final.",
+      "whyChoose.feature1.title": "Cotizaciones claras y rápidas",
+      "whyChoose.feature1.desc":
+        "Cuéntanos qué necesitas y confirmaremos el tiempo, el alcance y los siguientes pasos.",
+      "whyChoose.feature2.title": "Equipo profesional",
+      "whyChoose.feature2.desc":
+        "Herramientas de uso comercial para obtener mejores resultados y terminar con mayor eficiencia.",
+      "whyChoose.feature3.title": "Locales y confiables",
+      "whyChoose.feature3.desc":
+        "Negocio familiar de DeKalb. Cuidamos tu propiedad como si fuera nuestra.",
+      "whyChoose.feature4.title": "Precios claros y justos",
+      "whyChoose.feature4.desc":
+        "Sin cargos ocultos. Conoces el precio antes de que comience el trabajo.",
+      "whyChoose.process.heading": "Qué puedes esperar",
+      "whyChoose.process.step1.title": "Solicita una cotización",
+      "whyChoose.process.step1.desc":
+        "Llena el formulario o llámanos directamente",
+      "whyChoose.process.step2.title": "Evaluación gratis",
+      "whyChoose.process.step2.desc":
+        "Visitamos tu propiedad para entender lo que necesitas",
+      "whyChoose.process.step3.title": "Recibe tu cotización",
+      "whyChoose.process.step3.desc":
+        "Recibe un estimado detallado y sin sorpresas",
+      "whyChoose.process.step4.title": "Disfruta el resultado",
+      "whyChoose.process.step4.desc":
+        "Completamos el trabajo buscando tu satisfacción",
+
       "gallery.heading": "Mira la diferencia que logramos",
       "gallery.subheading": "Desliza para ver nuestras transformaciones",
       "gallery.moreHeading": "Más de nuestro trabajo",
@@ -322,6 +400,44 @@
       "gallery.placeholder":
         "Tus nuevas fotos aparecerán aquí después de subirlas.",
       "gallery.facebookCta": "Ver más en Facebook",
+      "gallery.item.front_yard": "Jardín delantero espectacular",
+      "gallery.item.landscaper": "Cuidado experto",
+      "gallery.item.modern_design": "Diseño moderno",
+      "gallery.item.tree_service": "Cuidado profesional de árboles",
+      "gallery.item.stone_work": "Adoquines hermosos",
+      "gallery.item.lawn_care": "Céspedes impecables",
+      "gallery.item.fire_pit": "Césped terminado y fogatero",
+      "gallery.item.side_yard": "Acabado fresco del patio lateral",
+      "gallery.item.mulch_edging": "Mantillo y bordes definidos",
+      "gallery.item.brush_removal": "Retiro de ramas y maleza",
+      "gallery.item.woodpile_cleanup": "Limpieza de patio y leña",
+      "gallery.item.backyard_finish": "Acabado del césped trasero",
+      "gallery.item.crew_equipment": "Equipo identificado de la cuadrilla",
+      "gallery.item.canopy_work": "Trabajo en la copa del árbol",
+      "gallery.item.removal_cleanup": "Limpieza después del retiro",
+      "gallery.item.brush_clearing": "Limpieza de maleza y ramas",
+      "gallery.item.roofline_work": "Trabajo de árboles cerca del techo",
+      "gallery.item.residential_tree": "Cuidado de árboles residenciales",
+      "gallery.item.finished_yard": "Trabajo de patio terminado",
+      "gallery.item.outdoor_revival": "Renovación del espacio exterior",
+      "gallery.item.yard_transformation": "Transformación del jardín",
+      "gallery.item.precision_edging": "Bordes precisos",
+      "gallery.item.hedge_trimming": "Recorte de setos",
+      "gallery.page.title": "Fotos recientes de jardinería y árboles",
+      "gallery.page.subtitle":
+        "Mira resultados reales de Hernandez Landscape & Tree Service LLC en todo el condado de DeKalb.",
+      "gallery.featured.eyebrow": "Transformación destacada",
+      "gallery.featured.heading": "Desliza para comparar",
+      "gallery.featured.instructions":
+        "Arrastra el control o usa las flechas del teclado para comparar las fotos de antes y después.",
+      "gallery.slider.value": "Divisor de comparación al {{value}}%",
+      "gallery.slider.label": "Mostrar la foto del después",
+      "nav.menuToggle": "Abrir o cerrar el menú móvil",
+      "gallery.cta.heading": "¿Te inspiraste? Mejoremos tu jardín.",
+      "gallery.cta.copy":
+        "No tienes que vivir con un espacio exterior descuidado o difícil de mantener. Nosotros podemos encargarnos.",
+      "gallery.cta.button": "Solicita una cotización gratis",
+      "skip.gallery": "Saltar al contenido de la galería",
       "gallery.loading": "Cargando galería...",
       "gallery.error.configMissing":
         "Falta el archivo assets/js/firebase-config.js. Añádelo para cargar las fotos.",
@@ -367,6 +483,18 @@
       "serviceArea.mapPlaceholder": "Mapa interactivo muy pronto",
       "serviceArea.mapNote":
         "Haz zoom y explora nuestra base en DeKalb; atendemos todo el condado y comunidades cercanas.",
+      "serviceArea.policyHeading":
+        "<i class=\"fas fa-truck mr-2\" aria-hidden=\"true\"></i>Política de servicio",
+      "serviceArea.policy1":
+        "<strong>Zonas principales (DeKalb/Sycamore):</strong> Sin mínimo",
+      "serviceArea.policy2":
+        "<strong>Zonas alejadas (más de 20 minutos):</strong> Mínimo de 3 horas o $500",
+      "serviceArea.policy3":
+        "<strong>Trabajos en varias propiedades:</strong> Disponibles en cualquier zona con programación anticipada",
+      "serviceArea.policy4":
+        "<strong>Emergencias de nieve:</strong> Pregunta por disponibilidad en zonas alejadas",
+      "serviceArea.policyNote":
+        "Esto nos ayuda a mantener precios justos mientras cubrimos combustible y tiempo de traslado.",
 
       "quote.heading": "¿Listo para transformar tu propiedad?",
       "quote.contactHeading": "Ponte en contacto",
@@ -382,10 +510,28 @@
       "quote.prefill.prefix": "Servicio seleccionado:",
       "quote.prefill.helper":
         "Agrega los detalles de tu propiedad abajo y el equipo podrá responder con el siguiente paso correcto.",
+      "quote.formHelper":
+        "Cuéntanos qué necesitas. Normalmente respondemos en menos de 24 horas y no hay ninguna obligación.",
+      "quote.label.name": "Tu nombre",
+      "quote.label.phone": "Número de teléfono",
+      "quote.label.email": "Correo electrónico (opcional)",
+      "quote.label.address": "Dirección de la propiedad",
+      "quote.label.bestTime": "Mejor hora para llamar",
+      "quote.label.service": "Servicio que necesitas",
+      "quote.label.project": "Cuéntanos sobre tu proyecto",
+      "quote.privacyNote":
+        "Usamos tus datos únicamente para responder a esta solicitud.",
       "quote.placeholder.name": "Tu nombre",
       "quote.placeholder.phone": "Número de teléfono",
       "quote.title.phone": "Ingresa un número de 10 dígitos (ej., 8155011478)",
       "quote.placeholder.email": "Correo electrónico (opcional)",
+      "quote.placeholder.address": "Dirección de la propiedad (requerida)",
+      "quote.verify":
+        "Soy el propietario o un representante autorizado y estaré presente para el estimado.",
+      "quote.time.placeholder": "¿Cuál es la mejor hora para llamarte?",
+      "quote.time.morning": "Mañana (8 a. m. - 12 p. m.)",
+      "quote.time.afternoon": "Tarde (12 p. m. - 5 p. m.)",
+      "quote.time.evening": "Noche (5 p. m. - 7 p. m.)",
       "quote.select.placeholder": "Selecciona el servicio requerido",
       "quote.select.lawn": "Cuidado del césped",
       "quote.select.tree": "Servicio de árboles",
@@ -403,12 +549,22 @@
       "footer.tagline":
         "Servicios profesionales de jardinería en el condado de DeKalb",
       "footer.follow": "Síguenos",
+      "footer.about":
+        "Transformamos espacios exteriores en el condado de DeKalb con trabajo profesional y valores familiares desde 2019.",
+      "footer.links": "Enlaces rápidos",
+      "footer.contact": "Contáctanos",
+      "footer.areas": "Zonas de servicio",
+      "footer.rights": "Todos los derechos reservados.",
+      "footer.insured": "Licencia y seguro vigentes",
+      "footer.authorization": "Autorización #13934835",
+      "header.license": "Licencia y seguro vigentes • LLC #13934835",
       "footer.facebook": "Facebook",
       "footer.maps": "Google Maps",
       "footer.privacy": "Política de privacidad",
       "footer.terms": "Términos de servicio",
 
       "modal.close": "Cerrar",
+      "modal.call": "Llama al (815) 501-1478",
 
       "alerts.instant.missing":
         "Selecciona un tipo de servicio, tamaño de propiedad e ingresa tu código postal.",
@@ -426,6 +582,12 @@
       "video.subheading":
         "Vea a nuestro equipo en acción y observe los detalles de nuestro trabajo.",
       "video.viewAll": "Ver Todos los Videos",
+      "video.control.label": "Video del proyecto de Hernandez Landscape {{number}}",
+      "video.page.title": "Recorridos en video de proyectos",
+      "video.page.subtitle":
+        "Mira a nuestro equipo en acción y conoce de cerca la calidad de nuestro trabajo.",
+      "video.cta.estimate": "Solicita tu estimado gratis",
+      "skip.main": "Saltar al contenido principal",
 
       "gallery.recent.heading": "Proyectos Recientes",
       "gallery.item.project": "Proyecto",
@@ -435,12 +597,36 @@
       "hero.outdoor": "jardinería en DeKalb, IL",
       "hero.subtitle":
         "Poda, remoción de árboles, cuidado del césped y jardinería por un equipo familiar del condado de DeKalb. Estimados gratis en inglés o español.",
-      "hero.cta": "Solicitar estimado gratis",
+      "hero.emergency":
+        "¿Daños por tormenta? Servicio de árboles de emergencia 24/7",
+      "hero.emergencyCall": "Llama al (815) 501-1478",
+      "hero.cta": "Ver rango inicial",
       "hero.call": "Llámanos ahora",
       "hero.insured": "Totalmente asegurados",
       "hero.licensed": "LLC con licencia",
       "hero.family": "Negocio familiar",
       "hero.bilingual": "Se Habla Español",
+      "services.learnMore": "Más información",
+      "pricing.heading": "Cotizaciones de paisajismo a tu medida",
+      "pricing.copy":
+        "Cada jardín, proyecto y temporada es diferente. Preparamos un estimado según tu propiedad y tus objetivos para que pagues solo por lo que necesitas.",
+      "pricing.cta": "Solicitar una cotización personalizada",
+      "faq.heading": "Preguntas frecuentes",
+      "faq.q1": "¿Ofrecen estimados gratis para remover árboles en DeKalb?",
+      "faq.a1":
+        "Sí. Ofrecemos estimados gratis y sin compromiso para remoción y poda de árboles, además de proyectos de paisajismo en el condado de DeKalb y zonas cercanas.",
+      "faq.q2": "¿Hernandez Landscape & Tree Service tiene licencia y seguro?",
+      "faq.a2":
+        "Sí. Somos una LLC con licencia y seguro vigentes (autorización #13934835) para proteger tu propiedad durante el trabajo de árboles y paisajismo.",
+      "faq.q3": "¿Qué zonas atienden fuera de DeKalb?",
+      "faq.a3":
+        "Nuestras zonas principales son DeKalb y Sycamore. También atendemos Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles y West Chicago.",
+      "faq.q4": "¿Ofrecen remoción de árboles de emergencia?",
+      "faq.a4":
+        "Sí. Ofrecemos servicio de árboles de emergencia 24/7 para árboles caídos o peligrosos que amenacen de inmediato tu casa o propiedad.",
+      "faq.q5": "¿Ofrecen remoción de nieve para propiedades residenciales?",
+      "faq.a5":
+        "Sí. Ofrecemos remoción de nieve estacional para propiedades residenciales y comerciales en el área de DeKalb, según disponibilidad.",
     },
   };
 
@@ -533,6 +719,23 @@
         element.setAttribute("title", value);
       }
     });
+
+    document
+      .querySelectorAll("[data-i18n-aria-label]")
+      .forEach((element) => {
+        if (!element.dataset.ariaLabelEn) {
+          element.dataset.ariaLabelEn = element.getAttribute("aria-label") || "";
+        }
+        const key = element.dataset.i18nAriaLabel;
+        const translation = getTranslation(key, lang);
+        const value =
+          lang === "es" && translation
+            ? translation
+            : element.dataset.ariaLabelEn;
+        if (value) {
+          element.setAttribute("aria-label", value);
+        }
+      });
   }
 
   function applyLanguage(lang) {

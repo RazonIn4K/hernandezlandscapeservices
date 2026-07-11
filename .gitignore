@@ -17,6 +17,7 @@ test_*.js
 !docs/APPLE-MAPS-LISTING-RUNBOOK.md
 !docs/MEDIA-WORKFLOW.md
 !docs/GITLAB-CI.md
+!docs/WEBSITE-AUDIT-2026-07-09.md
 
 # Raw media (local only — optimized output lives in hernandez_images/)
 iCloud Photos/

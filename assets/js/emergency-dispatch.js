@@ -27,6 +27,7 @@
   var PHONE_DISPLAY = "(815) 501-1478";
   var PHONE_TEL = "tel:18155011478";
   var ZIP_RE = /^\d{5}(-\d{4})?$/;
+  var REQUEST_TIMEOUT_MS = 12000;
 
   function setGeoStatus(message) {
     if (geoStatus) geoStatus.textContent = message;
@@ -68,9 +69,22 @@
 
   function showError() {
     if (!dispatchStatus) return;
+    dispatchStatus.setAttribute("role", "alert");
     dispatchStatus.innerHTML =
       'Something went wrong sending your request. Please call <a class="font-bold underline" href="' +
       PHONE_TEL + '">' + PHONE_DISPLAY + "</a> — emergencies are answered 24/7.";
+  }
+
+  function fetchWithTimeout(url, options) {
+    var controller = new AbortController();
+    var timeout = window.setTimeout(function () {
+      controller.abort();
+    }, REQUEST_TIMEOUT_MS);
+
+    return fetch(url, Object.assign({}, options, { signal: controller.signal }))
+      .finally(function () {
+        window.clearTimeout(timeout);
+      });
   }
 
   function buildPayload() {
@@ -118,23 +132,46 @@
     var originalText = button ? button.textContent : "";
     if (button) {
       button.disabled = true;
+      button.setAttribute("aria-busy", "true");
       button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
     }
-    if (dispatchStatus) dispatchStatus.textContent = "";
+    form.setAttribute("aria-busy", "true");
+    if (dispatchStatus) {
+      dispatchStatus.removeAttribute("role");
+      dispatchStatus.textContent = "";
+    }
 
     var endpoint = form.getAttribute("data-endpoint");
 
     function restoreButton() {
       if (button) {
         button.disabled = false;
+        button.removeAttribute("aria-busy");
         button.textContent = originalText;
       }
+      form.removeAttribute("aria-busy");
     }
 
     function web3formsFallback() {
       var formData = new FormData(form);
-      return fetch("https://api.web3forms.com/submit", { method: "POST", body: formData })
-        .then(function (res) { return res.json(); })
+      return fetchWithTimeout("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+        .then(function (res) {
+          return res.text().then(function (text) {
+            var data = null;
+            try {
+              data = text ? JSON.parse(text) : null;
+            } catch (error) {
+              data = null;
+            }
+            if (!res.ok || !data) {
+              throw new Error("Web3Forms rejected the emergency request");
+            }
+            return data;
+          });
+        })
         .then(function (data) {
           if (data.success) {
             showSuccess();
@@ -150,7 +187,7 @@
     }
 
     if (endpoint) {
-      fetch(endpoint, {
+      fetchWithTimeout(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(buildPayload())

@@ -119,6 +119,28 @@
       // GALLERY-DATA:GENERATED:END
     ];
 
+    // Intrinsic dimensions for the homepage's latest-upload cards. These files
+    // are intentionally kept outside the generated block so media regeneration
+    // does not discard the layout metadata.
+    const imageDimensions = {
+      'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg': { width: 900, height: 1200 },
+      'hernandez_images/facebook-2026-side-yard-lawn-finish.jpg': { width: 900, height: 1200 },
+      'hernandez_images/google-photos-2026-brush-pile-removal.webp': { width: 655, height: 873 },
+      'hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp': { width: 1164, height: 873 },
+      'hernandez_images/google-photos-2026-backyard-lawn-finish.webp': { width: 1164, height: 873 },
+      'hernandez_images/google-profile-2024-mulch-bed-edging.jpg': { width: 901, height: 676 }
+    };
+
+    function applyImageMetadata(img, image) {
+      const dimensions = imageDimensions[image.src];
+      img.decoding = 'async';
+
+      if (dimensions) {
+        img.width = dimensions.width;
+        img.height = dimensions.height;
+      }
+    }
+
     if (galleryContainer) {
       const placeholder = document.createElement('p');
       placeholder.className = 'text-gray-500 text-center col-span-full';
@@ -135,6 +157,7 @@
       img.alt = image.alt;
       img.className = 'w-full h-64 object-cover';
       img.loading = index < 6 ? 'eager' : 'lazy';
+      applyImageMetadata(img, image);
       
       const caption = document.createElement('div');
       caption.className = 'p-4';
@@ -191,6 +214,9 @@
         img.src = image.src;
         img.alt = image.alt;
         img.className = 'w-full h-full object-cover';
+        img.loading = 'lazy';
+        img.fetchPriority = 'low';
+        applyImageMetadata(img, image);
         
         slide.appendChild(img);
         latestTrack.appendChild(slide);

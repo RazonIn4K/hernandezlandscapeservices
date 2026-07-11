@@ -42,6 +42,7 @@
     <link rel="stylesheet" href="/assets/css/gallery.css">
 </head>
 <body class="bg-gray-50">
+    <a class="skip-link" href="#main-content" data-i18n-key="skip.gallery">Skip to gallery content</a>
 
     <!-- Header -->
     <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
@@ -53,7 +54,7 @@
                     </a>
                     <div>
                         <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
-                        <p class="text-xs text-gray-600 hidden md:block">Licensed & Insured • LLC #13934835</p>
+                        <p class="text-xs text-gray-600 hidden md:block" data-i18n-key="header.license">Licensed & Insured • LLC #13934835</p>
                     </div>
                 </div>
 
@@ -79,29 +80,31 @@
                         <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
                         <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
                     </div>
-                    <button class="text-gray-700 focus:outline-none" onclick="toggleMobileMenu()" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu">
+                    <button id="mobileMenuButton" type="button" class="text-gray-700 focus:outline-none" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu" data-i18n-aria-label="nav.menuToggle">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </nav>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg">
+        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg" aria-hidden="true">
             <div class="container mx-auto px-4 py-4 space-y-4">
-                <a href="/#services" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.services">Services</a>
-                <a href="/gallery/" class="block text-green-600 font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.work">Our Work</a>
-                <a href="/videos/" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.videos">Videos</a>
-                <a href="/service-areas/" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.serviceArea">Service Areas</a>
-                <a href="/#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.freeQuote">Get Quote</a>
+                <a href="/#services" class="block text-gray-700 font-semibold" data-i18n-key="nav.services">Services</a>
+                <a href="/gallery/" class="block text-green-600 font-bold" data-i18n-key="nav.work">Our Work</a>
+                <a href="/videos/" class="block text-gray-700 font-semibold" data-i18n-key="nav.videos">Videos</a>
+                <a href="/service-areas/" class="block text-gray-700 font-semibold" data-i18n-key="nav.serviceArea">Service Areas</a>
+                <a href="/#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" data-i18n-key="nav.freeQuote">Get Quote</a>
             </div>
         </div>
     </header>
 
+    <main id="main-content" tabindex="-1">
+
     <!-- Hero Section -->
     <section class="hero-bg flex items-center justify-center mt-16 text-center px-4">
         <div class="max-w-4xl text-white py-20">
-            <h1 class="text-5xl md:text-6xl font-black mb-6 drop-shadow-lg">Recent Landscaping & Tree Service Photos</h1>
-            <p class="text-xl md:text-2xl mb-8 opacity-90 drop-shadow-md">See the real results Hernandez Landscape & Tree Service LLC delivers across DeKalb County.</p>
+            <h1 class="text-5xl md:text-6xl font-black mb-6 drop-shadow-lg" data-i18n-key="gallery.page.title">Recent Landscaping & Tree Service Photos</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 drop-shadow-md" data-i18n-key="gallery.page.subtitle">See the real results Hernandez Landscape & Tree Service LLC delivers across DeKalb County.</p>
         </div>
     </section>
 
@@ -109,18 +112,30 @@
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <span class="text-green-600 font-bold tracking-wider uppercase text-sm">Featured Transformation</span>
-                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-gray-800">Drag to Compare</h2>
+                <span class="text-green-600 font-bold tracking-wider uppercase text-sm" data-i18n-key="gallery.featured.eyebrow">Featured Transformation</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-2 text-gray-800" data-i18n-key="gallery.featured.heading">Drag to Compare</h2>
             </div>
             
             <div class="before-after-container">
                 <div class="before-after-slider" id="mainSlider">
-                    <img src="/hernandez_images/web_Before1.jpeg" alt="Overgrown Lawn Before" class="before-image">
-                    <img src="/hernandez_images/web_After1.jpeg" alt="Manicured Lawn After" class="after-image">
-                    <div class="slider-handle" id="sliderHandle"></div>
+                    <img src="/hernandez_images/web_Before1.jpeg" alt="Overgrown lawn before service" class="before-image" width="800" height="600" decoding="async">
+                    <img src="/hernandez_images/web_After1.jpeg" alt="Manicured lawn after service" class="after-image" width="800" height="600" decoding="async">
+                    <div
+                        class="slider-handle"
+                        id="sliderHandle"
+                        role="slider"
+                        tabindex="0"
+                        aria-label="Reveal the after photo"
+                        data-i18n-aria-label="gallery.slider.label"
+                        aria-describedby="comparison-instructions"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="50"
+                        aria-valuetext="Comparison divider at 50%"
+                    ></div>
                 </div>
             </div>
-            <p class="text-center text-gray-500 mt-6 italic">Move the slider left and right to see the difference.</p>
+            <p id="comparison-instructions" class="text-center text-gray-500 mt-6 italic" data-i18n-key="gallery.featured.instructions">Drag the handle or use the arrow keys to compare the before and after photos.</p>
         </div>
     </section>
 
@@ -136,7 +151,7 @@
                     <img src="/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg" loading="eager" decoding="async" fetchpriority="high" alt="Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Finished Lawn &amp; Fire Pit</h3>
+                            <h3 data-i18n-key="gallery.item.fire_pit">Finished Lawn &amp; Fire Pit</h3>
                         </div>
                     </div>
                 </div>
@@ -145,7 +160,7 @@
                     <img src="/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg" loading="eager" decoding="async" alt="Fresh green side yard lawn after Hernandez Landscape service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Fresh Side Yard Finish</h3>
+                            <h3 data-i18n-key="gallery.item.side_yard">Fresh Side Yard Finish</h3>
                         </div>
                     </div>
                 </div>
@@ -154,7 +169,7 @@
                     <img src="/hernandez_images/google-photos-2026-brush-pile-removal.webp" loading="eager" decoding="async" alt="Brush pile and tree debris staged after Hernandez Landscape cleanup" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Brush Pile Removal</h3>
+                            <h3 data-i18n-key="gallery.item.brush_removal">Brush Pile Removal</h3>
                         </div>
                     </div>
                 </div>
@@ -163,7 +178,7 @@
                     <img src="/hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp" loading="lazy" decoding="async" alt="Woodpile and overgrown yard area before Hernandez cleanup work" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Woodpile Yard Cleanup</h3>
+                            <h3 data-i18n-key="gallery.item.woodpile_cleanup">Woodpile Yard Cleanup</h3>
                         </div>
                     </div>
                 </div>
@@ -172,7 +187,7 @@
                     <img src="/hernandez_images/google-photos-2026-backyard-lawn-finish.webp" loading="lazy" decoding="async" alt="Fresh backyard lawn finish after Hernandez Landscape service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Backyard Lawn Finish</h3>
+                            <h3 data-i18n-key="gallery.item.backyard_finish">Backyard Lawn Finish</h3>
                         </div>
                     </div>
                 </div>
@@ -181,7 +196,7 @@
                     <img src="/hernandez_images/google-profile-2024-mulch-bed-edging.jpg" loading="lazy" decoding="async" alt="Fresh red mulch bed with stone edging after Hernandez Landscape service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Mulch Bed &amp; Edging</h3>
+                            <h3 data-i18n-key="gallery.item.mulch_edging">Mulch Bed &amp; Edging</h3>
                         </div>
                     </div>
                 </div>
@@ -190,7 +205,7 @@
                     <img src="/hernandez_images/google-profile-2026-branded-truck-trailers.jpg" loading="lazy" decoding="async" alt="Hernandez Landscape and Tree Service branded truck and trailers" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Branded Crew Equipment</h3>
+                            <h3 data-i18n-key="gallery.item.crew_equipment">Branded Crew Equipment</h3>
                         </div>
                     </div>
                 </div>
@@ -199,7 +214,7 @@
                     <img src="/hernandez_images/google-profile-2026-tree-climber-canopy.jpg" loading="lazy" decoding="async" alt="Tree service crew member working high in a tree canopy" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Tree Canopy Work</h3>
+                            <h3 data-i18n-key="gallery.item.canopy_work">Tree Canopy Work</h3>
                         </div>
                     </div>
                 </div>
@@ -208,7 +223,7 @@
                     <img src="/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg" loading="lazy" decoding="async" alt="Cut logs after Hernandez tree removal cleanup" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Removal Cleanup</h3>
+                            <h3 data-i18n-key="gallery.item.removal_cleanup">Removal Cleanup</h3>
                         </div>
                     </div>
                 </div>
@@ -217,7 +232,7 @@
                     <img src="/hernandez_images/google-photos-2026-brush-clearing.webp" loading="lazy" decoding="async" alt="Brush and branch clearing pile after yard cleanup" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Brush Clearing Cleanup</h3>
+                            <h3 data-i18n-key="gallery.item.brush_clearing">Brush Clearing Cleanup</h3>
                         </div>
                     </div>
                 </div>
@@ -226,7 +241,7 @@
                     <img src="/hernandez_images/google-profile-2026-tree-climber-roofline.jpg" loading="lazy" decoding="async" alt="Tree service work near a residential roofline" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Roofline Tree Work</h3>
+                            <h3 data-i18n-key="gallery.item.roofline_work">Roofline Tree Work</h3>
                         </div>
                     </div>
                 </div>
@@ -235,7 +250,7 @@
                     <img src="/hernandez_images/google-profile-2026-tree-climber-full-tree.jpg" loading="lazy" decoding="async" alt="Tree climber working in a tall residential tree" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Residential Tree Care</h3>
+                            <h3 data-i18n-key="gallery.item.residential_tree">Residential Tree Care</h3>
                         </div>
                     </div>
                 </div>
@@ -244,7 +259,7 @@
                     <img src="/hernandez_images/google-profile-2026-completed-yard-equipment.jpg" loading="lazy" decoding="async" alt="Completed yard work with Hernandez equipment on site" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Finished Yard Work</h3>
+                            <h3 data-i18n-key="gallery.item.finished_yard">Finished Yard Work</h3>
                         </div>
                     </div>
                 </div>
@@ -307,7 +322,7 @@
                     <img src="/hernandez_images/web_IMG_0434_poster.jpg" loading="lazy" decoding="async" alt="Lawn edging and clean landscaping lines" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Precision Edging</h3>
+                            <h3 data-i18n-key="gallery.item.precision_edging">Precision Edging</h3>
                         </div>
                     </div>
                 </div>
@@ -316,7 +331,7 @@
                     <img src="/hernandez_images/web_IMG_1464_poster.jpg" loading="lazy" decoding="async" alt="Worker trimming a large hedge" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Hedge Trimming</h3>
+                            <h3 data-i18n-key="gallery.item.hedge_trimming">Hedge Trimming</h3>
                         </div>
                     </div>
                 </div>
@@ -325,7 +340,7 @@
                     <img src="/hernandez_images/web_IMG_3360_2.webp" loading="lazy" decoding="async" alt="Beautiful landscaping project" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Yard Transformation</h3>
+                            <h3 data-i18n-key="gallery.item.yard_transformation">Yard Transformation</h3>
                         </div>
                     </div>
                 </div>
@@ -334,7 +349,7 @@
                     <img src="/hernandez_images/web_IMG_3362_2.webp" loading="lazy" decoding="async" alt="Recent landscaping work" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
-                            <h3>Outdoor Revival</h3>
+                            <h3 data-i18n-key="gallery.item.outdoor_revival">Outdoor Revival</h3>
                         </div>
                     </div>
                 </div>
@@ -348,13 +363,14 @@
     <!-- CTA Section -->
     <section class="py-20 bg-green-700 text-white text-center">
         <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-black mb-6">Inspired? Let's fix your yard.</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto text-green-100">You don't have to live with an overgrown or stressful outdoor space. We can handle it.</p>
+            <h2 class="text-4xl font-black mb-6" data-i18n-key="gallery.cta.heading">Inspired? Let's fix your yard.</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-green-100" data-i18n-key="gallery.cta.copy">You don't have to live with an overgrown or stressful outdoor space. We can handle it.</p>
             <a href="/#quote" class="bg-white text-green-800 px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1 inline-flex items-center">
-                Get a Free Quote <i class="fas fa-arrow-right ml-2"></i>
+                <span data-i18n-key="gallery.cta.button">Get a Free Quote</span> <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
             </a>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
@@ -367,8 +383,8 @@
                         Transforming outdoor spaces in DeKalb County with professional craftsmanship and family values since 2019.
                     </p>
                     <div class="pt-2">
-                        <p class="text-green-500 font-semibold text-sm">Licensed & Insured</p>
-                        <p class="text-gray-500 text-xs">Auth #13934835</p>
+                        <p class="text-green-500 font-semibold text-sm" data-i18n-key="footer.insured">Licensed & Insured</p>
+                        <p class="text-gray-500 text-xs" data-i18n-key="footer.authorization">Auth #13934835</p>
                     </div>
                 </div>
 

@@ -10,7 +10,7 @@
       "caption": "Finished lawn and fire pit area with clean edging and fresh turf",
       "tags": ["lawn-care", "landscaping"],
       "featured": true,
-      "gallery": { "title": "Finished Lawn & Fire Pit" },
+      "gallery": { "title": "Finished Lawn & Fire Pit", "titleKey": "gallery.item.fire_pit" },
       "sitemap": {
         "title": "Finished lawn and fire pit project",
         "caption": "Recent lawn and landscape finish from Hernandez Landscape & Tree Service LLC."
@@ -24,7 +24,7 @@
       "caption": "Fresh side yard lawn finish after cleanup and landscape work",
       "tags": ["lawn-care", "cleanup"],
       "featured": true,
-      "gallery": { "title": "Fresh Side Yard Finish" },
+      "gallery": { "title": "Fresh Side Yard Finish", "titleKey": "gallery.item.side_yard" },
       "sitemap": {
         "title": "Side yard lawn finish",
         "caption": "Fresh side yard lawn finish from a Hernandez Landscape project."
@@ -38,7 +38,7 @@
       "caption": "Fresh mulch bed, stone edging, and planting cleanup around a DeKalb County home",
       "tags": ["landscaping", "mulching"],
       "featured": true,
-      "gallery": { "title": "Mulch Bed & Edging" },
+      "gallery": { "title": "Mulch Bed & Edging", "titleKey": "gallery.item.mulch_edging" },
       "sitemap": {
         "title": "Mulch bed edging project",
         "caption": "Fresh mulch bed and stone edging completed by Hernandez Landscape & Tree Service LLC."
@@ -52,7 +52,7 @@
       "caption": "Brush pile and tree debris staged for removal after yard cleanup",
       "tags": ["cleanup", "tree-service"],
       "featured": true,
-      "gallery": { "title": "Brush Pile Removal" },
+      "gallery": { "title": "Brush Pile Removal", "titleKey": "gallery.item.brush_removal" },
       "sitemap": {
         "title": "Brush pile removal project",
         "caption": "Brush pile and tree debris staged after Hernandez Landscape cleanup service."
@@ -66,7 +66,7 @@
       "caption": "Woodpile and overgrown yard area cleared during a cleanup project",
       "tags": ["cleanup", "tree-service"],
       "featured": true,
-      "gallery": { "title": "Woodpile Yard Cleanup" },
+      "gallery": { "title": "Woodpile Yard Cleanup", "titleKey": "gallery.item.woodpile_cleanup" },
       "sitemap": {
         "title": "Woodpile yard cleanup",
         "caption": "Woodpile and overgrown yard area prepared for Hernandez Landscape cleanup work."
@@ -80,7 +80,7 @@
       "caption": "Fresh backyard lawn finish with clean mowing around trees and planting beds",
       "tags": ["lawn-care", "landscaping"],
       "featured": true,
-      "gallery": { "title": "Backyard Lawn Finish" },
+      "gallery": { "title": "Backyard Lawn Finish", "titleKey": "gallery.item.backyard_finish" },
       "sitemap": {
         "title": "Backyard lawn finish",
         "caption": "Fresh backyard lawn finish after Hernandez Landscape lawn care service."
@@ -94,7 +94,7 @@
       "caption": "Branded Hernandez crew trucks and trailers ready for field work",
       "tags": ["equipment"],
       "featured": true,
-      "gallery": { "title": "Branded Crew Equipment" }
+      "gallery": { "title": "Branded Crew Equipment", "titleKey": "gallery.item.crew_equipment" }
     },
     {
       "id": "tree-climber-canopy",
@@ -104,7 +104,7 @@
       "caption": "Tree climbing and canopy work for safe trimming and removal",
       "tags": ["tree-service"],
       "featured": true,
-      "gallery": { "title": "Tree Canopy Work" },
+      "gallery": { "title": "Tree Canopy Work", "titleKey": "gallery.item.canopy_work" },
       "sitemap": {
         "title": "Tree canopy service work",
         "caption": "Hernandez Landscape tree service crew member working high in a residential tree canopy."
@@ -120,6 +120,7 @@
       "featured": true,
       "gallery": {
         "title": "Removal Cleanup",
+        "titleKey": "gallery.item.removal_cleanup",
         "alt": "Cut logs after Hernandez tree removal cleanup"
       },
       "sitemap": {
@@ -137,6 +138,7 @@
       "featured": false,
       "gallery": {
         "title": "Brush Clearing Cleanup",
+        "titleKey": "gallery.item.brush_clearing",
         "alt": "Brush and branch clearing pile after yard cleanup"
       },
       "sitemap": {
@@ -154,6 +156,7 @@
       "featured": true,
       "gallery": {
         "title": "Roofline Tree Work",
+        "titleKey": "gallery.item.roofline_work",
         "alt": "Tree service work near a residential roofline"
       },
       "sitemap": {
@@ -169,7 +172,7 @@
       "caption": "Full-tree service work for mature residential trees",
       "tags": ["tree-service"],
       "featured": false,
-      "gallery": { "title": "Residential Tree Care" }
+      "gallery": { "title": "Residential Tree Care", "titleKey": "gallery.item.residential_tree" }
     },
     {
       "id": "completed-yard-equipment",
@@ -179,7 +182,7 @@
       "caption": "Recent completed yard work with equipment still on site",
       "tags": ["lawn-care", "equipment"],
       "featured": false,
-      "gallery": { "title": "Finished Yard Work" },
+      "gallery": { "title": "Finished Yard Work", "titleKey": "gallery.item.finished_yard" },
       "sitemap": {
         "title": "Completed Hernandez Landscape yard project",
         "caption": "Completed yard work with Hernandez Landscape equipment on site."
@@ -208,6 +211,7 @@
       "featured": false,
       "gallery": {
         "title": "Outdoor Revival",
+        "titleKey": "gallery.item.outdoor_revival",
         "alt": "Recent landscaping work"
       }
     },
@@ -221,6 +225,7 @@
       "featured": false,
       "gallery": {
         "title": "Yard Transformation",
+        "titleKey": "gallery.item.yard_transformation",
         "alt": "Beautiful landscaping project"
       }
     },
@@ -316,6 +321,7 @@
       "featured": false,
       "gallery": {
         "title": "Precision Edging",
+        "titleKey": "gallery.item.precision_edging",
         "alt": "Lawn edging and clean landscaping lines"
       }
     },
@@ -329,6 +335,7 @@
       "featured": false,
       "gallery": {
         "title": "Hedge Trimming",
+        "titleKey": "gallery.item.hedge_trimming",
         "alt": "Worker trimming a large hedge"
       }
     },

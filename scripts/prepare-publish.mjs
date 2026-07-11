@@ -75,11 +75,37 @@ const copiedMedia = new Set();
 
 const shouldSkip = (name) => name === '.DS_Store' || name.startsWith('.');
 
+const FORBIDDEN_PUBLISH_BASENAMES = new Set([
+  'credentials.json',
+  'firebase-config.js',
+  'service-account.json',
+]);
+const FORBIDDEN_PUBLISH_EXTENSIONS = new Set([
+  '.key',
+  '.log',
+  '.map',
+  '.pem',
+]);
+
+const assertSafePublishPath = (relPath) => {
+  const base = path.basename(relPath).toLowerCase();
+  const ext = path.extname(base);
+  if (
+    FORBIDDEN_PUBLISH_BASENAMES.has(base) ||
+    FORBIDDEN_PUBLISH_EXTENSIONS.has(ext) ||
+    base === '.env' ||
+    base.startsWith('.env.')
+  ) {
+    throw new Error(`Refusing to publish sensitive or development-only file: ${relPath}`);
+  }
+};
+
 const ensureDir = (dirPath) => {
   fs.mkdirSync(dirPath, { recursive: true });
 };
 
 const copyFile = (relPath, { required = false } = {}) => {
+  assertSafePublishPath(relPath);
   const src = path.join(ROOT, relPath);
   const dest = path.join(OUT_DIR, relPath);
   if (!fs.existsSync(src) || !fs.statSync(src).isFile()) {
@@ -146,6 +172,25 @@ const copyReferencedMedia = (refs) => {
   }
 };
 
+const SECRET_PATTERNS = [
+  ['private key block', /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/],
+  ['cloud service-account private key', /["']private_key["']\s*:/i],
+  ['server-only credential assignment', /(?:TELEGRAM_BOT_TOKEN|N8N_WEBHOOK_URL|ADMIN_PHONE_ALLOWLIST)\s*[:=]/i],
+  ['server credential file path', /(?:secrets\.env|service-account\.json)/i],
+];
+
+const scanPublishedTextForSecrets = () => {
+  for (const relPath of runtimeFiles) {
+    if (!TEXT_EXTENSIONS.has(path.extname(relPath).toLowerCase())) continue;
+    const text = fs.readFileSync(path.join(OUT_DIR, relPath), 'utf8');
+    for (const [label, pattern] of SECRET_PATTERNS) {
+      if (pattern.test(text)) {
+        throw new Error(`Publish secret scan found ${label} in ${relPath}`);
+      }
+    }
+  }
+};
+
 fs.rmSync(OUT_DIR, { recursive: true, force: true });
 ensureDir(OUT_DIR);
 
@@ -158,6 +203,7 @@ for (const relDir of DIRECTORIES) {
 }
 
 copyReferencedMedia(collectMediaRefs());
+scanPublishedTextForSecrets();
 
 console.log(`Prepared publish directory: ${path.relative(ROOT, OUT_DIR)}`);
 console.log(`  Runtime files copied: ${runtimeFiles.length}`);

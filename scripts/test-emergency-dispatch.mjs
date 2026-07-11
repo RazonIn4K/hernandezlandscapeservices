@@ -14,8 +14,7 @@ import {
   _resetRateLimiter
 } from '../functions/emergency-dispatch.mjs';
 
-// Node 18 (CI) has no global `crypto`; Workers runtime and Node 19+ do. The
-// handler calls crypto.randomUUID(), so polyfill it for the harness only.
+// Keep the Worker-style Web Crypto dependency explicit in this test harness.
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
 const ENDPOINT = 'https://dispatch.example.com/api/emergency-dispatch';

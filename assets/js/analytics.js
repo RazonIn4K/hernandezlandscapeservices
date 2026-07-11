@@ -1,9 +1,8 @@
 (function () {
-  // GTM container id — intentionally empty until the owner creates a container
-  // (see SEO_AUDIT_PLAN.md). While empty, NO third-party script loads and the
-  // site makes zero extra requests; events still queue in window.dataLayer so
-  // they flow into GTM the moment a real id is filled in and deployed.
-  var GTM_CONTAINER_ID = "GTM-NJ4DPSC9"; // e.g. "GTM-XXXXXXX"
+  // Active Google Tag Manager container. Its tags and retention settings are
+  // managed outside this repository; keep event payloads free of form fields
+  // and other personally identifiable information.
+  var GTM_CONTAINER_ID = "GTM-NJ4DPSC9";
 
   window.dataLayer = window.dataLayer || [];
 

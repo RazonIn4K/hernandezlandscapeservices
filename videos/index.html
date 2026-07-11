@@ -44,6 +44,8 @@
 </head>
 <body class="bg-gray-50">
 
+    <a class="skip-link" href="#main-content" data-i18n-key="skip.main">Skip to main content</a>
+
     <!-- Header -->
     <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
         <div class="container mx-auto px-4">
@@ -54,7 +56,7 @@
                     </a>
                     <div>
                         <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
-                        <p class="text-xs text-gray-600 hidden md:block">Licensed & Insured • LLC #13934835</p>
+                        <p class="text-xs text-gray-600 hidden md:block" data-i18n-key="header.license">Licensed & Insured • LLC #13934835</p>
                     </div>
                 </div>
 
@@ -80,24 +82,25 @@
                         <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
                         <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
                     </div>
-                    <button class="text-gray-700 focus:outline-none" onclick="toggleMobileMenu()" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu">
+                    <button id="mobileMenuButton" type="button" class="text-gray-700 focus:outline-none" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu" data-i18n-aria-label="nav.menuToggle">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </nav>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg">
+        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg" aria-hidden="true">
             <div class="container mx-auto px-4 py-4 space-y-4">
-                <a href="/#services" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.services">Services</a>
-                <a href="/gallery/" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.work">Our Work</a>
-                <a href="/videos/" class="block text-green-600 font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.videos">Videos</a>
-                <a href="/service-areas/" class="block text-gray-700 font-semibold" onclick="toggleMobileMenu()" data-i18n-key="nav.serviceArea">Service Areas</a>
-                <a href="/#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" onclick="toggleMobileMenu()" data-i18n-key="nav.freeQuote">Get Quote</a>
+                <a href="/#services" class="block text-gray-700 font-semibold" data-i18n-key="nav.services">Services</a>
+                <a href="/gallery/" class="block text-gray-700 font-semibold" data-i18n-key="nav.work">Our Work</a>
+                <a href="/videos/" class="block text-green-600 font-bold" data-i18n-key="nav.videos">Videos</a>
+                <a href="/service-areas/" class="block text-gray-700 font-semibold" data-i18n-key="nav.serviceArea">Service Areas</a>
+                <a href="/#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" data-i18n-key="nav.freeQuote">Get Quote</a>
             </div>
         </div>
     </header>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <section class="hero-bg flex items-center justify-center mt-16 text-center px-4" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/hernandez_images/web_IMG_0434_poster.jpg'); background-size: cover; background-position: center;">
         <div class="max-w-4xl text-white py-20">
@@ -115,7 +118,7 @@
                 <!-- VIDEOS:GENERATED:START -->
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_0434_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" poster="/hernandez_images/web_IMG_0434_poster.jpg" aria-label="Hernandez Landscape project video tour" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_0434.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -127,7 +130,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1095_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" poster="/hernandez_images/web_IMG_1095_poster.jpg" aria-label="Hernandez Landscape crew project video" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1095.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -139,7 +142,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2055_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" poster="/hernandez_images/web_IMG_2055_poster.jpg" aria-label="DeKalb landscaping and lawn care project video" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2055.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -151,7 +154,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1139_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1139_poster.jpg" aria-label="Hernandez Landscape project video 4" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1139.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -163,7 +166,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1229_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1229_poster.jpg" aria-label="Hernandez Landscape project video 5" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1229.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -175,7 +178,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1268_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1268_poster.jpg" aria-label="Hernandez Landscape project video 6" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1268.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -187,7 +190,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1425_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1425_poster.jpg" aria-label="Hernandez Landscape project video 7" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1425.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -199,7 +202,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1464_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1464_poster.jpg" aria-label="Hernandez Landscape project video 8" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1464.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -211,7 +214,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1878_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1878_poster.jpg" aria-label="Hernandez Landscape project video 9" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1878.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -223,7 +226,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_1953_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_1953_poster.jpg" aria-label="Hernandez Landscape project video 10" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_1953.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -235,7 +238,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2031_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2031_poster.jpg" aria-label="Hernandez Landscape project video 11" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2031.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -247,7 +250,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2046_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2046_poster.jpg" aria-label="Hernandez Landscape project video 12" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2046.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -259,7 +262,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2047_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2047_poster.jpg" aria-label="Hernandez Landscape project video 13" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2047.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -271,7 +274,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2048_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2048_poster.jpg" aria-label="Hernandez Landscape project video 14" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2048.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -283,7 +286,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2049_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2049_poster.jpg" aria-label="Hernandez Landscape project video 15" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2049.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -295,7 +298,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2050_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2050_poster.jpg" aria-label="Hernandez Landscape project video 16" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2050.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -307,7 +310,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2051_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2051_poster.jpg" aria-label="Hernandez Landscape project video 17" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2051.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -319,7 +322,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2052_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2052_poster.jpg" aria-label="Hernandez Landscape project video 18" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2052.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -331,7 +334,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2056_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2056_poster.jpg" aria-label="Hernandez Landscape project video 19" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2056.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -343,7 +346,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2109_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2109_poster.jpg" aria-label="Hernandez Landscape project video 20" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2109.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -355,7 +358,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2110_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2110_poster.jpg" aria-label="Hernandez Landscape project video 21" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2110.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -367,7 +370,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2111_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2111_poster.jpg" aria-label="Hernandez Landscape project video 22" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2111.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -379,7 +382,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2112_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2112_poster.jpg" aria-label="Hernandez Landscape project video 23" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2112.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -391,7 +394,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2125_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2125_poster.jpg" aria-label="Hernandez Landscape project video 24" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2125.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -403,7 +406,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2134_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2134_poster.jpg" aria-label="Hernandez Landscape project video 25" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2134.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -415,7 +418,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2136_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2136_poster.jpg" aria-label="Hernandez Landscape project video 26" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2136.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -427,7 +430,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2154_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2154_poster.jpg" aria-label="Hernandez Landscape project video 27" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2154.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -439,7 +442,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2155_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2155_poster.jpg" aria-label="Hernandez Landscape project video 28" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2155.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -451,7 +454,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2315_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2315_poster.jpg" aria-label="Hernandez Landscape project video 29" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2315.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -463,7 +466,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_2395_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_2395_poster.jpg" aria-label="Hernandez Landscape project video 30" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_2395.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -475,7 +478,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_7968_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_7968_poster.jpg" aria-label="Hernandez Landscape project video 31" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_7968.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -487,7 +490,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_8116_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_8116_poster.jpg" aria-label="Hernandez Landscape project video 32" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_8116.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -499,7 +502,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2_poster.jpg" aria-label="Hernandez Landscape project video 33" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -511,7 +514,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_3587_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_3587_poster.jpg" aria-label="Hernandez Landscape project video 34" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_3587.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -523,7 +526,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_3597_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_3597_poster.jpg" aria-label="Hernandez Landscape project video 35" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_3597.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -535,7 +538,7 @@
 
                 <div class="video-card group">
                     <div class="video-wrapper relative">
-                        <video controls preload="none" poster="/hernandez_images/web_IMG_3611_poster.jpg" class="w-full h-full object-cover">
+                        <video controls playsinline preload="none" data-poster="/hernandez_images/web_IMG_3611_poster.jpg" aria-label="Hernandez Landscape project video 36" class="w-full h-full object-cover">
                             <source src="/hernandez_images/web_IMG_3611.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -548,11 +551,12 @@
             </div>
              <div class="flex flex-col sm:flex-row justify-center mt-12 px-4 sm:px-0">
                 <a href="/#quote" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center w-full sm:w-auto">
-                    <i class="fas fa-calculator mr-2"></i> Get Your Free Estimate
+                    <i class="fas fa-calculator mr-2" aria-hidden="true"></i> <span data-i18n-key="video.cta.estimate">Get Your Free Estimate</span>
                 </a>
             </div>
         </div>
     </section>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
@@ -565,8 +569,8 @@
                         Transforming outdoor spaces in DeKalb County with professional craftsmanship and family values since 2019.
                     </p>
                     <div class="pt-2">
-                        <p class="text-green-500 font-semibold text-sm">Licensed & Insured</p>
-                        <p class="text-gray-500 text-xs">Auth #13934835</p>
+                        <p class="text-green-500 font-semibold text-sm" data-i18n-key="footer.insured">Licensed & Insured</p>
+                        <p class="text-gray-500 text-xs" data-i18n-key="footer.authorization">Auth #13934835</p>
                     </div>
                 </div>
 
@@ -588,7 +592,7 @@
                     <ul class="space-y-4">
                         <li class="flex items-start">
                             <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
-                            <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                            <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
                                 1029 Lewis St<br>DeKalb, IL 60115
                             </a>
                         </li>
@@ -627,10 +631,10 @@
                     
                     <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Follow Us</h4>
                     <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
+                        <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
+                        <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
                             <i class="fab fa-google"></i>
                         </a>
                     </div>
@@ -750,6 +754,7 @@
     
     <!-- Scripts -->
     <script src="/assets/js/i18n.js" defer></script>
+    <script src="/assets/js/video-gallery.js" defer></script>
     <script src="/assets/js/main.js" defer></script>
 
 <script src="/assets/js/analytics.js" defer></script>

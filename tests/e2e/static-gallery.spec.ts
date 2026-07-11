@@ -203,6 +203,50 @@ test.describe('Static Gallery Functionality', () => {
     await expect(carouselImages.first()).toBeVisible();
   });
 
+  test('defers latest upload images with stable intrinsic dimensions', async ({ page }) => {
+    await page.waitForSelector('#latest-uploads-track img');
+
+    const imageMetadata = await page.locator('#latest-uploads-track img').evaluateAll((images) =>
+      images.map((image) => {
+        const img = image as HTMLImageElement;
+        return {
+          decoding: img.decoding,
+          fetchPriority: img.fetchPriority,
+          height: img.height,
+          loading: img.loading,
+          width: img.width,
+        };
+      })
+    );
+
+    expect(imageMetadata).toHaveLength(6);
+    for (const image of imageMetadata) {
+      expect(image.loading).toBe('lazy');
+      expect(image.decoding).toBe('async');
+      expect(image.fetchPriority).toBe('low');
+      expect(image.width).toBeGreaterThan(0);
+      expect(image.height).toBeGreaterThan(0);
+    }
+  });
+
+  test('gallery comparison supports keyboard controls and a main-content skip link', async ({ page }) => {
+    await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });
+
+    await expect(page.locator('main#main-content')).toHaveCount(1);
+    await expect(page.locator('a.skip-link')).toHaveAttribute('href', '#main-content');
+
+    const handle = page.getByRole('slider', { name: 'Reveal the after photo' });
+    await expect(handle).toHaveAttribute('aria-valuenow', '50');
+    await handle.focus();
+    await page.keyboard.press('ArrowRight');
+    await expect(handle).toHaveAttribute('aria-valuenow', '55');
+    await expect(handle).toHaveAttribute('aria-valuetext', 'Comparison divider at 55%');
+    await page.keyboard.press('End');
+    await expect(handle).toHaveAttribute('aria-valuenow', '100');
+    await page.keyboard.press('Home');
+    await expect(handle).toHaveAttribute('aria-valuenow', '0');
+  });
+
   test('navigation works correctly', async ({ page }) => {
     const anchorLinks = ['#services', '#testimonials', '#quote'];
 
@@ -256,7 +300,7 @@ test.describe('Static Gallery Functionality', () => {
     await expect(page.locator('#contactService')).toBeVisible();
     
     // Check submit button
-    const submitButton = page.locator('button[type="submit"]');
+    const submitButton = page.locator('#contactForm button[type="submit"]');
     await expect(submitButton).toBeVisible();
     await expect(submitButton).toHaveText(/Send Quote Request/);
   });
@@ -371,7 +415,16 @@ test.describe('Static Gallery Functionality', () => {
   test('mobile call CTA is available across key public pages', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
 
-    for (const path of ['/', '/tree-removal/', '/service-areas/', '/pay/success.html']) {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const homeCallCta = page.locator('[data-mobile-call-cta]');
+    await expect(homeCallCta).toBeAttached();
+    await expect(homeCallCta).not.toBeVisible();
+    await page.locator('#why-choose-us').scrollIntoViewIfNeeded();
+    await expect(homeCallCta).toBeVisible();
+    await page.locator('#quote').scrollIntoViewIfNeeded();
+    await expect(homeCallCta).not.toBeVisible();
+
+    for (const path of ['/tree-removal/', '/service-areas/']) {
       await page.goto(path, { waitUntil: 'domcontentloaded' });
 
       const callCta = page.locator('[data-mobile-call-cta]');
@@ -388,7 +441,7 @@ test.describe('Static Gallery Functionality', () => {
     await page.waitForSelector('body', { state: 'attached' });
 
     const callCta = page.locator('[data-mobile-call-cta]');
-    await expect(callCta).toBeVisible();
+    await expect(callCta).not.toBeVisible();
     await expect(callCta).toHaveAttribute('href', 'tel:18155011478');
     
     // Check mobile menu works
@@ -397,10 +450,46 @@ test.describe('Static Gallery Functionality', () => {
     
     await mobileMenuButton.click();
     await expect(page.locator('#mobileMenu')).toBeVisible();
+    await expect(mobileMenuButton).toHaveAttribute('aria-expanded', 'true');
     
     // Check navigation links in mobile menu
     const mobileNavLinks = page.locator('#mobileMenu a');
     await expect(mobileNavLinks).not.toHaveCount(0); // Any links rendered
+
+    await page.keyboard.press('Escape');
+    await expect(page.locator('#mobileMenu')).not.toBeVisible();
+    await expect(mobileMenuButton).toBeFocused();
+
+    await page.locator('#why-choose-us').scrollIntoViewIfNeeded();
+    await expect(callCta).toBeVisible();
+  });
+
+  test('mobile conversion controls never cover the hero CTA', async ({ page }, testInfo) => {
+    test.skip(
+      testInfo.project.name !== 'chromium',
+      'The five-viewport visual matrix runs in Chromium; the shared mobile behavior tests still run in every browser.',
+    );
+
+    for (const viewport of [
+      { width: 320, height: 568 },
+      { width: 360, height: 640 },
+      { width: 390, height: 844 },
+      { width: 414, height: 896 },
+      { width: 640, height: 360 },
+    ]) {
+      await page.setViewportSize(viewport);
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+      const callCta = page.locator('[data-mobile-call-cta]');
+      const heroCta = page.locator('.primary-cta');
+      await expect(heroCta).toBeVisible();
+      await expect(callCta).not.toBeVisible();
+
+      const bodyOverflow = await page.evaluate(() =>
+        document.documentElement.scrollWidth - document.documentElement.clientWidth
+      );
+      expect(bodyOverflow, `${viewport.width}x${viewport.height} overflow`).toBeLessThanOrEqual(1);
+    }
   });
 
   test('photo layouts remain aligned across breakpoints', async ({ page }) => {
@@ -447,8 +536,8 @@ test.describe('Static Gallery Functionality', () => {
     await page.reload({ waitUntil: 'domcontentloaded' });
 
     // Check language toggle buttons exist
-    const enButton = page.getByRole('button', { name: 'EN' }).first();
-    const esButton = page.getByRole('button', { name: 'ES' }).first();
+    const enButton = page.getByRole('button', { name: 'Use English' }).first();
+    const esButton = page.getByRole('button', { name: 'Usar español' }).first();
     
     await expect(enButton).toBeVisible();
     await expect(esButton).toBeVisible();
@@ -457,10 +546,27 @@ test.describe('Static Gallery Functionality', () => {
     // Test switching to Spanish
     await esButton.click();
     await expect(esButton).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-i18n-key="hero.emergency"]')).toContainText('Daños por tormenta');
+    await expect(page.locator('[data-i18n-key="faq.heading"]')).toHaveText('Preguntas frecuentes');
+    await expect(page.locator('[data-i18n-key="quote.label.phone"]')).toHaveText('Número de teléfono');
     
     // Test switching back to English
     await enButton.click();
     await expect(enButton).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test('homepage exposes landmarks, skip navigation, and an operable FAQ', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+    await expect(page.locator('main#main-content')).toHaveCount(1);
+    const skipLink = page.getByRole('link', { name: 'Skip to main content' });
+    await expect(skipLink).toHaveAttribute('href', '#main-content');
+
+    const secondQuestion = page.locator('#faq details').nth(1);
+    await expect(secondQuestion).not.toHaveAttribute('open', '');
+    await secondQuestion.locator('summary').focus();
+    await page.keyboard.press('Enter');
+    await expect(secondQuestion).toHaveAttribute('open', '');
   });
 
   test('first visit defaults to English', async ({ page }) => {
@@ -473,8 +579,8 @@ test.describe('Static Gallery Functionality', () => {
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('body')).toHaveAttribute('data-language', 'en');
-    await expect(page.getByRole('button', { name: 'EN' }).first()).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('[data-i18n-key="hero.cta"]').first()).toContainText('Request Free Estimate');
+    await expect(page.getByRole('button', { name: 'Use English' }).first()).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-i18n-key="hero.cta"]').first()).toContainText('See Starting Range');
 
     const storedLanguage = await page.evaluate(() => ({
       local: window.localStorage.getItem('siteLanguage'),

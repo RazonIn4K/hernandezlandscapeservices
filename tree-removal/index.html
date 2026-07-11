@@ -43,11 +43,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   </head>
   <body class="site-body bg-gray-50">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
       <div class="container mx-auto px-4">
         <nav class="flex justify-between items-center py-3">
           <div class="flex items-center space-x-3">
-            <a href="../index.html">
+            <a href="/">
               <img src="../hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain" />
             </a>
             <div>
@@ -56,17 +57,29 @@
             </div>
           </div>
           <div class="hidden lg:flex items-center space-x-4">
-            <a href="../index.html#services" class="text-sm font-semibold hover:text-green-600 transition">Services</a>
+            <a href="/#services" class="text-sm font-semibold hover:text-green-600 transition">Services</a>
             <a href="/gallery/" class="text-sm font-semibold hover:text-green-600 transition">Our Work</a>
             <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition">Videos</a>
             <a href="../service-areas/" class="text-sm font-semibold hover:text-green-600 transition">Service Areas</a>
-            <a href="../index.html#quote" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md">Get Free Quote</a>
+            <a href="/#quote" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md">Get Free Quote</a>
           </div>
+          <button id="mobileMenuButton" type="button" class="lg:hidden flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu">
+            <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+          </button>
+        </nav>
+      </div>
+      <div id="mobileMenu" class="hidden absolute w-full border-t bg-white shadow-lg lg:hidden" aria-hidden="true">
+        <nav class="container mx-auto space-y-1 px-4 py-4" aria-label="Mobile navigation">
+          <a href="/#services" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Services</a>
+          <a href="/gallery/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Our Work</a>
+          <a href="/videos/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Videos</a>
+          <a href="/service-areas/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Service Areas</a>
+          <a href="/#quote" class="mt-2 block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white hover:bg-green-700">Get Free Quote</a>
         </nav>
       </div>
     </header>
 
-    <main class="pt-28 pb-16">
+    <main id="main-content" class="pt-28 pb-16">
       <div class="container mx-auto px-4">
         <!-- 24/7 emergency tree service strip (SEO_AUDIT_PLAN P0-6) -->
         <div class="max-w-4xl mx-auto mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg border-l-4 border-amber-500 bg-amber-50 px-4 py-3 text-center">
@@ -75,7 +88,7 @@
         </div>
         <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
           <div class="h-64 md:h-96 relative">
-            <img src="../hernandez_images/google-profile-2026-tree-climber-canopy.jpg" alt="Professional tree removal in DeKalb" class="w-full h-full object-cover" />
+            <img src="../hernandez_images/google-profile-2026-tree-climber-canopy.jpg" alt="Professional tree removal in DeKalb" width="900" height="1200" decoding="async" fetchpriority="high" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
               <h1 class="text-4xl md:text-5xl font-bold text-white text-center px-4">Professional Tree Removal in DeKalb, IL</h1>
             </div>
@@ -174,6 +187,9 @@
                   id="emergencyName"
                   name="name"
                   placeholder="Your Name"
+                  autocomplete="name"
+                  minlength="2"
+                  maxlength="100"
                   class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                   required
                 />
@@ -184,6 +200,9 @@
                   id="emergencyPhone"
                   name="phone"
                   placeholder="Phone Number"
+                  autocomplete="tel"
+                  inputmode="tel"
+                  maxlength="25"
                   pattern="^\+?[0-9 \(\)\-]{10,}$"
                   title="Enter a valid phone number (digits, spaces, parentheses, or dashes)"
                   class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
@@ -196,6 +215,8 @@
                   id="emergencyLocation"
                   name="location"
                   placeholder="Property address or ZIP code"
+                  autocomplete="street-address"
+                  maxlength="200"
                   class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                   required
                 />
@@ -222,6 +243,7 @@
                   id="emergencyDetails"
                   name="details"
                   rows="3"
+                  maxlength="1000"
                   placeholder="Details (optional) — what happened, access notes"
                   class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600 sm:col-span-2"
                 ></textarea>
@@ -250,15 +272,15 @@
             <h2 class="text-2xl font-bold mb-6 text-gray-800">Frequently Asked Questions</h2>
             <div class="space-y-6">
               <div>
-                <h4 class="font-bold text-lg text-gray-800">Are you insured for tree removal?</h4>
+                <h3 class="font-bold text-lg text-gray-800">Are you insured for tree removal?</h3>
                 <p class="text-gray-600">Yes, we carry comprehensive liability insurance specifically for tree removal to protect your property completely.</p>
               </div>
               <div>
-                <h4 class="font-bold text-lg text-gray-800">Do you clean up the debris after removing a tree?</h4>
+                <h3 class="font-bold text-lg text-gray-800">Do you clean up the debris after removing a tree?</h3>
                 <p class="text-gray-600">Absolutely. Complete cleanup is standard with our tree removal service. We haul away the wood and rake the area clean.</p>
               </div>
               <div>
-                <h4 class="font-bold text-lg text-gray-800">Can you grind the stump as well?</h4>
+                <h3 class="font-bold text-lg text-gray-800">Can you grind the stump as well?</h3>
                 <p class="text-gray-600">Yes, we offer professional stump grinding services to completely remove the remaining stump and roots below grade.</p>
               </div>
             </div>
@@ -399,6 +421,7 @@
       ]
     }
     </script>
+  <script src="/assets/js/service-nav.js" defer></script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
   <script src="/assets/js/emergency-dispatch.js" defer></script>

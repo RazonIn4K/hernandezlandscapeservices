@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures';
 
-// Automation fills forms faster than a human; the anti-bot timing check
-// hard-blocks submits under 1.5s, so legit-lead tests backdate the timer.
+// Automation fills forms faster than a human; the timing heuristic tags submits
+// under 1.5s, so clean-lead tests backdate the timer when they assert no tag.
 const backdateFormTimer = async (page: import('@playwright/test').Page) => {
   await page.locator('#formLoadedAt').evaluate((input) => {
     (input as HTMLInputElement).value = String(Date.now() - 60_000);
@@ -12,7 +12,7 @@ const fillQuoteForm = async (
   page: import('@playwright/test').Page,
   { email, message }: { email: string; message: string },
 ) => {
-  await page.goto('/#quote', { waitUntil: 'domcontentloaded' });
+  await page.goto('/#quote', { waitUntil: 'load' });
   await page.fill('#contactName', 'Jennifer Obrien');
   await page.fill('#contactPhone', '9499797488');
   await page.fill('#contactEmail', email);
@@ -41,7 +41,7 @@ const mockWeb3Forms = async (page: import('@playwright/test').Page) => {
 };
 
 const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
-  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.goto('/', { waitUntil: 'load' });
   await page.fill('#propertyAddress', '1234 Main St, DeKalb');
   await page.locator('#isOwner').evaluate((checkbox) => {
     const input = checkbox as HTMLInputElement;
@@ -121,6 +121,22 @@ test.describe('Instant estimate lead handoff', () => {
     expect(web3formsRequests).toHaveLength(0);
   });
 
+  test('starter requires the property address and owner confirmation', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.selectOption('#serviceType', 'tree-service');
+    await page.selectOption('#propertySize', 'medium');
+    await page.fill('#zipCode', '60115');
+    await page.click('#calculateQuoteBtn');
+
+    await expect(page.locator('#quoteResult')).not.toBeVisible();
+    await expect(page.locator('#propertyAddress')).toBeFocused();
+
+    await page.fill('#propertyAddress', '1234 Main St, DeKalb');
+    await page.click('#calculateQuoteBtn');
+    await expect(page.locator('#quoteResult')).not.toBeVisible();
+    await expect(page.locator('#isOwner')).toBeFocused();
+  });
+
   test('duplicate bestTime IDs are gone', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#bestTime')).toHaveCount(1);
@@ -140,24 +156,25 @@ test.describe('Instant estimate lead handoff', () => {
     expect(starterValues).toEqual(finalValues);
   });
 
-  test('stacked-signal campaign spam is hard-blocked and never sent (quota guard)', async ({ page }) => {
+  test('stacked content signals are delivered with a spam-review tag', async ({ page }) => {
     const captured = await mockWeb3Forms(page);
 
-    // getdandy sender + multiple URLs + several spam phrases stacks the content
-    // score to >= 4: high enough confidence to hard-block (fake success, zero
-    // Web3Forms calls) so a campaign cannot drain the submission quota.
-    // Borderline scores (2-3) are still delivered tagged — see the next test.
+    // Even a strongly spam-like message is not enough to discard a lead in the
+    // browser. Only honeypots hard-block; content signals are sent for review.
     await fillQuoteForm(page, {
       email: 'ob-jennifer@getdandynow.com',
       message:
         'I made an AI agent for Hernandez Landscape and can add it to your Google Business Profile. Grab a time here: https://getdandy.com/schedule-a-chat/ Unsubscribe: https://bit.ly/42wnUsa',
     });
     await backdateFormTimer(page);
-    await page.click('#contactForm button[type="submit"]');
+    await page.locator('#contactForm').evaluate((form) => {
+      (form as HTMLFormElement).requestSubmit();
+    });
 
     await expect(page.locator('#customModal')).toBeVisible();
     await expect(page.locator('#modalMessage')).toContainText('Thank you for your interest');
-    expect(captured.bodies).toHaveLength(0);
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('[Possible Spam]');
   });
 
   test('two links plus one spam phrase reaches Web3Forms tagged', async ({ page }) => {
@@ -194,7 +211,7 @@ test.describe('Instant estimate lead handoff', () => {
     expect(captured.bodies).toHaveLength(0);
   });
 
-  test('inhumanly fast submission is blocked and never sent', async ({ page }) => {
+  test('fast autofill submission is delivered with a spam-review tag', async ({ page }) => {
     const captured = await mockWeb3Forms(page);
 
     await fillQuoteForm(page, {
@@ -212,6 +229,27 @@ test.describe('Instant estimate lead handoff', () => {
     });
 
     await expect(page.locator('#customModal')).toBeVisible();
-    expect(captured.bodies).toHaveLength(0);
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('[Possible Spam]');
+  });
+
+  test('provider failure preserves the lead and offers a tappable call fallback', async ({ page }) => {
+    await page.route('**/api.web3forms.com/**', async (route) => {
+      await route.fulfill({ status: 503, contentType: 'text/plain', body: 'Unavailable' });
+    });
+
+    await fillQuoteForm(page, {
+      email: 'homeowner@example.com',
+      message: 'Please quote spring cleanup and weekly mowing.',
+    });
+    await backdateFormTimer(page);
+    await page.click('#contactForm button[type="submit"]');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalCallAction')).toBeVisible();
+    await expect(page.locator('#modalCallAction')).toHaveAttribute('href', 'tel:18155011478');
+    await expect(page.locator('#contactName')).toHaveValue('Jennifer Obrien');
+    await expect(page.locator('#contactForm')).not.toHaveAttribute('aria-busy', 'true');
+    await expect(page.locator('#contactForm button[type="submit"]')).toBeEnabled();
   });
 });
