@@ -43,6 +43,7 @@ const ROOT_FILES = [
 const DIRECTORIES = [
   'assets',
   'es',
+  'emergency-tree-removal',
   'gallery',
   'gutter-cleaning',
   'landscaping-design',
@@ -53,6 +54,7 @@ const DIRECTORIES = [
   'service-areas',
   'snow-removal',
   'tree-removal',
+  'tree-trimming-stump-grinding',
   'videos',
 ];
 

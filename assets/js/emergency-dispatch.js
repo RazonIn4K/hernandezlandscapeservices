@@ -28,6 +28,49 @@
   var PHONE_TEL = "tel:18155011478";
   var ZIP_RE = /^\d{5}(-\d{4})?$/;
   var REQUEST_TIMEOUT_MS = 12000;
+  var COPY = {
+    en: {
+      locating: "Getting your location…",
+      located: "Location attached (approximate accuracy: {meters} m).",
+      locationFailed: "Couldn't get your location. Please check the address or ZIP above.",
+      locationUnavailable: "Location sharing isn't available in this browser. You can use the address or ZIP above.",
+      sent: "Request submitted.",
+      receipt: "Your request is awaiting review and a callback. An appointment, arrival time and crew availability are not confirmed. You can call ",
+      failed: "We couldn't confirm that your request was sent. Your information is still in the form. Please try again or call ",
+      sending: "Sending…",
+      validation: "Please complete the required fields and check the highlighted information.",
+      required: "Please complete this field.",
+      name: "Please enter a name between 2 and 100 characters.",
+      phone: "Please enter a valid phone number.",
+      location: "Please enter an address or ZIP within the field's length limit.",
+      emergency_type: "Please choose a request type.",
+      details: "Please shorten the details to fit the field's length limit.",
+      invalid: "Please check this field."
+    },
+    es: {
+      locating: "Obteniendo su ubicación…",
+      located: "Ubicación adjunta (precisión aproximada: {meters} m).",
+      locationFailed: "No pudimos obtener su ubicación. Revise la dirección o el código postal de arriba.",
+      locationUnavailable: "Este navegador no permite compartir la ubicación. Puede usar la dirección o el código postal de arriba.",
+      sent: "Solicitud enviada.",
+      receipt: "Su solicitud está pendiente de revisión y de una llamada. La cita, la hora de llegada y la disponibilidad del equipo no están confirmadas. Puede llamar al ",
+      failed: "No pudimos confirmar el envío de su solicitud. Sus datos siguen en el formulario. Intente de nuevo o llame al ",
+      sending: "Enviando…",
+      validation: "Complete los campos obligatorios y revise la información marcada.",
+      required: "Complete este campo.",
+      name: "Ingrese un nombre de entre 2 y 100 caracteres.",
+      phone: "Ingrese un número de teléfono válido.",
+      location: "Ingrese una dirección o un código postal dentro del límite de caracteres del campo.",
+      emergency_type: "Seleccione un tipo de solicitud.",
+      details: "Reduzca los detalles al límite de caracteres del campo.",
+      invalid: "Revise este campo."
+    }
+  };
+
+  function copy(key) {
+    var lang = (document.documentElement.lang || "en").toLowerCase().split("-")[0];
+    return (COPY[lang] || COPY.en)[key];
+  }
 
   function setGeoStatus(message) {
     if (geoStatus) geoStatus.textContent = message;
@@ -35,25 +78,25 @@
 
   if (geoBtn && "geolocation" in navigator) {
     geoBtn.addEventListener("click", function () {
-      setGeoStatus("Getting your location…");
+      setGeoStatus(copy("locating"));
       navigator.geolocation.getCurrentPosition(
         function (pos) {
           if (latField) latField.value = String(pos.coords.latitude);
           if (lngField) lngField.value = String(pos.coords.longitude);
           if (accField) accField.value = String(Math.round(pos.coords.accuracy));
           setGeoStatus(
-            "Location attached (within ~" + Math.round(pos.coords.accuracy) + " m)."
+            copy("located").replace("{meters}", String(Math.round(pos.coords.accuracy)))
           );
         },
         function () {
-          setGeoStatus("Couldn't get your location — please make sure the address or ZIP above is right.");
+          setGeoStatus(copy("locationFailed"));
         },
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
       );
     });
   } else if (geoBtn) {
     geoBtn.disabled = true;
-    setGeoStatus("Location sharing isn't available in this browser — the address or ZIP above is enough.");
+    setGeoStatus(copy("locationUnavailable"));
   }
 
   function showSuccess() {
@@ -61,8 +104,8 @@
     panel.className = "rounded-lg border border-green-200 bg-green-50 p-4 text-green-900";
     panel.setAttribute("role", "status");
     panel.innerHTML =
-      '<p class="font-bold"><i class="fas fa-check-circle mr-2" aria-hidden="true"></i>Emergency request sent.</p>' +
-      '<p class="mt-1 text-sm">The team has been notified. If you don’t hear back within a few minutes, please call ' +
+      '<p class="font-bold"><i class="fas fa-check-circle mr-2" aria-hidden="true"></i>' + copy("sent") + '</p>' +
+      '<p class="mt-1 text-sm">' + copy("receipt") +
       '<a class="font-bold underline" href="' + PHONE_TEL + '">' + PHONE_DISPLAY + "</a>.</p>";
     form.replaceWith(panel);
   }
@@ -71,9 +114,33 @@
     if (!dispatchStatus) return;
     dispatchStatus.setAttribute("role", "alert");
     dispatchStatus.innerHTML =
-      'Something went wrong sending your request. Please call <a class="font-bold underline" href="' +
-      PHONE_TEL + '">' + PHONE_DISPLAY + "</a> — emergencies are answered 24/7.";
+      copy("failed") + '<a class="font-bold underline" href="' +
+      PHONE_TEL + '">' + PHONE_DISPLAY + "</a>.";
   }
+
+  // Keep native constraints, with page-language feedback even when the
+  // browser's own interface uses a different language. Clear custom errors
+  // on edits so a corrected value can pass the same native validation.
+  form.addEventListener("invalid", function (event) {
+    var field = event.target;
+    if (field && field.setCustomValidity) {
+      field.setCustomValidity("");
+      var key = field.validity && field.validity.valueMissing ? "required" : field.name;
+      field.setCustomValidity(copy(key) || copy("invalid"));
+    }
+    if (dispatchStatus) {
+      dispatchStatus.setAttribute("role", "alert");
+      dispatchStatus.textContent = copy("validation");
+    }
+  }, true);
+
+  function clearValidation(event) {
+    if (event.target && event.target.setCustomValidity) {
+      event.target.setCustomValidity("");
+    }
+  }
+  form.addEventListener("input", clearValidation);
+  form.addEventListener("change", clearValidation);
 
   function fetchWithTimeout(url, options) {
     var controller = new AbortController();
@@ -133,7 +200,7 @@
     if (button) {
       button.disabled = true;
       button.setAttribute("aria-busy", "true");
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      button.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> ' + copy("sending");
     }
     form.setAttribute("aria-busy", "true");
     if (dispatchStatus) {

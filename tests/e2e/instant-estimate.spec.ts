@@ -42,6 +42,8 @@ const mockWeb3Forms = async (page: import('@playwright/test').Page) => {
 
 const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
   await page.goto('/', { waitUntil: 'load' });
+  await page.fill('#instantName', 'Test Lead');
+  await page.fill('#instantPhone', '815-555-0100');
   await page.fill('#propertyAddress', '1234 Main St, DeKalb');
   await page.locator('#isOwner').evaluate((checkbox) => {
     const input = checkbox as HTMLInputElement;
@@ -49,8 +51,11 @@ const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
     input.dispatchEvent(new Event('change', { bubbles: true }));
   });
   await page.selectOption('#serviceType', 'tree-service');
-  await page.selectOption('#propertySize', 'medium');
   await page.fill('#zipCode', '60115');
+  await page.locator('#quoteForm details').evaluate((details) => {
+    (details as HTMLDetailsElement).open = true;
+  });
+  await page.selectOption('#propertySize', 'medium');
   await page.selectOption('#instantBestTime', 'evening');
   await page.click('#calculateQuoteBtn');
   await expect(page.locator('#quoteResult')).toBeVisible();
@@ -58,6 +63,57 @@ const fillInstantEstimator = async (page: import('@playwright/test').Page) => {
 };
 
 test.describe('Instant estimate lead handoff', () => {
+  test('instant estimate can submit directly without the contact form', async ({ page }) => {
+    let submittedBody: string | null = null;
+    await page.route('**/api.web3forms.com/**', async (route) => {
+      submittedBody = route.request().postData();
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await fillInstantEstimator(page);
+    await page.click('#sendInstantRequestBtn');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalMessage')).toContainText('estimate request was sent');
+    expect(submittedBody).toContain('Test Lead');
+    expect(submittedBody).toContain('815-555-0100');
+    expect(submittedBody).toContain('tree-service');
+    expect(submittedBody).toContain('60115');
+  });
+
+  for (const body of ['{}', 'not-json', '{"success":false}', '{"success":"true"}']) {
+    test(`instant request does not report success for invalid provider receipt ${body}`, async ({ page }) => {
+      await page.route('**/api.web3forms.com/**', (route) => route.fulfill({
+        status: 200, contentType: 'application/json', body,
+      }));
+      await fillInstantEstimator(page);
+      await page.click('#sendInstantRequestBtn');
+      await expect(page.locator('#customModal')).toBeVisible();
+      await expect(page.locator('#modalMessage')).not.toContainText('request was sent');
+      await expect(page.locator('#modalMessage')).toContainText('(815) 501-1478');
+      await expect(page.locator('#instantName')).toHaveValue('Test Lead');
+      await expect(page.locator('#sendInstantRequestBtn')).toBeEnabled();
+    });
+  }
+
+  test('direct request uses edited service choices instead of an old estimate', async ({ page }) => {
+    const captured = await mockWeb3Forms(page);
+    await fillInstantEstimator(page);
+    await page.selectOption('#serviceType', 'lawn-care');
+    await page.fill('#zipCode', '60178');
+    await page.click('#sendInstantRequestBtn');
+    await expect(page.locator('#modalMessage')).toContainText('request was sent');
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('lawn-care');
+    expect(captured.bodies[0]).toContain('ZIP 60178');
+    expect(captured.bodies[0]).not.toContain('ZIP 60115');
+    await expect(page.locator('#contactService')).toHaveValue('lawn-care');
+  });
+
   test('send button prefills the contact form with estimator data', async ({ page }) => {
     await fillInstantEstimator(page);
     await page.click('#sendEstimateBtn');
@@ -123,7 +179,12 @@ test.describe('Instant estimate lead handoff', () => {
 
   test('starter requires the property address and owner confirmation', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.fill('#instantName', 'Test Lead');
+    await page.fill('#instantPhone', '815-555-0100');
     await page.selectOption('#serviceType', 'tree-service');
+    await page.locator('#quoteForm details').evaluate((details) => {
+      (details as HTMLDetailsElement).open = true;
+    });
     await page.selectOption('#propertySize', 'medium');
     await page.fill('#zipCode', '60115');
     await page.click('#calculateQuoteBtn');

@@ -6,7 +6,7 @@
     <title>DeKalb Tree Removal &amp; Landscaping | Hernandez Landscape</title>
     <meta
       name="description"
-      content="Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured. Free estimates: (815) 501-1478."
+      content="Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland. Free estimates in English or Spanish: (815) 501-1478."
     />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <!-- Open Graph meta tags for social media -->
@@ -16,7 +16,7 @@
     />
     <meta
       property="og:description"
-      content="Tree service, lawn care, landscaping, cleanup, and snow removal for DeKalb County homeowners. Family-owned, licensed, insured, and bilingual."
+      content="Tree service, lawn care, landscaping, cleanup, and snow removal for DeKalb County homeowners. Family-owned and bilingual."
     />
     <meta
       property="og:image"
@@ -53,9 +53,39 @@
     />
 
     <link rel="canonical" href="https://hernandezlandscapeservices.com/" />
-    <link rel="alternate" hreflang="en" href="https://hernandezlandscapeservices.com/" />
-    <link rel="alternate" hreflang="es" href="https://hernandezlandscapeservices.com/es/" />
-    <link rel="alternate" hreflang="x-default" href="https://hernandezlandscapeservices.com/" />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://hernandezlandscapeservices.com/"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://hernandezlandscapeservices.com/es/"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://hernandezlandscapeservices.com/"
+    />
+
+    <!-- LCP hero: preload the active breakpoint asset -->
+    <link
+      rel="preload"
+      as="image"
+      href="/hernandez_images/web_hero_mobile.webp"
+      type="image/webp"
+      media="(max-width: 767px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="/hernandez_images/web_hero_desktop.webp"
+      type="image/webp"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    />
 
     <!-- Favicon links -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -119,9 +149,8 @@
               <p class="text-lg font-bold text-gray-800 leading-tight">
                 Hernandez Landscape
               </p>
-              <!-- LICENSE_NUMBER: Owner to confirm Illinois SOS file number before displaying publicly -->
               <p class="text-xs text-gray-600 hidden md:block">
-                Licensed & Insured LLC
+                DeKalb County landscape and tree service
               </p>
             </div>
           </div>
@@ -279,18 +308,34 @@
       class="site-hero relative min-h-screen flex items-center text-white pt-28 pb-24 md:pt-32 md:pb-28"
     >
       <!-- Background Image with Overlay: tree hero on mobile, wideshot on desktop -->
-      <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 z-0 overflow-hidden">
         <picture class="block h-full w-full">
           <source
             media="(min-width: 768px)"
+            type="image/webp"
+            srcset="hernandez_images/web_hero_desktop.webp"
+            width="1200"
+            height="868"
+          />
+          <source
+            media="(min-width: 768px)"
+            type="image/jpeg"
             srcset="hernandez_images/web_hero_desktop.jpg"
+            width="1200"
+            height="868"
+          />
+          <source
+            type="image/webp"
+            srcset="hernandez_images/web_hero_mobile.webp"
+            width="900"
+            height="1200"
           />
           <img
             src="hernandez_images/web_hero_mobile.jpg"
             alt="Hernandez Landscape crew working on residential landscaping and tree care"
             class="h-full w-full object-cover"
-            width="1200"
-            height="1600"
+            width="900"
+            height="1200"
             fetchpriority="high"
             decoding="async"
           />
@@ -302,9 +347,9 @@
 
       <div class="container mx-auto px-4 relative z-10 pt-10 md:pt-16">
         <div class="hero-content max-w-4xl">
-          <!-- 24/7 emergency tree service strip (SEO_AUDIT_PLAN P0-6) -->
+          <!-- Storm-damage service availability -->
           <div
-            class="emergency-strip mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center"
+            class="emergency-strip hero-enter mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center"
           >
             <p class="font-bold text-white">
               <i
@@ -312,7 +357,7 @@
                 aria-hidden="true"
               ></i
               ><span data-i18n-key="hero.emergency"
-                >Storm damage? 24/7 emergency tree service</span
+                >Storm damage? Call about tree service availability</span
               >
             </p>
             <a
@@ -322,9 +367,15 @@
                 >Call (815) 501-1478</span
               ></a
             >
+            <a
+              href="/emergency-tree-removal/"
+              class="rounded-full border border-white/40 bg-black/30 px-5 py-2 font-bold text-white transition hover:bg-black/50"
+              data-i18n-key="hero.emergencyPage"
+              >Emergency tree help</a
+            >
           </div>
           <p
-            class="hero-eyebrow mb-5 inline-flex items-center gap-2 text-sm font-bold uppercase"
+            class="hero-eyebrow hero-enter hero-enter-delay-1 mb-5 inline-flex items-center gap-2 text-sm font-bold uppercase"
           >
             <i class="fas fa-location-dot" aria-hidden="true"></i>
             <span data-i18n-key="hero.eyebrow"
@@ -332,7 +383,7 @@
             >
           </p>
           <h1
-            class="hero-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 leading-tight"
+            class="hero-heading hero-enter hero-enter-delay-2 text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 leading-tight"
           >
             <span class="block text-white" data-i18n-key="hero.transform"
               >Tree Removal, Lawn Care &amp;</span
@@ -343,7 +394,7 @@
           </h1>
 
           <p
-            class="hero-subtitle text-lg md:text-2xl mb-10 md:mb-12 max-w-2xl text-gray-100 font-medium"
+            class="hero-subtitle hero-enter hero-enter-delay-3 text-lg md:text-2xl mb-10 md:mb-12 max-w-2xl text-gray-100 font-medium"
             data-i18n-key="hero.subtitle"
           >
             Tree trimming, removal, lawn care, and landscaping from a
@@ -352,7 +403,7 @@
           </p>
 
           <div
-            class="hero-actions flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-8"
+            class="hero-actions hero-enter hero-enter-delay-4 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-8"
           >
             <a
               href="#instant-quote"
@@ -375,34 +426,40 @@
 
           <!-- Trust Badges -->
           <div
-            class="hero-trust-grid mt-12 md:mt-16 flex flex-wrap items-center gap-3 sm:gap-5"
+            class="hero-trust-grid hero-enter hero-enter-delay-5 mt-12 md:mt-16 flex flex-wrap items-center gap-3 sm:gap-5"
           >
-            <div
-              class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
-            >
-              <i
-                class="fas fa-shield-alt text-green-400 mr-2.5"
-                aria-hidden="true"
-              ></i>
-              <span
-                class="text-sm font-medium tracking-wide text-gray-100"
-                data-i18n-key="hero.insured"
-                >Fully Insured</span
+            <details class="trust-chip-details">
+              <summary
+                class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
               >
-            </div>
-            <div
-              class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
-            >
-              <i
-                class="fas fa-certificate text-green-400 mr-2.5"
-                aria-hidden="true"
-              ></i>
-              <span
-                class="text-sm font-medium tracking-wide text-gray-100"
-                data-i18n-key="hero.licensed"
-                >Licensed LLC</span
+                <i
+                  class="fas fa-shield-alt text-green-400 mr-2.5"
+                  aria-hidden="true"
+                ></i>
+                <span
+                  class="text-sm font-medium tracking-wide text-gray-100"
+                  data-i18n-key="hero.insured"
+                  >Project Details</span
+                >
+              </summary>
+              <div class="trust-tip" data-i18n-key="hero.insured.tip">Discuss the work, property access, and cleanup with our team before confirming your project.</div>
+            </details>
+            <details class="trust-chip-details">
+              <summary
+                class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
               >
-            </div>
+                <i
+                  class="fas fa-certificate text-green-400 mr-2.5"
+                  aria-hidden="true"
+                ></i>
+                <span
+                  class="text-sm font-medium tracking-wide text-gray-100"
+                  data-i18n-key="hero.licensed"
+                  >Local Crew</span
+                >
+              </summary>
+              <div class="trust-tip" data-i18n-key="hero.licensed.tip">Hernandez Landscape & Tree Service LLC serves DeKalb County. Call to discuss your property and the service you need.</div>
+            </details>
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
@@ -449,7 +506,7 @@
 
     <section id="services" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 reveal">
           <h2 class="text-4xl font-bold mb-4" data-i18n-key="services.heading">
             Our Professional Services
           </h2>
@@ -458,9 +515,9 @@
           </p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-8 reveal-stagger">
           <div
-            class="service-card bg-white rounded-lg overflow-hidden shadow-lg"
+            class="service-card reveal bg-white rounded-lg overflow-hidden shadow-lg"
           >
             <div class="h-48 overflow-hidden">
               <img
@@ -514,7 +571,7 @@
           </div>
 
           <div
-            class="service-card bg-white rounded-lg overflow-hidden shadow-lg"
+            class="service-card reveal bg-white rounded-lg overflow-hidden shadow-lg"
           >
             <div class="h-48 overflow-hidden">
               <img
@@ -555,7 +612,7 @@
                 <li>
                   <i class="fas fa-check text-green-600 mr-2"></i
                   ><span data-i18n-key="services.tree.item4"
-                    >24/7 emergency service</span
+                    >Storm-damage tree service requests</span
                   >
                 </li>
               </ul>
@@ -570,7 +627,7 @@
           </div>
 
           <div
-            class="service-card bg-white rounded-lg overflow-hidden shadow-lg"
+            class="service-card reveal bg-white rounded-lg overflow-hidden shadow-lg"
           >
             <div class="h-48 bg-green-800 flex items-center justify-center">
               <img
@@ -817,22 +874,19 @@
     <!-- Why Choose Us Section -->
     <section id="why-choose-us" class="py-16 bg-white">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 reveal">
           <h2 class="text-4xl font-bold mb-4" data-i18n-key="whyChoose.heading">
             Why Choose Hernandez?
           </h2>
           <p
             class="text-xl text-gray-600 max-w-2xl mx-auto"
             data-i18n-key="whyChoose.subheading"
-          >
-            Local, insured, and built around clear communication from the
-            first estimate to the final cleanup.
-          </p>
+          >A local crew with clear communication from the first estimate through cleanup.</p>
         </div>
 
-        <div class="grid md:grid-cols-4 gap-6 mb-12">
+        <div class="grid md:grid-cols-4 gap-6 mb-12 reveal-stagger">
           <div
-            class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
+            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
           >
             <div
               class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -851,7 +905,7 @@
           </div>
 
           <div
-            class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
+            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
           >
             <div
               class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -870,7 +924,7 @@
           </div>
 
           <div
-            class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
+            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
           >
             <div
               class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -889,7 +943,7 @@
           </div>
 
           <div
-            class="text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
+            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
           >
             <div
               class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
@@ -910,15 +964,15 @@
         </div>
 
         <!-- What to Expect Process -->
-        <div class="bg-green-50 rounded-lg p-8">
+        <div class="bg-green-50 rounded-lg p-8 reveal">
           <h3
             class="text-2xl font-bold text-center mb-8"
             data-i18n-key="whyChoose.process.heading"
           >
             What to Expect
           </h3>
-          <div class="grid md:grid-cols-4 gap-8">
-            <div class="text-center">
+          <div class="grid md:grid-cols-4 gap-8 reveal-stagger">
+            <div class="reveal text-center">
               <div
                 class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
               >
@@ -937,7 +991,7 @@
                 Fill out our form or call us directly
               </p>
             </div>
-            <div class="text-center">
+            <div class="reveal text-center">
               <div
                 class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
               >
@@ -956,7 +1010,7 @@
                 We visit your property to understand your needs
               </p>
             </div>
-            <div class="text-center">
+            <div class="reveal text-center">
               <div
                 class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
               >
@@ -975,7 +1029,7 @@
                 Receive a detailed, no-surprise estimate
               </p>
             </div>
-            <div class="text-center">
+            <div class="reveal text-center">
               <div
                 class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
               >
@@ -1011,14 +1065,46 @@
           class="text-center text-gray-600 mb-8 max-w-xl mx-auto"
           data-i18n-key="instant.subtitle"
         >
-          Use this quick starter to fill the final quote form below. Nothing is
-          sent until you submit the final request.
+          Enter a few details for a starting range, then send your request in
+          one step. Final pricing is confirmed on site.
         </p>
 
         <div
-          class="instant-card max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg"
+          class="instant-card reveal max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg"
         >
-          <!-- Trust indicators -->
+          <!-- Trust / proof rail beside the quote action -->
+          <div
+            class="mb-6 rounded-lg border border-green-200 bg-white p-4 text-sm text-gray-700"
+            data-proof-rail
+          >
+            <ul class="grid gap-2 sm:grid-cols-2">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-shield-alt mt-0.5 text-green-700" aria-hidden="true"></i>
+                <span data-i18n-key="instant.proof.insured"
+                  >Local DeKalb County crew</span
+                >
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-clock mt-0.5 text-green-700" aria-hidden="true"></i>
+                <span data-i18n-key="instant.proof.response"
+                  >Availability confirmed by our team</span
+                >
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-star mt-0.5 text-green-700" aria-hidden="true"></i>
+                <span data-i18n-key="instant.proof.review"
+                  >Request first; appointment confirmed separately</span
+                >
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-language mt-0.5 text-green-700" aria-hidden="true"></i>
+                <span data-i18n-key="instant.proof.bilingual"
+                  >Estimates in English or Spanish</span
+                >
+              </li>
+            </ul>
+          </div>
+
           <div
             class="flex flex-wrap justify-center gap-4 mb-6 text-sm text-gray-600"
           >
@@ -1037,6 +1123,52 @@
           </div>
           <form id="quoteForm">
             <div class="space-y-4">
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label
+                    for="instantName"
+                    class="block text-gray-700 font-semibold mb-2"
+                    data-i18n-key="instant.label.name"
+                    >Your Name</label
+                  >
+                  <input
+                    type="text"
+                    id="instantName"
+                    name="name"
+                    autocomplete="name"
+                    maxlength="100"
+                    minlength="2"
+                    required
+                    class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                    data-i18n-placeholder="instant.placeholder.name"
+                    placeholder="Full name"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="instantPhone"
+                    class="block text-gray-700 font-semibold mb-2"
+                    data-i18n-key="instant.label.phone"
+                    >Mobile Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="instantPhone"
+                    name="phone"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="25"
+                    pattern="^\+?[0-9 \(\)\-]{10,}$"
+                    title="Enter a valid phone number"
+                    required
+                    class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                    data-i18n-placeholder="instant.placeholder.phone"
+                    data-i18n-title="instant.title.phone"
+                    placeholder="Your mobile number"
+                  />
+                </div>
+              </div>
+
               <!-- Anti-Scam: Property Address -->
               <div>
                 <label
@@ -1143,6 +1275,35 @@
 
               <div>
                 <label
+                  for="zipCode"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.zip"
+                  >Your ZIP Code</label
+                >
+                <input
+                  type="text"
+                  id="zipCode"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  maxlength="10"
+                  placeholder="e.g., 60115"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                  pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
+                  title="Enter a valid 5-digit ZIP code"
+                  required
+                  data-i18n-placeholder="instant.placeholder.zip"
+                  data-i18n-title="instant.title.zip"
+                />
+              </div>
+
+              <details class="rounded-lg border border-gray-200 bg-white p-4">
+                <summary
+                  class="cursor-pointer font-semibold text-gray-800"
+                  data-i18n-key="instant.optional.summary"
+                >Optional details (property size & callback preference)</summary>
+                <div class="mt-4 space-y-4">
+              <div>
+                <label
                   for="propertySize"
                   class="block text-gray-700 font-semibold mb-2"
                   data-i18n-key="instant.label.propertySize"
@@ -1151,7 +1312,6 @@
                 <select
                   id="propertySize"
                   class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                  required
                 >
                   <option
                     value=""
@@ -1188,29 +1348,6 @@
 
               <div>
                 <label
-                  for="zipCode"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.zip"
-                  >Your ZIP Code</label
-                >
-                <input
-                  type="text"
-                  id="zipCode"
-                  inputmode="numeric"
-                  autocomplete="postal-code"
-                  maxlength="10"
-                  placeholder="e.g., 60115"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                  pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
-                  title="Enter a valid 5-digit ZIP code"
-                  required
-                  data-i18n-placeholder="instant.placeholder.zip"
-                  data-i18n-title="instant.title.zip"
-                />
-              </div>
-
-              <div>
-                <label
                   for="instantBestTime"
                   class="block text-gray-700 font-semibold mb-2"
                   data-i18n-key="instant.label.bestTime"
@@ -1225,6 +1362,8 @@
                   <option value="evening" data-i18n-key="quote.time.evening">Evening</option>
                 </select>
               </div>
+                </div>
+              </details>
 
               <button
                 type="submit"
@@ -1234,12 +1373,20 @@
               >
                 See Starting Range
               </button>
+              <button
+                type="button"
+                id="sendInstantRequestBtn"
+                class="w-full bg-green-800 text-white py-3 rounded-lg font-bold hover:bg-green-900 transition"
+                data-i18n-key="instant.button.send"
+              >
+                Send Free Estimate Request
+              </button>
               <p
                 class="text-xs text-gray-500 text-center mt-3"
                 data-i18n-key="instant.privacy"
               >
-                <i class="fas fa-lock mr-1"></i>This starter does not send a
-                message. Review and submit the final quote form below.
+                <i class="fas fa-lock mr-1"></i>Send Free Estimate Request
+                submits your lead now. Starting range is optional guidance only.
               </p>
             </div>
           </form>
@@ -1269,11 +1416,11 @@
             <button
               type="button"
               id="sendEstimateBtn"
-              class="mt-4 mr-3 inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition"
+              class="mt-4 mr-3 inline-block bg-white text-green-800 border-2 border-green-600 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
             >
-              <i class="fas fa-paper-plane"></i>
+              <i class="fas fa-arrow-down"></i>
               <span data-i18n-key="instant.result.send"
-                >Continue to Final Quote Form</span
+                >Add more details below</span
               >
             </button>
             <a
@@ -1292,7 +1439,7 @@
 
     <section id="gallery" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 reveal">
           <h2 class="text-4xl font-bold mb-4" data-i18n-key="gallery.heading">
             See The Difference We Make
           </h2>
@@ -1302,7 +1449,7 @@
         </div>
 
         <!-- Before/After Slider Section -->
-        <div class="mb-20">
+        <div class="mb-20 reveal">
           <div class="before-after-container mb-8">
             <div class="before-after-slider" id="beforeAfterSlider">
               <img
@@ -1336,9 +1483,10 @@
               ></div>
             </div>
           </div>
+          <p class="before-after-story" data-i18n-key="gallery.featured.story"><strong>Before and after</strong> — compare the yard photos using the slider.</p>
           <p
             id="homepageComparisonInstructions"
-            class="text-center text-sm text-gray-500"
+            class="text-center text-sm text-gray-500 mt-3"
             data-i18n-key="gallery.featured.instructions"
           >
             Drag the handle or use the arrow keys to compare the before and after photos.
@@ -1457,13 +1605,25 @@
         </div>
 
         <div
-          class="flex justify-center mt-12 px-4 sm:px-0"
+          class="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4 sm:px-0"
         >
           <a
             href="/gallery/"
             class="bg-green-600 border-2 border-transparent text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center"
           >
             <i class="fas fa-images mr-2"></i> View Full Gallery
+          </a>
+          <a
+            href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-blue-600 border-2 border-transparent text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"
+            aria-label="See more projects on Facebook"
+          >
+            <i class="fab fa-facebook mr-2"></i>
+            <span data-i18n-key="gallery.facebookCta"
+              >See More on Facebook</span
+            >
           </a>
         </div>
       </div>
@@ -1605,20 +1765,17 @@
 
     <section id="testimonials" class="py-16 bg-gray-50">
       <div class="container mx-auto px-4">
-        <div class="mx-auto max-w-3xl text-center">
+        <div class="mx-auto max-w-3xl text-center reveal">
           <h2
             class="text-4xl font-bold mb-4"
             data-i18n-key="testimonials.heading"
           >
-            What We Aim to Deliver
+            Featured Customer Feedback
           </h2>
           <p
             class="text-lg text-gray-600 mb-12"
             data-i18n-key="testimonials.subheading"
-          >
-            One customer comment from a directory listing, plus the service
-            standards we hold ourselves to on every job.
-          </p>
+          >A published customer review from a third-party business directory, with a link to the source.</p>
         </div>
 
         <div class="grid gap-6 lg:grid-cols-2">
@@ -1627,18 +1784,18 @@
               class="mb-6 flex flex-wrap items-center justify-between gap-4"
             >
               <span
-                class="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-sm font-semibold text-gray-700"
+                class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800"
               >
-                <i class="fas fa-quote-left text-gray-500" aria-hidden="true"></i>
+                <i class="fas fa-star text-amber-500" aria-hidden="true"></i>
                 <span data-i18n-key="testimonials.badge"
-                  >Customer comment</span
+                  >Published customer feedback</span
                 >
               </span>
               <p
                 class="text-sm font-medium text-gray-500"
                 data-i18n-key="testimonials.reviewLabel"
               >
-                beautifullandscapes.net · June 19
+                Published June 19
               </p>
             </div>
 
@@ -1671,9 +1828,7 @@
                   <p
                     class="text-sm text-gray-600"
                     data-i18n-key="testimonials.reviewMeta"
-                  >
-                    Comment from beautifullandscapes.net directory listing.
-                  </p>
+                  >Customer feedback published in the Beautiful Landscapes directory.</p>
                 </div>
               </div>
 
@@ -1684,7 +1839,7 @@
                 class="testimonial-source-link inline-flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800"
               >
                 <span data-i18n-key="testimonials.reviewSource"
-                  >View source</span
+                  >View source review</span
                 >
                 <i
                   class="fas fa-arrow-up-right-from-square text-xs"
@@ -1700,7 +1855,7 @@
                 class="mb-4 text-xl font-bold"
                 data-i18n-key="testimonials.supportTitle"
               >
-                What we commit to on every job
+                What local homeowners want confirmed before they call
               </h3>
               <ul class="space-y-4 text-gray-700">
                 <li class="flex items-start gap-3">
@@ -1709,7 +1864,7 @@
                     aria-hidden="true"
                   ></i>
                   <span data-i18n-key="testimonials.support1"
-                    >Showing up when scheduled or texting if we are running late</span
+                    >A clear response on pricing and next steps</span
                   >
                 </li>
                 <li class="flex items-start gap-3">
@@ -1718,7 +1873,7 @@
                     aria-hidden="true"
                   ></i>
                   <span data-i18n-key="testimonials.support2"
-                    >Clear pricing and next steps before work begins</span
+                    >Clean finish and detail-focused work on-site</span
                   >
                 </li>
                 <li class="flex items-start gap-3">
@@ -1943,14 +2098,10 @@
           <details class="faq-item">
             <summary>
               <span data-i18n-key="faq.q2"
-                >Is Hernandez Landscape & Tree Service licensed and insured?</span
+                >What should we confirm before work begins?</span
               >
             </summary>
-            <!-- LICENSE_NUMBER: Owner to confirm Illinois SOS file number before displaying publicly -->
-            <p data-i18n-key="faq.a2">
-              Yes, we are a fully licensed and insured LLC, protecting your
-              property during all tree and landscaping work.
-            </p>
+            <p data-i18n-key="faq.a2">Discuss the work, site access, cleanup, pricing, and any insurance documentation you need with our team before confirming the project.</p>
           </details>
           <details class="faq-item">
             <summary>
@@ -1970,10 +2121,7 @@
                 >Do you offer emergency tree removal services?</span
               >
             </summary>
-            <p data-i18n-key="faq.a4">
-              Yes, we offer 24/7 emergency tree service for fallen or hazardous
-              trees that pose an immediate threat to your home or property.
-            </p>
+            <p data-i18n-key="faq.a4">Call to discuss a fallen or hazardous tree and confirm whether the team is available. A website request does not confirm dispatch or an arrival time. If there is immediate danger or contact with power lines, call emergency services first.</p>
           </details>
           <details class="faq-item">
             <summary>
@@ -2020,9 +2168,7 @@
                 >
                   <i class="fas fa-phone text-2xl"></i>
                   <div class="min-w-0">
-                    <p class="font-semibold" data-i18n-key="quote.phoneLabel">
-                      Call
-                    </p>
+                    <p class="font-semibold" data-i18n-key="quote.phoneLabel">Call</p>
                     <p class="text-xl break-words">(815) 501-1478</p>
                   </div>
                 </a>
@@ -2075,6 +2221,21 @@
                 </div>
               </div>
 
+              <div>
+                <p class="font-semibold mb-3" data-i18n-key="quote.followLabel">
+                  Follow Us
+                </p>
+                <a
+                  href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-block bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition"
+                  aria-label="Visit our Facebook page"
+                >
+                  <i class="fab fa-facebook mr-2"></i>
+                  <span data-i18n-key="quote.facebook">Facebook</span>
+                </a>
+              </div>
             </div>
 
             <div class="bg-white text-gray-800 p-6 rounded-lg">
@@ -2086,13 +2247,30 @@
               </h3>
               <p
                 id="quoteFormHelper"
-                class="mb-5 text-sm leading-relaxed text-gray-600"
+                class="mb-4 text-sm leading-relaxed text-gray-600"
                 data-i18n-key="quote.formHelper"
+              >Tell us what you need and your preferred callback time. This is an estimate request, not a confirmed appointment. Our team will confirm availability and timing. There is no obligation.</p>
+              <ul
+                class="mb-5 grid gap-2 rounded-lg border border-green-100 bg-green-50 p-4 text-sm text-green-950 sm:grid-cols-2"
+                data-proof-rail
               >
-                Tell us what you need and your preferred callback time. This is
-                an estimate request, not a confirmed appointment. Our team will
-                confirm availability and timing. There is no obligation.
-              </p>
+                <li>
+                  <i class="fas fa-shield-alt mr-1 text-green-700" aria-hidden="true"></i>
+                  <span data-i18n-key="instant.proof.insured">Local DeKalb County crew</span>
+                </li>
+                <li>
+                  <i class="fas fa-star mr-1 text-green-700" aria-hidden="true"></i>
+                  <span data-i18n-key="instant.proof.review">Request first; appointment confirmed separately</span>
+                </li>
+                <li>
+                  <i class="fas fa-clock mr-1 text-green-700" aria-hidden="true"></i>
+                  <span data-i18n-key="instant.proof.response">Availability confirmed by our team</span>
+                </li>
+                <li>
+                  <i class="fas fa-phone mr-1 text-green-700" aria-hidden="true"></i>
+                  <span data-i18n-key="quote.proof.call">Prefer to talk? Call (815) 501-1478</span>
+                </li>
+              </ul>
 
               <form
                 id="contactForm"
@@ -2259,18 +2437,9 @@
                     <option value="" data-i18n-key="quote.time.placeholder">
                       Best time to call back?
                     </option>
-                    <option value="morning" data-i18n-key="quote.time.morning">
-                      Morning
-                    </option>
-                    <option
-                      value="afternoon"
-                      data-i18n-key="quote.time.afternoon"
-                    >
-                      Afternoon
-                    </option>
-                    <option value="evening" data-i18n-key="quote.time.evening">
-                      Evening
-                    </option>
+                    <option value="morning" data-i18n-key="quote.time.morning">Morning</option>
+                    <option value="afternoon" data-i18n-key="quote.time.afternoon">Afternoon</option>
+                    <option value="evening" data-i18n-key="quote.time.evening">Evening</option>
                   </select>
 
                   <label
@@ -2420,11 +2589,11 @@
               Transforming outdoor spaces in DeKalb County with professional
               craftsmanship and family values since 2019.
             </p>
-            <!-- LICENSE_NUMBER: Owner to confirm Illinois SOS file number before displaying publicly -->
             <div class="pt-2">
-              <p class="text-green-500 font-semibold text-sm">
-                Licensed & Insured LLC
+              <p class="text-green-500 font-semibold text-sm" data-i18n-key="footer.insured">
+                Local DeKalb County crew
               </p>
+              <p class="text-gray-500 text-xs" data-i18n-key="footer.authorization">Estimates in English or Spanish</p>
             </div>
           </div>
 
@@ -2440,7 +2609,7 @@
               <li>
                 <a
                   href="/"
-                  class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
+                  class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
                   ></i>
@@ -2450,7 +2619,7 @@
               <li>
                 <a
                   href="#services"
-                  class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
+                  class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
                   ></i>
@@ -2460,7 +2629,7 @@
               <li>
                 <a
                   href="/gallery/"
-                  class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
+                  class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
                   ></i>
@@ -2470,7 +2639,7 @@
               <li>
                 <a
                   href="/videos/"
-                  class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
+                  class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
                   ></i>
@@ -2480,7 +2649,7 @@
               <li>
                 <a
                   href="#quote"
-                  class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"
+                  class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
                   ><i
                     class="fas fa-chevron-right text-green-600 text-xs mr-2"
                   ></i>
@@ -2675,6 +2844,7 @@
 
     <script src="assets/js/i18n.js" defer></script>
     <script src="assets/js/main.js" defer></script>
+    <script src="/assets/js/motion.js" defer></script>
     <script src="assets/js/static-gallery.js?v=2026-07-google-photos" defer></script>
 
     <script type="application/ld+json">
@@ -2685,7 +2855,7 @@
             "@type": "HomeAndConstructionBusiness",
             "@id": "https://hernandezlandscapeservices.com/#organization",
             "name": "Hernandez Landscape & Tree Service LLC",
-            "description": "Professional landscaping, tree trimming, safe tree removal, lawn care, cleanup, and snow removal in DeKalb County, IL. Family-owned, licensed, insured, and bilingual.",
+            "description": "Professional landscaping, tree trimming, safe tree removal, lawn care, cleanup, and snow removal in DeKalb County, IL. Family-owned and bilingual.",
             "image": [
               "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-branded-truck-trailers.jpg",
               "https://hernandezlandscapeservices.com/hernandez_images/google-profile-2026-tree-climber-canopy.jpg",
@@ -2925,7 +3095,7 @@
             "@id": "https://hernandezlandscapeservices.com/#webpage",
             "url": "https://hernandezlandscapeservices.com/",
             "name": "DeKalb Tree Removal & Landscaping | Hernandez Landscape",
-            "description": "Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland, IL. Family-owned, licensed, and insured. Free estimates: (815) 501-1478.",
+            "description": "Tree removal, lawn care, and landscaping in DeKalb, Sycamore, and Cortland. Free estimates in English or Spanish: (815) 501-1478.",
             "isPartOf": {
               "@id": "https://hernandezlandscapeservices.com/#website"
             },
@@ -2955,10 +3125,10 @@
               },
               {
                 "@type": "Question",
-                "name": "Is Hernandez Landscape & Tree Service licensed and insured?",
+                "name": "What should we confirm before work begins?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes, we are a fully licensed and insured LLC, protecting your property during all tree and landscaping work."
+                  "text": "Discuss the work, site access, cleanup, pricing, and any insurance documentation you need with our team before confirming the project."
                 }
               },
               {
@@ -2974,7 +3144,7 @@
                 "name": "Do you offer emergency tree removal services?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Yes, we offer 24/7 emergency tree service for fallen or hazardous trees that pose an immediate threat to your home or property."
+                  "text": "Call to discuss a fallen or hazardous tree and confirm whether the team is available. A website request does not confirm dispatch or an arrival time. If there is immediate danger or contact with power lines, call emergency services first."
                 }
               },
               {

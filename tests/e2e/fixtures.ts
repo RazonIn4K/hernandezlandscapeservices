@@ -9,7 +9,7 @@ export const test = base.extend<{ blockExternalAnalytics: void }>({
   blockExternalAnalytics: [
     async ({ page }, use) => {
       await page.route(
-        /https:\/\/(?:www\.)?(?:googletagmanager\.com|google-analytics\.com)\//,
+        /https:\/\/(?:www\.)?(?:googletagmanager\.com|google-analytics\.com|umami-amqlqzvkhq-uc\.a\.run\.app)\//,
         (route) => route.abort(),
       );
       await use();
