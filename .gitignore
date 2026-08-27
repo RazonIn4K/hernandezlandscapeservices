@@ -18,6 +18,7 @@ test_*.js
 !docs/MEDIA-WORKFLOW.md
 !docs/GITLAB-CI.md
 !docs/WEBSITE-AUDIT-2026-07-09.md
+!docs/ARCHITECTURE.md
 
 # Raw media (local only — optimized output lives in hernandez_images/)
 iCloud Photos/

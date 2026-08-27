@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Hernandez Landscape Services",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1320,
+      900
+    ],
+    "views": [
+      {
+        "id": "lead-path",
+        "label": "Pages to Web3Forms",
+        "focus": [
+          "visitor",
+          "github-pages",
+          "static-site",
+          "web3forms"
+        ],
+        "note": "Visitor HTTPS to GitHub Pages, static HTML, then POST to Web3Forms."
+      },
+      {
+        "id": "analytics",
+        "label": "GTM and Umami",
+        "focus": [
+          "static-site",
+          "gtm",
+          "umami"
+        ],
+        "note": "Client beacons to Google Tag Manager GTM-NJ4DPSC9 and Umami on Cloud Run."
+      },
+      {
+        "id": "billing",
+        "label": "Stripe billing",
+        "focus": [
+          "static-site",
+          "stripe"
+        ],
+        "note": "pricing.html and /pay/* redirect to Stripe payment links."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "visitor",
+      "type": "frontend",
+      "label": "Visitor",
+      "sublabel": "Browser",
+      "pos": [
+        40,
+        392
+      ],
+      "size": [
+        120,
+        56
+      ]
+    },
+    {
+      "id": "github-pages",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "hernandezlandscapeservices.com",
+      "brand": "github",
+      "pos": [
+        220,
+        380
+      ],
+      "size": [
+        230,
+        80
+      ]
+    },
+    {
+      "id": "static-site",
+      "type": "frontend",
+      "label": "Static HTML/CSS/JS",
+      "sublabel": "Tailwind + PWA",
+      "pos": [
+        530,
+        380
+      ],
+      "size": [
+        200,
+        80
+      ]
+    },
+    {
+      "id": "web3forms",
+      "type": "external",
+      "label": "Web3Forms",
+      "sublabel": "api.web3forms.com/submit",
+      "pos": [
+        900,
+        384
+      ],
+      "size": [
+        220,
+        72
+      ]
+    },
+    {
+      "id": "gtm",
+      "type": "external",
+      "label": "Google Tag Manager",
+      "sublabel": "GTM-NJ4DPSC9",
+      "pos": [
+        420,
+        140
+      ],
+      "size": [
+        200,
+        64
+      ]
+    },
+    {
+      "id": "umami",
+      "type": "external",
+      "label": "Umami",
+      "sublabel": "Cloud Run",
+      "pos": [
+        680,
+        140
+      ],
+      "size": [
+        170,
+        64
+      ]
+    },
+    {
+      "id": "stripe",
+      "type": "external",
+      "label": "Stripe",
+      "sublabel": "website-care links",
+      "brand": "stripe",
+      "pos": [
+        530,
+        640
+      ],
+      "size": [
+        200,
+        64
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Public Internet",
+      "wraps": [
+        "visitor"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "GitHub Pages",
+      "wraps": [
+        "github-pages",
+        "static-site"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Forms and billing",
+      "wraps": [
+        "web3forms",
+        "stripe"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Analytics",
+      "wraps": [
+        "gtm",
+        "umami"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "visitor-pages",
+      "from": "visitor",
+      "to": "github-pages",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "pages-site",
+      "from": "github-pages",
+      "to": "static-site",
+      "label": "static files",
+      "variant": "emphasis"
+    },
+    {
+      "id": "site-web3forms",
+      "from": "static-site",
+      "to": "web3forms",
+      "label": "POST #contactForm",
+      "variant": "emphasis",
+      "labelDy": 36
+    },
+    {
+      "id": "site-gtm",
+      "from": "static-site",
+      "to": "gtm",
+      "label": "GTM beacon",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "site-umami",
+      "from": "static-site",
+      "to": "umami",
+      "label": "page views",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "site-stripe",
+      "from": "static-site",
+      "to": "stripe",
+      "label": "pricing.html /pay/*",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Static site",
+      "items": [
+        "Custom HTML/CSS/JS on GitHub Pages at hernandezlandscapeservices.com",
+        "Homepage, service landings, EN/ES service-areas, gallery, and PWA sw.js"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Lead capture",
+      "items": [
+        "#contactForm POSTs to https://api.web3forms.com/submit",
+        "Emergency dispatch worker is written but not deployed; form falls back to Web3Forms"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Sides",
+      "items": [
+        "Google Tag Manager GTM-NJ4DPSC9 plus self-hosted Umami on Cloud Run",
+        "pricing.html and /pay/* are Stripe payment-link redirects"
+      ]
+    }
+  ]
+}
