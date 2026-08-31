@@ -105,23 +105,23 @@
       "hero.family": "Family Owned",
       "hero.bilingual": "Se Habla Español",
       "instant.button.calculate": "See Starting Range",
-      "testimonials.heading": "Featured Customer Feedback",
+      "testimonials.heading": "What We Aim to Deliver",
       "testimonials.subheading":
-        "A recent published review for the DeKalb business listing, plus the service standards local homeowners usually want confirmed before they book.",
-      "testimonials.badge": "5.0 public review",
-      "testimonials.reviewLabel": "Published June 19",
+        "One customer comment from a directory listing, plus the service standards we hold ourselves to on every job.",
+      "testimonials.badge": "Customer comment",
+      "testimonials.reviewLabel": "beautifullandscapes.net · June 2024",
       "testimonials.reviewQuote":
         "Robert Tolito praised the team for turning his lawn into a beautifully manicured space, working efficiently, and paying attention to the details he requested.",
       "testimonials.reviewAuthor": "Robert Tolito",
       "testimonials.reviewMeta":
-        "Public review tied to the Hernandez Landscape DeKalb business listing.",
-      "testimonials.reviewSource": "View source review",
+        "Comment from beautifullandscapes.net directory listing.",
+      "testimonials.reviewSource": "View source",
       "testimonials.supportTitle":
-        "What local homeowners want confirmed before they call",
+        "What we commit to on every job",
       "testimonials.support1":
-        "A clear response on pricing and next steps",
+        "Showing up when scheduled or texting if we are running late",
       "testimonials.support2":
-        "Clean finish and detail-focused work on-site",
+        "Clear pricing and next steps before work begins",
       "testimonials.support3":
         "Bilingual communication for scheduling and updates",
       "testimonials.ctaEyebrow": "Ready for your quote?",
@@ -153,7 +153,7 @@
         "Yes, we provide free, no-obligation estimates for all tree removal, tree trimming, and landscaping projects in DeKalb County and surrounding areas.",
       "faq.q2": "Is Hernandez Landscape & Tree Service licensed and insured?",
       "faq.a2":
-        "Yes, we are a fully licensed and insured LLC (Auth #13934835) protecting your property during all tree and landscaping work.",
+        "Yes, we are a fully licensed and insured LLC, protecting your property during all tree and landscaping work.",
       "faq.q3": "What areas do you serve outside of DeKalb?",
       "faq.a3":
         "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles, and West Chicago.",
@@ -448,23 +448,23 @@
       "gallery.loadMore": "Cargar más fotos",
       "gallery.loadingButton": "Cargando...",
 
-      "testimonials.heading": "Comentario destacado de un cliente",
+      "testimonials.heading": "Lo que buscamos entregar",
       "testimonials.subheading":
-        "Una reseña pública reciente del perfil del negocio en DeKalb, junto con los puntos que los dueños de casa suelen querer confirmar antes de contratar.",
-      "testimonials.badge": "Reseña pública 5.0",
-      "testimonials.reviewLabel": "Publicada el 19 de junio",
+        "Un comentario de cliente de un directorio, más los estándares de servicio que mantenemos en cada trabajo.",
+      "testimonials.badge": "Comentario de cliente",
+      "testimonials.reviewLabel": "beautifullandscapes.net · junio 2024",
       "testimonials.reviewQuote":
         "Robert Tolito destacó que el equipo dejó su jardín muy bien cuidado, trabajó con eficiencia y puso atención a los detalles que pidió.",
       "testimonials.reviewAuthor": "Robert Tolito",
       "testimonials.reviewMeta":
-        "Reseña pública asociada con la ficha de Hernandez Landscape en DeKalb.",
-      "testimonials.reviewSource": "Ver la reseña original",
+        "Comentario del directorio beautifullandscapes.net.",
+      "testimonials.reviewSource": "Ver fuente",
       "testimonials.supportTitle":
-        "Lo que los dueños de casa quieren confirmar antes de llamar",
+        "Nuestro compromiso en cada trabajo",
       "testimonials.support1":
-        "Una respuesta clara sobre precio y siguientes pasos",
+        "Llegar a la hora acordada o avisar si nos retrasamos",
       "testimonials.support2":
-        "Trabajo limpio y atención a los detalles en la propiedad",
+        "Precio claro y siguientes pasos antes de comenzar",
       "testimonials.support3":
         "Comunicación bilingüe para agenda y actualizaciones",
       "testimonials.ctaEyebrow": "¿Listo para tu cotización?",
@@ -545,7 +545,7 @@
       "quote.submit": "Enviar solicitud de cotización",
 
       "footer.copy": "© 2026 Hernandez Landscape & Tree Service LLC",
-      "footer.license": "Illinois LLC #13934835 • Licencia y seguro vigentes",
+      "footer.license": "LLC con licencia y seguro vigentes",
       "footer.tagline":
         "Servicios profesionales de jardinería en el condado de DeKalb",
       "footer.follow": "Síguenos",
@@ -556,8 +556,8 @@
       "footer.areas": "Zonas de servicio",
       "footer.rights": "Todos los derechos reservados.",
       "footer.insured": "Licencia y seguro vigentes",
-      "footer.authorization": "Autorización #13934835",
-      "header.license": "Licencia y seguro vigentes • LLC #13934835",
+      "footer.authorization": "LLC con licencia y seguro",
+      "header.license": "LLC con licencia y seguro vigentes",
       "footer.facebook": "Facebook",
       "footer.maps": "Google Maps",
       "footer.privacy": "Política de privacidad",
@@ -617,7 +617,7 @@
         "Sí. Ofrecemos estimados gratis y sin compromiso para remoción y poda de árboles, además de proyectos de paisajismo en el condado de DeKalb y zonas cercanas.",
       "faq.q2": "¿Hernandez Landscape & Tree Service tiene licencia y seguro?",
       "faq.a2":
-        "Sí. Somos una LLC con licencia y seguro vigentes (autorización #13934835) para proteger tu propiedad durante el trabajo de árboles y paisajismo.",
+        "Sí. Somos una LLC con licencia y seguro vigentes para proteger tu propiedad durante el trabajo de árboles y paisajismo.",
       "faq.q3": "¿Qué zonas atienden fuera de DeKalb?",
       "faq.a3":
         "Nuestras zonas principales son DeKalb y Sycamore. También atendemos Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles y West Chicago.",

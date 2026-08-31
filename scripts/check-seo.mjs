@@ -45,23 +45,8 @@ const FAVICON_REQUIREMENTS = [
 
 // Placeholder-href lint (P1-10): hrefs must never ship placeholder values.
 const PLACEHOLDER_HREF_PATTERN = /YOUR_|PLACEHOLDER|g\.page\/r\/YOUR|\{\{/i;
-// ============================================================================
-// LOUD EXCEPTION — remove when B-1 lands (SEO_AUDIT_PLAN.md "Blocked on owner").
-// card.html's printed-QR "Reviews" button still carries the literal
-// https://g.page/r/YOUR_GOOGLE_REVIEW_LINK placeholder because the owner has
-// not yet provided the real Google Business Profile review short-link (B-1).
-// The exception below allows EXACTLY that one href, ONLY in card.html, and
-// ONLY while the anchoring "TODO(B-1)" comment sits directly above it.
-// When B-1 lands: replace the href in card.html, delete its TODO(B-1)
-// comment, and delete this exception so the lint guards card.html again.
-// ============================================================================
-const PLACEHOLDER_HREF_EXCEPTIONS = [
-  {
-    file: 'card.html',
-    href: 'https://g.page/r/YOUR_GOOGLE_REVIEW_LINK',
-    anchorComment: 'TODO(B-1)',
-  },
-];
+// No exceptions: all placeholder URLs must be removed before shipping.
+const PLACEHOLDER_HREF_EXCEPTIONS = [];
 
 const failures = [];
 const warnings = [];
