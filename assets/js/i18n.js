@@ -109,7 +109,7 @@
       "testimonials.subheading":
         "One customer comment from a directory listing, plus the service standards we hold ourselves to on every job.",
       "testimonials.badge": "Customer comment",
-      "testimonials.reviewLabel": "beautifullandscapes.net · June 2024",
+      "testimonials.reviewLabel": "beautifullandscapes.net · June 19",
       "testimonials.reviewQuote":
         "Robert Tolito praised the team for turning his lawn into a beautifully manicured space, working efficiently, and paying attention to the details he requested.",
       "testimonials.reviewAuthor": "Robert Tolito",
@@ -452,7 +452,7 @@
       "testimonials.subheading":
         "Un comentario de cliente de un directorio, más los estándares de servicio que mantenemos en cada trabajo.",
       "testimonials.badge": "Comentario de cliente",
-      "testimonials.reviewLabel": "beautifullandscapes.net · junio 2024",
+      "testimonials.reviewLabel": "beautifullandscapes.net · 19 de junio",
       "testimonials.reviewQuote":
         "Robert Tolito destacó que el equipo dejó su jardín muy bien cuidado, trabajó con eficiencia y puso atención a los detalles que pidió.",
       "testimonials.reviewAuthor": "Robert Tolito",
