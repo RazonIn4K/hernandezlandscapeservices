@@ -695,7 +695,7 @@ if (contactForm) {
       showModal(
         getMessage(
           "alerts.contact.success",
-          "Thank you for your interest! We will call you within 24 hours.",
+          "Your estimate request was sent. Your appointment is not yet confirmed; our team will contact you about availability and timing.",
         ),
       );
       this.reset();
@@ -737,7 +737,7 @@ if (contactForm) {
         showModal(
           getMessage(
             "alerts.contact.success",
-            "Thank you for your interest! We will call you within 24 hours.",
+            "Your estimate request was sent. Your appointment is not yet confirmed; our team will contact you about availability and timing.",
           ),
         );
         this.reset();
