@@ -59,7 +59,7 @@
         "Please select a service type, property size, and enter your ZIP code.",
       "alerts.contact.invalid": "Please fill in all required fields correctly.",
       "alerts.contact.success":
-        "Thank you for your interest! We will call you within 24 hours.",
+        "Your estimate request was sent. Your appointment is not yet confirmed; our team will contact you about availability and timing.",
       "alerts.contact.error":
         "There was an error sending your request. Please call us at 815-501-1478.",
       "contact.sending": "Sending...",
@@ -132,12 +132,12 @@
       "quote.prefill.helper":
         "Add your property details below and the team can respond with the right next step.",
       "quote.formHelper":
-        "Tell us what you need. We usually respond within 24 hours, and there is no obligation.",
+        "Tell us what you need and your preferred callback time. This is an estimate request, not a confirmed appointment. Our team will confirm availability and timing. There is no obligation.",
       "quote.label.name": "Your Name",
       "quote.label.phone": "Phone Number",
       "quote.label.email": "Email (optional)",
       "quote.label.address": "Property Address",
-      "quote.label.bestTime": "Best Time to Call",
+      "quote.label.bestTime": "Preferred Callback Time",
       "quote.label.service": "Select Service Needed",
       "quote.label.project": "Tell us about your project",
       "quote.privacyNote":
@@ -297,7 +297,7 @@
       "instant.subtitle":
         "Usa este inicio rápido para llenar el formulario final. Nada se envía hasta que revises y envíes la solicitud final.",
       "instant.trust.free": "Estimado gratis y sin compromiso",
-      "instant.trust.response": "Respuesta en menos de 24 horas",
+      "instant.trust.response": "Nuestro equipo confirma la disponibilidad",
       "instant.label.address": "Dirección de la propiedad",
       "instant.placeholder.address": "ej., 1234 Main St, DeKalb",
       "instant.label.isOwner":
@@ -318,7 +318,7 @@
       "instant.label.zip": "Tu código postal",
       "instant.placeholder.zip": "ej., 60115",
       "instant.title.zip": "Ingresa un código postal válido de 5 dígitos",
-      "instant.label.bestTime": "Mejor hora para llamar",
+      "instant.label.bestTime": "Horario preferido para recibir la llamada",
       "instant.button.calculate": "Ver rango inicial",
       "instant.result.heading": "Rango de precio inicial:",
       "instant.result.disclaimer":
@@ -498,7 +498,8 @@
 
       "quote.heading": "¿Listo para transformar tu propiedad?",
       "quote.contactHeading": "Ponte en contacto",
-      "quote.phoneLabel": "Llamar o enviar mensaje",
+      "quote.phoneLabel": "Llamar",
+      "quote.textLabel": "Enviar un mensaje de texto",
       "quote.emailLabel": "Correo electrónico",
       "quote.hoursLabel": "Horario de atención",
       "quote.hoursWeekdays": "Lun-Vie: 7 a. m. - 6 p. m.",
@@ -511,12 +512,12 @@
       "quote.prefill.helper":
         "Agrega los detalles de tu propiedad abajo y el equipo podrá responder con el siguiente paso correcto.",
       "quote.formHelper":
-        "Cuéntanos qué necesitas. Normalmente respondemos en menos de 24 horas y no hay ninguna obligación.",
+        "Cuéntanos qué necesitas y cuándo prefieres que te llamemos. Esta es una solicitud de cotización, no una cita confirmada. Nuestro equipo confirmará la disponibilidad y el horario. No hay ninguna obligación.",
       "quote.label.name": "Tu nombre",
       "quote.label.phone": "Número de teléfono",
       "quote.label.email": "Correo electrónico (opcional)",
       "quote.label.address": "Dirección de la propiedad",
-      "quote.label.bestTime": "Mejor hora para llamar",
+      "quote.label.bestTime": "Horario preferido para recibir la llamada",
       "quote.label.service": "Servicio que necesitas",
       "quote.label.project": "Cuéntanos sobre tu proyecto",
       "quote.privacyNote":
@@ -529,9 +530,9 @@
       "quote.verify":
         "Soy el propietario o un representante autorizado y estaré presente para el estimado.",
       "quote.time.placeholder": "¿Cuál es la mejor hora para llamarte?",
-      "quote.time.morning": "Mañana (8 a. m. - 12 p. m.)",
-      "quote.time.afternoon": "Tarde (12 p. m. - 5 p. m.)",
-      "quote.time.evening": "Noche (5 p. m. - 7 p. m.)",
+      "quote.time.morning": "Mañana",
+      "quote.time.afternoon": "Tarde",
+      "quote.time.evening": "Noche",
       "quote.select.placeholder": "Selecciona el servicio requerido",
       "quote.select.lawn": "Cuidado del césped",
       "quote.select.tree": "Servicio de árboles",
@@ -571,7 +572,7 @@
       "alerts.contact.invalid":
         "Completa todos los campos requeridos correctamente.",
       "alerts.contact.success":
-        "¡Gracias por tu interés! Te llamaremos en un plazo de 24 horas.",
+        "Tu solicitud de cotización fue enviada. Tu cita aún no está confirmada; nuestro equipo se comunicará contigo para confirmar la disponibilidad y el horario.",
       "alerts.contact.error":
         "Hubo un error al enviar tu solicitud. Llámanos al 815-501-1478.",
       "contact.sending": "Enviando...",
@@ -766,6 +767,11 @@
     document.querySelectorAll("[data-lang-switch]").forEach((button) => {
       button.addEventListener("click", () => {
         applyLanguage(button.dataset.langSwitch || DEFAULT_LANG);
+        const url = new URL(window.location.href);
+        if (url.searchParams.has("lang")) {
+          url.searchParams.set("lang", currentLang);
+          window.history.replaceState(window.history.state, "", url);
+        }
       });
     });
   }
@@ -774,7 +780,11 @@
     initializeLanguageSelector();
     clearLegacyLanguagePreference();
     const savedLanguage = getSessionLanguagePreference();
-    applyLanguage(savedLanguage === "es" ? "es" : DEFAULT_LANG);
+    const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
+    const language = requestedLanguage === "es" || requestedLanguage === "en"
+      ? requestedLanguage
+      : savedLanguage;
+    applyLanguage(language === "es" ? "es" : DEFAULT_LANG);
   });
 
   window.siteI18n = {

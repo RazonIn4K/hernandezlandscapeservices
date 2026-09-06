@@ -95,7 +95,7 @@ test.describe('Instant estimate lead handoff', () => {
     await page.click('#contactForm button[type="submit"]');
 
     await expect(page.locator('#customModal')).toBeVisible();
-    await expect(page.locator('#modalMessage')).toContainText('Thank you for your interest');
+    await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
 
     expect(submittedBody).not.toBeNull();
     expect(submittedBody).not.toContain('[Possible Spam]');
@@ -172,7 +172,7 @@ test.describe('Instant estimate lead handoff', () => {
     });
 
     await expect(page.locator('#customModal')).toBeVisible();
-    await expect(page.locator('#modalMessage')).toContainText('Thank you for your interest');
+    await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
     expect(captured.bodies).toHaveLength(1);
     expect(captured.bodies[0]).toContain('[Possible Spam]');
   });
@@ -207,7 +207,7 @@ test.describe('Instant estimate lead handoff', () => {
     await page.click('#contactForm button[type="submit"]');
 
     await expect(page.locator('#customModal')).toBeVisible();
-    await expect(page.locator('#modalMessage')).toContainText('Thank you for your interest');
+    await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
     expect(captured.bodies).toHaveLength(0);
   });
 

@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     './index.html',
+    './es/**/*.html',
     './tree-removal/**/*.html',
     './lawn-care/**/*.html',
     './snow-removal/**/*.html',

@@ -53,6 +53,9 @@
     />
 
     <link rel="canonical" href="https://hernandezlandscapeservices.com/" />
+    <link rel="alternate" hreflang="en" href="https://hernandezlandscapeservices.com/" />
+    <link rel="alternate" hreflang="es" href="https://hernandezlandscapeservices.com/es/" />
+    <link rel="alternate" hreflang="x-default" href="https://hernandezlandscapeservices.com/" />
 
     <!-- Favicon links -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -1028,7 +1031,7 @@
             <div class="flex items-center">
               <i class="fas fa-clock text-green-600 mr-2"></i>
               <span data-i18n-key="instant.trust.response"
-                >Response within 24 hours</span
+                >Availability confirmed by our team</span
               >
             </div>
           </div>
@@ -1211,15 +1214,15 @@
                   for="instantBestTime"
                   class="block text-gray-700 font-semibold mb-2"
                   data-i18n-key="instant.label.bestTime"
-                  >Best Time to Call</label
+                  >Preferred Callback Time</label
                 >
                 <select
                   id="instantBestTime"
                   class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
                 >
-                  <option value="morning">Morning (8am - 12pm)</option>
-                  <option value="afternoon">Afternoon (12pm - 5pm)</option>
-                  <option value="evening">Evening (5pm - 8pm)</option>
+                  <option value="morning" data-i18n-key="quote.time.morning">Morning</option>
+                  <option value="afternoon" data-i18n-key="quote.time.afternoon">Afternoon</option>
+                  <option value="evening" data-i18n-key="quote.time.evening">Evening</option>
                 </select>
               </div>
 
@@ -2018,8 +2021,19 @@
                   <i class="fas fa-phone text-2xl"></i>
                   <div class="min-w-0">
                     <p class="font-semibold" data-i18n-key="quote.phoneLabel">
-                      Call or Text
+                      Call
                     </p>
+                    <p class="text-xl break-words">(815) 501-1478</p>
+                  </div>
+                </a>
+
+                <a
+                  href="sms:+18155011478"
+                  class="flex w-full items-start space-x-3 hover:text-green-200 transition"
+                >
+                  <i class="fas fa-comment-dots text-2xl" aria-hidden="true"></i>
+                  <div class="min-w-0">
+                    <p class="font-semibold" data-i18n-key="quote.textLabel">Send a Text</p>
                     <p class="text-xl break-words">(815) 501-1478</p>
                   </div>
                 </a>
@@ -2030,9 +2044,9 @@
                     <p class="font-semibold" data-i18n-key="quote.emailLabel">
                       Email
                     </p>
-                    <p class="break-all">
+                    <a class="break-all underline hover:text-green-200" href="mailto:hernandezlandscapetreeservices@gmail.com">
                       hernandezlandscapetreeservices@gmail.com
-                    </p>
+                    </a>
                   </div>
                 </div>
 
@@ -2065,7 +2079,7 @@
 
             <div class="bg-white text-gray-800 p-6 rounded-lg">
               <h3
-                class="text-2xl font-bold mb-2"
+                class="text-2xl font-bold text-gray-800 mb-2"
                 data-i18n-key="quote.formHeading"
               >
                 Request a Free Quote
@@ -2075,8 +2089,9 @@
                 class="mb-5 text-sm leading-relaxed text-gray-600"
                 data-i18n-key="quote.formHelper"
               >
-                Tell us what you need. We usually respond within 24 hours, and
-                there is no obligation.
+                Tell us what you need and your preferred callback time. This is
+                an estimate request, not a confirmed appointment. Our team will
+                confirm availability and timing. There is no obligation.
               </p>
 
               <form
@@ -2233,7 +2248,7 @@
                     for="bestTime"
                     class="quote-field-label"
                     data-i18n-key="quote.label.bestTime"
-                    >Best Time to Call</label
+                    >Preferred Callback Time</label
                   >
                   <select
                     id="bestTime"
@@ -2245,16 +2260,16 @@
                       Best time to call back?
                     </option>
                     <option value="morning" data-i18n-key="quote.time.morning">
-                      Morning (8AM-12PM)
+                      Morning
                     </option>
                     <option
                       value="afternoon"
                       data-i18n-key="quote.time.afternoon"
                     >
-                      Afternoon (12PM-5PM)
+                      Afternoon
                     </option>
                     <option value="evening" data-i18n-key="quote.time.evening">
-                      Evening (5PM-7PM)
+                      Evening
                     </option>
                   </select>
 
