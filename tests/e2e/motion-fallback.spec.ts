@@ -20,3 +20,21 @@ test('homepage content stays readable if motion script fails', async ({ page }) 
     elements.filter((element) => getComputedStyle(element).opacity === '0').length,
   )).toBe(0);
 });
+
+test('homepage project details remain inside the viewport when opened', async ({ page }) => {
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto('/');
+    const details = page.locator('.trust-chip-details');
+    for (let index = 0; index < await details.count(); index++) {
+      const item = details.nth(index);
+      await item.locator('summary').click();
+      await expect(item).toHaveAttribute('open', '');
+      const bounds = await item.locator('.trust-tip').boundingBox();
+      expect(bounds).not.toBeNull();
+      expect(bounds!.x).toBeGreaterThanOrEqual(0);
+      expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
+      await item.locator('summary').click();
+    }
+  }
+});

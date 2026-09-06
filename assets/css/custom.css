@@ -354,14 +354,6 @@ html {
     transform: translateY(0);
   }
 }
-@keyframes hero-image-settle {
-  from {
-    transform: scale(1.05);
-  }
-  to {
-    transform: scale(1);
-  }
-}
 .hero-enter {
   animation: hero-rise 720ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
 }
@@ -379,12 +371,6 @@ html {
 }
 .hero-enter-delay-5 {
   animation-delay: 350ms;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .site-hero picture img {
-    animation: hero-image-settle 16s ease-out both;
-    transform-origin: center center;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-enter,
@@ -409,10 +395,13 @@ html {
 .trust-chip-details > summary::-webkit-details-marker {
   display: none;
 }
+.trust-chip-details:not([open]) > .trust-tip {
+  display: none;
+}
 .trust-tip {
   position: absolute;
   left: 0;
-  top: calc(100% + 0.55rem);
+  bottom: calc(100% + 0.55rem);
   z-index: 20;
   width: min(18rem, calc(100vw - 2rem));
   max-width: calc(100vw - 2rem);
@@ -424,11 +413,11 @@ html {
   line-height: 1.4;
   box-shadow: 0 14px 30px rgba(10, 38, 28, 0.28);
 }
-.trust-chip-details:nth-last-child(-n + 2) .trust-tip {
+.trust-chip-details:nth-child(2) .trust-tip {
   left: auto;
   right: 0;
 }
-.trust-chip-details:nth-last-child(-n + 2) .trust-tip::before {
+.trust-chip-details:nth-child(2) .trust-tip::before {
   left: auto;
   right: 1.25rem;
 }
@@ -438,11 +427,11 @@ html {
 .trust-tip::before {
   content: "";
   position: absolute;
-  top: -6px;
+  bottom: -6px;
   left: 1.25rem;
-  border-width: 0 6px 6px;
+  border-width: 6px 6px 0;
   border-style: solid;
-  border-color: transparent transparent #0f2f24;
+  border-color: #0f2f24 transparent transparent;
 }
 
 /* Before/after project story */
