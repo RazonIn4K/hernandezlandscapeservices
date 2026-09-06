@@ -1,5 +1,7 @@
 import { expect, test } from './fixtures';
 
+type AnalyticsWindow = Window & { hlsTrack?: unknown; dataLayer?: Array<{ event?: string }> };
+
 test('Spanish entry opens a localized request and keeps the selected service', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const response = await page.goto('/es/');
@@ -8,6 +10,15 @@ test('Spanish entry opens a localized request and keeps the selected service', a
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Jardinería');
   await expect(page.getByRole('link', { name: 'Llamar', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Enviar mensaje', exact: true })).toBeVisible();
+  // The shared analytics loader must run here too so Spanish call and quote clicks are measured.
+  await expect.poll(() => page.evaluate(() => typeof (window as AnalyticsWindow).hlsTrack)).toBe('function');
+  const callClicks = await page.evaluate(() => {
+    const call = document.querySelector<HTMLAnchorElement>('a[href="tel:18155011478"]');
+    call?.addEventListener('click', (event) => event.preventDefault(), { once: true });
+    call?.click();
+    return ((window as AnalyticsWindow).dataLayer ?? []).filter((entry) => entry.event === 'call_click').length;
+  });
+  expect(callClicks).toBe(1);
   await page.locator('a[href="/?lang=es&service=lawn-care#quote"]').click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
   await expect(page.locator('#contactService')).toHaveValue('lawn-care');
