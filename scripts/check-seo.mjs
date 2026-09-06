@@ -10,6 +10,7 @@ const EXCLUDED_DIRS = new Set([
   '.claude',
   '.git',
   '_media-archive',
+  'client-previews',
   'node_modules',
   'playwright-report',
   'publish',

@@ -456,6 +456,57 @@ function classifyLeadSpam(formData) {
   return spamScore >= 2 ? "flag" : "ok";
 }
 
+function handoffInstantEstimateToContactForm() {
+  if (!lastInstantEstimate) {
+    return false;
+  }
+
+  const propertyAddress = document.getElementById("propertyAddress");
+  const isOwner = document.getElementById("isOwner");
+  const instantBestTime = document.getElementById("instantBestTime");
+  const instantName = document.getElementById("instantName");
+  const instantPhone = document.getElementById("instantPhone");
+  const contactAddress = document.getElementById("contactAddress");
+  const ownerVerify = document.getElementById("ownerVerify");
+  const contactBestTime = document.getElementById("bestTime");
+  const projectDetails = document.getElementById("projectDetails");
+  const contactName = document.getElementById("contactName");
+  const contactPhone = document.getElementById("contactPhone");
+
+  if (instantName?.value && contactName) {
+    contactName.value = instantName.value.trim();
+    contactName.classList.remove("border-red-500");
+  }
+  if (instantPhone?.value && contactPhone) {
+    contactPhone.value = instantPhone.value.trim();
+    contactPhone.classList.remove("border-red-500");
+  }
+  if (propertyAddress?.value && contactAddress) {
+    contactAddress.value = propertyAddress.value;
+    contactAddress.classList.remove("border-red-500");
+  }
+  if (isOwner && ownerVerify) {
+    ownerVerify.checked = isOwner.checked;
+  }
+  if (instantBestTime?.value && contactBestTime) {
+    contactBestTime.value = instantBestTime.value;
+  }
+
+  applyQuotePrefill(lastInstantEstimate.serviceValue);
+
+  if (projectDetails) {
+    const summary = `${getMessage("instant.handoff.prefix", "Instant estimate request:")} ${lastInstantEstimate.serviceLabel}, ${lastInstantEstimate.sizeLabel}, ZIP ${lastInstantEstimate.zip}. ${getMessage("instant.handoff.range", "Estimated range:")} ${lastInstantEstimate.priceText}.`;
+    if (!projectDetails.value.includes(lastInstantEstimate.priceText)) {
+      projectDetails.value = projectDetails.value
+        ? `${projectDetails.value}\n\n${summary}`
+        : summary;
+    }
+    projectDetails.classList.remove("border-red-500");
+  }
+
+  return true;
+}
+
 function calculateQuote() {
   const instantQuoteForm = document.getElementById("quoteForm");
   const service = document.getElementById("serviceType");
@@ -467,12 +518,11 @@ function calculateQuote() {
     return;
   }
 
-  if (instantQuoteForm && !instantQuoteForm.checkValidity()) {
-    instantQuoteForm.reportValidity();
-    return;
-  }
-
   if (!service.value || !size.value || !zip.value || !zip.checkValidity()) {
+    const optionalDetails = size.closest("details");
+    if (optionalDetails) {
+      optionalDetails.open = true;
+    }
     showModal(
       getMessage(
         "alerts.instant.missing",
@@ -483,6 +533,22 @@ function calculateQuote() {
     size.classList.toggle("border-red-500", !size.value);
     zip.classList.toggle("border-red-500", !zip.value || !zip.checkValidity());
     return;
+  }
+
+  if (instantQuoteForm) {
+    const name = document.getElementById("instantName");
+    const phone = document.getElementById("instantPhone");
+    const address = document.getElementById("propertyAddress");
+    const owner = document.getElementById("isOwner");
+    const coreInvalid =
+      (name && !name.checkValidity()) ||
+      (phone && !phone.checkValidity()) ||
+      (address && !address.checkValidity()) ||
+      (owner && !owner.checkValidity());
+    if (coreInvalid) {
+      instantQuoteForm.reportValidity();
+      return;
+    }
   }
 
   service.classList.remove("border-red-500");
@@ -538,6 +604,8 @@ function calculateQuote() {
   if (quoteResult) {
     quoteResult.classList.remove("hidden");
   }
+
+  handoffInstantEstimateToContactForm();
 }
 
 window.calculateQuote = calculateQuote;
@@ -550,40 +618,127 @@ if (instantQuoteForm) {
   });
 }
 
+async function sendInstantEstimateRequest() {
+  const instantName = document.getElementById("instantName");
+  const instantPhone = document.getElementById("instantPhone");
+  const propertyAddress = document.getElementById("propertyAddress");
+  const service = document.getElementById("serviceType");
+  const zip = document.getElementById("zipCode");
+  const size = document.getElementById("propertySize");
+  const instantBestTime = document.getElementById("instantBestTime");
+  const isOwner = document.getElementById("isOwner");
+  const sendBtn = document.getElementById("sendInstantRequestBtn");
+
+  const missingCore =
+    !instantName?.value?.trim() ||
+    !instantPhone?.value?.trim() ||
+    !instantPhone.checkValidity() ||
+    !propertyAddress?.value?.trim() ||
+    !service?.value ||
+    !zip?.value?.trim() ||
+    !zip.checkValidity() ||
+    (isOwner && !isOwner.checked);
+
+  if (missingCore) {
+    document.getElementById("quoteForm")?.reportValidity();
+    showModal(
+      getMessage(
+        "alerts.instant.sendMissing",
+        "Please enter your name, mobile number, service, address, and ZIP code.",
+      ),
+    );
+    return;
+  }
+
+  // Re-read the current choices if the customer edited them after calculating.
+  lastInstantEstimate = null;
+  if (service.value && size?.value && zip.value) {
+    calculateQuote();
+  } else if (!lastInstantEstimate) {
+    lastInstantEstimate = {
+      serviceValue: service.value,
+      serviceLabel:
+        service.selectedOptions[0]?.textContent.trim() || service.value,
+      sizeLabel: size?.selectedOptions?.[0]?.textContent.trim() || "Not specified",
+      zip: zip.value.trim(),
+      priceText: "On-site estimate",
+    };
+  }
+
+  handoffInstantEstimateToContactForm();
+
+  const formData = new FormData();
+  formData.set("access_key", "61e8b0ea-97d8-434c-8c2d-e54a44a63743");
+  formData.set(
+    "subject",
+    "New Quote Request - Hernandez Landscape Services",
+  );
+  formData.set("from_name", "Website Instant Quote");
+  formData.set("form_loaded_at", document.getElementById("formLoadedAt")?.value || String(Date.now()));
+  formData.set("name", instantName.value.trim());
+  formData.set("phone", instantPhone.value.trim());
+  formData.set("email", "");
+  formData.set("address", propertyAddress.value.trim());
+  formData.set("service", service.value);
+  formData.set("best_time", instantBestTime?.value || "");
+  formData.set(
+    "message",
+    `${getMessage("instant.handoff.prefix", "Instant estimate request:")} ${lastInstantEstimate.serviceLabel}, ${lastInstantEstimate.sizeLabel}, ZIP ${lastInstantEstimate.zip}. ${getMessage("instant.handoff.range", "Estimated range:")} ${lastInstantEstimate.priceText}.`,
+  );
+  formData.set("botcheck", "");
+
+  const originalText = sendBtn?.textContent || "";
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage("contact.sending", "Sending...")}`;
+  }
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success !== true) {
+      throw new Error(result.message || "Submit failed");
+    }
+    showModal(
+      getMessage(
+        "alerts.instant.sendSuccess",
+        "Thank you! Your estimate request was sent. Your appointment is not confirmed. Please wait for us to contact you.",
+      ),
+    );
+    if (typeof window.hlsTrack === "function") {
+      window.hlsTrack("quote_form_completion", { source: "instant_quote" });
+    }
+  } catch (error) {
+    console.error(error);
+    showModal(
+      getMessage(
+        "alerts.instant.sendError",
+        "We could not send your request. Please call (815) 501-1478 or try again.",
+      ),
+    );
+  } finally {
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.textContent = originalText;
+    }
+  }
+}
+
+const sendInstantRequestBtn = document.getElementById("sendInstantRequestBtn");
+if (sendInstantRequestBtn) {
+  sendInstantRequestBtn.addEventListener("click", () => {
+    void sendInstantEstimateRequest();
+  });
+}
+
 const sendEstimateBtn = document.getElementById("sendEstimateBtn");
 if (sendEstimateBtn) {
   sendEstimateBtn.addEventListener("click", () => {
-    if (!lastInstantEstimate) {
+    if (!handoffInstantEstimateToContactForm()) {
       return;
-    }
-
-    const propertyAddress = document.getElementById("propertyAddress");
-    const isOwner = document.getElementById("isOwner");
-    const instantBestTime = document.getElementById("instantBestTime");
-    const contactAddress = document.getElementById("contactAddress");
-    const ownerVerify = document.getElementById("ownerVerify");
-    const contactBestTime = document.getElementById("bestTime");
-    const projectDetails = document.getElementById("projectDetails");
-
-    if (propertyAddress?.value && contactAddress) {
-      contactAddress.value = propertyAddress.value;
-      contactAddress.classList.remove("border-red-500");
-    }
-    if (isOwner && ownerVerify) {
-      ownerVerify.checked = isOwner.checked;
-    }
-    if (instantBestTime?.value && contactBestTime) {
-      contactBestTime.value = instantBestTime.value;
-    }
-
-    applyQuotePrefill(lastInstantEstimate.serviceValue);
-
-    if (projectDetails) {
-      const summary = `${getMessage("instant.handoff.prefix", "Instant estimate request:")} ${lastInstantEstimate.serviceLabel}, ${lastInstantEstimate.sizeLabel}, ZIP ${lastInstantEstimate.zip}. ${getMessage("instant.handoff.range", "Estimated range:")} ${lastInstantEstimate.priceText}.`;
-      projectDetails.value = projectDetails.value
-        ? `${projectDetails.value}\n\n${summary}`
-        : summary;
-      projectDetails.classList.remove("border-red-500");
     }
 
     const contactName = document.getElementById("contactName");
@@ -730,7 +885,7 @@ if (contactForm) {
 
       const data = await response.json().catch(() => ({ success: false }));
 
-      if (response.ok && data.success) {
+      if (response.ok && data.success === true) {
         if (typeof window.hlsTrack === "function") {
           window.hlsTrack("lead_submit_success", { source: "quote_form" });
         }
@@ -787,30 +942,4 @@ if (backToTopBtn) {
       behavior: reduceMotion ? "auto" : "smooth",
     });
   });
-}
-
-// Scroll reveal animations using Intersection Observer
-const revealElements = document.querySelectorAll(
-  ".reveal, .reveal-left, .reveal-right",
-);
-if (revealElements.length > 0 && "IntersectionObserver" in window) {
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("active");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1,
-      rootMargin: "0px 0px -50px 0px",
-    },
-  );
-
-  revealElements.forEach((el) => revealObserver.observe(el));
-} else {
-  // Fallback for browsers without IntersectionObserver
-  revealElements.forEach((el) => el.classList.add("active"));
 }

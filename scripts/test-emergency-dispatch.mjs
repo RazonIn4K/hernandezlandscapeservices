@@ -9,6 +9,8 @@
  */
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import {
   handleEmergencyDispatch,
   _resetRateLimiter
@@ -192,6 +194,186 @@ await test('webhook non-2xx -> 502', async () => {
 });
 
 globalThis.fetch = realFetch;
+
+// Exercise the shipped browser script without making network requests. The
+// small DOM fixture exposes the form's public events, fields and replacement
+// panel; native constraint results are controlled explicitly by each test.
+const clientScript = readFileSync(new URL('../assets/js/emergency-dispatch.js', import.meta.url), 'utf8');
+function clientForm({ lang = 'en', endpoint = '', replies = [], geolocation = false } = {}) {
+  function element(name = '', value = '') {
+    const attributes = new Map();
+    const listeners = new Map();
+    let text = '';
+    let html = '';
+    return {
+      name, value, checked: false, disabled: false, customValidity: '', validity: {},
+      get textContent() { return text; },
+      set textContent(value) { text = String(value); html = text; },
+      get innerHTML() { return html; },
+      set innerHTML(value) { html = String(value); text = html; },
+      setAttribute(key, value) { attributes.set(key, value); },
+      getAttribute(key) { return attributes.get(key) ?? null; },
+      removeAttribute(key) { attributes.delete(key); },
+      setCustomValidity(value) { this.customValidity = value; },
+      addEventListener(type, listener) {
+        listeners.set(type, [...(listeners.get(type) || []), listener]);
+      },
+      emit(type, event = {}) {
+        for (const listener of listeners.get(type) || []) listener(event);
+      }
+    };
+  }
+  const fields = Object.fromEntries(Object.entries({
+    name: 'Test Customer', phone: '8155550142', location: '60115',
+    emergency_type: 'fallen-tree', details: 'Test request', website: '',
+    botcheck: '', geo_lat: '', geo_lng: '', geo_accuracy: ''
+  }).map(([name, value]) => [name, element(name, value)]));
+  const button = element();
+  button.textContent = lang.startsWith('es') ? 'Enviar solicitud' : 'Send request';
+  const geoButton = element();
+  const geoStatus = element();
+  const status = element();
+  const form = element();
+  const state = { valid: true, calls: [], panel: null, geoCalls: 0, reports: 0 };
+  form.setAttribute('data-endpoint', endpoint);
+  form.querySelector = selector => {
+    const field = selector.match(/\[name="([^"]+)"\]/)?.[1];
+    if (field) return fields[field] || null;
+    return {
+      '[data-geo-request]': geoButton, '[data-geo-status]': geoStatus,
+      '[data-dispatch-status]': status, 'button[type="submit"]': button
+    }[selector] || null;
+  };
+  form.checkValidity = () => {
+    if (!state.valid) form.emit('invalid', { target: fields.phone });
+    return state.valid;
+  };
+  form.reportValidity = () => { state.reports++; };
+  form.replaceWith = panel => { state.panel = panel; };
+  const navigator = geolocation ? {
+    geolocation: {
+      getCurrentPosition(success, failure) {
+        state.geoCalls++;
+        state.geoSuccess = success;
+        state.geoFailure = failure;
+      }
+    }
+  } : {};
+  runInNewContext(clientScript, {
+    document: {
+      documentElement: { lang }, querySelector: () => form,
+      createElement: () => element()
+    },
+    navigator,
+    window: { location: { pathname: '/es/emergency-tree-removal/' }, setTimeout, clearTimeout },
+    AbortController,
+    FormData: class { constructor() { this.fields = fields; } },
+    fetch: async (url, options) => {
+      state.calls.push({ url, options });
+      const next = replies.shift();
+      if (next instanceof Error) throw next;
+      if (typeof next === 'function') return next();
+      if (!next) throw new Error('Unexpected client fetch');
+      return next;
+    }
+  });
+  return {
+    state, form, fields, button, geoButton, geoStatus, status,
+    async submit() {
+      form.emit('submit', { preventDefault() {} });
+      await new Promise(setImmediate);
+    }
+  };
+}
+
+console.log('\nemergency request browser-script tests');
+for (const lang of ['en', 'es-MX']) {
+  const spanish = lang.startsWith('es');
+  await test(`${lang}: email-only acceptance shows an unconfirmed request, not a dispatch promise`, async () => {
+    const client = clientForm({ lang, replies: [new Response('{"success":true}')] });
+    await client.submit();
+    assert.equal(client.state.calls.length, 1);
+    assert.equal(client.state.calls[0].url, 'https://api.web3forms.com/submit');
+    assert.equal(client.state.panel.getAttribute('role'), 'status');
+    assert.match(client.state.panel.innerHTML, spanish ? /pendiente de revisión y de una llamada/ : /awaiting review and a callback/);
+    assert.match(client.state.panel.innerHTML, spanish ? /no están confirmadas/ : /are not confirmed/);
+    assert.match(client.state.panel.innerHTML, /tel:18155011478/);
+    assert.doesNotMatch(client.state.panel.innerHTML, /team has been notified|within a few minutes|24\/7|equipo ha sido notificado/i);
+  });
+
+  await test(`${lang}: failed primary and fallback preserve input and allow another attempt`, async () => {
+    const client = clientForm({ lang, endpoint: ENDPOINT, replies: [new Error('Network unavailable'), new Response('{"success":false}', { status: 503 })] });
+    const original = client.button.textContent;
+    await client.submit();
+    assert.deepEqual(client.state.calls.map(call => call.url), [ENDPOINT, 'https://api.web3forms.com/submit']);
+    assert.equal(client.state.panel, null);
+    assert.equal(client.fields.name.value, 'Test Customer');
+    assert.equal(client.fields.phone.value, '8155550142');
+    assert.equal(client.fields.details.value, 'Test request');
+    assert.equal(client.button.disabled, false);
+    assert.equal(client.button.textContent, original);
+    assert.equal(client.form.getAttribute('aria-busy'), null);
+    assert.equal(client.status.getAttribute('role'), 'alert');
+    assert.match(client.status.innerHTML, spanish ? /No pudimos confirmar el envío/ : /couldn't confirm that your request was sent/);
+    assert.match(client.status.innerHTML, /tel:18155011478/);
+    assert.doesNotMatch(client.status.innerHTML, /24\/7|answered|atendemos/i);
+  });
+
+  await test(`${lang}: geolocation requires a click and localizes both outcomes`, async () => {
+    const client = clientForm({ lang, geolocation: true });
+    assert.equal(client.state.geoCalls, 0);
+    client.geoButton.emit('click');
+    assert.equal(client.state.geoCalls, 1);
+    assert.match(client.geoStatus.textContent, spanish ? /Obteniendo su ubicación/ : /Getting your location/);
+    client.state.geoSuccess({ coords: { latitude: 41.93, longitude: -88.75, accuracy: 12.4 } });
+    assert.equal(client.fields.geo_lat.value, '41.93');
+    assert.equal(client.fields.geo_accuracy.value, '12');
+    assert.match(client.geoStatus.textContent, spanish ? /Ubicación adjunta/ : /Location attached/);
+    client.geoButton.emit('click');
+    client.state.geoFailure();
+    assert.match(client.geoStatus.textContent, spanish ? /No pudimos obtener su ubicación/ : /Couldn't get your location/);
+  });
+
+  await test(`${lang}: invalid input blocks sending and clears its localized custom error on edit`, async () => {
+    const client = clientForm({ lang });
+    client.state.valid = false;
+    await client.submit();
+    assert.equal(client.state.calls.length, 0);
+    assert.equal(client.state.reports, 1);
+    assert.match(client.fields.phone.customValidity, spanish ? /teléfono válido/ : /valid phone number/);
+    assert.match(client.status.textContent, spanish ? /campos obligatorios/ : /required fields/);
+    client.form.emit('input', { target: client.fields.phone });
+    assert.equal(client.fields.phone.customValidity, '');
+  });
+}
+
+await test('Spanish sending state and endpoint rejection retain the email fallback', async () => {
+  let complete;
+  const client = clientForm({ lang: 'es', endpoint: ENDPOINT, replies: [
+    () => new Promise(resolve => { complete = resolve; }), new Response('{"success":true}')
+  ] });
+  await client.submit();
+  assert.equal(client.button.disabled, true);
+  assert.match(client.button.innerHTML, /Enviando/);
+  assert.equal(client.form.getAttribute('aria-busy'), 'true');
+  const payload = JSON.parse(client.state.calls[0].options.body);
+  assert.equal(payload.zip, '60115');
+  assert.equal(payload.phone, '8155550142');
+  complete(new Response('{}', { status: 503 }));
+  await new Promise(setImmediate);
+  assert.equal(client.state.calls.length, 2);
+  assert.match(client.state.panel.innerHTML, /Solicitud enviada/);
+});
+
+await test('Spanish unsupported geolocation and honeypot remain safe without a network request', async () => {
+  const client = clientForm({ lang: 'es' });
+  assert.equal(client.geoButton.disabled, true);
+  assert.match(client.geoStatus.textContent, /Este navegador no permite compartir la ubicación/);
+  client.fields.website.value = 'spam.example';
+  await client.submit();
+  assert.equal(client.state.calls.length, 0);
+  assert.match(client.state.panel.innerHTML, /Solicitud enviada/);
+});
 
 console.log(`\n${passed} passed, ${failed.length} failed`);
 if (failed.length > 0) {

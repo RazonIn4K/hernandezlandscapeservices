@@ -163,7 +163,8 @@ test.describe('Route-level quality regressions', () => {
     await page.locator('#emergencyType').selectOption('storm-damage');
     await page.locator('#emergencyDispatchForm button[type="submit"]').click();
 
-    await expect(page.getByText('Emergency request sent.')).toBeVisible();
+    await expect(page.getByText('Request submitted.', { exact: true })).toBeVisible();
+    await expect(page.getByRole('status')).toContainText('not confirmed');
     await expect(page.locator('#emergencyDispatchForm')).toHaveCount(0);
   });
 

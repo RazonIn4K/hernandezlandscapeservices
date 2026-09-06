@@ -88,11 +88,11 @@
     mobileNav.setAttribute("aria-label", labels.navigation);
 
     [
-      ["/#services", labels.services, ""],
+      [isSpanish ? "/?lang=es#services" : "/#services", labels.services, ""],
       ["/gallery/", labels.work, ""],
       ["/videos/", labels.videos, ""],
       ["/service-areas/", labels.areas, ""],
-      ["/#quote", labels.quote, "quote"],
+      [isSpanish ? "/?lang=es#quote" : "/#quote", labels.quote, "quote"],
     ].forEach(function (item) {
       var link = document.createElement("a");
       link.href = item[0];

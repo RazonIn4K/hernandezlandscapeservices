@@ -1,13 +1,14 @@
-const CACHE_NAME = 'hernandez-landscape-v19';
+const CACHE_NAME = 'hernandez-landscape-v20';
 // Directory routes are precached in their canonical '/x/' form only — internal
 // links always use that form, and doubling each page as '/x/index.html' made
 // every SW install fetch 14 identical documents twice.
 const URLS_TO_CACHE = [
   '/',
-  '/es/',
   '/gallery/',
   '/videos/',
   '/tree-removal/',
+  '/emergency-tree-removal/',
+  '/tree-trimming-stump-grinding/',
   '/lawn-care/',
   '/snow-removal/',
   '/service-areas/',
@@ -17,6 +18,12 @@ const URLS_TO_CACHE = [
   '/service-areas/malta-il/',
   '/service-areas/genoa-il/',
   '/service-areas/kingston-il/',
+  '/es/',
+  '/es/emergency-tree-removal/',
+  '/es/tree-removal/',
+  '/es/tree-trimming-stump-grinding/',
+  '/es/lawn-care/',
+  '/es/landscaping-design/',
   '/es/service-areas/sycamore-il/',
   '/es/service-areas/cortland-il/',
   '/es/service-areas/malta-il/',
@@ -33,6 +40,7 @@ const URLS_TO_CACHE = [
   '/assets/css/custom.css',
   '/assets/css/gallery.css',
   '/assets/css/video.css',
+  '/assets/css/card.css?v=20260906',
   '/pricing.html',
   '/pay/success.html',
   '/pay/cancel.html',
@@ -43,8 +51,10 @@ const URLS_TO_CACHE = [
   '/assets/js/service-nav.js',
   '/assets/js/video-gallery.js',
   '/assets/js/mobile-call-cta.js',
+  '/assets/js/motion.js',
   '/assets/js/analytics.js',
   '/assets/js/emergency-dispatch.js',
+  '/assets/js/card.js?v=20260906',
   '/manifest.json',
   '/hernandez_images/web_Logo_New_256.png'
 ];

@@ -87,3 +87,13 @@ unexpectedly, check `Get-MpThreatDetection` and restore with
    which copies public runtime files and referenced `hernandez_images/*` assets
    only, keeping tests, scripts, docs, raw media folders, and local tooling out of
    GitHub Pages.
+7. **Manus SEO/lead audit tranche (2026-08-20), reconciled 2026-09-06** — Release scope: hero WebP +
+   preload LCP; sticky Call/Text/Estimate; progressive estimate submit; proof
+   rails; emergency + trimming pages; `/es/` hub and pairs for emergency,
+   trimming, lawn, landscaping, and tree-removal; sitemap/SW. Follow-up:
+   homepage motion (hero enter, scroll reveal, trust tips, before/after story)
+   via `assets/js/motion.js`, with readable content if JavaScript is unavailable.
+   Release verification belongs to the matching GitHub Pages deployment; this
+   checklist alone does not establish production status. Hours kept as site/schema. Still open: citation
+   claiming; field CWV after deploy; owner GBP hours confirmation; owner
+   review URL for card.html.

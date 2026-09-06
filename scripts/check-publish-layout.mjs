@@ -214,6 +214,12 @@ const run = async () => {
         serviceWorkers: 'block',
       });
 
+      // Synthetic layout visits must not send analytics to production providers.
+      await context.route(
+        /https:\/\/(?:www\.)?(?:googletagmanager\.com|google-analytics\.com|umami-amqlqzvkhq-uc\.a\.run\.app)\//,
+        (route) => route.abort(),
+      );
+
       for (const route of routes) {
         const page = await context.newPage();
         const badResponses = [];

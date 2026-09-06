@@ -8,6 +8,22 @@
 
   const translations = {
     en: {
+      "quote.proof.call": "Prefer to talk? Call (815) 501-1478",
+      "quote.time.evening": "Evening",
+      "quote.time.afternoon": "Afternoon",
+      "quote.time.morning": "Morning",
+      "quote.textLabel": "Send a Text",
+      "quote.phoneLabel": "Call",
+      "footer.authorization": "Estimates in English or Spanish",
+      "footer.insured": "Local DeKalb County crew",
+      "footer.license": "Hernandez Landscape & Tree Service LLC",
+      "header.license": "DeKalb County landscape and tree service",
+      "whyChoose.subheading": "A local crew with clear communication from the first estimate through cleanup.",
+      "services.tree.item4": "Storm-damage tree service requests",
+      "instant.label.bestTime": "Preferred Callback Time",
+      "instant.trust.response": "Availability confirmed by our team",
+      "hero.badge.licensed": "Local Crew",
+      "hero.badge.insured": "Project Details",
       "admin.file.empty": "No media selected yet.",
       "admin.file.titleLabel": "Title (optional)",
       "admin.file.titlePlaceholder": "Project title",
@@ -96,32 +112,61 @@
       "hero.outdoor": "Landscaping in DeKalb, IL",
       "hero.subtitle":
         "Tree trimming, removal, lawn care, and landscaping from a family-owned DeKalb County crew. Free estimates in English or Spanish.",
-      "hero.emergency": "Storm damage? 24/7 emergency tree service",
+      "hero.emergency": "Storm damage? Call about tree service availability",
       "hero.emergencyCall": "Call (815) 501-1478",
+      "hero.emergencyPage": "Emergency tree help",
       "hero.cta": "See Starting Range",
       "hero.call": "Call Now",
-      "hero.insured": "Fully Insured",
-      "hero.licensed": "Licensed LLC",
+      "hero.insured": "Project Details",
+      "hero.insured.tip":
+        "Discuss the work, property access, and cleanup with our team before confirming your project.",
+      "hero.licensed": "Local Crew",
+      "hero.licensed.tip":
+        "Hernandez Landscape & Tree Service LLC serves DeKalb County. Call to discuss your property and the service you need.",
       "hero.family": "Family Owned",
       "hero.bilingual": "Se Habla Español",
       "instant.button.calculate": "See Starting Range",
-      "testimonials.heading": "What We Aim to Deliver",
+      "gallery.featured.story":
+        "<strong>Before and after</strong> — compare the yard photos using the slider.",
+      "instant.button.send": "Send Free Estimate Request",
+      "instant.label.name": "Your Name",
+      "instant.label.phone": "Mobile Number",
+      "instant.placeholder.name": "Full name",
+      "instant.placeholder.phone": "Your mobile number",
+      "instant.title.phone": "Enter a valid phone number",
+      "instant.optional.summary": "Optional details (property size & callback preference)",
+      "instant.proof.insured": "Local DeKalb County crew",
+      "instant.proof.response": "Availability confirmed by our team",
+      "instant.proof.review": "Request first; appointment confirmed separately",
+      "instant.proof.bilingual": "Estimates in English or Spanish",
+      "instant.subtitle":
+        "Enter a few details for a starting range, then send your request in one step. Final pricing is confirmed on site.",
+      "instant.privacy":
+        "Send Free Estimate Request submits your lead now. Starting range is optional guidance only.",
+      "instant.result.send": "Add more details below",
+      "alerts.instant.sendMissing":
+        "Please enter your name, mobile number, service, address, and ZIP code.",
+      "alerts.instant.sendSuccess":
+        "Your estimate request was sent. Your appointment is not yet confirmed; our team will contact you about availability and timing.",
+      "alerts.instant.sendError":
+        "We could not send your request. Please call (815) 501-1478 or try again.",
+      "testimonials.heading": "Featured Customer Feedback",
       "testimonials.subheading":
-        "One customer comment from a directory listing, plus the service standards we hold ourselves to on every job.",
-      "testimonials.badge": "Customer comment",
-      "testimonials.reviewLabel": "beautifullandscapes.net · June 19",
+        "A published customer review from a third-party business directory, with a link to the source.",
+      "testimonials.badge": "Published customer feedback",
+      "testimonials.reviewLabel": "Published June 19",
       "testimonials.reviewQuote":
         "Robert Tolito praised the team for turning his lawn into a beautifully manicured space, working efficiently, and paying attention to the details he requested.",
       "testimonials.reviewAuthor": "Robert Tolito",
       "testimonials.reviewMeta":
-        "Comment from beautifullandscapes.net directory listing.",
-      "testimonials.reviewSource": "View source",
+        "Customer feedback published in the Beautiful Landscapes directory.",
+      "testimonials.reviewSource": "View source review",
       "testimonials.supportTitle":
-        "What we commit to on every job",
+        "What local homeowners want confirmed before they call",
       "testimonials.support1":
-        "Showing up when scheduled or texting if we are running late",
+        "A clear response on pricing and next steps",
       "testimonials.support2":
-        "Clear pricing and next steps before work begins",
+        "Clean finish and detail-focused work on-site",
       "testimonials.support3":
         "Bilingual communication for scheduling and updates",
       "testimonials.ctaEyebrow": "Ready for your quote?",
@@ -151,15 +196,15 @@
       "faq.q1": "Do you provide free estimates for tree removal in DeKalb?",
       "faq.a1":
         "Yes, we provide free, no-obligation estimates for all tree removal, tree trimming, and landscaping projects in DeKalb County and surrounding areas.",
-      "faq.q2": "Is Hernandez Landscape & Tree Service licensed and insured?",
+      "faq.q2": "What should we confirm before work begins?",
       "faq.a2":
-        "Yes, we are a fully licensed and insured LLC, protecting your property during all tree and landscaping work.",
+        "Discuss the work, site access, cleanup, pricing, and any insurance documentation you need with our team before confirming the project.",
       "faq.q3": "What areas do you serve outside of DeKalb?",
       "faq.a3":
         "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles, and West Chicago.",
       "faq.q4": "Do you offer emergency tree removal services?",
       "faq.a4":
-        "Yes, we offer 24/7 emergency tree service for fallen or hazardous trees that pose an immediate threat to your home or property.",
+        "Call to discuss a fallen or hazardous tree and confirm whether the team is available. A website request does not confirm dispatch or an arrival time. If there is immediate danger or contact with power lines, call emergency services first.",
       "faq.q5": "Do you provide snow removal for residential properties?",
       "faq.a5":
         "Yes, we offer seasonal snow removal services for both residential and commercial properties in the DeKalb area, subject to availability.",
@@ -175,6 +220,8 @@
       "footer.terms": "Terms of Service",
     },
     es: {
+      "quote.proof.call": "¿Prefiere hablar? Llame al (815) 501-1478",
+      "quote.textLabel": "Enviar un mensaje de texto",
       "admin.file.empty": "No hay archivos seleccionados todavía.",
       "admin.file.titleLabel": "Título (opcional)",
       "admin.file.titlePlaceholder": "Título breve del proyecto",
@@ -285,19 +332,30 @@
       "hero.heading":
         'Transforma tu<br><span class="text-green-400">Espacio Exterior</span>',
       "hero.subheading":
-        "Servicios profesionales de jardinería y árboles en el Condado de DeKalb. Empresa familiar, completamente asegurada y comprometida con la excelencia.",
+        "Servicios de jardinería y árboles en el Condado de DeKalb. Un equipo familiar para el cuidado de su propiedad.",
       "hero.cta.instant": "Solicitar estimado gratis",
       "hero.cta.call": "Llámanos ahora",
-      "hero.badge.insured": "Totalmente asegurados",
-      "hero.badge.licensed": "LLC con licencia",
+      "hero.badge.insured": "Detalles del proyecto",
+      "hero.badge.licensed": "Equipo local",
       "hero.badge.family": "Negocio familiar",
       "hero.badge.bilingual": "Hablamos Español",
 
       "instant.heading": "Inicia una sola solicitud de cotización",
       "instant.subtitle":
-        "Usa este inicio rápido para llenar el formulario final. Nada se envía hasta que revises y envíes la solicitud final.",
+        "Ingresa unos datos para ver un rango inicial y envía tu solicitud en un solo paso. El precio final se confirma en el lugar.",
       "instant.trust.free": "Estimado gratis y sin compromiso",
       "instant.trust.response": "Nuestro equipo confirma la disponibilidad",
+      "instant.label.name": "Tu nombre",
+      "instant.label.phone": "Número de celular",
+      "instant.placeholder.name": "Nombre completo",
+      "instant.placeholder.phone": "Tu número de celular",
+      "instant.title.phone": "Ingresa un teléfono válido",
+      "instant.optional.summary":
+        "Detalles opcionales (tamaño y horario preferido para recibir la llamada)",
+      "instant.proof.insured": "Equipo local del Condado de DeKalb",
+      "instant.proof.response": "Nuestro equipo confirma la disponibilidad",
+      "instant.proof.review": "Primero la solicitud; la cita se confirma por separado",
+      "instant.proof.bilingual": "Estimados en inglés o español",
       "instant.label.address": "Dirección de la propiedad",
       "instant.placeholder.address": "ej., 1234 Main St, DeKalb",
       "instant.label.isOwner":
@@ -320,13 +378,20 @@
       "instant.title.zip": "Ingresa un código postal válido de 5 dígitos",
       "instant.label.bestTime": "Horario preferido para recibir la llamada",
       "instant.button.calculate": "Ver rango inicial",
+      "instant.button.send": "Enviar solicitud de cotización gratis",
       "instant.result.heading": "Rango de precio inicial:",
       "instant.result.disclaimer":
         "Este rango inicial ayuda a orientar. El precio final depende del acceso, alcance, retiro de material y evaluación en sitio.",
       "instant.result.call": "Llama para una cotización exacta",
-      "instant.result.send": "Continuar al formulario final",
+      "instant.result.send": "Agregar más detalles abajo",
       "instant.privacy":
-        "Este inicio no envía ningún mensaje. Revisa y envía el formulario final.",
+        "Enviar solicitud de cotización gratis envía tu pedido ahora. El rango inicial es solo una guía.",
+      "alerts.instant.sendMissing":
+        "Ingresa tu nombre, celular, servicio, dirección y código postal.",
+      "alerts.instant.sendSuccess":
+        "Tu solicitud de cotización fue enviada. Tu cita aún no está confirmada; nuestro equipo se comunicará contigo para confirmar la disponibilidad y el horario.",
+      "alerts.instant.sendError":
+        "No pudimos enviar tu solicitud. Llama al (815) 501-1478 o inténtalo de nuevo.",
 
       "services.heading": "Nuestros servicios profesionales",
       "services.subheading":
@@ -340,7 +405,7 @@
       "services.tree.item1": "Poda y recorte de árboles",
       "services.tree.item2": "Remoción segura de árboles",
       "services.tree.item3": "Destoconado",
-      "services.tree.item4": "Servicio de emergencia 24/7",
+      "services.tree.item4": "Solicitudes por daños de tormenta",
       "services.landscaping.title": "Paisajismo",
       "services.landscaping.item1": "Diseño personalizado de jardines",
       "services.landscaping.item2": "Instalación de mulch y piedra",
@@ -360,7 +425,7 @@
 
       "whyChoose.heading": "¿Por qué elegir a Hernandez?",
       "whyChoose.subheading":
-        "Un equipo local y asegurado, con comunicación clara desde el primer estimado hasta la limpieza final.",
+        "Un equipo local con comunicación clara desde el primer estimado hasta la limpieza final.",
       "whyChoose.feature1.title": "Cotizaciones claras y rápidas",
       "whyChoose.feature1.desc":
         "Cuéntanos qué necesitas y confirmaremos el tiempo, el alcance y los siguientes pasos.",
@@ -430,6 +495,8 @@
       "gallery.featured.heading": "Desliza para comparar",
       "gallery.featured.instructions":
         "Arrastra el control o usa las flechas del teclado para comparar las fotos de antes y después.",
+      "gallery.featured.story":
+        "<strong>Antes y después</strong> — compare las fotos del jardín usando el control deslizante.",
       "gallery.slider.value": "Divisor de comparación al {{value}}%",
       "gallery.slider.label": "Mostrar la foto del después",
       "nav.menuToggle": "Abrir o cerrar el menú móvil",
@@ -448,23 +515,23 @@
       "gallery.loadMore": "Cargar más fotos",
       "gallery.loadingButton": "Cargando...",
 
-      "testimonials.heading": "Lo que buscamos entregar",
+      "testimonials.heading": "Comentario destacado de un cliente",
       "testimonials.subheading":
-        "Un comentario de cliente de un directorio, más los estándares de servicio que mantenemos en cada trabajo.",
-      "testimonials.badge": "Comentario de cliente",
-      "testimonials.reviewLabel": "beautifullandscapes.net · 19 de junio",
+        "Una opinión de un cliente publicada en un directorio externo de negocios, con enlace a la fuente.",
+      "testimonials.badge": "Opinión de un cliente publicada",
+      "testimonials.reviewLabel": "Publicada el 19 de junio",
       "testimonials.reviewQuote":
         "Robert Tolito destacó que el equipo dejó su jardín muy bien cuidado, trabajó con eficiencia y puso atención a los detalles que pidió.",
       "testimonials.reviewAuthor": "Robert Tolito",
       "testimonials.reviewMeta":
-        "Comentario del directorio beautifullandscapes.net.",
-      "testimonials.reviewSource": "Ver fuente",
+        "Opinión de un cliente publicada en el directorio Beautiful Landscapes.",
+      "testimonials.reviewSource": "Ver la reseña original",
       "testimonials.supportTitle":
-        "Nuestro compromiso en cada trabajo",
+        "Lo que los dueños de casa quieren confirmar antes de llamar",
       "testimonials.support1":
-        "Llegar a la hora acordada o avisar si nos retrasamos",
+        "Una respuesta clara sobre precio y siguientes pasos",
       "testimonials.support2":
-        "Precio claro y siguientes pasos antes de comenzar",
+        "Trabajo limpio y atención a los detalles en la propiedad",
       "testimonials.support3":
         "Comunicación bilingüe para agenda y actualizaciones",
       "testimonials.ctaEyebrow": "¿Listo para tu cotización?",
@@ -499,7 +566,6 @@
       "quote.heading": "¿Listo para transformar tu propiedad?",
       "quote.contactHeading": "Ponte en contacto",
       "quote.phoneLabel": "Llamar",
-      "quote.textLabel": "Enviar un mensaje de texto",
       "quote.emailLabel": "Correo electrónico",
       "quote.hoursLabel": "Horario de atención",
       "quote.hoursWeekdays": "Lun-Vie: 7 a. m. - 6 p. m.",
@@ -546,7 +612,7 @@
       "quote.submit": "Enviar solicitud de cotización",
 
       "footer.copy": "© 2026 Hernandez Landscape & Tree Service LLC",
-      "footer.license": "LLC con licencia y seguro vigentes",
+      "footer.license": "Hernandez Landscape & Tree Service LLC",
       "footer.tagline":
         "Servicios profesionales de jardinería en el condado de DeKalb",
       "footer.follow": "Síguenos",
@@ -556,9 +622,9 @@
       "footer.contact": "Contáctanos",
       "footer.areas": "Zonas de servicio",
       "footer.rights": "Todos los derechos reservados.",
-      "footer.insured": "Licencia y seguro vigentes",
-      "footer.authorization": "LLC con licencia y seguro",
-      "header.license": "LLC con licencia y seguro vigentes",
+      "footer.insured": "Equipo local del Condado de DeKalb",
+      "footer.authorization": "Estimados en inglés o español",
+      "header.license": "Servicio de jardinería y árboles en el Condado de DeKalb",
       "footer.facebook": "Facebook",
       "footer.maps": "Google Maps",
       "footer.privacy": "Política de privacidad",
@@ -599,12 +665,17 @@
       "hero.subtitle":
         "Poda, remoción de árboles, cuidado del césped y jardinería por un equipo familiar del condado de DeKalb. Estimados gratis en inglés o español.",
       "hero.emergency":
-        "¿Daños por tormenta? Servicio de árboles de emergencia 24/7",
+        "¿Daños por tormenta? Llame para consultar la disponibilidad",
       "hero.emergencyCall": "Llama al (815) 501-1478",
+      "hero.emergencyPage": "Ayuda de emergencia",
       "hero.cta": "Ver rango inicial",
       "hero.call": "Llámanos ahora",
-      "hero.insured": "Totalmente asegurados",
-      "hero.licensed": "LLC con licencia",
+      "hero.insured": "Detalles del proyecto",
+      "hero.insured.tip":
+        "Hable con nuestro equipo sobre el trabajo, el acceso a la propiedad y la limpieza antes de confirmar su proyecto.",
+      "hero.licensed": "Equipo local",
+      "hero.licensed.tip":
+        "Hernandez Landscape & Tree Service LLC atiende el Condado de DeKalb. Llame para hablar sobre su propiedad y el servicio que necesita.",
       "hero.family": "Negocio familiar",
       "hero.bilingual": "Se Habla Español",
       "services.learnMore": "Más información",
@@ -616,15 +687,15 @@
       "faq.q1": "¿Ofrecen estimados gratis para remover árboles en DeKalb?",
       "faq.a1":
         "Sí. Ofrecemos estimados gratis y sin compromiso para remoción y poda de árboles, además de proyectos de paisajismo en el condado de DeKalb y zonas cercanas.",
-      "faq.q2": "¿Hernandez Landscape & Tree Service tiene licencia y seguro?",
+      "faq.q2": "¿Qué debemos confirmar antes de comenzar el trabajo?",
       "faq.a2":
-        "Sí. Somos una LLC con licencia y seguro vigentes para proteger tu propiedad durante el trabajo de árboles y paisajismo.",
+        "Hable con nuestro equipo sobre el trabajo, el acceso, la limpieza, el precio y cualquier documento de seguro que necesite antes de confirmar el proyecto.",
       "faq.q3": "¿Qué zonas atienden fuera de DeKalb?",
       "faq.a3":
         "Nuestras zonas principales son DeKalb y Sycamore. También atendemos Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles y West Chicago.",
       "faq.q4": "¿Ofrecen remoción de árboles de emergencia?",
       "faq.a4":
-        "Sí. Ofrecemos servicio de árboles de emergencia 24/7 para árboles caídos o peligrosos que amenacen de inmediato tu casa o propiedad.",
+        "Llame para hablar sobre un árbol caído o peligroso y confirmar si el equipo está disponible. Una solicitud en el sitio no confirma un despacho ni una hora de llegada. Si hay peligro inmediato o contacto con cables eléctricos, llame primero a emergencias.",
       "faq.q5": "¿Ofrecen remoción de nieve para propiedades residenciales?",
       "faq.a5":
         "Sí. Ofrecemos remoción de nieve estacional para propiedades residenciales y comerciales en el área de DeKalb, según disponibilidad.",

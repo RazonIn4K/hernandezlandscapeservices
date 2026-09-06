@@ -1,6 +1,7 @@
 (() => {
   const PHONE_DISPLAY = "(815) 501-1478";
   const PHONE_HREF = "tel:18155011478";
+  const SMS_HREF = "sms:+18155011478";
   const STYLE_ID = "mobile-call-cta-style";
 
   const styles = `
@@ -10,27 +11,24 @@
 
     @media (max-width: 767px) {
       .mobile-call-cta {
-        align-items: center;
-        background: #166534;
-        border: 1px solid rgba(255, 255, 255, 0.28);
-        border-radius: 999px;
-        bottom: calc(14px + env(safe-area-inset-bottom));
-        box-shadow: 0 18px 42px rgba(10, 38, 28, 0.36);
+        align-items: stretch;
+        background: #0f2f24;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 1rem;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        box-shadow: 0 16px 36px rgba(10, 38, 28, 0.4);
         color: #fff;
-        display: flex;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        font-size: 1rem;
-        font-weight: 800;
-        justify-content: center;
-        left: max(14px, env(safe-area-inset-left));
-        line-height: 1.1;
-        min-height: 54px;
+        display: grid;
+        font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        gap: 0.4rem;
+        grid-template-columns: 1.2fr 0.9fr 1.1fr;
+        left: max(10px, env(safe-area-inset-left));
+        min-height: 56px;
         opacity: 0;
-        padding: 0.85rem 1rem;
+        padding: 0.4rem;
         pointer-events: none;
         position: fixed;
-        right: max(14px, env(safe-area-inset-right));
-        text-decoration: none;
+        right: max(10px, env(safe-area-inset-right));
         transform: translateY(calc(100% + 28px));
         visibility: hidden;
         z-index: 1000;
@@ -43,29 +41,59 @@
         visibility: visible;
       }
 
-      .mobile-call-cta:hover,
-      .mobile-call-cta:active {
-        background: #14532d;
+      .mobile-call-cta__btn {
+        align-items: center;
+        border-radius: 0.75rem;
         color: #fff;
+        display: inline-flex;
+        font-size: 0.78rem;
+        font-weight: 800;
+        justify-content: center;
+        letter-spacing: 0.01em;
+        line-height: 1.15;
+        min-height: 48px;
+        padding: 0.55rem 0.35rem;
+        text-align: center;
         text-decoration: none;
       }
 
-      .mobile-call-cta:focus-visible {
-        outline: 3px solid #facc15;
-        outline-offset: 3px;
+      .mobile-call-cta__btn--call {
+        background: #166534;
       }
 
-      .mobile-call-cta__phone {
-        font-size: 0.92rem;
-        font-weight: 700;
-        margin-left: 0.55rem;
-        opacity: 0.92;
+      .mobile-call-cta__btn--call.is-emergency {
+        background: #b45309;
+      }
+
+      .mobile-call-cta__btn--text {
+        background: #1f4d3c;
+      }
+
+      .mobile-call-cta__btn--estimate {
+        background: #14532d;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+      }
+
+      .mobile-call-cta__btn:hover,
+      .mobile-call-cta__btn:active {
+        filter: brightness(1.06);
+        text-decoration: none;
+      }
+
+      .mobile-call-cta__btn:focus-visible {
+        outline: 3px solid #facc15;
+        outline-offset: 2px;
       }
     }
 
-    @media (max-width: 340px) {
-      .mobile-call-cta__phone {
-        display: none;
+    @media (max-width: 360px) {
+      .mobile-call-cta {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+
+      .mobile-call-cta__btn {
+        font-size: 0.72rem;
+        padding-inline: 0.2rem;
       }
     }
 
@@ -78,14 +106,9 @@
     @media (prefers-reduced-motion: no-preference) and (max-width: 767px) {
       .mobile-call-cta {
         transition:
-          background-color 160ms ease,
           opacity 180ms ease,
           transform 180ms ease,
           visibility 180ms ease;
-      }
-
-      .mobile-call-cta.is-visible:hover {
-        transform: translateY(-1px);
       }
     }
 
@@ -104,26 +127,92 @@
     document.head.append(style);
   };
 
+  const isEmergencyPage = () => {
+    if (document.body?.dataset?.mobileCta === "emergency") return true;
+    return /\/(tree-removal|emergency-tree-removal)(\/|$)/.test(
+      window.location.pathname,
+    );
+  };
+
+  const estimateHref = () => {
+    const quote = document.getElementById("quote") || document.getElementById("instant-quote");
+    const isHomepage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+    if (isHomepage && quote) return "#quote";
+    if (document.documentElement.lang.toLowerCase().startsWith("es")) {
+      return "/?lang=es#quote";
+    }
+    return "/#quote";
+  };
+
   const appendCallButton = () => {
     if (document.querySelector("[data-mobile-call-cta]")) return;
 
     injectStyles();
 
-    const link = document.createElement("a");
-    link.href = PHONE_HREF;
-    link.className = "mobile-call-cta";
-    link.dataset.mobileCallCta = "true";
-    link.dataset.layoutIgnore = "fixed-cta";
-    link.setAttribute(
+    const emergency = isEmergencyPage();
+    const bar = document.createElement("nav");
+    bar.className = "mobile-call-cta";
+    bar.dataset.mobileCallCta = "true";
+    bar.dataset.layoutIgnore = "fixed-cta";
+    bar.setAttribute(
       "aria-label",
-      `Call Hernandez Landscape now at ${PHONE_DISPLAY}`,
+      emergency
+        ? "Emergency contact options"
+        : "Quick contact options",
     );
-    link.innerHTML = `Call Now <span class="mobile-call-cta__phone">${PHONE_DISPLAY}</span>`;
 
-    document.body.append(link);
+    const callLabel = emergency ? "Emergency Call" : "Call Now";
+    const callAria = emergency
+      ? `Emergency call Hernandez Landscape at ${PHONE_DISPLAY}`
+      : `Call Hernandez Landscape now at ${PHONE_DISPLAY}`;
+
+    bar.innerHTML = `
+      <a class="mobile-call-cta__btn mobile-call-cta__btn--call${emergency ? " is-emergency" : ""}" href="${PHONE_HREF}" data-mobile-call-cta-call="true" aria-label="${callAria}">${callLabel}</a>
+      <a class="mobile-call-cta__btn mobile-call-cta__btn--text" href="${SMS_HREF}" data-mobile-call-cta-text="true" aria-label="Text Hernandez Landscape at ${PHONE_DISPLAY}">Text</a>
+      <a class="mobile-call-cta__btn mobile-call-cta__btn--estimate" href="${estimateHref()}" data-mobile-call-cta-estimate="true" aria-label="Request a free estimate">Free Estimate</a>
+    `;
+
+    document.body.append(bar);
+
+    const updateLanguage = () => {
+      const spanish = document.documentElement.lang.toLowerCase().startsWith("es");
+      const call = bar.querySelector("[data-mobile-call-cta-call]");
+      const text = bar.querySelector("[data-mobile-call-cta-text]");
+      const estimate = bar.querySelector("[data-mobile-call-cta-estimate]");
+
+      bar.setAttribute("aria-label", spanish
+        ? (emergency ? "Opciones de contacto de emergencia" : "Opciones de contacto rápido")
+        : (emergency ? "Emergency contact options" : "Quick contact options"));
+      call.textContent = spanish
+        ? (emergency ? "Emergencia" : "Llamar ahora")
+        : callLabel;
+      call.setAttribute("aria-label", spanish
+        ? (emergency
+          ? `Llamar a Hernandez Landscape por una emergencia al ${PHONE_DISPLAY}`
+          : `Llamar a Hernandez Landscape al ${PHONE_DISPLAY}`)
+        : callAria);
+      text.textContent = spanish ? "Mensaje" : "Text";
+      text.setAttribute("aria-label", spanish
+        ? `Enviar un mensaje a Hernandez Landscape al ${PHONE_DISPLAY}`
+        : `Text Hernandez Landscape at ${PHONE_DISPLAY}`);
+      estimate.textContent = spanish ? "Cotización gratis" : "Free Estimate";
+      estimate.setAttribute("aria-label", spanish
+        ? "Solicitar una cotización gratis"
+        : "Request a free estimate");
+      estimate.setAttribute("href", estimateHref());
+    };
+
+    updateLanguage();
+    new MutationObserver(updateLanguage).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
 
     const hero = document.querySelector(".site-hero");
-    const quote = document.getElementById("quote");
+    const quote =
+      document.getElementById("quote") ||
+      document.getElementById("instant-quote") ||
+      document.getElementById("cotizacion");
     const footer = document.querySelector("footer");
     const mobileQuery = window.matchMedia("(max-width: 767px)");
     const shortLandscapeQuery = window.matchMedia(
@@ -146,7 +235,7 @@
         !heroIsVisible &&
         !conversionAreaIsVisible;
 
-      link.classList.toggle("is-visible", shouldShow);
+      bar.classList.toggle("is-visible", shouldShow);
       document.body.classList.toggle("has-mobile-cta", shouldShow);
     };
 
@@ -163,9 +252,22 @@
     window.addEventListener("resize", updateVisibility, { passive: true });
     mobileQuery.addEventListener?.("change", updateVisibility);
     shortLandscapeQuery.addEventListener?.("change", updateVisibility);
-    link.addEventListener("click", () => {
+
+    bar.querySelector("[data-mobile-call-cta-call]")?.addEventListener("click", () => {
       if (typeof window.hlsTrack === "function") {
-        window.hlsTrack("phone_click", { source: "mobile_sticky_cta" });
+        window.hlsTrack("phone_click", {
+          source: emergency ? "mobile_sticky_emergency" : "mobile_sticky_cta",
+        });
+      }
+    });
+    bar.querySelector("[data-mobile-call-cta-text]")?.addEventListener("click", () => {
+      if (typeof window.hlsTrack === "function") {
+        window.hlsTrack("sms_click", { source: "mobile_sticky_cta" });
+      }
+    });
+    bar.querySelector("[data-mobile-call-cta-estimate]")?.addEventListener("click", () => {
+      if (typeof window.hlsTrack === "function") {
+        window.hlsTrack("estimate_click", { source: "mobile_sticky_cta" });
       }
     });
 

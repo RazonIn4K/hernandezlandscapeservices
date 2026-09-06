@@ -4,6 +4,8 @@ module.exports = {
     './index.html',
     './es/**/*.html',
     './tree-removal/**/*.html',
+    './emergency-tree-removal/**/*.html',
+    './tree-trimming-stump-grinding/**/*.html',
     './lawn-care/**/*.html',
     './snow-removal/**/*.html',
     './landscaping-design/**/*.html',

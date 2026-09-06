@@ -166,6 +166,8 @@ test.describe('Static Gallery Functionality', () => {
   const testsWithCustomNavigation = new Set([
     'mobile responsiveness',
     'mobile call CTA is available across key public pages',
+    'mobile call CTA localizes Spanish pages and opens the Spanish quote form',
+    'mobile call CTA follows homepage language changes',
     'photo layouts remain aligned across breakpoints',
   ]);
 
@@ -421,6 +423,9 @@ test.describe('Static Gallery Functionality', () => {
     await expect(homeCallCta).not.toBeVisible();
     await page.locator('#why-choose-us').scrollIntoViewIfNeeded();
     await expect(homeCallCta).toBeVisible();
+    await expect(homeCallCta.locator('[data-mobile-call-cta-call]')).toContainText('Call Now');
+    await expect(homeCallCta.locator('[data-mobile-call-cta-text]')).toContainText('Text');
+    await expect(homeCallCta.locator('[data-mobile-call-cta-estimate]')).toContainText('Free Estimate');
     await page.locator('#quote').scrollIntoViewIfNeeded();
     await expect(homeCallCta).not.toBeVisible();
 
@@ -429,9 +434,68 @@ test.describe('Static Gallery Functionality', () => {
 
       const callCta = page.locator('[data-mobile-call-cta]');
       await expect(callCta).toBeVisible();
-      await expect(callCta).toHaveAttribute('href', 'tel:18155011478');
-      await expect(callCta).toContainText('Call Now');
+      await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute(
+        'href',
+        'tel:18155011478',
+      );
+      if (path === '/tree-removal/') {
+        await expect(callCta.locator('[data-mobile-call-cta-call]')).toContainText(
+          'Emergency Call',
+        );
+      } else {
+        await expect(callCta.locator('[data-mobile-call-cta-call]')).toContainText('Call Now');
+      }
     }
+  });
+
+  test('mobile call CTA localizes Spanish pages and opens the Spanish quote form', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 740 });
+
+    for (const path of ['/es/', '/es/lawn-care/', '/es/tree-removal/']) {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      const callCta = page.locator('[data-mobile-call-cta]');
+      const emergency = path === '/es/tree-removal/';
+      await expect(callCta).toHaveAttribute('aria-label', emergency
+        ? 'Opciones de contacto de emergencia'
+        : 'Opciones de contacto rápido');
+      await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText(emergency ? 'Emergencia' : 'Llamar ahora');
+      await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', emergency
+        ? 'Llamar a Hernandez Landscape por una emergencia al (815) 501-1478'
+        : 'Llamar a Hernandez Landscape al (815) 501-1478');
+      await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Mensaje');
+      await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveAttribute('aria-label', 'Enviar un mensaje a Hernandez Landscape al (815) 501-1478');
+      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Cotización gratis');
+      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('aria-label', 'Solicitar una cotización gratis');
+      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '/?lang=es#quote');
+      expect(await callCta.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(1);
+    }
+
+    await page.locator('[data-mobile-call-cta-estimate]').click();
+    await expect(page).toHaveURL(/\/\?lang=es#quote$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'es');
+    await expect(page.locator('#quote')).toBeInViewport();
+  });
+
+  test('mobile call CTA follows homepage language changes', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const callCta = page.locator('[data-mobile-call-cta]');
+
+    await page.locator('[data-lang-switch="es"]:visible').first().click();
+    await expect(callCta).toHaveAttribute('aria-label', 'Opciones de contacto rápido');
+    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText('Llamar ahora');
+    await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Mensaje');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Cotización gratis');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '#quote');
+
+    await page.locator('[data-lang-switch="en"]:visible').first().click();
+    await expect(callCta).toHaveAttribute('aria-label', 'Quick contact options');
+    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText('Call Now');
+    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', 'Call Hernandez Landscape now at (815) 501-1478');
+    await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Text');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Free Estimate');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('aria-label', 'Request a free estimate');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '#quote');
   });
 
   test('mobile responsiveness', async ({ page }) => {
@@ -442,7 +506,10 @@ test.describe('Static Gallery Functionality', () => {
 
     const callCta = page.locator('[data-mobile-call-cta]');
     await expect(callCta).not.toBeVisible();
-    await expect(callCta).toHaveAttribute('href', 'tel:18155011478');
+    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute(
+      'href',
+      'tel:18155011478',
+    );
     
     // Check mobile menu works
     const mobileMenuButton = page.locator('button[aria-label="Toggle mobile menu"]');
