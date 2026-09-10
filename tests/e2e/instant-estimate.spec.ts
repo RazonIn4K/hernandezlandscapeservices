@@ -69,3 +69,256 @@ test.describe('Homepage starting range', () => {
     await expect(page.locator('#priceRange')).toContainText('(815) 501-1478');
   });
 });
+
+test.describe('Instant estimate lead handoff', () => {
+  test('instant estimate can submit directly without the contact form', async ({ page }) => {
+    let submittedBody: string | null = null;
+    await page.route('**/api.web3forms.com/**', async (route) => {
+      submittedBody = route.request().postData();
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await fillInstantEstimator(page);
+    await page.click('#sendInstantRequestBtn');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalMessage')).toContainText('estimate request was sent');
+    expect(submittedBody).toContain('Test Lead');
+    expect(submittedBody).toContain('815-555-0100');
+    expect(submittedBody).toContain('tree-service');
+    expect(submittedBody).toContain('60115');
+  });
+
+  for (const body of ['{}', 'not-json', '{"success":false}', '{"success":"true"}']) {
+    test(`instant request does not report success for invalid provider receipt ${body}`, async ({ page }) => {
+      await page.route('**/api.web3forms.com/**', (route) => route.fulfill({
+        status: 200, contentType: 'application/json', body,
+      }));
+      await fillInstantEstimator(page);
+      await page.click('#sendInstantRequestBtn');
+      await expect(page.locator('#customModal')).toBeVisible();
+      await expect(page.locator('#modalMessage')).not.toContainText('request was sent');
+      await expect(page.locator('#modalMessage')).toContainText('(815) 501-1478');
+      await expect(page.locator('#instantName')).toHaveValue('Test Lead');
+      await expect(page.locator('#sendInstantRequestBtn')).toBeEnabled();
+    });
+  }
+
+  test('direct request uses edited service choices instead of an old estimate', async ({ page }) => {
+    const captured = await mockWeb3Forms(page);
+    await fillInstantEstimator(page);
+    await page.selectOption('#serviceType', 'lawn-care');
+    await page.fill('#zipCode', '60178');
+    await page.click('#sendInstantRequestBtn');
+    await expect(page.locator('#modalMessage')).toContainText('request was sent');
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('lawn-care');
+    expect(captured.bodies[0]).toContain('ZIP 60178');
+    expect(captured.bodies[0]).not.toContain('ZIP 60115');
+    await expect(page.locator('#contactService')).toHaveValue('lawn-care');
+  });
+
+  test('send button prefills the contact form with estimator data', async ({ page }) => {
+    await fillInstantEstimator(page);
+    await page.click('#sendEstimateBtn');
+
+    await expect(page.locator('#quote')).toBeInViewport();
+    await expect(page.locator('#contactAddress')).toHaveValue('1234 Main St, DeKalb');
+    await expect(page.locator('#ownerVerify')).toBeChecked();
+    await expect(page.locator('#bestTime')).toHaveValue('evening');
+    await expect(page.locator('#contactService')).toHaveValue('tree-service');
+    await expect(page.locator('#quotePrefillNotice')).toBeVisible();
+
+    const details = await page.inputValue('#projectDetails');
+    expect(details).toContain('Tree Service');
+    expect(details).toContain('ZIP 60115');
+    expect(details).toContain('$280 - $420');
+  });
+
+  test('estimator data reaches the Web3Forms payload on submit', async ({ page }) => {
+    let submittedBody: string | null = null;
+    await page.route('**/api.web3forms.com/**', async (route) => {
+      submittedBody = route.request().postData();
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true }),
+      });
+    });
+
+    await fillInstantEstimator(page);
+    await page.click('#sendEstimateBtn');
+
+    await page.fill('#contactName', 'Test Lead');
+    await page.fill('#contactPhone', '815-555-0100');
+    await backdateFormTimer(page);
+    await page.click('#contactForm button[type="submit"]');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
+
+    expect(submittedBody).not.toBeNull();
+    expect(submittedBody).not.toContain('[Possible Spam]');
+    expect(submittedBody).toContain('1234 Main St, DeKalb');
+    expect(submittedBody).toContain('tree-service');
+    expect(submittedBody).toContain('evening');
+    expect(submittedBody).toContain('$280 - $420');
+    expect(submittedBody).toContain('owner_verified');
+    // Regression guard: ccemail is a Web3Forms Pro-only field — including it makes
+    // the API reject every submission with 400 on the free tier (2026-07-08 incident).
+    expect(submittedBody).not.toContain('name="ccemail"');
+  });
+
+  test('calculating an estimate alone sends no network request', async ({ page }) => {
+    const web3formsRequests: string[] = [];
+    page.on('request', (request) => {
+      if (request.url().includes('web3forms')) {
+        web3formsRequests.push(request.url());
+      }
+    });
+
+    await fillInstantEstimator(page);
+    expect(web3formsRequests).toHaveLength(0);
+  });
+
+  test('starter requires the property address and owner confirmation', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.fill('#instantName', 'Test Lead');
+    await page.fill('#instantPhone', '815-555-0100');
+    await page.selectOption('#serviceType', 'tree-service');
+    await page.locator('#quoteForm details').evaluate((details) => {
+      (details as HTMLDetailsElement).open = true;
+    });
+    await page.selectOption('#propertySize', 'medium');
+    await page.fill('#zipCode', '60115');
+    await page.click('#calculateQuoteBtn');
+
+    await expect(page.locator('#quoteResult')).not.toBeVisible();
+    await expect(page.locator('#propertyAddress')).toBeFocused();
+
+    await page.fill('#propertyAddress', '1234 Main St, DeKalb');
+    await page.click('#calculateQuoteBtn');
+    await expect(page.locator('#quoteResult')).not.toBeVisible();
+    await expect(page.locator('#isOwner')).toBeFocused();
+  });
+
+  test('duplicate bestTime IDs are gone', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#bestTime')).toHaveCount(1);
+    await expect(page.locator('#instantBestTime')).toHaveCount(1);
+  });
+
+  test('starter and final quote form use the same service options', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+
+    const starterValues = await page.locator('#serviceType option').evaluateAll((options) =>
+      options.map((option) => (option as HTMLOptionElement).value).filter(Boolean),
+    );
+    const finalValues = await page.locator('#contactService option').evaluateAll((options) =>
+      options.map((option) => (option as HTMLOptionElement).value).filter(Boolean),
+    );
+
+    expect(starterValues).toEqual(finalValues);
+  });
+
+  test('stacked content signals are delivered with a spam-review tag', async ({ page }) => {
+    const captured = await mockWeb3Forms(page);
+
+    // Even a strongly spam-like message is not enough to discard a lead in the
+    // browser. Only honeypots hard-block; content signals are sent for review.
+    await fillQuoteForm(page, {
+      email: 'ob-jennifer@getdandynow.com',
+      message:
+        'I made an AI agent for Hernandez Landscape and can add it to your Google Business Profile. Grab a time here: https://getdandy.com/schedule-a-chat/ Unsubscribe: https://bit.ly/42wnUsa',
+    });
+    await backdateFormTimer(page);
+    await page.locator('#contactForm').evaluate((form) => {
+      (form as HTMLFormElement).requestSubmit();
+    });
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('[Possible Spam]');
+  });
+
+  test('two links plus one spam phrase reaches Web3Forms tagged', async ({ page }) => {
+    const captured = await mockWeb3Forms(page);
+
+    await fillQuoteForm(page, {
+      email: 'sales@example.com',
+      message:
+        'Our ai agent can answer calls for you. See https://example.com/demo and https://example.com/pricing for details.',
+    });
+    await backdateFormTimer(page);
+    await page.click('#contactForm button[type="submit"]');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('[Possible Spam]');
+  });
+
+  test('honeypot-filled submission is blocked and never sent', async ({ page }) => {
+    const captured = await mockWeb3Forms(page);
+
+    await fillQuoteForm(page, {
+      email: 'homeowner@example.com',
+      message: 'Please give me a quote for weekly lawn mowing.',
+    });
+    await page.locator('#websiteField').evaluate((input) => {
+      (input as HTMLInputElement).value = 'https://spam-bot.example.com';
+    });
+    await backdateFormTimer(page);
+    await page.click('#contactForm button[type="submit"]');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
+    expect(captured.bodies).toHaveLength(0);
+  });
+
+  test('fast autofill submission is delivered with a spam-review tag', async ({ page }) => {
+    const captured = await mockWeb3Forms(page);
+
+    await fillQuoteForm(page, {
+      email: 'homeowner@example.com',
+      message: 'Please give me a quote for weekly lawn mowing.',
+    });
+    // Set the timer and submit in the SAME browser task: page.click()'s
+    // actionability wait can eat >1500ms on slow CI runners (deferred scripts
+    // shifting layout), which turns an "inhumanly fast" submit into a slow one
+    // and defeats the point of the test.
+    await page.locator('#contactForm').evaluate((form) => {
+      const input = form.querySelector('#formLoadedAt') as HTMLInputElement;
+      input.value = String(Date.now());
+      (form as HTMLFormElement).requestSubmit();
+    });
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    expect(captured.bodies).toHaveLength(1);
+    expect(captured.bodies[0]).toContain('[Possible Spam]');
+  });
+
+  test('provider failure preserves the lead and offers a tappable call fallback', async ({ page }) => {
+    await page.route('**/api.web3forms.com/**', async (route) => {
+      await route.fulfill({ status: 503, contentType: 'text/plain', body: 'Unavailable' });
+    });
+
+    await fillQuoteForm(page, {
+      email: 'homeowner@example.com',
+      message: 'Please quote spring cleanup and weekly mowing.',
+    });
+    await backdateFormTimer(page);
+    await page.click('#contactForm button[type="submit"]');
+
+    await expect(page.locator('#customModal')).toBeVisible();
+    await expect(page.locator('#modalCallAction')).toBeVisible();
+    await expect(page.locator('#modalCallAction')).toHaveAttribute('href', 'tel:18155011478');
+    await expect(page.locator('#contactName')).toHaveValue('Jennifer Obrien');
+    await expect(page.locator('#contactForm')).not.toHaveAttribute('aria-busy', 'true');
+    await expect(page.locator('#contactForm button[type="submit"]')).toBeEnabled();
+  });
+});
