@@ -11,7 +11,7 @@
  *   Geo     : 41.935162495016, -88.740720124283
  *   Phone   : (815) 501-1478  /  +1-815-501-1478  /  tel:18155011478
  *   Email   : hernandezlandscapetreeservices@gmail.com
- *   Hours   : Mon-Fri 07:00-18:00, Sat 08:00-16:00
+ *   Hours   : Mon-Sat 08:00-17:00, Sun closed
  *
  * ==========================================================================
  * DOCUMENTED EXCEPTIONS — each is pending an owner decision and must be
@@ -59,8 +59,8 @@ const CONFIRMED = {
     latitude: 41.935162495016,
     longitude: -88.740720124283,
   },
-  weekdayHours: { opens: '07:00', closes: '18:00' },
-  saturdayHours: { opens: '08:00', closes: '16:00' },
+  weekdayHours: { opens: '08:00', closes: '17:00' },
+  saturdayHours: { opens: '08:00', closes: '17:00' },
 };
 
 // See the TODO(B-2) / TODO(B-6) header blocks above before touching these.
@@ -164,17 +164,20 @@ function checkText(relPath, text) {
     }
   }
 
-  // Visible opening-hours copy (e.g. "Mon-Fri: 7AM-6PM", "Mon–Fri: 7:00 AM - 6:00 PM").
+  // Visible opening-hours copy (Option A draft: Mon-Sat 8AM-5PM; Sunday Closed).
   // Unicode dashes are normalized first so an en/em-dash cannot dodge the weekday
   // match, and ":00" minute forms of the correct hours are accepted.
   for (const rawLine of text.split('\n')) {
     const line = rawLine.replace(/[‐-―−]/g, '-');
-    if (!/\d\s*[AP]M/i.test(line)) continue;
-    if (/Mon\s*-?\s*Fri/i.test(line) && !(/\b7(?::00)?\s*AM/i.test(line) && /\b6(?::00)?\s*PM/i.test(line))) {
-      fail(`${relPath}: weekday hours drift (expected 7AM-6PM): "${line.trim()}"`);
+    if (!/\d\s*[AP]M/i.test(line) && !/closed/i.test(line)) continue;
+    if (/Mon\s*-?\s*Sat/i.test(line) && !(/\b8(?::00)?\s*AM/i.test(line) && /\b5(?::00)?\s*PM/i.test(line))) {
+      fail(`${relPath}: Mon-Sat hours drift (expected 8AM-5PM): "${line.trim()}"`);
     }
-    if (/\bSat(urday)?\b/i.test(line) && !(/\b8(?::00)?\s*AM/i.test(line) && /\b4(?::00)?\s*PM/i.test(line))) {
-      fail(`${relPath}: Saturday hours drift (expected 8AM-4PM): "${line.trim()}"`);
+    if (/Mon\s*-?\s*Fri/i.test(line) && !/Mon\s*-?\s*Sat/i.test(line)) {
+      fail(`${relPath}: weekday band still Mon-Fri (expected Mon-Sat 8AM-5PM): "${line.trim()}"`);
+    }
+    if (/\bSat(urday)?\b/i.test(line) && !/Mon\s*-?\s*Sat/i.test(line) && !(/\b8(?::00)?\s*AM/i.test(line) && /\b5(?::00)?\s*PM/i.test(line))) {
+      fail(`${relPath}: Saturday hours drift (expected 8AM-5PM under Mon-Sat): "${line.trim()}"`);
     }
   }
 }
