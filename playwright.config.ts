@@ -42,7 +42,7 @@ export default defineConfig({
 
   // Static web server for testing
   webServer: {
-    command: `node node_modules/tailwindcss/lib/cli.js -i ./src/input.css -o ./assets/css/styles.css --minify && node node_modules/serve/build/main.js . -l ${playwrightPort}`,
+    command: `node scripts/apply-price-range-copy.mjs && node node_modules/tailwindcss/lib/cli.js -i ./src/input.css -o ./assets/css/styles.css --minify && node node_modules/serve/build/main.js . -l ${playwrightPort}`,
     url: playwrightBaseURL,
     reuseExistingServer: !process.env.CI,
   },
