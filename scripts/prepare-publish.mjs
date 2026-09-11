@@ -7,12 +7,22 @@
  * working tree.
  */
 
+import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT_DIR = path.join(ROOT, 'publish');
+
+const applyPriceRange = spawnSync(
+  process.execPath,
+  [path.join(ROOT, 'scripts/apply-price-range-copy.mjs')],
+  { stdio: 'inherit' },
+);
+if (applyPriceRange.status !== 0) {
+  process.exit(applyPriceRange.status ?? 1);
+}
 
 const ROOT_FILES = [
   '404.html',
