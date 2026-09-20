@@ -73,9 +73,9 @@ test.describe('Route-level quality regressions', () => {
     const html = await response.text();
     const videoTags = html.match(/<video\b[^>]*>/g) ?? [];
 
-    expect(videoTags).toHaveLength(36);
+    expect(videoTags).toHaveLength(38);
     expect(videoTags.filter((tag) => /\sposter=/.test(tag))).toHaveLength(3);
-    expect(videoTags.filter((tag) => /\sdata-poster=/.test(tag))).toHaveLength(33);
+    expect(videoTags.filter((tag) => /\sdata-poster=/.test(tag))).toHaveLength(35);
     expect(videoTags.every((tag) => /\saria-label="[^"]+"/.test(tag))).toBeTruthy();
     expect(videoTags.every((tag) => /\spreload="none"/.test(tag))).toBeTruthy();
   });
@@ -106,7 +106,7 @@ test.describe('Route-level quality regressions', () => {
     );
     await expect(page.locator('.video-grid video').last()).toHaveAttribute(
       'aria-label',
-      'Video del proyecto de Hernandez Landscape 36',
+      'Video del proyecto de Hernandez Landscape 38',
     );
 
     await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });

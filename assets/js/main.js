@@ -2,6 +2,19 @@ const modal = document.getElementById("customModal");
 const modalContent = modal ? modal.querySelector(".modal-content") : null;
 let lastFocusedElement = null;
 
+function addLeadResponseInstructions(formData) {
+  const email = String(formData.get("email") || "").trim();
+  if (email) {
+    formData.set("email", email);
+    formData.set("replyto", email);
+    formData.set("response_instructions", "Reply to the customer's email, or call/text their phone. / Responda al correo del cliente o llame/envie un mensaje a su telefono.");
+    return;
+  }
+  const subject = String(formData.get("subject") || "New Quote Request");
+  formData.set("subject", `[CALL/TEXT - LLAMAR] ${subject}`);
+  formData.set("response_instructions", "NO CUSTOMER EMAIL: Call or text the phone listed below. Replying to this notification will NOT reach the customer. / SIN CORREO DEL CLIENTE: Llame o envie un mensaje al telefono indicado. Responder a esta notificacion NO contacta al cliente.");
+}
+
 function showModal(message, { showCall = false } = {}) {
   if (!modal || !modalContent) {
     console.warn("Modal elements unavailable.");
@@ -686,6 +699,7 @@ async function sendInstantEstimateRequest() {
     `${getMessage("instant.handoff.prefix", "Instant estimate request:")} ${lastInstantEstimate.serviceLabel}, ${lastInstantEstimate.sizeLabel}, ZIP ${lastInstantEstimate.zip}. ${getMessage("instant.handoff.range", "Estimated range:")} ${lastInstantEstimate.priceText}.`,
   );
   formData.set("botcheck", "");
+  addLeadResponseInstructions(formData);
 
   const originalText = sendBtn?.textContent || "";
   if (sendBtn) {
@@ -843,6 +857,7 @@ if (contactForm) {
 
     const formData = new FormData(this);
     formData.set("form_loaded_at", formLoadedAt?.value || String(Date.now()));
+    addLeadResponseInstructions(formData);
 
     const spamVerdict = classifyLeadSpam(formData);
 

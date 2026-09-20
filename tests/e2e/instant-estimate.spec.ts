@@ -83,6 +83,8 @@ test.describe('Instant estimate lead handoff', () => {
     expect(submittedBody).toContain('815-555-0100');
     expect(submittedBody).toContain('tree-service');
     expect(submittedBody).toContain('60115');
+    expect(submittedBody).toContain('[CALL/TEXT - LLAMAR]');
+    expect(submittedBody).toContain('Replying to this notification will NOT reach the customer.');
   });
 
   for (const body of ['{}', 'not-json', '{"success":false}', '{"success":"true"}']) {
@@ -236,6 +238,9 @@ test.describe('Instant estimate lead handoff', () => {
     await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
     expect(captured.bodies).toHaveLength(1);
     expect(captured.bodies[0]).toContain('[Possible Spam]');
+    expect(captured.bodies[0]).toContain('name="replyto"');
+    expect(captured.bodies[0]).toContain('Reply to the customer');
+    expect(captured.bodies[0]).not.toContain('[CALL/TEXT - LLAMAR]');
   });
 
   test('two links plus one spam phrase reaches Web3Forms tagged', async ({ page }) => {

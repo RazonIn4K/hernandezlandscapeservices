@@ -235,7 +235,7 @@ function renderVideoCards(list) {
     const label = item.sitemap?.title || `Hernandez Landscape project video ${index + 1}`;
     return [
     '                <div class="video-card group">',
-    '                    <div class="video-wrapper relative">',
+    `                    <div class="video-wrapper relative"${item.orientation === 'portrait' ? ' style="padding-bottom:177.777778%"' : ''}>`,
     `                        <video controls playsinline preload="none" ${posterAttr} aria-label="${escapeHtml(label)}" class="w-full h-full object-cover">`,
     `                            <source src="/${escapeHtml(item.src)}" type="video/mp4">`,
     '                            Your browser does not support the video tag.',

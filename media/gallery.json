@@ -641,6 +641,36 @@
       "poster": "hernandez_images/web_IMG_3611_poster.jpg",
       "tags": ["project-video"],
       "featured": false
+    },
+    {
+      "id": "stone-bed-refresh-reel",
+      "orientation": "portrait",
+      "type": "video",
+      "src": "hernandez_images/stone-bed-refresh-reel.mp4",
+      "poster": "hernandez_images/stone-bed-refresh-reel-poster.jpg",
+      "tags": [
+        "project-video"
+      ],
+      "featured": true,
+      "sitemap": {
+        "title": "Stone beds and clean borders",
+        "description": "A short tour of stone landscape beds and defined borders."
+      }
+    },
+    {
+      "id": "landscape-cleanup-reel",
+      "orientation": "portrait",
+      "type": "video",
+      "src": "hernandez_images/landscape-cleanup-reel.mp4",
+      "poster": "hernandez_images/landscape-cleanup-reel-poster.jpg",
+      "tags": [
+        "project-video"
+      ],
+      "featured": true,
+      "sitemap": {
+        "title": "Landscape cleanup in progress",
+        "description": "A short look at landscape bed cleanup work."
+      }
     }
   ],
   "surfaces": {
@@ -691,6 +721,8 @@
       "img-1464-poster"
     ],
     "videosPage": [
+      "stone-bed-refresh-reel",
+      "landscape-cleanup-reel",
       "video-0434",
       "video-1095",
       "video-2055",
