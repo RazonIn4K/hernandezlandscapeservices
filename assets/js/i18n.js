@@ -90,6 +90,7 @@
       "yard.intro": "Tap what needs work on the plan, or tick it in the list. We add it to your quote request so the crew knows where to look.",
       "yard.legend": "What needs work?",
       "yard.cta": "Add to my quote request",
+      "yard.cta.empty": "Start a quote request",
       "yard.fine": "This is a request, not a confirmed appointment. Final pricing is confirmed on site.",
       "yard.map.street": "STREET",
       "yard.map.lawn": "Lawn",
@@ -265,6 +266,8 @@
         "Choose the service you need and send the property details. The team follows up with the right next step instead of a generic reply.",
       "testimonials.ctaButton": "Request Free Quote",
       "quote.prefill.prefix": "Selected service:",
+      "quote.yardSummary": "Yard areas added to this request",
+      "quote.yardSummary.helper": "Add more details below, or send these areas as your request.",
       "quote.prefill.helper":
         "Add your property details below and the team can respond with the right next step.",
       "quote.formHelper":
@@ -393,6 +396,7 @@
       "yard.intro": "Toque en el plano lo que necesita trabajo, o márquelo en la lista. Lo agregamos a su solicitud para que el equipo sepa dónde revisar.",
       "yard.legend": "¿Qué necesita trabajo?",
       "yard.cta": "Agregar a mi solicitud",
+      "yard.cta.empty": "Empezar una solicitud de cotización",
       "yard.fine": "Es una solicitud, no una cita confirmada. El precio final se confirma en el sitio.",
       "yard.map.street": "CALLE",
       "yard.map.lawn": "Césped",
@@ -757,6 +761,8 @@
       "quote.facebook": "Facebook",
       "quote.formHeading": "Solicita una cotización gratis",
       "quote.prefill.prefix": "Servicio seleccionado:",
+      "quote.yardSummary": "Áreas del jardín agregadas a esta solicitud",
+      "quote.yardSummary.helper": "Agrega más detalles abajo o envía estas áreas como tu solicitud.",
       "quote.prefill.helper":
         "Agrega los detalles de tu propiedad abajo y el equipo podrá responder con el siguiente paso correcto.",
       "quote.formHelper":
