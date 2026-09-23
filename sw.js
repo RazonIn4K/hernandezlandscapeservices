@@ -36,7 +36,10 @@ const URLS_TO_CACHE = [
   '/card.html',
   '/privacy.html',
   '/terms.html',
-  '/assets/css/styles.css?v=20260519',
+  '/assets/css/styles.css?v=20260923',
+  '/assets/css/rings.css?v=20260923',
+  '/assets/icons/icons.css?v=20260923',
+  '/assets/js/rings.js?v=20260923',
   '/assets/css/custom.css',
   '/assets/css/gallery.css',
   '/assets/css/video.css',
@@ -90,7 +93,8 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (event.request.mode === 'navigate' || requestURL.pathname === '/' || requestURL.pathname.endsWith('.html')) {
+  // Owner-editable data (storm mode) must never be served stale from the cache.
+  if (event.request.mode === 'navigate' || requestURL.pathname === '/' || requestURL.pathname.endsWith('.html') || requestURL.pathname.startsWith('/assets/data/')) {
     event.respondWith(networkFirst(event.request));
   } else {
     event.respondWith(cacheFirst(event.request));
