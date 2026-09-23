@@ -642,7 +642,8 @@ footer.bg-gray-900 {
   position: relative;
   overflow: visible;
   overflow-x: clip;
-  padding-top: calc(var(--soil-h) + 2.75rem) !important;
+  /* Text starts 60px below the topsoil: the root plate lives in that gap, never behind text. */
+  padding-top: calc(var(--soil-h) + 3.75rem) !important;
   background-color: var(--soil) !important;
   background-image:
     radial-gradient(ellipse 45% 55% at 10% 105%, rgba(138, 98, 68, 0.16), transparent 70%),
@@ -679,11 +680,11 @@ footer.bg-gray-900 > .container { position: relative; z-index: 1; }
   position: absolute;
   top: 0;
   right: max(16px, 7vw);
-  width: 320px;
-  height: 300px;
-  overflow: visible;
+  width: 480px;
+  height: 140px;
+  overflow: hidden;
 }
-@media (max-width: 640px) { .soil-roots { right: -46px; } }
+@media (max-width: 640px) { .soil-roots { right: calc(50% - 240px); } }
 .soil .rt { stroke-dasharray: 1 2; stroke-dashoffset: 0; }
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
@@ -1461,3 +1462,5 @@ html:not(.js-rings) .strip-count,
   .area-faq iframe { height: 13rem; }
   #testimonials .max-w-3xl p { margin-bottom: 32px !important; }
 }
+/* Refine: the footer email wraps inside its column (it ran into the next column at 1024). */
+footer.bg-gray-900 li > a[href^="mailto:"] { min-width: 0; overflow-wrap: anywhere; }

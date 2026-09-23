@@ -112,6 +112,29 @@ test.describe('Roots footer', () => {
   }
 });
 
+test('roots never pass behind footer text or controls', async ({ page }) => {
+  for (const width of [1440, 1024, 768, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const route of ['/', '/tree-removal/', '/gallery/', '/service-areas/dekalb-il/']) {
+      await page.goto(route, { waitUntil: 'load' });
+      const layout = await page.evaluate(() => {
+        const roots = [...document.querySelectorAll('footer .soil .rt')].map((path) => path.getBoundingClientRect());
+        const content = [...document.querySelectorAll('footer > .container *')]
+          .filter((el) => el.matches('a, button, img, input, h1, h2, h3, h4, p, li, span') && el.getBoundingClientRect().height > 0)
+          .map((el) => el.getBoundingClientRect());
+        return {
+          roots: roots.length,
+          rootsBottom: Math.max(...roots.map((r) => r.bottom)),
+          contentTop: Math.min(...content.map((r) => r.top)),
+        };
+      });
+      expect(layout.roots, `${route} @${width}: roots present`).toBeGreaterThan(10);
+      // 3px covers the widest root stroke (5.2 units / 2) beyond the geometry box.
+      expect(layout.rootsBottom + 3, `${route} @${width}: roots clear of footer content`).toBeLessThanOrEqual(layout.contentTop);
+    }
+  }
+});
+
 test('yard picker areas stamp into the quote form and follow the language', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   const stamps = page.locator('[data-yard-stamps]');
