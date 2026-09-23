@@ -441,11 +441,74 @@
       .catch(function () { /* stay quiet: the hero strip still offers the call */ });
   }
 
+  /* ---------- Round 3 · Filmstrips (work photos, video tours) ----------
+     The track is a labelled, focusable scroll region (arrow keys scroll it
+     natively); the buttons step one frame and the count shows the frames in
+     view. Without JS it is a plain horizontal scroller. */
+  function initStrips() {
+    $$('[data-strip]').forEach(function (strip) {
+      var track = $('[data-strip-track]', strip);
+      if (!track) return;
+      var prev = $('[data-strip-prev]', strip);
+      var next = $('[data-strip-next]', strip);
+      var count = $('[data-strip-count]', strip);
+      var queued = false;
+      function frames() { return $$('.print, .video-card', track).filter(function (f) { return f.offsetWidth > 0; }); }
+      function step() {
+        var f = frames();
+        return f.length > 1 ? Math.abs(f[1].getBoundingClientRect().left - f[0].getBoundingClientRect().left) : track.clientWidth;
+      }
+      function update() {
+        queued = false;
+        var n = frames().length;
+        var max = track.scrollWidth - track.clientWidth;
+        var atStart = track.scrollLeft <= 2;
+        var atEnd = track.scrollLeft >= max - 2;
+        strip.classList.toggle('is-static', max <= 2);
+        var s = step() || 1;
+        var visible = Math.max(1, Math.floor((track.clientWidth + 8) / s));
+        var first = Math.min(n, Math.round(track.scrollLeft / s) + 1);
+        if (atEnd) first = Math.max(1, n - visible + 1);
+        var last = Math.min(n, first + visible - 1);
+        if (count) count.textContent = (first === last ? String(first) : first + '–' + last) + ' / ' + n;
+        if (prev) prev.setAttribute('aria-disabled', String(atStart));
+        if (next) next.setAttribute('aria-disabled', String(atEnd));
+      }
+      function queue() { if (!queued) { queued = true; window.requestAnimationFrame(update); } }
+      function go(dir) { track.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' }); }
+      if (prev) prev.addEventListener('click', function () { if (prev.getAttribute('aria-disabled') !== 'true') go(-1); });
+      if (next) next.addEventListener('click', function () { if (next.getAttribute('aria-disabled') !== 'true') go(1); });
+      track.addEventListener('scroll', queue, { passive: true });
+      window.addEventListener('resize', queue);
+      if ('MutationObserver' in window) new MutationObserver(queue).observe(track, { childList: true, subtree: true });
+      update();
+    });
+  }
+
+  /* ---------- Round 3 · The optional price check folds on phones ----------
+     Open in the markup (so it is complete without JS) and on wide screens;
+     closed on phones unless the visitor was sent to it (#instant-quote). */
+  function initFolds() {
+    $$('[data-fold-mobile]').forEach(function (fold) {
+      var section = fold.closest('[id]');
+      var id = section ? section.id : '';
+      var targeted = function () { return id && window.location.hash === '#' + id; };
+      if (window.matchMedia('(max-width: 1023px)').matches && !targeted()) fold.open = false;
+      var openIt = function () { fold.open = true; };
+      if (id) {
+        $$('a[href="#' + id + '"]').forEach(function (a) { a.addEventListener('click', openIt); });
+        window.addEventListener('hashchange', function () { if (targeted()) openIt(); });
+      }
+    });
+  }
+
   function init() {
     initWeather();
     initSeasonRing();
     initYard();
     initWhen();
+    initStrips();
+    initFolds();
     initStorm();
   }
   // Deferred i18n initializes on DOMContentLoaded; let it set the requested

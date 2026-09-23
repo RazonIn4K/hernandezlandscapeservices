@@ -185,8 +185,9 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('loads homepage gallery and latest upload images', async ({ page }) => {
-    await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 img');
-    await expect(page.locator('#gallery .grid.md\\:grid-cols-3 img')).toHaveCount(3);
+    // Round 3: the three static work prints open the homepage filmstrip; uploads follow them.
+    await page.waitForSelector('#gallery .filmstrip-track .print--static img');
+    await expect(page.locator('#gallery .filmstrip-track .print--static img')).toHaveCount(3);
 
     // Latest uploads are rendered dynamically by static-gallery.js
     await page.waitForSelector('#latest-uploads-track img');
@@ -564,14 +565,16 @@ test.describe('Static Gallery Functionality', () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
       await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
+      await page.waitForSelector('#gallery .filmstrip-track .print');
 
       const homeOverflow = await page.evaluate(() =>
         document.documentElement.scrollWidth - document.documentElement.clientWidth
       );
       expect(homeOverflow, `Home overflow at ${viewport.name}`).toBeLessThanOrEqual(1);
 
-      const homeSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
+      // All nine filmstrip prints (static + uploads) share one height.
+      await page.waitForFunction(() => document.querySelectorAll('#gallery .filmstrip-track .print').length === 9);
+      const homeSpread = await getCardHeightSpread(page, '#gallery .filmstrip-track .print');
       expect(homeSpread, `Home card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
 
       await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });
@@ -587,8 +590,8 @@ test.describe('Static Gallery Functionality', () => {
         const gallerySpread = await getCardHeightSpread(page, '.gallery-item');
         expect(gallerySpread, `Gallery card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
       } else {
-        await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
-        const fallbackSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
+        await page.waitForSelector('#gallery .filmstrip-track .print');
+        const fallbackSpread = await getCardHeightSpread(page, '#gallery .filmstrip-track .print');
         expect(fallbackSpread, `Fallback gallery spread at ${viewport.name}`).toBeLessThanOrEqual(1);
       }
     }

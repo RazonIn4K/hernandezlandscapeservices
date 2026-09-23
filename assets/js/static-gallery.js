@@ -207,19 +207,66 @@
       latestCarousel.style.display = 'block';
 
       latestItems.forEach((image) => {
-        const slide = document.createElement('div');
-        slide.className = 'latest-upload-slide bg-gray-200 rounded-lg overflow-hidden snap-start';
-        
+        // Round 3: each upload joins the homepage work filmstrip as a captioned print.
+        const slide = document.createElement('figure');
+        slide.className = 'latest-upload-slide print';
+
         const img = document.createElement('img');
         img.src = image.src;
         img.alt = image.alt;
-        img.className = 'w-full h-full object-cover';
         img.loading = 'lazy';
         img.fetchPriority = 'low';
         applyImageMetadata(img, image);
-        
+
         slide.appendChild(img);
+        const caption = captionFor(image.src);
+        if (caption) slide.appendChild(caption);
         latestTrack.appendChild(slide);
+      });
+    }
+
+    // Filmstrip captions reuse the gallery page's existing EN copy and ES keys.
+    // Uploads without an entry simply show the photo.
+    const CAPTIONS = {
+      'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg': ['gallery.item.fire_pit', 'Finished Lawn & Fire Pit'],
+      'hernandez_images/facebook-2026-side-yard-lawn-finish.jpg': ['gallery.card2.title', 'Fresh Lawn Finish', 'gallery.card2.subtitle', 'Cortland Area Home'],
+      'hernandez_images/google-photos-2026-brush-pile-removal.webp': ['gallery.item.brush_removal', 'Brush Pile Removal'],
+      'hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp': ['gallery.card3.title', 'Yard Cleanup', 'gallery.card3.subtitle', 'Northern Illinois Job Site'],
+      'hernandez_images/google-photos-2026-backyard-lawn-finish.webp': ['gallery.item.backyard_finish', 'Backyard Lawn Finish'],
+      'hernandez_images/google-profile-2024-mulch-bed-edging.jpg': ['gallery.item.mulch_edging', 'Mulch Bed & Edging']
+    };
+    const localized = (key, fallback) => {
+      if (i18n && typeof i18n.getLanguage === 'function' && i18n.getLanguage() === 'es' && typeof i18n.t === 'function') {
+        return i18n.t(key, 'es') || fallback;
+      }
+      return fallback;
+    };
+    function fillCaption(figcaption, entry) {
+      figcaption.textContent = '';
+      const title = document.createElement('span');
+      title.textContent = localized(entry[0], entry[1]);
+      figcaption.appendChild(title);
+      if (entry[2]) {
+        const sub = document.createElement('small');
+        sub.textContent = localized(entry[2], entry[3]);
+        figcaption.appendChild(sub);
+      }
+    }
+    function captionFor(src) {
+      const entry = CAPTIONS[src];
+      if (!entry) return null;
+      const figcaption = document.createElement('figcaption');
+      figcaption.setAttribute('data-caption-src', src);
+      fillCaption(figcaption, entry);
+      return figcaption;
+    }
+    if (i18n && typeof i18n.onChange === 'function') {
+      i18n.onChange(() => {
+        if (!latestTrack) return;
+        latestTrack.querySelectorAll('figcaption[data-caption-src]').forEach((figcaption) => {
+          const entry = CAPTIONS[figcaption.getAttribute('data-caption-src')];
+          if (entry) fillCaption(figcaption, entry);
+        });
       });
     }
 

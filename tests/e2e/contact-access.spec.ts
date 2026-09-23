@@ -52,9 +52,11 @@ test('quote heading has readable contrast and each contact action uses its own p
       return (Math.max(foreground, background) + 0.05) / (Math.min(foreground, background) + 0.05);
     });
     expect(contrast, `heading contrast at ${width}px`).toBeGreaterThanOrEqual(4.5);
-    await expect(page.locator('#quote a[href="tel:18155011478"]')).toBeVisible();
-    await expect(page.locator('#quote a[href="sms:+18155011478"]')).toBeVisible();
-    await expect(page.locator('#quote a[href="mailto:hernandezlandscapetreeservices@gmail.com"]')).toBeVisible();
+    // Round 3: the price check (with its own call link) now sits inside #quote, so the
+    // contact actions are scoped to the chapter's contact list.
+    await expect(page.locator('#quote .quote-contact a[href="tel:18155011478"]')).toBeVisible();
+    await expect(page.locator('#quote .quote-contact a[href="sms:+18155011478"]')).toBeVisible();
+    await expect(page.locator('#quote .quote-contact a[href="mailto:hernandezlandscapetreeservices@gmail.com"]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   }
 });
