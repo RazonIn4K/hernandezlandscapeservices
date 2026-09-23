@@ -8,7 +8,7 @@
     "watch-css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "test:ci": "npm run media:check && npm run media:budget && npm run i18n:check && npm run seo:check && npm run nap:check && npm run test:dispatch && playwright test --reporter=dot",
+    "test:ci": "npm run media:check && npm run media:budget && npm run i18n:check && npm run seo:check && npm run nap:check && node scripts/generate_local_pages.js --check && npm run test:dispatch && playwright test --reporter=dot",
     "test:dispatch": "node scripts/test-emergency-dispatch.mjs",
     "dev": "npm run watch-css",
     "media:update": "node scripts/update-media.mjs",

@@ -215,7 +215,7 @@ const CITY_PAGES = [
       cardsTitle: 'Servicios disponibles en Genoa',
       cards: [
         { href: '/lawn-care/', h3: 'Mantenimiento de pasto', p: 'Corte, orillado y recorte regular para mantener sano el pasto de Genoa de primavera a otoño.' },
-        { href: '/tree-removal/', h3: 'Poda y retiro de árboles', p: 'Poda cuidadosa, retiros completos, destoconado y limpieza — incluye respuesta de emergencia 24/7 por tormentas.' },
+        { href: '/tree-removal/', h3: 'Poda y retiro de árboles', p: 'Poda cuidadosa, retiros completos, destoconado y limpieza después de tormentas según disponibilidad.' },
         { href: '/snow-removal/', h3: 'Servicio de nieve en invierno', p: 'Retiro de nieve de entradas y lotes pequeños en Genoa durante las tormentas, según disponibilidad.' }
       ],
       nearH2: 'Un equipo del condado de DeKalb que cubre Genoa',
@@ -224,7 +224,7 @@ const CITY_PAGES = [
       faqTitle: 'Preguntas frecuentes en Genoa',
       faq: [
         { q: '¿Van a Genoa para presupuestos?', a: 'Sí. Los presupuestos son gratis para propiedades de Genoa, y los trabajos grandes o combinados se programan con anticipación.' },
-        { q: '¿Pueden retirar un árbol dañado en Genoa?', a: 'Sí. El equipo hace poda, retiro, destoconado y limpieza después de tormentas, incluido el servicio de emergencia 24/7.' },
+        { q: '¿Pueden retirar un árbol dañado en Genoa?', a: 'El equipo atiende solicitudes de poda, retiro, destoconado y limpieza después de tormentas según disponibilidad. Llame para confirmar el siguiente paso.' },
         { q: '¿Atienden en español?', a: 'Sí. Llame al (815) 501-1478 y explique su proyecto en español con confianza.' }
       ],
       breadcrumbCity: 'Genoa, IL',
@@ -349,6 +349,7 @@ function renderPage(city, lang) {
   const otherUrl = lang === 'es' ? `/service-areas/${city.slug}/` : `/es/service-areas/${city.slug}/`;
   const otherLabel = lang === 'es' ? 'English' : 'Español';
   const quoteLabel = lang === 'es' ? 'Cotización gratis' : 'Get Free Quote';
+  const quoteUrl = lang === 'es' ? '/?lang=es#quote' : '/#quote';
   const cards = t.cards
     .map(
       (card) =>
@@ -362,6 +363,9 @@ function renderPage(city, lang) {
     )
     .join('\n');
   const ogLocale = lang === 'es' ? '\n    <meta property="og:locale" content="es_US" />' : '';
+  const stormBand = lang === 'es'
+    ? '<div class="storm-band" data-storm-band hidden role="region" aria-label="Aviso de tormenta"><span>¿Daños por tormenta? Llame para consultar la disponibilidad</span><a class="storm-call" href="tel:18155011478">Llama al (815) 501-1478</a><a href="/es/emergency-tree-removal/">Ayuda de emergencia</a></div>'
+    : '<div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span>Storm damage? Call about tree service availability</span><a class="storm-call" href="tel:18155011478">Call (815) 501-1478</a><a href="/emergency-tree-removal/">Emergency tree help</a></div>';
 
   return `<!doctype html>
 ${BANNER}
@@ -396,11 +400,13 @@ ${BANNER}
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260519" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260923" />
     <link rel="stylesheet" href="/assets/css/custom.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media = 'all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" /></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260923" />
   </head>
   <body class="site-body bg-gray-50">
     <header class="site-header fixed top-0 z-50 w-full bg-white shadow">
@@ -412,11 +418,12 @@ ${BANNER}
           </a>
           <div class="flex items-center gap-4">
             <a href="${otherUrl}" class="text-sm font-semibold text-gray-600 hover:text-green-700" lang="${lang === 'es' ? 'en' : 'es'}">${otherLabel}</a>
-            <a href="/#quote" class="rounded-full bg-green-600 px-6 py-2 text-sm font-bold text-white shadow-md hover:bg-green-700">${quoteLabel}</a>
+            <a href="${quoteUrl}" class="rounded-full bg-green-600 px-6 py-2 text-sm font-bold text-white shadow-md hover:bg-green-700">${quoteLabel}</a>
           </div>
         </nav>
       </div>
     </header>
+    ${stormBand}
 
     <main class="pt-28">
       <section class="bg-white">
@@ -469,6 +476,7 @@ ${jsonLd(city, lang)}
   <script src="/assets/js/service-nav.js" defer></script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
+  <script src="/assets/js/rings.js?v=20260923" defer></script>
   </body>
 </html>
 `;

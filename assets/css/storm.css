@@ -1,0 +1,24 @@
+/* Storm notice on standalone pages that do not load the Growth Rings layer. */
+.storm-band {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 18px;
+  padding: 12px 18px;
+  background: #c26435 repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.08) 0 12px, transparent 12px 24px);
+  color: #fff;
+  font: 800 16px/1.4 system-ui, sans-serif;
+  text-align: center;
+}
+.storm-band[hidden] { display: none !important; }
+.storm-band a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.storm-band .storm-call {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: #9a4a24;
+  text-decoration: none;
+}

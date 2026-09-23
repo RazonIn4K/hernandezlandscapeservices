@@ -100,38 +100,6 @@
             "@type": "State",
             "name": "Illinois"
           }
-        },
-        {
-          "@type": "City",
-          "name": "Rochelle",
-          "containedInPlace": {
-            "@type": "State",
-            "name": "Illinois"
-          }
-        },
-        {
-          "@type": "City",
-          "name": "Hinckley",
-          "containedInPlace": {
-            "@type": "State",
-            "name": "Illinois"
-          }
-        },
-        {
-          "@type": "City",
-          "name": "St. Charles",
-          "containedInPlace": {
-            "@type": "State",
-            "name": "Illinois"
-          }
-        },
-        {
-          "@type": "City",
-          "name": "West Chicago",
-          "containedInPlace": {
-            "@type": "State",
-            "name": "Illinois"
-          }
         }
       ],
       "url": "https://hernandezlandscapeservices.com/",
@@ -289,7 +257,7 @@
           "name": "What areas do you serve outside of DeKalb?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles, and West Chicago."
+            "text": "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, and Kingston."
           }
         },
         {

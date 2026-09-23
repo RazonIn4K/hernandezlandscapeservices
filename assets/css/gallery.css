@@ -91,9 +91,9 @@
             outline-offset: 4px;
         }
         .slider-handle::before {
-            content: '\f337'; /* FontAwesome arrows */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+            content: '\2194'; /* Horizontal arrows remain visible without an icon font. */
+            font-family: Arial, sans-serif;
+            font-size: 24px;
             color: #22c55e;
             position: absolute;
             top: 50%; left: 50%;

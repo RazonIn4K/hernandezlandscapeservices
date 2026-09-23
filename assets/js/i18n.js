@@ -91,6 +91,14 @@
       "yard.legend": "What needs work?",
       "yard.cta": "Add to my quote request",
       "yard.fine": "This is a request, not a confirmed appointment. Final pricing is confirmed on site.",
+      "yard.map.street": "STREET",
+      "yard.map.lawn": "Lawn",
+      "yard.map.drive": "Drive",
+      "yard.map.walks": "Walks",
+      "yard.map.house": "House & gutters",
+      "yard.map.beds": "Beds",
+      "yard.map.tree": "Tree",
+      "yard.map.leaves": "Leaves",
       "quote.proof.call": "Prefer to talk? Call (815) 501-1478",
       "quote.time.evening": "Evening",
       "quote.time.afternoon": "Afternoon",
@@ -284,7 +292,7 @@
         "Discuss the work, site access, cleanup, pricing, and any insurance documentation you need with our team before confirming the project.",
       "faq.q3": "What areas do you serve outside of DeKalb?",
       "faq.a3":
-        "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles, and West Chicago.",
+        "Our primary service areas are DeKalb and Sycamore. We also serve Cortland, Malta, Genoa, and Kingston.",
       "faq.q4": "Do you offer emergency tree removal services?",
       "faq.a4":
         "Call to discuss a fallen or hazardous tree and confirm whether the team is available. A website request does not confirm dispatch or an arrival time. If there is immediate danger or contact with power lines, call emergency services first.",
@@ -386,6 +394,14 @@
       "yard.legend": "¿Qué necesita trabajo?",
       "yard.cta": "Agregar a mi solicitud",
       "yard.fine": "Es una solicitud, no una cita confirmada. El precio final se confirma en el sitio.",
+      "yard.map.street": "CALLE",
+      "yard.map.lawn": "Césped",
+      "yard.map.drive": "Entrada",
+      "yard.map.walks": "Paso",
+      "yard.map.house": "Casa y canaletas",
+      "yard.map.beds": "Jardineras",
+      "yard.map.tree": "Árbol",
+      "yard.map.leaves": "Hojas",
       "quote.proof.call": "¿Prefiere hablar? Llame al (815) 501-1478",
       "quote.textLabel": "Enviar un mensaje de texto",
       "admin.file.empty": "No hay archivos seleccionados todavía.",
@@ -561,7 +577,7 @@
 
       "services.heading": "Nuestros servicios profesionales",
       "services.subheading":
-        "Atendemos el condado de DeKalb desde 2019 — estimados gratis en inglés o español",
+        "Atendemos el condado de DeKalb — estimados gratis en inglés o español",
       "services.lawn.title": "Cuidado del césped",
       "services.lawn.item1": "Corte y bordes semanales",
       "services.lawn.item2": "Programas de fertilización",
@@ -783,7 +799,7 @@
         "Servicios profesionales de jardinería en el condado de DeKalb",
       "footer.follow": "Síguenos",
       "footer.about":
-        "Transformamos espacios exteriores en el condado de DeKalb con trabajo profesional y valores familiares desde 2019.",
+        "Transformamos espacios exteriores en el condado de DeKalb con trabajo profesional y valores familiares.",
       "footer.links": "Enlaces rápidos",
       "footer.contact": "Contáctanos",
       "footer.areas": "Zonas de servicio",
@@ -858,7 +874,7 @@
         "Hable con nuestro equipo sobre el trabajo, el acceso, la limpieza, el precio y cualquier documento de seguro que necesite antes de confirmar el proyecto.",
       "faq.q3": "¿Qué zonas atienden fuera de DeKalb?",
       "faq.a3":
-        "Nuestras zonas principales son DeKalb y Sycamore. También atendemos Cortland, Malta, Genoa, Kingston, Rochelle, Hinckley, St. Charles y West Chicago.",
+        "Nuestras zonas principales son DeKalb y Sycamore. También atendemos Cortland, Malta, Genoa y Kingston.",
       "faq.q4": "¿Ofrecen remoción de árboles de emergencia?",
       "faq.a4":
         "Llame para hablar sobre un árbol caído o peligroso y confirmar si el equipo está disponible. Una solicitud en el sitio no confirma un despacho ni una hora de llegada. Si hay peligro inmediato o contacto con cables eléctricos, llame primero a emergencias.",

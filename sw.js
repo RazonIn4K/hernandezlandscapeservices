@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v20';
+const CACHE_NAME = 'hernandez-landscape-v21';
 // Directory routes are precached in their canonical '/x/' form only — internal
 // links always use that form, and doubling each page as '/x/index.html' made
 // every SW install fetch 14 identical documents twice.
@@ -93,8 +93,13 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Owner-editable data (storm mode) must never be served stale from the cache.
-  if (event.request.mode === 'navigate' || requestURL.pathname === '/' || requestURL.pathname.endsWith('.html') || requestURL.pathname.startsWith('/assets/data/')) {
+  // The owner-editable storm switch must fail closed when the network is unavailable.
+  if (requestURL.pathname === '/assets/data/site-status.json') {
+    event.respondWith(fetch(event.request));
+    return;
+  }
+
+  if (event.request.mode === 'navigate' || requestURL.pathname === '/' || requestURL.pathname.endsWith('.html')) {
     event.respondWith(networkFirst(event.request));
   } else {
     event.respondWith(cacheFirst(event.request));

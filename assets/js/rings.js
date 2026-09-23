@@ -91,6 +91,8 @@
     var zones = $$('.zone[data-zone]', box);
     var count = $('[data-yard-count]', box);
     var cta = $('[data-yard-cta]', box);
+    var lastYardService = null;
+    var lastYardLine = null;
 
     function chosen() { return inputs.filter(function (i) { return i.checked; }); }
     function sync() {
@@ -102,6 +104,12 @@
       var unique = values.filter(function (v, i) { return values.indexOf(v) === i; });
       if (unique.length === 1) cta.setAttribute('data-prefill-service', unique[0]);
       else cta.removeAttribute('data-prefill-service');
+      // The Spanish landing page sends the selection to the bilingual quote form.
+      if (!document.getElementById('contactService')) {
+        var query = unique.length === 1 ? '&service=' + encodeURIComponent(unique[0]) :
+          unique.length > 1 ? '&yard=' + encodeURIComponent(unique.join(',')) : '';
+        cta.href = '/?lang=es' + query + '#quote';
+      }
     }
     inputs.forEach(function (i) { i.addEventListener('change', sync); });
     zones.forEach(function (z) {
@@ -112,12 +120,24 @@
         sync();
       });
     });
-    cta.addEventListener('click', function () {
+    function applyYardSelection() {
       var picked = chosen();
       var values = picked.map(function (i) { return i.value; }).filter(function (v, i, a) { return a.indexOf(v) === i; });
-      if (values.length < 2) return; // single service: main.js applies data-prefill-service
       var service = document.getElementById('contactService');
       var details = document.getElementById('projectDetails');
+      if (details && lastYardLine && details.value.startsWith(lastYardLine)) {
+        details.value = details.value.slice(lastYardLine.length).replace(/^\n/, '');
+      }
+      lastYardLine = null;
+      if (values.length === 0 && service && service.value === lastYardService) {
+        service.value = '';
+        service.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+      if (values.length < 2) {
+        // main.js handles the single-service prefill on CTA clicks.
+        lastYardService = values[0] || null;
+        return;
+      }
       if (service) {
         service.value = 'multiple-services';
         service.dispatchEvent(new Event('change', { bubbles: true }));
@@ -125,25 +145,60 @@
       if (details) {
         var t = COPY[lang()] || COPY.en;
         var labels = picked.map(function (i) { var l = $('[data-yard-name]', i.closest('label')); return l ? l.textContent.trim() : i.value; });
-        var line = t.notes + ': ' + labels.join(', ');
-        var existing = details.value.replace(/^(Yard areas|Áreas del jardín): .*\n?/, '');
-        details.value = line + (existing ? '\n' + existing : '');
+        lastYardLine = t.notes + ': ' + labels.join(', ');
+        details.value = lastYardLine + (details.value ? '\n' + details.value : '');
       }
+      lastYardService = 'multiple-services';
+    }
+    cta.addEventListener('click', function () {
+      if (document.getElementById('contactService')) applyYardSelection();
     });
     sync();
+    // A selection made on /es/ can be carried into the main site's Spanish form.
+    var transferred = new URLSearchParams(window.location.search).get('yard');
+    if (transferred && document.getElementById('contactService')) {
+      var requested = transferred.split(',');
+      inputs.forEach(function (input) { input.checked = requested.indexOf(input.value) !== -1; });
+      sync();
+      applyYardSelection();
+    }
     if (window.siteI18n && window.siteI18n.onChange) window.siteI18n.onChange(function () { window.setTimeout(sync, 0); });
   }
 
   /* ---------- Storm mode (owner switch) ---------- */
   function initStorm() {
-    var band = $('[data-storm-band]');
-    if (!band || !window.fetch) return;
+    if (!window.fetch) return;
     fetch('/assets/data/site-status.json', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (status) {
         if (!status || status.storm !== true) return;
+        var band = $('[data-storm-band]');
+        if (!band) {
+          var spanish = lang() === 'es';
+          band = document.createElement('div');
+          band.className = 'storm-band';
+          band.setAttribute('data-storm-band', '');
+          band.setAttribute('role', 'region');
+          band.setAttribute('aria-label', spanish ? 'Aviso de tormenta' : 'Storm notice');
+          var message = document.createElement('span');
+          message.textContent = spanish ? '¿Daños por tormenta? Llame para consultar la disponibilidad' : 'Storm damage? Call about tree service availability';
+          var call = document.createElement('a');
+          call.className = 'storm-call';
+          call.href = 'tel:18155011478';
+          call.textContent = spanish ? 'Llama al (815) 501-1478' : 'Call (815) 501-1478';
+          var help = document.createElement('a');
+          help.href = spanish ? '/es/emergency-tree-removal/' : '/emergency-tree-removal/';
+          help.textContent = spanish ? 'Ayuda de emergencia' : 'Emergency tree help';
+          band.append(message, call, help);
+          var pageHeader = $('body > header');
+          if (pageHeader) pageHeader.after(band);
+          else document.body.prepend(band);
+        }
         var header = $('.site-header');
-        if (header) document.body.style.setProperty('--header-h', header.offsetHeight + 'px');
+        if (header) {
+          document.body.style.setProperty('--header-h', header.offsetHeight + 'px');
+          document.body.classList.add('storm-header-offset');
+        }
         band.hidden = false;
         document.body.classList.add('storm-on');
       })
@@ -155,6 +210,8 @@
     initYard();
     initStorm();
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  // Deferred i18n initializes on DOMContentLoaded; let it set the requested
+  // language before generating quote details or selecting a season panel.
+  if (document.readyState !== 'complete') document.addEventListener('DOMContentLoaded', init, { once: true });
   else init();
 })();
