@@ -1,0 +1,534 @@
+/* ==========================================================================
+   Hernandez Landscape & Tree Service · "Growth Rings" design layer
+   Loaded last on every page. Tailwind's green/gray scales were re-mapped in
+   tailwind.config.js; this layer adds type, texture, and the signature
+   components: ring hero, season ring, yard picker, storm band, crew cam.
+   ========================================================================== */
+
+@font-face {
+  font-family: "Big Shoulders Display";
+  src: url("/assets/fonts/big-shoulders-display-v24-latin-var.woff2") format("woff2");
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Big Shoulders Stencil Display";
+  src: url("/assets/fonts/big-shoulders-stencil-display-v30-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("/assets/fonts/public-sans-v21-latin-var.woff2") format("woff2");
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("/assets/fonts/public-sans-v21-latin-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans Fallback";
+  src: local("Arial"), local("Helvetica");
+  size-adjust: 103%;
+  ascent-override: 93%;
+  descent-override: 22%;
+}
+
+:root {
+  --canopy: #153b2f;
+  --canopy-deep: #0c2a20;
+  --leaf: #2f6f4f;
+  --moss: #8aa63f;
+  --fresh: #b8d98f;
+  --clay: #c26435;
+  --clay-deep: #9a4a24;
+  --heartwood: #6b4a33;
+  --heartwood-2: #8a6244;
+  --sapwood: #e9dcc3;
+  --sapwood-2: #f3ead8;
+  --limestone: #f5f2e9;
+  --frost: #dfeaf0;
+  --sky: #286f9f;
+  --ink: #1f1b17;
+  --ink-soft: #5d554a;
+  --display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --stencil: "Big Shoulders Stencil Display", "Big Shoulders Display", sans-serif;
+  --body: "Public Sans", "Public Sans Fallback", system-ui, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Wood grain, used for dividers and bark edges. */
+  --grain: repeating-linear-gradient(92deg, rgba(107, 74, 51, 0.16) 0 2px, transparent 2px 9px, rgba(107, 74, 51, 0.08) 9px 10px, transparent 10px 17px);
+  /* The season tint (set by rings.js from the selected month; defaults to fall). */
+  --season: var(--clay);
+  --season-soft: #f6e3d6;
+}
+html[data-season="spring"] { --season: #3f7d4a; --season-soft: #e3efd9; }
+html[data-season="summer"] { --season: #a57c12; --season-soft: #f5ecd0; }
+html[data-season="fall"] { --season: #b0582b; --season-soft: #f6e3d6; }
+html[data-season="winter"] { --season: #286f9f; --season-soft: #e2eef5; }
+
+/* ---------- Type ---------- */
+body,
+.site-body { font-family: var(--body); color: var(--ink); }
+.site-body {
+  background:
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(233, 220, 195, 0.55), transparent 60%),
+    var(--limestone);
+}
+h1, h2,
+.hero-heading,
+.font-display {
+  font-family: var(--display) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.005em;
+  line-height: 0.98 !important;
+}
+h2 { font-size: clamp(2.4rem, 5vw, 3.6rem) !important; }
+/* Canopy headings only on the light homepage sections; elsewhere headings keep their own color. */
+#services h2, #why-choose-us h2, #instant-quote h2, #gallery h2, #pricing h2, #testimonials h2, #service-area h2, #faq h2 { color: var(--canopy); }
+h3 { font-family: var(--body); letter-spacing: -0.01em; }
+.stencil,
+.hero-eyebrow,
+.ring-label {
+  font-family: var(--stencil) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  background: rgba(245, 242, 233, 0.94) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 0 !important;
+  box-shadow: 0 1px 0 rgba(21, 59, 47, 0.12), 0 12px 30px -24px rgba(12, 42, 32, 0.6) !important;
+}
+.site-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--canopy) 0 40%, var(--leaf) 40% 70%, var(--moss) 70% 88%, var(--season) 88%);
+  pointer-events: none;
+}
+.site-header nav > div:first-child p:first-child {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.45rem;
+  letter-spacing: 0.02em;
+  color: var(--canopy);
+}
+.site-header nav > div:first-child p:first-child + p {
+  font-family: var(--stencil);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--heartwood);
+}
+
+/* ---------- Hero: the cross-section ---------- */
+.site-hero .site-hero-overlay {
+  background:
+    radial-gradient(ellipse 70% 80% at 80% 50%, rgba(12, 42, 32, 0.35), transparent 70%),
+    linear-gradient(100deg, rgba(12, 42, 32, 0.94) 0%, rgba(12, 42, 32, 0.86) 45%, rgba(12, 42, 32, 0.55) 100%) !important;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+.hero-heading { font-size: clamp(3rem, 7vw, 5.6rem) !important; text-transform: uppercase; }
+.hero-heading .text-green-300 { color: var(--fresh) !important; }
+.hero-eyebrow { color: var(--sapwood) !important; font-size: 0.9rem !important; }
+.hero-eyebrow i { color: var(--moss); }
+.hero-ring {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1;
+  width: min(100%, 460px);
+  justify-self: center;
+}
+.hero-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hero-ring .ring-line {
+  fill: none;
+  stroke: var(--sapwood);
+  stroke-opacity: 0.55;
+  stroke-width: 1.4;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+.hero-ring .ring-bark { fill: none; stroke: var(--heartwood); stroke-width: 10; stroke-opacity: 0.9; }
+.hero-ring .ring-check { stroke: var(--sapwood); stroke-opacity: 0.4; stroke-width: 1.2; fill: none; }
+.hero-ring-photo {
+  position: absolute;
+  inset: 17%;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(233, 220, 195, 0.9), 0 0 0 10px var(--heartwood), 0 30px 60px -20px rgba(0, 0, 0, 0.8);
+}
+.hero-ring-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.hero-ring-tag {
+  position: absolute;
+  right: 2%;
+  bottom: 9%;
+  padding: 8px 14px;
+  border-radius: 4px;
+  background: var(--clay);
+  color: #fff;
+  font-family: var(--stencil);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: rotate(-6deg);
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.6);
+}
+.js-rings .hero-ring .ring-line { stroke-dashoffset: 1; animation: ring-grow 1.3s var(--ease) forwards; animation-delay: calc(0.12s + var(--r, 0) * 0.09s); }
+@keyframes ring-grow { to { stroke-dashoffset: 0; } }
+@media (max-width: 1023px) {
+  .hero-grid { display: block; }
+  .hero-ring { display: none; }
+}
+
+/* Storm strip in the hero keeps its content; it now reads as a clay work tag. */
+.emergency-strip {
+  background: rgba(194, 100, 53, 0.22) !important;
+  border: 1px solid rgba(233, 220, 195, 0.35) !important;
+  border-left: 6px solid var(--clay) !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+}
+
+/* ---------- Sections ---------- */
+#services,
+#why-choose-us,
+#instant-quote,
+#pricing,
+#service-area,
+#faq { position: relative; }
+#services { background: var(--limestone) !important; }
+#why-choose-us { background: #fffdf8 !important; }
+section[id]:not(#home) > .container > .text-center:first-child h2::after,
+.ring-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 18px;
+  margin: 14px auto 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 3px, var(--heartwood) 3px 4.5px, transparent 4.5px 7px, var(--moss) 7px 8.5px, transparent 8.5px) center / 18px 18px no-repeat,
+    linear-gradient(var(--heartwood), var(--heartwood)) left center / 22px 2px no-repeat,
+    linear-gradient(var(--heartwood), var(--heartwood)) right center / 22px 2px no-repeat;
+}
+.service-card {
+  border-radius: 18px !important;
+  border: 1px solid rgba(107, 74, 51, 0.16);
+  box-shadow: 0 1px 0 rgba(107, 74, 51, 0.12), 0 22px 40px -26px rgba(12, 42, 32, 0.55) !important;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease) !important;
+}
+.service-card:hover { transform: translateY(-4px) !important; }
+.service-card h3 { font-family: var(--display) !important; font-weight: 800 !important; font-size: 2rem !important; color: var(--canopy); }
+.service-card > .p-6 { position: relative; }
+.service-card > .p-6::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, var(--sapwood) 0 3px, var(--heartwood-2) 3px 4px);
+  box-shadow: 0 0 0 3px #fff, 0 6px 12px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons keep their Tailwind colors (now leaf/canopy); add weight and a stencil voice. */
+a.rounded-full.bg-green-600,
+button.rounded-full.bg-green-600,
+.primary-cta { box-shadow: 0 4px 0 var(--canopy-deep), 0 16px 30px -14px rgba(12, 42, 32, 0.6) !important; }
+.primary-cta span,
+.secondary-cta span { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* ---------- The Year in the Yard ---------- */
+.year-yard { padding: clamp(64px, 9vw, 112px) 0; background: var(--canopy); background-image: radial-gradient(ellipse at 70% 30%, rgba(138, 166, 63, 0.18), transparent 60%), var(--grain); color: var(--limestone); overflow: hidden; }
+.year-yard h2 { color: #fff !important; }
+.year-yard .ring-label { color: var(--fresh); font-size: 0.85rem; }
+.year-yard-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.year-yard-intro p { margin-top: 16px; max-width: 52ch; color: rgba(245, 242, 233, 0.86); font-size: 1.1rem; }
+.season-ring {
+  position: relative;
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+.season-ring-disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, var(--canopy) 0 37%, transparent 37.2%),
+    repeating-radial-gradient(circle, rgba(255, 255, 255, 0.06) 0 2px, transparent 2px 9px),
+    conic-gradient(from -45deg, #6fa0c2 0 90deg, #7fb069 90deg 180deg, #d3a93a 180deg 270deg, #cf7440 270deg 360deg);
+  box-shadow: 0 0 0 8px var(--heartwood), 0 0 0 11px var(--canopy-deep), 0 30px 60px -20px rgba(0, 0, 0, 0.7);
+  transition: transform 0.8s var(--ease);
+}
+.season-ring-center {
+  position: absolute;
+  inset: 26%;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  border-radius: 50%;
+  text-align: center;
+  background: repeating-radial-gradient(circle, var(--sapwood) 0 5px, #d8c3a0 5px 6px);
+  color: var(--canopy);
+  box-shadow: inset 0 0 0 3px rgba(107, 74, 51, 0.4);
+}
+.season-ring-center strong { font-family: var(--display); font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1; text-transform: uppercase; }
+.season-ring-center span { font-family: var(--stencil); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--heartwood); margin-top: 6px; }
+.season-months { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; }
+.season-months li { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.month-btn {
+  position: absolute;
+  left: -24px;
+  top: -24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: rgba(12, 42, 32, 0.72);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transform: rotate(var(--a)) translateY(calc(var(--radius) * -1)) rotate(calc(var(--a) * -1));
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.3s var(--ease);
+}
+.month-btn:hover { border-color: #fff; }
+.month-btn[aria-checked="true"] { background: #fff; color: var(--canopy); border-color: var(--season); box-shadow: 0 0 0 4px var(--season); }
+.month-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.season-ring { --radius: min(186px, 42vw); }
+.season-panels { margin-top: 28px; }
+.season-panel { padding: 22px 24px; border-radius: 16px; background: rgba(245, 242, 233, 0.08); border: 1px solid rgba(245, 242, 233, 0.18); border-left: 6px solid var(--season); }
+.js-rings .season-panel:not(.is-current) { display: none; }
+.season-panel + .season-panel { margin-top: 14px; }
+.season-panel h3 { font-family: var(--display); font-weight: 800; font-size: 1.9rem; color: #fff; text-transform: uppercase; }
+.season-panel .ring-label { display: block; margin-bottom: 4px; }
+.season-panel ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; padding: 0; list-style: none; }
+.season-panel li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--limestone);
+  color: var(--canopy);
+  font-weight: 700;
+  text-decoration: none;
+}
+.season-panel li a:hover { background: var(--fresh); }
+.season-panel p { margin-top: 12px; color: rgba(245, 242, 233, 0.8); font-size: 0.95rem; }
+.season-nav { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.season-nav button {
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 242, 233, 0.45);
+  background: transparent;
+  color: #fff;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.season-nav button:hover { background: rgba(245, 242, 233, 0.12); }
+html:not(.js-rings) .season-nav,
+html:not(.js-rings) .season-months { display: none; }
+
+/* ---------- Walk your yard ---------- */
+.walk-yard { padding: clamp(64px, 9vw, 112px) 0; background: var(--sapwood-2); background-image: linear-gradient(rgba(40, 111, 159, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(40, 111, 159, 0.07) 1px, transparent 1px); background-size: 28px 28px; }
+.walk-yard-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.walk-yard .ring-label { color: var(--sky); }
+.walk-yard-intro p { margin-top: 12px; color: var(--ink-soft); max-width: 56ch; }
+.yard-plan {
+  position: relative;
+  border-radius: 18px;
+  background: #fbfaf5;
+  box-shadow: 0 0 0 2px var(--canopy), 8px 8px 0 var(--canopy);
+  overflow: hidden;
+}
+.yard-plan svg { display: block; width: 100%; height: auto; }
+.yard-plan .zone { cursor: pointer; transition: filter 0.2s ease, opacity 0.2s ease; }
+.yard-plan .zone:hover { filter: brightness(1.08) saturate(1.2); }
+.yard-plan .zone .zone-fill { transition: fill 0.25s ease, stroke 0.25s ease; }
+.yard-plan .zone.is-on .zone-fill { stroke: var(--clay); stroke-width: 5; }
+.yard-plan .zone.is-on .zone-check { opacity: 1; }
+.yard-plan .zone-check { opacity: 0; transition: opacity 0.2s ease; }
+.yard-plan text { font-family: var(--stencil); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 15px; fill: var(--canopy); pointer-events: none; }
+.yard-plan .compass { font-size: 12px; fill: var(--sky); }
+.yard-list { margin: 0; padding: 0; border: 0; }
+.yard-list legend { font-family: var(--display); font-weight: 800; font-size: 1.6rem; color: var(--canopy); text-transform: uppercase; margin-bottom: 10px; }
+.yard-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  margin-bottom: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 2px solid rgba(21, 59, 47, 0.14);
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--canopy);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.yard-option:hover { border-color: var(--leaf); }
+.yard-option input { width: 22px; height: 22px; accent-color: var(--clay); flex: 0 0 auto; }
+.yard-option:has(input:checked) { border-color: var(--clay); background: #fdf3ec; }
+.yard-option small { display: block; font-weight: 500; color: var(--ink-soft); font-size: 0.82rem; }
+.yard-cta { margin-top: 14px; }
+.yard-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 54px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--clay);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 4px 0 var(--clay-deep);
+}
+.yard-cta a:hover { background: var(--clay-deep); }
+.yard-cta p { margin-top: 10px; font-size: 0.88rem; color: var(--ink-soft); }
+.yard-count { font-family: var(--stencil); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--clay-deep); font-size: 0.85rem; min-height: 1.2em; }
+
+/* ---------- Storm band (owner switch: assets/data/site-status.json) ---------- */
+.storm-band {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 18px;
+  padding: 12px 18px;
+  background: var(--clay);
+  background-image: repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.08) 0 12px, transparent 12px 24px);
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+}
+.storm-band a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.storm-band .storm-call { padding: 8px 16px; border-radius: 999px; background: #fff; color: var(--clay-deep); text-decoration: none; }
+body.storm-header-offset .storm-band { margin-top: var(--header-h, 76px); }
+
+/* ---------- Crew Cam (homepage + /videos/) ---------- */
+.video-section { background: var(--canopy-deep) !important; background-image: var(--grain) !important; }
+.video-section h2 { color: #fff !important; }
+.video-section .text-gray-600 { color: rgba(245, 242, 233, 0.8) !important; }
+.video-card {
+  border-radius: 16px !important;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 0 3px var(--moss), 0 0 0 6px #000, 0 24px 40px -20px rgba(0, 0, 0, 0.9) !important;
+  position: relative;
+}
+.video-card::before {
+  content: "CREW CAM";
+  position: absolute;
+  z-index: 2;
+  left: 10px;
+  top: 10px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--fresh);
+  font-family: var(--stencil);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  pointer-events: none;
+}
+.video-card::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  top: 14px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e5484d;
+  box-shadow: 0 0 8px #e5484d;
+  pointer-events: none;
+}
+
+/* ---------- Before / after: then & now ---------- */
+.before-after-slider { border-radius: 18px !important; box-shadow: 0 0 0 4px var(--sapwood), 0 0 0 7px var(--heartwood), 0 24px 40px -20px rgba(0, 0, 0, 0.6) !important; }
+.slider-handle { background: var(--sapwood) !important; }
+
+/* ---------- FAQ & quote ---------- */
+.faq-item { border-radius: 14px !important; border-left: 5px solid var(--leaf) !important; }
+.faq-item summary { font-weight: 800 !important; }
+
+/* ---------- Footer ---------- */
+footer.bg-gray-900 {
+  position: relative;
+  background: var(--canopy-deep) !important;
+  background-image: radial-gradient(circle at 90% 10%, rgba(138, 166, 63, 0.14), transparent 45%), var(--grain) !important;
+  overflow: hidden;
+}
+footer.bg-gray-900::before {
+  content: "";
+  position: absolute;
+  right: -120px;
+  bottom: -160px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, rgba(233, 220, 195, 0.07) 0 2px, transparent 2px 16px);
+  pointer-events: none;
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .js-rings .hero-ring .ring-line { animation: none; stroke-dashoffset: 0; }
+  .season-ring-disc,
+  .month-btn,
+  .service-card { transition: none !important; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .year-yard-grid,
+  .walk-yard-grid { grid-template-columns: 1fr; }
+  .season-ring { --radius: min(170px, 38vw); }
+}
+@media (max-width: 480px) {
+  .month-btn { width: 40px; height: 40px; left: -20px; top: -20px; font-size: 0.86rem; }
+  .season-ring { --radius: min(150px, 38vw); }
+}
+.yard-plan text.on-dark { fill: #fff; }
+.storm-band[hidden] { display: none !important; }
+.season-ring { margin-bottom: 84px; }
+.season-nav { position: absolute; left: 0; right: 0; bottom: -76px; margin-top: 0; }

@@ -225,7 +225,7 @@ function scheduleScrollElementBelowHeader(elementId) {
   );
 }
 
-document.querySelectorAll("[data-prefill-service]").forEach((link) => {
+document.querySelectorAll("[data-prefill-service], [data-yard-cta]").forEach((link) => {
   link.addEventListener("click", () => {
     const serviceKey = link.getAttribute("data-prefill-service");
     if (serviceKey) {

@@ -96,6 +96,8 @@
 **Final verdict: IMPROVE IN PLACE (0 of 5 criteria fail; redesign requires 2+).** Conversion fundamentals are solid; ROI is in content coverage (city/service pages), bilingual architecture, schema integrity, and the lead-capture fix.
 **Blast-radius constraint: no typography, brand-color, or logo changes regardless of any other work.**
 
+> **Update 2026-09-23:** David (who holds design sign-off for this site) lifted this constraint for the "Growth Rings" redesign (branch `feat/growth-rings`). The new palette, type, and components are documented in `docs/design-growth-rings-2026-09-23.md`. The logo is unchanged. Every NAP, SEO, i18n, media, and layout gate above still applies.
+
 ## 6. Prioritized Implementation Checklist
 
 ### P0 — critical/high, unblocked

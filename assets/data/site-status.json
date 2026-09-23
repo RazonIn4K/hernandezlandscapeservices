@@ -1,0 +1,4 @@
+{
+  "$comment": "Owner switch for storm mode. Set \"storm\" to true after a storm to show the call-first band on every page (assets/js/rings.js). No response-time promises.",
+  "storm": false
+}
