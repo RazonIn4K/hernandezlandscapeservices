@@ -476,7 +476,7 @@ ${jsonLd(city, lang)}
   <script src="/assets/js/service-nav.js" defer></script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260923" defer></script>
+  <script src="/assets/js/rings.js?v=20260923q1" defer></script>
   </body>
 </html>
 `;

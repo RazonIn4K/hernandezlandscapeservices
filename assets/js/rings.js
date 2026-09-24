@@ -81,8 +81,8 @@
 
   /* ---------- Walk your yard ---------- */
   var COPY = {
-    en: { none: 'Nothing selected yet', one: '1 area selected', many: '{n} areas selected', notes: 'Yard areas' },
-    es: { none: 'Nada seleccionado', one: '1 área seleccionada', many: '{n} áreas seleccionadas', notes: 'Áreas del jardín' }
+    en: { none: 'Nothing selected yet', one: '1 area selected', many: '{n} areas selected', notes: 'Yard areas', start: 'Start a quote request', add: 'Add to my quote request' },
+    es: { none: 'Nada seleccionado', one: '1 área seleccionada', many: '{n} áreas seleccionadas', notes: 'Áreas del jardín', start: 'Empezar una solicitud de cotización', add: 'Agregar a mi solicitud' }
   };
   function initYard() {
     var box = $('[data-yard]');
@@ -91,24 +91,62 @@
     var zones = $$('.zone[data-zone]', box);
     var count = $('[data-yard-count]', box);
     var cta = $('[data-yard-cta]', box);
+    if (!cta) return;
+    var ctaLabel = $('span', cta);
+    var service = document.getElementById('contactService');
+    var yardField = document.getElementById('yardAreasField');
+    var yardNotice = document.getElementById('yardSelectionNotice');
+    var yardSummary = document.getElementById('yardSelectionText');
+    var details = document.getElementById('projectDetails');
     var lastYardService = null;
-    var lastYardLine = null;
+    var lastPicked = [];
+    var yardOwnsService = false;
+    var settingService = false;
 
     function chosen() { return inputs.filter(function (i) { return i.checked; }); }
+    function selectedValues() {
+      return chosen().map(function (i) { return i.value; }).filter(function (v, i, values) { return values.indexOf(v) === i; });
+    }
+    function yardLabels(picked) {
+      return picked.map(function (i) { var label = $('[data-yard-name]', i.closest('label')); return label ? label.textContent.trim() : i.value; });
+    }
+    function renderAppliedYard() {
+      var labels = yardLabels(lastPicked);
+      var t = COPY[lang()] || COPY.en;
+      if (yardField) yardField.value = labels.length ? t.notes + ': ' + labels.join(', ') : '';
+      if (yardSummary) yardSummary.textContent = labels.join(', ');
+      if (yardNotice) yardNotice.classList.toggle('hidden', !labels.length);
+      if (details) {
+        details.required = !labels.length;
+        if (labels.length) {
+          details.classList.remove('border-red-500');
+          details.removeAttribute('aria-invalid');
+        }
+      }
+    }
+    function setService(value) {
+      if (!service || !Array.prototype.some.call(service.options, function (option) { return option.value === value; })) return false;
+      settingService = true;
+      service.value = value;
+      service.dispatchEvent(new Event('change', { bubbles: true }));
+      settingService = false;
+      return true;
+    }
     function sync() {
       var picked = chosen();
       var values = picked.map(function (i) { return i.value; });
       zones.forEach(function (z) { z.classList.toggle('is-on', values.indexOf(z.getAttribute('data-zone')) !== -1); });
       var t = COPY[lang()] || COPY.en;
       if (count) count.textContent = !picked.length ? t.none : picked.length === 1 ? t.one : t.many.replace('{n}', picked.length);
-      var unique = values.filter(function (v, i) { return values.indexOf(v) === i; });
+      if (ctaLabel) ctaLabel.textContent = picked.length ? t.add : t.start;
+      var unique = selectedValues();
       if (unique.length === 1) cta.setAttribute('data-prefill-service', unique[0]);
       else cta.removeAttribute('data-prefill-service');
       // The Spanish landing page sends the selection to the bilingual quote form.
-      if (!document.getElementById('contactService')) {
-        var query = unique.length === 1 ? '&service=' + encodeURIComponent(unique[0]) :
+      if (!service) {
+        var query = unique.length === 1 ? '&service=' + encodeURIComponent(unique[0]) + '&yard=' + encodeURIComponent(unique[0]) :
           unique.length > 1 ? '&yard=' + encodeURIComponent(unique.join(',')) : '';
-        cta.href = '/?lang=es' + query + '#quote';
+        cta.href = '/?lang=es' + query + '#quoteFormCard';
       }
     }
     inputs.forEach(function (i) { i.addEventListener('change', sync); });
@@ -122,47 +160,48 @@
     });
     function applyYardSelection() {
       var picked = chosen();
-      var values = picked.map(function (i) { return i.value; }).filter(function (v, i, a) { return a.indexOf(v) === i; });
-      var service = document.getElementById('contactService');
-      var details = document.getElementById('projectDetails');
-      if (details && lastYardLine && details.value.startsWith(lastYardLine)) {
-        details.value = details.value.slice(lastYardLine.length).replace(/^\n/, '');
+      var values = selectedValues();
+      if (values.length === 0) {
+        if (yardOwnsService && service && service.value === lastYardService) setService('');
+        yardOwnsService = false;
+        lastYardService = null;
+        lastPicked = [];
+      } else {
+        var nextService = values.length === 1 ? values[0] : 'multiple-services';
+        yardOwnsService = setService(nextService);
+        lastYardService = yardOwnsService ? nextService : null;
+        lastPicked = picked.slice();
       }
-      lastYardLine = null;
-      if (values.length === 0 && service && service.value === lastYardService) {
-        service.value = '';
-        service.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-      if (values.length < 2) {
-        // main.js handles the single-service prefill on CTA clicks.
-        lastYardService = values[0] || null;
-        return;
-      }
-      if (service) {
-        service.value = 'multiple-services';
-        service.dispatchEvent(new Event('change', { bubbles: true }));
-      }
-      if (details) {
-        var t = COPY[lang()] || COPY.en;
-        var labels = picked.map(function (i) { var l = $('[data-yard-name]', i.closest('label')); return l ? l.textContent.trim() : i.value; });
-        lastYardLine = t.notes + ': ' + labels.join(', ');
-        details.value = lastYardLine + (details.value ? '\n' + details.value : '');
-      }
-      lastYardService = 'multiple-services';
+      renderAppliedYard();
     }
     cta.addEventListener('click', function () {
-      if (document.getElementById('contactService')) applyYardSelection();
+      if (service) applyYardSelection();
+    });
+    if (service) service.addEventListener('change', function () { if (!settingService) yardOwnsService = false; });
+    var form = document.getElementById('contactForm');
+    if (form) form.addEventListener('reset', function () {
+      lastYardService = null;
+      lastPicked = [];
+      yardOwnsService = false;
+      inputs.forEach(function (input) { input.checked = false; });
+      sync();
+      renderAppliedYard();
     });
     sync();
     // A selection made on /es/ can be carried into the main site's Spanish form.
     var transferred = new URLSearchParams(window.location.search).get('yard');
-    if (transferred && document.getElementById('contactService')) {
+    if (transferred && service) {
       var requested = transferred.split(',');
       inputs.forEach(function (input) { input.checked = requested.indexOf(input.value) !== -1; });
       sync();
       applyYardSelection();
     }
-    if (window.siteI18n && window.siteI18n.onChange) window.siteI18n.onChange(function () { window.setTimeout(sync, 0); });
+    if (window.siteI18n && window.siteI18n.onChange) window.siteI18n.onChange(function () {
+      window.setTimeout(function () {
+        sync();
+        renderAppliedYard();
+      }, 0);
+    });
   }
 
   /* ---------- Storm mode (owner switch) ---------- */

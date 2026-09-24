@@ -347,13 +347,13 @@ test.describe('Static Gallery Functionality', () => {
       await page.goto(service.path, { waitUntil: 'domcontentloaded' });
       await page.click(`a[href="${service.href}"]`);
 
-      await expect(page.locator('#quote')).toBeInViewport();
+      await expect(page.locator('#quoteFormCard')).toBeInViewport();
       await expect(page.locator('#quotePrefillNotice')).toBeVisible();
       await expect(page.locator('#contactService')).toHaveValue(service.value);
       await expect(page.locator('#quotePrefillText')).toContainText(service.label);
       await page.waitForFunction(() => {
         const header = document.querySelector('#header');
-        const quoteHeading = document.querySelector('#quote h2');
+        const quoteHeading = document.querySelector('#quoteFormCard h3');
         const headerBottom = Math.round(header?.getBoundingClientRect().bottom ?? 0);
         const quoteHeadingTop = Math.round(quoteHeading?.getBoundingClientRect().top ?? 0);
 
@@ -362,7 +362,7 @@ test.describe('Static Gallery Functionality', () => {
 
       const positions = await page.evaluate(() => {
         const header = document.querySelector('#header');
-        const quoteHeading = document.querySelector('#quote h2');
+        const quoteHeading = document.querySelector('#quoteFormCard h3');
 
         return {
           headerBottom: Math.round(header?.getBoundingClientRect().bottom ?? 0),
@@ -381,7 +381,7 @@ test.describe('Static Gallery Functionality', () => {
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
     await page.waitForFunction(() => {
       const header = document.querySelector('#header');
-      const quoteHeading = document.querySelector('#quote h2');
+      const quoteHeading = document.querySelector('#quoteFormCard h3');
       const headerBottom = Math.round(header?.getBoundingClientRect().bottom ?? 0);
       const quoteHeadingTop = Math.round(quoteHeading?.getBoundingClientRect().top ?? 0);
 
@@ -390,7 +390,7 @@ test.describe('Static Gallery Functionality', () => {
 
     const positions = await page.evaluate(() => {
       const header = document.querySelector('#header');
-      const quoteHeading = document.querySelector('#quote h2');
+      const quoteHeading = document.querySelector('#quoteFormCard h3');
 
       return {
         headerBottom: Math.round(header?.getBoundingClientRect().bottom ?? 0),
@@ -671,7 +671,7 @@ test.describe('Static Gallery Functionality', () => {
     await expect(page.locator('#quotePrefillText')).toContainText('Servicio seleccionado: Servicio de árboles');
     await page.waitForFunction(() => {
       const header = document.querySelector('#header');
-      const quoteHeading = document.querySelector('#quote h2');
+      const quoteHeading = document.querySelector('#quoteFormCard h3');
       const headerBottom = Math.round(header?.getBoundingClientRect().bottom ?? 0);
       const quoteHeadingTop = Math.round(quoteHeading?.getBoundingClientRect().top ?? 0);
 

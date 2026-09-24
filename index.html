@@ -96,7 +96,7 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- Load external stylesheets -->
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260923" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260923q1" />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <link rel="stylesheet" href="assets/css/video.css" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
@@ -1117,7 +1117,7 @@
             </fieldset>
             <p class="yard-count" data-yard-count aria-live="polite"></p>
             <div class="yard-cta">
-              <a href="#quote" data-yard-cta><i class="fas fa-clipboard-list" aria-hidden="true"></i><span data-i18n-key="yard.cta">Add to my quote request</span></a>
+              <a href="#quoteFormCard" data-yard-cta><i class="fas fa-clipboard-list" aria-hidden="true"></i><span data-i18n-key="yard.cta.empty">Start a quote request</span></a>
               <p data-i18n-key="yard.fine">This is a request, not a confirmed appointment. Final pricing is confirmed on site.</p>
             </div>
           </div>
@@ -2293,7 +2293,7 @@
               </div>
             </div>
 
-            <div class="bg-white text-gray-800 p-6 rounded-lg">
+            <div id="quoteFormCard" class="bg-white text-gray-800 p-6 rounded-lg scroll-mt-24">
               <h3
                 class="text-2xl font-bold text-gray-800 mb-2"
                 data-i18n-key="quote.formHeading"
@@ -2356,6 +2356,17 @@
                   />
                   <!-- ccemail removed 2026-07-08: Pro-only Web3Forms field; its presence made the API 400-reject every submission on free tier -->
                   <input type="hidden" name="form_loaded_at" id="formLoadedAt" />
+                  <input type="hidden" name="yard_areas" id="yardAreasField" value="" />
+
+                  <div
+                    id="yardSelectionNotice"
+                    class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900"
+                    aria-live="polite"
+                  >
+                    <p class="font-semibold" data-i18n-key="quote.yardSummary">Yard areas added to this request</p>
+                    <p id="yardSelectionText"></p>
+                    <p class="mt-1 text-xs" data-i18n-key="quote.yardSummary.helper">Add more details below, or send these areas as your request.</p>
+                  </div>
 
                   <div
                     id="quotePrefillNotice"
@@ -2897,8 +2908,8 @@
       <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="assets/js/i18n.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/i18n.js?v=20260923q1" defer></script>
+    <script src="assets/js/main.js?v=20260923q1" defer></script>
     <script src="/assets/js/motion.js" defer></script>
     <script src="assets/js/static-gallery.js?v=2026-07-google-photos" defer></script>
 
@@ -3199,6 +3210,6 @@
     </script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260923" defer></script>
+  <script src="/assets/js/rings.js?v=20260923q1" defer></script>
   </body>
 </html>

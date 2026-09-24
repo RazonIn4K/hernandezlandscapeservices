@@ -185,6 +185,10 @@ function scrollElementBelowHeader(elementId) {
   window.scrollTo(0, Math.max(targetTop - headerHeight - 16, 0));
 }
 
+const quoteFormTarget = "quoteFormCard";
+const isQuoteFormHash = () =>
+  window.location.hash === "#quote" || window.location.hash === "#quoteFormCard";
+
 let activeScrollStabilizer = null;
 let activeScrollStabilizerTimer = null;
 
@@ -231,29 +235,26 @@ document.querySelectorAll("[data-prefill-service], [data-yard-cta]").forEach((li
     if (serviceKey) {
       applyQuotePrefill(serviceKey);
     }
-    if (link.hash === "#quote") {
-      scheduleScrollElementBelowHeader("quote");
+    if (link.hash === "#quote" || link.hash === "#quoteFormCard") {
+      scheduleScrollElementBelowHeader(quoteFormTarget);
     }
   });
 });
 
-const requestedService = new URLSearchParams(window.location.search).get(
-  "service",
-);
+const quoteParams = new URLSearchParams(window.location.search);
+const requestedService = quoteParams.get("service");
+const requestedYard = quoteParams.get("yard");
 if (requestedService) {
-  const didApplyPrefill = applyQuotePrefill(requestedService);
-  if (didApplyPrefill && window.location.hash === "#quote") {
-    scheduleScrollElementBelowHeader("quote");
-  }
+  applyQuotePrefill(requestedService);
+}
+if ((requestedService || requestedYard) && isQuoteFormHash()) {
+  scheduleScrollElementBelowHeader(quoteFormTarget);
 }
 
 const languageApi = getSiteI18n();
 if (languageApi && typeof languageApi.onChange === "function") {
   languageApi.onChange(() => {
     renderQuotePrefillNotice(activePrefillService);
-    if (activePrefillService && window.location.hash === "#quote") {
-      scheduleScrollElementBelowHeader("quote");
-    }
   });
 }
 
@@ -771,6 +772,11 @@ if (contactForm) {
     formLoadedAt.value = String(Date.now());
   }
 
+  contactForm.addEventListener("reset", () => {
+    activePrefillService = null;
+    renderQuotePrefillNotice(null);
+  });
+
   contactForm.addEventListener(
     "invalid",
     (event) => {
@@ -810,6 +816,7 @@ if (contactForm) {
     const contactPhone = document.getElementById("contactPhone");
     const contactService = document.getElementById("contactService");
     const projectDetails = document.getElementById("projectDetails");
+    const yardAreasField = document.getElementById("yardAreasField");
 
     let isValid = true;
 
@@ -831,7 +838,7 @@ if (contactForm) {
     } else {
       contactService.classList.remove("border-red-500");
     }
-    if (!projectDetails.value) {
+    if (!projectDetails.value.trim() && !yardAreasField?.value.trim()) {
       projectDetails.classList.add("border-red-500");
       isValid = false;
     } else {
@@ -856,6 +863,12 @@ if (contactForm) {
     }
 
     const formData = new FormData(this);
+    const yardAreas = String(formData.get("yard_areas") || "").trim();
+    if (yardAreas) {
+      const visitorMessage = String(formData.get("message") || "").trim();
+      formData.set("message", [yardAreas, visitorMessage].filter(Boolean).join("\n"));
+    }
+    formData.delete("yard_areas");
     formData.set("form_loaded_at", formLoadedAt?.value || String(Date.now()));
     addLeadResponseInstructions(formData);
 
