@@ -521,6 +521,24 @@ function handoffInstantEstimateToContactForm() {
   return true;
 }
 
+// Round 4: the price check reports problems inline (role="alert"), never in a modal.
+function setPriceCheckError(id, message, fields) {
+  const box = document.getElementById(id);
+  const all = ["serviceType", "propertySize", "zipCode", "instantName", "instantPhone", "propertyAddress", "isOwner"];
+  all.forEach((fieldId) => {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    const bad = Boolean(fields && fields.includes(field));
+    field.classList.toggle("border-red-500", bad);
+    if (bad) field.setAttribute("aria-invalid", "true");
+    else if (fields) field.removeAttribute("aria-invalid");
+  });
+  if (!box) return;
+  box.textContent = message || "";
+  box.hidden = !message;
+  if (fields && fields.length) fields[0].focus();
+}
+
 function calculateQuote() {
   const instantQuoteForm = document.getElementById("quoteForm");
   const service = document.getElementById("serviceType");
@@ -532,42 +550,25 @@ function calculateQuote() {
     return;
   }
 
-  if (!service.value || !size.value || !zip.value || !zip.checkValidity()) {
-    const optionalDetails = size.closest("details");
-    if (optionalDetails) {
-      optionalDetails.open = true;
-    }
-    showModal(
+  // Round 4 (research 03 R3): a range needs only service, size and ZIP. Contact
+  // details are asked for when the visitor chooses to send the request.
+  const missing = [
+    !service.value && service,
+    !size.value && size,
+    (!zip.value || !zip.checkValidity()) && zip,
+  ].filter(Boolean);
+  if (missing.length) {
+    setPriceCheckError(
+      "quoteCalcError",
       getMessage(
         "alerts.instant.missing",
         "Please select a service type, property size, and enter your ZIP code.",
       ),
+      missing,
     );
-    service.classList.toggle("border-red-500", !service.value);
-    size.classList.toggle("border-red-500", !size.value);
-    zip.classList.toggle("border-red-500", !zip.value || !zip.checkValidity());
     return;
   }
-
-  if (instantQuoteForm) {
-    const name = document.getElementById("instantName");
-    const phone = document.getElementById("instantPhone");
-    const address = document.getElementById("propertyAddress");
-    const owner = document.getElementById("isOwner");
-    const coreInvalid =
-      (name && !name.checkValidity()) ||
-      (phone && !phone.checkValidity()) ||
-      (address && !address.checkValidity()) ||
-      (owner && !owner.checkValidity());
-    if (coreInvalid) {
-      instantQuoteForm.reportValidity();
-      return;
-    }
-  }
-
-  service.classList.remove("border-red-500");
-  size.classList.remove("border-red-500");
-  zip.classList.remove("border-red-500");
+  setPriceCheckError("quoteCalcError", "", []);
 
   const basePrices = {
     "lawn-care": { small: 40, medium: 60, large: 80, xlarge: 120 },
@@ -618,14 +619,14 @@ function calculateQuote() {
   if (quoteResult) {
     quoteResult.classList.remove("hidden");
   }
-
-  handoffInstantEstimateToContactForm();
 }
 
 window.calculateQuote = calculateQuote;
 
 const instantQuoteForm = document.getElementById("quoteForm");
 if (instantQuoteForm) {
+  // The browser's required checks would demand contact details before a range.
+  instantQuoteForm.noValidate = true;
   instantQuoteForm.addEventListener("submit", (event) => {
     event.preventDefault();
     calculateQuote();
@@ -643,26 +644,27 @@ async function sendInstantEstimateRequest() {
   const isOwner = document.getElementById("isOwner");
   const sendBtn = document.getElementById("sendInstantRequestBtn");
 
-  const missingCore =
-    !instantName?.value?.trim() ||
-    !instantPhone?.value?.trim() ||
-    !instantPhone.checkValidity() ||
-    !propertyAddress?.value?.trim() ||
-    !service?.value ||
-    !zip?.value?.trim() ||
-    !zip.checkValidity() ||
-    (isOwner && !isOwner.checked);
+  const missingCore = [
+    !service?.value && service,
+    (!zip?.value?.trim() || !zip.checkValidity()) && zip,
+    !instantName?.value?.trim() && instantName,
+    (!instantPhone?.value?.trim() || !instantPhone.checkValidity()) && instantPhone,
+    !propertyAddress?.value?.trim() && propertyAddress,
+    isOwner && !isOwner.checked && isOwner,
+  ].filter(Boolean);
 
-  if (missingCore) {
-    document.getElementById("quoteForm")?.reportValidity();
-    showModal(
+  if (missingCore.length) {
+    setPriceCheckError(
+      "quoteSendError",
       getMessage(
         "alerts.instant.sendMissing",
         "Please enter your name, mobile number, service, address, and ZIP code.",
       ),
+      missingCore,
     );
     return;
   }
+  setPriceCheckError("quoteSendError", "", []);
 
   // Re-read the current choices if the customer edited them after calculating.
   lastInstantEstimate = null;
@@ -760,8 +762,8 @@ if (sendEstimateBtn) {
     if (contactName) {
       contactName.focus({ preventScroll: true });
     }
-    scrollElementBelowHeader("quote");
-    scheduleScrollElementBelowHeader("quote");
+    scrollElementBelowHeader(quoteFormTarget);
+    scheduleScrollElementBelowHeader(quoteFormTarget);
   });
 }
 

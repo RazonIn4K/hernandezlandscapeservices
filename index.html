@@ -99,7 +99,7 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924v" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924u" />
     <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -1442,6 +1442,192 @@
           </div>
           <form id="quoteForm">
             <div class="space-y-4">
+              <!-- Round 4: the range needs only service, size and ZIP (research 03 R3). -->
+              <div class="pc-half">
+                <label
+                  for="serviceType"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.serviceType"
+                  >Service Type</label
+                >
+                <select
+                  id="serviceType"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                  required
+                >
+                  <option
+                    value=""
+                    data-i18n-key="instant.option.servicePlaceholder"
+                  >
+                    Select a service...
+                  </option>
+                  <option value="lawn-care" data-i18n-key="quote.select.lawn">
+                    Lawn Care
+                  </option>
+                  <option
+                    value="tree-service"
+                    data-i18n-key="quote.select.tree"
+                  >
+                    Tree Service
+                  </option>
+                  <option
+                    value="landscaping"
+                    data-i18n-key="quote.select.landscaping"
+                  >
+                    Landscaping
+                  </option>
+                  <option
+                    value="snow-removal"
+                    data-i18n-key="quote.select.snow"
+                  >
+                    Snow Removal
+                  </option>
+                  <option value="leaf-removal" data-i18n-key="quote.select.leaf">
+                    Leaf Removal
+                  </option>
+                  <option
+                    value="gutter-cleaning"
+                    data-i18n-key="quote.select.gutter"
+                  >
+                    Gutter Cleaning
+                  </option>
+                  <option
+                    value="pressure-washing"
+                    data-i18n-key="quote.select.pressure"
+                  >
+                    Pressure Washing
+                  </option>
+                  <option
+                    value="multiple-services"
+                    data-i18n-key="quote.select.multiple"
+                  >
+                    Multiple Services
+                  </option>
+                </select>
+              </div>
+
+              <div class="pc-half">
+                <label
+                  for="propertySize"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.propertySize"
+                  >Property Size</label
+                >
+                <select
+                  id="propertySize"
+                  required
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                >
+                  <option
+                    value=""
+                    data-i18n-key="instant.option.sizePlaceholder"
+                  >
+                    Select size...
+                  </option>
+                  <option
+                    value="small"
+                    data-i18n-key="instant.option.sizeSmall"
+                  >
+                    Small (&lt; 5,000 sq ft)
+                  </option>
+                  <option
+                    value="medium"
+                    data-i18n-key="instant.option.sizeMedium"
+                  >
+                    Medium (5,000 - 10,000 sq ft)
+                  </option>
+                  <option
+                    value="large"
+                    data-i18n-key="instant.option.sizeLarge"
+                  >
+                    Large (10,000 - 20,000 sq ft)
+                  </option>
+                  <option
+                    value="xlarge"
+                    data-i18n-key="instant.option.sizeXLarge"
+                  >
+                    Extra Large (&gt; 20,000 sq ft)
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="zipCode"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.zip"
+                  >Your ZIP Code</label
+                >
+                <input
+                  type="text"
+                  id="zipCode"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  maxlength="10"
+                  placeholder="e.g., 60115"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                  pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
+                  title="Enter a valid 5-digit ZIP code"
+                  required
+                  data-i18n-placeholder="instant.placeholder.zip"
+                  data-i18n-title="instant.title.zip"
+                />
+              </div>
+
+              <button
+                type="submit"
+                id="calculateQuoteBtn"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
+                data-i18n-key="instant.button.calculate"
+              >
+                See Starting Range
+              </button>
+              <p id="quoteCalcError" class="field-error" role="alert" hidden></p>
+              <div
+                id="quoteResult"
+                class="hidden mt-6 p-6 bg-green-50 rounded-lg"
+                role="status"
+                aria-live="polite"
+              >
+                <h3
+                  class="text-2xl font-bold text-green-800 mb-2"
+                  data-i18n-key="instant.result.heading"
+                >
+                  Starting Price Range:
+                </h3>
+                <p class="text-3xl font-black text-green-600" id="priceRange">
+              Photo estimate — call or text (815) 501-1478
+            </p>
+                <p
+                  class="text-gray-700 mt-2"
+                  data-i18n-key="instant.result.disclaimer"
+                >
+                  This starter range helps set expectations. Final pricing depends
+                  on access, scope, disposal, and the on-site assessment.
+                </p>
+                <button
+                  type="button"
+                  id="sendEstimateBtn"
+                  class="mt-4 mr-3 inline-block bg-white text-green-800 border-2 border-green-600 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
+                >
+                  <i class="fas fa-arrow-down"></i>
+                  <span data-i18n-key="instant.result.add"
+                    >Add this range to my request</span
+                  >
+                </button>
+                <a
+                  href="tel:18155011478"
+                  class="mt-4 inline-block border-2 border-green-600 text-green-700 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
+                >
+                  <i class="fas fa-phone"></i>
+                  <span data-i18n-key="instant.result.call"
+                    >Call for Exact Quote</span
+                  >
+                </a>
+              </div>
+
+              <!-- Contact details are asked for only to send the request. -->
+              <p class="price-check-step" data-i18n-key="instant.contactStep">To send it as a request, add how we reach you:</p>
               <div class="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label
@@ -1529,142 +1715,12 @@
                 </div>
               </div>
 
-              <div>
-                <label
-                  for="serviceType"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.serviceType"
-                  >Service Type</label
-                >
-                <select
-                  id="serviceType"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                  required
-                >
-                  <option
-                    value=""
-                    data-i18n-key="instant.option.servicePlaceholder"
-                  >
-                    Select a service...
-                  </option>
-                  <option value="lawn-care" data-i18n-key="quote.select.lawn">
-                    Lawn Care
-                  </option>
-                  <option
-                    value="tree-service"
-                    data-i18n-key="quote.select.tree"
-                  >
-                    Tree Service
-                  </option>
-                  <option
-                    value="landscaping"
-                    data-i18n-key="quote.select.landscaping"
-                  >
-                    Landscaping
-                  </option>
-                  <option
-                    value="snow-removal"
-                    data-i18n-key="quote.select.snow"
-                  >
-                    Snow Removal
-                  </option>
-                  <option value="leaf-removal" data-i18n-key="quote.select.leaf">
-                    Leaf Removal
-                  </option>
-                  <option
-                    value="gutter-cleaning"
-                    data-i18n-key="quote.select.gutter"
-                  >
-                    Gutter Cleaning
-                  </option>
-                  <option
-                    value="pressure-washing"
-                    data-i18n-key="quote.select.pressure"
-                  >
-                    Pressure Washing
-                  </option>
-                  <option
-                    value="multiple-services"
-                    data-i18n-key="quote.select.multiple"
-                  >
-                    Multiple Services
-                  </option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  for="zipCode"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.zip"
-                  >Your ZIP Code</label
-                >
-                <input
-                  type="text"
-                  id="zipCode"
-                  inputmode="numeric"
-                  autocomplete="postal-code"
-                  maxlength="10"
-                  placeholder="e.g., 60115"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                  pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
-                  title="Enter a valid 5-digit ZIP code"
-                  required
-                  data-i18n-placeholder="instant.placeholder.zip"
-                  data-i18n-title="instant.title.zip"
-                />
-              </div>
-
               <details class="rounded-lg border border-gray-200 bg-white p-4">
                 <summary
                   class="cursor-pointer font-semibold text-gray-800"
-                  data-i18n-key="instant.optional.summary"
-                >Optional details (property size & callback preference)</summary>
+                  data-i18n-key="instant.optional.callback"
+                >Optional: preferred callback time</summary>
                 <div class="mt-4 space-y-4">
-              <div>
-                <label
-                  for="propertySize"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.propertySize"
-                  >Property Size</label
-                >
-                <select
-                  id="propertySize"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                >
-                  <option
-                    value=""
-                    data-i18n-key="instant.option.sizePlaceholder"
-                  >
-                    Select size...
-                  </option>
-                  <option
-                    value="small"
-                    data-i18n-key="instant.option.sizeSmall"
-                  >
-                    Small (&lt; 5,000 sq ft)
-                  </option>
-                  <option
-                    value="medium"
-                    data-i18n-key="instant.option.sizeMedium"
-                  >
-                    Medium (5,000 - 10,000 sq ft)
-                  </option>
-                  <option
-                    value="large"
-                    data-i18n-key="instant.option.sizeLarge"
-                  >
-                    Large (10,000 - 20,000 sq ft)
-                  </option>
-                  <option
-                    value="xlarge"
-                    data-i18n-key="instant.option.sizeXLarge"
-                  >
-                    Extra Large (&gt; 20,000 sq ft)
-                  </option>
-                </select>
-              </div>
-
               <div>
                 <label
                   for="instantBestTime"
@@ -1685,14 +1741,6 @@
               </details>
 
               <button
-                type="submit"
-                id="calculateQuoteBtn"
-                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
-                data-i18n-key="instant.button.calculate"
-              >
-                See Starting Range
-              </button>
-              <button
                 type="button"
                 id="sendInstantRequestBtn"
                 class="w-full bg-green-800 text-white py-3 rounded-lg font-bold hover:bg-green-900 transition"
@@ -1707,50 +1755,9 @@
                 <i class="fas fa-lock mr-1"></i>Send Free Estimate Request
                 submits your lead now. Starting range is optional guidance only.
               </p>
+              <p id="quoteSendError" class="field-error" role="alert" hidden></p>
             </div>
           </form>
-          <div
-            id="quoteResult"
-            class="hidden mt-6 p-6 bg-green-50 rounded-lg"
-            role="status"
-            aria-live="polite"
-          >
-            <h3
-              class="text-2xl font-bold text-green-800 mb-2"
-              data-i18n-key="instant.result.heading"
-            >
-              Starting Price Range:
-            </h3>
-            <p class="text-3xl font-black text-green-600" id="priceRange">
-              Photo estimate — call or text (815) 501-1478
-            </p>
-            <p
-              class="text-gray-700 mt-2"
-              data-i18n-key="instant.result.disclaimer"
-            >
-              This starter range helps set expectations. Final pricing depends
-              on access, scope, disposal, and the on-site assessment.
-            </p>
-            <button
-              type="button"
-              id="sendEstimateBtn"
-              class="mt-4 mr-3 inline-block bg-white text-green-800 border-2 border-green-600 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
-            >
-              <i class="fas fa-arrow-down"></i>
-              <span data-i18n-key="instant.result.send"
-                >Add more details below</span
-              >
-            </button>
-            <a
-              href="tel:18155011478"
-              class="mt-4 inline-block border-2 border-green-600 text-green-700 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
-            >
-              <i class="fas fa-phone"></i>
-              <span data-i18n-key="instant.result.call"
-                >Call for Exact Quote</span
-              >
-            </a>
-          </div>
               </div>
               </details>
             </section>
@@ -2439,8 +2446,8 @@
       <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="assets/js/i18n.js?v=20260924v" defer></script>
-    <script src="assets/js/main.js?v=20260924g" defer></script>
+    <script src="assets/js/i18n.js?v=20260924u" defer></script>
+    <script src="assets/js/main.js?v=20260924u" defer></script>
     <script src="/assets/js/motion.js" defer></script>
     <script src="assets/js/static-gallery.js?v=20260924i" defer></script>
 

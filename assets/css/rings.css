@@ -1467,8 +1467,7 @@ html:not(.js-rings) .strip-count,
 @media (min-width: 1024px) {
   .price-check #quoteForm > .space-y-4 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 14px; row-gap: 14px; }
   .price-check #quoteForm > .space-y-4 > * { grid-column: 1 / -1; margin-top: 0 !important; }
-  .price-check #quoteForm > .space-y-4 > :nth-child(4),
-  .price-check #quoteForm > .space-y-4 > :nth-child(5) { grid-column: auto; }
+  .price-check #quoteForm > .space-y-4 > .pc-half { grid-column: auto; }
   .site-contact-quote.quote-chapter { padding-block: 56px; }
   #testimonials { padding-block: 56px !important; }
   .field-notes { padding-block: 56px; }
@@ -1838,3 +1837,8 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
 @media (max-width: 639px) {
   .video-strip .video-meta { padding: 3px 9px; }
 }
+
+/* ---------- Round 4 · Price check: the range first, contact only to send (research 03 R3) ---------- */
+.price-check-step { margin: 6px 0 0 !important; padding-top: 14px; border-top: 1px dashed rgba(107, 74, 51, 0.35); color: var(--ink); font-weight: 700; }
+#quoteForm .field-error { margin: 0; }
+#quoteForm [aria-invalid="true"] { border-color: #b42318 !important; box-shadow: 0 0 0 1px #b42318; }
