@@ -9,11 +9,12 @@
    Round 2 ("Living Seasons + Roots"):
    - Weather over [data-weather-hero] for today's season (same month logic
      and ?month= hook): fall leaves, winter snow + drift, spring petals +
-     grass, summer fireflies. Decorative, paused off-screen/hidden tab,
-     no particles for reduced motion.
+     grass, summer fireflies. Round 4: plays once (<= 5 s) and settles;
+     decorative, paused off-screen/hidden tab, drawn settled for reduced
+     motion.
    - "When we do this" [data-when] on service pages: marks today and writes
      the in-season / next-in-season chip. Months come from the markup.
-   - Yard areas stamp into the quote form after "Add to my quote request".
+   - Yard areas reach the quote form (#51's hidden field + selection notice).
    Progressive enhancement: every piece is readable without JavaScript. */
 (function () {
   'use strict';
@@ -213,16 +214,19 @@
   }
 
   /* ---------- Round 2 · The hero lives in the current season ----------
-     Decorative SVG weather over the hero photo, built once. Deterministic
-     positions (no RNG); paused off-screen and in hidden tabs; nothing moves
-     for reduced motion (only the still ground edge is drawn). */
+     Round 4: the weather arrives once and settles (WCAG 2.2.2: nothing moves
+     for more than 5 s). Every particle is an HTML <span> wrapper animated with
+     literal transform/opacity keyframes (rings.css wx-fall-* / wx-glow-*); the
+     SVG inside never animates. Leaves and petals land on the ground edge, snow
+     settles on the drift, fireflies fade to still glows. Deterministic
+     positions (no RNG); paused off-screen and in hidden tabs while it plays.
+     Reduced motion: the settled scene is drawn with no movement. */
   var SVGNS = 'http://www.w3.org/2000/svg';
   function svg(name, attrs) {
     var el = document.createElementNS(SVGNS, name);
     Object.keys(attrs || {}).forEach(function (k) { el.setAttribute(k, attrs[k]); });
     return el;
   }
-  function vars(el, map) { Object.keys(map).forEach(function (k) { el.style.setProperty('--' + k, String(map[k])); }); }
   var SHAPES = {
     maple: 'M16 2L18.2 7.2 21 5.8 20 12 24.6 8.4 25.6 11 30 10.2 28.2 15 30.4 16.4 24.4 21 25.4 23.6 17 22.4 16.8 30H15.2L15 22.4 6.6 23.6 7.6 21 1.6 16.4 3.8 15 2 10.2 6.4 11 7.4 8.4 12 12 11 5.8 13.8 7.2Z',
     oak: 'M16 1.5C18.5 2 19.2 4.2 18.4 5.6C20.8 5 22.4 6.6 21 8.6C23.6 8.4 24.6 10.6 22.6 12.2C25.2 12.6 25.6 15.2 23 16.2C25 17.4 24.2 20 21.6 19.8C22.4 22 20.4 23.6 18.4 22.4L17 25.5 17.2 30.5H14.8L15 25.5 13.6 22.4C11.6 23.6 9.6 22 10.4 19.8C7.8 20 7 17.4 9 16.2C6.4 15.2 6.8 12.6 9.4 12.2C7.4 10.6 8.4 8.4 11 8.6C9.6 6.6 11.2 5 13.6 5.6C12.8 4.2 13.5 2 16 1.5Z',
@@ -230,85 +234,90 @@
   };
   var LEAF_COLORS = ['#b5532a', '#d99a2b', '#7f9a3a', '#c4692f', '#a8471f'];
   var PETAL_COLORS = ['#f6d3da', '#fbe8ec', '#f2c2cc', '#fff4f0'];
-  /* x 0-1 across the free column, s size px, d fall seconds, o phase seconds,
-     dx drift, t tumble seconds, r start angle, k shape/colour index */
+  /* [x 0-1 across the free column, size px, rest px above the ground edge,
+     delay s, keyframe set 1-4, shape/colour index]. The first six are the
+     phone set (CSS hides the rest below 1280px). Delay + duration <= 4.9 s. */
   var LEAVES = [
-    [0.08, 26, 13, 0.0, '70px', 3.4, -20, 0], [0.55, 21, 15, 2.1, '56px', 4.1, 35, 1],
-    [0.30, 29, 12, 4.4, '84px', 3.0, 80, 2], [0.86, 19, 16, 6.2, '40px', 4.6, -60, 3],
-    [0.18, 23, 14, 8.1, '64px', 3.7, 10, 4], [0.70, 27, 13, 9.9, '76px', 3.2, 120, 0],
-    [0.42, 18, 17, 11.3, '48px', 4.8, -110, 1], [0.95, 24, 12, 3.3, '30px', 3.5, 60, 2],
-    [0.62, 20, 15, 12.6, '58px', 4.3, -35, 3], [0.02, 22, 16, 5.6, '90px', 3.9, 150, 4]
+    [0.10, 26, 10, 0.00, 1, 0], [0.55, 21, 22, 0.35, 2, 1], [0.30, 29, 4, 0.70, 3, 2],
+    [0.86, 19, 16, 0.15, 4, 3], [0.70, 23, 28, 0.95, 1, 4], [0.97, 27, 6, 0.50, 2, 0],
+    [0.42, 18, 18, 1.10, 3, 1], [0.20, 24, 26, 0.80, 4, 2], [0.63, 20, 12, 1.20, 2, 3],
+    [0.02, 22, 20, 0.25, 1, 4]
   ];
   var PETALS = [
-    [0.12, 20, 16, 0.0, '60px', 2.8, 10, 0], [0.48, 17, 18, 2.2, '48px', 3.3, -40, 1],
-    [0.80, 19, 15, 4.5, '36px', 2.6, 70, 2], [0.30, 16, 19, 6.4, '66px', 3.6, -80, 3],
-    [0.64, 18, 17, 8.1, '52px', 3.0, 30, 0], [0.94, 16, 16, 10.8, '28px', 2.9, -15, 1],
-    [0.04, 18, 18, 12.9, '74px', 3.4, 100, 2], [0.56, 21, 15, 14.2, '40px', 3.1, -120, 3],
-    [0.22, 17, 17, 3.6, '58px', 2.7, 45, 0], [0.88, 19, 19, 7.7, '34px', 3.5, -60, 2]
+    [0.12, 20, 14, 0.00, 2, 0], [0.48, 17, 24, 0.40, 1, 1], [0.80, 19, 8, 0.20, 3, 2],
+    [0.30, 16, 20, 0.75, 4, 3], [0.64, 18, 30, 1.00, 2, 0], [0.94, 16, 12, 0.55, 1, 1],
+    [0.04, 18, 26, 1.15, 3, 2], [0.56, 21, 6, 0.90, 4, 3], [0.22, 17, 18, 0.30, 1, 0],
+    [0.88, 19, 22, 1.20, 2, 2]
   ];
-  var FLAKES = [];
-  for (var fi = 0; fi < 26; fi++) {
-    /* golden-ratio spacing gives an even, repeatable scatter */
-    var fx = (fi * 0.618034) % 1;
-    var near = fi % 3 === 0;
-    FLAKES.push([fx, near ? 7 : (fi % 2 ? 5 : 4), near ? 11 + (fi % 4) : 15 + (fi % 5) * 1.3, (fi * 1.37) % 16, (near ? 46 : 26) + (fi % 4) * 6 + 'px', 0, 0, near ? 1 : 0]);
-  }
+  /* Snow finishes as scattered dots on the drift (rest 10-34px up). */
+  var FLAKES = [
+    [0.06, 7, 26, 0.00, 1, 1], [0.44, 5, 14, 0.30, 2, 0], [0.78, 6, 30, 0.60, 3, 1],
+    [0.26, 4, 18, 0.15, 4, 0], [0.62, 7, 10, 0.90, 1, 1], [0.95, 5, 22, 0.45, 3, 0],
+    [0.16, 5, 34, 1.05, 2, 0], [0.52, 7, 24, 0.75, 4, 1], [0.86, 4, 12, 1.20, 1, 0],
+    [0.36, 6, 28, 0.55, 3, 1], [0.70, 5, 16, 1.10, 2, 0], [0.02, 4, 20, 0.85, 4, 0]
+  ];
+  /* Fireflies: [x, size, y 0-1 down the glow band, delay, set 1-3]. */
   var FLIES = [
-    [0.10, 30, 9, 0.0, '22px', 4.6, 0, 0.62], [0.52, 26, 11, 2.3, '-18px', 5.4, 0, 0.18],
-    [0.86, 28, 10, 4.1, '16px', 4.2, 0, 0.84], [0.33, 24, 12, 1.2, '-24px', 6.1, 0, 0.40],
-    [0.70, 30, 9.5, 3.4, '20px', 4.9, 0, 0.94], [0.20, 22, 11.5, 5.5, '-14px', 5.8, 0, 0.08],
-    [0.96, 26, 10.5, 2.8, '-20px', 4.4, 0, 0.30], [0.44, 28, 10, 0.9, '18px', 5.1, 0, 0.76],
-    [0.62, 24, 12.5, 4.8, '-16px', 4.7, 0, 0.50], [0.02, 26, 9, 3.9, '14px', 5.6, 0, 0.88]
+    [0.10, 30, 0.62, 0.00, 1], [0.52, 26, 0.18, 0.30, 2], [0.86, 28, 0.84, 0.15, 3],
+    [0.33, 24, 0.40, 0.60, 2], [0.70, 30, 0.94, 0.45, 1], [0.96, 26, 0.30, 0.75, 3],
+    [0.20, 22, 0.08, 0.90, 1], [0.44, 28, 0.76, 0.20, 3], [0.62, 24, 0.50, 0.85, 2],
+    [0.02, 26, 0.88, 0.50, 1]
   ];
 
   function particle(cls, p, draw) {
-    var el = svg('svg', { class: 'wx-p ' + cls, viewBox: '0 0 32 32', preserveAspectRatio: 'xMidYMin meet', focusable: 'false', 'aria-hidden': 'true' });
-    vars(el, { x: p[0], s: p[1], d: p[2], o: p[3], dx: p[4], t: p[5], r: p[6] });
-    var g = svg('g', { class: 'wx-in' });
-    draw(g, p);
-    el.appendChild(g);
-    return el;
+    var span = document.createElement('span');
+    span.className = 'wx-p ' + cls + ' wx-k' + p[4];
+    span.style.setProperty('--x', String(p[0]));
+    span.style.setProperty('--s', String(p[1]));
+    span.style.animationDelay = p[3] + 's';
+    var art = svg('svg', { viewBox: '0 0 32 32', focusable: 'false', 'aria-hidden': 'true' });
+    draw(art, p);
+    span.appendChild(art);
+    return span;
+  }
+  function fall(cls, p, draw) {
+    var span = particle(cls, p, draw);
+    span.style.bottom = p[2] + 'px';
+    return span;
   }
   function buildSky(season) {
     var sky = document.createElement('div');
-    sky.className = 'wx-sky';
+    sky.className = 'wx-sky wx-live';
     sky.setAttribute('aria-hidden', 'true');
     if (season === 'fall') {
       LEAVES.forEach(function (p) {
-        sky.appendChild(particle('wx-leaf', p, function (g) {
-          g.appendChild(svg('path', { d: p[7] % 2 ? SHAPES.oak : SHAPES.maple, fill: LEAF_COLORS[p[7]] }));
-          g.appendChild(svg('path', { d: 'M16 6V28', stroke: 'rgba(40,20,8,.35)', 'stroke-width': '0.9', fill: 'none' }));
+        sky.appendChild(fall('wx-leaf', p, function (a) {
+          a.appendChild(svg('path', { d: p[5] % 2 ? SHAPES.oak : SHAPES.maple, fill: LEAF_COLORS[p[5]] }));
+          a.appendChild(svg('path', { d: 'M16 6V28', stroke: 'rgba(40,20,8,.35)', 'stroke-width': '0.9', fill: 'none' }));
         }));
       });
     } else if (season === 'spring') {
       PETALS.forEach(function (p) {
-        sky.appendChild(particle('wx-petal', p, function (g) {
-          g.appendChild(svg('path', { d: SHAPES.petal, fill: PETAL_COLORS[p[7]] }));
+        sky.appendChild(fall('wx-petal', p, function (a) {
+          a.appendChild(svg('path', { d: SHAPES.petal, fill: PETAL_COLORS[p[5]] }));
         }));
       });
     } else if (season === 'winter') {
       FLAKES.forEach(function (p) {
-        var el = particle('wx-flake', p, function (g) {
-          g.appendChild(svg('circle', { cx: '16', cy: '16', r: p[7] ? '13' : '11', fill: '#fff', 'fill-opacity': p[7] ? '0.92' : '0.7' }));
-        });
-        sky.appendChild(el);
+        sky.appendChild(fall('wx-flake', p, function (a) {
+          a.appendChild(svg('circle', { cx: '16', cy: '16', r: p[5] ? '13' : '11', fill: '#fff', 'fill-opacity': p[5] ? '0.95' : '0.8' }));
+        }));
       });
     } else {
       var defs = svg('svg', { width: '0', height: '0', class: 'wx-defs', focusable: 'false', 'aria-hidden': 'true' });
       var grad = svg('radialGradient', { id: 'wxGlow' });
-      [['0', '#fff7b8', '1'], ['0.3', '#e8e46a', '0.55'], ['1', '#b8d98f', '0']].forEach(function (s) {
-        grad.appendChild(svg('stop', { offset: s[0], 'stop-color': s[1], 'stop-opacity': s[2] }));
+      [['0', '#fff7b8', '1'], ['0.3', '#e8e46a', '0.55'], ['1', '#b8d98f', '0']].forEach(function (st) {
+        grad.appendChild(svg('stop', { offset: st[0], 'stop-color': st[1], 'stop-opacity': st[2] }));
       });
       defs.appendChild(grad);
       sky.appendChild(defs);
       FLIES.forEach(function (p) {
-        var el = particle('wx-fly', p, function (g) {
-          g.appendChild(svg('circle', { cx: '16', cy: '16', r: '15', fill: 'url(#wxGlow)' }));
-          g.appendChild(svg('circle', { cx: '16', cy: '16', r: '2.6', fill: '#fffbe0' }));
+        var span = particle('wx-fly', p, function (a) {
+          a.appendChild(svg('circle', { cx: '16', cy: '16', r: '15', fill: 'url(#wxGlow)' }));
+          a.appendChild(svg('circle', { cx: '16', cy: '16', r: '2.6', fill: '#fffbe0' }));
         });
-        el.setAttribute('preserveAspectRatio', 'xMidYMid meet');
-        vars(el, { y: p[7] });
-        sky.appendChild(el);
+        span.style.setProperty('--y', String(p[2]));
+        sky.appendChild(span);
       });
     }
     return sky;
@@ -337,6 +346,8 @@
       s.appendChild(svg('path', { d: 'M0 48V26C70 20 130 14 200 14S330 24 420 24S520 18 560 18S660 34 720 34S820 24 880 22S930 18 960 18S1150 12 1220 12S1380 20 1440 22V48Z', fill: 'url(#wxDrift)' }));
       s.appendChild(svg('path', { d: 'M0 26C70 20 130 14 200 14S330 24 420 24S520 18 560 18S660 34 720 34S820 24 880 22S930 18 960 18S1150 12 1220 12S1380 20 1440 22', fill: 'none', stroke: '#b9cfdc', 'stroke-opacity': '0.6', 'stroke-width': '1.5', 'vector-effect': 'non-scaling-stroke' }));
     } else {
+      /* Spring grass: the HTML wrapper grows once (rings.css); the SVG rows are still. */
+      ground.className = 'wx-ground wx-grass';
       var defs = svg('defs');
       [['wxGrassA', GRASS.back, '#3f6b2e', '0'], ['wxGrassB', GRASS.mid, '#6f9a3a', '37'], ['wxGrassC', GRASS.front, '#a7c865', '71']].forEach(function (row) {
         var pat = svg('pattern', { id: row[0], x: row[3], width: '120', height: '40', patternUnits: 'userSpaceOnUse' });
@@ -346,10 +357,8 @@
       s.appendChild(defs);
       s.setAttribute('width', '100%');
       s.setAttribute('height', '40');
-      [['wxGrassA', 'wx-grow wx-grow-1'], ['wxGrassB', 'wx-grow wx-grow-2'], ['wxGrassC', 'wx-grow wx-grow-3']].forEach(function (row) {
-        var g = svg('g', { class: row[1] });
-        g.appendChild(svg('rect', { width: '100%', height: '40', fill: 'url(#' + row[0] + ')' }));
-        s.appendChild(g);
+      ['wxGrassA', 'wxGrassB', 'wxGrassC'].forEach(function (id) {
+        s.appendChild(svg('rect', { width: '100%', height: '40', fill: 'url(#' + id + ')' }));
       });
     }
     ground.appendChild(s);
@@ -362,9 +371,15 @@
     hero.setAttribute('data-weather', season);
     var ground = buildGround(season);
     if (ground) hero.appendChild(ground);
-    if (reduce) return;
     var sky = buildSky(season);
     hero.appendChild(sky);
+    if (reduce) { sky.classList.remove('wx-live'); return; }
+    /* Drop will-change once every shown particle has landed (particles hidden
+       by the phone cap never animate, so ask the sky, not a counter). */
+    sky.addEventListener('animationend', function () {
+      var busy = sky.getAnimations ? sky.getAnimations({ subtree: true }).some(function (a) { return a.playState !== 'finished'; }) : false;
+      if (!busy) sky.classList.remove('wx-live');
+    });
     var onScreen = true;
     var sync = function () {
       var paused = !onScreen || document.hidden;

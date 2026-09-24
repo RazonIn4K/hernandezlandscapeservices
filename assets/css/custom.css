@@ -1126,7 +1126,7 @@ footer .bg-gray-800 {
     line-height: 1.1;
   }
 
-  .site-hero .animate-bounce {
+  .site-hero .hero-scroll-cue {
     display: none;
   }
 

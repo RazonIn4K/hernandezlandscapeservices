@@ -540,7 +540,12 @@ html[data-season="winter"] { --season-glow: #a9d3ee; }
 /* The hero eyebrow carries a quiet season notch (bright tint on the dark card). */
 .hero-eyebrow { box-shadow: inset 4px 0 0 var(--season-glow), 0 10px 30px rgba(0, 0, 0, 0.22) !important; }
 
-/* ---------- Signature A · Weather over the hero (built by rings.js) ---------- */
+/* ---------- Signature A · Weather over the hero (built by rings.js) ----------
+   Round 4: one arrival of 5 s or less, then a still scene (WCAG 2.2.2). Only
+   the HTML <span> wrappers animate, with literal transform/opacity keyframes
+   (compositor-only: no var() inside keyframes, nothing inside the SVG moves).
+   Each .wx-kN base style is its last keyframe, so reduced motion draws the
+   same settled scene with no movement. */
 .wx-sky,
 .wx-ground {
   position: absolute;
@@ -553,88 +558,138 @@ html[data-season="winter"] { --season-glow: #a9d3ee; }
   top: 0;
   bottom: 0;
   z-index: 1;
-  /* Phones and tablets: behind the text, kept faint so contrast never drops. */
-  --x0: 3%;
-  --xspan: 76%;
-  --dk: 0.35;
-  --y0: 58%;
-  --yspan: 36%;
+  /* Phones and tablets: six particles in the right-hand strip, low in the
+     hero, behind the text layer. */
+  --x0: 58%;
+  --xspan: 20%;
+  --y0: 62%;
+  --yspan: 30%;
   --k: 1.1;
-  opacity: 0.34;
+  opacity: 0.75;
 }
+.wx-sky .wx-p:nth-of-type(n+7) { display: none; }
 .wx-ground { bottom: 0; height: 40px; z-index: 1; }
 .wx-ground.wx-drift { height: 48px; }
 .wx-ground svg { display: block; width: 100%; height: 100%; }
-@media (min-width: 1280px) {
-  /* Desktop: particles live only in the right-hand column, in front of the
-     ring, never over the headline or the calls to action. */
-  .wx-sky { z-index: 11; --x0: 63%; --xspan: 26%; --dk: 1; --y0: 34%; --yspan: 58%; --k: 1.7; opacity: 1; }
-}
 .wx-p {
   position: absolute;
-  top: 0;
   left: calc(var(--x0) + var(--x) * var(--xspan));
   width: calc(var(--s) * var(--k) * 1px);
-  height: 100%;
-  overflow: visible;
-  will-change: transform;
-  animation: wx-fall calc(var(--d) * 1s) linear calc(var(--o) * -1s) infinite;
-}
-.wx-in { transform-box: fill-box; transform-origin: 50% 50%; }
-.wx-leaf .wx-in,
-.wx-petal .wx-in { animation: wx-tumble calc(var(--t) * 1s) ease-in-out calc(var(--o) * -1s) infinite alternate; }
-.wx-petal .wx-in { animation-name: wx-flutter; }
-.wx-flake { animation-name: wx-snow; }
-.wx-fly {
-  top: calc(var(--y0) + var(--y) * var(--yspan));
   height: calc(var(--s) * var(--k) * 1px);
-  animation: wx-wander calc(var(--d) * 1s) ease-in-out calc(var(--o) * -1s) infinite alternate;
+  animation-timing-function: cubic-bezier(0.3, 0.1, 0.35, 1);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
 }
-.wx-fly .wx-in { opacity: 0; animation: wx-blink calc(var(--t) * 1s) ease-in-out calc(var(--o) * -1s) infinite; }
+.wx-live .wx-p { will-change: transform, opacity; }
+.wx-p svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.wx-k1 { animation-name: wx-fall-1; animation-duration: 3.6s; transform: rotate(200deg); }
+.wx-k2 { animation-name: wx-fall-2; animation-duration: 3.4s; transform: rotate(-150deg); }
+.wx-k3 { animation-name: wx-fall-3; animation-duration: 3.7s; transform: rotate(95deg); }
+.wx-k4 { animation-name: wx-fall-4; animation-duration: 3.5s; transform: rotate(-35deg); }
+.wx-fly { top: calc(var(--y0) + var(--y) * var(--yspan)); animation-duration: 4s; animation-timing-function: ease-in-out; }
+.wx-fly.wx-k1 { animation-name: wx-glow-1; opacity: 0.55; transform: translate3d(20px, -16px, 0); }
+.wx-fly.wx-k2 { animation-name: wx-glow-2; opacity: 0.5; transform: translate3d(-18px, -12px, 0); }
+.wx-fly.wx-k3 { animation-name: wx-glow-3; opacity: 0.6; transform: translate3d(14px, -22px, 0); }
+@media (min-width: 1280px) {
+  /* Desktop: ten particles in the ring column, in front of the ring, never
+     over the headline or the calls to action; they fall the full hero. */
+  .wx-sky { z-index: 11; --x0: 63%; --xspan: 26%; --y0: 34%; --yspan: 58%; --k: 1.7; opacity: 1; }
+  .wx-sky .wx-p:nth-of-type(n+7) { display: block; }
+  .wx-k1 { animation-name: wx-fall-1d; }
+  .wx-k2 { animation-name: wx-fall-2d; }
+  .wx-k3 { animation-name: wx-fall-3d; }
+  .wx-k4 { animation-name: wx-fall-4d; }
+}
 .wx-paused .wx-p,
-.wx-paused .wx-in,
-.wx-paused .wx-grow { animation-play-state: paused !important; }
-@keyframes wx-fall {
-  from { transform: translate3d(0, -7%, 0); }
-  to { transform: translate3d(calc(var(--dx) * var(--dk, 1)), 104%, 0); }
+.wx-ground.wx-paused { animation-play-state: paused !important; }
+@keyframes wx-fall-1 {
+  0% { opacity: 0; transform: translate3d(-16px, -210px, 0) rotate(-30deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(14px, -130px, 0) rotate(70deg); }
+  72% { transform: translate3d(-8px, -46px, 0) rotate(150deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(200deg); }
 }
-@keyframes wx-snow {
-  0% { transform: translate3d(0, -4%, 0); }
-  25% { transform: translate3d(calc(calc(var(--dx) * var(--dk, 1)) * 0.25 + 9px), 23%, 0); }
-  50% { transform: translate3d(calc(calc(var(--dx) * var(--dk, 1)) * 0.5 - 7px), 50%, 0); }
-  75% { transform: translate3d(calc(calc(var(--dx) * var(--dk, 1)) * 0.75 + 6px), 77%, 0); }
-  100% { transform: translate3d(calc(var(--dx) * var(--dk, 1)), 104%, 0); }
+@keyframes wx-fall-2 {
+  0% { opacity: 0; transform: translate3d(18px, -190px, 0) rotate(40deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(-12px, -120px, 0) rotate(-40deg); }
+  72% { transform: translate3d(9px, -40px, 0) rotate(-110deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(-150deg); }
 }
-@keyframes wx-tumble {
-  0% { transform: translateX(-9px) rotate(calc(var(--r) * 1deg)) scaleX(1); }
-  35% { transform: translateX(7px) rotate(calc(var(--r) * 1deg + 70deg)) scaleX(0.42); }
-  70% { transform: translateX(-4px) rotate(calc(var(--r) * 1deg + 150deg)) scaleX(-0.85); }
-  100% { transform: translateX(9px) rotate(calc(var(--r) * 1deg + 220deg)) scaleX(1); }
+@keyframes wx-fall-3 {
+  0% { opacity: 0; transform: translate3d(-10px, -230px, 0) rotate(-80deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(16px, -140px, 0) rotate(10deg); }
+  72% { transform: translate3d(-6px, -50px, 0) rotate(60deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(95deg); }
 }
-@keyframes wx-flutter {
-  0% { transform: translateX(-6px) rotate(calc(var(--r) * 1deg)) scaleY(1); }
-  50% { transform: translateX(6px) rotate(calc(var(--r) * 1deg + 50deg)) scaleY(0.55); }
-  100% { transform: translateX(-3px) rotate(calc(var(--r) * 1deg + 100deg)) scaleY(1); }
+@keyframes wx-fall-4 {
+  0% { opacity: 0; transform: translate3d(12px, -200px, 0) rotate(60deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(-15px, -125px, 0) rotate(10deg); }
+  72% { transform: translate3d(7px, -44px, 0) rotate(-20deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(-35deg); }
 }
-@keyframes wx-wander {
-  0% { transform: translate3d(0, 0, 0); }
-  50% { transform: translate3d(calc(calc(var(--dx) * var(--dk, 1)) * 0.6), -14px, 0); }
-  100% { transform: translate3d(calc(var(--dx) * var(--dk, 1)), -26px, 0); }
+@keyframes wx-fall-1d {
+  0% { opacity: 0; transform: translate3d(-29px, -630px, 0) rotate(-30deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(25px, -390px, 0) rotate(70deg); }
+  72% { transform: translate3d(-14px, -138px, 0) rotate(150deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(200deg); }
 }
-@keyframes wx-blink {
-  0%, 38%, 100% { opacity: 0; }
-  50% { opacity: 1; }
-  66% { opacity: 0.9; }
-  84% { opacity: 0.2; }
+@keyframes wx-fall-2d {
+  0% { opacity: 0; transform: translate3d(32px, -570px, 0) rotate(40deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(-22px, -360px, 0) rotate(-40deg); }
+  72% { transform: translate3d(16px, -120px, 0) rotate(-110deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(-150deg); }
 }
-/* Spring grass grows in once; the winter drift is static. */
-.wx-grow { transform-box: fill-box; transform-origin: 50% 100%; animation: wx-grow 1.8s var(--ease) both; }
-.wx-grow-2 { animation-delay: 0.25s; }
-.wx-grow-3 { animation-delay: 0.5s; }
+@keyframes wx-fall-3d {
+  0% { opacity: 0; transform: translate3d(-18px, -690px, 0) rotate(-80deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(29px, -420px, 0) rotate(10deg); }
+  72% { transform: translate3d(-11px, -150px, 0) rotate(60deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(95deg); }
+}
+@keyframes wx-fall-4d {
+  0% { opacity: 0; transform: translate3d(22px, -600px, 0) rotate(60deg); }
+  12% { opacity: 1; }
+  40% { transform: translate3d(-27px, -375px, 0) rotate(10deg); }
+  72% { transform: translate3d(13px, -132px, 0) rotate(-20deg); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(-35deg); }
+}
+@keyframes wx-glow-1 {
+  0% { opacity: 0; transform: translate3d(0, 0, 0); }
+  16% { opacity: 1; }
+  30% { opacity: 0.2; }
+  48% { opacity: 1; transform: translate3d(12px, -9px, 0); }
+  64% { opacity: 0.25; }
+  82% { opacity: 0.95; }
+  100% { opacity: 0.55; transform: translate3d(20px, -16px, 0); }
+}
+@keyframes wx-glow-2 {
+  0% { opacity: 0; transform: translate3d(0, 0, 0); }
+  20% { opacity: 0.9; }
+  36% { opacity: 0.15; }
+  56% { opacity: 1; transform: translate3d(-10px, -6px, 0); }
+  74% { opacity: 0.3; }
+  100% { opacity: 0.5; transform: translate3d(-18px, -12px, 0); }
+}
+@keyframes wx-glow-3 {
+  0% { opacity: 0; transform: translate3d(0, 0, 0); }
+  14% { opacity: 1; }
+  28% { opacity: 0.25; }
+  44% { opacity: 0.9; transform: translate3d(8px, -12px, 0); }
+  62% { opacity: 0.2; }
+  80% { opacity: 1; }
+  100% { opacity: 0.6; transform: translate3d(14px, -22px, 0); }
+}
+/* Spring grass: the HTML wrapper grows once; the winter drift is static. */
+.wx-grass { transform-origin: 50% 100%; animation: wx-grow 1.2s cubic-bezier(0.2, 0, 0, 1) 1 both; }
 @keyframes wx-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .wx-sky { display: none !important; }
-  .wx-grow { animation: none !important; transform: none; }
+  .wx-p,
+  .wx-grass { animation: none !important; }
 }
 
 /* ---------- Signature B · Roots footer: a soil cross-section ---------- */

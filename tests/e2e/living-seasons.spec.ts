@@ -18,7 +18,7 @@ test.describe('Hero weather follows the season hook', () => {
 
   for (const [month, selector, count] of [
     ['9', '.wx-leaf', 10],
-    ['0', '.wx-flake', 26],
+    ['0', '.wx-flake', 12],
     ['4', '.wx-petal', 10],
     ['7', '.wx-fly', 10],
   ] as const) {
@@ -36,7 +36,9 @@ test.describe('Hero weather follows the season hook', () => {
     await page.goto('/?month=0', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#home .wx-ground.wx-drift')).toHaveCount(1);
     await page.goto('/?month=4', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('#home .wx-ground .wx-grow')).toHaveCount(3);
+    // Round 4: the HTML wrapper grows once; nothing inside the SVG animates.
+    await expect(page.locator('#home .wx-ground.wx-grass')).toHaveCount(1);
+    await expect(page.locator('#home .wx-ground .wx-grow')).toHaveCount(0);
     await page.goto('/?month=7', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#home .wx-ground')).toHaveCount(0);
   });
@@ -51,11 +53,49 @@ test.describe('Hero weather follows the season hook', () => {
     await expect(sky).not.toHaveClass(/wx-paused/);
   });
 
-  test('reduced motion renders no particles, only the still ground', async ({ page }) => {
+  test('weather plays once for 5 s or less, only on HTML wrappers', async ({ page }) => {
+    // Round 4 (WCAG 2.2.2): no loop, every particle lands by 5 s, no animation on SVG children.
+    for (const month of ['9', '0', '4', '7']) {
+      await page.goto(`/?month=${month}`, { waitUntil: 'domcontentloaded' });
+      await expect(page.locator('#home .wx-sky .wx-p').first()).toBeAttached();
+      const timing = await page.evaluate(() => {
+        const own = document.getAnimations().filter((a) => {
+          const target = (a.effect as KeyframeEffect | null)?.target as Element | null;
+          return !!target && !!target.closest('.wx-sky, .wx-ground');
+        });
+        return {
+          count: own.length,
+          infinite: document.getAnimations().filter((a) => a.effect?.getTiming().iterations === Infinity).length,
+          svgChildren: own.filter((a) => ((a.effect as KeyframeEffect).target as Element).closest('svg')).length,
+          latestEnd: Math.max(0, ...own.map((a) => Number(a.effect?.getComputedTiming().endTime ?? 0))),
+        };
+      });
+      expect(timing.count, `month ${month}: particles animate`).toBeGreaterThan(0);
+      expect(timing.infinite, `month ${month}: no infinite animation`).toBe(0);
+      expect(timing.svgChildren, `month ${month}: SVG children stay still`).toBe(0);
+      expect(timing.latestEnd, `month ${month}: settled by 5 s`).toBeLessThanOrEqual(5000);
+    }
+  });
+
+  test('phones get six particles, kept to the right-hand strip', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/?month=9', { waitUntil: 'domcontentloaded' });
+    const shown = page.locator('#home .wx-sky .wx-p:visible');
+    await expect(shown).toHaveCount(6);
+    const lefts = await shown.evaluateAll((els) => els.map((el) => el.getBoundingClientRect().left));
+    for (const left of lefts) expect(left).toBeGreaterThanOrEqual(390 * 0.5);
+  });
+
+  test('reduced motion draws the settled scene with no movement', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/?month=0', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#home .wx-ground.wx-drift')).toHaveCount(1);
-    await expect(page.locator('.wx-sky')).toHaveCount(0);
+    await expect(page.locator('#home .wx-sky .wx-flake')).toHaveCount(12);
+    const moving = await page.evaluate(() => document.getAnimations().filter((a) => {
+      const target = (a.effect as KeyframeEffect | null)?.target as Element | null;
+      return !!target && !!target.closest('.wx-sky, .wx-ground');
+    }).length);
+    expect(moving).toBe(0);
   });
 });
 
