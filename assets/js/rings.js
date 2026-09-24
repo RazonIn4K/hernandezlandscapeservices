@@ -560,7 +560,8 @@
      Video posters download even with preload="none", so the homepage tours keep
      theirs in data-poster until the strip is within ~600px of the viewport. */
   function initPosters() {
-    var videos = $$('video[data-poster]');
+    // Only the homepage strips: /videos/ hydrates its own posters (video-gallery.js).
+    var videos = $$('[data-strip-track] video[data-poster]');
     if (!videos.length) return;
     var show = function (v) {
       var src = v.getAttribute('data-poster');
