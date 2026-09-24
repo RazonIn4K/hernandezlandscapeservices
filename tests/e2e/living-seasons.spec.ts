@@ -135,19 +135,20 @@ test('roots never pass behind footer text or controls', async ({ page }) => {
   }
 });
 
-test('yard picker areas stamp into the quote form and follow the language', async ({ page }) => {
+test('yard picker areas reach the quote form notice and follow the language', async ({ page }) => {
+  // Round 2 stamped the areas into the form; #51's selection notice now does that job.
   await page.goto('/', { waitUntil: 'domcontentloaded' });
-  const stamps = page.locator('[data-yard-stamps]');
-  await expect(stamps).toBeHidden();
+  const notice = page.locator('#contactForm #yardSelectionNotice');
+  await expect(notice).toBeHidden();
   await page.locator('label[for="yard-tree"]').click();
   await page.locator('label[for="yard-gutters"]').click();
   await page.locator('[data-yard-cta]').click();
-  await expect(stamps).toBeVisible();
-  await expect(stamps.locator('.yard-stamp')).toHaveText(['The big tree', 'Gutters']);
+  await expect(notice).toBeVisible();
+  await expect(page.locator('#yardSelectionText')).toHaveText('The big tree, Gutters');
   await expect(page.locator('#contactService')).toHaveValue('multiple-services');
   await page.locator('[data-lang-switch="es"]:visible').first().click();
-  await expect(stamps.locator('p')).toHaveText('De su recorrido por el jardín');
-  await expect(stamps.locator('.yard-stamp')).toHaveText(['El árbol grande', 'Canaletas']);
+  await expect(notice.locator('[data-i18n-key="quote.yardSummary"]')).toHaveText('Áreas del jardín agregadas a esta solicitud');
+  await expect(page.locator('#yardSelectionText')).toHaveText('El árbol grande, Canaletas');
 });
 
 test('gallery prints keep their captions visible', async ({ page }) => {

@@ -74,10 +74,12 @@ test('walking the yard fills the request the visitor submits, right below', asyn
   await page.locator('label[for="yard-lawn"]').click();
   await page.locator('label[for="yard-beds"]').click();
   await page.locator('[data-yard-cta]').click();
-  await expect(page.locator('#quote h2').first()).toBeInViewport();
+  // #51: the CTA lands on the form card and the areas ride in yard_areas, not the textarea.
+  await expect(page.locator('#quoteFormCard')).toBeInViewport();
   await expect(page.locator('#contactService')).toHaveValue('multiple-services');
-  await expect(page.locator('#projectDetails')).toHaveValue(/^Yard areas: The lawn, Garden beds/);
-  await expect(page.locator('#contactForm [data-yard-stamps]')).toBeVisible();
+  await expect(page.locator('#yardAreasField')).toHaveValue('Yard areas: The lawn, Garden beds');
+  await expect(page.locator('#projectDetails')).toHaveValue('');
+  await expect(page.locator('#contactForm #yardSelectionNotice')).toBeVisible();
 
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page.locator('label[for="yard-tree"]').click();

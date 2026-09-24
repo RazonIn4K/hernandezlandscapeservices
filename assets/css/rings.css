@@ -520,8 +520,9 @@ body.storm-header-offset .storm-band { margin-top: var(--header-h, 76px); }
    ROUND 2 · "Living Seasons + Roots" (2026-09-23)
    The hero lives in today's season, the footer shows what is under the
    ground, and every service page says when that work happens. Plus a crew
-   tape measure, a field-notebook gallery, stamped yard chips and cross-page
-   transitions. Every moving piece has a still path for reduced motion.
+   tape measure, a field-notebook gallery and cross-page transitions.
+   Every moving piece has a still path for reduced motion. (The stamped yard
+   chips gave way to #51's selection notice in the round-4 merge.)
    ========================================================================== */
 :root {
   --soil-top: #3b2819;
@@ -950,40 +951,6 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
   .field-notebook .gallery-item { transition: none; }
   .field-notebook .gallery-item:hover,
   .field-notebook .gallery-item:focus-within { transform: translateY(var(--drop)) rotate(var(--tilt)); }
-}
-
-/* ---------- Craft · Yard areas stamp into the quote form ---------- */
-.yard-stamps { margin: 0; padding: 12px 14px; border: 1px dashed rgba(154, 74, 36, 0.45); border-radius: 10px; background: #fdf6ef; }
-.yard-stamps[hidden] { display: none !important; }
-.yard-stamps p { margin: 0 0 8px; color: var(--clay-deep); font-size: 0.78rem; }
-.yard-stamps ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.yard-stamp {
-  --r: -1.5deg;
-  padding: 5px 10px 4px;
-  border: 2px solid var(--clay-deep);
-  border-radius: 4px;
-  color: var(--clay-deep);
-  background: rgba(255, 255, 255, 0.7);
-  font-family: var(--stencil);
-  font-weight: 700;
-  font-size: 0.86rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transform: rotate(var(--r));
-  box-shadow: inset 0 0 0 1px rgba(154, 74, 36, 0.25);
-}
-.yard-stamp:nth-child(2n) { --r: 1.2deg; }
-.yard-stamp:nth-child(3n) { --r: -0.6deg; }
-.yard-stamps.is-pending .yard-stamp { opacity: 0; }
-.yard-stamps.is-stamping .yard-stamp { animation: stamp-in 0.46s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; animation-delay: calc(var(--i, 0) * 0.14s + 0.1s); }
-@keyframes stamp-in {
-  0% { opacity: 0; transform: scale(1.7) rotate(calc(var(--r) - 8deg)); }
-  55% { opacity: 1; transform: scale(0.93) rotate(var(--r)); }
-  100% { opacity: 1; transform: scale(1) rotate(var(--r)); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .yard-stamps.is-pending .yard-stamp { opacity: 1; }
-  .yard-stamps.is-stamping .yard-stamp { animation: none; }
 }
 
 /* ---------- Print: the notebook stays on paper, the weather stays off ---------- */

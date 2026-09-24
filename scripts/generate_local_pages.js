@@ -403,13 +403,13 @@ ${BANNER}
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260923" />
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260924m1" />
     <link rel="stylesheet" href="/assets/css/custom.css" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260923r5" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924m1" />
   </head>
   <body class="site-body bg-gray-50">
     <header class="site-header fixed top-0 z-50 w-full bg-white shadow">
@@ -480,7 +480,7 @@ ${jsonLd(city, lang)}
   <script src="/assets/js/service-nav.js" defer></script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260923r5" defer></script>
+  <script src="/assets/js/rings.js?v=20260924m1" defer></script>
   </body>
 </html>
 `;
