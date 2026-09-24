@@ -129,7 +129,8 @@ test('on phones the price check folds until the visitor asks for it', async ({ p
   const fold = page.locator('#instant-quote details.price-check-fold');
   await expect(fold).not.toHaveAttribute('open', '');
   await expect(page.locator('#instantName')).toBeHidden();
-  await page.locator('a.primary-cta[href="#instant-quote"]').click();
+  // Round 4: the price check is a text link under the calls (the primary CTA asks for the quote).
+  await page.locator('a.hero-price-link[href="#instant-quote"]').click();
   await expect(fold).toHaveAttribute('open', '');
   await expect(page.locator('#instantName')).toBeVisible();
 

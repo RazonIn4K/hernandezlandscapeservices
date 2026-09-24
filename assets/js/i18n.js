@@ -230,6 +230,8 @@
       "hero.emergencyCall": "Call (815) 501-1478",
       "hero.emergencyPage": "Emergency tree help",
       "hero.cta": "See Starting Range",
+      "hero.ctaQuote": "Get a free quote",
+      "hero.stormLink": "Storm damage? Emergency tree help",
       "hero.call": "Call Now",
       "hero.insured": "Project Details",
       "hero.insured.tip":
@@ -901,6 +903,8 @@
       "hero.emergencyCall": "Llama al (815) 501-1478",
       "hero.emergencyPage": "Ayuda de emergencia",
       "hero.cta": "Ver rango inicial",
+      "hero.ctaQuote": "Solicita una cotización gratis",
+      "hero.stormLink": "¿Daños por tormenta? Ayuda de emergencia",
       "hero.call": "Llámanos ahora",
       "hero.insured": "Detalles del proyecto",
       "hero.insured.tip":

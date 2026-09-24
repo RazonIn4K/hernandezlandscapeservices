@@ -1486,3 +1486,103 @@ html:not(.js-rings) .strip-count,
 }
 /* Refine: the footer email wraps inside its column (it ran into the next column at 1024). */
 footer.bg-gray-900 li > a[href^="mailto:"] { min-width: 0; overflow-wrap: anywhere; }
+
+/* ==========================================================================
+   ROUND 4 · Hero: one clear ask, a visible crew (research 03 R2/R6/R9, 05 X4)
+   - Primary "Get a free quote" -> #quote; "Call (815) 501-1478" on every width.
+   - The price check and the storm notice are text links under the calls; the
+     full storm strip returns only in storm mode (body.storm-on).
+   - H1 capped (64-68px desktop, balanced lines) so the calls clear 768px.
+   - The photo shows: a scrim sized to the text column instead of a full-bleed
+     86-94% overlay; on phones the crew photo is a clear band above the H1.
+   ========================================================================== */
+.site-hero .site-hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(12, 42, 32, 0) 58%, rgba(12, 42, 32, 0.8) 100%),
+    linear-gradient(90deg, rgba(12, 42, 32, 0.92) 0%, rgba(12, 42, 32, 0.88) 46%, rgba(12, 42, 32, 0.72) 58%, rgba(12, 42, 32, 0.12) 72%, rgba(12, 42, 32, 0) 80%) !important;
+}
+.hero-heading {
+  font-size: clamp(2.75rem, 1.6rem + 3.4vw, 4.25rem) !important;
+  text-wrap: balance;
+}
+.hero-heading .block { text-wrap: balance; }
+.site-hero .emergency-strip { display: none !important; }
+body.storm-on .site-hero .emergency-strip { display: flex !important; }
+body.storm-on .hero-storm-link { display: none !important; }
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 1.75rem;
+  margin: 0.75rem 0 0;
+}
+.hero-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: #f3f7ea;
+  font-weight: 600;
+  font-size: 1.02rem;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+.hero-links a:hover { color: #fff; text-decoration-thickness: 2px; }
+.hero-links i { color: var(--fresh); font-size: 0.95em; }
+.hero-links .hero-storm-link i:first-child { color: #f0a36b; }
+.hero-links .hero-link-arrow { font-size: 0.75em; color: inherit; opacity: 0.8; }
+.site-hero .secondary-cta { display: flex !important; }
+.secondary-cta span { white-space: nowrap; }
+/* Desktop header: the number, readable, beside the language switch. */
+.header-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0 0.25rem;
+  color: var(--canopy);
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+.header-tel i { color: var(--leaf); }
+.site-header .desktop-nav > a { white-space: nowrap; }
+/* Spanish nav labels run ~110px longer: drop the tagline and tighten the gaps so the
+   number still fits on one header row. */
+html[lang="es"] .site-header nav > div:first-child p + p { display: none !important; }
+html[lang="es"] .site-header .desktop-nav.space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.55rem; }
+.header-tel:hover { color: var(--leaf); text-decoration: underline; text-underline-offset: 0.2em; }
+@media (max-width: 1279px) {
+  /* 1024-1279: the full nav leaves no room for the digits; the icon stays a 44px call
+     target (named with the number) and the hero shows the number right below. */
+  .header-tel { justify-content: center; min-width: 44px; }
+  .site-header .desktop-nav.space-x-4 > :not([hidden]) ~ :not([hidden]) { margin-left: 0.55rem; }
+  .site-header .desktop-nav .mx-2 { margin-inline: 0.25rem; }
+  /* The tagline returns at 1280+; here the nav needs its width (Spanish labels run longer). */
+  .site-header nav > div:first-child p + p { display: none !important; }
+  .header-tel span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (min-width: 641px) and (max-width: 1023px) {
+  /* Tablet: the text runs wider than the photo's calm side, so the scrim does too. */
+  .site-hero .site-hero-overlay {
+    background:
+      linear-gradient(180deg, rgba(12, 42, 32, 0) 55%, rgba(12, 42, 32, 0.8) 100%),
+      linear-gradient(90deg, rgba(12, 42, 32, 0.92) 0%, rgba(12, 42, 32, 0.86) 70%, rgba(12, 42, 32, 0.74) 100%) !important;
+  }
+}
+@media (max-width: 640px) {
+  /* Phones: the crew photo is a clear band under the header; the text starts
+     below it on a floor fade that becomes solid behind the H1. */
+  .site-hero { padding-top: calc(4.75rem + var(--hero-window)) !important; --hero-window: clamp(140px, 26vh, 240px); }
+  .site-hero > .absolute.inset-0 { top: 4.75rem; bottom: auto; height: calc(var(--hero-window) + 190px); }
+  .site-hero > .absolute img { object-position: 50% 12%; }
+  .site-hero .site-hero-overlay {
+    background: linear-gradient(180deg, rgba(16, 32, 25, 0) 0%, rgba(16, 32, 25, 0) 50%, rgba(16, 32, 25, 0.72) 66%, rgba(16, 32, 25, 0.96) 82%, #102019 100%) !important;
+  }
+  .hero-eyebrow { margin-bottom: 0.85rem !important; }
+  .hero-heading { font-size: clamp(2.2rem, 10.5vw, 2.75rem) !important; max-width: none; }
+  .hero-links { gap: 0 1.25rem; margin-top: 0.5rem; }
+  .hero-links a { font-size: 0.95rem; }
+}

@@ -1099,10 +1099,6 @@ footer .bg-gray-800 {
     font-size: 0.95rem !important;
   }
 
-  .secondary-cta {
-    display: none !important;
-  }
-
   .primary-cta i,
   .secondary-cta i {
     font-size: 1rem !important;
