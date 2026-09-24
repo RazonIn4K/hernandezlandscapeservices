@@ -86,6 +86,17 @@
     });
     select(current, false);
     if (window.siteI18n && window.siteI18n.onChange) window.siteI18n.onChange(function () { window.setTimeout(function () { select(current, false); }, 0); });
+    /* Round 4: below 640px the ring is a month stepper (rings.css). The radiogroup is
+       hidden there, so the month and season between the buttons become a polite status. */
+    var center = $('.season-ring-center', ring);
+    var stepper = window.matchMedia('(max-width: 639px)');
+    var syncStepper = function () {
+      if (!center) return;
+      if (stepper.matches) { center.removeAttribute('aria-hidden'); center.setAttribute('role', 'status'); }
+      else { center.setAttribute('aria-hidden', 'true'); center.removeAttribute('role'); }
+    };
+    syncStepper();
+    if (stepper.addEventListener) stepper.addEventListener('change', syncStepper);
   }
 
   /* ---------- Walk your yard ---------- */

@@ -1594,3 +1594,109 @@ html[lang="es"] .site-header .desktop-nav.space-x-4 > :not([hidden]) ~ :not([hid
   .hero-trust-grid .trust-chip-wide,
   .hero-trust-grid .trust-chip-link { grid-column: 1 / -1; }
 }
+
+/* ==========================================================================
+   ROUND 4 · Phone length and legibility (research 03 R13/R17/R20/R22, 05 X11)
+   ========================================================================== */
+/* One focus token everywhere: a 3px canopy ring with a white halo, so it reads on
+   the light limestone sections and the dark canopy/hero ones alike. */
+/* (The repeated pseudo-class only lifts specificity over older !important button shadows.) */
+:root { --focus-ink: #0c2a20; --focus-halo: #ffffff; }
+html :focus-visible:focus-visible:focus-visible {
+  outline: 3px solid var(--focus-ink) !important;
+  outline-offset: 0 !important;
+  box-shadow: 0 0 0 6px var(--focus-halo) !important;
+}
+/* Inside clipped cards the same pair is drawn inward. */
+html .faq-item summary:focus-visible:focus-visible:focus-visible,
+html .strip-track:focus-visible:focus-visible:focus-visible {
+  outline-offset: -5px !important;
+  box-shadow: inset 0 0 0 2px var(--focus-halo) !important;
+}
+
+/* Stencil caps labels: 14px minimum (they were 11.5-13.6px). */
+.ring-label,
+.year-yard .ring-label,
+.strip-count,
+.yard-count,
+.price-check-tag,
+.when-kicker,
+.notebook-label,
+.quote-contact small,
+.season-ring-center span { font-size: max(0.875rem, 1em) !important; }
+.ring-label .step-no { font-size: 0.875rem !important; }
+.site-header nav > div:first-child p:first-child + p { font-size: 0.875rem; letter-spacing: 0.06em; }
+.yard-plan text { font-size: 16px; }
+.yard-plan .compass { font-size: 16px; }
+/* "Every ring, a season": white on clay was 4.06:1; clay-deep gives 6.2:1. */
+.hero-ring-tag { background: var(--clay-deep); font-size: 0.875rem; }
+
+/* The tape measure is a desktop flourish at the top edge of the header, never
+   stacked on the season stripe; phones and tablets go without it. */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    #header.site-header::before { top: 0; height: 8px; }
+  }
+}
+@media (max-width: 1023px) {
+  #header::before { content: none !important; display: none !important; }
+}
+
+@media (max-width: 639px) {
+  /* The 12-month ring becomes a month stepper plus the season panel. The same
+     radiogroup drives the desktop ring; here the prev/next buttons step it and
+     the month/season read out between them. SEASONS content is unchanged. */
+  .year-yard-grid { display: flex; flex-direction: column; gap: 0; }
+  .year-yard-intro { display: contents; }
+  .year-yard-intro > .ring-label { order: 1; }
+  .year-yard-intro > h2 { order: 2; }
+  .year-yard-intro > p:not(.ring-label) { order: 3; }
+  .season-ring { order: 4; }
+  .year-yard-intro > .season-panels { order: 5; }
+  .year-yard-intro > p.mt-4 { order: 6; }
+  .js-rings .season-ring {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    aspect-ratio: auto;
+    margin: 22px 0 0;
+    padding: 8px;
+    border-radius: 16px;
+    background: rgba(245, 242, 233, 0.08);
+    border: 1px solid rgba(245, 242, 233, 0.22);
+  }
+  .js-rings .season-ring-disc,
+  .js-rings .season-months { display: none; }
+  .js-rings .season-ring-center {
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    padding: 8px 6px;
+    background: var(--sapwood);
+    box-shadow: none;
+  }
+  .js-rings .season-ring-center strong { font-size: 1.7rem; }
+  .js-rings .season-ring-center span { margin-top: 2px; }
+  .js-rings .season-nav { display: contents; }
+  .js-rings .season-nav button:first-child { grid-column: 1; grid-row: 1; }
+  .js-rings .season-nav button:last-child { grid-column: 3; grid-row: 1; }
+  .js-rings .season-panels { margin-top: 14px; }
+  html:not(.js-rings) .season-ring { display: none; }
+
+  /* Walk your yard: the checklist leads; the plan follows as a simplified map
+     (four large labels, >= 12px at 320px). */
+  .walk-yard-grid { display: flex; flex-direction: column; gap: 20px; }
+  .walk-yard-grid > .yard-plan { order: 2; }
+  .yard-plan text { font-size: 27px; letter-spacing: 0.04em; }
+  .yard-plan .compass,
+  .yard-plan [data-zone="snow-removal"] text,
+  .yard-plan [data-zone="landscaping"] text,
+  .yard-plan [data-zone="leaf-removal"] text,
+  .yard-plan [data-zone="pressure-washing"] text { display: none; }
+}
