@@ -1586,3 +1586,11 @@ html[lang="es"] .site-header .desktop-nav.space-x-4 > :not([hidden]) ~ :not([hid
   .hero-links { gap: 0 1.25rem; margin-top: 0.5rem; }
   .hero-links a { font-size: 0.95rem; }
 }
+
+/* ---------- Round 4 · Trust chips: plain facts, one real link (research 03 R7) ---------- */
+.hero-trust-grid .trust-chip-link { min-height: 44px; }
+.hero-trust-grid .trust-chip-link span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+@media (max-width: 640px) {
+  .hero-trust-grid .trust-chip-wide,
+  .hero-trust-grid .trust-chip-link { grid-column: 1 / -1; }
+}

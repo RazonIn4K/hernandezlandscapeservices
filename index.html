@@ -103,7 +103,7 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924h" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924t" />
   </head>
   <body class="site-body bg-gray-50">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -431,38 +431,20 @@
           <div
             class="hero-trust-grid hero-enter hero-enter-delay-5 mt-12 md:mt-16 flex flex-wrap items-center gap-3 sm:gap-5"
           >
-            <details class="trust-chip-details">
-              <summary
-                class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
+            <!-- Round 4: specific, existing facts only (no shield/certificate icons, no tooltips). -->
+            <div
+              class="trust-chip trust-chip-wide flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg"
+            >
+              <i
+                class="fas fa-clipboard-list text-green-400 mr-2.5"
+                aria-hidden="true"
+              ></i>
+              <span
+                class="text-sm font-medium tracking-wide text-gray-100"
+                data-i18n-key="whyChoose.process.step3.desc"
+                >Receive a detailed, no-surprise estimate</span
               >
-                <i
-                  class="fas fa-shield-alt text-green-400 mr-2.5"
-                  aria-hidden="true"
-                ></i>
-                <span
-                  class="text-sm font-medium tracking-wide text-gray-100"
-                  data-i18n-key="hero.insured"
-                  >Project Details</span
-                >
-              </summary>
-              <div class="trust-tip" data-i18n-key="hero.insured.tip">Discuss the work, property access, and cleanup with our team before confirming your project.</div>
-            </details>
-            <details class="trust-chip-details">
-              <summary
-                class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
-              >
-                <i
-                  class="fas fa-certificate text-green-400 mr-2.5"
-                  aria-hidden="true"
-                ></i>
-                <span
-                  class="text-sm font-medium tracking-wide text-gray-100"
-                  data-i18n-key="hero.licensed"
-                  >Local Crew</span
-                >
-              </summary>
-              <div class="trust-tip" data-i18n-key="hero.licensed.tip">Hernandez Landscape & Tree Service LLC serves DeKalb County. Call to discuss your property and the service you need.</div>
-            </details>
+            </div>
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
@@ -489,6 +471,17 @@
                 >Se Habla Español</span
               >
             </div>
+            <a
+              href="/gallery/"
+              class="trust-chip trust-chip-link flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
+            >
+              <i class="fas fa-images text-green-400 mr-2.5" aria-hidden="true"></i>
+              <span
+                class="text-sm font-medium tracking-wide text-gray-100"
+                data-i18n-key="services.recent.cta"
+                >View Full Gallery</span
+              ><i class="fas fa-arrow-right ml-2 text-xs text-gray-100" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
         <figure class="hero-ring" aria-hidden="true">
@@ -1089,15 +1082,15 @@
                 data-proof-rail
               >
                 <li>
-                  <i class="fas fa-shield-alt mr-1 text-green-700" aria-hidden="true"></i>
+                  <i class="fas fa-check mr-1 text-green-700" aria-hidden="true"></i>
                   <span data-i18n-key="instant.proof.insured">Local DeKalb County crew</span>
                 </li>
                 <li>
-                  <i class="fas fa-star mr-1 text-green-700" aria-hidden="true"></i>
+                  <i class="fas fa-check mr-1 text-green-700" aria-hidden="true"></i>
                   <span data-i18n-key="instant.proof.review">Request first; appointment confirmed separately</span>
                 </li>
                 <li>
-                  <i class="fas fa-clock mr-1 text-green-700" aria-hidden="true"></i>
+                  <i class="fas fa-check mr-1 text-green-700" aria-hidden="true"></i>
                   <span data-i18n-key="instant.proof.response">Availability confirmed by our team</span>
                 </li>
                 <li>
@@ -1787,7 +1780,7 @@
               <span
                 class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800"
               >
-                <i class="fas fa-star text-amber-500" aria-hidden="true"></i>
+                <i class="fas fa-comment-dots text-amber-700" aria-hidden="true"></i>
                 <span data-i18n-key="testimonials.badge"
                   >Published customer feedback</span
                 >

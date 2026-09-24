@@ -21,20 +21,20 @@ test('homepage content stays readable if motion script fails', async ({ page }) 
   )).toBe(0);
 });
 
-test('homepage project details remain inside the viewport when opened', async ({ page }) => {
+test('homepage trust chips are plain facts that stay inside the viewport', async ({ page }) => {
+  // Round 4: no tooltip chips, no shield/certificate/star icons; the gallery chip is a real link.
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 1000 });
     await page.goto('/');
-    const details = page.locator('.trust-chip-details');
-    for (let index = 0; index < await details.count(); index++) {
-      const item = details.nth(index);
-      await item.locator('summary').click();
-      await expect(item).toHaveAttribute('open', '');
-      const bounds = await item.locator('.trust-tip').boundingBox();
-      expect(bounds).not.toBeNull();
+    await expect(page.locator('.trust-chip-details')).toHaveCount(0);
+    await expect(page.locator('#home .fa-shield-alt, #home .fa-certificate, #home .fa-star')).toHaveCount(0);
+    const chips = page.locator('.hero-trust-grid .trust-chip');
+    await expect(chips).toHaveCount(4);
+    for (let index = 0; index < 4; index++) {
+      const bounds = await chips.nth(index).boundingBox();
       expect(bounds!.x).toBeGreaterThanOrEqual(0);
       expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
-      await item.locator('summary').click();
     }
+    await expect(page.locator('.hero-trust-grid a.trust-chip-link')).toHaveAttribute('href', '/gallery/');
   }
 });

@@ -57,3 +57,25 @@ test.describe('Hero: one clear ask and the number on every width', () => {
     expect(photo!.y).toBeLessThanOrEqual(80);
   });
 });
+
+test.describe('Honest trust signals', () => {
+  test('no rating stars or claim-shaped icons on the homepage', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('.fa-star, .fa-shield-alt, .fa-certificate')).toHaveCount(0);
+    await expect(page.locator('[data-proof-rail] .fa-check')).toHaveCount(3);
+  });
+
+  for (const [path, label] of [
+    ['/emergency-tree-removal/', 'Send a storm-damage request'],
+    ['/tree-removal/', 'Send a storm-damage request'],
+    ['/es/emergency-tree-removal/', 'Enviar solicitud de daños por tormenta'],
+    ['/es/tree-removal/', 'Enviar solicitud de daños por tormenta'],
+  ] as const) {
+    test(`${path} asks for a storm-damage request, not a dispatch`, async ({ page }) => {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      const submit = page.locator('form[data-emergency-dispatch] button[type="submit"]');
+      await expect(submit).toHaveText(label);
+      await expect(page.locator('body')).not.toContainText(/Emergency Dispatch|despacho de emergencia/);
+    });
+  }
+});
