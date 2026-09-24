@@ -209,6 +209,12 @@
       "nav.menuToggle": "Toggle mobile menu",
       "serviceArea.mapNote":
         "Zoom in on our DeKalb base; we cover all of DeKalb County and nearby communities.",
+      "serviceArea.mapTitle": "Field map of the towns we serve (not to scale)",
+      "serviceArea.mapDesc": "DeKalb is our base. Sycamore, Cortland and Malta are primary areas; Genoa and Kingston are also served.",
+      "serviceArea.legendPrimary": "Primary areas",
+      "serviceArea.legendAlso": "Also serving",
+      "serviceArea.fieldMapNote": "Not to scale: a sketch of the six towns around our DeKalb base.",
+      "serviceArea.openMaps": "Open in Google Maps",
 
       "video.heading": "Project Video Tours",
       "video.subheading":
@@ -795,6 +801,12 @@
       "serviceArea.mapPlaceholder": "Mapa interactivo muy pronto",
       "serviceArea.mapNote":
         "Haz zoom y explora nuestra base en DeKalb; atendemos todo el condado y comunidades cercanas.",
+      "serviceArea.mapTitle": "Mapa de campo de los pueblos que atendemos (no está a escala)",
+      "serviceArea.mapDesc": "DeKalb es nuestra base. Sycamore, Cortland y Malta son zonas principales; también atendemos Genoa y Kingston.",
+      "serviceArea.legendPrimary": "Zonas principales",
+      "serviceArea.legendAlso": "También atendemos",
+      "serviceArea.fieldMapNote": "No está a escala: un croquis de los seis pueblos alrededor de nuestra base en DeKalb.",
+      "serviceArea.openMaps": "Abrir en Google Maps",
       "serviceArea.policyHeading":
         "<i class=\"fas fa-truck mr-2\" aria-hidden=\"true\"></i>Política de servicio",
       "serviceArea.policy1":

@@ -536,7 +536,54 @@
     });
   }
 
+  /* ---------- Round 4 · Late fonts ----------
+     The Stencil caps face and the Public Sans italic are not needed for the first
+     paint, so their @font-face rules load after the page, when the browser is idle. */
+  function initLateFonts() {
+    if (document.querySelector('link[data-late-fonts]')) return;
+    var add = function () {
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/assets/css/fonts-late.css?v=20260924l';
+      link.setAttribute('data-late-fonts', '');
+      document.head.appendChild(link);
+    };
+    var later = function () {
+      if ('requestIdleCallback' in window) window.requestIdleCallback(add, { timeout: 2000 });
+      else window.setTimeout(add, 200);
+    };
+    if (document.readyState === 'complete') later();
+    else window.addEventListener('load', later, { once: true });
+  }
+
+  /* ---------- Round 4 · Tour posters wait for the proof chapter ----------
+     Video posters download even with preload="none", so the homepage tours keep
+     theirs in data-poster until the strip is within ~600px of the viewport. */
+  function initPosters() {
+    var videos = $$('video[data-poster]');
+    if (!videos.length) return;
+    var show = function (v) {
+      var src = v.getAttribute('data-poster');
+      if (/^hernandez_images\/w\/[A-Za-z0-9_.-]+\.webp$/.test(src)) v.setAttribute('poster', src);
+      v.removeAttribute('data-poster');
+    };
+    if (!('IntersectionObserver' in window)) { videos.forEach(show); return; }
+    // Watch each strip (its later cards are clipped by the scroller), then fill all of it.
+    var groups = [];
+    videos.forEach(function (v) { var g = v.closest('[data-strip-track]') || v; if (groups.indexOf(g) === -1) groups.push(g); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        (e.target.matches('video[data-poster]') ? [e.target] : $$('video[data-poster]', e.target)).forEach(show);
+      });
+    }, { rootMargin: '600px 0px' });
+    groups.forEach(function (g) { io.observe(g); });
+  }
+
   function init() {
+    initLateFonts();
+    initPosters();
     initWeather();
     initSeasonRing();
     initYard();

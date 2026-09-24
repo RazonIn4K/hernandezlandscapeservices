@@ -69,11 +69,14 @@
       href="https://hernandezlandscapeservices.com/"
     />
 
-    <!-- LCP hero: preload the active breakpoint asset -->
+    <!-- LCP hero: preload the active breakpoint asset (the phone preload mirrors the
+         <source> srcset/sizes so only one copy is fetched) -->
     <link
       rel="preload"
       as="image"
       href="/hernandez_images/web_hero_mobile.webp"
+      imagesrcset="/hernandez_images/w/web_hero_mobile-480.webp 480w, /hernandez_images/w/web_hero_mobile-800.webp 800w, /hernandez_images/web_hero_mobile.webp 900w"
+      imagesizes="100vw"
       type="image/webp"
       media="(max-width: 767px)"
       fetchpriority="high"
@@ -95,15 +98,11 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
 
-    <!-- Load external stylesheets -->
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260924g" />
-    <link rel="stylesheet" href="assets/css/custom.css" />
-    <link rel="stylesheet" href="assets/css/video.css" />
-    <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
+    <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924b" />
+    <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
-    <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924s" />
   </head>
   <body class="site-body bg-gray-50">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -903,7 +902,7 @@
               <video
                 controls
                 preload="none"
-                poster="hernandez_images/w/web_IMG_0434_poster-480.webp"
+                data-poster="hernandez_images/w/web_IMG_0434_poster-480.webp"
                 class="w-full h-full object-cover"
               >
                 <source
@@ -927,7 +926,7 @@
               <video
                 controls
                 preload="none"
-                poster="hernandez_images/w/web_IMG_1095_poster-480.webp"
+                data-poster="hernandez_images/w/web_IMG_1095_poster-480.webp"
                 class="w-full h-full object-cover"
               >
                 <source
@@ -951,7 +950,7 @@
               <video
                 controls
                 preload="none"
-                poster="hernandez_images/w/web_IMG_2055_poster-480.webp"
+                data-poster="hernandez_images/w/web_IMG_2055_poster-480.webp"
                 class="w-full h-full object-cover"
               >
                 <source
@@ -2067,23 +2066,28 @@
             </div>
           </div>
 
-          <div class="bg-gray-100 p-8 rounded-lg">
-            <iframe
-              title="Mapa de Hernandez Landscape &amp; Tree Service"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.946874187628!2d-88.75760132421542!3d41.92134107123761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fcfe9f3319d01%3A0x8d84401d9dc143e9!2s1029%20Lewis%20St%2C%20DeKalb%2C%20IL%2060115!5e0!3m2!1ses!2sus!4v1732240940000!5m2!1ses!2sus"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              class="w-full h-80 rounded-lg border-0"
-            ></iframe>
-            <p
-              class="text-sm text-gray-600 mt-3"
-              data-i18n-key="serviceArea.mapNote"
-            >
-              Zoom in on our DeKalb base; we cover all of DeKalb County and
-              nearby communities.
-            </p>
-          </div>
+          <!-- Round 4: an inline field map of the six towns (not to scale) replaces the
+               Google Maps iframe; the existing Maps link opens the real map. -->
+          <figure class="field-map-card">
+            <svg class="field-map" viewBox="0 18 400 256" role="img" aria-labelledby="fieldMapTitle fieldMapDesc">
+              <title id="fieldMapTitle" data-i18n-key="serviceArea.mapTitle">Field map of the towns we serve (not to scale)</title>
+              <desc id="fieldMapDesc" data-i18n-key="serviceArea.mapDesc">DeKalb is our base. Sycamore, Cortland and Malta are primary areas; Genoa and Kingston are also served.</desc>
+              <rect class="fm-paper" width="400" height="300" rx="14"/>
+              <g class="fm-grid"><path d="M25 0V300"/><path d="M50 0V300"/><path d="M75 0V300"/><path d="M100 0V300"/><path d="M125 0V300"/><path d="M150 0V300"/><path d="M175 0V300"/><path d="M200 0V300"/><path d="M225 0V300"/><path d="M250 0V300"/><path d="M275 0V300"/><path d="M300 0V300"/><path d="M325 0V300"/><path d="M350 0V300"/><path d="M375 0V300"/><path d="M0 25H400"/><path d="M0 50H400"/><path d="M0 75H400"/><path d="M0 100H400"/><path d="M0 125H400"/><path d="M0 150H400"/><path d="M0 175H400"/><path d="M0 200H400"/><path d="M0 225H400"/><path d="M0 250H400"/><path d="M0 275H400"/></g>
+              <g class="fm-lines"><path d="M222 226L196 70"/><path d="M222 226L312 70"/><path d="M222 226L312 164"/><path d="M222 226L312 238"/><path d="M222 226L78 226"/></g>
+              <g class="fm-town"><circle cx="196" cy="70" r="7"/><text x="184" y="75" text-anchor="end">Kingston</text></g><g class="fm-town"><circle cx="312" cy="70" r="7"/><text x="324" y="75" text-anchor="start">Genoa</text></g><g class="fm-town is-primary"><circle cx="312" cy="164" r="8"/><text x="324" y="169" text-anchor="start">Sycamore</text></g><g class="fm-town is-primary"><circle cx="312" cy="238" r="8"/><text x="324" y="243" text-anchor="start">Cortland</text></g><g class="fm-town is-primary"><circle cx="78" cy="226" r="8"/><text x="78" y="252" text-anchor="middle">Malta</text></g>
+              <g class="fm-base"><circle cx="222" cy="226" r="11"/><circle class="fm-core" cx="222" cy="226" r="4"/><text x="222" y="256" text-anchor="middle">DeKalb</text></g>
+              <g class="fm-compass" transform="translate(40 58)"><path d="M0 14L6 -8L12 14L6 9Z"/><text x="6" y="-14" text-anchor="middle">N</text></g>
+            </svg>
+            <figcaption>
+              <ul class="field-map-legend">
+                <li><span class="fm-key is-primary" aria-hidden="true"></span><span data-i18n-key="serviceArea.legendPrimary">Primary areas</span></li>
+                <li><span class="fm-key" aria-hidden="true"></span><span data-i18n-key="serviceArea.legendAlso">Also serving</span></li>
+              </ul>
+              <p data-i18n-key="serviceArea.fieldMapNote">Not to scale: a sketch of the six towns around our DeKalb base.</p>
+              <a class="field-map-link" href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span data-i18n-key="serviceArea.openMaps">Open in Google Maps</span></a>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -2432,7 +2436,7 @@
       <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="assets/js/i18n.js?v=20260924g" defer></script>
+    <script src="assets/js/i18n.js?v=20260924b" defer></script>
     <script src="assets/js/main.js?v=20260924g" defer></script>
     <script src="/assets/js/motion.js" defer></script>
     <script src="assets/js/static-gallery.js?v=20260924i" defer></script>
@@ -2735,6 +2739,6 @@
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
   <script src="/assets/js/price-range-placeholder.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260924p" defer></script>
+  <script src="/assets/js/rings.js?v=20260924d" defer></script>
   </body>
 </html>
