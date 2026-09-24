@@ -186,7 +186,11 @@ test('yard picker areas reach the quote form notice and follow the language', as
   await expect(notice).toBeVisible();
   await expect(page.locator('#yardSelectionText')).toHaveText('The big tree, Gutters');
   await expect(page.locator('#contactService')).toHaveValue('multiple-services');
-  await page.locator('[data-lang-switch="es"]:visible').first().click();
+  // Round 4: the Spanish home is its own page (/es/).
+  await page.goto('/es/', { waitUntil: 'domcontentloaded' });
+  await page.locator('label[for="yard-tree"]').click();
+  await page.locator('label[for="yard-gutters"]').click();
+  await page.locator('[data-yard-cta]').click();
   await expect(notice.locator('[data-i18n-key="quote.yardSummary"]')).toHaveText('Áreas del jardín agregadas a esta solicitud');
   await expect(page.locator('#yardSelectionText')).toHaveText('El árbol grande, Canaletas');
 });

@@ -92,12 +92,11 @@ test('manual service edits survive clearing the yard picker, and reset clears pi
   await expect(page.locator('#yardAreasField')).toHaveValue('');
 });
 
-test('language changes translate the last applied yard areas without adding pending picks', async ({ page }) => {
-  await page.goto('/');
+test('on /es/ the applied yard areas are written in Spanish, without pending picks', async ({ page }) => {
+  await page.goto('/es/');
   await page.locator('#yard-lawn').check();
   await page.locator('[data-yard-cta]').click();
   await page.locator('#yard-tree').check();
-  await page.locator('nav [data-lang-switch="es"]:visible').first().click();
 
   await expect(page.locator('#contactService')).toHaveValue('lawn-care');
   await expect(page.locator('#yardAreasField')).toHaveValue('Áreas del jardín: El césped');
@@ -172,7 +171,8 @@ test('Spanish landing page carries selected yard areas into the Spanish quote fo
   await page.locator('#yard-lawn').check();
   await page.locator('[data-yard-cta]').click();
 
-  await expect(page).toHaveURL(/\/\?lang=es&yard=tree-service%2Clawn-care#quoteFormCard$/);
+  // Round 4: /es/ has its own request form, so the selection stays on the page.
+  await expect(page).toHaveURL(/\/es\/\?month=8#quoteFormCard$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
   await expect(page.locator('#contactService')).toHaveValue('multiple-services');
   await expect(page.locator('#yardAreasField')).toHaveValue('Áreas del jardín: El árbol grande, El césped');
@@ -185,7 +185,7 @@ test('Spanish single-area transfer keeps the picker and submitted message in syn
   await page.locator('#yard-lawn').check();
   await page.locator('[data-yard-cta]').click();
 
-  await expect(page).toHaveURL(/\/\?lang=es&service=lawn-care&yard=lawn-care#quoteFormCard$/);
+  await expect(page).toHaveURL(/\/es\/#quoteFormCard$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
   await expect(page.locator('#yard-lawn')).toBeChecked();
   await expect(page.locator('#contactService')).toHaveValue('lawn-care');

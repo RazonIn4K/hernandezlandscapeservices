@@ -2,7 +2,8 @@
 // Writes the shared header (scripts/site-header.mjs) into every static page that
 // has one. Idempotent; `--check` fails if any page drifted (runs in test:ci).
 // The homepage keeps its own hand-written copy (in-page anchors); the Spanish
-// town pages get theirs from scripts/generate_local_pages.js.
+// home (scripts/build-es-home.mjs) and town pages (scripts/generate_local_pages.js)
+// render theirs from the same module.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -29,14 +30,14 @@ const PAGES = {
   '/service-areas/malta-il/': { quoteHref: '/#quote' },
   '/service-areas/genoa-il/': { quoteHref: '/#quote' },
   '/service-areas/kingston-il/': { quoteHref: '/#quote' },
-  '/gallery/': { quoteHref: '/#quote', current: 'work', i18n: true },
-  '/videos/': { quoteHref: '/#quote', current: 'videos', i18n: true },
-  '/es/': { quoteHref: '#cotizacion' },
-  '/es/tree-removal/': { quoteHref: '/?lang=es&service=tree-service#quote' },
-  '/es/emergency-tree-removal/': { quoteHref: '/?lang=es&service=tree-service#quote' },
-  '/es/tree-trimming-stump-grinding/': { quoteHref: '/?lang=es&service=tree-service#quote' },
-  '/es/lawn-care/': { quoteHref: '/?lang=es&service=lawn-care#quote' },
-  '/es/landscaping-design/': { quoteHref: '/?lang=es&service=landscaping#quote' },
+  '/gallery/': { quoteHref: '/#quote', current: 'work' },
+  '/videos/': { quoteHref: '/#quote', current: 'videos' },
+  // /es/ gets this header from scripts/build-es-home.mjs.
+  '/es/tree-removal/': { quoteHref: '/es/?service=tree-service#quote' },
+  '/es/emergency-tree-removal/': { quoteHref: '/es/?service=tree-service#quote' },
+  '/es/tree-trimming-stump-grinding/': { quoteHref: '/es/?service=tree-service#quote' },
+  '/es/lawn-care/': { quoteHref: '/es/?service=lawn-care#quote' },
+  '/es/landscaping-design/': { quoteHref: '/es/?service=landscaping#quote' },
 };
 
 export function headerFor(route) {

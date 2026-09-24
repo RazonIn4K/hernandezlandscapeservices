@@ -77,11 +77,11 @@
     mobileNav.setAttribute("aria-label", labels.navigation);
 
     [
-      [isSpanish ? "/?lang=es#services" : "/#services", labels.services, ""],
-      ["/gallery/", labels.work, ""],
-      ["/videos/", labels.videos, ""],
-      ["/service-areas/", labels.areas, ""],
-      [isSpanish ? "/?lang=es#quote" : "/#quote", labels.quote, "quote"],
+      [isSpanish ? "/es/#services" : "/#services", labels.services, ""],
+      [isSpanish ? "/es/#gallery" : "/gallery/", labels.work, ""],
+      [isSpanish ? "/es/#videos" : "/videos/", labels.videos, ""],
+      [isSpanish ? "/es/#service-area" : "/service-areas/", labels.areas, ""],
+      [isSpanish ? "/es/#quote" : "/#quote", labels.quote, "quote"],
     ].forEach(function (item) {
       var link = document.createElement("a");
       link.href = item[0];

@@ -3,8 +3,6 @@
 
   const DEFAULT_LANG = "en";
   const STORAGE_KEY = "siteLanguage";
-  const languageListeners = [];
-  const elementOriginalContent = new WeakMap();
 
   const translations = {
     en: {
@@ -313,6 +311,31 @@
       "instant.result.add": "Add this range to my request",
       "instant.contactStep": "To send it as a request, add how we reach you:",
       "instant.optional.callback": "Optional: preferred callback time",
+      // Round 4: /es/ is built from these keys (scripts/build-es-home.mjs).
+      "nav.skip": "Skip to main content",
+      "nav.backToTop": "Back to top",
+      "storm.notice": "Storm notice",
+      "hero.scrollCue": "Explore our services",
+      "alt.hero": "Hernandez Landscape crew working on residential landscaping and tree care",
+      "alt.service.lawn": "Fresh green side yard lawn after Hernandez Landscape service in DeKalb County",
+      "alt.service.tree": "Hernandez tree service crew working safely in a large tree canopy",
+      "alt.service.landscaping": "Landscaping design with mulch, plants and retaining wall",
+      "alt.before": "Before lawn service, overgrown and messy",
+      "alt.after": "After lawn service, clean and manicured",
+      "alt.print.roofline": "Tree service crew working near a residential roofline in DeKalb County",
+      "alt.print.truck": "Hernandez Landscape and Tree Service branded truck and trailers",
+      "alt.print.logs": "Cut logs after safe tree removal work",
+      "alt.upload.firePit": "Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb",
+      "alt.upload.sideYard": "Fresh green side yard lawn after Hernandez Landscape service",
+      "alt.upload.brushPile": "Brush pile and tree debris staged after Hernandez Landscape cleanup",
+      "alt.upload.woodpile": "Woodpile and overgrown yard area before Hernandez cleanup work",
+      "alt.upload.backyard": "Fresh backyard lawn finish after Hernandez Landscape service",
+      "alt.upload.mulch": "Fresh red mulch bed with stone edging after Hernandez Landscape service",
+      "alt.footerLogo": "Hernandez Landscape Logo",
+      "gallery.facebookLabel": "See more projects on Facebook",
+      "quote.facebookLabel": "Visit our Facebook page",
+      "video.fallback": "Your browser does not support the video tag.",
+      "instant.result.photoEstimate": "Photo estimate — call or text (815) 501-1478",
       "quote.req": "(required)",
       "quote.opt": "(optional)",
       "quote.town.legend": "Where is the job?",
@@ -363,7 +386,7 @@
     es: {
       // Growth Rings (2026-09-23)
       "storm.band": "¿Daños por tormenta? Llame para consultar la disponibilidad",
-      "storm.call": "Llama al (815) 501-1478",
+      "storm.call": "Llame al (815) 501-1478",
       "storm.page": "Ayuda de emergencia",
       "hero.ringTag": "Cada anillo, una temporada",
       "year.month.0.full": "enero",
@@ -597,14 +620,14 @@
 
       "instant.heading": "Inicia una sola solicitud de cotización",
       "instant.subtitle":
-        "Ingresa unos datos para ver un rango inicial y envía tu solicitud en un solo paso. El precio final se confirma en el lugar.",
+        "Ingrese unos datos para ver un rango inicial y envíe su solicitud en un solo paso. El precio final se confirma en el lugar.",
       "instant.trust.free": "Estimado gratis y sin compromiso",
       "instant.trust.response": "Nuestro equipo confirma la disponibilidad",
-      "instant.label.name": "Tu nombre",
+      "instant.label.name": "Su nombre",
       "instant.label.phone": "Número de celular",
       "instant.placeholder.name": "Nombre completo",
-      "instant.placeholder.phone": "Tu número de celular",
-      "instant.title.phone": "Ingresa un teléfono válido",
+      "instant.placeholder.phone": "Su número de celular",
+      "instant.title.phone": "Ingrese un teléfono válido",
       "instant.optional.summary":
         "Detalles opcionales (tamaño y horario preferido para recibir la llamada)",
       "instant.proof.insured": "Equipo local del Condado de DeKalb",
@@ -616,37 +639,37 @@
       "instant.label.isOwner":
         "Soy el propietario y estaré presente durante el estimado.",
       "instant.label.serviceType": "Tipo de servicio",
-      "instant.option.servicePlaceholder": "Selecciona un servicio...",
+      "instant.option.servicePlaceholder": "Seleccione un servicio...",
       "instant.option.lawn": "Corte de césped (semanal)",
       "instant.option.tree": "Servicio de árboles",
       "instant.option.landscaping": "Diseño de paisajismo",
       "instant.option.cleanup": "Limpieza de primavera/otoño",
       "instant.option.snow": "Remoción de nieve",
       "instant.label.propertySize": "Tamaño de la propiedad",
-      "instant.option.sizePlaceholder": "Selecciona el tamaño...",
+      "instant.option.sizePlaceholder": "Seleccione el tamaño...",
       "instant.option.sizeSmall": "Pequeña (&lt; 5,000 pies²)",
       "instant.option.sizeMedium": "Mediana (5,000 - 10,000 pies²)",
       "instant.option.sizeLarge": "Grande (10,000 - 20,000 pies²)",
       "instant.option.sizeXLarge": "Muy grande (&gt; 20,000 pies²)",
-      "instant.label.zip": "Tu código postal",
+      "instant.label.zip": "Su código postal",
       "instant.placeholder.zip": "ej., 60115",
-      "instant.title.zip": "Ingresa un código postal válido de 5 dígitos",
+      "instant.title.zip": "Ingrese un código postal válido de 5 dígitos",
       "instant.label.bestTime": "Horario preferido para recibir la llamada",
       "instant.button.calculate": "Ver rango inicial",
       "instant.button.send": "Enviar solicitud de cotización gratis",
       "instant.result.heading": "Rango de precio inicial:",
       "instant.result.disclaimer":
         "Este rango inicial ayuda a orientar. El precio final depende del acceso, alcance, retiro de material y evaluación en sitio.",
-      "instant.result.call": "Llama para una cotización exacta",
+      "instant.result.call": "Llame para una cotización exacta",
       "instant.result.send": "Agregar más detalles abajo",
       "instant.privacy":
-        "Enviar solicitud de cotización gratis envía tu pedido ahora. El rango inicial es solo una guía.",
+        "Enviar solicitud de cotización gratis envía su pedido ahora. El rango inicial es solo una guía.",
       "alerts.instant.sendMissing":
-        "Ingresa tu nombre, celular, servicio, dirección y código postal.",
+        "Ingrese su nombre, celular, servicio, dirección y código postal.",
       "alerts.instant.sendSuccess":
-        "Tu solicitud de cotización fue enviada. Tu cita aún no está confirmada; nuestro equipo se comunicará contigo para confirmar la disponibilidad y el horario.",
+        "Su solicitud de cotización fue enviada. Su cita aún no está confirmada; nuestro equipo se comunicará con usted para confirmar la disponibilidad y el horario.",
       "alerts.instant.sendError":
-        "No pudimos enviar tu solicitud. Llama al (815) 501-1478 o inténtalo de nuevo.",
+        "No pudimos enviar su solicitud. Llame al (815) 501-1478 o inténtelo de nuevo.",
 
       "services.heading": "Nuestros servicios profesionales",
       "services.subheading":
@@ -683,32 +706,32 @@
         "Un equipo local con comunicación clara desde el primer estimado hasta la limpieza final.",
       "whyChoose.feature1.title": "Cotizaciones claras y rápidas",
       "whyChoose.feature1.desc":
-        "Cuéntanos qué necesitas y confirmaremos el tiempo, el alcance y los siguientes pasos.",
+        "Cuéntenos qué necesita y confirmaremos el tiempo, el alcance y los siguientes pasos.",
       "whyChoose.feature2.title": "Equipo profesional",
       "whyChoose.feature2.desc":
         "Herramientas de uso comercial para obtener mejores resultados y terminar con mayor eficiencia.",
       "whyChoose.feature3.title": "Locales y confiables",
       "whyChoose.feature3.desc":
-        "Negocio familiar de DeKalb. Cuidamos tu propiedad como si fuera nuestra.",
+        "Negocio familiar de DeKalb. Cuidamos su propiedad como si fuera nuestra.",
       "whyChoose.feature4.title": "Precios claros y justos",
       "whyChoose.feature4.desc":
-        "Sin cargos ocultos. Conoces el precio antes de que comience el trabajo.",
-      "whyChoose.process.heading": "Qué puedes esperar",
-      "whyChoose.process.step1.title": "Solicita una cotización",
+        "Sin cargos ocultos. Conoce el precio antes de que comience el trabajo.",
+      "whyChoose.process.heading": "Qué puede esperar",
+      "whyChoose.process.step1.title": "Solicite una cotización",
       "whyChoose.process.step1.desc":
-        "Llena el formulario o llámanos directamente",
+        "Llene el formulario o llámenos directamente",
       "whyChoose.process.step2.title": "Evaluación gratis",
       "whyChoose.process.step2.desc":
-        "Visitamos tu propiedad para entender lo que necesitas",
-      "whyChoose.process.step3.title": "Recibe tu cotización",
+        "Visitamos su propiedad para entender lo que necesita",
+      "whyChoose.process.step3.title": "Reciba su cotización",
       "whyChoose.process.step3.desc":
-        "Recibe un estimado detallado y sin sorpresas",
-      "whyChoose.process.step4.title": "Disfruta el resultado",
+        "Reciba un estimado detallado y sin sorpresas",
+      "whyChoose.process.step4.title": "Disfrute el resultado",
       "whyChoose.process.step4.desc":
-        "Completamos el trabajo buscando tu satisfacción",
+        "Completamos el trabajo buscando su satisfacción",
 
-      "gallery.heading": "Mira la diferencia que logramos",
-      "gallery.subheading": "Desliza para ver nuestras transformaciones",
+      "gallery.heading": "Mire la diferencia que logramos",
+      "gallery.subheading": "Deslice para ver nuestras transformaciones",
       "gallery.moreHeading": "Más de nuestro trabajo",
       "gallery.card1.title": "Trabajo de árboles cerca de casas",
       "gallery.card1.subtitle": "Equipo del condado de DeKalb",
@@ -718,7 +741,7 @@
       "gallery.card3.subtitle": "Trabajo en el norte de Illinois",
       "gallery.latestHeading": "Últimas fotos subidas",
       "gallery.placeholder":
-        "Tus nuevas fotos aparecerán aquí después de subirlas.",
+        "Sus nuevas fotos aparecerán aquí después de subirlas.",
       "gallery.facebookCta": "Ver más en Facebook",
       "gallery.item.front_yard": "Jardín delantero espectacular",
       "gallery.item.landscaper": "Cuidado experto",
@@ -749,7 +772,7 @@
       "gallery.featured.eyebrow": "Transformación destacada",
       "gallery.featured.heading": "Desliza para comparar",
       "gallery.featured.instructions":
-        "Arrastra el control o usa las flechas del teclado para comparar las fotos de antes y después.",
+        "Arrastre el control o use las flechas del teclado para comparar las fotos de antes y después.",
       "gallery.featured.story":
         "<strong>Antes y después</strong> — compare las fotos del jardín usando el control deslizante.",
       "gallery.slider.value": "Divisor de comparación al {{value}}%",
@@ -789,9 +812,9 @@
         "Trabajo limpio y atención a los detalles en la propiedad",
       "testimonials.support3":
         "Comunicación bilingüe para agenda y actualizaciones",
-      "testimonials.ctaEyebrow": "¿Listo para tu cotización?",
+      "testimonials.ctaEyebrow": "¿Listo para su cotización?",
       "testimonials.ctaText":
-        "Elige el servicio que necesitas y comparte los detalles de la propiedad. El equipo responde con el siguiente paso correcto, no con una respuesta genérica.",
+        "Elija el servicio que necesita y comparta los detalles de la propiedad. El equipo responde con el siguiente paso correcto, no con una respuesta genérica.",
       "testimonials.ctaButton": "Solicitar cotización",
 
       "serviceArea.heading": "Zonas en las que trabajamos",
@@ -801,7 +824,7 @@
       "serviceArea.primaryHeading": "Zonas principales:",
       "serviceArea.secondaryHeading": "También atendemos:",
       "serviceArea.info":
-        "¿No estás seguro si cubrimos tu área? ¡Llámanos! Seguimos ampliando nuestra zona de servicio.",
+        "¿No está seguro si cubrimos su área? ¡Llámenos! Seguimos ampliando nuestra zona de servicio.",
       "serviceArea.mapPlaceholder": "Mapa interactivo muy pronto",
       "serviceArea.mapNote":
         "Haz zoom y explora nuestra base en DeKalb; atendemos todo el condado y comunidades cercanas.",
@@ -820,39 +843,64 @@
       "serviceArea.policy3":
         "<strong>Trabajos en varias propiedades:</strong> Disponibles en cualquier zona con programación anticipada",
       "serviceArea.policy4":
-        "<strong>Emergencias de nieve:</strong> Pregunta por disponibilidad en zonas alejadas",
+        "<strong>Emergencias de nieve:</strong> Pregunte por disponibilidad en zonas alejadas",
       "serviceArea.policyNote":
         "Esto nos ayuda a mantener precios justos mientras cubrimos combustible y tiempo de traslado.",
 
       "quote.heading": "¿Listo para transformar tu propiedad?",
-      "quote.contactHeading": "Ponte en contacto",
+      "quote.contactHeading": "Póngase en contacto",
       "quote.phoneLabel": "Llamar",
       "quote.emailLabel": "Correo electrónico",
       "quote.hoursLabel": "Horario de atención",
       "quote.hoursWeekdays": "Lun-Sáb: 8 a. m. - 5 p. m.",
       "quote.hoursSaturday": "Domingo: Cerrado",
       "quote.locationLabel": "Ubicación",
-      "quote.followLabel": "Síguenos",
+      "quote.followLabel": "Síganos",
       "quote.facebook": "Facebook",
-      "quote.formHeading": "Solicita una cotización gratis",
+      "quote.formHeading": "Solicite una cotización gratis",
       "quote.prefill.prefix": "Servicio seleccionado:",
       "quote.yardSummary": "Áreas del jardín agregadas a esta solicitud",
-      "quote.yardSummary.helper": "Agrega más detalles abajo o envía estas áreas como tu solicitud.",
+      "quote.yardSummary.helper": "Agregue más detalles abajo o envíe estas áreas como su solicitud.",
       "quote.prefill.helper":
-        "Agrega los detalles de tu propiedad abajo y el equipo podrá responder con el siguiente paso correcto.",
+        "Agregue los detalles de su propiedad abajo y el equipo podrá responder con el siguiente paso correcto.",
       "quote.formHelper":
-        "Cuéntanos qué necesitas y cuándo prefieres que te llamemos. Esta es una solicitud de cotización, no una cita confirmada. Nuestro equipo confirmará la disponibilidad y el horario. No hay ninguna obligación.",
-      "quote.label.name": "Tu nombre",
+        "Cuéntenos qué necesita y cuándo prefiere que le llamemos. Esta es una solicitud de cotización, no una cita confirmada. Nuestro equipo confirmará la disponibilidad y el horario. No hay ninguna obligación.",
+      "quote.label.name": "Su nombre",
       "quote.label.phone": "Número de teléfono",
       "quote.label.email": "Correo electrónico (opcional)",
       "quote.label.address": "Dirección de la propiedad",
       "quote.label.bestTime": "Horario preferido para recibir la llamada",
-      "quote.label.service": "Servicio que necesitas",
-      "quote.label.project": "Cuéntanos sobre tu proyecto",
+      "quote.label.service": "Servicio que necesita",
+      "quote.label.project": "Cuéntenos sobre su proyecto",
       "video.onTheJob": "En el trabajo",
       "instant.result.add": "Agregar este rango a mi solicitud",
       "instant.contactStep": "Para enviarlo como solicitud, agregue cómo contactarlo:",
       "instant.optional.callback": "Opcional: horario preferido para recibir la llamada",
+      // Round 4: needs native-speaker review (new Spanish, translated from the English).
+      "nav.skip": "Saltar al contenido principal",
+      "nav.backToTop": "Volver arriba",
+      "storm.notice": "Aviso de tormenta",
+      "hero.scrollCue": "Ver nuestros servicios",
+      "alt.hero": "Equipo de Hernandez Landscape trabajando en el jardín y los árboles de una casa",
+      "alt.service.lawn": "Césped verde y recién cortado en un patio lateral después del servicio de Hernandez Landscape en DeKalb County",
+      "alt.service.tree": "Equipo de servicio de árboles de Hernandez trabajando con seguridad en la copa de un árbol grande",
+      "alt.service.landscaping": "Diseño de jardín con mantillo, plantas y muro de contención",
+      "alt.before": "Antes del servicio de césped: crecido y desordenado",
+      "alt.after": "Después del servicio de césped: limpio y bien cuidado",
+      "alt.print.roofline": "Equipo de servicio de árboles trabajando cerca del techo de una casa en DeKalb County",
+      "alt.print.truck": "Camioneta y remolques con la marca de Hernandez Landscape and Tree Service",
+      "alt.print.logs": "Troncos cortados después de un retiro seguro de árboles",
+      "alt.upload.firePit": "Césped terminado y área de fogatero hechos por Hernandez Landscape en DeKalb",
+      "alt.upload.sideYard": "Césped verde y recién cortado en un patio lateral después del servicio de Hernandez Landscape",
+      "alt.upload.brushPile": "Montón de ramas y restos de árboles reunidos después de una limpieza de Hernandez Landscape",
+      "alt.upload.woodpile": "Leña apilada y un área del patio crecida antes de la limpieza de Hernandez",
+      "alt.upload.backyard": "Césped del patio trasero recién terminado después del servicio de Hernandez Landscape",
+      "alt.upload.mulch": "Jardinera con mantillo rojo nuevo y borde de piedra después del servicio de Hernandez Landscape",
+      "alt.footerLogo": "Logo de Hernandez Landscape",
+      "gallery.facebookLabel": "Ver más proyectos en Facebook",
+      "quote.facebookLabel": "Visite nuestra página de Facebook",
+      "video.fallback": "Su navegador no puede reproducir este video.",
+      "instant.result.photoEstimate": "Estimado con foto — llame o envíe un mensaje al (815) 501-1478",
       "quote.req": "(obligatorio)",
       "quote.opt": "(opcional)",
       "quote.town.legend": "¿Dónde es el trabajo?",
@@ -867,19 +915,19 @@
       "quote.error.service": "Elija un servicio.",
       "quote.error.project": "Cuéntenos un poco sobre el trabajo.",
       "quote.privacyNote":
-        "Usamos tus datos únicamente para responder a esta solicitud.",
-      "quote.placeholder.name": "Tu nombre",
+        "Usamos sus datos únicamente para responder a esta solicitud.",
+      "quote.placeholder.name": "Su nombre",
       "quote.placeholder.phone": "Número de teléfono",
-      "quote.title.phone": "Ingresa un número de 10 dígitos (ej., 8155011478)",
+      "quote.title.phone": "Ingrese un número de 10 dígitos (ej., 8155011478)",
       "quote.placeholder.email": "Correo electrónico (opcional)",
       "quote.placeholder.address": "Dirección de la propiedad (requerida)",
       "quote.verify":
         "Soy el propietario o un representante autorizado y estaré presente para el estimado.",
-      "quote.time.placeholder": "¿Cuál es la mejor hora para llamarte?",
+      "quote.time.placeholder": "¿Cuál es la mejor hora para llamarle?",
       "quote.time.morning": "Mañana",
       "quote.time.afternoon": "Tarde",
       "quote.time.evening": "Noche",
-      "quote.select.placeholder": "Selecciona el servicio requerido",
+      "quote.select.placeholder": "Seleccione el servicio requerido",
       "quote.select.lawn": "Cuidado del césped",
       "quote.select.tree": "Servicio de árboles",
       "quote.select.landscaping": "Paisajismo",
@@ -888,18 +936,18 @@
       "quote.select.gutter": "Limpieza de canaletas",
       "quote.select.pressure": "Lavado a presión",
       "quote.select.multiple": "Múltiples servicios",
-      "quote.placeholder.project": "Cuéntanos sobre tu proyecto...",
+      "quote.placeholder.project": "Cuéntenos sobre su proyecto...",
       "quote.submit": "Enviar solicitud de cotización",
 
       "footer.copy": "© 2026 Hernandez Landscape & Tree Service LLC",
       "footer.license": "Hernandez Landscape & Tree Service LLC",
       "footer.tagline":
         "Servicios profesionales de jardinería en el condado de DeKalb",
-      "footer.follow": "Síguenos",
+      "footer.follow": "Síganos",
       "footer.about":
         "Transformamos espacios exteriores en el condado de DeKalb con trabajo profesional y valores familiares.",
       "footer.links": "Enlaces rápidos",
-      "footer.contact": "Contáctanos",
+      "footer.contact": "Contáctenos",
       "footer.areas": "Zonas de servicio",
       "footer.rights": "Todos los derechos reservados.",
       "footer.insured": "Equipo local del Condado de DeKalb",
@@ -911,16 +959,16 @@
       "footer.terms": "Términos de servicio",
 
       "modal.close": "Cerrar",
-      "modal.call": "Llama al (815) 501-1478",
+      "modal.call": "Llame al (815) 501-1478",
 
       "alerts.instant.missing":
-        "Selecciona un tipo de servicio, tamaño de propiedad e ingresa tu código postal.",
+        "Seleccione un tipo de servicio, tamaño de propiedad e ingrese su código postal.",
       "alerts.contact.invalid":
         "Completa todos los campos requeridos correctamente.",
       "alerts.contact.success":
-        "Tu solicitud de cotización fue enviada. Tu cita aún no está confirmada; nuestro equipo se comunicará contigo para confirmar la disponibilidad y el horario.",
+        "Su solicitud de cotización fue enviada. Su cita aún no está confirmada; nuestro equipo se comunicará con usted para confirmar la disponibilidad y el horario.",
       "alerts.contact.error":
-        "Hubo un error al enviar tu solicitud. Llámanos al 815-501-1478.",
+        "Hubo un error al enviar su solicitud. Llámenos al 815-501-1478.",
       "contact.sending": "Enviando...",
       "instant.handoff.prefix": "Solicitud de presupuesto instantáneo:",
       "instant.handoff.range": "Rango estimado:",
@@ -946,10 +994,10 @@
         "Poda, remoción de árboles, cuidado del césped y jardinería por un equipo familiar del condado de DeKalb. Estimados gratis en inglés o español.",
       "hero.emergency":
         "¿Daños por tormenta? Llame para consultar la disponibilidad",
-      "hero.emergencyCall": "Llama al (815) 501-1478",
+      "hero.emergencyCall": "Llame al (815) 501-1478",
       "hero.emergencyPage": "Ayuda de emergencia",
       "hero.cta": "Ver rango inicial",
-      "hero.ctaQuote": "Solicita una cotización gratis",
+      "hero.ctaQuote": "Solicite una cotización gratis",
       "hero.stormLink": "¿Daños por tormenta? Ayuda de emergencia",
       "hero.call": "Llámanos ahora",
       "hero.insured": "Detalles del proyecto",
@@ -961,9 +1009,9 @@
       "hero.family": "Negocio familiar",
       "hero.bilingual": "Se Habla Español",
       "services.learnMore": "Más información",
-      "pricing.heading": "Cotizaciones de paisajismo a tu medida",
+      "pricing.heading": "Cotizaciones de paisajismo a su medida",
       "pricing.copy":
-        "Cada jardín, proyecto y temporada es diferente. Preparamos un estimado según tu propiedad y tus objetivos para que pagues solo por lo que necesitas.",
+        "Cada jardín, proyecto y temporada es diferente. Preparamos un estimado según su propiedad y sus objetivos para que pague solo por lo que necesita.",
       "pricing.cta": "Solicitar una cotización personalizada",
       "faq.heading": "Preguntas frecuentes",
       "faq.q1": "¿Ofrecen estimados gratis para remover árboles en DeKalb?",
@@ -984,7 +1032,13 @@
     },
   };
 
-  let currentLang = DEFAULT_LANG;
+  // Round 4 (research 03 R5, 05 X3/X13): each language has its own URLs.
+  // English pages stay English and link to /es/; /es/ is written in Spanish at
+  // build time from this dictionary (scripts/build-es-home.mjs). Nothing is
+  // translated in place any more, so the page's lang attribute decides.
+  const currentLang = /^es\b/i.test(document.documentElement.getAttribute("lang") || "")
+    ? "es"
+    : DEFAULT_LANG;
 
   function getTranslation(key, lang = currentLang) {
     if (lang === "es" && translations.es[key]) {
@@ -996,152 +1050,27 @@
     return null;
   }
 
-  function updateToggleButtons(lang) {
-    document.querySelectorAll("[data-lang-switch]").forEach((button) => {
-      const isActive = button.dataset.langSwitch === lang;
-      button.setAttribute("aria-pressed", String(isActive));
-      button.classList.toggle("bg-green-600", isActive);
-      button.classList.toggle("text-white", isActive);
-      button.classList.toggle("text-gray-700", !isActive);
-      button.classList.toggle("hover:text-green-600", !isActive);
-      button.classList.toggle("cursor-default", isActive);
-      button.classList.toggle("cursor-pointer", !isActive);
-    });
-  }
-
-  function clearLegacyLanguagePreference() {
-    try {
-      localStorage.removeItem(STORAGE_KEY);
-    } catch (error) {
-      // Ignore storage access errors so language setup still works.
+  // Old links such as /?lang=es&service=lawn-care#quote open the Spanish page.
+  if (currentLang === "en") {
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("lang") === "es" && (url.pathname === "/" || url.pathname === "/index.html")) {
+      url.searchParams.delete("lang");
+      window.location.replace("/es/" + url.search + url.hash);
     }
-  }
-
-  function getSessionLanguagePreference() {
-    try {
-      return sessionStorage.getItem(STORAGE_KEY);
-    } catch (error) {
-      return null;
-    }
-  }
-
-  function setSessionLanguagePreference(lang) {
-    try {
-      sessionStorage.setItem(STORAGE_KEY, lang);
-    } catch (error) {
-      console.warn("Unable to persist language preference.", error);
-    }
-  }
-
-  function refreshTextContent(lang) {
-    document.querySelectorAll("[data-i18n-key]").forEach((element) => {
-      if (!elementOriginalContent.has(element)) {
-        elementOriginalContent.set(element, element.innerHTML);
-      }
-      const key = element.dataset.i18nKey;
-      const translation = getTranslation(key, lang);
-      if (lang === "es" && translation) {
-        element.innerHTML = translation;
-      } else {
-        element.innerHTML = elementOriginalContent.get(element);
-      }
-    });
-
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-      if (!element.dataset.placeholderEn) {
-        element.dataset.placeholderEn =
-          element.getAttribute("placeholder") || "";
-      }
-      const key = element.dataset.i18nPlaceholder;
-      const translation = getTranslation(key, lang);
-      const value =
-        lang === "es" && translation
-          ? translation
-          : element.dataset.placeholderEn;
-      element.setAttribute("placeholder", value);
-    });
-
-    document.querySelectorAll("[data-i18n-title]").forEach((element) => {
-      if (!element.dataset.titleEn) {
-        element.dataset.titleEn = element.getAttribute("title") || "";
-      }
-      const key = element.dataset.i18nTitle;
-      const translation = getTranslation(key, lang);
-      const value =
-        lang === "es" && translation ? translation : element.dataset.titleEn;
-      if (value) {
-        element.setAttribute("title", value);
-      }
-    });
-
-    document
-      .querySelectorAll("[data-i18n-aria-label]")
-      .forEach((element) => {
-        if (!element.dataset.ariaLabelEn) {
-          element.dataset.ariaLabelEn = element.getAttribute("aria-label") || "";
-        }
-        const key = element.dataset.i18nAriaLabel;
-        const translation = getTranslation(key, lang);
-        const value =
-          lang === "es" && translation
-            ? translation
-            : element.dataset.ariaLabelEn;
-        if (value) {
-          element.setAttribute("aria-label", value);
-        }
-      });
-  }
-
-  function applyLanguage(lang) {
-    const targetLang = lang === "es" ? "es" : DEFAULT_LANG;
-    currentLang = targetLang;
-
-    document.documentElement.setAttribute(
-      "lang",
-      targetLang === "es" ? "es" : "en",
-    );
-    document.body.dataset.language = targetLang;
-
-    refreshTextContent(targetLang);
-    updateToggleButtons(targetLang);
-
-    setSessionLanguagePreference(targetLang);
-
-    languageListeners.forEach((listener) => {
-      try {
-        listener(targetLang);
-      } catch (error) {
-        console.error("Language listener error:", error);
-      }
-    });
-  }
-
-  function initializeLanguageSelector() {
-    document.querySelectorAll("[data-lang-switch]").forEach((button) => {
-      button.addEventListener("click", () => {
-        applyLanguage(button.dataset.langSwitch || DEFAULT_LANG);
-        const url = new URL(window.location.href);
-        if (url.searchParams.has("lang")) {
-          url.searchParams.set("lang", currentLang);
-          window.history.replaceState(window.history.state, "", url);
-        }
-      });
-    });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    initializeLanguageSelector();
-    clearLegacyLanguagePreference();
-    const savedLanguage = getSessionLanguagePreference();
-    const requestedLanguage = new URLSearchParams(window.location.search).get("lang");
-    const language = requestedLanguage === "es" || requestedLanguage === "en"
-      ? requestedLanguage
-      : savedLanguage;
-    applyLanguage(language === "es" ? "es" : DEFAULT_LANG);
+    // The old in-place switch kept a preference; it is no longer read.
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      sessionStorage.removeItem(STORAGE_KEY);
+    } catch (error) {
+      // Ignore storage access errors.
+    }
+    document.body.dataset.language = currentLang;
   });
 
   window.siteI18n = {
-    setLanguage: applyLanguage,
     getLanguage: () => currentLang,
     t: (key, lang) => {
       const translation = getTranslation(key, lang);
@@ -1149,17 +1078,9 @@
         return translation;
       }
       const element = document.querySelector(`[data-i18n-key="${key}"]`);
-      if (element && elementOriginalContent.has(element)) {
-        return currentLang === "es"
-          ? getTranslation(key, "es") || elementOriginalContent.get(element)
-          : elementOriginalContent.get(element);
-      }
       return element ? element.textContent.trim() : "";
     },
-    onChange: (listener) => {
-      if (typeof listener === "function") {
-        languageListeners.push(listener);
-      }
-    },
+    // A page's language never changes; kept so existing callers stay valid.
+    onChange: () => {},
   };
 })();

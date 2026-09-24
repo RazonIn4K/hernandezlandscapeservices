@@ -162,11 +162,11 @@
       var unique = selectedValues();
       if (unique.length === 1) cta.setAttribute('data-prefill-service', unique[0]);
       else cta.removeAttribute('data-prefill-service');
-      // The Spanish landing page sends the selection to the bilingual quote form.
+      // A page without the request form sends the selection to the Spanish home's form.
       if (!service) {
-        var query = unique.length === 1 ? '&service=' + encodeURIComponent(unique[0]) + '&yard=' + encodeURIComponent(unique[0]) :
-          unique.length > 1 ? '&yard=' + encodeURIComponent(unique.join(',')) : '';
-        cta.href = '/?lang=es' + query + '#quoteFormCard';
+        var query = unique.length === 1 ? '?service=' + encodeURIComponent(unique[0]) + '&yard=' + encodeURIComponent(unique[0]) :
+          unique.length > 1 ? '?yard=' + encodeURIComponent(unique.join(',')) : '';
+        cta.href = '/es/' + query + '#quoteFormCard';
       }
     }
     inputs.forEach(function (i) { i.addEventListener('change', sync); });
@@ -455,7 +455,7 @@
           var call = document.createElement('a');
           call.className = 'storm-call';
           call.href = 'tel:18155011478';
-          call.textContent = spanish ? 'Llama al (815) 501-1478' : 'Call (815) 501-1478';
+          call.textContent = spanish ? 'Llame al (815) 501-1478' : 'Call (815) 501-1478';
           var help = document.createElement('a');
           help.href = spanish ? '/es/emergency-tree-removal/' : '/emergency-tree-removal/';
           help.textContent = spanish ? 'Ayuda de emergencia' : 'Emergency tree help';
@@ -565,7 +565,7 @@
     if (!videos.length) return;
     var show = function (v) {
       var src = v.getAttribute('data-poster');
-      if (/^hernandez_images\/w\/[A-Za-z0-9_.-]+\.webp$/.test(src)) v.setAttribute('poster', src);
+      if (/^\/?hernandez_images\/w\/[A-Za-z0-9_.-]+\.webp$/.test(src)) v.setAttribute('poster', src);
       v.removeAttribute('data-poster');
     };
     if (!('IntersectionObserver' in window)) { videos.forEach(show); return; }

@@ -101,12 +101,12 @@ test.describe('Quote form friction', () => {
   });
 
   test('messages follow the language (usted)', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.locator('[data-lang-switch="es"]:visible').first().click();
+    await page.goto('/es/', { waitUntil: 'domcontentloaded' });
     await page.locator('#contactForm button[type="submit"]').click();
     await expect(page.locator('#contactNameError')).toHaveText('Escriba su nombre.');
     await expect(page.locator('#bestTimeError')).toHaveText('Elija un horario para la llamada.');
-    await page.locator('[data-lang-switch="en"]:visible').first().click();
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.locator('#contactForm button[type="submit"]').click();
     await expect(page.locator('#contactNameError')).toHaveText('Please enter your name.');
   });
 

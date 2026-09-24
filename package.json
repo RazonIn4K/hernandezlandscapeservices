@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build-css && node scripts/bundle-css.mjs",
+    "build": "npm run build-css && node scripts/bundle-css.mjs && node scripts/build-es-home.mjs",
     "build-css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify",
     "watch-css": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch",
     "test": "playwright test",
     "test:headed": "playwright test --headed",
-    "test:ci": "npm run media:check && npm run media:budget && npm run i18n:check && npm run seo:check && npm run nap:check && node scripts/generate_local_pages.js --check && node scripts/apply-site-header.mjs --check && node scripts/bundle-css.mjs --check && npm run test:dispatch && playwright test --reporter=dot",
+    "test:ci": "npm run media:check && npm run media:budget && npm run i18n:check && npm run seo:check && npm run nap:check && node scripts/generate_local_pages.js --check && node scripts/apply-site-header.mjs --check && node scripts/build-es-home.mjs --check && node scripts/bundle-css.mjs --check && npm run test:dispatch && playwright test --reporter=dot",
     "test:dispatch": "node scripts/test-emergency-dispatch.mjs",
     "dev": "npm run watch-css",
     "media:update": "node scripts/update-media.mjs",
@@ -20,7 +20,8 @@
     "sitemap:lastmod": "node scripts/update-sitemap-lastmod.mjs",
     "publish:prepare": "node scripts/prepare-publish.mjs",
     "publish:check-layout": "node scripts/check-publish-layout.mjs",
-    "submit-indexnow": "node scripts/submit-indexnow.mjs"
+    "submit-indexnow": "node scripts/submit-indexnow.mjs",
+    "build:es": "node scripts/build-es-home.mjs"
   },
   "repository": {
     "type": "git",

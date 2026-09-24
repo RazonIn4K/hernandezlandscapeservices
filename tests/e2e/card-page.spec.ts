@@ -37,28 +37,28 @@ test.describe('QR contact page', () => {
     await expect(page.locator('#languageToggle')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('h1')).toHaveText('Árboles, Césped y Jardinería');
     await expect(page.getByText('Estimado gratis', { exact: true }).first()).toBeVisible();
-    await expect(page.locator('a[href="/?lang=es#quote"]')).toHaveCount(3);
+    await expect(page.locator('a[href="/es/#quote"]')).toHaveCount(3);
     expect(await page.locator('.service-list a').evaluateAll((links) => links.map((link) => link.getAttribute('href')))).toEqual([
       '/es/tree-removal/',
       '/es/lawn-care/',
       '/es/landscaping-design/',
-      '/?lang=es&service=leaf-removal#quote',
+      '/es/?service=leaf-removal#quote',
     ]);
     await expect(page.locator('.project-landscape')).toHaveAttribute('href', '/es/lawn-care/');
     await expect(page.locator('.project-tree')).toHaveAttribute('href', '/es/tree-removal/');
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
-    await expect(page.locator('.quick-action[href="/?lang=es#quote"]')).toBeVisible();
+    await expect(page.locator('.quick-action[href="/es/#quote"]')).toBeVisible();
     await page.locator('#languageToggle').click();
     await expect(page.locator('a[href="/#quote"]')).toHaveCount(3);
     await expect(page.locator('.project-tree')).toHaveAttribute('href', '/tree-removal/');
 
     await page.locator('#languageToggle').click();
-    await page.locator('.quick-action[href="/?lang=es#quote"]').click();
-    await expect(page).toHaveURL(/\/\?lang=es#quote$/);
+    await page.locator('.quick-action[href="/es/#quote"]').click();
+    await expect(page).toHaveURL(/\/es\/#quote$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
-    await expect(page.locator('[data-i18n-key="quote.formHeading"]')).toHaveText('Solicita una cotización gratis');
+    await expect(page.locator('[data-i18n-key="quote.formHeading"]')).toHaveText('Solicite una cotización gratis');
   });
 
   test.describe('without JavaScript', () => {

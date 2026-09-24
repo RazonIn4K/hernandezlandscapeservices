@@ -351,7 +351,7 @@ function renderPage(city, lang) {
   const t = city[lang];
   const url = lang === 'es' ? esUrl(city) : enUrl(city);
   const quoteLabel = lang === 'es' ? 'Cotización gratis' : 'Get Free Quote';
-  const quoteUrl = lang === 'es' ? '/?lang=es#quote' : '/#quote';
+  const quoteUrl = lang === 'es' ? '/es/#quote' : '/#quote';
   const cards = t.cards
     .map(
       (card) =>
@@ -402,7 +402,7 @@ ${BANNER}
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924u" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924w" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -463,7 +463,7 @@ ${jsonLd(city, lang)}
   <script src="/assets/js/service-nav.js" defer></script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260924v" defer></script>
+  <script src="/assets/js/rings.js?v=20260924w" defer></script>
   </body>
 </html>
 `;

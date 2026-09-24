@@ -185,6 +185,11 @@
       'hernandez_images/google-profile-2024-mulch-bed-edging.jpg': { width: 901, height: 676 }
     };
 
+    // Paths in the data are site-relative; root them so the Spanish home (/es/)
+    // resolves the same files.
+    const rooted = (path) => (/^(?:[a-z]+:|\/)/i.test(path) ? path : '/' + path);
+    const rootSrcset = (srcset) => srcset.split(',').map((part) => rooted(part.trim())).join(', ');
+
     function applyImageMetadata(img, image, sizes) {
       const dimensions = imageDimensions[image.src] ||
         (image.width && image.height ? { width: image.width, height: image.height } : null);
@@ -197,7 +202,7 @@
       // Round 4: right-sized WebP variants from media/gallery.json (build-time data).
       if (typeof image.srcset === 'string' && image.srcset) {
         img.sizes = sizes || '(min-width: 640px) 50vw, 92vw';
-        img.srcset = image.srcset;
+        img.srcset = rootSrcset(image.srcset);
       }
     }
 
@@ -213,7 +218,7 @@
       card.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300';
       
       const img = document.createElement('img');
-      img.src = image.src;
+      img.src = rooted(image.src);
       img.alt = image.alt;
       img.className = 'w-full h-64 object-cover';
       img.loading = index < 6 ? 'eager' : 'lazy';
@@ -272,8 +277,8 @@
         slide.className = 'latest-upload-slide print';
 
         const img = document.createElement('img');
-        img.src = image.src;
-        img.alt = image.alt;
+        img.src = rooted(image.src);
+        img.alt = ALT_KEYS[image.src] ? localized(ALT_KEYS[image.src], image.alt) : image.alt;
         img.loading = 'lazy';
         img.fetchPriority = 'low';
         // Prints are ~232px wide (clamp(216px, 64vw, 250px) minus the mount).
@@ -295,6 +300,15 @@
       'hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp': ['gallery.card3.title', 'Yard Cleanup', 'gallery.card3.subtitle', 'Northern Illinois Job Site'],
       'hernandez_images/google-photos-2026-backyard-lawn-finish.webp': ['gallery.item.backyard_finish', 'Backyard Lawn Finish'],
       'hernandez_images/google-profile-2024-mulch-bed-edging.jpg': ['gallery.item.mulch_edging', 'Mulch Bed & Edging']
+    };
+    // Spanish alt text for the filmstrip prints (i18n.js alt.upload.*).
+    const ALT_KEYS = {
+      'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg': 'alt.upload.firePit',
+      'hernandez_images/facebook-2026-side-yard-lawn-finish.jpg': 'alt.upload.sideYard',
+      'hernandez_images/google-photos-2026-brush-pile-removal.webp': 'alt.upload.brushPile',
+      'hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp': 'alt.upload.woodpile',
+      'hernandez_images/google-photos-2026-backyard-lawn-finish.webp': 'alt.upload.backyard',
+      'hernandez_images/google-profile-2024-mulch-bed-edging.jpg': 'alt.upload.mulch'
     };
     const localized = (key, fallback) => {
       if (i18n && typeof i18n.getLanguage === 'function' && i18n.getLanguage() === 'es' && typeof i18n.t === 'function') {

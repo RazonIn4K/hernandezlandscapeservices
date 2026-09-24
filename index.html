@@ -99,13 +99,13 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924u" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924w" />
     <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
   </head>
   <body class="site-body bg-gray-50">
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <a class="skip-link" href="#main-content" data-i18n-key="nav.skip">Skip to main content</a>
     <header
       id="header"
       class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow"
@@ -171,27 +171,8 @@
               ><i class="fas fa-phone-alt" aria-hidden="true"></i
               ><span>(815) 501-1478</span></a
             >
-            <!-- Language Toggle -->
-            <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
-              <button
-                type="button"
-                data-lang-switch="en"
-                class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow"
-                aria-pressed="true"
-                aria-label="Use English"
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                data-lang-switch="es"
-                class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300"
-                aria-pressed="false"
-                aria-label="Usar español"
-              >
-                ES
-              </button>
-            </div>
+            <!-- Language: the Spanish home has its own URL (round 4) -->
+            <a href="/es/" class="lang-link" hreflang="es" lang="es">Español</a>
             <a
               href="#quote"
               class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md transform hover:-translate-y-0.5 whitespace-nowrap"
@@ -201,28 +182,9 @@
             </a>
           </div>
 
-          <!-- Mobile Controls (Lang + Menu) -->
+          <!-- Mobile Controls (Español + Menu) -->
           <div class="flex items-center lg:hidden space-x-3">
-            <div class="flex items-center bg-gray-100 rounded-full p-1">
-              <button
-                type="button"
-                data-lang-switch="en"
-                class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow"
-                aria-pressed="true"
-                aria-label="Use English"
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                data-lang-switch="es"
-                class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300"
-                aria-pressed="false"
-                aria-label="Usar español"
-              >
-                ES
-              </button>
-            </div>
+            <a href="/es/" class="lang-link" hreflang="es" lang="es">Español</a>
             <button
               id="mobileMenuButton"
               type="button"
@@ -284,7 +246,7 @@
         </div>
       </div>
     </header>
-    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
+    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice" data-i18n-aria-label="storm.notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
 
     <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
@@ -319,7 +281,7 @@
           />
           <img
             src="hernandez_images/web_hero_mobile.jpg"
-            alt="Hernandez Landscape crew working on residential landscaping and tree care"
+            alt="Hernandez Landscape crew working on residential landscaping and tree care" data-i18n-alt="alt.hero"
             class="h-full w-full object-cover"
             width="900"
             height="1200"
@@ -500,6 +462,7 @@
           href="#services"
           class="inline-flex h-11 w-11 items-center justify-center text-white opacity-70 hover:opacity-100 transition-opacity"
           aria-label="Explore our services"
+          data-i18n-aria-label="hero.scrollCue"
         >
           <i class="fas fa-chevron-down text-3xl" aria-hidden="true"></i>
         </a>
@@ -526,7 +489,7 @@
                 src="hernandez_images/facebook-2026-side-yard-lawn-finish.jpg"
                 srcset="hernandez_images/w/facebook-2026-side-yard-lawn-finish-480.webp 480w, hernandez_images/w/facebook-2026-side-yard-lawn-finish-800.webp 800w, hernandez_images/facebook-2026-side-yard-lawn-finish.jpg 900w"
                 sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw"
-                alt="Fresh green side yard lawn after Hernandez Landscape service in DeKalb County"
+                alt="Fresh green side yard lawn after Hernandez Landscape service in DeKalb County" data-i18n-alt="alt.service.lawn"
                 class="w-full h-full object-cover transition duration-300 hover:scale-105"
                 width="900"
                 height="1200"
@@ -583,7 +546,7 @@
                 src="hernandez_images/google-profile-2026-tree-climber-canopy.jpg"
                 srcset="hernandez_images/w/google-profile-2026-tree-climber-canopy-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-canopy-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-canopy.jpg 900w"
                 sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw"
-                alt="Hernandez tree service crew working safely in a large tree canopy"
+                alt="Hernandez tree service crew working safely in a large tree canopy" data-i18n-alt="alt.service.tree"
                 class="w-full h-full object-cover transition duration-300 hover:scale-105"
                 width="1050"
                 height="1400"
@@ -642,7 +605,7 @@
                 src="hernandez_images/web_Wideshot_Bestlandscape2.jpeg"
                 srcset="hernandez_images/w/web_Wideshot_Bestlandscape2-480.webp 480w, hernandez_images/w/web_Wideshot_Bestlandscape2-800.webp 800w, hernandez_images/web_Wideshot_Bestlandscape2.jpeg 1200w"
                 sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw"
-                alt="Landscaping design with mulch, plants and retaining wall"
+                alt="Landscaping design with mulch, plants and retaining wall" data-i18n-alt="alt.service.landscaping"
                 class="w-full h-full object-cover"
                 width="1200"
                 height="868"
@@ -717,7 +680,7 @@
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
               <i class="fas fa-snowflake mr-2"></i
-              ><span>Snow Removal</span>
+              ><span data-i18n-key="services.extra.snow">Snow Removal</span>
             </a>
             <span
               class="inline-flex flex-wrap items-center justify-center gap-2"
@@ -843,7 +806,7 @@
                 src="hernandez_images/web_Before1.jpeg"
                 srcset="hernandez_images/w/web_Before1-480.webp 480w, hernandez_images/w/web_Before1-800.webp 800w, hernandez_images/web_Before1.jpeg 1200w"
                 sizes="(min-width: 1024px) 560px, 92vw"
-                alt="Before lawn service, overgrown and messy"
+                alt="Before lawn service, overgrown and messy" data-i18n-alt="alt.before"
                 class="before-image"
                 width="800"
                 height="600"
@@ -853,7 +816,7 @@
                 src="hernandez_images/web_After1.jpeg"
                 srcset="hernandez_images/w/web_After1-480.webp 480w, hernandez_images/w/web_After1-800.webp 800w, hernandez_images/web_After1.jpeg 1200w"
                 sizes="(min-width: 1024px) 560px, 92vw"
-                alt="After lawn service, clean and manicured"
+                alt="After lawn service, clean and manicured" data-i18n-alt="alt.after"
                 class="after-image"
                 width="800"
                 height="600"
@@ -909,7 +872,7 @@
                   src="hernandez_images/web_IMG_0434.mp4"
                   type="video/mp4"
                 />
-                Your browser does not support the video tag.
+                <span data-i18n-key="video.fallback">Your browser does not support the video tag.</span>
               </video>
               <div
                 class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
@@ -934,7 +897,7 @@
                   src="hernandez_images/web_IMG_1095.mp4"
                   type="video/mp4"
                 />
-                Your browser does not support the video tag.
+                <span data-i18n-key="video.fallback">Your browser does not support the video tag.</span>
               </video>
               <div
                 class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
@@ -959,7 +922,7 @@
                   src="hernandez_images/web_IMG_2055.mp4"
                   type="video/mp4"
                 />
-                Your browser does not support the video tag.
+                <span data-i18n-key="video.fallback">Your browser does not support the video tag.</span>
               </video>
               <div
                 class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
@@ -986,15 +949,15 @@
           </div>
           <div class="strip-track filmstrip-track" data-strip-track tabindex="0" role="region" aria-label="Photos of our work" data-i18n-aria-label="strip.photos">
             <figure class="print print--static">
-              <img src="hernandez_images/google-profile-2026-tree-climber-roofline.jpg" srcset="hernandez_images/w/google-profile-2026-tree-climber-roofline-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-roofline-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-roofline.jpg 900w" sizes="232px" alt="Tree service crew working near a residential roofline in DeKalb County" width="900" height="1200" loading="lazy" decoding="async" />
+              <img src="hernandez_images/google-profile-2026-tree-climber-roofline.jpg" srcset="hernandez_images/w/google-profile-2026-tree-climber-roofline-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-roofline-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-roofline.jpg 900w" sizes="232px" alt="Tree service crew working near a residential roofline in DeKalb County" data-i18n-alt="alt.print.roofline" width="900" height="1200" loading="lazy" decoding="async" />
               <figcaption><span data-i18n-key="gallery.card1.title">Tree Work Near Homes</span><small data-i18n-key="gallery.card1.subtitle">DeKalb County Crew</small></figcaption>
             </figure>
             <figure class="print print--static">
-              <img src="hernandez_images/google-profile-2026-branded-truck-trailers.jpg" srcset="hernandez_images/w/google-profile-2026-branded-truck-trailers-480.webp 480w, hernandez_images/w/google-profile-2026-branded-truck-trailers-800.webp 800w, hernandez_images/google-profile-2026-branded-truck-trailers.jpg 1200w" sizes="232px" alt="Hernandez Landscape and Tree Service branded truck and trailers" width="1400" height="1050" loading="lazy" decoding="async" />
+              <img src="hernandez_images/google-profile-2026-branded-truck-trailers.jpg" srcset="hernandez_images/w/google-profile-2026-branded-truck-trailers-480.webp 480w, hernandez_images/w/google-profile-2026-branded-truck-trailers-800.webp 800w, hernandez_images/google-profile-2026-branded-truck-trailers.jpg 1200w" sizes="232px" alt="Hernandez Landscape and Tree Service branded truck and trailers" data-i18n-alt="alt.print.truck" width="1400" height="1050" loading="lazy" decoding="async" />
               <figcaption><span data-i18n-key="gallery.item.crew_equipment">Branded Crew Equipment</span></figcaption>
             </figure>
             <figure class="print print--static">
-              <img src="hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg" srcset="hernandez_images/w/google-profile-2026-tree-removal-cut-logs-480.webp 480w, hernandez_images/w/google-profile-2026-tree-removal-cut-logs-800.webp 800w, hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg 900w" sizes="232px" alt="Cut logs after safe tree removal work" width="1050" height="1400" loading="lazy" decoding="async" />
+              <img src="hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg" srcset="hernandez_images/w/google-profile-2026-tree-removal-cut-logs-480.webp 480w, hernandez_images/w/google-profile-2026-tree-removal-cut-logs-800.webp 800w, hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg 900w" sizes="232px" alt="Cut logs after safe tree removal work" data-i18n-alt="alt.print.logs" width="1050" height="1400" loading="lazy" decoding="async" />
               <figcaption><span data-i18n-key="gallery.item.removal_cleanup">Removal Cleanup</span></figcaption>
             </figure>
             <p id="latest-uploads-empty" class="text-gray-500" data-i18n-key="gallery.placeholder">Your new photos will appear here after you upload them.</p>
@@ -1008,6 +971,7 @@
             rel="noopener noreferrer"
             class="proof-link proof-link--fb"
             aria-label="See more projects on Facebook"
+            data-i18n-aria-label="gallery.facebookLabel"
           >
             <i class="fab fa-facebook mr-2"></i>
             <span data-i18n-key="gallery.facebookCta"
@@ -1415,7 +1379,7 @@
                 <li class="quote-contact-wide"><a href="mailto:hernandezlandscapetreeservices@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i><span><small data-i18n-key="quote.emailLabel">Email</small><strong class="break-all">hernandezlandscapetreeservices@gmail.com</strong></span></a></li>
                 <li><i class="fas fa-clock" aria-hidden="true"></i><span><small data-i18n-key="quote.hoursLabel">Business Hours</small><span data-i18n-key="quote.hoursWeekdays">Mon-Sat: 8AM-5PM</span><span data-i18n-key="quote.hoursSaturday">Sunday: Closed</span></span></li>
                 <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><small data-i18n-key="quote.locationLabel">Location</small><span>1029 Lewis St, DeKalb, IL 60115</span></span></li>
-                <li class="quote-contact-wide"><a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page"><i class="fab fa-facebook" aria-hidden="true"></i><span><small data-i18n-key="quote.followLabel">Follow Us</small><strong data-i18n-key="quote.facebook">Facebook</strong></span></a></li>
+                <li class="quote-contact-wide"><a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page" data-i18n-aria-label="quote.facebookLabel"><i class="fab fa-facebook" aria-hidden="true"></i><span><small data-i18n-key="quote.followLabel">Follow Us</small><strong data-i18n-key="quote.facebook">Facebook</strong></span></a></li>
               </ul>
             </div>
             <section id="instant-quote" class="price-check" aria-labelledby="price-check-title">
@@ -1595,7 +1559,7 @@
                 >
                   Starting Price Range:
                 </h3>
-                <p class="text-3xl font-black text-green-600" id="priceRange">
+                <p class="text-3xl font-black text-green-600" id="priceRange" data-i18n-key="instant.result.photoEstimate">
               Photo estimate — call or text (815) 501-1478
             </p>
                 <p
@@ -2180,7 +2144,7 @@
           <div class="space-y-4">
             <img
               src="hernandez_images/web_Logo_New_256.png"
-              alt="Hernandez Landscape Logo"
+              alt="Hernandez Landscape Logo" data-i18n-alt="alt.footerLogo"
               class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110"
               width="256"
               height="192"
@@ -2304,8 +2268,8 @@
               <li class="flex items-start">
                 <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
                 <div class="text-sm text-gray-400">
-                  <span class="block">Mon-Sat: 8AM - 5PM</span>
-                  <span class="block">Sun: Closed</span>
+                  <span class="block" data-i18n-key="quote.hoursWeekdays">Mon-Sat: 8AM - 5PM</span>
+                  <span class="block" data-i18n-key="quote.hoursSaturday">Sun: Closed</span>
                 </div>
               </li>
             </ul>
@@ -2442,14 +2406,14 @@
       </div>
     </div>
 
-    <button id="backToTopBtn" type="button" aria-label="Back to top">
+    <button id="backToTopBtn" type="button" aria-label="Back to top" data-i18n-aria-label="nav.backToTop">
       <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="assets/js/i18n.js?v=20260924u" defer></script>
+    <script src="assets/js/i18n.js?v=20260924w" defer></script>
     <script src="assets/js/main.js?v=20260924u" defer></script>
     <script src="/assets/js/motion.js" defer></script>
-    <script src="assets/js/static-gallery.js?v=20260924i" defer></script>
+    <script src="assets/js/static-gallery.js?v=20260924w" defer></script>
 
     <script type="application/ld+json">
       {
@@ -2749,6 +2713,6 @@
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
   <script src="/assets/js/price-range-placeholder.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260924v" defer></script>
+  <script src="/assets/js/rings.js?v=20260924w" defer></script>
   </body>
 </html>

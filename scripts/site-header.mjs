@@ -28,15 +28,17 @@ const COPY = {
     homeLabel: 'Inicio Hernandez Landscape',
     logoAlt: 'Logo de Hernandez Landscape & Tree Service LLC',
     tagline: 'Jardinería y servicio de árboles en DeKalb County',
+    // Round 4 (research 05 X3): the Spanish nav stays on Spanish URLs; the work,
+    // video and area links open those chapters of the Spanish home.
     nav: [
-      ['services', '/?lang=es#services', 'Servicios'],
-      ['work', '/gallery/', 'Nuestro trabajo'],
-      ['videos', '/videos/', 'Videos'],
-      ['reviews', '/?lang=es#testimonials', 'Reseñas'],
-      ['areas', '/service-areas/', 'Zonas de servicio'],
+      ['services', '/es/#services', 'Servicios'],
+      ['work', '/es/#gallery', 'Nuestro trabajo'],
+      ['videos', '/es/#videos', 'Videos'],
+      ['reviews', '/es/#testimonials', 'Reseñas'],
+      ['areas', '/es/#service-area', 'Zonas de servicio'],
     ],
     quote: 'Cotización gratis',
-    call: 'Llama al (815) 501-1478',
+    call: 'Llame al (815) 501-1478',
     primaryNav: 'Navegación principal',
     mobileNav: 'Navegación móvil',
     menu: 'Abrir menú de navegación',
@@ -51,33 +53,23 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').repl
  * @param {{href:string,label:string,lang:'en'|'es',hint?:string}} [o.alt] language link (twin or other home)
  * @param {string} [o.quoteHref] the page's "free quote" target
  * @param {string} [o.current] nav key of the current section
- * @param {boolean} [o.i18n] in-place i18n page (gallery/videos): keep data-i18n keys and the EN/ES toggle
  */
 export function renderSiteHeader(o) {
   const c = COPY[o.lang];
-  const quoteHref = o.quoteHref || (o.lang === 'es' ? '/?lang=es#quote' : '/#quote');
-  const key = (k) => (o.i18n && k ? ` data-i18n-key="${k}"` : '');
+  const quoteHref = o.quoteHref || (o.lang === 'es' ? '/es/#quote' : '/#quote');
   const cur = (id) => (o.current === id ? ' aria-current="page"' : '');
   const desk = c.nav
-    .map(([id, href, label, k]) => `            <a href="${href}" class="text-sm font-semibold hover:text-green-600 transition"${cur(id)}${key(k)}>${label}</a>`)
+    .map(([id, href, label]) => `            <a href="${href}" class="text-sm font-semibold hover:text-green-600 transition"${cur(id)}>${label}</a>`)
     .join('\n');
   const mob = c.nav
-    .map(([id, href, label, k]) => `          <a href="${href}" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50"${cur(id)}${key(k)}>${label}</a>`)
+    .map(([id, href, label]) => `          <a href="${href}" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50"${cur(id)}>${label}</a>`)
     .join('\n');
-  const langLink = (where) => {
-    if (o.i18n) {
-      return `<div class="flex items-center bg-gray-100 rounded-full p-1${where === 'desk' ? ' mx-2' : ''}">
-              <button type="button" data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true" aria-label="Use English">EN</button>
-              <button type="button" data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false" aria-label="Usar español">ES</button>
-            </div>`;
-    }
+  const langLink = () => {
     const a = o.alt;
     const hint = a.hint ? ` <span class="lang-hint">${esc(a.hint)}</span>` : '';
     return `<a href="${a.href}" class="lang-link" hreflang="${a.lang}" lang="${a.lang}">${esc(a.label)}${hint}</a>`;
   };
-  const menuLabel = o.i18n
-    ? `aria-label="Toggle mobile menu" data-i18n-aria-label="nav.menuToggle"`
-    : `aria-label="${c.menu}"`;
+  const menuLabel = `aria-label="${c.menu}"`;
   return `    <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
       <!-- @site-header: scripts/site-header.mjs (one header on every page; edit there) -->
       <div class="container mx-auto px-4">
@@ -92,11 +84,11 @@ export function renderSiteHeader(o) {
           <div class="desktop-nav hidden lg:flex items-center space-x-4">
 ${desk}
             <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
-            ${langLink('desk')}
-            <a href="${quoteHref}" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap"${key('nav.freeQuote')}>${c.quote}</a>
+            ${langLink()}
+            <a href="${quoteHref}" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">${c.quote}</a>
           </div>
           <div class="flex items-center gap-2 lg:hidden">
-            ${langLink('mob')}
+            ${langLink()}
             <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" ${menuLabel}><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
           </div>
         </nav>
@@ -105,7 +97,7 @@ ${desk}
         <nav class="container mx-auto space-y-1 px-4 py-4" aria-label="${c.mobileNav}">
 ${mob}
           <a href="tel:18155011478" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">${c.call}</a>
-          <a href="${quoteHref}" class="mt-2 block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white hover:bg-green-700"${key('nav.freeQuote')}>${c.quote}</a>
+          <a href="${quoteHref}" class="mt-2 block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white hover:bg-green-700">${c.quote}</a>
         </nav>
       </div>
     </header>`;
@@ -125,6 +117,9 @@ export const TWINS = [
   '/service-areas/kingston-il/',
 ];
 
+// English pages whose Spanish counterpart is a chapter of the Spanish home.
+const CHAPTERS = { '/gallery/': '/es/#gallery', '/videos/': '/es/#videos' };
+
 /** Language link for a route: its twin, or the other language's home. */
 export function altFor(route) {
   if (route.startsWith('/es/')) {
@@ -132,5 +127,5 @@ export function altFor(route) {
     return { href: en === '/' || TWINS.includes(en) ? en : '/', label: 'English', lang: 'en' };
   }
   if (TWINS.includes(route)) return { href: `/es${route}`, label: 'Español', lang: 'es' };
-  return { href: '/es/', label: 'Español', lang: 'es', hint: '(inicio)' };
+  return { href: CHAPTERS[route] || '/es/', label: 'Español', lang: 'es', hint: '(inicio)' };
 }

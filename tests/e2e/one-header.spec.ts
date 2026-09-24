@@ -10,6 +10,9 @@ const linked: Array<[string, string, 'es' | 'en', string]> = [
   ['/gutter-cleaning/', '/es/', 'es', 'Español (inicio)'],
   ['/service-areas/', '/es/', 'es', 'Español (inicio)'],
   ['/service-areas/dekalb-il/', '/es/', 'es', 'Español (inicio)'],
+  ['/', '/es/', 'es', 'Español'],
+  ['/gallery/', '/es/#gallery', 'es', 'Español (inicio)'],
+  ['/videos/', '/es/#videos', 'es', 'Español (inicio)'],
   ['/es/', '/', 'en', 'English'],
   ['/es/tree-removal/', '/tree-removal/', 'en', 'English'],
   ['/es/service-areas/genoa-il/', '/service-areas/genoa-il/', 'en', 'English'],
@@ -19,7 +22,7 @@ for (const [route, href, lang, label] of linked) {
   test(`${route}: one header with a visible ${label} link to ${href}`, async ({ page }) => {
     for (const width of [390, 1440]) {
       await page.setViewportSize({ width, height: 900 });
-      await page.goto(route, { waitUntil: 'domcontentloaded' });
+      await page.goto(route, { waitUntil: 'load' }); // the stylesheet decides which link is visible
       await expect(page.locator('header')).toHaveCount(1);
       const link = page.locator('#header .lang-link:visible');
       await expect(link, `${route} @${width}`).toHaveCount(1);

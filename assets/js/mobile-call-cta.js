@@ -136,10 +136,11 @@
 
   const estimateHref = () => {
     const quote = document.getElementById("quote") || document.getElementById("instant-quote");
-    const isHomepage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+    // Round 4: /es/ has its own request form, like the English home.
+    const isHomepage = /^\/(?:es\/)?(?:index\.html)?$/.test(window.location.pathname);
     if (isHomepage && quote) return "#quote";
     if (document.documentElement.lang.toLowerCase().startsWith("es")) {
-      return "/?lang=es#quote";
+      return "/es/#quote";
     }
     return "/#quote";
   };
