@@ -393,6 +393,8 @@
       "src": "hernandez_images/web_IMG_0434.mp4",
       "poster": "hernandez_images/web_IMG_0434_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_0434_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 101,
       "tags": ["project-video"],
       "featured": true,
       "sitemap": {
@@ -407,6 +409,8 @@
       "src": "hernandez_images/web_IMG_1095.mp4",
       "poster": "hernandez_images/web_IMG_1095_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1095_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 27,
       "tags": ["project-video"],
       "featured": true,
       "sitemap": {
@@ -421,6 +425,8 @@
       "src": "hernandez_images/web_IMG_2055.mp4",
       "poster": "hernandez_images/web_IMG_2055_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2055_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": true,
       "sitemap": {
@@ -435,6 +441,8 @@
       "src": "hernandez_images/web_IMG_1139.mp4",
       "poster": "hernandez_images/web_IMG_1139_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1139_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 61,
       "tags": ["project-video"],
       "featured": false
     },
@@ -444,6 +452,8 @@
       "src": "hernandez_images/web_IMG_1229.mp4",
       "poster": "hernandez_images/web_IMG_1229_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1229_poster-480.webp",
+      "size": [540, 960],
+      "duration": 166,
       "tags": ["project-video"],
       "featured": false
     },
@@ -453,6 +463,8 @@
       "src": "hernandez_images/web_IMG_1268.mp4",
       "poster": "hernandez_images/web_IMG_1268_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1268_poster-480.webp",
+      "size": [540, 960],
+      "duration": 157,
       "tags": ["project-video"],
       "featured": false
     },
@@ -462,6 +474,8 @@
       "src": "hernandez_images/web_IMG_1425.mp4",
       "poster": "hernandez_images/web_IMG_1425_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1425_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 18,
       "tags": ["project-video"],
       "featured": false
     },
@@ -471,6 +485,8 @@
       "src": "hernandez_images/web_IMG_1464.mp4",
       "poster": "hernandez_images/web_IMG_1464_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1464_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 12,
       "tags": ["project-video"],
       "featured": false
     },
@@ -480,6 +496,8 @@
       "src": "hernandez_images/web_IMG_1878.mp4",
       "poster": "hernandez_images/web_IMG_1878_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1878_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 29,
       "tags": ["project-video"],
       "featured": false
     },
@@ -489,6 +507,8 @@
       "src": "hernandez_images/web_IMG_1953.mp4",
       "poster": "hernandez_images/web_IMG_1953_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_1953_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -498,6 +518,8 @@
       "src": "hernandez_images/web_IMG_2031.mp4",
       "poster": "hernandez_images/web_IMG_2031_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2031_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 3,
       "tags": ["project-video"],
       "featured": false
     },
@@ -507,6 +529,8 @@
       "src": "hernandez_images/web_IMG_2046.mp4",
       "poster": "hernandez_images/web_IMG_2046_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2046_poster-480.webp",
+      "size": [654, 872],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -516,6 +540,8 @@
       "src": "hernandez_images/web_IMG_2047.mp4",
       "poster": "hernandez_images/web_IMG_2047_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2047_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -525,6 +551,8 @@
       "src": "hernandez_images/web_IMG_2048.mp4",
       "poster": "hernandez_images/web_IMG_2048_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2048_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -534,6 +562,8 @@
       "src": "hernandez_images/web_IMG_2049.mp4",
       "poster": "hernandez_images/web_IMG_2049_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2049_poster-480.webp",
+      "size": [654, 872],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -543,6 +573,8 @@
       "src": "hernandez_images/web_IMG_2050.mp4",
       "poster": "hernandez_images/web_IMG_2050_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2050_poster-480.webp",
+      "size": [654, 872],
+      "duration": 3,
       "tags": ["project-video"],
       "featured": false
     },
@@ -552,6 +584,8 @@
       "src": "hernandez_images/web_IMG_2051.mp4",
       "poster": "hernandez_images/web_IMG_2051_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2051_poster-480.webp",
+      "size": [654, 872],
+      "duration": 3,
       "tags": ["project-video"],
       "featured": false
     },
@@ -561,6 +595,8 @@
       "src": "hernandez_images/web_IMG_2052.mp4",
       "poster": "hernandez_images/web_IMG_2052_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2052_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -570,6 +606,8 @@
       "src": "hernandez_images/web_IMG_2056.mp4",
       "poster": "hernandez_images/web_IMG_2056_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2056_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -579,6 +617,8 @@
       "src": "hernandez_images/web_IMG_2109.mp4",
       "poster": "hernandez_images/web_IMG_2109_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2109_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -588,6 +628,8 @@
       "src": "hernandez_images/web_IMG_2110.mp4",
       "poster": "hernandez_images/web_IMG_2110_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2110_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -597,6 +639,8 @@
       "src": "hernandez_images/web_IMG_2111.mp4",
       "poster": "hernandez_images/web_IMG_2111_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2111_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -606,6 +650,8 @@
       "src": "hernandez_images/web_IMG_2112.mp4",
       "poster": "hernandez_images/web_IMG_2112_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2112_poster-480.webp",
+      "size": [654, 872],
+      "duration": 3,
       "tags": ["project-video"],
       "featured": false
     },
@@ -615,6 +661,8 @@
       "src": "hernandez_images/web_IMG_2125.mp4",
       "poster": "hernandez_images/web_IMG_2125_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2125_poster-480.webp",
+      "size": [1280, 1706],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -624,6 +672,8 @@
       "src": "hernandez_images/web_IMG_2134.mp4",
       "poster": "hernandez_images/web_IMG_2134_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2134_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 61,
       "tags": ["project-video"],
       "featured": false
     },
@@ -633,6 +683,8 @@
       "src": "hernandez_images/web_IMG_2136.mp4",
       "poster": "hernandez_images/web_IMG_2136_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2136_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 55,
       "tags": ["project-video"],
       "featured": false
     },
@@ -642,6 +694,8 @@
       "src": "hernandez_images/web_IMG_2154.mp4",
       "poster": "hernandez_images/web_IMG_2154_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2154_poster-480.webp",
+      "size": [1280, 960],
+      "duration": 2,
       "tags": ["project-video"],
       "featured": false
     },
@@ -651,6 +705,8 @@
       "src": "hernandez_images/web_IMG_2155.mp4",
       "poster": "hernandez_images/web_IMG_2155_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2155_poster-480.webp",
+      "size": [872, 654],
+      "duration": 3,
       "tags": ["project-video"],
       "featured": false
     },
@@ -660,6 +716,8 @@
       "src": "hernandez_images/web_IMG_2315.mp4",
       "poster": "hernandez_images/web_IMG_2315_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2315_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 60,
       "tags": ["project-video"],
       "featured": false
     },
@@ -669,6 +727,8 @@
       "src": "hernandez_images/web_IMG_2395.mp4",
       "poster": "hernandez_images/web_IMG_2395_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_2395_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 35,
       "tags": ["project-video"],
       "featured": false
     },
@@ -678,6 +738,8 @@
       "src": "hernandez_images/web_IMG_7968.mp4",
       "poster": "hernandez_images/web_IMG_7968_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_7968_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 60,
       "tags": ["project-video"],
       "featured": false
     },
@@ -687,6 +749,8 @@
       "src": "hernandez_images/web_IMG_8116.mp4",
       "poster": "hernandez_images/web_IMG_8116_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_8116_poster-480.webp",
+      "size": [128, 224],
+      "duration": 142,
       "tags": ["project-video"],
       "featured": false
     },
@@ -696,6 +760,8 @@
       "src": "hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2.mp4",
       "poster": "hernandez_images/web_aaac6c86-62fc-4487-b257-cf0f870922c2_poster.jpg",
       "posterSmall": "hernandez_images/w/web_aaac6c86-62fc-4487-b257-cf0f870922c2_poster-480.webp",
+      "size": [480, 856],
+      "duration": 141,
       "tags": ["project-video"],
       "featured": false
     },
@@ -705,6 +771,8 @@
       "src": "hernandez_images/web_IMG_3587.mp4",
       "poster": "hernandez_images/web_IMG_3587_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_3587_poster-480.webp",
+      "size": [540, 960],
+      "duration": 106,
       "tags": ["project-video"],
       "featured": false
     },
@@ -714,6 +782,8 @@
       "src": "hernandez_images/web_IMG_3597.mp4",
       "poster": "hernandez_images/web_IMG_3597_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_3597_poster-480.webp",
+      "size": [128, 224],
+      "duration": 132,
       "tags": ["project-video"],
       "featured": false
     },
@@ -723,6 +793,8 @@
       "src": "hernandez_images/web_IMG_3611.mp4",
       "poster": "hernandez_images/web_IMG_3611_poster.jpg",
       "posterSmall": "hernandez_images/w/web_IMG_3611_poster-480.webp",
+      "size": [540, 960],
+      "duration": 147,
       "tags": ["project-video"],
       "featured": false
     },
@@ -733,6 +805,8 @@
       "src": "hernandez_images/stone-bed-refresh-reel.mp4",
       "poster": "hernandez_images/stone-bed-refresh-reel-poster.jpg",
       "posterSmall": "hernandez_images/w/stone-bed-refresh-reel-poster-480.webp",
+      "size": [540, 960],
+      "duration": 18,
       "tags": [
         "project-video"
       ],
@@ -749,6 +823,8 @@
       "src": "hernandez_images/landscape-cleanup-reel.mp4",
       "poster": "hernandez_images/landscape-cleanup-reel-poster.jpg",
       "posterSmall": "hernandez_images/w/landscape-cleanup-reel-poster-480.webp",
+      "size": [540, 960],
+      "duration": 18,
       "tags": [
         "project-video"
       ],

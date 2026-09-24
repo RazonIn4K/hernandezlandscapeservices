@@ -402,7 +402,7 @@ ${BANNER}
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924b" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924v" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />

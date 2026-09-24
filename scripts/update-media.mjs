@@ -125,6 +125,13 @@ for (const item of items ?? []) {
       }
     }
   }
+  if (item.type === 'video' && item.duration !== undefined && !(Number.isFinite(item.duration) && item.duration > 0)) {
+    fail(`${label}: "duration" must be a positive number of seconds (ffprobe)`);
+  }
+  if (item.type === 'video' && item.size !== undefined &&
+      !(Array.isArray(item.size) && item.size.length === 2 && item.size.every((n) => Number.isInteger(n) && n > 0))) {
+    fail(`${label}: "size" must be [width, height] of the video frame`);
+  }
   if (item.posterSmall !== undefined && !fs.existsSync(path.join(ROOT, item.posterSmall))) {
     fail(`${label}: posterSmall file does not exist on disk: ${item.posterSmall}`);
   }
@@ -258,6 +265,34 @@ function renderGalleryCards(list) {
   return cards.join('\n\n');
 }
 
+// Round 4: each card fits its clip's own frame (portrait clips get portrait
+// cards) and shows the running time read from the file plus the service tag,
+// or "On the job" when the clip has none. No invented titles.
+const SERVICE_TAGS = {
+  'lawn-care': ['quote.select.lawn', 'Lawn Care'],
+  'tree-service': ['quote.select.tree', 'Tree Service'],
+  landscaping: ['quote.select.landscaping', 'Landscaping'],
+  'snow-removal': ['quote.select.snow', 'Snow Removal'],
+  'leaf-removal': ['quote.select.leaf', 'Leaf Removal'],
+  'gutter-cleaning': ['quote.select.gutter', 'Gutter Cleaning'],
+  'pressure-washing': ['quote.select.pressure', 'Pressure Washing'],
+};
+const clock = (seconds) => {
+  const total = Math.max(1, Math.round(seconds));
+  return { text: `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`, iso: `PT${Math.floor(total / 60)}M${total % 60}S` };
+};
+const videoMeta = (item) => {
+  if (!item.duration) return '';
+  const time = clock(item.duration);
+  const tag = (item.tags || []).find((t) => SERVICE_TAGS[t]);
+  const [key, text] = tag ? SERVICE_TAGS[tag] : ['video.onTheJob', 'On the job'];
+  return `                    <p class="video-meta"><time datetime="${time.iso}">${time.text}</time><span aria-hidden="true"> · </span><span data-i18n-key="${key}">${text}</span></p>`;
+};
+const frameStyle = (item) => {
+  if (Array.isArray(item.size)) return ` style="padding-bottom:${((item.size[1] / item.size[0]) * 100).toFixed(4)}%"`;
+  return item.orientation === 'portrait' ? ' style="padding-bottom:177.777778%"' : '';
+};
+
 function renderVideoCards(list) {
   const cards = list.map((item, index) => {
     const poster = item.posterSmall || item.poster;
@@ -266,8 +301,8 @@ function renderVideoCards(list) {
       : `data-poster="/${escapeHtml(poster)}"`;
     const label = item.sitemap?.title || `Hernandez Landscape project video ${index + 1}`;
     return [
-    '                <div class="video-card group">',
-    `                    <div class="video-wrapper relative"${item.orientation === 'portrait' ? ' style="padding-bottom:177.777778%"' : ''}>`,
+    `                <div class="video-card group${Array.isArray(item.size) && item.size[1] > item.size[0] ? ' is-portrait' : ''}">`,
+    `                    <div class="video-wrapper relative"${frameStyle(item)}>`,
     `                        <video controls playsinline preload="none" ${posterAttr} aria-label="${escapeHtml(label)}" class="w-full h-full object-cover">`,
     `                            <source src="/${escapeHtml(item.src)}" type="video/mp4">`,
     '                            Your browser does not support the video tag.',
@@ -276,6 +311,7 @@ function renderVideoCards(list) {
     '                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>',
     '                        </div>',
     '                    </div>',
+    ...(videoMeta(item) ? [videoMeta(item)] : []),
     '                </div>',
     ].join('\n');
   });

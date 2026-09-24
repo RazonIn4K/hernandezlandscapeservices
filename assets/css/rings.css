@@ -1810,3 +1810,31 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
   .field-map-card { padding: 12px; }
   .field-map-card figcaption { margin-top: 8px; font-size: 0.92rem; }
 }
+
+/* ---------- Round 4 · Video cards say what you get (research 03 R12) ---------- */
+.video-meta { display: flex; align-items: center; gap: 4px; margin: 8px 2px 0; color: var(--ink-soft); font-size: 0.9rem; font-weight: 600; }
+.video-meta time { font-variant-numeric: tabular-nums; color: var(--ink); }
+.video-strip .video-meta { color: rgba(245, 242, 233, 0.86); }
+.video-strip .video-meta time { color: #fff; }
+/* /videos/: portrait clips in portrait cards; a denser grid keeps the page short. */
+.video-grid { align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+@media (min-width: 640px) { .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
+@media (min-width: 1024px) { .video-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+/* Home tours: portrait frames where there is room; phones keep the compact crop
+   so the homepage stays inside its length budget. */
+@media (min-width: 640px) {
+  .video-strip .video-card.is-portrait { flex: 0 0 200px; }
+  .video-strip .video-card.is-portrait .video-wrapper { padding-bottom: var(--ratio, 177.7778%); }
+}
+@media (max-width: 639px) {
+  /* Phones: the running time rides on the card as a chip (no extra height). */
+  .video-strip .video-card { position: relative; }
+  .video-strip .video-card::after { display: none; }
+  .video-strip .video-meta { position: absolute; top: 10px; right: 10px; z-index: 3; margin: 0; padding: 3px 9px; border-radius: 999px; background: rgba(12, 42, 32, 0.88); font-size: 0.8rem; pointer-events: none; }
+}
+/* The crew-cam cards are dark: the running time reads light on them everywhere. */
+.video-card .video-meta { padding: 0 10px 8px; color: rgba(245, 242, 233, 0.88); }
+.video-card .video-meta time { color: #fff; }
+@media (max-width: 639px) {
+  .video-strip .video-meta { padding: 3px 9px; }
+}
