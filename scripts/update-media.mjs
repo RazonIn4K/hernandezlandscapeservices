@@ -41,6 +41,16 @@ const MARKERS = {
   sitemapVideos: { start: '<!-- GALLERY-VIDEOS:GENERATED:START -->', end: '<!-- GALLERY-VIDEOS:GENERATED:END -->' },
 };
 
+// Round 4: variants live in hernandez_images/w/<stem>-<width>.webp; the original
+// stays the largest srcset candidate.
+const variantPath = (src, width) =>
+  `hernandez_images/w/${path.basename(src).replace(/\.[^.]+$/, '')}-${width}.webp`;
+const srcsetFor = (item) =>
+  Array.isArray(item.variants) && item.variants.length
+    ? [...item.variants.map((w) => `/${variantPath(item.src, w)} ${w}w`), `/${item.src} ${item.size[0]}w`].join(', ')
+    : '';
+const GALLERY_SIZES = '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw';
+
 const errors = [];
 const warnings = [];
 const drifted = [];
@@ -100,6 +110,23 @@ for (const item of items ?? []) {
   }
   if (item.type === 'image' && (!item.alt || typeof item.alt !== 'string')) {
     fail(`${label}: images require "alt" text`);
+  }
+  // Round 4: optional right-sized variants (scripts/make_image_variants.py).
+  if (item.variants !== undefined) {
+    if (!Array.isArray(item.variants) || !item.variants.every((w) => Number.isInteger(w) && w > 0)) {
+      fail(`${label}: "variants" must be an array of widths`);
+    } else if (!Array.isArray(item.size) || item.size.length !== 2 || !item.size.every((n) => Number.isInteger(n) && n > 0)) {
+      fail(`${label}: "variants" needs "size": [width, height] of the original`);
+    } else {
+      for (const w of item.variants) {
+        if (!fs.existsSync(path.join(ROOT, variantPath(item.src, w)))) {
+          fail(`${label}: variant missing on disk: ${variantPath(item.src, w)} (run python scripts/make_image_variants.py)`);
+        }
+      }
+    }
+  }
+  if (item.posterSmall !== undefined && !fs.existsSync(path.join(ROOT, item.posterSmall))) {
+    fail(`${label}: posterSmall file does not exist on disk: ${item.posterSmall}`);
   }
   if (item.type === 'video') {
     if (!item.poster || typeof item.poster !== 'string') {
@@ -213,9 +240,13 @@ function renderGalleryCards(list) {
     const alt = item.gallery?.alt ?? item.alt;
     const keyAttr = item.gallery?.titleKey ? ` data-i18n-key="${escapeHtml(item.gallery.titleKey)}"` : '';
     const title = item.gallery?.title ?? '';
+    const srcset = srcsetFor(item);
+    const sized = srcset
+      ? ` srcset="${escapeHtml(srcset)}" sizes="${GALLERY_SIZES}" width="${item.size[0]}" height="${item.size[1]}"`
+      : '';
     return [
       '                <div class="gallery-item group">',
-      `                    <img src="/${escapeHtml(item.src)}" loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
+      `                    <img src="/${escapeHtml(item.src)}"${sized} loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
       '                    <div class="gallery-overlay">',
       '                        <div class="text-center p-4">',
       `                            <h3${keyAttr}>${escapeHtml(title)}</h3>`,
@@ -229,9 +260,10 @@ function renderGalleryCards(list) {
 
 function renderVideoCards(list) {
   const cards = list.map((item, index) => {
+    const poster = item.posterSmall || item.poster;
     const posterAttr = index < 3
-      ? `poster="/${escapeHtml(item.poster)}"`
-      : `data-poster="/${escapeHtml(item.poster)}"`;
+      ? `poster="/${escapeHtml(poster)}"`
+      : `data-poster="/${escapeHtml(poster)}"`;
     const label = item.sitemap?.title || `Hernandez Landscape project video ${index + 1}`;
     return [
     '                <div class="video-card group">',
@@ -254,6 +286,13 @@ function renderStaticImagesArray(list) {
   const objects = list.map((item) => [
     '      {',
     `        src: '${escapeJs(item.src)}',`,
+    ...(srcsetFor(item)
+      ? [
+          `        srcset: '${escapeJs(srcsetFor(item).replace(/(^|, )\//g, '$1'))}',`,
+          `        width: ${item.size[0]},`,
+          `        height: ${item.size[1]},`,
+        ]
+      : []),
     `        alt: '${escapeJs(item.alt)}',`,
     `        caption: '${escapeJs(item.caption)}'`,
     '      }',

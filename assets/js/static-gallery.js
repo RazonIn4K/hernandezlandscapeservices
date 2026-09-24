@@ -28,91 +28,145 @@
       // GALLERY-DATA:GENERATED:START
       {
         src: 'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
+        srcset: 'hernandez_images/w/facebook-2026-fire-pit-lawn-finish-480.webp 480w, hernandez_images/w/facebook-2026-fire-pit-lawn-finish-800.webp 800w, hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb',
         caption: 'Finished lawn and fire pit area with clean edging and fresh turf'
       },
       {
         src: 'hernandez_images/facebook-2026-side-yard-lawn-finish.jpg',
+        srcset: 'hernandez_images/w/facebook-2026-side-yard-lawn-finish-480.webp 480w, hernandez_images/w/facebook-2026-side-yard-lawn-finish-800.webp 800w, hernandez_images/facebook-2026-side-yard-lawn-finish.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Fresh green side yard lawn after Hernandez Landscape service',
         caption: 'Fresh side yard lawn finish after cleanup and landscape work'
       },
       {
         src: 'hernandez_images/google-photos-2026-brush-pile-removal.webp',
+        srcset: 'hernandez_images/w/google-photos-2026-brush-pile-removal-480.webp 480w, hernandez_images/google-photos-2026-brush-pile-removal.webp 655w',
+        width: 655,
+        height: 873,
         alt: 'Brush pile and tree debris staged after Hernandez Landscape cleanup',
         caption: 'Brush pile and tree debris staged for removal after yard cleanup'
       },
       {
         src: 'hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp',
+        srcset: 'hernandez_images/w/google-photos-2026-woodpile-yard-cleanup-480.webp 480w, hernandez_images/w/google-photos-2026-woodpile-yard-cleanup-800.webp 800w, hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp 1164w',
+        width: 1164,
+        height: 873,
         alt: 'Woodpile and overgrown yard area before Hernandez cleanup work',
         caption: 'Woodpile and overgrown yard area cleared during a cleanup project'
       },
       {
         src: 'hernandez_images/google-photos-2026-backyard-lawn-finish.webp',
+        srcset: 'hernandez_images/w/google-photos-2026-backyard-lawn-finish-480.webp 480w, hernandez_images/w/google-photos-2026-backyard-lawn-finish-800.webp 800w, hernandez_images/google-photos-2026-backyard-lawn-finish.webp 1164w',
+        width: 1164,
+        height: 873,
         alt: 'Fresh backyard lawn finish after Hernandez Landscape service',
         caption: 'Fresh backyard lawn finish with clean mowing around trees and planting beds'
       },
       {
         src: 'hernandez_images/google-profile-2024-mulch-bed-edging.jpg',
+        srcset: 'hernandez_images/w/google-profile-2024-mulch-bed-edging-480.webp 480w, hernandez_images/w/google-profile-2024-mulch-bed-edging-800.webp 800w, hernandez_images/google-profile-2024-mulch-bed-edging.jpg 901w',
+        width: 901,
+        height: 676,
         alt: 'Fresh red mulch bed with stone edging after Hernandez Landscape service',
         caption: 'Fresh mulch bed, stone edging, and planting cleanup around a DeKalb County home'
       },
       {
         src: 'hernandez_images/google-profile-2026-branded-truck-trailers.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-branded-truck-trailers-480.webp 480w, hernandez_images/w/google-profile-2026-branded-truck-trailers-800.webp 800w, hernandez_images/google-profile-2026-branded-truck-trailers.jpg 1200w',
+        width: 1200,
+        height: 900,
         alt: 'Hernandez Landscape and Tree Service branded truck and trailers',
         caption: 'Branded Hernandez crew trucks and trailers ready for field work'
       },
       {
         src: 'hernandez_images/google-profile-2026-tree-climber-canopy.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-tree-climber-canopy-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-canopy-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-canopy.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Tree service crew member working high in a tree canopy',
         caption: 'Tree climbing and canopy work for safe trimming and removal'
       },
       {
         src: 'hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-tree-removal-cut-logs-480.webp 480w, hernandez_images/w/google-profile-2026-tree-removal-cut-logs-800.webp 800w, hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Cut logs after tree removal cleanup',
         caption: 'Tree removal cleanup with cut logs handled on site'
       },
       {
         src: 'hernandez_images/google-profile-2026-tree-climber-roofline.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-tree-climber-roofline-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-roofline-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-roofline.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Tree service crew working near a residential roofline',
         caption: 'Careful tree work around homes, roofs, and yard structures'
       },
       {
         src: 'hernandez_images/google-profile-2026-tree-climber-full-tree.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-tree-climber-full-tree-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-full-tree-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-full-tree.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Tree climber working in a tall residential tree',
         caption: 'Full-tree service work for mature residential trees'
       },
       {
         src: 'hernandez_images/google-profile-2026-completed-yard-equipment.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-completed-yard-equipment-480.webp 480w, hernandez_images/w/google-profile-2026-completed-yard-equipment-800.webp 800w, hernandez_images/google-profile-2026-completed-yard-equipment.jpg 900w',
+        width: 900,
+        height: 1200,
         alt: 'Completed yard work with Hernandez equipment on site',
         caption: 'Recent completed yard work with equipment still on site'
       },
       {
         src: 'hernandez_images/google-profile-2026-equipment-trailers.jpg',
+        srcset: 'hernandez_images/w/google-profile-2026-equipment-trailers-480.webp 480w, hernandez_images/w/google-profile-2026-equipment-trailers-800.webp 800w, hernandez_images/google-profile-2026-equipment-trailers.jpg 1200w',
+        width: 1200,
+        height: 900,
         alt: 'Hernandez Landscape equipment trailers parked for service work',
         caption: 'Equipment trailers used for landscaping and tree service jobs'
       },
       {
         src: 'hernandez_images/web_IMG_3362_2.webp',
+        srcset: 'hernandez_images/w/web_IMG_3362_2-480.webp 480w, hernandez_images/w/web_IMG_3362_2-800.webp 800w, hernandez_images/web_IMG_3362_2.webp 900w',
+        width: 900,
+        height: 1200,
         alt: 'Freshly finished landscape bed and lawn edging',
         caption: 'Recent landscape refresh with clean borders and healthy planting beds'
       },
       {
         src: 'hernandez_images/web_IMG_3360_2.webp',
+        srcset: 'hernandez_images/w/web_IMG_3360_2-480.webp 480w, hernandez_images/w/web_IMG_3360_2-800.webp 800w, hernandez_images/web_IMG_3360_2.webp 900w',
+        width: 900,
+        height: 1200,
         alt: 'Fresh mulch installation framing a neat front yard',
         caption: 'Newly completed curb appeal upgrade with crisp mulch lines'
       },
       {
         src: 'hernandez_images/web_IMG_0434_poster.jpg',
+        srcset: 'hernandez_images/w/web_IMG_0434_poster-480.webp 480w, hernandez_images/web_IMG_0434_poster.jpg 720w',
+        width: 720,
+        height: 1280,
         alt: 'Clean, modern outdoor patio and landscape',
         caption: 'Modern outdoor living space transformation'
       },
       {
         src: 'hernandez_images/web_IMG_1953.webp',
+        srcset: 'hernandez_images/w/web_IMG_1953-480.webp 480w, hernandez_images/web_IMG_1953.webp 640w',
+        width: 640,
+        height: 896,
         alt: 'Professional tree trimming service',
         caption: 'Expert tree care and safety maintenance'
       },
       {
         src: 'hernandez_images/web_IMG_1464_poster.jpg',
+        srcset: 'hernandez_images/w/web_IMG_1464_poster-480.webp 480w, hernandez_images/web_IMG_1464_poster.jpg 540w',
+        width: 540,
+        height: 960,
         alt: 'Garden bed installation',
         caption: 'Custom garden bed design and installation'
       }
@@ -131,13 +185,19 @@
       'hernandez_images/google-profile-2024-mulch-bed-edging.jpg': { width: 901, height: 676 }
     };
 
-    function applyImageMetadata(img, image) {
-      const dimensions = imageDimensions[image.src];
+    function applyImageMetadata(img, image, sizes) {
+      const dimensions = imageDimensions[image.src] ||
+        (image.width && image.height ? { width: image.width, height: image.height } : null);
       img.decoding = 'async';
 
       if (dimensions) {
         img.width = dimensions.width;
         img.height = dimensions.height;
+      }
+      // Round 4: right-sized WebP variants from media/gallery.json (build-time data).
+      if (typeof image.srcset === 'string' && image.srcset) {
+        img.sizes = sizes || '(min-width: 640px) 50vw, 92vw';
+        img.srcset = image.srcset;
       }
     }
 
@@ -157,7 +217,7 @@
       img.alt = image.alt;
       img.className = 'w-full h-64 object-cover';
       img.loading = index < 6 ? 'eager' : 'lazy';
-      applyImageMetadata(img, image);
+      applyImageMetadata(img, image, '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 92vw');
       
       const caption = document.createElement('div');
       caption.className = 'p-4';
@@ -216,7 +276,8 @@
         img.alt = image.alt;
         img.loading = 'lazy';
         img.fetchPriority = 'low';
-        applyImageMetadata(img, image);
+        // Prints are ~232px wide (clamp(216px, 64vw, 250px) minus the mount).
+        applyImageMetadata(img, image, '232px');
 
         slide.appendChild(img);
         const caption = captionFor(image.src);

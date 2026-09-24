@@ -89,7 +89,8 @@ test.describe('Route-level quality regressions', () => {
 
     const lastVideo = page.locator('.video-grid video').last();
     await lastVideo.scrollIntoViewIfNeeded();
-    await expect(lastVideo).toHaveAttribute('poster', /web_IMG_3611_poster\.jpg$/);
+    // Round 4: posters are the ~40 KB WebP copies from hernandez_images/w/.
+    await expect(lastVideo).toHaveAttribute('poster', /\/w\/web_IMG_3611_poster-480\.webp$/);
     await expect(lastVideo).not.toHaveAttribute('data-poster', /.+/);
   });
 
