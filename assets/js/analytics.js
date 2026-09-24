@@ -34,11 +34,42 @@
   window.hlsTrack = track;
 
   if (/^GTM-[A-Z0-9]+$/i.test(GTM_CONTAINER_ID)) {
+    // The queue starts now (page start time, and "gtm.js" stays the first event),
+    // so clicks tracked before the container arrives are kept in order.
     window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-    var script = document.createElement("script");
-    script.async = true;
-    script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_CONTAINER_ID;
-    document.head.appendChild(script);
+
+    // Round 4 (research 03 R19): the container (and the Google tag it loads)
+    // is fetched after the page has loaded and gone idle (at most ~3 s later),
+    // or on the first scroll, pointer or key interaction, whichever comes first,
+    // so it no longer competes with the first paint for bandwidth and CPU.
+    var gtmRequested = false;
+    var FIRST_INTERACTION = ["scroll", "pointerdown", "keydown", "touchstart"];
+    var loadGtm = function () {
+      if (gtmRequested) return;
+      gtmRequested = true;
+      FIRST_INTERACTION.forEach(function (type) {
+        window.removeEventListener(type, loadGtm, true);
+      });
+      var script = document.createElement("script");
+      script.async = true;
+      script.src = "https://www.googletagmanager.com/gtm.js?id=" + GTM_CONTAINER_ID;
+      document.head.appendChild(script);
+    };
+    FIRST_INTERACTION.forEach(function (type) {
+      window.addEventListener(type, loadGtm, { capture: true, passive: true });
+    });
+    var whenIdle = function () {
+      if (typeof window.requestIdleCallback === "function") {
+        window.requestIdleCallback(loadGtm, { timeout: 3000 });
+      } else {
+        window.setTimeout(loadGtm, 1500);
+      }
+    };
+    if (document.readyState === "complete") {
+      whenIdle();
+    } else {
+      window.addEventListener("load", whenIdle, { once: true });
+    }
   }
 
   if (UMAMI_SRC && UMAMI_WEBSITE_ID) {

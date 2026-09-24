@@ -52,3 +52,58 @@ test('the service worker installs only the core shell', async ({ request }) => {
     expect(res.ok(), url).toBe(true);
   }
 });
+
+// Round 4 · Analytics after the page (research 03 R19). The fixture aborts the
+// third-party requests; these tests only watch when the loader asks for them.
+const GTM_INIT = () => {
+  const w = window as unknown as { __gtmAt?: number; __loadAt?: number };
+  window.addEventListener('load', () => { w.__loadAt = performance.now(); });
+  new MutationObserver((records) => {
+    for (const r of records) {
+      for (const n of Array.from(r.addedNodes)) {
+        if (n instanceof HTMLScriptElement && n.src.includes('googletagmanager.com/gtm.js') && w.__gtmAt === undefined) {
+          w.__gtmAt = performance.now();
+        }
+      }
+    }
+  }).observe(document, { childList: true, subtree: true });
+};
+
+test('deferred Google Tag Manager: the queue starts at once, the container after load and idle', async ({ page }) => {
+  await page.addInitScript(GTM_INIT);
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const early = await page.evaluate(() => ({
+    events: ((window as unknown as { dataLayer?: Array<{ event?: string }> }).dataLayer ?? []).map((e) => e.event),
+    track: typeof (window as unknown as { hlsTrack?: unknown }).hlsTrack,
+    umami: document.querySelectorAll('script[data-website-id][src*="umami"]').length,
+  }));
+  expect(early.events[0]).toBe('gtm.js');
+  expect(early.track).toBe('function');
+  expect(early.umami, 'Umami still loads as before').toBe(1);
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __gtmAt?: number }).__gtmAt), { timeout: 8000 }).toBeGreaterThan(0);
+  const at = await page.evaluate(() => ({ gtm: (window as unknown as { __gtmAt: number }).__gtmAt, load: (window as unknown as { __loadAt: number }).__loadAt }));
+  expect(at.load).toBeGreaterThan(0);
+  expect(at.gtm, 'container requested only after the load event').toBeGreaterThanOrEqual(at.load);
+  await expect(page.locator('script[src*="googletagmanager.com/gtm.js"]')).toHaveCount(1);
+});
+
+test('deferred Google Tag Manager: the first key press loads it without waiting for idle', async ({ page }) => {
+  await page.addInitScript(() => {
+    // Hold idle callbacks so only the interaction can trigger the container.
+    (window as unknown as { requestIdleCallback: () => number }).requestIdleCallback = () => 0;
+  });
+  await page.addInitScript(GTM_INIT);
+  await page.goto('/', { waitUntil: 'load' });
+  await page.waitForTimeout(400);
+  await expect(page.locator('script[src*="googletagmanager.com/gtm.js"]')).toHaveCount(0);
+  const clicksBefore = await page.evaluate(() => {
+    (window as unknown as { hlsTrack: (e: string, p?: object) => void }).hlsTrack('quote_cta_click', { link_url: '#quote' });
+    return ((window as unknown as { dataLayer: Array<{ event?: string }> }).dataLayer).filter((e) => e.event === 'quote_cta_click').length;
+  });
+  expect(clicksBefore, 'events are queued before the container arrives').toBe(1);
+  await page.keyboard.press('Shift');
+  await expect(page.locator('script[src*="googletagmanager.com/gtm.js"]')).toHaveCount(1);
+  await page.mouse.move(10, 10);
+  await page.keyboard.press('Shift');
+  await expect(page.locator('script[src*="googletagmanager.com/gtm.js"]'), 'requested once').toHaveCount(1);
+});
