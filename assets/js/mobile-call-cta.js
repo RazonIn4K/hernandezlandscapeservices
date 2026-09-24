@@ -208,9 +208,9 @@
       attributeFilter: ["lang"],
     });
 
-    const hero = document.querySelector(".site-hero");
+    const hero = document.querySelector(".site-hero, [data-weather-hero]");
     // Round 4: the hero has its own Call (815) 501-1478 button on phones now.
-    const heroCall = document.querySelector('.site-hero .hero-actions a[href^="tel:"]');
+    const heroCall = document.querySelector("[data-hero-call]");
     const quote =
       document.getElementById("quote") ||
       document.getElementById("instant-quote") ||

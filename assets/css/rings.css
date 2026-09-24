@@ -1746,3 +1746,31 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
   .site-contact-quote.quote-chapter { padding-bottom: calc(6rem + env(safe-area-inset-bottom)) !important; }
   html { scroll-padding-bottom: calc(86px + env(safe-area-inset-bottom)); }
 }
+
+/* ---------- Round 4 · One header, a visible language link (research 03 R5, 05 X7/X11/X13) ---------- */
+.lang-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid rgba(21, 59, 47, 0.32);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--canopy);
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.lang-link:hover { background: #f1f6ef; border-color: var(--leaf); }
+.lang-hint { font-weight: 500; color: #4b5563; }
+#mobileMenuButton { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+@media (max-width: 639px) {
+  .lang-hint { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+@media (max-width: 359px) {
+  /* Logo, language link and menu keep their room on the smallest phones. */
+  .site-header nav > div:first-child > div { display: none; }
+}

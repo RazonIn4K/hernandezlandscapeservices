@@ -46,19 +46,8 @@
 
   var button = document.getElementById("mobileMenuButton");
   var menu = document.getElementById("mobileMenu");
-  var logo = nav.querySelector('img[alt*="Hernandez"]');
-  var logoLink = logo && logo.closest("a");
-
-  if (logoLink && logoLink.parentElement === nav) {
-    var label = logoLink.querySelector("span");
-    if (label) label.classList.add("hidden", "sm:inline");
-  } else if (logoLink && logoLink.parentElement) {
-    Array.prototype.slice.call(logoLink.parentElement.children, 1).forEach(
-      function (brandCopy) {
-        brandCopy.classList.add("hidden", "sm:block");
-      },
-    );
-  }
+  // Round 4: the shared header (scripts/site-header.mjs) sizes its own brand copy;
+  // rings.css hides the name below 400px, so nothing is hidden here.
 
   if (!button || !menu) {
     var originalChildren = Array.prototype.slice.call(nav.children, 1);

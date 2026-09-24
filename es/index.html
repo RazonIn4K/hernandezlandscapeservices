@@ -39,39 +39,58 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924g" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924s" />
   </head>
   <body class="site-body bg-gray-50">
     <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
     <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
+      <!-- @site-header: scripts/site-header.mjs (one header on every page; edit there) -->
       <div class="container mx-auto px-4">
-        <nav class="flex justify-between items-center py-3">
+        <nav class="flex justify-between items-center py-3" aria-label="Navegación principal">
           <div class="flex items-center space-x-3">
-            <a href="/es/" aria-label="Inicio Hernandez Landscape">
-              <img src="/hernandez_images/web_Logo_New_256.png" alt="Logo de Hernandez Landscape & Tree Service LLC" class="h-12 w-auto object-contain" />
-            </a>
+            <a href="/es/" aria-label="Inicio Hernandez Landscape"><img src="/hernandez_images/web_Logo_New_256.png" alt="Logo de Hernandez Landscape &amp; Tree Service LLC" class="h-12 w-auto object-contain" width="256" height="192" /></a>
             <div>
               <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
-              <p class="text-xs text-gray-600 hidden md:block">Equipo local de DeKalb</p>
+              <p class="text-xs text-gray-600 hidden md:block">Jardinería y servicio de árboles en DeKalb County</p>
             </div>
           </div>
-          <div class="hidden lg:flex items-center space-x-4">
-            <a href="/" class="text-sm font-semibold text-gray-600 hover:text-green-700" lang="en">English</a>
-            <a href="#cotizacion" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md">Cotización gratis</a>
+          <div class="desktop-nav hidden lg:flex items-center space-x-4">
+            <a href="/?lang=es#services" class="text-sm font-semibold hover:text-green-600 transition">Servicios</a>
+            <a href="/gallery/" class="text-sm font-semibold hover:text-green-600 transition">Nuestro trabajo</a>
+            <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition">Videos</a>
+            <a href="/?lang=es#testimonials" class="text-sm font-semibold hover:text-green-600 transition">Reseñas</a>
+            <a href="/service-areas/" class="text-sm font-semibold hover:text-green-600 transition">Zonas de servicio</a>
+            <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
+            <a href="/" class="lang-link" hreflang="en" lang="en">English</a>
+            <a href="#cotizacion" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">Cotización gratis</a>
           </div>
-          <a href="tel:18155011478" class="lg:hidden rounded-full bg-green-600 px-4 py-2 text-sm font-bold text-white">(815) 501-1478</a>
+          <div class="flex items-center gap-2 lg:hidden">
+            <a href="/" class="lang-link" hreflang="en" lang="en">English</a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú de navegación"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
+          </div>
+        </nav>
+      </div>
+      <div id="mobileMenu" class="hidden absolute w-full border-t bg-white shadow-lg lg:hidden" aria-hidden="true">
+        <nav class="container mx-auto space-y-1 px-4 py-4" aria-label="Navegación móvil">
+          <a href="/?lang=es#services" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Servicios</a>
+          <a href="/gallery/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Nuestro trabajo</a>
+          <a href="/videos/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Videos</a>
+          <a href="/?lang=es#testimonials" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Reseñas</a>
+          <a href="/service-areas/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Zonas de servicio</a>
+          <a href="tel:18155011478" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Llama al (815) 501-1478</a>
+          <a href="#cotizacion" class="mt-2 block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white hover:bg-green-700">Cotización gratis</a>
         </nav>
       </div>
     </header>
     <div class="storm-band" data-storm-band hidden role="region" aria-label="Aviso de tormenta"><span><i class="fas fa-bolt" aria-hidden="true"></i> ¿Daños por tormenta? Llame para consultar la disponibilidad</span><a class="storm-call" href="tel:18155011478">Llama al (815) 501-1478</a><a href="/es/emergency-tree-removal/">Ayuda de emergencia</a></div>
 
-    <main id="main-content" class="pt-28 pb-16">
+    <main id="main-content" class="pb-16">
       <section class="relative overflow-hidden" data-weather-hero>
         <div class="absolute inset-0">
           <img src="/hernandez_images/google-profile-2026-tree-climber-canopy.jpg" alt="" class="h-full w-full object-cover" width="900" height="1200" decoding="async" fetchpriority="high" />
           <div class="absolute inset-0 bg-black/55"></div>
         </div>
-        <div class="relative container mx-auto px-4 py-20 md:py-28">
+        <div class="relative container mx-auto px-4 pt-40 pb-20 md:pt-52 md:pb-28">
           <div class="max-w-3xl text-white">
             <p class="mb-3 text-sm font-bold uppercase tracking-wide text-green-200">Hernandez Landscape &amp; Tree Service LLC</p>
             <h1 class="text-4xl font-black leading-tight md:text-5xl">Jardinería y árboles en DeKalb County</h1>
@@ -79,7 +98,7 @@
               Corte de pasto, limpieza de jardín, poda y retiro de árboles para casas en DeKalb, Sycamore, Cortland y alrededores. Empresa familiar local — lo atendemos en español.
             </p>
             <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a href="tel:18155011478" class="rounded-full bg-green-600 px-8 py-3 text-center font-bold text-white hover:bg-green-700 transition shadow-md"><i class="fas fa-phone mr-2" aria-hidden="true"></i>Llamar</a>
+              <a href="tel:18155011478" data-hero-call class="rounded-full bg-green-600 px-8 py-3 text-center font-bold text-white hover:bg-green-700 transition shadow-md"><i class="fas fa-phone mr-2" aria-hidden="true"></i>Llamar</a>
               <a href="sms:+18155011478" class="rounded-full border-2 border-white px-8 py-3 text-center font-bold text-white">Enviar mensaje</a>
               <a href="#cotizacion" class="rounded-full border-2 border-white px-8 py-3 text-center font-bold text-white hover:bg-white/10 transition">Cotización gratis</a>
             </div>

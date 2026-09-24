@@ -28,6 +28,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { renderSiteHeader, altFor } from './site-header.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://hernandezlandscapeservices.com';
@@ -349,8 +350,6 @@ function jsonLd(city, lang) {
 function renderPage(city, lang) {
   const t = city[lang];
   const url = lang === 'es' ? esUrl(city) : enUrl(city);
-  const otherUrl = lang === 'es' ? `/service-areas/${city.slug}/` : `/es/service-areas/${city.slug}/`;
-  const otherLabel = lang === 'es' ? 'English' : 'Español';
   const quoteLabel = lang === 'es' ? 'Cotización gratis' : 'Get Free Quote';
   const quoteUrl = lang === 'es' ? '/?lang=es#quote' : '/#quote';
   const cards = t.cards
@@ -409,23 +408,10 @@ ${BANNER}
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924g" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924s" />
   </head>
   <body class="site-body bg-gray-50">
-    <header class="site-header fixed top-0 z-50 w-full bg-white shadow">
-      <div class="container mx-auto px-4">
-        <nav class="flex items-center justify-between py-3">
-          <a href="/" class="flex items-center gap-3">
-            <img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain" />
-            <span class="text-lg font-bold text-gray-800">Hernandez Landscape</span>
-          </a>
-          <div class="flex items-center gap-4">
-            <a href="${otherUrl}" class="text-sm font-semibold text-gray-600 hover:text-green-700" lang="${lang === 'es' ? 'en' : 'es'}">${otherLabel}</a>
-            <a href="${quoteUrl}" class="rounded-full bg-green-600 px-6 py-2 text-sm font-bold text-white shadow-md hover:bg-green-700">${quoteLabel}</a>
-          </div>
-        </nav>
-      </div>
-    </header>
+${renderSiteHeader({ lang, alt: altFor(lang === 'es' ? `/es/service-areas/${city.slug}/` : `/service-areas/${city.slug}/`), quoteHref: quoteUrl })}
     ${stormBand}
 
     <main class="pt-28">

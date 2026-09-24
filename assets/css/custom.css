@@ -543,12 +543,12 @@ textarea:focus-visible {
   min-width: 0;
 }
 
-.desktop-nav > a:not([href="#quote"]) {
+.desktop-nav > a:not([href="#quote"]):not(.header-cta):not(.lang-link):not(.header-tel) {
   position: relative;
   padding: 0.65rem 0.1rem;
 }
 
-.desktop-nav > a:not([href="#quote"])::after {
+.desktop-nav > a:not([href="#quote"]):not(.header-cta):not(.lang-link):not(.header-tel)::after {
   position: absolute;
   right: 0;
   bottom: 0.3rem;
@@ -562,8 +562,8 @@ textarea:focus-visible {
   transition: transform 180ms ease;
 }
 
-.desktop-nav > a:not([href="#quote"]):hover::after,
-.desktop-nav > a:not([href="#quote"]):focus-visible::after {
+.desktop-nav > a:not([href="#quote"]):not(.header-cta):not(.lang-link):not(.header-tel):hover::after,
+.desktop-nav > a:not([href="#quote"]):not(.header-cta):not(.lang-link):not(.header-tel):focus-visible::after {
   transform: scaleX(1);
   transform-origin: left;
 }
@@ -699,6 +699,7 @@ footer .text-green-500 {
 .primary-cta,
 .secondary-cta,
 .site-header a[href="#quote"],
+.site-header a.header-cta,
 #mobileMenu a[href="#quote"],
 #instant-quote button,
 #quote button[type="submit"],

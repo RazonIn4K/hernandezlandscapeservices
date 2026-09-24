@@ -36,17 +36,45 @@
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
     <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924g" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924s" />
   </head>
   <body class="site-body bg-gray-50">
-    <header class="site-header fixed top-0 z-50 w-full bg-white shadow">
+    <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
+      <!-- @site-header: scripts/site-header.mjs (one header on every page; edit there) -->
       <div class="container mx-auto px-4">
-        <nav class="flex items-center justify-between py-3">
-          <a href="/" class="flex items-center gap-3">
-            <img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain" />
-            <span class="text-lg font-bold text-gray-800">Hernandez Landscape</span>
-          </a>
-          <a href="/#quote" class="rounded-full bg-green-600 px-6 py-2 text-sm font-bold text-white shadow-md hover:bg-green-700">Get Free Quote</a>
+        <nav class="flex justify-between items-center py-3" aria-label="Primary navigation">
+          <div class="flex items-center space-x-3">
+            <a href="/" aria-label="Hernandez Landscape home"><img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape &amp; Tree Service LLC Logo" class="h-12 w-auto object-contain" width="256" height="192" /></a>
+            <div>
+              <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
+              <p class="text-xs text-gray-600 hidden md:block">DeKalb County landscape and tree service</p>
+            </div>
+          </div>
+          <div class="desktop-nav hidden lg:flex items-center space-x-4">
+            <a href="/#services" class="text-sm font-semibold hover:text-green-600 transition">Services</a>
+            <a href="/gallery/" class="text-sm font-semibold hover:text-green-600 transition">Our Work</a>
+            <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition">Videos</a>
+            <a href="/#testimonials" class="text-sm font-semibold hover:text-green-600 transition">Reviews</a>
+            <a href="/service-areas/" class="text-sm font-semibold hover:text-green-600 transition">Service Area</a>
+            <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
+            <a href="/es/service-areas/cortland-il/" class="lang-link" hreflang="es" lang="es">Español</a>
+            <a href="/#quote" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">Get Free Quote</a>
+          </div>
+          <div class="flex items-center gap-2 lg:hidden">
+            <a href="/es/service-areas/cortland-il/" class="lang-link" hreflang="es" lang="es">Español</a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
+          </div>
+        </nav>
+      </div>
+      <div id="mobileMenu" class="hidden absolute w-full border-t bg-white shadow-lg lg:hidden" aria-hidden="true">
+        <nav class="container mx-auto space-y-1 px-4 py-4" aria-label="Mobile navigation">
+          <a href="/#services" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Services</a>
+          <a href="/gallery/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Our Work</a>
+          <a href="/videos/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Videos</a>
+          <a href="/#testimonials" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Reviews</a>
+          <a href="/service-areas/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Service Area</a>
+          <a href="tel:18155011478" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Call (815) 501-1478</a>
+          <a href="/#quote" class="mt-2 block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white hover:bg-green-700">Get Free Quote</a>
         </nav>
       </div>
     </header>
