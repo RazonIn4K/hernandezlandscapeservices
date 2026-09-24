@@ -19,7 +19,7 @@
         box-shadow: 0 16px 36px rgba(10, 38, 28, 0.4);
         color: #fff;
         display: grid;
-        font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: "Public Sans", "Public Sans Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         gap: 0.4rem;
         grid-template-columns: 1.2fr 0.9fr 1.1fr;
         left: max(10px, env(safe-area-inset-left));
@@ -209,6 +209,8 @@
     });
 
     const hero = document.querySelector(".site-hero");
+    // Round 4: the hero has its own Call (815) 501-1478 button on phones now.
+    const heroCall = document.querySelector('.site-hero .hero-actions a[href^="tel:"]');
     const quote =
       document.getElementById("quote") ||
       document.getElementById("instant-quote") ||
@@ -226,7 +228,11 @@
     };
 
     const updateVisibility = () => {
-      const heroIsVisible = overlapsViewport(hero, 80);
+      // Hidden while the hero's own call button is on screen (or still below it);
+      // it appears once that button has scrolled away, so the call is never repeated.
+      const heroIsVisible = heroCall
+        ? heroCall.getBoundingClientRect().bottom > 0
+        : overlapsViewport(hero, 80);
       const conversionAreaIsVisible =
         overlapsViewport(quote, 80) || overlapsViewport(footer, 32);
       const shouldShow =

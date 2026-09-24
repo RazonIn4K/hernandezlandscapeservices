@@ -79,3 +79,88 @@ test.describe('Honest trust signals', () => {
     });
   }
 });
+
+test.describe('Quote form friction', () => {
+  const required = ['contactName', 'contactPhone', 'contactAddress', 'ownerVerify', 'bestTime', 'contactService', 'projectDetails'];
+
+  test('an empty send shows inline errors beside each field, focuses the first, and no modal', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.locator('#contactForm button[type="submit"]').click();
+    for (const id of required) {
+      await expect(page.locator(`#${id}`), id).toHaveAttribute('aria-invalid', 'true');
+      await expect(page.locator(`#${id}Error`), id).toBeVisible();
+      await expect(page.locator(`#${id}`)).toHaveAttribute('aria-describedby', new RegExp(`${id}Error`));
+    }
+    await expect(page.locator('#contactEmailError')).toBeHidden();
+    await expect(page.locator('#customModal')).toBeHidden();
+    await expect(page.locator('#contactName')).toBeFocused();
+    await expect(page.locator('#contactNameError')).toHaveText('Please enter your name.');
+    await page.locator('#contactName').fill('Prueba Local');
+    await expect(page.locator('#contactNameError')).toBeHidden();
+    await expect(page.locator('#contactName')).not.toHaveAttribute('aria-invalid', 'true');
+  });
+
+  test('messages follow the language (usted)', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.locator('[data-lang-switch="es"]:visible').first().click();
+    await page.locator('#contactForm button[type="submit"]').click();
+    await expect(page.locator('#contactNameError')).toHaveText('Escriba su nombre.');
+    await expect(page.locator('#bestTimeError')).toHaveText('Elija un horario para la llamada.');
+    await page.locator('[data-lang-switch="en"]:visible').first().click();
+    await expect(page.locator('#contactNameError')).toHaveText('Please enter your name.');
+  });
+
+  test('required and optional fields are both marked; no placeholder repeats a label', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    for (const id of required) {
+      await expect(page.locator(`label[for="${id}"] .field-tag:visible`), id).toHaveText('(required)');
+    }
+    await expect(page.locator('label[for="contactEmail"]')).toContainText('(optional)');
+    for (const id of ['contactName', 'contactPhone', 'contactEmail', 'contactAddress', 'projectDetails']) {
+      await expect(page.locator(`#${id}`), id).not.toHaveAttribute('placeholder', /.+/);
+    }
+    await page.locator('#yard-lawn').check();
+    await page.locator('[data-yard-cta]').click();
+    await expect(page.locator('label[for="projectDetails"] .field-tag:visible')).toHaveText('(optional)');
+  });
+
+  test('town chips prefill the town and show the matching existing policy line', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const address = page.locator('#contactAddress');
+    await page.locator('.town-chip[data-town="Sycamore"]').click();
+    await expect(address).toHaveValue(', Sycamore, IL');
+    await expect(address).toBeFocused();
+    await expect(page.locator('[data-town-policy="primary"]')).toBeVisible();
+    await expect(page.locator('[data-town-policy="outlying"]')).toBeHidden();
+    await page.keyboard.type('123 Example Street');
+    await expect(address).toHaveValue('123 Example Street, Sycamore, IL');
+    await page.locator('.town-chip[data-town="Genoa"]').click();
+    await expect(address).toHaveValue('123 Example Street, Genoa, IL');
+    await expect(page.locator('[data-town-policy="outlying"]')).toBeVisible();
+    await expect(page.locator('.town-chip[data-town="Genoa"]')).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('.town-chip[data-town=""]').click();
+    await expect(address).toHaveValue('123 Example Street');
+    const names = await page.locator('#contactForm [data-town-start] [name]').count();
+    expect(names, 'chips add no form fields').toBe(0);
+  });
+
+  test('photos can be texted to the existing number', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const sms = page.locator('#contactForm .sms-photos a');
+    await expect(sms).toHaveAttribute('href', 'sms:+18155011478');
+    await expect(page.locator('#contactForm .sms-photos')).toContainText('Or text photos of the job to (815) 501-1478');
+  });
+
+  test('the mobile bar waits until the hero call button has scrolled away', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    const bar = page.locator('[data-mobile-call-cta]');
+    await expect(bar).not.toBeVisible();
+    const callBottom = await page.locator('.hero-actions a[href^="tel:"]').evaluate((el) => el.getBoundingClientRect().bottom + window.scrollY);
+    await page.evaluate((y) => window.scrollTo(0, y + 20), callBottom);
+    await expect(bar).toBeVisible();
+    expect(await page.evaluate(() => getComputedStyle(document.querySelector('[data-mobile-call-cta]')!).fontFamily)).toContain('Public Sans');
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(bar).not.toBeVisible();
+  });
+});

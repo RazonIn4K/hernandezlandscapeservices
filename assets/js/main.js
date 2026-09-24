@@ -777,6 +777,157 @@ if (contactForm) {
     renderQuotePrefillNotice(null);
   });
 
+  /* Round 4 · Inline validation (EN/ES). The browser's constraint checks stay
+     the source of truth; with JS on, the transient native bubbles and the old
+     "fill in all required fields" modal give way to a specific message next to
+     each field, shown after the visitor leaves a field they typed in (or on
+     Send) and cleared as soon as the value is fixed. Field names, endpoint and
+     payload are untouched. */
+  contactForm.noValidate = true;
+  const FIELD_ERRORS = {
+    contactName: ["quote.error.name", "Please enter your name."],
+    contactPhone: ["quote.error.phone", "Please enter a phone number with at least 10 digits."],
+    contactEmail: ["quote.error.email", "Please check the email address, or leave it blank."],
+    contactAddress: ["quote.error.address", "Please enter the property address."],
+    ownerVerify: ["quote.error.verify", "Please confirm you are the owner or an authorized agent."],
+    bestTime: ["quote.error.bestTime", "Please choose a callback time."],
+    contactService: ["quote.error.service", "Please choose a service."],
+    projectDetails: ["quote.error.project", "Please tell us a little about the job."],
+  };
+  const validatedFields = () =>
+    Object.keys(FIELD_ERRORS).map((id) => document.getElementById(id)).filter(Boolean);
+  const fieldErrorFor = (field) => {
+    let error = document.getElementById(`${field.id}Error`);
+    if (!error) {
+      error = document.createElement("p");
+      error.id = `${field.id}Error`;
+      error.className = "field-error";
+      error.hidden = true;
+      const anchor = field.type === "checkbox" ? field.parentElement : field;
+      anchor.after(error);
+      const describedBy = (field.getAttribute("aria-describedby") || "").split(" ").filter(Boolean);
+      describedBy.push(error.id);
+      field.setAttribute("aria-describedby", describedBy.join(" "));
+    }
+    return error;
+  };
+  const fieldIsValid = (field) => {
+    if (!field.validity.valid) return false;
+    if (field.type === "checkbox") return true;
+    const value = String(field.value || "");
+    if (field.required && !value.trim()) return false;
+    // A town chip leaves ", Town, IL" until the street is typed in front of it.
+    if (field.id === "contactAddress" && /^\s*,/.test(value)) return false;
+    return true;
+  };
+  const renderFieldError = (field, show) => {
+    const [key, fallback] = FIELD_ERRORS[field.id] || [];
+    const error = fieldErrorFor(field);
+    if (show) {
+      error.textContent = getMessage(key, fallback);
+      error.hidden = false;
+      field.setAttribute("aria-invalid", "true");
+      field.classList.add("border-red-500");
+    } else {
+      error.hidden = true;
+      error.textContent = "";
+      field.removeAttribute("aria-invalid");
+      field.classList.remove("border-red-500");
+    }
+  };
+  const touchedFields = new WeakSet();
+  let submitAttempted = false;
+  validatedFields().forEach((field) => {
+    field.addEventListener("input", () => {
+      touchedFields.add(field);
+      if (field.getAttribute("aria-invalid") === "true" && fieldIsValid(field)) renderFieldError(field, false);
+    });
+    field.addEventListener("change", () => {
+      touchedFields.add(field);
+      if (fieldIsValid(field)) renderFieldError(field, false);
+      else if (submitAttempted) renderFieldError(field, true);
+    });
+    field.addEventListener("blur", () => {
+      if ((touchedFields.has(field) || submitAttempted) && !fieldIsValid(field)) renderFieldError(field, true);
+    });
+  });
+  const validateContactForm = () => {
+    submitAttempted = true;
+    let firstInvalid = null;
+    validatedFields().forEach((field) => {
+      const valid = fieldIsValid(field);
+      renderFieldError(field, !valid);
+      if (!valid && !firstInvalid) firstInvalid = field;
+    });
+    if (firstInvalid) firstInvalid.focus();
+    return !firstInvalid;
+  };
+  contactForm.addEventListener("reset", () => {
+    submitAttempted = false;
+    validatedFields().forEach((field) => renderFieldError(field, false));
+  });
+  if (languageApi && typeof languageApi.onChange === "function") {
+    languageApi.onChange(() => {
+      validatedFields().forEach((field) => {
+        if (field.getAttribute("aria-invalid") === "true") renderFieldError(field, true);
+      });
+    });
+  }
+
+  // The message box turns optional once yard areas carry the request (#51).
+  const projectField = document.getElementById("projectDetails");
+  const projectReqTag = contactForm.querySelector("[data-project-req]");
+  const projectOptTag = contactForm.querySelector("[data-project-opt]");
+  const syncProjectTag = () => {
+    if (!projectField) return;
+    if (projectReqTag) projectReqTag.hidden = !projectField.required;
+    if (projectOptTag) projectOptTag.hidden = projectField.required;
+    if (!projectField.required && projectField.getAttribute("aria-invalid") === "true") {
+      renderFieldError(projectField, false);
+    }
+  };
+  if (projectField && "MutationObserver" in window) {
+    new MutationObserver(syncProjectTag).observe(projectField, { attributes: true, attributeFilter: ["required"] });
+  }
+  syncProjectTag();
+
+  /* Round 4 · Town-first quick start. A chip only prefills the town in the
+     address field (", Town, IL" with the caret before it, so the street goes in
+     front) and shows the matching existing service-policy line(s). The chips
+     are buttons with no name: nothing new is submitted. */
+  const townStart = contactForm.querySelector("[data-town-start]");
+  const addressField = document.getElementById("contactAddress");
+  if (townStart && addressField) {
+    const TOWNS = ["DeKalb", "Sycamore", "Cortland", "Malta", "Genoa", "Kingston"];
+    const townSuffix = new RegExp(`,?\\s*(?:${TOWNS.join("|")}),\\s*IL\\s*$`, "i");
+    const chips = Array.from(townStart.querySelectorAll("[data-town]"));
+    const policyLines = Array.from(townStart.querySelectorAll("[data-town-policy]"));
+    townStart.hidden = false;
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const town = chip.dataset.town || "";
+        if (town && !TOWNS.includes(town)) return;
+        chips.forEach((other) => other.setAttribute("aria-pressed", String(other === chip)));
+        const street = addressField.value.replace(townSuffix, "").replace(/^\s*,\s*/, "").trim();
+        addressField.value = town ? `${street}, ${town}, IL` : street;
+        const primary = town === "DeKalb" || town === "Sycamore";
+        policyLines.forEach((line) => {
+          line.hidden = line.dataset.townPolicy === "outlying" ? primary : false;
+        });
+        addressField.focus();
+        const caret = street ? addressField.value.length : 0;
+        addressField.setSelectionRange(caret, caret);
+        if (addressField.getAttribute("aria-invalid") === "true" && fieldIsValid(addressField)) {
+          renderFieldError(addressField, false);
+        }
+      });
+    });
+    contactForm.addEventListener("reset", () => {
+      chips.forEach((chip) => chip.setAttribute("aria-pressed", "false"));
+      policyLines.forEach((line) => { line.hidden = true; });
+    });
+  }
+
   contactForm.addEventListener(
     "invalid",
     (event) => {
@@ -812,46 +963,7 @@ if (contactForm) {
   contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const contactName = document.getElementById("contactName");
-    const contactPhone = document.getElementById("contactPhone");
-    const contactService = document.getElementById("contactService");
-    const projectDetails = document.getElementById("projectDetails");
-    const yardAreasField = document.getElementById("yardAreasField");
-
-    let isValid = true;
-
-    if (!contactName.value) {
-      contactName.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      contactName.classList.remove("border-red-500");
-    }
-    if (!contactPhone.value || !contactPhone.checkValidity()) {
-      contactPhone.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      contactPhone.classList.remove("border-red-500");
-    }
-    if (!contactService.value) {
-      contactService.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      contactService.classList.remove("border-red-500");
-    }
-    if (!projectDetails.value.trim() && !yardAreasField?.value.trim()) {
-      projectDetails.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      projectDetails.classList.remove("border-red-500");
-    }
-
-    if (!isValid) {
-      showModal(
-        getMessage(
-          "alerts.contact.invalid",
-          "Please fill in all required fields correctly.",
-        ),
-      );
+    if (!validateContactForm()) {
       return;
     }
 

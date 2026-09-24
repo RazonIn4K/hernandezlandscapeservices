@@ -1700,3 +1700,49 @@ html .strip-track:focus-visible:focus-visible:focus-visible {
   .yard-plan [data-zone="leaf-removal"] text,
   .yard-plan [data-zone="pressure-washing"] text { display: none; }
 }
+
+/* ---------- Round 4 · Quote form friction (research 03 R10/R14/R21) ---------- */
+.quote-field-label .field-tag,
+label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font-weight: 500; }
+.field-error {
+  display: flex;
+  gap: 0.4rem;
+  align-items: flex-start;
+  margin: 0.35rem 0 0;
+  color: #b42318;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.field-error::before { content: "!"; flex: 0 0 auto; display: inline-grid; place-items: center; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: #b42318; color: #fff; font-size: 0.75rem; font-weight: 800; line-height: 1; margin-top: 0.1rem; }
+.field-error[hidden] { display: none; }
+#contactForm [aria-invalid="true"] { border-color: #b42318 !important; box-shadow: 0 0 0 1px #b42318; }
+.town-start { margin: 0; padding: 0; border: 0; min-width: 0; }
+.town-start[hidden] { display: none; }
+.town-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem; }
+.town-chip {
+  min-height: 44px;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid rgba(21, 59, 47, 0.28);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--canopy);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.town-chip:hover { border-color: var(--leaf); background: #f1f6ef; }
+.town-chip[aria-pressed="true"] { background: var(--canopy); border-color: var(--canopy); color: #fff; }
+.town-policy { margin: 0.6rem 0 0; padding: 0; list-style: none; color: #78350f; font-size: 0.9rem; }
+.town-policy li { padding: 0.45rem 0.7rem; border-left: 4px solid #d97706; background: #fffbeb; border-radius: 0 6px 6px 0; }
+.town-policy li + li { margin-top: 0.35rem; }
+.town-policy li[hidden] { display: none; }
+.sms-photos { margin: 0.4rem 0 0; color: #374151; font-size: 0.95rem; }
+.sms-photos i { color: var(--leaf); margin-right: 0.25rem; }
+.sms-photos a { color: var(--canopy); font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-block; min-height: 24px; }
+@media (max-width: 767px) {
+  /* The mobile call bar (86px incl. its gap) never covers "Send Quote Request" or a
+     focused field (WCAG 2.4.11). */
+  .site-contact-quote.quote-chapter { padding-bottom: calc(6rem + env(safe-area-inset-bottom)) !important; }
+  html { scroll-padding-bottom: calc(86px + env(safe-area-inset-bottom)); }
+}

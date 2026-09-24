@@ -1,7 +1,7 @@
         /* Reusing main styles from index.html */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; background-color: #f9fafb; color: #1f2937; }
-        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: var(--body, "Public Sans", system-ui, sans-serif); }
         header nav > div:first-child,
         header nav > div:first-child > div {
             min-width: 0;
@@ -158,7 +158,7 @@
         /* Typography improvements for overlay text */
         .gallery-overlay h3 {
             color: white;
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--body, "Public Sans", system-ui, sans-serif);
             font-weight: 700;
             font-size: 1.25rem;
             text-transform: uppercase;
