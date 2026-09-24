@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v25';
+const CACHE_NAME = 'hernandez-landscape-v26';
 // Directory routes are precached in their canonical '/x/' form only — internal
 // links always use that form, and doubling each page as '/x/index.html' made
 // every SW install fetch 14 identical documents twice.
