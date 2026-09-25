@@ -41,12 +41,15 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924y" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924aa" />
     <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
   </head>
   <body class="site-body bg-gray-50">
+    <!-- @icons: scripts/icons.mjs (symbols this page uses; generated) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-down" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M375 311l-160 160q-10 9-23 9-13 0-23-9l-160-160q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l105 106v-307q0-14 9-22 9-9 22-9 13 0 23 9 10 8 10 22v307l105-106q10-9 23-9 13 0 23 9 9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-arrow-right" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M439 279l-160 160q-10 9-23 9-13 0-23-9-9-10-9-23 0-13 9-23l106-105h-307q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h307l-106-105q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l160 160q9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-arrow-up" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M375 247q-10 9-23 9-13 0-23-9l-105-106v307q0 14-9 22-9 9-22 9-13 0-23-9-10-8-10-22v-307l-105 106q-10 9-23 9-13 0-23-9-9-10-9-23 0-13 9-23l160-160q10-9 23-9 13 0 23 9l160 160q9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-arrow-up-right-from-square" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M384 320q-14 0-23 9h0q-9 9-9 23v96h-288v-288h96q14 0 23-9 9-9 9-23 0-14-9-23-9-9-23-9h-96q-27 1-45 19-18 18-19 45v288q1 27 19 45 18 18 45 19h288q27-1 45-19 18-18 19-45v-96q0-14-9-23-9-9-23-9zm119-311q-9-9-23-9h-160q-14 0-22 9-9 9-9 22 0 14 9 22 9 9 23 9h83l-225 229q-10 10-10 22 0 13 10 23 10 9 22 9 13 0 23-9l224-227v83q0 14 9 22 9 9 22 9 13 0 23-9 10-8 10-22v-161q0-12-9-22z"/></symbol><symbol id="i-bars" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 96q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm0 160q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm416 192h-384q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9z"/></symbol><symbol id="i-bolt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M241 224h111q22 1 29 21 8 20-8 35l-256 224q-19 15-40 2-19-16-10-39l77-179h-113q-20-1-29-21-7-20 9-35l256-224q19-15 40-2 19 16 10 39l-76 179z"/></symbol><symbol id="i-calculator" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M336 0h-288q-20 1-34 14-13 14-14 34v416q1 20 14 34 14 13 34 14h288q20-1 34-14 13-14 14-34v-416q-1-20-14-34-14-13-34-14zm-272 208q1-15 16-16h32q15 1 16 16v32q-1 15-16 16h-32q-15-1-16-16v-32zm0 96q1-15 16-16h32q15 1 16 16v32q-1 15-16 16h-32q-15-1-16-16v-32zm160 128q-1 15-16 16h-128q-15-1-16-16v-32q1-15 16-16h128q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm96 192q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-224q-15-1-16-16v-64q1-15 16-16h224q15 1 16 16v64z"/></symbol><symbol id="i-check" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M439 105q9 10 9 23h0q0 13-9 23l-256 256q-10 9-23 9-13 0-23-9l-128-128q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l104 106 234-234q10-9 23-9 13 0 23 9h0z"/></symbol><symbol id="i-check-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 256q1-72 35-129h0q34-58 92-92h0q57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129zm372-44q8-9 8-20h0q0-11-8-20-9-8-20-8-11 0-20 8l-108 108-44-44q-9-8-20-8-11 0-20 8-8 9-8 20 0 11 8 20l64 64q9 8 20 8 11 0 20-8l128-128z"/></symbol><symbol id="i-chevron-down" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M224 416q-13 0-23-9l-192-192q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l169 170 169-170q10-9 23-9 13 0 23 9 9 10 9 23 0 13-9 23l-192 192q-10 9-23 9z"/></symbol><symbol id="i-chevron-right" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M96 480q-13 0-23-9-9-10-9-23 0-13 9-23l170-169-170-169q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l192 192q9 10 9 23 0 13-9 23l-192 192q-10 9-23 9z"/></symbol><symbol id="i-clipboard-list" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M336 64h-54q-10-28-34-46-24-17-56-18-32 1-56 18-24 18-34 46h-54q-20 1-34 14-13 14-14 34v352q1 20 14 34 14 13 34 14h288q20-1 34-14 13-14 14-34v-352q-1-20-14-34-14-13-34-14zm-240 328q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24zm0-96q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24zm96-232q14 0 23 9h0q9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9zm112 320h-128q-15-1-16-16 1-15 16-16h128q15 1 16 16-1 15-16 16zm0-96h-128q-15-1-16-16 1-15 16-16h128q15 1 16 16-1 15-16 16z"/></symbol><symbol id="i-clock" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 512q-72-1-129-35h0q-58-34-92-92h0q-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35zm-24-256q0 13 11 19l96 64q19 12 32-6 12-19-6-33l-85-57v-123q-2-22-25-24-10 0-17 7-7 7-7 17l1 136z"/></symbol><symbol id="i-comment-dots" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 31q-71 1-129 28h0q-57 28-91 75h0q-34 47-35 105 2 76 57 131-12 39-32 66-20 28-23 30-3 3-1 8 2 5 7 5 50-1 85-18 36-17 55-33 50 19 108 19 71-1 129-28 57-28 91-75 34-46 35-104-1-58-35-105-34-47-92-75-57-28-129-29zm-129 240q-14 0-23-9h0q-9-9-9-22 0-13 9-22 9-10 23-10 14 0 23 9 9 9 9 23-2 29-32 31zm129 0q-14 0-22-9h0q-9-9-9-22 0-13 9-22 9-10 22-10 13 0 22 9 9 9 9 23-2 29-31 31zm127 0q-14 0-23-9h0q-9-9-9-22 0-13 9-22 9-10 23-10 14 0 23 9 9 9 9 23-2 29-32 31z"/></symbol><symbol id="i-comments" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M416 176q-2-75-61-124h0q-59-50-147-52-88 2-147 52-59 49-61 124 1 60 42 105-14 25-26 41-13 16-14 17-3 4-1 8 2 5 7 5 58-2 95-24 47 23 105 24 88-2 147-52 59-49 61-124zm184 268q39-46 40-108-2-75-56-124-54-50-136-52 0 0 0 0-1 0-1 0 0 1 0 2 1 7 1 14-2 75-53 130-52 55-133 73 17 58 67 95 50 37 119 38 51-1 93-22 37 20 91 22 5 0 7-5 2-4-1-8 0 0 0 0-3-2-14-17-12-15-24-38z"/></symbol><symbol id="i-cut" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M397 51q22-21 51-21h0q29 0 51 21 11 13 0 26l-282 283q7 18 7 40-1 48-33 79-31 32-79 33-48-1-79-33-32-31-33-79 1-48 33-80 31-32 79-33 22 1 41 9l38-41-38-38q-19 7-41 7-48-1-79-33-32-31-33-79 1-48 33-79 31-32 79-33 48 1 79 33 32 31 33 79 0 22-7 41l38 38 142-140zm-237 60q-1-20-14-34h0q-14-13-34-14-20 1-34 14-13 14-14 34 1 21 14 34 14 14 34 14 20 0 34-14 13-13 14-34zm-48 337q20-1 34-14h0q13-14 14-34-1-20-14-34-14-13-34-14-20 1-34 14-13 14-14 34 1 20 14 34 14 13 34 14zm167-105l64-64 156 156q11 13 0 26-22 21-51 21-29 0-51-21l-118-118z"/></symbol><symbol id="i-dollar-sign" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M160 0q14 0 23 9h0q9 9 9 23v36q2 0 3 0 1 0 2 0 9 2 26 5 18 3 29 5 12 4 19 15 7 11 4 24-4 13-15 20-11 6-24 3-7-2-21-4-14-2-24-4-2 0-4 0-49-7-78 5-26 10-28 28-2 15 1 20 3 6 13 14 25 14 73 26l3 1q22 5 46 14 23 8 43 20 22 14 36 40 12 27 6 58-6 29-23 48-18 20-43 30-20 8-44 11v33q0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23v-35q0 0 0 0-1-1-1 0h0q-20-3-45-10-26-7-47-16-12-6-17-18-4-12 1-25 6-12 17-17 12-4 24 1 17 7 39 13 21 6 37 9 49 6 76-6 25-10 27-28 2-16-1-21-3-6-13-13-25-15-73-27l-3-1q-22-5-46-14-23-8-43-20-22-14-36-40-12-27-6-59 6-29 24-48 19-19 44-28 20-8 42-10v-35q0-14 9-23 9-9 23-9h0z"/></symbol><symbol id="i-envelope" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 352q-25 0-47-16l-209-163v227q1 20 14 34 14 13 34 14h416q20-1 34-14 13-14 14-34v-227l-209 163q-22 16-47 16zm-240-207l212 165q13 10 28 10 15 0 28-10l212-165q15-13 16-33-1-20-14-34-14-13-34-14h-416q-20 1-34 14-13 14-14 34 0 20 16 33z"/></symbol><symbol id="i-exclamation-triangle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M506 417l-213-364q-14-21-37-21-23 0-37 21l-213 364q-12 22 0 42 11 20 37 21h426q26-1 37-21 12-20 0-42zm-274-249q2-22 24-24 22 2 24 24v128q-2 22-23 24-10 0-17-7-8-7-8-17v-128zm24 248q-13 0-22-9h0q-9-9-9-22 0-14 9-23 9-9 22-9 13 0 22 9 9 9 9 23 0 13-9 22-9 9-22 9z"/></symbol><symbol id="i-facebook" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M504 256q-1-69-34-125h0q-33-56-89-89h0q-56-33-125-34-69 1-125 34-56 33-89 89-33 56-34 125 2 95 60 162 58 67 149 83v-173h-63v-72h63v-55q1-46 26-71 25-25 68-25 21 0 38 2 16 2 17 3 0 0 0 0v61h-31q-23 0-32 12-9 11-8 26v47h69l-11 72h-58v173q91-16 149-83 58-67 60-162z"/></symbol><symbol id="i-facebook-f" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M279 288l14-93h-89v-60q0-20 12-34 11-15 41-16h40v-79q-1 0-23-3-21-3-49-3-55 0-88 32-32 32-33 93v70h-81v93h81v224h100v-224z"/></symbol><symbol id="i-google" viewBox="0 0 488 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M488 262q-2 108-66 174h0q-65 66-174 68-69-1-125-34-56-33-89-89-33-56-34-125 1-69 34-125 33-56 89-89 56-33 125-34 101 2 166 65l-67 65q-47-42-105-38-58 3-102 44-43 42-46 112 2 67 45 111 44 44 109 46 49-1 79-20 30-19 45-43 14-25 17-44h-141v-86h236q4 18 4 42z"/></symbol><symbol id="i-handshake" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 384h64q14 0 23-9 9-9 9-23v-224h-96v256zm48-64q15 1 16 16-1 15-16 16-15-1-16-16 1-15 16-16zm301-256q-13 0-22 8l-98 90q0 0 0 0 0 1 0 1-13 12-13 28 0 15 11 28 10 10 26 12 16 1 30-10 0 0 0 0 0 0 0 0l80-73q12-9 23 1 8 12-1 23l-27 24 146 118q4 3 8 7v-194q-31-31-71-47-40-17-84-17l-8 1zm-14 153l-30 28q-24 20-52 19-29-2-50-23-20-24-19-52 1-29 23-50l82-75h-6q-44 0-84 17-40 16-71 47v224h18l91 82q21 16 47 14 25-3 43-24l18 16q12 9 27 7 15-1 25-13l32-38 5 4q11 8 23 7 13-1 22-12l10-11q8-11 7-24-2-12-12-21l-149-122zm209-89v224q0 14 9 23 9 9 22 9h65v-256h-96zm48 224q-15-1-16-16 1-15 16-16 15 1 16 16-1 15-16 16z"/></symbol><symbol id="i-home" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M576 256q-1 13-10 22h0q-9 9-22 10h-32l1 160q-1 4-1 8v16q0 17-12 28-11 12-28 12h-16q-1 0-1 0-1-1-2 0-2-1-3 0-1 0-1 0h-57q-17 0-28-12-12-11-12-28v-88q0-14-9-23-9-9-23-9h-64q-14 0-23 9-9 9-9 23v88q0 17-12 28-11 12-28 12h-56q-2 0-4 0 0 0 0 0-2 0-4 0h-16q-17 0-28-12-12-11-12-28v-112q0-1 0-3v-69h-32q-14-1-23-10-9-9-9-22 0-14 10-24l256-224q11-9 22-8 12 0 22 7l255 225q12 10 11 24h0z"/></symbol><symbol id="i-images" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M528 32h-384q-20 1-34 14-13 14-14 34v256q1 20 14 34 14 13 34 14h384q20-1 34-14 13-14 14-34v-256q-1-20-14-34-14-13-34-14zm-305 64q14 0 23 9h0q9 9 9 23 0 14-9 23-9 9-23 9-13 0-23-9-9-9-9-23 1-14 10-23 9-9 22-9zm271 216q-5 8-14 8h-288q-10 0-14-9-4-8 1-16l70-96q5-7 13-7 8 0 13 7l22 30 63-94q4-7 13-7 9 0 14 7l106 160q5 8 1 17zm-38 120h-336q-31-1-51-21-20-20-21-51v-240q-2-22-24-24-22 2-24 24v240q1 51 35 85 34 34 85 35h336q22-2 24-24-2-22-24-24z"/></symbol><symbol id="i-layer-group" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M233 5q23-10 47 0l218 101q13 7 14 21-1 16-14 23l-218 101q-24 10-47 0l-219-101q-13-7-14-23 1-14 14-21l219-101zm265 229q13 7 14 21-1 16-14 23l-218 101q-24 10-47 0l-219-101q-13-7-14-23 1-14 14-21l53-24 152 70q37 16 74 0l152-70 53 24zm-205 174l152-70 53 24q13 7 14 21-1 16-14 23l-218 101q-24 10-47 0l-219-101q-13-7-14-23 1-14 14-21l53-24 152 70q37 16 74 0h0z"/></symbol><symbol id="i-leaf" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M512 165q-1 98-48 170h0q-47 73-127 101-31 12-65 12-49-1-91-26-41-25-65-69-39 40-54 73-15 33-15 36-5 17-23 18-3 0-6-1-20-7-17-29 4-22 36-76 33-53 105-100 72-47 194-50 15-1 16-16-1-15-16-16-80 1-140 22-59 22-100 54 0-17 4-33 11-51 46-87 35-35 85-48 43-9 81 0 43 10 84-5 41-15 65-56 5-7 13-7 8 0 12 8 25 58 26 125z"/></symbol><symbol id="i-location-dot" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M168 499q-27-33-67-89h0q-39-55-69-114h0q-30-59-32-104 2-82 56-136 54-54 136-56 82 2 136 56 54 54 56 136-2 45-32 104-31 59-70 114-39 56-66 89-10 12-24 12-14 0-24-12h0zm24-243q27-1 45-19h0q18-18 19-45-1-27-19-45-18-18-45-19-27 1-45 19-18 18-19 45 1 27 19 45 18 18 45 19z"/></symbol><symbol id="i-map-marker-alt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M168 499q-27-33-67-89h0q-39-55-69-114h0q-30-59-32-104 2-82 56-136 54-54 136-56 82 2 136 56 54 54 56 136-2 45-32 104-31 59-70 114-39 56-66 89-10 12-24 12-14 0-24-12h0zm24-243q27-1 45-19h0q18-18 19-45-1-27-19-45-18-18-45-19-27 1-45 19-18 18-19 45 1 27 19 45 18 18 45 19z"/></symbol><symbol id="i-phone" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M511 387l-23 101q-7 23-31 24-127-1-230-63-103-61-164-164-62-103-63-230 1-24 24-31l101-23q24-4 36 18l46 108q8 22-9 37l-53 43q25 52 66 93 41 41 93 67l44-54q15-17 37-9l108 46q21 13 18 37z"/></symbol><symbol id="i-phone-alt" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M19 351l108-46q22-8 37 9l44 53q52-25 93-66 41-41 66-93l-53-44q-17-15-9-37l46-108q12-22 36-18l101 23q23 7 24 31-1 127-63 230-61 103-164 165-103 61-231 62-23-1-30-24l-23-101q-4-24 18-36z"/></symbol><symbol id="i-play-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M512 256q-1 72-35 129h0q-34 58-92 92h0q-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129zm-336-88v176q0 14 12 21 12 6 25 0l144-88q11-8 11-21 0-13-11-20l-144-88q-13-8-25-1-12 7-12 21h0z"/></symbol><symbol id="i-seedling" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M64 95h-64q1 63 31 113 29 51 80 81 50 29 113 30v128q0 14 9 23 9 10 22 10 13 0 23-9 10-9 10-23v-128q-1-63-31-113-29-51-80-81-50-30-113-31zm384-63q-64 1-115 32h0q-51 31-81 83 42 46 59 108 87-11 143-73 56-61 58-150h-64z"/></symbol><symbol id="i-snowflake" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M476 384q-10 16-28 16-8 0-16-4l-25-15 5 20q4 22-17 30-3 0-6 0-18 0-23-17l-18-67-60-35v70l48 49q14 17 0 34-7 7-17 7-9 0-17-7l-14-14v29q0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23v-29l-14 14q-17 14-34 0-14-17 0-34l48-49-1-70-60 35-18 67q-5 17-23 17-3 0-6 0-21-8-17-30l5-20-25 15q-6 4-15 4-18 0-28-16-6-12-3-24 3-12 15-20l26-15-20-5q-21-8-17-30 7-20 29-17l66 18 61-35-61-35-66 18q-3 0-6 0-18 0-23-17-4-22 17-30l20-5-26-15q-12-8-15-20-3-12 3-24 8-12 20-15 12-3 24 3l25 15-5-20q-3-22 16-30 22-3 30 17l18 67 59 35v-70l-47-49q-14-17 0-34 17-14 34 0l14 15-1-30q0-14 9-23 10-9 23-9 14 0 23 9 9 9 9 23v30l14-15q17-14 34 0 15 17 1 34l-49 49 1 70 60-35 18-67q7-20 29-17 21 8 17 30l-5 20 25-15q12-6 24-3 12 3 20 15 6 12 3 24-3 13-15 20l-26 15 20 5q21 8 17 30-5 17-23 17-3 0-6 0l-67-18-59 35 60 35 66-18q22-3 29 17 4 22-16 30l-21 5 26 15q12 8 15 20 3 12-3 24z"/></symbol><symbol id="i-spray-can" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M192 0q14 0 23 9h0q9 9 9 23v96h-128v-96q0-14 9-23 9-9 23-9h64zm-192 256q1-41 28-68h0q27-27 68-28h128q41 1 68 28 27 27 28 68v208q-1 20-14 34-14 13-34 14h-224q-20-1-34-14-13-14-14-34v-208zm160 0q-34 1-57 23h0q-22 23-23 57 1 34 23 57 23 22 57 23 34-1 57-23 22-23 23-57-1-34-23-57-23-22-57-23zm160-192q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm32 0q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23zm160 0q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm-64 96q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23zm64 96q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm-160-96q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23z"/></symbol><symbol id="i-tools" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M332 224q43 1 75 31l19 20q31-14 52-39 22-25 30-58 8-36 0-68-2-9-10-11-8-2-14 4l-69 69h-76v-75l69-69q6-6 4-14-2-8-10-10-33-8-69 0-42 11-71 42-29 32-36 75-2 12-2 24l83 83q12-4 25-4zm52 55q-18-18-41-21h0q-23-4-44 7l-108-107v-62l-127-96-64 63 96 127h62l107 107q-11 21-7 44 3 23 21 41l117 117q11 11 26 11 15 0 26-11l53-52q11-12 11-27 0-15-11-26l-117-115zm-156 28l-59-59-149 149q-20 21-20 48 0 26 20 47 21 20 48 20 26 0 47-20l119-119q-13-32-6-66zm-164 165q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24z"/></symbol><symbol id="i-tree" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M414 447l-158 1v32q0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23v-32h-159q-22-1-30-20-8-18 5-36l69-80h-15q-19-1-27-17-7-16 5-32l60-71h-11q-16-1-23-13-6-12 4-24l135-147q8-8 19-8 11 0 19 8l135 147q10 12 4 24-7 12-23 13h-11l61 71q11 16 4 32-8 16-27 17h-15l69 80q13 18 5 36-9 18-31 19z"/></symbol><symbol id="i-users" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M320 320q44-1 73-30h0q29-30 30-74-1-44-30-74-30-29-73-30-44 1-73 30-29 30-30 74 0 44 29 74 30 29 74 30zm50 32h-100q-60 1-100 39-40 38-42 94 0 12 8 19 8 8 20 8h328q12 0 20-8 8-7 8-19-2-56-42-94-40-38-100-39zm142-192q34-1 57-23h0q22-23 23-57-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57 1 34 23 57 23 22 57 23zm-328 56q0-6 1-12h0q0-2 1-4-17-8-36-8h-62q-37 1-62 27-25 27-26 66 2 17 18 19h199q-32-37-33-88zm-56-56q34-1 57-23h0q22-23 23-57-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57 1 34 23 57 23 22 57 23zm424 32h-62q-19 0-36 8 0 3 1 5 1 5 1 11-1 51-33 88h199q16-2 18-19-1-39-26-66-25-26-62-27z"/></symbol><symbol id="i-video" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M384 112v288q-1 20-14 34-14 13-34 14h-288q-20-1-34-14-13-14-14-34v-288q1-20 14-34 14-13 34-14h288q20 1 34 14 13 14 14 34zm192 16v256q-1 20-17 28-16 9-33-2l-110-75v-158l110-75q17-11 33-2 16 8 17 28z"/></symbol></svg>
+    <!-- /@icons -->
     <a class="skip-link" href="#main-content" data-i18n-key="nav.skip">Saltar al contenido principal</a>
     <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
       <!-- @site-header: scripts/site-header.mjs (one header on every page; edit there) -->
@@ -65,14 +68,14 @@
             <a href="/es/#videos" class="text-sm font-semibold hover:text-green-600 transition">Videos</a>
             <a href="/es/#testimonials" class="text-sm font-semibold hover:text-green-600 transition">Reseñas</a>
             <a href="/es/#service-area" class="text-sm font-semibold hover:text-green-600 transition">Zonas de servicio</a>
-            <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
+            <a href="tel:18155011478" class="header-tel"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>(815) 501-1478</span></a>
             <a href="/" class="lang-link" hreflang="en" lang="en">English</a>
             <a href="#quote" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">Cotización gratis</a>
           </div>
           <div class="flex items-center gap-2 lg:hidden">
             <a href="/" class="lang-link" hreflang="en" lang="en">English</a>
-            <a href="tel:18155011478" class="nojs-call" aria-label="Llame al (815) 501-1478"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>Llamar</span></a>
-            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú de navegación"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
+            <a href="tel:18155011478" class="nojs-call" aria-label="Llame al (815) 501-1478"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>Llamar</span></a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú de navegación"><svg class="icon icon-bars text-xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bars"/></svg></button>
           </div>
         </nav>
       </div>
@@ -88,7 +91,7 @@
         </nav>
       </div>
     </header>
-    <div class="storm-band" data-storm-band hidden role="region" aria-label="Aviso de tormenta" data-i18n-aria-label="storm.notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">¿Daños por tormenta? Llame para consultar la disponibilidad</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Llame al (815) 501-1478</span></a><a href="/es/emergency-tree-removal/" data-i18n-key="storm.page">Ayuda de emergencia</a></div>
+    <div class="storm-band" data-storm-band hidden role="region" aria-label="Aviso de tormenta" data-i18n-aria-label="storm.notice"><span><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt" /></svg> <span data-i18n-key="storm.band">¿Daños por tormenta? Llame para consultar la disponibilidad</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Llame al (815) 501-1478</span></a><a href="/es/emergency-tree-removal/" data-i18n-key="storm.page">Ayuda de emergencia</a></div>
 
     <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
@@ -110,8 +113,7 @@
                "storm": true adds body.storm-on). Otherwise a one-line link sits under the calls. -->
           <div class="emergency-strip hero-enter mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center">
             <p class="font-bold text-white">
-              <i class="fas fa-exclamation-triangle text-green-400 mr-2" aria-hidden="true"></i
-              ><span data-i18n-key="hero.emergency">¿Daños por tormenta? Llame para consultar la disponibilidad</span
+              <svg class="icon icon-exclamation-triangle text-green-400 mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-exclamation-triangle" /></svg><span data-i18n-key="hero.emergency">¿Daños por tormenta? Llame para consultar la disponibilidad</span
               >
             </p>
             <a href="tel:18155011478" class="rounded-full bg-green-600 hover:bg-green-500 px-5 py-2 font-bold text-white transition"><span data-i18n-key="hero.emergencyCall">Llame al (815) 501-1478</span
@@ -121,7 +123,7 @@
             >
           </div>
           <p class="hero-eyebrow hero-enter hero-enter-delay-1 mb-5 inline-flex items-center gap-2 text-sm font-bold uppercase">
-            <i class="fas fa-location-dot" aria-hidden="true"></i>
+            <svg class="icon icon-location-dot" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-location-dot" /></svg>
             <span data-i18n-key="hero.eyebrow">Jardinería y servicio de árboles en DeKalb County</span
             >
           </p>
@@ -136,11 +138,11 @@
 
           <div class="hero-actions hero-enter hero-enter-delay-4 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-8">
             <a href="#quote" class="primary-cta w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(22,163,74,0.3)] flex items-center justify-center border border-transparent">
-              <i class="fas fa-clipboard-list mr-3 text-xl" aria-hidden="true"></i>
+              <svg class="icon icon-clipboard-list mr-3 text-xl" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list" /></svg>
               <span data-i18n-key="hero.ctaQuote">Solicite una cotización gratis</span>
             </a>
             <a href="tel:18155011478" data-hero-call class="secondary-cta w-full sm:w-auto bg-white/95 hover:bg-white text-green-800 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center border border-transparent">
-              <i class="fas fa-phone-alt mr-3 text-xl text-green-600" aria-hidden="true"></i>
+              <svg class="icon icon-phone-alt mr-3 text-xl text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt" /></svg>
               <span data-i18n-key="hero.emergencyCall">Llame al (815) 501-1478</span>
             </a>
           </div>
@@ -148,38 +150,34 @@
           <!-- Round 4: the price check is a text link; the storm notice is one line
                (the full strip above takes over in storm mode). -->
           <p class="hero-links hero-enter hero-enter-delay-4">
-            <a href="#instant-quote" class="hero-price-link"><i class="fas fa-calculator" aria-hidden="true"></i
-              ><span data-i18n-key="hero.cta">Ver rango inicial</span
-              ><i class="fas fa-arrow-right hero-link-arrow" aria-hidden="true"></i
-            ></a>
-            <a href="/es/emergency-tree-removal/" class="hero-storm-link"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i
-              ><span data-i18n-key="hero.stormLink">¿Daños por tormenta? Ayuda de emergencia</span
-              ><i class="fas fa-arrow-right hero-link-arrow" aria-hidden="true"></i
-            ></a>
+            <a href="#instant-quote" class="hero-price-link"><svg class="icon icon-calculator" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator" /></svg><span data-i18n-key="hero.cta">Ver rango inicial</span
+              ><svg class="icon icon-arrow-right hero-link-arrow" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg></a>
+            <a href="/es/emergency-tree-removal/" class="hero-storm-link"><svg class="icon icon-exclamation-triangle" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-exclamation-triangle" /></svg><span data-i18n-key="hero.stormLink">¿Daños por tormenta? Ayuda de emergencia</span
+              ><svg class="icon icon-arrow-right hero-link-arrow" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg></a>
           </p>
 
           <!-- Trust Badges -->
           <div class="hero-trust-grid hero-enter hero-enter-delay-5 mt-12 md:mt-16 flex flex-wrap items-center gap-3 sm:gap-5">
             <!-- Round 4: specific, existing facts only (no shield/certificate icons, no tooltips). -->
             <div class="trust-chip trust-chip-wide flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg">
-              <i class="fas fa-clipboard-list text-green-400 mr-2.5" aria-hidden="true"></i>
+              <svg class="icon icon-clipboard-list text-green-400 mr-2.5" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list" /></svg>
               <span class="text-sm font-medium tracking-wide text-gray-100" data-i18n-key="whyChoose.process.step3.desc">Reciba un estimado detallado y sin sorpresas</span
               >
             </div>
             <div class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors">
-              <i class="fas fa-users text-green-400 mr-2.5" aria-hidden="true"></i>
+              <svg class="icon icon-users text-green-400 mr-2.5" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-users" /></svg>
               <span class="text-sm font-medium tracking-wide text-gray-100" data-i18n-key="hero.family">Negocio familiar</span
               >
             </div>
             <div class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors">
-              <i class="fas fa-comments text-green-400 mr-2.5" aria-hidden="true"></i>
+              <svg class="icon icon-comments text-green-400 mr-2.5" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comments" /></svg>
               <span class="text-sm font-medium tracking-wide text-gray-100" data-i18n-key="hero.bilingual">Se Habla Español</span
               >
             </div>
             <a href="/gallery/" class="trust-chip trust-chip-link flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors" hreflang="en">
-              <i class="fas fa-images text-green-400 mr-2.5" aria-hidden="true"></i>
+              <svg class="icon icon-images text-green-400 mr-2.5" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-images" /></svg>
               <span class="text-sm font-medium tracking-wide text-gray-100" data-i18n-key="services.recent.cta">Ver galería completa</span
-              ><i class="fas fa-arrow-right ml-2 text-xs text-gray-100" aria-hidden="true"></i>
+              ><svg class="icon icon-arrow-right ml-2 text-xs text-gray-100" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
             </a>
           </div>
         </div>
@@ -193,7 +191,7 @@
       <!-- Scroll Indicator (round 4: still, no bounce; 44px target) -->
       <div class="hero-scroll-cue absolute bottom-6 left-1/2 transform -translate-x-1/2">
         <a href="#services" class="inline-flex h-11 w-11 items-center justify-center text-white opacity-70 hover:opacity-100 transition-opacity" aria-label="Ver nuestros servicios" data-i18n-aria-label="hero.scrollCue">
-          <i class="fas fa-chevron-down text-3xl" aria-hidden="true"></i>
+          <svg class="icon icon-chevron-down text-3xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-down" /></svg>
         </a>
       </div>
     </section>
@@ -211,32 +209,28 @@
               <img src="/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg" srcset="/hernandez_images/w/facebook-2026-side-yard-lawn-finish-480.webp 480w, /hernandez_images/w/facebook-2026-side-yard-lawn-finish-800.webp 800w, /hernandez_images/facebook-2026-side-yard-lawn-finish.jpg 900w" sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw" alt="Césped verde y recién cortado en un patio lateral después del servicio de Hernandez Landscape en DeKalb County" data-i18n-alt="alt.service.lawn" class="w-full h-full object-cover transition duration-300 hover:scale-105" width="900" height="1200" loading="lazy" />
             </div>
             <div class="p-6">
-              <span class="service-icon" aria-hidden="true"><i class="fas fa-seedling"></i></span>
+              <span class="service-icon" aria-hidden="true"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling" /></svg></span>
               <h3 class="text-2xl font-bold mb-3" data-i18n-key="services.lawn.title">Cuidado del césped</h3>
               <ul class="text-gray-600 space-y-2 mb-4">
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item1">Corte y bordes semanales</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.lawn.item1">Corte y bordes semanales</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item2">Programas de fertilización</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.lawn.item2">Programas de fertilización</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item3">Control de maleza</span>
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.lawn.item3">Control de maleza</span>
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item4">Aireación y resiembra</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.lawn.item4">Aireación y resiembra</span
                   >
                 </li>
               </ul>
               <a href="/es/lawn-care/" class="text-green-600 font-semibold hover:text-green-700">
                 <span data-i18n-key="services.learnMore">Más información</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
               </a>
             </div>
           </div>
@@ -246,33 +240,29 @@
               <img src="/hernandez_images/google-profile-2026-tree-climber-canopy.jpg" srcset="/hernandez_images/w/google-profile-2026-tree-climber-canopy-480.webp 480w, /hernandez_images/w/google-profile-2026-tree-climber-canopy-800.webp 800w, /hernandez_images/google-profile-2026-tree-climber-canopy.jpg 900w" sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw" alt="Equipo de servicio de árboles de Hernandez trabajando con seguridad en la copa de un árbol grande" data-i18n-alt="alt.service.tree" class="w-full h-full object-cover transition duration-300 hover:scale-105" width="1050" height="1400" loading="lazy" />
             </div>
             <div class="p-6">
-              <span class="service-icon" aria-hidden="true"><i class="fas fa-tree"></i></span>
+              <span class="service-icon" aria-hidden="true"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree" /></svg></span>
               <h3 class="text-2xl font-bold mb-3" data-i18n-key="services.tree.title">Servicio de árboles</h3>
               <ul class="text-gray-600 space-y-2 mb-4">
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item1">Poda y recorte de árboles</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.tree.item1">Poda y recorte de árboles</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item2">Remoción segura de árboles</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.tree.item2">Remoción segura de árboles</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item3">Destoconado</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.tree.item3">Destoconado</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item4">Solicitudes por daños de tormenta</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.tree.item4">Solicitudes por daños de tormenta</span
                   >
                 </li>
               </ul>
               <a href="/es/tree-removal/" class="text-green-600 font-semibold hover:text-green-700">
                 <span data-i18n-key="services.learnMore">Más información</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
               </a>
             </div>
           </div>
@@ -282,38 +272,34 @@
               <img src="/hernandez_images/web_Wideshot_Bestlandscape2.jpeg" srcset="/hernandez_images/w/web_Wideshot_Bestlandscape2-480.webp 480w, /hernandez_images/w/web_Wideshot_Bestlandscape2-800.webp 800w, /hernandez_images/web_Wideshot_Bestlandscape2.jpeg 1200w" sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw" alt="Diseño de jardín con mantillo, plantas y muro de contención" data-i18n-alt="alt.service.landscaping" class="w-full h-full object-cover" width="1200" height="868" loading="lazy" />
             </div>
             <div class="p-6">
-              <span class="service-icon" aria-hidden="true"><i class="fas fa-layer-group"></i></span>
+              <span class="service-icon" aria-hidden="true"><svg class="icon icon-layer-group" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-layer-group" /></svg></span>
               <h3 class="text-2xl font-bold mb-3" data-i18n-key="services.landscaping.title">Paisajismo</h3>
               <ul class="text-gray-600 space-y-2 mb-4">
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item1">Diseño personalizado de jardines</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.landscaping.item1">Diseño personalizado de jardines</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item2">Instalación de mulch y piedra</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.landscaping.item2">Instalación de mulch y piedra</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item3">Instalación de césped</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.landscaping.item3">Instalación de césped</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item4">Limpieza estacional</span
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg><span data-i18n-key="services.landscaping.item4">Limpieza estacional</span
                   >
                 </li>
               </ul>
               <div class="flex items-center gap-4">
                 <a href="/es/landscaping-design/" class="text-green-600 font-semibold hover:text-green-700">
                   <span data-i18n-key="services.learnMore">Más información</span>
-                  <i class="fas fa-arrow-right"></i>
+                  <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
                 </a>
                 <a href="?service=landscaping#quote" data-prefill-service="landscaping" class="text-green-600 font-semibold hover:text-green-700">
                   <span data-i18n-key="services.cta">Solicitar cotización</span>
-                  <i class="fas fa-arrow-right"></i>
+                  <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
                 </a>
               </div>
             </div>
@@ -324,39 +310,32 @@
           <h3 class="text-2xl font-bold mb-4 text-center text-white" data-i18n-key="services.extra.heading">También disponibles:</h3>
           <div class="flex flex-wrap justify-center gap-4">
             <a href="/snow-removal/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80" hreflang="en">
-              <i class="fas fa-snowflake mr-2"></i
-              ><span data-i18n-key="services.extra.snow">Remoción de nieve</span>
+              <svg class="icon icon-snowflake mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-snowflake" /></svg><span data-i18n-key="services.extra.snow">Remoción de nieve</span>
             </a>
             <span class="inline-flex flex-wrap items-center justify-center gap-2">
               <a href="/leaf-removal/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80" hreflang="en">
-                <i class="fas fa-leaf mr-2"></i
-                ><span data-i18n-key="services.extra.leaf">Recolección de hojas</span>
+                <svg class="icon icon-leaf mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf" /></svg><span data-i18n-key="services.extra.leaf">Recolección de hojas</span>
               </a>
               <a href="?service=leaf-removal#quote" data-prefill-service="leaf-removal" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm">
-                <i class="fas fa-calculator mr-2"></i
-                ><span data-i18n-key="services.cta">Solicitar cotización</span>
+                <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator" /></svg><span data-i18n-key="services.cta">Solicitar cotización</span>
               </a>
             </span>
             <span class="inline-flex flex-wrap items-center justify-center gap-2">
               <a href="/gutter-cleaning/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80" hreflang="en">
-                <i class="fas fa-home mr-2"></i
-                ><span data-i18n-key="services.extra.gutter">Limpieza de canaletas</span
+                <svg class="icon icon-home mr-2" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-home" /></svg><span data-i18n-key="services.extra.gutter">Limpieza de canaletas</span
                 >
               </a>
               <a href="?service=gutter-cleaning#quote" data-prefill-service="gutter-cleaning" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm">
-                <i class="fas fa-calculator mr-2"></i
-                ><span data-i18n-key="services.cta">Solicitar cotización</span>
+                <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator" /></svg><span data-i18n-key="services.cta">Solicitar cotización</span>
               </a>
             </span>
             <span class="inline-flex flex-wrap items-center justify-center gap-2">
               <a href="/pressure-washing/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80" hreflang="en">
-                <i class="fas fa-spray-can mr-2"></i
-                ><span data-i18n-key="services.extra.pressure">Lavado a presión</span
+                <svg class="icon icon-spray-can mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-spray-can" /></svg><span data-i18n-key="services.extra.pressure">Lavado a presión</span
                 >
               </a>
               <a href="?service=pressure-washing#quote" data-prefill-service="pressure-washing" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm">
-                <i class="fas fa-calculator mr-2"></i
-                ><span data-i18n-key="services.cta">Solicitar cotización</span>
+                <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator" /></svg><span data-i18n-key="services.cta">Solicitar cotización</span>
               </a>
             </span>
           </div>
@@ -376,22 +355,22 @@
           <div class="season-panel" data-season-panel="spring">
             <span class="ring-label" data-i18n-key="year.spring.range">marzo – mayo</span>
             <h3><span data-season-name data-i18n-key="year.spring.name">Primavera</span>: <span data-i18n-key="year.spring.tag">Despierte su jardín.</span></h3>
-            <ul><li><a href="/leaf-removal/" hreflang="en"><i class="fas fa-leaf" aria-hidden="true"></i><span data-i18n-key="year.spring.link0">Limpieza de primavera</span></a></li><li><a href="/es/lawn-care/"><i class="fas fa-seedling" aria-hidden="true"></i><span data-i18n-key="year.spring.link1">Cuidado del césped</span></a></li><li><a href="/es/landscaping-design/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.spring.link2">Paisajismo</span></a></li><li><a href="/es/tree-trimming-stump-grinding/"><i class="fas fa-cut" aria-hidden="true"></i><span data-i18n-key="year.spring.link3">Poda de árboles</span></a></li></ul>
+            <ul><li><a href="/leaf-removal/" hreflang="en"><svg class="icon icon-leaf" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf" /></svg><span data-i18n-key="year.spring.link0">Limpieza de primavera</span></a></li><li><a href="/es/lawn-care/"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling" /></svg><span data-i18n-key="year.spring.link1">Cuidado del césped</span></a></li><li><a href="/es/landscaping-design/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree" /></svg><span data-i18n-key="year.spring.link2">Paisajismo</span></a></li><li><a href="/es/tree-trimming-stump-grinding/"><svg class="icon icon-cut" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-cut" /></svg><span data-i18n-key="year.spring.link3">Poda de árboles</span></a></li></ul>
           </div>
           <div class="season-panel" data-season-panel="summer">
             <span class="ring-label" data-i18n-key="year.summer.range">junio – agosto</span>
             <h3><span data-season-name data-i18n-key="year.summer.name">Verano</span>: <span data-i18n-key="year.summer.tag">Manténgalo creciendo.</span></h3>
-            <ul><li><a href="/es/lawn-care/"><i class="fas fa-seedling" aria-hidden="true"></i><span data-i18n-key="year.summer.link0">Cuidado del césped</span></a></li><li><a href="/es/landscaping-design/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.summer.link1">Paisajismo</span></a></li><li><a href="/pressure-washing/" hreflang="en"><i class="fas fa-spray-can" aria-hidden="true"></i><span data-i18n-key="year.summer.link2">Lavado a presión</span></a></li><li><a href="/es/emergency-tree-removal/"><i class="fas fa-bolt" aria-hidden="true"></i><span data-i18n-key="year.summer.link3">Ayuda con árboles tras tormentas</span></a></li></ul>
+            <ul><li><a href="/es/lawn-care/"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling" /></svg><span data-i18n-key="year.summer.link0">Cuidado del césped</span></a></li><li><a href="/es/landscaping-design/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree" /></svg><span data-i18n-key="year.summer.link1">Paisajismo</span></a></li><li><a href="/pressure-washing/" hreflang="en"><svg class="icon icon-spray-can" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-spray-can" /></svg><span data-i18n-key="year.summer.link2">Lavado a presión</span></a></li><li><a href="/es/emergency-tree-removal/"><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt" /></svg><span data-i18n-key="year.summer.link3">Ayuda con árboles tras tormentas</span></a></li></ul>
           </div>
           <div class="season-panel is-current" data-season-panel="fall">
             <span class="ring-label" data-i18n-key="year.fall.range">septiembre – noviembre</span>
             <h3><span data-season-name data-i18n-key="year.fall.name">Otoño</span>: <span data-i18n-key="year.fall.tag">Hojas, canaletas y árboles.</span></h3>
-            <ul><li><a href="/leaf-removal/" hreflang="en"><i class="fas fa-leaf" aria-hidden="true"></i><span data-i18n-key="year.fall.link0">Recolección de hojas</span></a></li><li><a href="/gutter-cleaning/" hreflang="en"><i class="fas fa-home" aria-hidden="true"></i><span data-i18n-key="year.fall.link1">Limpieza de canaletas</span></a></li><li><a href="/es/tree-removal/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.fall.link2">Remoción de árboles</span></a></li><li><a href="/es/lawn-care/"><i class="fas fa-seedling" aria-hidden="true"></i><span data-i18n-key="year.fall.link3">Cuidado del césped</span></a></li></ul>
+            <ul><li><a href="/leaf-removal/" hreflang="en"><svg class="icon icon-leaf" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf" /></svg><span data-i18n-key="year.fall.link0">Recolección de hojas</span></a></li><li><a href="/gutter-cleaning/" hreflang="en"><svg class="icon icon-home" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-home" /></svg><span data-i18n-key="year.fall.link1">Limpieza de canaletas</span></a></li><li><a href="/es/tree-removal/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree" /></svg><span data-i18n-key="year.fall.link2">Remoción de árboles</span></a></li><li><a href="/es/lawn-care/"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling" /></svg><span data-i18n-key="year.fall.link3">Cuidado del césped</span></a></li></ul>
           </div>
           <div class="season-panel" data-season-panel="winter">
             <span class="ring-label" data-i18n-key="year.winter.range">diciembre – febrero</span>
             <h3><span data-season-name data-i18n-key="year.winter.name">Invierno</span>: <span data-i18n-key="year.winter.tag">Nieve y tormentas.</span></h3>
-            <ul><li><a href="/snow-removal/" hreflang="en"><i class="fas fa-snowflake" aria-hidden="true"></i><span data-i18n-key="year.winter.link0">Remoción de nieve (sujeto a disponibilidad)</span></a></li><li><a href="/es/tree-removal/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.winter.link1">Remoción de árboles</span></a></li><li><a href="/es/emergency-tree-removal/"><i class="fas fa-bolt" aria-hidden="true"></i><span data-i18n-key="year.winter.link2">Ayuda con árboles tras tormentas</span></a></li></ul>
+            <ul><li><a href="/snow-removal/" hreflang="en"><svg class="icon icon-snowflake" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-snowflake" /></svg><span data-i18n-key="year.winter.link0">Remoción de nieve (sujeto a disponibilidad)</span></a></li><li><a href="/es/tree-removal/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree" /></svg><span data-i18n-key="year.winter.link1">Remoción de árboles</span></a></li><li><a href="/es/emergency-tree-removal/"><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt" /></svg><span data-i18n-key="year.winter.link2">Ayuda con árboles tras tormentas</span></a></li></ul>
           </div>
           </div>
           <p class="mt-4 text-sm" style="color:rgba(245,242,233,.75)" data-i18n-key="year.note">Los meses son una guía. Llame o envíe una solicitud para saber qué necesita su jardín ahora.</p>
@@ -432,8 +411,8 @@
               <h3 data-i18n-key="video.heading">Recorridos en Video de Proyectos</h3>
               <p class="strip-count" data-strip-count aria-hidden="true"></p>
               <div class="strip-nav" data-strip-nav>
-              <button type="button" class="strip-btn" data-strip-prev aria-label="Videos anteriores" data-i18n-aria-label="strip.prevVideos"><i class="fas fa-arrow-right strip-flip" aria-hidden="true"></i></button>
-              <button type="button" class="strip-btn" data-strip-next aria-label="Videos siguientes" data-i18n-aria-label="strip.nextVideos"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+              <button type="button" class="strip-btn" data-strip-prev aria-label="Videos anteriores" data-i18n-aria-label="strip.prevVideos"><svg class="icon icon-arrow-right strip-flip" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg></button>
+              <button type="button" class="strip-btn" data-strip-next aria-label="Videos siguientes" data-i18n-aria-label="strip.nextVideos"><svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg></button>
             </div>
             </div>
             <p class="strip-sub" data-i18n-key="video.subheading">Vea a nuestro equipo en acción y observe los detalles de nuestro trabajo.</p>
@@ -447,7 +426,7 @@
                 <span data-i18n-key="video.fallback">Su navegador no puede reproducir este video.</span>
               </video>
               <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle" /></svg>
               </div>
             </div>
             <p class="video-meta"><time datetime="PT1M41S">1:41</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">En el trabajo</span></p>
@@ -460,7 +439,7 @@
                 <span data-i18n-key="video.fallback">Su navegador no puede reproducir este video.</span>
               </video>
               <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle" /></svg>
               </div>
             </div>
             <p class="video-meta"><time datetime="PT0M27S">0:27</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">En el trabajo</span></p>
@@ -473,13 +452,13 @@
                 <span data-i18n-key="video.fallback">Su navegador no puede reproducir este video.</span>
               </video>
               <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle" /></svg>
               </div>
             </div>
             <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">En el trabajo</span></p>
           </div>
             </div>
-            <a href="/videos/" class="strip-link" hreflang="en"><i class="fas fa-video" aria-hidden="true"></i><span data-i18n-key="video.viewAll">Ver Todos los Videos</span></a>
+            <a href="/videos/" class="strip-link" hreflang="en"><svg class="icon icon-video" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-video" /></svg><span data-i18n-key="video.viewAll">Ver Todos los Videos</span></a>
           </div>
         </div>
         <div class="filmstrip" data-strip>
@@ -487,8 +466,8 @@
             <h3 data-i18n-key="gallery.moreHeading">Más de nuestro trabajo</h3>
             <p class="strip-count" data-strip-count aria-hidden="true"></p>
             <div class="strip-nav" data-strip-nav>
-              <button type="button" class="strip-btn" data-strip-prev aria-label="Fotos anteriores" data-i18n-aria-label="strip.prevPhotos"><i class="fas fa-arrow-right strip-flip" aria-hidden="true"></i></button>
-              <button type="button" class="strip-btn" data-strip-next aria-label="Fotos siguientes" data-i18n-aria-label="strip.nextPhotos"><i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+              <button type="button" class="strip-btn" data-strip-prev aria-label="Fotos anteriores" data-i18n-aria-label="strip.prevPhotos"><svg class="icon icon-arrow-right strip-flip" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg></button>
+              <button type="button" class="strip-btn" data-strip-next aria-label="Fotos siguientes" data-i18n-aria-label="strip.nextPhotos"><svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg></button>
             </div>
           </div>
           <div class="strip-track filmstrip-track" data-strip-track tabindex="0" role="region" aria-label="Fotos de nuestro trabajo" data-i18n-aria-label="strip.photos">
@@ -508,9 +487,9 @@
             <div id="latest-uploads-carousel" class="hidden latest-uploads-carousel"><div id="latest-uploads-track"></div></div>
           </div>
           <div class="proof-links">
-            <a href="/gallery/" class="proof-link" hreflang="en"><i class="fas fa-images" aria-hidden="true"></i><span data-i18n-key="services.recent.cta">Ver galería completa</span></a>
+            <a href="/gallery/" class="proof-link" hreflang="en"><svg class="icon icon-images" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-images" /></svg><span data-i18n-key="services.recent.cta">Ver galería completa</span></a>
           <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" class="proof-link proof-link--fb" aria-label="Ver más proyectos en Facebook" data-i18n-aria-label="gallery.facebookLabel">
-            <i class="fab fa-facebook mr-2"></i>
+            <svg class="icon icon-facebook mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook" /></svg>
             <span data-i18n-key="gallery.facebookCta">Ver más en Facebook</span
             >
           </a>
@@ -556,7 +535,7 @@
             </fieldset>
             <p class="yard-count" data-yard-count aria-live="polite"></p>
             <div class="yard-cta">
-              <a href="#quoteFormCard" data-yard-cta><i class="fas fa-clipboard-list" aria-hidden="true"></i><span data-i18n-key="yard.cta.empty">Empezar una solicitud de cotización</span></a>
+              <a href="#quoteFormCard" data-yard-cta><svg class="icon icon-clipboard-list" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list" /></svg><span data-i18n-key="yard.cta.empty">Empezar una solicitud de cotización</span></a>
               <p data-i18n-key="yard.fine">Es una solicitud, no una cita confirmada. El precio final se confirma en el sitio.</p>
             </div>
           </div>
@@ -580,19 +559,19 @@
               <p id="quoteFormHelper" class="mb-4 text-sm leading-relaxed text-gray-600" data-i18n-key="quote.formHelper">Cuéntenos qué necesita y cuándo prefiere que le llamemos. Esta es una solicitud de cotización, no una cita confirmada. Nuestro equipo confirmará la disponibilidad y el horario. No hay ninguna obligación.</p>
               <ul class="mb-5 grid gap-2 rounded-lg border border-green-100 bg-green-50 p-4 text-sm text-green-950 sm:grid-cols-2" data-proof-rail>
                 <li>
-                  <i class="fas fa-check mr-1 text-green-700" aria-hidden="true"></i>
+                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg>
                   <span data-i18n-key="instant.proof.insured">Equipo local del Condado de DeKalb</span>
                 </li>
                 <li>
-                  <i class="fas fa-check mr-1 text-green-700" aria-hidden="true"></i>
+                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg>
                   <span data-i18n-key="instant.proof.review">Primero la solicitud; la cita se confirma por separado</span>
                 </li>
                 <li>
-                  <i class="fas fa-check mr-1 text-green-700" aria-hidden="true"></i>
+                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg>
                   <span data-i18n-key="instant.proof.response">Nuestro equipo confirma la disponibilidad</span>
                 </li>
                 <li>
-                  <i class="fas fa-phone mr-1 text-green-700" aria-hidden="true"></i>
+                  <svg class="icon icon-phone mr-1 text-green-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone" /></svg>
                   <span data-i18n-key="quote.proof.call">¿Prefiere hablar? Llame al (815) 501-1478</span>
                 </li>
               </ul>
@@ -619,7 +598,7 @@
 
                   <div id="quotePrefillNotice" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900" aria-live="polite">
                     <div class="flex items-start gap-3">
-                      <i class="fas fa-check-circle mt-0.5 text-green-700" aria-hidden="true"></i>
+                      <svg class="icon icon-check-circle mt-0.5 text-green-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle" /></svg>
                       <div>
                         <p id="quotePrefillText" class="font-semibold"></p>
                         <p data-i18n-key="quote.prefill.helper">Agregue los detalles de su propiedad abajo y el equipo podrá responder con el siguiente paso correcto.</p>
@@ -699,7 +678,7 @@
                   >
                   <textarea id="projectDetails" name="message" rows="4" maxlength="2000" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required></textarea>
                   <p class="sms-photos">
-                    <i class="fas fa-comment-dots" aria-hidden="true"></i>
+                    <svg class="icon icon-comment-dots" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots" /></svg>
                     <span data-i18n-key="quote.smsPhotos">O envíe fotos del trabajo por mensaje de texto al</span>
                     <a href="sms:+18155011478">(815) 501-1478</a>
                   </p>
@@ -721,12 +700,12 @@
             <div class="quote-contact">
               <h3 data-i18n-key="quote.contactHeading">Póngase en contacto</h3>
               <ul>
-                <li><a href="tel:18155011478"><i class="fas fa-phone" aria-hidden="true"></i><span><small data-i18n-key="quote.phoneLabel">Llamar</small><strong>(815) 501-1478</strong></span></a></li>
-                <li><a href="sms:+18155011478"><i class="fas fa-comment-dots" aria-hidden="true"></i><span><small data-i18n-key="quote.textLabel">Enviar un mensaje de texto</small><strong>(815) 501-1478</strong></span></a></li>
-                <li class="quote-contact-wide"><a href="mailto:hernandezlandscapetreeservices@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i><span><small data-i18n-key="quote.emailLabel">Correo electrónico</small><strong class="break-all">hernandezlandscapetreeservices@gmail.com</strong></span></a></li>
-                <li><i class="fas fa-clock" aria-hidden="true"></i><span><small data-i18n-key="quote.hoursLabel">Horario de atención</small><span data-i18n-key="quote.hoursWeekdays">Lun-Sáb: 8 a. m. - 5 p. m.</span><span data-i18n-key="quote.hoursSaturday">Domingo: Cerrado</span></span></li>
-                <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span><small data-i18n-key="quote.locationLabel">Ubicación</small><span>1029 Lewis St, DeKalb, IL 60115</span></span></li>
-                <li class="quote-contact-wide"><a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Visite nuestra página de Facebook" data-i18n-aria-label="quote.facebookLabel"><i class="fab fa-facebook" aria-hidden="true"></i><span><small data-i18n-key="quote.followLabel">Síganos</small><strong data-i18n-key="quote.facebook">Facebook</strong></span></a></li>
+                <li><a href="tel:18155011478"><svg class="icon icon-phone" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone" /></svg><span><small data-i18n-key="quote.phoneLabel">Llamar</small><strong>(815) 501-1478</strong></span></a></li>
+                <li><a href="sms:+18155011478"><svg class="icon icon-comment-dots" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots" /></svg><span><small data-i18n-key="quote.textLabel">Enviar un mensaje de texto</small><strong>(815) 501-1478</strong></span></a></li>
+                <li class="quote-contact-wide"><a href="mailto:hernandezlandscapetreeservices@gmail.com"><svg class="icon icon-envelope" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-envelope" /></svg><span><small data-i18n-key="quote.emailLabel">Correo electrónico</small><strong class="break-all">hernandezlandscapetreeservices@gmail.com</strong></span></a></li>
+                <li><svg class="icon icon-clock" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock" /></svg><span><small data-i18n-key="quote.hoursLabel">Horario de atención</small><span data-i18n-key="quote.hoursWeekdays">Lun-Sáb: 8 a. m. - 5 p. m.</span><span data-i18n-key="quote.hoursSaturday">Domingo: Cerrado</span></span></li>
+                <li><svg class="icon icon-map-marker-alt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg><span><small data-i18n-key="quote.locationLabel">Ubicación</small><span>1029 Lewis St, DeKalb, IL 60115</span></span></li>
+                <li class="quote-contact-wide"><a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Visite nuestra página de Facebook" data-i18n-aria-label="quote.facebookLabel"><svg class="icon icon-facebook" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook" /></svg><span><small data-i18n-key="quote.followLabel">Síganos</small><strong data-i18n-key="quote.facebook">Facebook</strong></span></a></li>
               </ul>
             </div>
             <section id="instant-quote" class="price-check" aria-labelledby="price-check-title">
@@ -738,12 +717,12 @@
               <div class="instant-card">
           <div class="flex flex-wrap justify-center gap-4 mb-6 text-sm text-gray-600">
             <div class="flex items-center">
-              <i class="fas fa-check-circle text-green-600 mr-2"></i>
+              <svg class="icon icon-check-circle text-green-600 mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle" /></svg>
               <span data-i18n-key="instant.trust.free">Estimado gratis y sin compromiso</span
               >
             </div>
             <div class="flex items-center">
-              <i class="fas fa-clock text-green-600 mr-2"></i>
+              <svg class="icon icon-clock text-green-600 mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock" /></svg>
               <span data-i18n-key="instant.trust.response">Nuestro equipo confirma la disponibilidad</span
               >
             </div>
@@ -792,12 +771,12 @@
                 <p class="text-3xl font-black text-green-600" id="priceRange" data-i18n-key="instant.result.photoEstimate">Estimado con foto — llame o envíe un mensaje al (815) 501-1478</p>
                 <p class="text-gray-700 mt-2" data-i18n-key="instant.result.disclaimer">Este rango inicial ayuda a orientar. El precio final depende del acceso, alcance, retiro de material y evaluación en sitio.</p>
                 <button type="button" id="sendEstimateBtn" class="mt-4 mr-3 inline-block bg-white text-green-800 border-2 border-green-600 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition">
-                  <i class="fas fa-arrow-down"></i>
+                  <svg class="icon icon-arrow-down" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-down" /></svg>
                   <span data-i18n-key="instant.result.add">Agregar este rango a mi solicitud</span
                   >
                 </button>
                 <a href="tel:18155011478" class="mt-4 inline-block border-2 border-green-600 text-green-700 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition">
-                  <i class="fas fa-phone"></i>
+                  <svg class="icon icon-phone" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone" /></svg>
                   <span data-i18n-key="instant.result.call">Llame para una cotización exacta</span
                   >
                 </a>
@@ -862,7 +841,7 @@
             <section id="pricing" class="pricing-note" aria-labelledby="pricing-title">
               <h2 id="pricing-title" data-i18n-key="pricing.heading">Cotizaciones de paisajismo a su medida</h2>
               <p data-i18n-key="pricing.copy">Cada jardín, proyecto y temporada es diferente. Preparamos un estimado según su propiedad y sus objetivos para que pague solo por lo que necesita.</p>
-              <a href="#quote" class="pricing-link"><span data-i18n-key="pricing.cta">Solicitar una cotización personalizada</span><i class="fas fa-arrow-up" aria-hidden="true"></i></a>
+              <a href="#quote" class="pricing-link"><span data-i18n-key="pricing.cta">Solicitar una cotización personalizada</span><svg class="icon icon-arrow-up" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up" /></svg></a>
             </section>
           </aside>
         </div>
@@ -880,7 +859,7 @@
           <article class="testimonial-spotlight p-8">
             <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
               <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
-                <i class="fas fa-comment-dots text-amber-700" aria-hidden="true"></i>
+                <svg class="icon icon-comment-dots text-amber-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots" /></svg>
                 <span data-i18n-key="testimonials.badge">Opinión de un cliente publicada</span
                 >
               </span>
@@ -903,7 +882,7 @@
               <a href="https://beautifullandscapes.net/landscapers-near-me/hernandez-landscape-tree-service-llc" target="_blank" rel="noopener noreferrer" class="testimonial-source-link inline-flex items-center gap-2 text-sm font-semibold text-green-700 hover:text-green-800">
                 <span data-i18n-key="testimonials.reviewSource">Ver la reseña original</span
                 >
-                <i class="fas fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+                <svg class="icon icon-arrow-up-right-from-square text-xs" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right-from-square" /></svg>
               </a>
             </div>
           </article>
@@ -913,17 +892,17 @@
               <h3 class="mb-4 text-xl font-bold" data-i18n-key="testimonials.supportTitle">Lo que los dueños de casa quieren confirmar antes de llamar</h3>
               <ul class="space-y-4 text-gray-700">
                 <li class="flex items-start gap-3">
-                  <i class="fas fa-check-circle mt-1 text-green-600" aria-hidden="true"></i>
+                  <svg class="icon icon-check-circle mt-1 text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle" /></svg>
                   <span data-i18n-key="testimonials.support1">Una respuesta clara sobre precio y siguientes pasos</span
                   >
                 </li>
                 <li class="flex items-start gap-3">
-                  <i class="fas fa-check-circle mt-1 text-green-600" aria-hidden="true"></i>
+                  <svg class="icon icon-check-circle mt-1 text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle" /></svg>
                   <span data-i18n-key="testimonials.support2">Trabajo limpio y atención a los detalles en la propiedad</span
                   >
                 </li>
                 <li class="flex items-start gap-3">
-                  <i class="fas fa-check-circle mt-1 text-green-600" aria-hidden="true"></i>
+                  <svg class="icon icon-check-circle mt-1 text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle" /></svg>
                   <span data-i18n-key="testimonials.support3">Comunicación bilingüe para agenda y actualizaciones</span
                   >
                 </li>
@@ -936,7 +915,7 @@
               <a href="#quote" class="inline-flex items-center gap-2 rounded-full bg-green-600 px-5 py-3 font-semibold text-white transition hover:bg-green-700">
                 <span data-i18n-key="testimonials.ctaButton">Solicitar cotización</span
                 >
-                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
               </a>
             </article>
           </div>
@@ -955,10 +934,10 @@
           </div>
           <div class="notes-cols">
             <ul class="notes-values">
-              <li><i class="fas fa-clock" aria-hidden="true"></i><p><strong data-i18n-key="whyChoose.feature1.title">Cotizaciones claras y rápidas</strong> <span data-i18n-key="whyChoose.feature1.desc">Cuéntenos qué necesita y confirmaremos el tiempo, el alcance y los siguientes pasos.</span></p></li>
-              <li><i class="fas fa-tools" aria-hidden="true"></i><p><strong data-i18n-key="whyChoose.feature2.title">Equipo profesional</strong> <span data-i18n-key="whyChoose.feature2.desc">Herramientas de uso comercial para obtener mejores resultados y terminar con mayor eficiencia.</span></p></li>
-              <li><i class="fas fa-handshake" aria-hidden="true"></i><p><strong data-i18n-key="whyChoose.feature3.title">Locales y confiables</strong> <span data-i18n-key="whyChoose.feature3.desc">Negocio familiar de DeKalb. Cuidamos su propiedad como si fuera nuestra.</span></p></li>
-              <li><i class="fas fa-dollar-sign" aria-hidden="true"></i><p><strong data-i18n-key="whyChoose.feature4.title">Precios claros y justos</strong> <span data-i18n-key="whyChoose.feature4.desc">Sin cargos ocultos. Conoce el precio antes de que comience el trabajo.</span></p></li>
+              <li><svg class="icon icon-clock" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock" /></svg><p><strong data-i18n-key="whyChoose.feature1.title">Cotizaciones claras y rápidas</strong> <span data-i18n-key="whyChoose.feature1.desc">Cuéntenos qué necesita y confirmaremos el tiempo, el alcance y los siguientes pasos.</span></p></li>
+              <li><svg class="icon icon-tools" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tools" /></svg><p><strong data-i18n-key="whyChoose.feature2.title">Equipo profesional</strong> <span data-i18n-key="whyChoose.feature2.desc">Herramientas de uso comercial para obtener mejores resultados y terminar con mayor eficiencia.</span></p></li>
+              <li><svg class="icon icon-handshake" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-handshake" /></svg><p><strong data-i18n-key="whyChoose.feature3.title">Locales y confiables</strong> <span data-i18n-key="whyChoose.feature3.desc">Negocio familiar de DeKalb. Cuidamos su propiedad como si fuera nuestra.</span></p></li>
+              <li><svg class="icon icon-dollar-sign" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-dollar-sign" /></svg><p><strong data-i18n-key="whyChoose.feature4.title">Precios claros y justos</strong> <span data-i18n-key="whyChoose.feature4.desc">Sin cargos ocultos. Conoce el precio antes de que comience el trabajo.</span></p></li>
             </ul>
             <div class="notes-steps">
               <h3 data-i18n-key="whyChoose.process.heading">Qué puede esperar</h3>
@@ -990,20 +969,16 @@
                 <h4 class="font-bold text-green-600 mb-2" data-i18n-key="serviceArea.primaryHeading">Zonas principales:</h4>
                 <ul class="space-y-1 text-gray-700">
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >DeKalb
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>DeKalb
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Sycamore
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>Sycamore
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Cortland
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>Cortland
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Malta
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>Malta
                   </li>
                 </ul>
               </div>
@@ -1011,12 +986,10 @@
                 <h4 class="font-bold text-green-600 mb-2" data-i18n-key="serviceArea.secondaryHeading">También atendemos:</h4>
                 <ul class="space-y-1 text-gray-700">
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Genoa
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>Genoa
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Kingston
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>Kingston
                   </li>
                 </ul>
               </div>
@@ -1028,7 +1001,7 @@
 
             <!-- Service Policy / Minimums -->
             <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-lg">
-              <h4 class="font-bold text-amber-800 mb-2" data-i18n-key="serviceArea.policyHeading"><i class="fas fa-truck mr-2" aria-hidden="true"></i>Política de servicio</h4>
+              <h4 class="font-bold text-amber-800 mb-2" data-i18n-key="serviceArea.policyHeading"><svg class="icon icon-truck mr-2" width="1.25em" height="1em" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M368 0q20 1 34 14h0q13 14 14 34v48h51q25 0 45 19l77 77q19 19 19 45v115q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-32q-1 41-28 68-27 27-68 28-41-1-68-28-27-27-28-68h-128q-1 41-28 68-27 27-68 28-41-1-68-28-27-27-28-68h-16q-20-1-34-14-13-14-14-34v-320q1-20 14-34 14-13 34-14h320zm48 160v96h128v-19l-77-77h-51zm-256 208q-20 1-34 14h0q-13 14-14 34 1 20 14 34 14 13 34 14 20-1 34-14 13-14 14-34-1-20-14-34-14-13-34-14zm320 96q20-1 34-14h0q13-14 14-34-1-20-14-34-14-13-34-14-20 1-34 14-13 14-14 34 1 20 14 34 14 13 34 14z"/></svg>Política de servicio</h4>
               <ul class="text-amber-900 text-sm space-y-1">
                 <li data-i18n-key="serviceArea.policy1"><strong>Zonas principales (DeKalb/Sycamore):</strong> Sin mínimo</li>
                 <li data-i18n-key="serviceArea.policy2"><strong>Zonas alejadas (más de 20 minutos):</strong> Mínimo de 3 horas o $500</li>
@@ -1058,7 +1031,7 @@
                 <li><span class="fm-key" aria-hidden="true"></span><span data-i18n-key="serviceArea.legendAlso">También atendemos</span></li>
               </ul>
               <p data-i18n-key="serviceArea.fieldMapNote">No está a escala: un croquis de los seis pueblos alrededor de nuestra base en DeKalb.</p>
-              <a class="field-map-link" href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer"><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span data-i18n-key="serviceArea.openMaps">Abrir en Google Maps</span></a>
+              <a class="field-map-link" href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer"><svg class="icon icon-map-marker-alt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg><span data-i18n-key="serviceArea.openMaps">Abrir en Google Maps</span></a>
             </figcaption>
           </figure>
         </div>
@@ -1131,27 +1104,27 @@
             <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.links">Enlaces rápidos</h3>
             <ul class="space-y-3">
               <li>
-                <a href="/es/" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i>
+                <a href="/es/" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right" /></svg>
                   <span data-i18n-key="nav.home">Inicio</span></a
                 >
               </li>
               <li>
-                <a href="#services" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i>
+                <a href="#services" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right" /></svg>
                   <span data-i18n-key="nav.services">Servicios</span></a
                 >
               </li>
               <li>
-                <a href="/gallery/" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center" hreflang="en"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i>
+                <a href="/gallery/" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center" hreflang="en"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right" /></svg>
                   <span data-i18n-key="nav.gallery">Nuestro trabajo</span></a
                 >
               </li>
               <li>
-                <a href="/videos/" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center" hreflang="en"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i>
+                <a href="/videos/" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center" hreflang="en"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right" /></svg>
                   <span data-i18n-key="nav.videos">Videos</span></a
                 >
               </li>
               <li>
-                <a href="#quote" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i>
+                <a href="#quote" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right" /></svg>
                   <span data-i18n-key="nav.contact">Contacto</span></a
                 >
               </li>
@@ -1163,25 +1136,25 @@
             <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.contact">Contáctenos</h3>
             <ul class="space-y-4">
               <li class="flex items-start">
-                <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                <svg class="icon icon-map-marker-alt text-green-500 mt-1 mr-3" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt" /></svg>
                 <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
                   1029 Lewis St<br />DeKalb, IL 60115
                 </a>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-phone-alt text-green-500 mr-3"></i>
+                <svg class="icon icon-phone-alt text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt" /></svg>
                 <a href="tel:18155011478" class="text-gray-400 hover:text-white transition-colors font-semibold">
                   (815) 501-1478
                 </a>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-envelope text-green-500 mr-3"></i>
+                <svg class="icon icon-envelope text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-envelope" /></svg>
                 <a href="mailto:hernandezlandscapetreeservices@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
                   hernandezlandscapetreeservices@gmail.com
                 </a>
               </li>
               <li class="flex items-start">
-                <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
+                <svg class="icon icon-clock text-green-500 mt-1 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock" /></svg>
                 <div class="text-sm text-gray-400">
                   <span class="block" data-i18n-key="quote.hoursWeekdays">Lun-Sáb: 8 a. m. - 5 p. m.</span>
                   <span class="block" data-i18n-key="quote.hoursSaturday">Domingo: Cerrado</span>
@@ -1211,10 +1184,10 @@
             <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Síganos</h4>
             <div class="flex space-x-4">
               <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
-                <i class="fab fa-facebook-f"></i>
+                <svg class="icon icon-facebook-f" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook-f" /></svg>
               </a>
               <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
-                <i class="fab fa-google"></i>
+                <svg class="icon icon-google" width="0.9531em" height="1em" aria-hidden="true" focusable="false"><use href="#i-google" /></svg>
               </a>
             </div>
           </div>
@@ -1246,11 +1219,11 @@
     </div>
 
     <button id="backToTopBtn" type="button" aria-label="Volver arriba" data-i18n-aria-label="nav.backToTop">
-      <i class="fas fa-arrow-up" aria-hidden="true"></i>
+      <svg class="icon icon-arrow-up" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up" /></svg>
     </button>
 
-    <script src="/assets/js/i18n.js?v=20260924x" defer></script>
-    <script src="/assets/js/main.js?v=20260924x" defer></script>
+    <script src="/assets/js/i18n.js?v=20260924aa" defer></script>
+    <script src="/assets/js/main.js?v=20260924aa" defer></script>
     <script src="/assets/js/motion.js" defer></script>
     <script src="/assets/js/static-gallery.js?v=20260924w" defer></script>
 

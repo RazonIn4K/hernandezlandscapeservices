@@ -155,7 +155,7 @@ h3 { font-family: var(--body); letter-spacing: -0.01em; }
 .hero-heading { text-transform: uppercase; }
 .hero-heading .text-green-300 { color: var(--fresh) !important; }
 .hero-eyebrow { color: var(--sapwood) !important; font-size: 0.9rem !important; }
-.hero-eyebrow i { color: var(--moss); }
+.hero-eyebrow .icon { color: var(--moss); }
 .hero-ring {
   position: relative;
   margin: 0;
@@ -1075,7 +1075,7 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
   .services-chapter .service-card ul { margin: 0 0 8px !important; }
   .services-chapter .service-card ul > li:not(:first-child) { display: none; }
   .services-chapter .service-card ul > li { font-size: 0.9rem; line-height: 1.3; }
-  .services-chapter .service-card ul > li i { display: none; }
+  .services-chapter .service-card ul > li .icon { display: none; }
   .services-chapter .service-card a { font-size: 0.9rem; }
   /* The whole tile opens the service page; "Get Quote" stays its own target. */
   .services-chapter .service-card .p-6 > a::after,
@@ -1263,7 +1263,7 @@ html:not(.js-rings) .strip-count,
 .quote-contact a:hover strong,
 .quote-contact a:focus-visible strong { text-decoration: underline; text-underline-offset: 3px; }
 .quote-contact a:focus-visible { outline: 3px solid var(--fresh); outline-offset: 3px; border-radius: 6px; }
-.quote-contact i { flex: 0 0 18px; margin-top: 4px; color: var(--fresh); }
+.quote-contact .icon { flex: 0 0 18px; margin-top: 4px; color: var(--fresh); }
 .quote-contact li > span,
 .quote-contact a > span { display: block; min-width: 0; }
 .quote-contact small { display: block; font-family: var(--stencil); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fresh); }
@@ -1340,7 +1340,7 @@ html:not(.js-rings) .strip-count,
 .notes-values,
 .notes-steps ol { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
 .notes-values li { display: flex; gap: 12px; align-items: flex-start; }
-.notes-values i { flex: 0 0 22px; margin-top: 4px; color: var(--leaf); font-size: 1.05rem; text-align: center; }
+.notes-values .icon { flex: 0 0 22px; margin-top: 4px; color: var(--leaf); font-size: 1.05rem; text-align: center; }
 .notes-values p,
 .notes-steps p { margin: 0; line-height: 1.5; color: var(--ink-soft); }
 .notes-values strong,
@@ -1533,8 +1533,8 @@ body.storm-on .hero-storm-link { display: none !important; }
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 .hero-links a:hover { color: #fff; text-decoration-thickness: 2px; }
-.hero-links i { color: var(--fresh); font-size: 0.95em; }
-.hero-links .hero-storm-link i:first-child { color: #f0a36b; }
+.hero-links .icon { color: var(--fresh); font-size: 0.95em; }
+.hero-links .hero-storm-link .icon:first-child { color: #f0a36b; }
 .hero-links .hero-link-arrow { font-size: 0.75em; color: inherit; opacity: 0.8; }
 .site-hero .secondary-cta { display: flex !important; }
 .secondary-cta span { white-space: nowrap; }
@@ -1550,7 +1550,7 @@ body.storm-on .hero-storm-link { display: none !important; }
   font-size: 0.95rem;
   white-space: nowrap;
 }
-.header-tel i { color: var(--leaf); }
+.header-tel .icon { color: var(--leaf); }
 .site-header .desktop-nav > a { white-space: nowrap; }
 /* Spanish nav labels run ~110px longer: drop the tagline and tighten the gaps so the
    number still fits on one header row. */
@@ -1741,7 +1741,7 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
 .town-policy li + li { margin-top: 0.35rem; }
 .town-policy li[hidden] { display: none; }
 .sms-photos { margin: 0.4rem 0 0; color: #374151; font-size: 0.95rem; }
-.sms-photos i { color: var(--leaf); margin-right: 0.25rem; }
+.sms-photos .icon { color: var(--leaf); margin-right: 0.25rem; }
 .sms-photos a { color: var(--canopy); font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; white-space: nowrap; display: inline-block; min-height: 24px; }
 @media (max-width: 767px) {
   /* The mobile call bar (86px incl. its gap) never covers "Send Quote Request" or a
@@ -1798,7 +1798,7 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
 .fm-key { width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 2.5px solid var(--heartwood); }
 .fm-key.is-primary { background: var(--leaf); border-color: var(--canopy); }
 .field-map-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 4px; color: var(--canopy); font-weight: 700; text-decoration: underline; text-underline-offset: 0.2em; }
-.field-map-link i { color: var(--clay); }
+.field-map-link .icon { color: var(--clay); }
 @media (min-width: 1024px) {
   /* Desktop: the sketch and its key sit side by side (shorter than the old iframe card). */
   .field-map-card { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 18px; align-items: center; }
@@ -1860,3 +1860,11 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
 /* J1: the failure actions (Call, Send a Text) stack as full-width 44 px buttons above Close */
 #customModal .modal-content > a:not(.hidden) { display: flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; }
 #customModal .modal-content > button { min-height: 44px; }
+
+/* ---------- Round 5 · F · Inline SVG icons (were two Font Awesome icon fonts) ----------
+   Same box as the font glyph: 1em tall, the glyph's advance wide (width attribute,
+   so utility widths such as w-6 still win), 0.125em below the baseline. */
+.icon { display: inline-block; height: 1em; vertical-align: -0.125em; fill: currentColor; overflow: visible; }
+.icon-spin { animation: icon-spin 2s linear infinite; }
+@keyframes icon-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .icon-spin { animation: none; } }

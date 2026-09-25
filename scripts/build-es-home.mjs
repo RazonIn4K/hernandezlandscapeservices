@@ -15,6 +15,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { renderSiteHeader, altFor, TWINS } from './site-header.mjs';
+import { withIconSprite } from './icons.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHECK = process.argv.includes('--check');
@@ -279,7 +280,7 @@ body = body
   .replace('@@HEADER@@', renderSiteHeader({ lang: 'es', alt: altFor('/es/'), quoteHref: '#quote' }))
   .replace('@@JSONLD@@', JSON_LD);
 
-const next = translate(head) + body;
+const next = withIconSprite(translate(head) + body);
 
 // Guard rails: nothing still pointing at the old in-place switch or at relative assets.
 for (const [label, re] of [

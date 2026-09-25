@@ -27,7 +27,7 @@ test('homepage trust chips are plain facts that stay inside the viewport', async
     await page.setViewportSize({ width, height: 1000 });
     await page.goto('/');
     await expect(page.locator('.trust-chip-details')).toHaveCount(0);
-    await expect(page.locator('#home .fa-shield-alt, #home .fa-certificate, #home .fa-star')).toHaveCount(0);
+    await expect(page.locator('#home .icon-shield-alt, #home .icon-certificate, #home .icon-star, #home [class*="fa-"]')).toHaveCount(0);
     const chips = page.locator('.hero-trust-grid .trust-chip');
     await expect(chips).toHaveCount(4);
     for (let index = 0; index < 4; index++) {

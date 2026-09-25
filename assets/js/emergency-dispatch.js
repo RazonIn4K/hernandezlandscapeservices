@@ -109,7 +109,7 @@
     panel.className = "rounded-lg border border-green-200 bg-green-50 p-4 text-green-900";
     panel.setAttribute("role", "status");
     panel.innerHTML =
-      '<p class="font-bold"><i class="fas fa-check-circle mr-2" aria-hidden="true"></i>' + copy("sent") + '</p>' +
+      '<p class="font-bold"><svg class="icon icon-check-circle mr-2" width="1em" height="1em" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 256q1-72 35-129h0q34-58 92-92h0q57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129zm372-44q8-9 8-20h0q0-11-8-20-9-8-20-8-11 0-20 8l-108 108-44-44q-9-8-20-8-11 0-20 8-8 9-8 20 0 11 8 20l64 64q9 8 20 8 11 0 20-8l128-128z"/></svg>' + copy("sent") + '</p>' +
       '<p class="mt-1 text-sm">' + copy("receipt") +
       '<a class="font-bold underline" href="' + PHONE_TEL + '">' + PHONE_DISPLAY + "</a>.</p>";
     form.replaceWith(panel);
@@ -207,7 +207,7 @@
     if (button) {
       button.disabled = true;
       button.setAttribute("aria-busy", "true");
-      button.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> ' + copy("sending");
+      button.innerHTML = '<svg class="icon icon-spinner icon-spin" width="1em" height="1em" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M304 48q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm0 416q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-304-208q1-20 14-34h0q14-13 34-14 20 1 34 14 13 14 14 34-1 20-14 34-14 13-34 14-20-1-34-14-13-14-14-34zm512 0q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-437 181q-14-15-14-34h0q0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14h0zm68-294q-15 14-34 14h0q-19 0-34-14-14-15-14-34 0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34zm226 226q15-14 34-14h0q19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14-14-15-14-34 0-19 14-34h0z"/></svg> ' + copy("sending");
     }
     form.setAttribute("aria-busy", "true");
     if (dispatchStatus) {

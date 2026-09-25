@@ -28,6 +28,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { icon, withIconSprite } from './icons.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST_PATH = path.join(ROOT, 'media', 'gallery.json');
@@ -308,7 +309,7 @@ function renderVideoCards(list) {
     '                            Your browser does not support the video tag.',
     '                        </video>',
     '                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">',
-    '                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>',
+    `                            ${icon('play-circle', 'text-white text-5xl opacity-80')}`,
     '                        </div>',
     '                    </div>',
     ...(videoMeta(item) ? [videoMeta(item)] : []),
@@ -408,6 +409,7 @@ function updateFile(relPath, transforms) {
     updated = spliceBetweenMarkers(updated, marker, body, relPath);
   }
   if (errors.length) return;
+  if (relPath.endsWith('.html')) updated = withIconSprite(updated);
   if (updated === original) {
     console.log(`  ${relPath}: unchanged`);
   } else if (CHECK_MODE) {

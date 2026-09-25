@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v41';
+const CACHE_NAME = 'hernandez-landscape-v42';
 // Round 4 (research 03 R18): install caches only the core shell: the two home
 // pages, the one stylesheet, the scripts they run, and the fonts. Everything else
 // (service and town pages, gallery, videos, images) is cached at runtime on first
@@ -7,10 +7,10 @@ const CACHE_NAME = 'hernandez-landscape-v41';
 const URLS_TO_CACHE = [
   '/',
   '/es/',
-  '/assets/css/site.css?v=20260924y',
+  '/assets/css/site.css?v=20260924aa',
   '/assets/css/fonts-late.css?v=20260924l',
-  '/assets/js/i18n.js?v=20260924x',
-  '/assets/js/main.js?v=20260924x',
+  '/assets/js/i18n.js?v=20260924aa',
+  '/assets/js/main.js?v=20260924aa',
   '/assets/js/rings.js?v=20260924z',
   '/assets/js/static-gallery.js?v=20260924w',
   '/assets/js/motion.js',
@@ -22,8 +22,6 @@ const URLS_TO_CACHE = [
   '/assets/fonts/public-sans-v21-latin-var.woff2',
   '/assets/fonts/big-shoulders-stencil-display-v30-latin-700.woff2',
   '/assets/fonts/public-sans-v21-latin-italic.woff2',
-  '/assets/icons/fa-solid-900-subset.woff2',
-  '/assets/icons/fa-brands-400-subset.woff2',
   '/manifest.json',
   '/hernandez_images/web_Logo_New_256.png'
 ];

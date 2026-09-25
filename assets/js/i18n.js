@@ -836,7 +836,7 @@
       "serviceArea.fieldMapNote": "No está a escala: un croquis de los seis pueblos alrededor de nuestra base en DeKalb.",
       "serviceArea.openMaps": "Abrir en Google Maps",
       "serviceArea.policyHeading":
-        "<i class=\"fas fa-truck mr-2\" aria-hidden=\"true\"></i>Política de servicio",
+        "<svg class=\"icon icon-truck mr-2\" width=\"1.25em\" height=\"1em\" viewBox=\"0 0 640 512\" preserveAspectRatio=\"xMinYMid meet\" aria-hidden=\"true\" focusable=\"false\"><path fill=\"currentColor\" d=\"M368 0q20 1 34 14h0q13 14 14 34v48h51q25 0 45 19l77 77q19 19 19 45v115q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-32q-1 41-28 68-27 27-68 28-41-1-68-28-27-27-28-68h-128q-1 41-28 68-27 27-68 28-41-1-68-28-27-27-28-68h-16q-20-1-34-14-13-14-14-34v-320q1-20 14-34 14-13 34-14h320zm48 160v96h128v-19l-77-77h-51zm-256 208q-20 1-34 14h0q-13 14-14 34 1 20 14 34 14 13 34 14 20-1 34-14 13-14 14-34-1-20-14-34-14-13-34-14zm320 96q20-1 34-14h0q13-14 14-34-1-20-14-34-14-13-34-14-20 1-34 14-13 14-14 34 1 20 14 34 14 13 34 14z\"/></svg>Política de servicio",
       "serviceArea.policy1":
         "<strong>Zonas principales (DeKalb/Sycamore):</strong> Sin mínimo",
       "serviceArea.policy2":

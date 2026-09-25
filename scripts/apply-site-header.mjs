@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderSiteHeader, altFor } from './site-header.mjs';
+import { withIconSprite } from './icons.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const CHECK = process.argv.includes('--check');
@@ -52,7 +53,7 @@ for (const route of Object.keys(PAGES)) {
   const start = html.search(/^[ \t]*<header\b/m);
   const end = html.indexOf('</header>', start);
   if (start < 0 || end < 0) throw new Error(`${route}: no <header> block`);
-  const next = html.slice(0, start) + headerFor(route) + html.slice(end + '</header>'.length);
+  const next = withIconSprite(html.slice(0, start) + headerFor(route) + html.slice(end + '</header>'.length));
   if (next === html) continue;
   drifted.push(route);
   if (!CHECK) fs.writeFileSync(file, next);

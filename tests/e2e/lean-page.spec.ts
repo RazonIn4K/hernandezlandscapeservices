@@ -107,3 +107,22 @@ test('deferred Google Tag Manager: the first key press loads it without waiting 
   await page.keyboard.press('Shift');
   await expect(page.locator('script[src*="googletagmanager.com/gtm.js"]'), 'requested once').toHaveCount(1);
 });
+
+// Round 5 · Icons are inline SVG (LUXE-CRAFT-BAR F): no icon font, and every icon's
+// <use> finds its symbol in the page's own sprite.
+test('icons need no font: every icon resolves to a symbol in the page', async ({ page }) => {
+  for (const path of ['/', '/es/', '/videos/', '/gallery/', '/emergency-tree-removal/', '/es/service-areas/malta-il/']) {
+    const fontRequests: string[] = [];
+    page.on('request', (r) => { if (/\/assets\/icons\/|fa-(solid|brands)/.test(r.url())) fontRequests.push(r.url()); });
+    await page.goto(path, { waitUntil: 'load' });
+    const missing = await page.locator('svg.icon use').evaluateAll((uses) =>
+      uses.map((u) => u.getAttribute('href') || '').filter((href) => !document.querySelector(`symbol${href}`)));
+    expect(missing, path).toEqual([]);
+    expect(await page.locator('svg.icon').count(), path).toBeGreaterThanOrEqual(3);
+    await expect(page.locator('i.fas, i.fab, i[class*="fa-"]')).toHaveCount(0);
+    expect(fontRequests, path).toEqual([]);
+    const box = await page.locator('svg.icon').first().boundingBox();
+    expect(box!.height).toBeGreaterThan(0);
+    page.removeAllListeners('request');
+  }
+});

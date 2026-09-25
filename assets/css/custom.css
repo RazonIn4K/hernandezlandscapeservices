@@ -956,8 +956,8 @@ footer .bg-gray-800 {
     font-size: 0.95rem !important;
   }
 
-  .primary-cta i,
-  .secondary-cta i {
+  .primary-cta .icon,
+  .secondary-cta .icon {
     font-size: 1rem !important;
     margin-right: 0.55rem !important;
   }

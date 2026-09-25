@@ -33,17 +33,19 @@
     <meta name="theme-color" content="#153b2f">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260924g">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260924aa">
 
     <link rel="stylesheet" href="/assets/css/gallery.css">
     <link rel="stylesheet" href="/assets/css/video.css">
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
-    <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924u" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924aa" />
 </head>
 <body class="bg-gray-50">
+    <!-- @icons: scripts/icons.mjs (symbols this page uses; generated) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-bars" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 96q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm0 160q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm416 192h-384q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9z"/></symbol><symbol id="i-bolt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M241 224h111q22 1 29 21 8 20-8 35l-256 224q-19 15-40 2-19-16-10-39l77-179h-113q-20-1-29-21-7-20 9-35l256-224q19-15 40-2 19 16 10 39l-76 179z"/></symbol><symbol id="i-calculator" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M336 0h-288q-20 1-34 14-13 14-14 34v416q1 20 14 34 14 13 34 14h288q20-1 34-14 13-14 14-34v-416q-1-20-14-34-14-13-34-14zm-272 208q1-15 16-16h32q15 1 16 16v32q-1 15-16 16h-32q-15-1-16-16v-32zm0 96q1-15 16-16h32q15 1 16 16v32q-1 15-16 16h-32q-15-1-16-16v-32zm160 128q-1 15-16 16h-128q-15-1-16-16v-32q1-15 16-16h128q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm96 192q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-224q-15-1-16-16v-64q1-15 16-16h224q15 1 16 16v64z"/></symbol><symbol id="i-chevron-right" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M96 480q-13 0-23-9-9-10-9-23 0-13 9-23l170-169-170-169q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l192 192q9 10 9 23 0 13-9 23l-192 192q-10 9-23 9z"/></symbol><symbol id="i-clock" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 512q-72-1-129-35h0q-58-34-92-92h0q-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35zm-24-256q0 13 11 19l96 64q19 12 32-6 12-19-6-33l-85-57v-123q-2-22-25-24-10 0-17 7-7 7-7 17l1 136z"/></symbol><symbol id="i-envelope" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 352q-25 0-47-16l-209-163v227q1 20 14 34 14 13 34 14h416q20-1 34-14 13-14 14-34v-227l-209 163q-22 16-47 16zm-240-207l212 165q13 10 28 10 15 0 28-10l212-165q15-13 16-33-1-20-14-34-14-13-34-14h-416q-20 1-34 14-13 14-14 34 0 20 16 33z"/></symbol><symbol id="i-facebook-f" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M279 288l14-93h-89v-60q0-20 12-34 11-15 41-16h40v-79q-1 0-23-3-21-3-49-3-55 0-88 32-32 32-33 93v70h-81v93h81v224h100v-224z"/></symbol><symbol id="i-google" viewBox="0 0 488 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M488 262q-2 108-66 174h0q-65 66-174 68-69-1-125-34-56-33-89-89-33-56-34-125 1-69 34-125 33-56 89-89 56-33 125-34 101 2 166 65l-67 65q-47-42-105-38-58 3-102 44-43 42-46 112 2 67 45 111 44 44 109 46 49-1 79-20 30-19 45-43 14-25 17-44h-141v-86h236q4 18 4 42z"/></symbol><symbol id="i-map-marker-alt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M168 499q-27-33-67-89h0q-39-55-69-114h0q-30-59-32-104 2-82 56-136 54-54 136-56 82 2 136 56 54 54 56 136-2 45-32 104-31 59-70 114-39 56-66 89-10 12-24 12-14 0-24-12h0zm24-243q27-1 45-19h0q18-18 19-45-1-27-19-45-18-18-45-19-27 1-45 19-18 18-19 45 1 27 19 45 18 18 45 19z"/></symbol><symbol id="i-phone-alt" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M19 351l108-46q22-8 37 9l44 53q52-25 93-66 41-41 66-93l-53-44q-17-15-9-37l46-108q12-22 36-18l101 23q23 7 24 31-1 127-63 230-61 103-164 165-103 61-231 62-23-1-30-24l-23-101q-4-24 18-36z"/></symbol><symbol id="i-play-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M512 256q-1 72-35 129h0q-34 58-92 92h0q-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129zm-336-88v176q0 14 12 21 12 6 25 0l144-88q11-8 11-21 0-13-11-20l-144-88q-13-8-25-1-12 7-12 21h0z"/></symbol></svg>
+    <!-- /@icons -->
 
     <a class="skip-link" href="#main-content" data-i18n-key="skip.main">Skip to main content</a>
 
@@ -65,14 +67,14 @@
             <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition" aria-current="page">Videos</a>
             <a href="/#testimonials" class="text-sm font-semibold hover:text-green-600 transition">Reviews</a>
             <a href="/service-areas/" class="text-sm font-semibold hover:text-green-600 transition">Service Area</a>
-            <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
+            <a href="tel:18155011478" class="header-tel"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>(815) 501-1478</span></a>
             <a href="/es/#videos" class="lang-link" hreflang="es" lang="es">Español <span class="lang-hint">(inicio)</span></a>
             <a href="/#quote" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">Get Free Quote</a>
           </div>
           <div class="flex items-center gap-2 lg:hidden">
             <a href="/es/#videos" class="lang-link" hreflang="es" lang="es">Español <span class="lang-hint">(inicio)</span></a>
-            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>Call</span></a>
-            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
+            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>Call</span></a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><svg class="icon icon-bars text-xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bars"/></svg></button>
           </div>
         </nav>
       </div>
@@ -88,7 +90,7 @@
         </nav>
       </div>
     </header>
-    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
+    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
 
     <main id="main-content">
     <!-- Hero Section -->
@@ -113,7 +115,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M18S">0:18</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -126,7 +128,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M18S">0:18</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -139,7 +141,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT1M41S">1:41</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -152,7 +154,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M27S">0:27</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -165,7 +167,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -178,7 +180,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT1M1S">1:01</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -191,7 +193,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT2M46S">2:46</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -204,7 +206,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT2M37S">2:37</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -217,7 +219,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M18S">0:18</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -230,7 +232,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M12S">0:12</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -243,7 +245,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M29S">0:29</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -256,7 +258,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -269,7 +271,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M3S">0:03</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -282,7 +284,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -295,7 +297,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -308,7 +310,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -321,7 +323,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -334,7 +336,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M3S">0:03</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -347,7 +349,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M3S">0:03</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -360,7 +362,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -373,7 +375,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -386,7 +388,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -399,7 +401,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -412,7 +414,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -425,7 +427,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M3S">0:03</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -438,7 +440,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -451,7 +453,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT1M1S">1:01</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -464,7 +466,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M55S">0:55</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -477,7 +479,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -490,7 +492,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M3S">0:03</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -503,7 +505,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT1M0S">1:00</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -516,7 +518,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT0M35S">0:35</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -529,7 +531,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT1M0S">1:00</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -542,7 +544,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT2M22S">2:22</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -555,7 +557,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT2M21S">2:21</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -568,7 +570,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT1M46S">1:46</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -581,7 +583,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT2M12S">2:12</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -594,7 +596,7 @@
                             Your browser does not support the video tag.
                         </video>
                         <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">
-                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>
+                            <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
                         </div>
                     </div>
                     <p class="video-meta"><time datetime="PT2M27S">2:27</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
@@ -603,7 +605,7 @@
             </div>
              <div class="flex flex-col sm:flex-row justify-center mt-12 px-4 sm:px-0">
                 <a href="/#quote" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center w-full sm:w-auto">
-                    <i class="fas fa-calculator mr-2" aria-hidden="true"></i> <span data-i18n-key="video.cta.estimate">Get Your Free Estimate</span>
+                    <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg> <span data-i18n-key="video.cta.estimate">Get Your Free Estimate</span>
                 </a>
             </div>
         </div>
@@ -631,11 +633,11 @@
                 <div>
                     <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.links">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.home">Home</span></a></li>
-                        <li><a href="/#services" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.services">Services</span></a></li>
-                        <li><a href="/gallery/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.gallery">Our Work</span></a></li>
-                        <li><a href="/videos/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.videos">Videos</span></a></li>
-                        <li><a href="/#quote" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.contact">Contact</span></a></li>
+                        <li><a href="/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.home">Home</span></a></li>
+                        <li><a href="/#services" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.services">Services</span></a></li>
+                        <li><a href="/gallery/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.gallery">Our Work</span></a></li>
+                        <li><a href="/videos/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.videos">Videos</span></a></li>
+                        <li><a href="/#quote" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.contact">Contact</span></a></li>
                     </ul>
                 </div>
 
@@ -644,25 +646,25 @@
                     <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.contact">Contact Us</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                            <svg class="icon icon-map-marker-alt text-green-500 mt-1 mr-3" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>
                             <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
                                 1029 Lewis St<br>DeKalb, IL 60115
                             </a>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-phone-alt text-green-500 mr-3"></i>
+                            <svg class="icon icon-phone-alt text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg>
                             <a href="tel:18155011478" class="text-gray-400 hover:text-white transition-colors font-semibold">
                                 (815) 501-1478
                             </a>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-envelope text-green-500 mr-3"></i>
+                            <svg class="icon icon-envelope text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg>
                             <a href="mailto:hernandezlandscapetreeservices@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
                                 hernandezlandscapetreeservices@gmail.com
                             </a>
                         </li>
                         <li class="flex items-start">
-                             <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
+                             <svg class="icon icon-clock text-green-500 mt-1 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
                              <div class="text-sm text-gray-400">
                                  <span class="block">Mon-Sat: 8AM - 5PM</span>
                                  <span class="block">Sun: Closed</span>
@@ -685,10 +687,10 @@
                     <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Follow Us</h4>
                     <div class="flex space-x-4">
                         <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
-                            <i class="fab fa-facebook-f"></i>
+                            <svg class="icon icon-facebook-f" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook-f"/></svg>
                         </a>
                         <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
-                            <i class="fab fa-google"></i>
+                            <svg class="icon icon-google" width="0.9531em" height="1em" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>
                         </a>
                     </div>
                 </div>
@@ -806,9 +808,9 @@
     </script>
     
     <!-- Scripts -->
-    <script src="/assets/js/i18n.js?v=20260924x" defer></script>
+    <script src="/assets/js/i18n.js?v=20260924aa" defer></script>
     <script src="/assets/js/video-gallery.js" defer></script>
-    <script src="/assets/js/main.js?v=20260924x" defer></script>
+    <script src="/assets/js/main.js?v=20260924aa" defer></script>
 
 <script src="/assets/js/analytics.js" defer></script>
 <script src="/assets/js/mobile-call-cta.js" defer></script>

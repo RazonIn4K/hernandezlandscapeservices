@@ -32,12 +32,15 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924y" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924aa" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
   </head>
   <body class="site-body bg-gray-50">
+    <!-- @icons: scripts/icons.mjs (symbols this page uses; generated) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-bars" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 96q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm0 160q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm416 192h-384q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9z"/></symbol><symbol id="i-bolt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M241 224h111q22 1 29 21 8 20-8 35l-256 224q-19 15-40 2-19-16-10-39l77-179h-113q-20-1-29-21-7-20 9-35l256-224q19-15 40-2 19 16 10 39l-76 179z"/></symbol><symbol id="i-chair" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M445 339l-15-32q-9-18-29-19h-354q-20 1-29 19l-15 32q-7 15 2 30 10 15 26 15v112q1 15 16 16h32q15-1 16-16v-112h256v112q1 15 16 16h31q15-1 16-16l2-112q17 0 27-15 9-15 2-30zm-334-211q2-45 40-69v197h48v-208h48v208h48v-197q39 23 40 69v128h48v-128q-1-54-37-91-37-36-91-37h-64q-54 1-90 37-36 37-37 91v128h48l-1-128z"/></symbol><symbol id="i-check-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 256q1-72 35-129h0q34-58 92-92h0q57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129zm372-44q8-9 8-20h0q0-11-8-20-9-8-20-8-11 0-20 8l-108 108-44-44q-9-8-20-8-11 0-20 8-8 9-8 20 0 11 8 20l64 64q9 8 20 8 11 0 20-8l128-128z"/></symbol><symbol id="i-clipboard-list" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M336 64h-54q-10-28-34-46-24-17-56-18-32 1-56 18-24 18-34 46h-54q-20 1-34 14-13 14-14 34v352q1 20 14 34 14 13 34 14h288q20-1 34-14 13-14 14-34v-352q-1-20-14-34-14-13-34-14zm-240 328q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24zm0-96q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24zm96-232q14 0 23 9h0q9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9zm112 320h-128q-15-1-16-16 1-15 16-16h128q15 1 16 16-1 15-16 16zm0-96h-128q-15-1-16-16 1-15 16-16h128q15 1 16 16-1 15-16 16z"/></symbol><symbol id="i-comments" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M416 176q-2-75-61-124h0q-59-50-147-52-88 2-147 52-59 49-61 124 1 60 42 105-14 25-26 41-13 16-14 17-3 4-1 8 2 5 7 5 58-2 95-24 47 23 105 24 88-2 147-52 59-49 61-124zm184 268q39-46 40-108-2-75-56-124-54-50-136-52 0 0 0 0-1 0-1 0 0 1 0 2 1 7 1 14-2 75-53 130-52 55-133 73 17 58 67 95 50 37 119 38 51-1 93-22 37 20 91 22 5 0 7-5 2-4-1-8 0 0 0 0-3-2-14-17-12-15-24-38z"/></symbol><symbol id="i-list-check" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M152 38q15 16 2 34l-72 80q-7 8-17 7-11 2-18-7l-40-40q-14-16 0-33 17-14 34 0l22 22 55-61q16-15 34-2h0zm0 160q15 16 2 34l-72 80q-7 8-17 7-11 2-18-7l-40-40q-14-16 0-33 17-14 34 0l22 22 55-61q16-15 34-2h0zm72-102q0-14 9-23h0q9-9 23-9h224q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-224q-14 0-23-9-9-9-9-23h0zm0 160q0-14 9-23h0q9-9 23-9h224q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-224q-14 0-23-9-9-9-9-23zm-64 160q0-14 9-23h0q9-9 23-9h288q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-288q-14 0-23-9-9-9-9-23zm-160 0q1-20 14-34h0q14-13 34-14 20 1 34 14 13 14 14 34-1 20-14 34-14 13-34 14-20-1-34-14-13-14-14-34z"/></symbol><symbol id="i-phone" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M511 387l-23 101q-7 23-31 24-127-1-230-63-103-61-164-164-62-103-63-230 1-24 24-31l101-23q24-4 36 18l46 108q8 22-9 37l-53 43q25 52 66 93 41 41 93 67l44-54q15-17 37-9l108 46q21 13 18 37z"/></symbol><symbol id="i-phone-alt" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M19 351l108-46q22-8 37 9l44 53q52-25 93-66 41-41 66-93l-53-44q-17-15-9-37l46-108q12-22 36-18l101 23q23 7 24 31-1 127-63 230-61 103-164 165-103 61-231 62-23-1-30-24l-23-101q-4-24 18-36z"/></symbol><symbol id="i-road" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 96q0 14 9 23h0q9 9 23 9 14 0 23-9 9-9 9-23v-64h75q20 0 37 12 16 11 23 31l118 332q3 9 3 18-1 24-16 39-15 15-39 16h-201v-64q0-14-9-23-9-9-23-9-14 0-23 9-9 9-9 23v64h-201q-24-1-39-16-15-15-16-39 0-9 3-18l118-332q7-20 23-31 16-12 37-12h74l1 64zm64 128q0-14-9-23h0q-9-9-23-9-14 0-23 9-9 9-9 23v64q0 14 9 23 9 9 23 9 14 0 23-9 9-9 9-23v-64z"/></symbol><symbol id="i-shoe-prints" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M192 159h32v-127h-32q-27 1-45 19-18 18-19 44 1 27 19 45 18 18 45 19zm-192 256q1 27 19 45h0q18 18 45 19h32v-127h-32q-27 0-45 18-18 18-19 45zm338-128q-27 0-55 9h0q-28 8-50 22 0 0-1 0-17 14-38 24-22 9-66 9v128l58 16q39 12 80 15 49 4 97-6 82-18 116-52 34-33 33-69-2-48-53-72-51-24-121-24zm153-280q-48-10-97-6-41 3-80 15l-58 16v127q41 0 62 9 22 8 37 19 3 1 6 3 22 15 50 23 28 8 55 8 70 2 121-22 51-24 53-72 1-34-33-68-34-33-116-52z"/></symbol><symbol id="i-spray-can" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M192 0q14 0 23 9h0q9 9 9 23v96h-128v-96q0-14 9-23 9-9 23-9h64zm-192 256q1-41 28-68h0q27-27 68-28h128q41 1 68 28 27 27 28 68v208q-1 20-14 34-14 13-34 14h-224q-20-1-34-14-13-14-14-34v-208zm160 0q-34 1-57 23h0q-22 23-23 57 1 34 23 57 23 22 57 23 34-1 57-23 22-23 23-57-1-34-23-57-23-22-57-23zm160-192q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm32 0q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23zm160 0q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm-64 96q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23zm64 96q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm-160-96q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23z"/></symbol><symbol id="i-users" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M320 320q44-1 73-30h0q29-30 30-74-1-44-30-74-30-29-73-30-44 1-73 30-29 30-30 74 0 44 29 74 30 29 74 30zm50 32h-100q-60 1-100 39-40 38-42 94 0 12 8 19 8 8 20 8h328q12 0 20-8 8-7 8-19-2-56-42-94-40-38-100-39zm142-192q34-1 57-23h0q22-23 23-57-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57 1 34 23 57 23 22 57 23zm-328 56q0-6 1-12h0q0-2 1-4-17-8-36-8h-62q-37 1-62 27-25 27-26 66 2 17 18 19h199q-32-37-33-88zm-56-56q34-1 57-23h0q22-23 23-57-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57 1 34 23 57 23 22 57 23zm424 32h-62q-19 0-36 8 0 3 1 5 1 5 1 11-1 51-33 88h199q16-2 18-19-1-39-26-66-25-26-62-27z"/></symbol></svg>
+    <!-- /@icons -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
       <!-- @site-header: scripts/site-header.mjs (one header on every page; edit there) -->
@@ -56,14 +59,14 @@
             <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition">Videos</a>
             <a href="/#testimonials" class="text-sm font-semibold hover:text-green-600 transition">Reviews</a>
             <a href="/service-areas/" class="text-sm font-semibold hover:text-green-600 transition">Service Area</a>
-            <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
+            <a href="tel:18155011478" class="header-tel"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>(815) 501-1478</span></a>
             <a href="/es/" class="lang-link" hreflang="es" lang="es">Español <span class="lang-hint">(inicio)</span></a>
             <a href="/#quote" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">Get Free Quote</a>
           </div>
           <div class="flex items-center gap-2 lg:hidden">
             <a href="/es/" class="lang-link" hreflang="es" lang="es">Español <span class="lang-hint">(inicio)</span></a>
-            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>Call</span></a>
-            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
+            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>Call</span></a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><svg class="icon icon-bars text-xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bars"/></svg></button>
           </div>
         </nav>
       </div>
@@ -79,7 +82,7 @@
         </nav>
       </div>
     </header>
-    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
+    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
 
     <main id="main-content" class="pt-28 pb-16">
       <div class="container mx-auto px-4">
@@ -124,22 +127,22 @@
 
             <div class="grid md:grid-cols-2 gap-8 mb-10">
               <div class="bg-green-50 p-6 rounded-lg border border-green-100">
-                <h3 class="text-xl font-bold text-green-800 mb-4"><i class="fas fa-check-circle mr-2"></i>Why Choose Us</h3>
+                <h3 class="text-xl font-bold text-green-800 mb-4"><svg class="icon icon-check-circle mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>Why Choose Us</h3>
                 <ul class="space-y-3 text-green-900">
-                  <li><i class="fas fa-clipboard-list w-6"></i> Clear project scope before work</li>
-                  <li><i class="fas fa-users w-6"></i> Family-owned local crew</li>
-                  <li><i class="fas fa-comments w-6"></i> Estimates in English or Spanish</li>
-                  <li><i class="fas fa-list-check w-6"></i> Easy to Combine with Yard Work</li>
+                  <li><svg class="icon icon-clipboard-list w-6" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list"/></svg> Clear project scope before work</li>
+                  <li><svg class="icon icon-users w-6" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-users"/></svg> Family-owned local crew</li>
+                  <li><svg class="icon icon-comments w-6" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comments"/></svg> Estimates in English or Spanish</li>
+                  <li><svg class="icon icon-list-check w-6" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-list-check"/></svg> Easy to Combine with Yard Work</li>
                 </ul>
               </div>
 
               <div>
                 <h3 class="text-xl font-bold text-gray-800 mb-4">Surfaces We Pressure Wash:</h3>
                 <ul class="space-y-3 text-gray-600">
-                  <li><i class="fas fa-road text-green-600 w-6"></i> Driveways and Sidewalks</li>
-                  <li><i class="fas fa-shoe-prints text-green-600 w-6"></i> Walkways and Steps</li>
-                  <li><i class="fas fa-chair text-green-600 w-6"></i> Patios and Outdoor Living Areas</li>
-                  <li><i class="fas fa-spray-can text-green-600 w-6"></i> Other Hard Exterior Surfaces</li>
+                  <li><svg class="icon icon-road text-green-600 w-6" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-road"/></svg> Driveways and Sidewalks</li>
+                  <li><svg class="icon icon-shoe-prints text-green-600 w-6" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-shoe-prints"/></svg> Walkways and Steps</li>
+                  <li><svg class="icon icon-chair text-green-600 w-6" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chair"/></svg> Patios and Outdoor Living Areas</li>
+                  <li><svg class="icon icon-spray-can text-green-600 w-6" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-spray-can"/></svg> Other Hard Exterior Surfaces</li>
                 </ul>
               </div>
             </div>
@@ -149,7 +152,7 @@
               <p class="text-gray-600 mb-6">Tell us which surfaces need attention and we'll include them in a free estimate.</p>
               <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="../?service=pressure-washing#quote" class="bg-green-600 text-white px-8 py-3 rounded-full font-bold hover:bg-green-700 transition shadow-md">Request Free Quote</a>
-                <a href="tel:18155011478" class="bg-white text-green-800 border-2 border-green-600 px-8 py-3 rounded-full font-bold hover:bg-green-50 transition shadow-sm"><i class="fas fa-phone mr-2"></i>(815) 501-1478</a>
+                <a href="tel:18155011478" class="bg-white text-green-800 border-2 border-green-600 px-8 py-3 rounded-full font-bold hover:bg-green-50 transition shadow-sm"><svg class="icon icon-phone mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>(815) 501-1478</a>
               </div>
             </div>
 

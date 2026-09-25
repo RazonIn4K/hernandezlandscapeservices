@@ -4,6 +4,8 @@
 // Rendered into static pages by scripts/apply-site-header.mjs and into the
 // Spanish town pages by scripts/generate_local_pages.js.
 
+import { icon } from './icons.mjs';
+
 const COPY = {
   en: {
     home: '/',
@@ -85,14 +87,14 @@ export function renderSiteHeader(o) {
           </div>
           <div class="desktop-nav hidden lg:flex items-center space-x-4">
 ${desk}
-            <a href="tel:18155011478" class="header-tel"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>(815) 501-1478</span></a>
+            <a href="tel:18155011478" class="header-tel">${icon('phone-alt')}<span>(815) 501-1478</span></a>
             ${langLink()}
             <a href="${quoteHref}" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">${c.quote}</a>
           </div>
           <div class="flex items-center gap-2 lg:hidden">
             ${langLink()}
-            <a href="tel:18155011478" class="nojs-call" aria-label="${c.call}"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>${c.callShort}</span></a>
-            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" ${menuLabel}><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
+            <a href="tel:18155011478" class="nojs-call" aria-label="${c.call}">${icon('phone-alt')}<span>${c.callShort}</span></a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" ${menuLabel}>${icon('bars', 'text-xl')}</button>
           </div>
         </nav>
       </div>

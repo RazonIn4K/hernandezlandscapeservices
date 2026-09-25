@@ -15,7 +15,6 @@ const SOURCES = [
   'assets/css/styles.css',
   'assets/css/custom.css',
   'assets/css/video.css',
-  'assets/icons/icons.css',
   'assets/css/rings.css',
 ];
 

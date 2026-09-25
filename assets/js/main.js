@@ -710,7 +710,7 @@ async function sendInstantEstimateRequest() {
   const originalText = sendBtn?.textContent || "";
   if (sendBtn) {
     sendBtn.disabled = true;
-    sendBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage("contact.sending", "Sending...")}`;
+    sendBtn.innerHTML = `<svg class="icon icon-spinner icon-spin" width="1em" height="1em" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M304 48q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm0 416q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-304-208q1-20 14-34h0q14-13 34-14 20 1 34 14 13 14 14 34-1 20-14 34-14 13-34 14-20-1-34-14-13-14-14-34zm512 0q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-437 181q-14-15-14-34h0q0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14h0zm68-294q-15 14-34 14h0q-19 0-34-14-14-15-14-34 0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34zm226 226q15-14 34-14h0q19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14-14-15-14-34 0-19 14-34h0z"/></svg> ${getMessage("contact.sending", "Sending...")}`;
   }
 
   const controller = new AbortController();
@@ -981,7 +981,7 @@ if (contactForm) {
     const originalText = button ? button.textContent : "";
     if (button) {
       button.disabled = true;
-      button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage("contact.sending", "Sending...")}`;
+      button.innerHTML = `<svg class="icon icon-spinner icon-spin" width="1em" height="1em" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M304 48q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm0 416q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-304-208q1-20 14-34h0q14-13 34-14 20 1 34 14 13 14 14 34-1 20-14 34-14 13-34 14-20-1-34-14-13-14-14-34zm512 0q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-437 181q-14-15-14-34h0q0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14h0zm68-294q-15 14-34 14h0q-19 0-34-14-14-15-14-34 0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34zm226 226q15-14 34-14h0q19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14-14-15-14-34 0-19 14-34h0z"/></svg> ${getMessage("contact.sending", "Sending...")}`;
     }
 
     const formData = new FormData(this);

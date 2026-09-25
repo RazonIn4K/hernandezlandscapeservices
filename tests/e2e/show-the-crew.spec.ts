@@ -61,8 +61,8 @@ test.describe('Hero: one clear ask and the number on every width', () => {
 test.describe('Honest trust signals', () => {
   test('no rating stars or claim-shaped icons on the homepage', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.fa-star, .fa-shield-alt, .fa-certificate')).toHaveCount(0);
-    await expect(page.locator('[data-proof-rail] .fa-check')).toHaveCount(3);
+    await expect(page.locator('.icon-star, .icon-shield-alt, .icon-certificate')).toHaveCount(0);
+    await expect(page.locator('[data-proof-rail] .icon-check')).toHaveCount(3);
   });
 
   for (const [path, label] of [

@@ -29,6 +29,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderSiteHeader, altFor } from './site-header.mjs';
+import { withIconSprite } from './icons.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://hernandezlandscapeservices.com';
@@ -402,7 +403,7 @@ ${BANNER}
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924y" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924aa" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -558,7 +559,10 @@ for (const city of CITY_PAGES) {
 outputs.push({ rel: 'sitemap.xml', content: updateSitemap(fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8')) });
 
 const drifted = [];
-for (const { rel, content } of outputs) {
+for (const output of outputs) {
+  const { rel } = output;
+  // Round 5: the icons on each page come with that page's inline sprite.
+  const content = rel.endsWith('.html') ? withIconSprite(output.content) : output.content;
   const abs = path.join(ROOT, rel);
   const current = fs.existsSync(abs) ? fs.readFileSync(abs, 'utf8') : null;
   if (current === content) continue;
