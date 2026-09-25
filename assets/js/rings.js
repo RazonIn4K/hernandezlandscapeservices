@@ -122,6 +122,11 @@
     var lastPicked = [];
     var yardOwnsService = false;
     var settingService = false;
+    // Round 5 · J2: a service the visitor already chose (in the form, or from the
+    // price check's "Add this range to my request") is kept: adding a different
+    // yard area makes the request "multiple services" instead of replacing it,
+    // and clearing the yard gives the earlier choice back.
+    var baseService = '';
 
     function chosen() { return inputs.filter(function (i) { return i.checked; }); }
     function selectedValues() {
@@ -178,28 +183,37 @@
         sync();
       });
     });
-    function applyYardSelection() {
+    function applyYardSelection(fromClick) {
       var picked = chosen();
       var values = selectedValues();
+      // (on a click the earlier choice was read before main.js prefilled the service)
+      if (!fromClick && !yardOwnsService && service) baseService = service.value;
       if (values.length === 0) {
-        if (yardOwnsService && service && service.value === lastYardService) setService('');
+        if (yardOwnsService && service && service.value === lastYardService) setService(baseService);
         yardOwnsService = false;
         lastYardService = null;
         lastPicked = [];
       } else {
-        var nextService = values.length === 1 ? values[0] : 'multiple-services';
+        var yardService = values.length === 1 ? values[0] : 'multiple-services';
+        var nextService = baseService && baseService !== yardService ? 'multiple-services' : yardService;
         yardOwnsService = setService(nextService);
         lastYardService = yardOwnsService ? nextService : null;
         lastPicked = picked.slice();
       }
       renderAppliedYard();
     }
+    // main.js also prefills a single service from this link, and its listener runs
+    // first; read the visitor's earlier choice before any click listener does.
+    document.addEventListener('click', function (e) {
+      if (!yardOwnsService && service && e.target && e.target.closest && e.target.closest('[data-yard-cta]') === cta) baseService = service.value;
+    }, true);
     cta.addEventListener('click', function () {
-      if (service) applyYardSelection();
+      if (service) applyYardSelection(true);
     });
     if (service) service.addEventListener('change', function () { if (!settingService) yardOwnsService = false; });
     var form = document.getElementById('contactForm');
     if (form) form.addEventListener('reset', function () {
+      baseService = '';
       lastYardService = null;
       lastPicked = [];
       yardOwnsService = false;
