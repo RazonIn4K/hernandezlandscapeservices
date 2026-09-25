@@ -461,12 +461,12 @@ test.describe('Static Gallery Functionality', () => {
         : 'Opciones de contacto rápido');
       await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText(emergency ? 'Emergencia' : 'Llamar ahora');
       await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', emergency
-        ? 'Llamar a Hernandez Landscape por una emergencia al (815) 501-1478'
-        : 'Llamar a Hernandez Landscape al (815) 501-1478');
+        ? 'Emergencia: llamar a Hernandez Landscape al (815) 501-1478'
+        : 'Llamar ahora a Hernandez Landscape al (815) 501-1478');
       await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Mensaje');
-      await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveAttribute('aria-label', 'Enviar un mensaje a Hernandez Landscape al (815) 501-1478');
+      await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveAttribute('aria-label', 'Mensaje a Hernandez Landscape al (815) 501-1478');
       await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Cotización gratis');
-      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('aria-label', 'Solicitar una cotización gratis');
+      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).not.toHaveAttribute('aria-label', /.*/);
       // Round 4: /es/ has the request form itself; other Spanish pages link to it.
       await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', path === '/es/' ? '#quote' : '/es/#quote');
       expect(await callCta.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(1);
@@ -492,10 +492,10 @@ test.describe('Static Gallery Functionality', () => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(callCta).toHaveAttribute('aria-label', 'Quick contact options');
     await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText('Call Now');
-    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', 'Call Hernandez Landscape now at (815) 501-1478');
+    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', 'Call Now, Hernandez Landscape at (815) 501-1478');
     await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Text');
     await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Free Estimate');
-    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('aria-label', 'Request a free estimate');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).not.toHaveAttribute('aria-label', /.*/);
     await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '#quote');
   });
 

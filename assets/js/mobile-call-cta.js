@@ -163,14 +163,16 @@
     );
 
     const callLabel = emergency ? "Emergency Call" : "Call Now";
+    // Each accessible name starts with the words on the button (WCAG 2.5.3),
+    // so a voice-control user can say what they see.
     const callAria = emergency
-      ? `Emergency call Hernandez Landscape at ${PHONE_DISPLAY}`
-      : `Call Hernandez Landscape now at ${PHONE_DISPLAY}`;
+      ? `Emergency Call, Hernandez Landscape at ${PHONE_DISPLAY}`
+      : `Call Now, Hernandez Landscape at ${PHONE_DISPLAY}`;
 
     bar.innerHTML = `
       <a class="mobile-call-cta__btn mobile-call-cta__btn--call${emergency ? " is-emergency" : ""}" href="${PHONE_HREF}" data-mobile-call-cta-call="true" aria-label="${callAria}">${callLabel}</a>
       <a class="mobile-call-cta__btn mobile-call-cta__btn--text" href="${SMS_HREF}" data-mobile-call-cta-text="true" aria-label="Text Hernandez Landscape at ${PHONE_DISPLAY}">Text</a>
-      <a class="mobile-call-cta__btn mobile-call-cta__btn--estimate" href="${estimateHref()}" data-mobile-call-cta-estimate="true" aria-label="Request a free estimate">Free Estimate</a>
+      <a class="mobile-call-cta__btn mobile-call-cta__btn--estimate" href="${estimateHref()}" data-mobile-call-cta-estimate="true">Free Estimate</a>
     `;
 
     document.body.append(bar);
@@ -189,17 +191,15 @@
         : callLabel;
       call.setAttribute("aria-label", spanish
         ? (emergency
-          ? `Llamar a Hernandez Landscape por una emergencia al ${PHONE_DISPLAY}`
-          : `Llamar a Hernandez Landscape al ${PHONE_DISPLAY}`)
+          ? `Emergencia: llamar a Hernandez Landscape al ${PHONE_DISPLAY}`
+          : `Llamar ahora a Hernandez Landscape al ${PHONE_DISPLAY}`)
         : callAria);
       text.textContent = spanish ? "Mensaje" : "Text";
       text.setAttribute("aria-label", spanish
-        ? `Enviar un mensaje a Hernandez Landscape al ${PHONE_DISPLAY}`
+        ? `Mensaje a Hernandez Landscape al ${PHONE_DISPLAY}`
         : `Text Hernandez Landscape at ${PHONE_DISPLAY}`);
+      // The visible words say it all: no separate name.
       estimate.textContent = spanish ? "Cotización gratis" : "Free Estimate";
-      estimate.setAttribute("aria-label", spanish
-        ? "Solicitar una cotización gratis"
-        : "Request a free estimate");
       estimate.setAttribute("href", estimateHref());
     };
 

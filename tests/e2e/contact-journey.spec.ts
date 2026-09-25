@@ -123,3 +123,53 @@ test.describe('without JavaScript', () => {
     }
   });
 });
+
+// contact-journey-audit · WCAG 2.5.3 Label in Name: a control's accessible name
+// contains the words it shows (voice-control users say what they see). Same rule
+// as the audit: letters and digits only, case- and accent-insensitive.
+const labelMismatches = (page: Page) =>
+  page.evaluate(() => {
+    const norm = (s: string) => (s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+    const vis = (el: Element) => {
+      const cs = getComputedStyle(el);
+      const b = el.getBoundingClientRect();
+      return cs.display !== 'none' && cs.visibility !== 'hidden' && cs.opacity !== '0' && b.width > 0 && b.height > 0;
+    };
+    const shown = (el: Element) => {
+      let s = '';
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+      for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+        const p = n.parentElement;
+        if (p && !/^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/.test(p.tagName) && vis(p)) s += `${n.textContent} `;
+      }
+      return s.replace(/\s+/g, ' ').trim();
+    };
+    const out: string[] = [];
+    for (const el of document.querySelectorAll('a[href], button, [role="button"], [role="link"], input[type="submit"], input[type="button"]')) {
+      const name = el.getAttribute('aria-label');
+      if (!name || !vis(el)) continue;
+      const text = shown(el);
+      if (norm(text).length < 2 || text.length > 60) continue;
+      if (!norm(name).includes(norm(text))) out.push(`"${name}" vs "${text}"`);
+    }
+    return out;
+  });
+
+for (const javaScriptEnabled of [true, false]) {
+  test.describe(`label in name, JavaScript ${javaScriptEnabled ? 'on' : 'off'}`, () => {
+    test.use({ javaScriptEnabled });
+    test('every visible link and button is named by the words it shows', async ({ page }) => {
+      for (const width of [390, 1440]) {
+        await page.setViewportSize({ width, height: 844 });
+        for (const path of ['/', '/es/', '/lawn-care/', '/es/lawn-care/', '/emergency-tree-removal/', '/es/emergency-tree-removal/', '/gallery/', '/card.html']) {
+          await page.goto(path, { waitUntil: 'load' });
+          if (javaScriptEnabled) {
+            await page.evaluate(() => window.scrollTo(0, 1600));
+            await page.waitForTimeout(250);
+          }
+          expect(await labelMismatches(page), `${path} @${width}`).toEqual([]);
+        }
+      }
+    });
+  });
+}
