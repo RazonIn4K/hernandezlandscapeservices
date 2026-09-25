@@ -35,9 +35,9 @@ async function finishContact(page: Page) {
   await page.locator('#formLoadedAt').evaluate((input) => { (input as HTMLInputElement).value = String(Date.now() - 60000); });
 }
 
-for (const [lang, path, yardLine, rangePrefix] of [
-  ['en', '/', 'Yard areas: The lawn', 'Instant estimate request:'],
-  ['es', '/es/', 'Áreas del jardín: El césped', 'Solicitud de presupuesto instantáneo:'],
+for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
+  ['en', '/', 'Yard areas: The lawn', 'Instant estimate request:', 'Services: Snow Removal', 'Services: Tree Service'],
+  ['es', '/es/', 'Áreas del jardín: El césped', 'Solicitud de presupuesto instantáneo:', 'Servicios: Remoción de nieve', 'Servicios: Servicio de árboles'],
 ] as const) {
   test.describe(`${lang}: choices carry into the request payload`, () => {
     test('the yard selection reaches service and message', async ({ page }) => {
@@ -105,9 +105,60 @@ for (const [lang, path, yardLine, rangePrefix] of [
       const p = await submit();
       expect(p.names).toEqual(FIELDS);
       expect(p.get('address')).toBe('9 Oak Ave, Genoa, IL');
-      expect(p.get('message').startsWith(`${yardLine}\n`)).toBe(true);
+      expect(p.get('message').startsWith(`${treeLine} · ${yardLine}\n`)).toBe(true);
       expect(p.get('message')).toContain('$280 - $420');
       expect(p.get('service')).toBe('multiple-services');
+    });
+
+    // Codex review: an earlier service must stay named when a yard area turns the
+    // request into "multiple services" (no notes, so the message is all there is).
+    test('an earlier service stays named when a yard area makes it multiple services', async ({ page }) => {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      const submit = await captureSubmit(page);
+      await page.selectOption('#contactService', 'snow-removal');
+      await page.locator('#yard-lawn').check();
+      await page.locator('[data-yard-cta]').click();
+      await page.fill('#contactAddress', '123 Main St, DeKalb, IL');
+      await finishContact(page);
+      await expect(page.locator('#projectDetails')).toHaveValue('');
+      const p = await submit();
+      expect(p.names).toEqual(FIELDS);
+      expect(p.get('service')).toBe('multiple-services');
+      expect(p.get('message')).toBe(`${snowLine} · ${yardLine}`);
+    });
+
+    test('the earlier service line goes when the yard is cleared or the service is changed', async ({ page }) => {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      const submit = await captureSubmit(page);
+      await page.selectOption('#contactService', 'snow-removal');
+      await page.locator('#yard-lawn').check();
+      await page.locator('[data-yard-cta]').click();
+      await expect(page.locator('#yardAreasField')).toHaveValue(`${snowLine} · ${yardLine}`);
+      // cleared: the earlier service comes back and nothing extra is sent
+      await page.locator('#yard-lawn').uncheck();
+      await page.locator('[data-yard-cta]').click();
+      await expect(page.locator('#contactService')).toHaveValue('snow-removal');
+      await expect(page.locator('#yardAreasField')).toHaveValue('');
+      // applied again, then the visitor picks a service by hand: the field says it now
+      await page.locator('#yard-lawn').check();
+      await page.locator('[data-yard-cta]').click();
+      await page.selectOption('#contactService', 'landscaping');
+      await expect(page.locator('#yardAreasField')).toHaveValue(yardLine);
+      await page.fill('#contactAddress', '123 Main St, DeKalb, IL');
+      await finishContact(page);
+      const p = await submit();
+      expect(p.get('service')).toBe('landscaping');
+      expect(p.get('message')).toBe(yardLine);
+    });
+
+    test('an earlier service that a yard area already covers is not repeated', async ({ page }) => {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      await page.selectOption('#contactService', 'lawn-care');
+      await page.locator('#yard-lawn').check();
+      await page.locator('#yard-tree').check();
+      await page.locator('[data-yard-cta]').click();
+      await expect(page.locator('#contactService')).toHaveValue('multiple-services');
+      await expect(page.locator('#yardAreasField')).not.toHaveValue(/Services:|Servicios:/);
     });
 
     test('clearing the yard gives the range\'s service back', async ({ page }) => {

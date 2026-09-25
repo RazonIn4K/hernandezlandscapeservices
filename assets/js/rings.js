@@ -101,8 +101,8 @@
 
   /* ---------- Walk your yard ---------- */
   var COPY = {
-    en: { none: 'Nothing selected yet', one: '1 area selected', many: '{n} areas selected', notes: 'Yard areas', start: 'Start a quote request', add: 'Add to my quote request' },
-    es: { none: 'Nada seleccionado', one: '1 área seleccionada', many: '{n} áreas seleccionadas', notes: 'Áreas del jardín', start: 'Empezar una solicitud de cotización', add: 'Agregar a mi solicitud' }
+    en: { none: 'Nothing selected yet', one: '1 area selected', many: '{n} areas selected', notes: 'Yard areas', services: 'Services', start: 'Start a quote request', add: 'Add to my quote request' },
+    es: { none: 'Nada seleccionado', one: '1 área seleccionada', many: '{n} áreas seleccionadas', notes: 'Áreas del jardín', services: 'Servicios', start: 'Empezar una solicitud de cotización', add: 'Agregar a mi solicitud' }
   };
   function initYard() {
     var box = $('[data-yard]');
@@ -127,6 +127,9 @@
     // yard area makes the request "multiple services" instead of replacing it,
     // and clearing the yard gives the earlier choice back.
     var baseService = '';
+    // Codex review: when that earlier service becomes part of "multiple services",
+    // the summary names it (the service field alone would no longer say it).
+    var namedService = '';
 
     function chosen() { return inputs.filter(function (i) { return i.checked; }); }
     function selectedValues() {
@@ -135,10 +138,15 @@
     function yardLabels(picked) {
       return picked.map(function (i) { var label = $('[data-yard-name]', i.closest('label')); return label ? label.textContent.trim() : i.value; });
     }
+    function serviceLabel(value) {
+      var option = service ? Array.prototype.filter.call(service.options, function (o) { return o.value === value; })[0] : null;
+      return option ? option.textContent.replace(/\s+/g, ' ').trim() : '';
+    }
     function renderAppliedYard() {
       var labels = yardLabels(lastPicked);
       var t = COPY[lang()] || COPY.en;
-      if (yardField) yardField.value = labels.length ? t.notes + ': ' + labels.join(', ') : '';
+      var named = labels.length && namedService ? serviceLabel(namedService) : '';
+      if (yardField) yardField.value = labels.length ? (named ? t.services + ': ' + named + ' · ' : '') + t.notes + ': ' + labels.join(', ') : '';
       if (yardSummary) yardSummary.textContent = labels.join(', ');
       if (yardNotice) yardNotice.classList.toggle('hidden', !labels.length);
       if (details) {
@@ -193,12 +201,16 @@
         yardOwnsService = false;
         lastYardService = null;
         lastPicked = [];
+        namedService = '';
       } else {
         var yardService = values.length === 1 ? values[0] : 'multiple-services';
         var nextService = baseService && baseService !== yardService ? 'multiple-services' : yardService;
         yardOwnsService = setService(nextService);
         lastYardService = yardOwnsService ? nextService : null;
         lastPicked = picked.slice();
+        // Named unless a chosen yard area already stands for it.
+        namedService = yardOwnsService && nextService === 'multiple-services' && baseService &&
+          baseService !== 'multiple-services' && values.indexOf(baseService) === -1 ? baseService : '';
       }
       renderAppliedYard();
     }
@@ -210,10 +222,19 @@
     cta.addEventListener('click', function () {
       if (service) applyYardSelection(true);
     });
-    if (service) service.addEventListener('change', function () { if (!settingService) yardOwnsService = false; });
+    if (service) service.addEventListener('change', function () {
+      if (settingService) return;
+      yardOwnsService = false;
+      // The visitor chose a service by hand: the field says it now.
+      if (namedService) {
+        namedService = '';
+        renderAppliedYard();
+      }
+    });
     var form = document.getElementById('contactForm');
     if (form) form.addEventListener('reset', function () {
       baseService = '';
+      namedService = '';
       lastYardService = null;
       lastPicked = [];
       yardOwnsService = false;
