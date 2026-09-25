@@ -11,16 +11,17 @@ test('one render-blocking stylesheet; Stencil and italic faces load after the pa
   await expect(page.locator('head link[data-late-fonts]')).toHaveCount(1);
 });
 
-test('the Big Shoulders fallback keeps the H1 on the same lines while the webfont loads', async ({ page }, testInfo) => {
-  test.skip(testInfo.project.name !== 'chromium' && testInfo.project.name !== 'chrome-local', 'Local font metrics differ per engine.');
-  await page.setViewportSize({ width: 1366, height: 768 });
-  await page.goto('/', { waitUntil: 'load' });
-  await page.evaluate(() => document.fonts.ready);
-  const h1 = page.locator('#home h1');
-  const real = await h1.evaluate((el) => el.getBoundingClientRect().height);
-  await page.evaluate(() => document.documentElement.style.setProperty('--display', '"Big Shoulders Fallback", "Big Shoulders Fallback Wide", sans-serif'));
-  const fallback = await h1.evaluate((el) => el.getBoundingClientRect().height);
-  expect(Math.abs(fallback - real), 'no reflow of the H1 on font swap').toBeLessThanOrEqual(2);
+// Round 5 (P): a local() font face made a cold browser hold the first frame for
+// 1-2.4 s while it built its system-font table, so there are none; the fonts the
+// first screen needs are preloaded instead.
+test('no font face waits on local() system fonts; the first-screen fonts are preloaded', async ({ page, request }) => {
+  const css = await (await request.get('/assets/css/site.css')).text();
+  expect(css).not.toMatch(/src:[^;]*local\(/);
+  for (const path of ['/', '/es/', '/lawn-care/']) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    const preloads = await page.locator('head link[rel="preload"][as="font"]').evaluateAll((links) => links.map((l) => l.getAttribute('href')));
+    expect(preloads, path).toEqual(expect.arrayContaining(['/assets/fonts/big-shoulders-display-v24-latin-var.woff2', '/assets/fonts/public-sans-v21-latin-var.woff2']));
+  }
 });
 
 test('the service area shows an inline field map, not a Google Maps iframe', async ({ page }) => {

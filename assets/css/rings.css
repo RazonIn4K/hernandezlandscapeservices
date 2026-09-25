@@ -22,34 +22,12 @@
 /* Round 4: the Stencil caps face and the Public Sans italic load after the page
    (assets/css/fonts-late.css, injected by rings.js); until then the labels use Big
    Shoulders Display and italics are synthesized. */
-/* Metric-matched fallbacks so the condensed display type keeps its line breaks
-   while the webfont loads (measured against Big Shoulders Display 800 caps). */
-@font-face {
-  font-family: "Big Shoulders Fallback";
-  src: local("Arial Narrow Bold"), local("ArialNarrow-Bold");
-  font-weight: 600 900;
-  size-adjust: 80%;
-  ascent-override: 98%;
-  descent-override: 21%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: "Big Shoulders Fallback Wide";
-  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Helvetica-Bold");
-  font-weight: 600 900;
-  size-adjust: 67%;
-  ascent-override: 98%;
-  descent-override: 21%;
-  line-gap-override: 0%;
-}
-@font-face {
-  font-family: "Public Sans Fallback";
-  src: local("Arial"), local("Helvetica");
-  size-adjust: 103%;
-  ascent-override: 93%;
-  descent-override: 22%;
-}
-
+/* Round 5: no local() font faces. A cold browser (first page after launch) must
+   build its system-font table before it can match local(), and Chrome held the
+   first frame for 1-2.4 s whenever a local() face was needed because a web font
+   was not in yet (measured with Lighthouse; see the round-5 commit). The two
+   first-paint fonts are preloaded instead; the stacks fall back to plain system
+   families, which never wait. */
 :root {
   --canopy: #153b2f;
   --canopy-deep: #0c2a20;
@@ -67,9 +45,9 @@
   --sky: #286f9f;
   --ink: #1f1b17;
   --ink-soft: #5d554a;
-  --display: "Big Shoulders Display", "Big Shoulders Fallback", "Big Shoulders Fallback Wide", "Arial Narrow", sans-serif;
+  --display: "Big Shoulders Display", "Arial Narrow", sans-serif;
   --stencil: "Big Shoulders Stencil Display", "Big Shoulders Display", sans-serif;
-  --body: "Public Sans", "Public Sans Fallback", system-ui, sans-serif;
+  --body: "Public Sans", system-ui, sans-serif;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   /* Wood grain, used for dividers and bark edges. */
   --grain: repeating-linear-gradient(92deg, rgba(107, 74, 51, 0.16) 0 2px, transparent 2px 9px, rgba(107, 74, 51, 0.08) 9px 10px, transparent 10px 17px);

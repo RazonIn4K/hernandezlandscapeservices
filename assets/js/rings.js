@@ -529,7 +529,9 @@
       track.addEventListener('scroll', queue, { passive: true });
       window.addEventListener('resize', queue);
       if ('MutationObserver' in window) new MutationObserver(queue).observe(track, { childList: true, subtree: true });
-      update();
+      // Round 5: count the frames after the first frame is on screen, so reading the
+      // strip's sizes never forces the page's first full layout inside this script.
+      window.requestAnimationFrame(function () { window.setTimeout(update, 0); });
     });
   }
 

@@ -19,7 +19,7 @@
         box-shadow: 0 16px 36px rgba(10, 38, 28, 0.4);
         color: #fff;
         display: grid;
-        font-family: "Public Sans", "Public Sans Fallback", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         gap: 0.4rem;
         grid-template-columns: 1.2fr 0.9fr 1.1fr;
         left: max(10px, env(safe-area-inset-left));
@@ -222,43 +222,74 @@
       "(max-height: 500px) and (orientation: landscape)",
     );
 
-    const overlapsViewport = (element, inset = 0) => {
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      return rect.bottom > inset && rect.top < window.innerHeight - inset;
+    // Round 5: visibility comes from IntersectionObserver entries, so the bar never
+    // forces a layout while the page is still being built (it used to read
+    // getBoundingClientRect right away, which made the first full-page layout
+    // happen inside this script).
+    const state = {
+      // the hero's call button (or the hero) is on screen, or still below it
+      heroAhead: Boolean(heroCall || hero),
+      conversion: { quote: false, footer: false },
     };
 
-    const updateVisibility = () => {
-      // Hidden while the hero's own call button is on screen (or still below it);
-      // it appears once that button has scrolled away, so the call is never repeated.
-      const heroIsVisible = heroCall
-        ? heroCall.getBoundingClientRect().bottom > 0
-        : overlapsViewport(hero, 80);
-      const conversionAreaIsVisible =
-        overlapsViewport(quote, 80) || overlapsViewport(footer, 32);
+    const render = () => {
       const shouldShow =
         mobileQuery.matches &&
         !shortLandscapeQuery.matches &&
-        !heroIsVisible &&
-        !conversionAreaIsVisible;
+        !state.heroAhead &&
+        !state.conversion.quote &&
+        !state.conversion.footer;
 
       bar.classList.toggle("is-visible", shouldShow);
       document.body.classList.toggle("has-mobile-cta", shouldShow);
     };
 
-    const observedSections = [hero, quote, footer].filter(Boolean);
-    if ("IntersectionObserver" in window && observedSections.length) {
-      const observer = new IntersectionObserver(updateVisibility, {
-        threshold: [0, 0.05, 0.5, 1],
-        rootMargin: "-32px 0px -32px",
+    const watch = (element, rootMargin, apply) => {
+      if (!element) return;
+      new IntersectionObserver((entries) => {
+        apply(entries[entries.length - 1]);
+        render();
+      }, { rootMargin, threshold: [0] }).observe(element);
+    };
+
+    if ("IntersectionObserver" in window) {
+      // Hidden while the hero's own call button is on screen (or still below it);
+      // it appears once that button has scrolled away, so the call is never repeated.
+      if (heroCall) {
+        watch(heroCall, "0px", (entry) => {
+          state.heroAhead = entry.isIntersecting || entry.boundingClientRect.top > 0;
+        });
+      } else {
+        watch(hero, "-80px 0px -80px", (entry) => {
+          state.heroAhead = entry.isIntersecting;
+        });
+      }
+      watch(quote, "-80px 0px -80px", (entry) => {
+        state.conversion.quote = entry.isIntersecting;
       });
-      observedSections.forEach((section) => observer.observe(section));
+      watch(footer, "-32px 0px -32px", (entry) => {
+        state.conversion.footer = entry.isIntersecting;
+      });
+    } else {
+      // Old browsers: measure on scroll and resize (after the page has laid out).
+      const overlapsViewport = (element, inset = 0) => {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.bottom > inset && rect.top < window.innerHeight - inset;
+      };
+      const measure = () => {
+        state.heroAhead = heroCall ? heroCall.getBoundingClientRect().bottom > 0 : overlapsViewport(hero, 80);
+        state.conversion.quote = overlapsViewport(quote, 80);
+        state.conversion.footer = overlapsViewport(footer, 32);
+        render();
+      };
+      window.addEventListener("scroll", measure, { passive: true });
+      window.addEventListener("resize", measure, { passive: true });
+      window.addEventListener("load", measure, { once: true });
     }
 
-    window.addEventListener("scroll", updateVisibility, { passive: true });
-    window.addEventListener("resize", updateVisibility, { passive: true });
-    mobileQuery.addEventListener?.("change", updateVisibility);
-    shortLandscapeQuery.addEventListener?.("change", updateVisibility);
+    mobileQuery.addEventListener?.("change", render);
+    shortLandscapeQuery.addEventListener?.("change", render);
 
     bar.querySelector("[data-mobile-call-cta-call]")?.addEventListener("click", () => {
       if (typeof window.hlsTrack === "function") {
@@ -278,7 +309,7 @@
       }
     });
 
-    updateVisibility();
+    render();
   };
 
   if (document.readyState === "loading") {
