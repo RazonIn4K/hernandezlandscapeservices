@@ -26,6 +26,7 @@
 
   var PHONE_DISPLAY = "(815) 501-1478";
   var PHONE_TEL = "tel:18155011478";
+  var PHONE_SMS = "sms:+18155011478";
   var ZIP_RE = /^\d{5}(-\d{4})?$/;
   var REQUEST_TIMEOUT_MS = 12000;
   var COPY = {
@@ -37,6 +38,8 @@
       sent: "Request submitted.",
       receipt: "Your request is awaiting review and a callback. An appointment, arrival time and crew availability are not confirmed. You can call ",
       failed: "We couldn't confirm that your request was sent. Your information is still in the form. Please try again or call ",
+      orText: " or ",
+      textLink: "send a text",
       sending: "Sending…",
       validation: "Please complete the required fields and check the highlighted information.",
       required: "Please complete this field.",
@@ -55,6 +58,8 @@
       sent: "Solicitud enviada.",
       receipt: "Su solicitud está pendiente de revisión y de una llamada. La cita, la hora de llegada y la disponibilidad del equipo no están confirmadas. Puede llamar al ",
       failed: "No pudimos confirmar el envío de su solicitud. Sus datos siguen en el formulario. Intente de nuevo o llame al ",
+      orText: " o ",
+      textLink: "envíe un mensaje de texto",
       sending: "Enviando…",
       validation: "Complete los campos obligatorios y revise la información marcada.",
       required: "Complete este campo.",
@@ -113,9 +118,11 @@
   function showError() {
     if (!dispatchStatus) return;
     dispatchStatus.setAttribute("role", "alert");
+    // Static copy only (no visitor input is ever written here).
     dispatchStatus.innerHTML =
       copy("failed") + '<a class="font-bold underline" href="' +
-      PHONE_TEL + '">' + PHONE_DISPLAY + "</a>.";
+      PHONE_TEL + '">' + PHONE_DISPLAY + "</a>" + copy("orText") +
+      '<a class="font-bold underline" href="' + PHONE_SMS + '">' + copy("textLink") + "</a>.";
   }
 
   // Keep native constraints, with page-language feedback even when the

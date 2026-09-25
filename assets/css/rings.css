@@ -1842,3 +1842,21 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
 .price-check-step { margin: 6px 0 0 !important; padding-top: 14px; border-top: 1px dashed rgba(107, 74, 51, 0.35); color: var(--ink); font-weight: 700; }
 #quoteForm .field-error { margin: 0; }
 #quoteForm [aria-invalid="true"] { border-color: #b42318 !important; box-shadow: 0 0 0 1px #b42318; }
+
+/* ---------- Round 5 · J1 · Without JavaScript: no dead controls, a call on every first screen ---------- */
+.nojs-call { display: none; }
+@media (scripting: none) {
+  /* the menu, geolocation and price check need JS; the call bar is scripted */
+  #mobileMenuButton, [data-geo-request], [data-geo-status], #quoteForm { display: none !important; }
+  .nojs-call {
+    display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px;
+    border-radius: 999px; background: var(--leaf, #2f6f4f); color: #fff; font-weight: 700; font-size: 15px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .price-check-nojs { margin: 12px 0 0; font-weight: 600; line-height: 1.5; }
+  .price-check-nojs a { text-decoration: underline; font-weight: 700; }
+}
+@media (scripting: none) and (min-width: 1024px) { .nojs-call { display: none; } }
+/* J1: the failure actions (Call, Send a Text) stack as full-width 44 px buttons above Close */
+#customModal .modal-content > a:not(.hidden) { display: flex; align-items: center; justify-content: center; min-height: 44px; width: 100%; }
+#customModal .modal-content > button { min-height: 44px; }

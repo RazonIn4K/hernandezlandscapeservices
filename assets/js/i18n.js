@@ -311,6 +311,7 @@
       "instant.result.add": "Add this range to my request",
       "instant.contactStep": "To send it as a request, add how we reach you:",
       "instant.optional.callback": "Optional: preferred callback time",
+      "instant.nojs": "The starting range needs JavaScript. For a price, <a href=\"tel:18155011478\">call (815) 501-1478</a> or <a href=\"sms:+18155011478\">send a text</a>, or use the <a href=\"#quoteFormCard\">request form</a>.",
       // Round 4: /es/ is built from these keys (scripts/build-es-home.mjs).
       "nav.skip": "Skip to main content",
       "nav.backToTop": "Back to top",
@@ -876,6 +877,7 @@
       "instant.result.add": "Agregar este rango a mi solicitud",
       "instant.contactStep": "Para enviarlo como solicitud, agregue cómo contactarlo:",
       "instant.optional.callback": "Opcional: horario preferido para recibir la llamada",
+      "instant.nojs": "El rango inicial necesita JavaScript. Para un precio, <a href=\"tel:18155011478\">llame al (815) 501-1478</a> o <a href=\"sms:+18155011478\">envíe un mensaje de texto</a>, o use el <a href=\"#quoteFormCard\">formulario de solicitud</a>.",
       // Round 4: needs native-speaker review (new Spanish, translated from the English).
       "nav.skip": "Saltar al contenido principal",
       "nav.backToTop": "Volver arriba",

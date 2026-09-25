@@ -19,6 +19,7 @@ const COPY = {
     ],
     quote: 'Get Free Quote',
     call: 'Call (815) 501-1478',
+    callShort: 'Call',
     primaryNav: 'Primary navigation',
     mobileNav: 'Mobile navigation',
     menu: 'Open navigation menu',
@@ -39,6 +40,7 @@ const COPY = {
     ],
     quote: 'Cotización gratis',
     call: 'Llame al (815) 501-1478',
+    callShort: 'Llamar',
     primaryNav: 'Navegación principal',
     mobileNav: 'Navegación móvil',
     menu: 'Abrir menú de navegación',
@@ -89,6 +91,7 @@ ${desk}
           </div>
           <div class="flex items-center gap-2 lg:hidden">
             ${langLink()}
+            <a href="tel:18155011478" class="nojs-call" aria-label="${c.call}"><i class="fas fa-phone-alt" aria-hidden="true"></i><span>${c.callShort}</span></a>
             <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" ${menuLabel}><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
           </div>
         </nav>

@@ -99,7 +99,7 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924w" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924y" />
     <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -185,6 +185,8 @@
           <!-- Mobile Controls (Español + Menu) -->
           <div class="flex items-center lg:hidden space-x-3">
             <a href="/es/" class="lang-link" hreflang="es" lang="es">Español</a>
+            <!-- Shown only when JavaScript is off (the menu button needs it; the call bar is scripted) -->
+            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478" data-i18n-aria-label="hero.emergencyCall"><i class="fas fa-phone-alt" aria-hidden="true"></i><span data-i18n-key="quote.phoneLabel">Call</span></a>
             <button
               id="mobileMenuButton"
               type="button"
@@ -1387,6 +1389,7 @@
               <details class="price-check-fold" open data-fold-mobile>
               <summary><h3 id="price-check-title" data-i18n-key="instant.heading2">Price check: see a starting range</h3></summary>
               <p class="price-check-sub" data-i18n-key="instant.subtitle">Enter a few details for a starting range, then send your request in one step. Final pricing is confirmed on site.</p>
+              <noscript><p class="price-check-nojs" data-i18n-key="instant.nojs">The starting range needs JavaScript. For a price, <a href="tel:18155011478">call (815) 501-1478</a> or <a href="sms:+18155011478">send a text</a>, or use the <a href="#quoteFormCard">request form</a>.</p></noscript>
               <div class="instant-card">
           <div
             class="flex flex-wrap justify-center gap-4 mb-6 text-sm text-gray-600"
@@ -2396,6 +2399,14 @@
         >
           Call (815) 501-1478
         </a>
+        <a
+          id="modalTextAction"
+          href="sms:+18155011478"
+          class="mb-3 hidden rounded-full border-2 border-amber-500 px-6 py-2 font-bold text-amber-950 hover:bg-amber-50"
+          data-i18n-key="quote.textLabel"
+        >
+          Send a Text
+        </a>
         <button
           onclick="hideModal()"
           class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
@@ -2410,8 +2421,8 @@
       <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
-    <script src="assets/js/i18n.js?v=20260924w" defer></script>
-    <script src="assets/js/main.js?v=20260924u" defer></script>
+    <script src="assets/js/i18n.js?v=20260924x" defer></script>
+    <script src="assets/js/main.js?v=20260924x" defer></script>
     <script src="/assets/js/motion.js" defer></script>
     <script src="assets/js/static-gallery.js?v=20260924w" defer></script>
 

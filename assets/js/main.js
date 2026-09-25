@@ -22,10 +22,13 @@ function showModal(message, { showCall = false } = {}) {
   }
   lastFocusedElement = document.activeElement;
   document.getElementById("modalMessage").textContent = message;
-  const modalCallAction = document.getElementById("modalCallAction");
-  if (modalCallAction) {
-    modalCallAction.classList.toggle("hidden", !showCall);
-  }
+  // Round 4 J1: a failed request always offers both ways to reach the crew.
+  ["modalCallAction", "modalTextAction"].forEach((id) => {
+    const action = document.getElementById(id);
+    if (action) {
+      action.classList.toggle("hidden", !showCall);
+    }
+  });
   modal.classList.remove("hidden");
   modal.style.display = "flex";
   modalContent.setAttribute("tabindex", "-1");
@@ -710,10 +713,13 @@ async function sendInstantEstimateRequest() {
     sendBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage("contact.sending", "Sending...")}`;
   }
 
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 12000);
   try {
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       body: formData,
+      signal: controller.signal,
     });
     const result = await response.json().catch(() => ({}));
     if (!response.ok || result.success !== true) {
@@ -735,8 +741,10 @@ async function sendInstantEstimateRequest() {
         "alerts.instant.sendError",
         "We could not send your request. Please call (815) 501-1478 or try again.",
       ),
+      { showCall: true },
     );
   } finally {
+    window.clearTimeout(timeoutId);
     if (sendBtn) {
       sendBtn.disabled = false;
       sendBtn.textContent = originalText;
