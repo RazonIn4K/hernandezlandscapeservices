@@ -15,14 +15,69 @@
 
   window.dataLayer = window.dataLayer || [];
 
+  // Codex review: GTM loads late (round 4), so a tracked click that leaves the page
+  // before the container has loaded would be lost with the page. Such events are
+  // kept here and, if the page goes away before GTM is ready, saved to
+  // sessionStorage (this tab, this site only) and replayed on the next page.
+  var QUEUE_KEY = "hls:pendingEvents";
+  var QUEUE_MAX = 10;
+  var QUEUE_MAX_CHARS = 4000;
+  var QUEUE_TTL_MS = 2 * 60 * 1000;
+  var VALUE_MAX = 200;
+  // Only the site's own tracked events and parameters are ever replayed.
+  var ALLOWED_EVENTS = {
+    call_click: 1,
+    quote_cta_click: 1,
+    phone_click: 1,
+    sms_click: 1,
+    estimate_click: 1,
+    quote_form_completion: 1,
+    lead_submit_success: 1
+  };
+  var ALLOWED_PARAMS = { link_url: 1, source: 1 };
+  var own = function (object, key) { return Object.prototype.hasOwnProperty.call(object, key); };
+  var pending = [];
+
+  function gtmReady() {
+    return Boolean(window.google_tag_manager && window.google_tag_manager[GTM_CONTAINER_ID]);
+  }
+
+  // Allowed event name, allowed keys, short strings and finite numbers; else null.
+  function cleanEvent(name, params) {
+    if (typeof name !== "string" || !own(ALLOWED_EVENTS, name)) return null;
+    var out = {};
+    if (params && typeof params === "object" && !Array.isArray(params)) {
+      for (var key in params) {
+        if (!own(params, key) || !own(ALLOWED_PARAMS, key)) continue;
+        var value = params[key];
+        if ((typeof value === "string" && value.length <= VALUE_MAX) || (typeof value === "number" && isFinite(value))) {
+          out[key] = value;
+        }
+      }
+    }
+    return out;
+  }
+
+  function record(name, params, at) {
+    var payload = { event: name };
+    for (var key in params) {
+      if (own(params, key)) payload[key] = params[key];
+    }
+    window.dataLayer.push(payload);
+    if (!gtmReady()) {
+      var clean = cleanEvent(name, params);
+      if (clean) {
+        pending.push({ event: name, params: clean, at: at, ref: payload });
+        if (pending.length > QUEUE_MAX) pending.shift();
+      }
+    }
+    return payload;
+  }
+
   function track(event, params) {
     try {
-      var payload = { event: event };
       var extra = params || {};
-      for (var key in extra) {
-        if (Object.prototype.hasOwnProperty.call(extra, key)) payload[key] = extra[key];
-      }
-      window.dataLayer.push(payload);
+      record(event, extra, Date.now());
       // Mirror the same event to Umami when its tracker has loaded.
       if (window.umami && typeof window.umami.track === "function") {
         window.umami.track(event, extra);
@@ -37,6 +92,7 @@
     // The queue starts now (page start time, and "gtm.js" stays the first event),
     // so clicks tracked before the container arrives are kept in order.
     window.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    replayQueue();
 
     // Round 4 (research 03 R19): the container (and the Google tag it loads)
     // is fetched after the page has loaded and gone idle (at most ~3 s later),
@@ -71,6 +127,54 @@
       window.addEventListener("load", whenIdle, { once: true });
     }
   }
+
+  function replayQueue() {
+    var raw = null;
+    try {
+      raw = window.sessionStorage.getItem(QUEUE_KEY);
+      window.sessionStorage.removeItem(QUEUE_KEY);
+    } catch (e) {
+      return;
+    }
+    if (typeof raw !== "string" || raw.length > QUEUE_MAX_CHARS) return;
+    var list;
+    try {
+      list = JSON.parse(raw);
+    } catch (e) {
+      return;
+    }
+    if (!Array.isArray(list)) return;
+    var now = Date.now();
+    list.slice(-QUEUE_MAX).forEach(function (item) {
+      if (!item || typeof item !== "object" || Array.isArray(item)) return;
+      var at = item.at;
+      if (typeof at !== "number" || !isFinite(at) || at > now + 1000 || now - at > QUEUE_TTL_MS) return;
+      var clean = cleanEvent(item.event, item.params);
+      // Replayed through record(), so they carry on again if this page also
+      // leaves before GTM loads (the age limit still applies).
+      if (clean) record(item.event, clean, at);
+    });
+  }
+
+  // The page is going away (a link, the call bar, a reload): if GTM never got
+  // these events, keep them for the next page. Writing sessionStorage is
+  // synchronous and small; navigation is not delayed.
+  window.addEventListener("pagehide", function () {
+    if (!pending.length || gtmReady()) return;
+    try {
+      window.sessionStorage.setItem(QUEUE_KEY, JSON.stringify(pending.map(function (p) {
+        return { event: p.event, params: p.params, at: p.at };
+      })));
+    } catch (e) {
+      return;
+    }
+    // If this page comes back from the back/forward cache, it must not send them too.
+    pending.forEach(function (p) {
+      var index = window.dataLayer.indexOf(p.ref);
+      if (index !== -1) window.dataLayer.splice(index, 1);
+    });
+    pending = [];
+  });
 
   if (UMAMI_SRC && UMAMI_WEBSITE_ID) {
     var umamiScript = document.createElement("script");
