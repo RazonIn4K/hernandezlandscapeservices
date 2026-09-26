@@ -67,3 +67,31 @@ test('the Spanish nav and hub reach every Spanish area and service page', async 
   const towns = await page.locator('main h3').allTextContents();
   expect(towns.map((t) => t.trim())).toEqual(['DeKalb, IL', 'Sycamore, IL', 'Cortland, IL', 'Malta, IL', 'Genoa, IL', 'Kingston, IL']);
 });
+
+// 08-crawl (b): every Spanish page links the English home (the Spanish home through
+// its language link, the others through the footer), and Spanish quote and service
+// links stay on Spanish URLs instead of opening the English home.
+const ES_PAGES = ['/es/', '/es/tree-removal/', '/es/emergency-tree-removal/', '/es/tree-trimming-stump-grinding/', '/es/lawn-care/',
+  '/es/landscaping-design/', '/es/snow-removal/', '/es/gutter-cleaning/', '/es/pressure-washing/', '/es/leaf-removal/', '/es/service-areas/',
+  '/es/service-areas/dekalb-il/', '/es/service-areas/sycamore-il/', '/es/service-areas/cortland-il/', '/es/service-areas/malta-il/',
+  '/es/service-areas/genoa-il/', '/es/service-areas/kingston-il/'];
+
+test('every Spanish page links the English home and keeps quote links in Spanish', async ({ page }) => {
+  for (const path of ES_PAGES) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    const hrefs = await page.locator('a[href]').evaluateAll((a) => a.map((x) => x.getAttribute('href')!));
+    expect(hrefs, path).toContain('/');
+    expect(hrefs.filter((h) => /^\/[?#]/.test(h)), path).toEqual([]);
+    if (path !== '/es/') {
+      const home = page.locator('footer a[href="/"]');
+      await expect(home, path).toHaveAttribute('hreflang', 'en');
+      await expect(home, path).toHaveText('Sitio en inglés');
+    }
+  }
+});
+
+test('the Spanish home keeps its keyword H1', async ({ page }) => {
+  await page.goto('/es/', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('h1')).toHaveCount(1);
+  expect((await page.locator('h1').textContent())!.replace(/\s+/g, ' ').trim()).toBe('Remoción de árboles, césped y jardinería en DeKalb, IL');
+});

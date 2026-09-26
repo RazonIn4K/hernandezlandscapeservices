@@ -318,7 +318,9 @@ const CITY_PAGES = [
 
 // English service pages that have a Spanish twin: Spanish pages link the twin.
 const ES_TWINS = new Set(['/lawn-care/', '/tree-removal/', '/snow-removal/', '/landscaping-design/', '/gutter-cleaning/', '/pressure-washing/', '/leaf-removal/', '/emergency-tree-removal/', '/tree-trimming-stump-grinding/']);
-const pageHref = (href, lang) => (lang === 'es' && ES_TWINS.has(href) ? `/es${href}` : href);
+// Spanish pages keep Spanish URLs: twins, and the Spanish home for home anchors
+// ("/#services", "/?service=…#quote").
+const pageHref = (href, lang) => (lang === 'es' && (ES_TWINS.has(href) || /^\/[?#]/.test(href)) ? `/es${href}` : href);
 const enUrl = (c) => `${SITE}/service-areas/${c.slug}/`;
 const esUrl = (c) => `${SITE}/es/service-areas/${c.slug}/`;
 
@@ -463,7 +465,7 @@ ${renderSiteHeader({ lang, alt: altFor(lang === 'es' ? `/es/service-areas/${city
             <h1 class="text-4xl font-black leading-tight text-gray-900 md:text-5xl">${t.h1}</h1>
             <p class="mt-5 text-lg leading-relaxed text-gray-600">${t.intro}</p>
             <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-              <a href="${t.ctaHref}" class="rounded-full bg-green-600 px-7 py-3 text-center font-bold text-white hover:bg-green-700">${t.ctaText}</a>
+              <a href="${pageHref(t.ctaHref, lang)}" class="rounded-full bg-green-600 px-7 py-3 text-center font-bold text-white hover:bg-green-700">${t.ctaText}</a>
               <a href="tel:18155011478" class="rounded-full border-2 border-green-700 px-7 py-3 text-center font-bold text-green-800 hover:bg-green-50">(815) 501-1478</a>
             </div>
           </div>
@@ -498,7 +500,7 @@ ${faq}
 
     <footer class="bg-gray-900 py-8 text-center text-white">
       ${SOIL}
-      <p class="text-sm text-gray-400">&copy; 2026 Hernandez Landscape & Tree Service LLC. 1029 Lewis St, DeKalb, IL 60115 | (815) 501-1478</p>
+      <p class="text-sm text-gray-400">&copy; 2026 Hernandez Landscape & Tree Service LLC. 1029 Lewis St, DeKalb, IL 60115 | (815) 501-1478</p>${lang === 'es' ? `\n      <p class="mt-3 text-xs"><a href="/" hreflang="en" class="inline-block py-2 text-gray-300 underline">Sitio en inglés</a></p>` : ''}
     </footer>
 
     <script type="application/ld+json">
