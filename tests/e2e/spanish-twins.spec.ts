@@ -37,6 +37,21 @@ test('each Spanish twin is a proper pair of its English page', async ({ page, re
   }
 });
 
+// 07-serp §4: Spanish service titles carry the place name; the H1s stay as they were.
+test('Spanish lawn and trimming titles name DeKalb', async ({ page }) => {
+  for (const [path, title, h1] of [
+    ['/es/lawn-care/', 'Cuidado del césped y corte de pasto en DeKalb | Hernandez', 'Cuidado del césped en DeKalb, IL'],
+    ['/es/tree-trimming-stump-grinding/', 'Poda de árboles y remoción de tocones en DeKalb | Hernandez', 'Poda de árboles y molienda de tocones en DeKalb County'],
+  ] as const) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    await expect(page, path).toHaveTitle(title);
+    expect(title.length).toBeLessThanOrEqual(60);
+    await expect(page.locator('meta[property="og:title"]'), path).toHaveAttribute('content', title);
+    await expect(page.locator('meta[name="twitter:title"]'), path).toHaveAttribute('content', title);
+    await expect(page.locator('h1'), path).toHaveText(h1);
+  }
+});
+
 test('the Spanish nav and hub reach every Spanish area and service page', async ({ page }) => {
   await page.goto('/es/', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('#header .desktop-nav a', { hasText: 'Zonas de servicio' })).toHaveAttribute('href', '/es/service-areas/');
