@@ -39,6 +39,11 @@ const PAGES = {
   '/es/tree-trimming-stump-grinding/': { quoteHref: '/es/?service=tree-service#quote' },
   '/es/lawn-care/': { quoteHref: '/es/?service=lawn-care#quote' },
   '/es/landscaping-design/': { quoteHref: '/es/?service=landscaping#quote' },
+  '/es/snow-removal/': { quoteHref: '/es/?service=snow-removal#quote' },
+  '/es/gutter-cleaning/': { quoteHref: '/es/?service=gutter-cleaning#quote' },
+  '/es/pressure-washing/': { quoteHref: '/es/?service=pressure-washing#quote' },
+  '/es/leaf-removal/': { quoteHref: '/es/?service=leaf-removal#quote' },
+  '/es/service-areas/': { quoteHref: '/es/#quote', current: 'areas' },
 };
 
 export function headerFor(route) {

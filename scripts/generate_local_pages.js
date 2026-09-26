@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * generate_local_pages.js — bilingual local service-area pages for
- * hernandezlandscapeservices.com (Sycamore, Cortland, Malta, Genoa, Kingston).
+ * hernandezlandscapeservices.com (DeKalb, Sycamore, Cortland, Malta, Genoa, Kingston).
  *
  * Usage: node scripts/generate_local_pages.js          (write pages + sitemap)
  *        node scripts/generate_local_pages.js --check  (exit 1 on drift, CI-safe)
@@ -35,7 +35,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://hernandezlandscapeservices.com';
 const CHECK = process.argv.includes('--check');
 // Fixed so --check stays drift-free between runs; bump when copy changes.
-const LASTMOD = '2026-09-23';
+const LASTMOD = '2026-09-25';
 
 // Round 2 roots footer: the same decorative soil cross-section every footer carries (aria-hidden).
 const SOIL = "<div class=\"soil\" aria-hidden=\"true\"><svg class=\"soil-roots\" viewBox=\"0 0 480 140\" width=\"480\" height=\"140\" focusable=\"false\"><defs><linearGradient id=\"soilRootFade\" gradientUnits=\"userSpaceOnUse\" x1=\"0\" y1=\"24\" x2=\"0\" y2=\"138\"><stop offset=\"0\" stop-color=\"#b8905f\"/><stop offset=\".45\" stop-color=\"#8a6848\"/><stop offset=\".8\" stop-color=\"#6b4e37\" stop-opacity=\".8\"/><stop offset=\"1\" stop-color=\"#5e4431\" stop-opacity=\".35\"/></linearGradient><linearGradient id=\"soilBark\" x1=\"0\" x2=\"1\" y1=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#3d2616\"/><stop offset=\".45\" stop-color=\"#6b4a33\"/><stop offset=\"1\" stop-color=\"#34200f\"/></linearGradient></defs><g class=\"soil-root-set\" fill=\"none\" stroke=\"url(#soilRootFade)\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"5\" d=\"M208 30C180 44 150 52 112 60S46 76 12 84\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"5\" d=\"M272 30C300 44 330 52 368 60S434 76 470 84\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"4.2\" d=\"M224 31C214 56 196 78 168 96S120 116 92 124\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"4.2\" d=\"M256 31C266 56 284 78 312 96S360 116 388 124\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"5.2\" d=\"M241 32C242 60 238 86 240 106S238 122 236 130\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M150 54C140 66 128 74 112 80\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M92 68C80 78 66 84 50 96\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M330 54C340 66 352 74 368 80\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M388 68C400 78 414 84 430 96\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M190 84C178 98 170 108 164 120\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M290 84C302 98 310 108 316 120\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M239 96C228 106 220 112 206 118\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M240 100C252 108 262 114 276 120\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M50 96C44 102 40 108 34 112\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M430 96C436 102 440 108 446 112\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M164 120C160 124 157 128 151 131\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M316 120C320 124 323 128 329 131\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M92 124C84 126 76 127 68 130\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M388 124C396 126 404 127 412 130\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M12 84C8 90 6 96 3 100\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M470 84C474 90 476 96 478 100\"/></g><g class=\"soil-stump\"><path fill=\"url(#soilBark)\" d=\"M206 9A34 7.5 0 0 0 274 9L276 19C277 24 280 28 287 31L193 31C200 28 203 24 204 19Z\"/><path fill=\"none\" stroke=\"#2c1a0e\" stroke-opacity=\".55\" stroke-width=\"1.2\" stroke-linecap=\"round\" d=\"M217 16.5L216 28M231 17.2L230.5 30M249 17.2L249.6 30M263 16.5L264 28\"/><ellipse cx=\"240\" cy=\"9\" rx=\"34\" ry=\"7.5\" fill=\"#e2c99c\" stroke=\"#4a2f1c\" stroke-width=\"3\"/><g fill=\"none\" stroke=\"#b88f5c\" stroke-width=\"1\"><ellipse cx=\"240\" cy=\"9\" rx=\"27\" ry=\"5.9\"/><ellipse cx=\"240.5\" cy=\"9.2\" rx=\"20\" ry=\"4.4\"/><ellipse cx=\"241\" cy=\"9.3\" rx=\"13\" ry=\"2.9\"/><ellipse cx=\"241.4\" cy=\"9.4\" rx=\"6.4\" ry=\"1.5\"/></g><circle cx=\"241.6\" cy=\"9.4\" r=\"1.3\" fill=\"#8a6244\"/><path fill=\"none\" stroke=\"#6b4a33\" stroke-width=\"1\" stroke-linecap=\"round\" d=\"M241.6 9.4L246 7.2L252 6.4L258 4.4\"/></g></svg></div>";
@@ -55,6 +55,46 @@ const SITEMAP_END = '<!-- LOCAL-PAGES:GENERATED:END -->';
 /* ------------------------------------------------------------------------ */
 
 const CITY_PAGES = [
+  {
+    // Round 6 (07-serp §4): the Spanish twin of the hand-written English DeKalb page.
+    // Translates only that page's facts; no FAQPage markup on new pages (06 C4).
+    slug: 'dekalb-il',
+    ownsEn: false,
+    faqSchema: false,
+    image: '/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
+    es: {
+      title: 'Jardinería y árboles en DeKalb, IL | Hernandez Landscape',
+      description:
+        'Jardinería, corte de pasto, servicio de árboles, limpieza y remoción de nieve en DeKalb, IL. Cotización gratis: llame al (815) 501-1478.',
+      ogDescription:
+        'Corte de pasto, jardinería, servicio de árboles, limpieza y nieve de temporada en DeKalb, de Hernandez Landscape & Tree Service LLC.',
+      imageAlt: 'Césped terminado y área de fogatero hechos por Hernandez Landscape en DeKalb',
+      kicker: 'DeKalb, Illinois',
+      h1: 'Jardinería, corte de pasto y árboles en DeKalb',
+      intro:
+        'Hernandez Landscape & Tree Service LLC tiene su base en DeKalb y ayuda a casas y negocios locales con el corte de pasto regular, la renovación de jardines, el retiro y la poda de árboles, la limpieza y la remoción de nieve de temporada. Lo atendemos en español.',
+      ctaText: 'Pida su cotización en DeKalb',
+      ctaHref: '/?service=landscaping#quote',
+      cardsTitle: 'Servicios exteriores en DeKalb',
+      cards: [
+        { href: '/lawn-care/', h3: 'Cuidado del césped', p: 'Corte semanal, orillado, recorte, salud del césped y mantenimiento de temporada para patios de DeKalb.' },
+        { href: '/tree-removal/', h3: 'Servicio de árboles', p: 'Poda, retiro de árboles, remoción de tocones y limpieza alrededor de casas, techos, cercas y entradas.' },
+        { href: '/snow-removal/', h3: 'Remoción de nieve', p: 'Limpieza de nieve en entradas y lotes pequeños en invierno, según disponibilidad, durante las tormentas del Condado de DeKalb.' }
+      ],
+      nearH2: 'Por qué los clientes de DeKalb llaman a Hernandez',
+      nearP:
+        'Una dirección local en DeKalb, comunicación bilingüe en inglés y español, y el alcance del proyecto se habla antes de empezar el trabajo.',
+      faqTitle: 'Preguntas frecuentes en DeKalb',
+      faq: [
+        { q: '¿Trabajan en todo DeKalb?', a: 'Sí. Atendemos propiedades residenciales y comerciales pequeñas en todo DeKalb y en las comunidades cercanas del Condado de DeKalb.' },
+        { q: '¿Pueden encargarse del pasto y de los árboles?', a: 'Sí. El equipo se encarga del cuidado del césped, la jardinería, la limpieza, la poda y el retiro de árboles, y la remoción de tocones.' },
+        { q: '¿Cuestan algo las cotizaciones en DeKalb?', a: 'No. Las cotizaciones son gratis, y el equipo puede revisar lo que necesita su propiedad antes de programar el trabajo.' }
+      ],
+      breadcrumbCity: 'DeKalb, IL',
+      sitemapImageTitle: 'Jardinería en DeKalb IL',
+      sitemapImageCaption: 'Césped terminado y área de fogatero de un proyecto de Hernandez Landscape & Tree Service LLC en DeKalb.'
+    }
+  },
   {
     slug: 'sycamore-il',
     ownsEn: false,
@@ -276,6 +316,9 @@ const CITY_PAGES = [
   }
 ];
 
+// English service pages that have a Spanish twin: Spanish pages link the twin.
+const ES_TWINS = new Set(['/lawn-care/', '/tree-removal/', '/snow-removal/', '/landscaping-design/', '/gutter-cleaning/', '/pressure-washing/', '/leaf-removal/', '/emergency-tree-removal/', '/tree-trimming-stump-grinding/']);
+const pageHref = (href, lang) => (lang === 'es' && ES_TWINS.has(href) ? `/es${href}` : href);
 const enUrl = (c) => `${SITE}/service-areas/${c.slug}/`;
 const esUrl = (c) => `${SITE}/es/service-areas/${c.slug}/`;
 
@@ -326,11 +369,11 @@ function jsonLd(city, lang) {
         '@id': `${url}#breadcrumb`,
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: home, item: `${SITE}/` },
-          { '@type': 'ListItem', position: 2, name: areas, item: `${SITE}/service-areas/` },
+          { '@type': 'ListItem', position: 2, name: areas, item: lang === 'es' ? `${SITE}/es/service-areas/` : `${SITE}/service-areas/` },
           { '@type': 'ListItem', position: 3, name: t.breadcrumbCity, item: url }
         ]
       },
-      {
+      ...(city.faqSchema === false ? [] : [{
         '@type': 'FAQPage',
         '@id': `${url}#faq`,
         inLanguage: lang,
@@ -339,7 +382,7 @@ function jsonLd(city, lang) {
           name: f.q,
           acceptedAnswer: { '@type': 'Answer', text: f.a }
         }))
-      }
+      }])
     ]
   };
   return JSON.stringify(doc, null, 2)
@@ -356,7 +399,7 @@ function renderPage(city, lang) {
   const cards = t.cards
     .map(
       (card) =>
-        `            <a href="${card.href}" class="rounded-lg bg-white p-6 shadow-md"><h3 class="font-bold text-green-900">${card.h3}</h3><p class="mt-3 text-sm text-gray-600">${card.p}</p></a>`
+        `            <a href="${pageHref(card.href, lang)}" class="rounded-lg bg-white p-6 shadow-md"><h3 class="font-bold text-green-900">${card.h3}</h3><p class="mt-3 text-sm text-gray-600">${card.p}</p></a>`
     )
     .join('\n');
   const faq = t.faq
