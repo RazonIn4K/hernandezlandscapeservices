@@ -30,6 +30,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderSiteHeader, altFor } from './site-header.mjs';
 import { withIconSprite } from './icons.mjs';
+import { businessNode, applyBusinessNode } from './business-node.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://hernandezlandscapeservices.com';
@@ -343,29 +344,11 @@ function jsonLd(city, lang) {
   const url = lang === 'es' ? esUrl(city) : enUrl(city);
   const home = lang === 'es' ? 'Inicio' : 'Home';
   const areas = lang === 'es' ? 'Áreas de servicio' : 'Service Areas';
-  const cityName = city.slug.replace(/-il$/, '').replace(/^./, (m) => m.toUpperCase());
   const doc = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'HomeAndConstructionBusiness',
-        '@id': `${SITE}/#organization`,
-        name: 'Hernandez Landscape & Tree Service LLC',
-        url,
-        image: `${SITE}${city.image}`,
-        telephone: '+1-815-501-1478',
-        address: {
-          '@type': 'PostalAddress',
-          streetAddress: '1029 Lewis St',
-          addressLocality: 'DeKalb',
-          addressRegion: 'IL',
-          postalCode: '60115',
-          addressCountry: 'US'
-        },
-        areaServed: { '@type': 'City', name: cityName, containedInPlace: { '@type': 'State', name: 'Illinois' } },
-        knowsLanguage: ['English', 'Spanish'],
-        priceRange: '$$'
-      },
+      // Round 6 (06 C1/C2): the one business node, from schema.jsonld.
+      businessNode(`${SITE}${city.image}`),
       {
         '@type': 'BreadcrumbList',
         '@id': `${url}#breadcrumb`,
@@ -606,8 +589,9 @@ outputs.push({ rel: 'sitemap.xml', content: updateSitemap(fs.readFileSync(path.j
 const drifted = [];
 for (const output of outputs) {
   const { rel } = output;
-  // Round 5: the icons on each page come with that page's inline sprite.
-  const content = rel.endsWith('.html') ? withIconSprite(output.content) : output.content;
+  // Round 5: the icons on each page come with that page's inline sprite. Round 6:
+  // the hand-written English town pages keep the one business node too.
+  const content = rel.endsWith('.html') ? withIconSprite(applyBusinessNode(output.content)) : output.content;
   const abs = path.join(ROOT, rel);
   const current = fs.existsSync(abs) ? fs.readFileSync(abs, 'utf8') : null;
   if (current === content) continue;
