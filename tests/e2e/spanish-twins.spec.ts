@@ -95,3 +95,12 @@ test('the Spanish home keeps its keyword H1', async ({ page }) => {
   await expect(page.locator('h1')).toHaveCount(1);
   expect((await page.locator('h1').textContent())!.replace(/\s+/g, ' ').trim()).toBe('Remoción de árboles, césped y jardinería en DeKalb, IL');
 });
+
+// Spanish copy uses usted throughout (round 6 brief): the storm band's call
+// link matches the dictionary's storm.call on every Spanish page.
+test('the Spanish storm band call link uses usted', async ({ page }) => {
+  for (const path of ES_PAGES) {
+    await page.goto(path, { waitUntil: 'domcontentloaded' });
+    expect((await page.locator('.storm-call').first().textContent())!.trim(), path).toBe('Llame al (815) 501-1478');
+  }
+});

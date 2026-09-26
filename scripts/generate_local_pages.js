@@ -395,7 +395,7 @@ function renderPage(city, lang) {
     .join('\n');
   const ogLocale = lang === 'es' ? '\n    <meta property="og:locale" content="es_US" />' : '';
   const stormBand = lang === 'es'
-    ? '<div class="storm-band" data-storm-band hidden role="region" aria-label="Aviso de tormenta"><span>¿Daños por tormenta? Llame para consultar la disponibilidad</span><a class="storm-call" href="tel:18155011478">Llama al (815) 501-1478</a><a href="/es/emergency-tree-removal/">Ayuda de emergencia</a></div>'
+    ? '<div class="storm-band" data-storm-band hidden role="region" aria-label="Aviso de tormenta"><span>¿Daños por tormenta? Llame para consultar la disponibilidad</span><a class="storm-call" href="tel:18155011478">Llame al (815) 501-1478</a><a href="/es/emergency-tree-removal/">Ayuda de emergencia</a></div>'
     : '<div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span>Storm damage? Call about tree service availability</span><a class="storm-call" href="tel:18155011478">Call (815) 501-1478</a><a href="/emergency-tree-removal/">Emergency tree help</a></div>';
 
   return `<!doctype html>
