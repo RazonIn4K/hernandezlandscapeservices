@@ -321,6 +321,17 @@ const CITY_PAGES = [
 const ES_TWINS = new Set(['/lawn-care/', '/tree-removal/', '/snow-removal/', '/landscaping-design/', '/gutter-cleaning/', '/pressure-washing/', '/leaf-removal/', '/emergency-tree-removal/', '/tree-trimming-stump-grinding/']);
 // Spanish pages keep Spanish URLs: twins, and the Spanish home for home anchors
 // ("/#services", "/?service=…#quote").
+// Intrinsic size of a JPEG or PNG, for the hero image's width/height (no layout
+// shift; 08 img-dims-missing, 06 C11).
+function imageSize(rel) {
+  const b = fs.readFileSync(path.join(ROOT, rel));
+  if (b.readUInt32BE(0) === 0x89504e47) return [b.readUInt32BE(16), b.readUInt32BE(20)];
+  for (let i = 2; i + 9 < b.length; i += 2 + b.readUInt16BE(i + 2)) {
+    const m = b[i + 1];
+    if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return [b.readUInt16BE(i + 7), b.readUInt16BE(i + 5)];
+  }
+  throw new Error(`no image size: ${rel}`);
+}
 const pageHref = (href, lang) => (lang === 'es' && (ES_TWINS.has(href) || /^\/[?#]/.test(href)) ? `/es${href}` : href);
 const enUrl = (c) => `${SITE}/service-areas/${c.slug}/`;
 const esUrl = (c) => `${SITE}/es/service-areas/${c.slug}/`;
@@ -452,7 +463,7 @@ ${renderSiteHeader({ lang, alt: altFor(lang === 'es' ? `/es/service-areas/${city
               <a href="tel:18155011478" class="rounded-full border-2 border-green-700 px-7 py-3 text-center font-bold text-green-800 hover:bg-green-50">(815) 501-1478</a>
             </div>
           </div>
-          <img src="${city.image}" alt="${t.imageAlt}" class="h-96 w-full rounded-lg object-cover shadow-xl" />
+          <img src="${city.image}" alt="${t.imageAlt}" width="${imageSize(city.image)[0]}" height="${imageSize(city.image)[1]}" class="h-96 w-full rounded-lg object-cover shadow-xl" />
         </div>
       </section>
 
