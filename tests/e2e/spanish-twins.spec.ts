@@ -37,11 +37,13 @@ test('each Spanish twin is a proper pair of its English page', async ({ page, re
   }
 });
 
-// 07-serp §4: Spanish service titles carry the place name; the H1s stay as they were.
-test('Spanish lawn and trimming titles name DeKalb', async ({ page }) => {
+// 07-serp §4: retitled service pages carry the place name. The Spanish H1s stay as
+// they were; the leaf page's H1 matches its new title.
+test('retitled service pages name DeKalb', async ({ page }) => {
   for (const [path, title, h1] of [
     ['/es/lawn-care/', 'Cuidado del césped y corte de pasto en DeKalb | Hernandez', 'Cuidado del césped en DeKalb, IL'],
     ['/es/tree-trimming-stump-grinding/', 'Poda de árboles y remoción de tocones en DeKalb | Hernandez', 'Poda de árboles y molienda de tocones en DeKalb County'],
+    ['/leaf-removal/', 'Leaf Removal & Fall Cleanup in DeKalb, IL | Hernandez', 'Leaf Removal & Fall Cleanup in DeKalb, IL'],
   ] as const) {
     await page.goto(path, { waitUntil: 'domcontentloaded' });
     await expect(page, path).toHaveTitle(title);
