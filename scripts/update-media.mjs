@@ -28,6 +28,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { icon, withIconSprite } from './icons.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST_PATH = path.join(ROOT, 'media', 'gallery.json');
@@ -40,6 +41,16 @@ const MARKERS = {
   sitemapImages: { start: '<!-- GALLERY-IMAGES:GENERATED:START -->', end: '<!-- GALLERY-IMAGES:GENERATED:END -->' },
   sitemapVideos: { start: '<!-- GALLERY-VIDEOS:GENERATED:START -->', end: '<!-- GALLERY-VIDEOS:GENERATED:END -->' },
 };
+
+// Round 4: variants live in hernandez_images/w/<stem>-<width>.webp; the original
+// stays the largest srcset candidate.
+const variantPath = (src, width) =>
+  `hernandez_images/w/${path.basename(src).replace(/\.[^.]+$/, '')}-${width}.webp`;
+const srcsetFor = (item) =>
+  Array.isArray(item.variants) && item.variants.length
+    ? [...item.variants.map((w) => `/${variantPath(item.src, w)} ${w}w`), `/${item.src} ${item.size[0]}w`].join(', ')
+    : '';
+const GALLERY_SIZES = '(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw';
 
 const errors = [];
 const warnings = [];
@@ -100,6 +111,30 @@ for (const item of items ?? []) {
   }
   if (item.type === 'image' && (!item.alt || typeof item.alt !== 'string')) {
     fail(`${label}: images require "alt" text`);
+  }
+  // Round 4: optional right-sized variants (scripts/make_image_variants.py).
+  if (item.variants !== undefined) {
+    if (!Array.isArray(item.variants) || !item.variants.every((w) => Number.isInteger(w) && w > 0)) {
+      fail(`${label}: "variants" must be an array of widths`);
+    } else if (!Array.isArray(item.size) || item.size.length !== 2 || !item.size.every((n) => Number.isInteger(n) && n > 0)) {
+      fail(`${label}: "variants" needs "size": [width, height] of the original`);
+    } else {
+      for (const w of item.variants) {
+        if (!fs.existsSync(path.join(ROOT, variantPath(item.src, w)))) {
+          fail(`${label}: variant missing on disk: ${variantPath(item.src, w)} (run python scripts/make_image_variants.py)`);
+        }
+      }
+    }
+  }
+  if (item.type === 'video' && item.duration !== undefined && !(Number.isFinite(item.duration) && item.duration > 0)) {
+    fail(`${label}: "duration" must be a positive number of seconds (ffprobe)`);
+  }
+  if (item.type === 'video' && item.size !== undefined &&
+      !(Array.isArray(item.size) && item.size.length === 2 && item.size.every((n) => Number.isInteger(n) && n > 0))) {
+    fail(`${label}: "size" must be [width, height] of the video frame`);
+  }
+  if (item.posterSmall !== undefined && !fs.existsSync(path.join(ROOT, item.posterSmall))) {
+    fail(`${label}: posterSmall file does not exist on disk: ${item.posterSmall}`);
   }
   if (item.type === 'video') {
     if (!item.poster || typeof item.poster !== 'string') {
@@ -213,9 +248,13 @@ function renderGalleryCards(list) {
     const alt = item.gallery?.alt ?? item.alt;
     const keyAttr = item.gallery?.titleKey ? ` data-i18n-key="${escapeHtml(item.gallery.titleKey)}"` : '';
     const title = item.gallery?.title ?? '';
+    const srcset = srcsetFor(item);
+    const sized = srcset
+      ? ` srcset="${escapeHtml(srcset)}" sizes="${GALLERY_SIZES}" width="${item.size[0]}" height="${item.size[1]}"`
+      : '';
     return [
       '                <div class="gallery-item group">',
-      `                    <img src="/${escapeHtml(item.src)}" loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
+      `                    <img src="/${escapeHtml(item.src)}"${sized} loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
       '                    <div class="gallery-overlay">',
       '                        <div class="text-center p-4">',
       `                            <h3${keyAttr}>${escapeHtml(title)}</h3>`,
@@ -227,23 +266,53 @@ function renderGalleryCards(list) {
   return cards.join('\n\n');
 }
 
+// Round 4: each card fits its clip's own frame (portrait clips get portrait
+// cards) and shows the running time read from the file plus the service tag,
+// or "On the job" when the clip has none. No invented titles.
+const SERVICE_TAGS = {
+  'lawn-care': ['quote.select.lawn', 'Lawn Care'],
+  'tree-service': ['quote.select.tree', 'Tree Service'],
+  landscaping: ['quote.select.landscaping', 'Landscaping'],
+  'snow-removal': ['quote.select.snow', 'Snow Removal'],
+  'leaf-removal': ['quote.select.leaf', 'Leaf Removal'],
+  'gutter-cleaning': ['quote.select.gutter', 'Gutter Cleaning'],
+  'pressure-washing': ['quote.select.pressure', 'Pressure Washing'],
+};
+const clock = (seconds) => {
+  const total = Math.max(1, Math.round(seconds));
+  return { text: `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`, iso: `PT${Math.floor(total / 60)}M${total % 60}S` };
+};
+const videoMeta = (item) => {
+  if (!item.duration) return '';
+  const time = clock(item.duration);
+  const tag = (item.tags || []).find((t) => SERVICE_TAGS[t]);
+  const [key, text] = tag ? SERVICE_TAGS[tag] : ['video.onTheJob', 'On the job'];
+  return `                    <p class="video-meta"><time datetime="${time.iso}">${time.text}</time><span aria-hidden="true"> · </span><span data-i18n-key="${key}">${text}</span></p>`;
+};
+const frameStyle = (item) => {
+  if (Array.isArray(item.size)) return ` style="padding-bottom:${((item.size[1] / item.size[0]) * 100).toFixed(4)}%"`;
+  return item.orientation === 'portrait' ? ' style="padding-bottom:177.777778%"' : '';
+};
+
 function renderVideoCards(list) {
   const cards = list.map((item, index) => {
+    const poster = item.posterSmall || item.poster;
     const posterAttr = index < 3
-      ? `poster="/${escapeHtml(item.poster)}"`
-      : `data-poster="/${escapeHtml(item.poster)}"`;
+      ? `poster="/${escapeHtml(poster)}"`
+      : `data-poster="/${escapeHtml(poster)}"`;
     const label = item.sitemap?.title || `Hernandez Landscape project video ${index + 1}`;
     return [
-    '                <div class="video-card group">',
-    `                    <div class="video-wrapper relative"${item.orientation === 'portrait' ? ' style="padding-bottom:177.777778%"' : ''}>`,
+    `                <div class="video-card group${Array.isArray(item.size) && item.size[1] > item.size[0] ? ' is-portrait' : ''}">`,
+    `                    <div class="video-wrapper relative"${frameStyle(item)}>`,
     `                        <video controls playsinline preload="none" ${posterAttr} aria-label="${escapeHtml(label)}" class="w-full h-full object-cover">`,
     `                            <source src="/${escapeHtml(item.src)}" type="video/mp4">`,
     '                            Your browser does not support the video tag.',
     '                        </video>',
     '                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">',
-    '                            <i class="fas fa-play-circle text-white text-5xl opacity-80"></i>',
+    `                            ${icon('play-circle', 'text-white text-5xl opacity-80')}`,
     '                        </div>',
     '                    </div>',
+    ...(videoMeta(item) ? [videoMeta(item)] : []),
     '                </div>',
     ].join('\n');
   });
@@ -254,6 +323,13 @@ function renderStaticImagesArray(list) {
   const objects = list.map((item) => [
     '      {',
     `        src: '${escapeJs(item.src)}',`,
+    ...(srcsetFor(item)
+      ? [
+          `        srcset: '${escapeJs(srcsetFor(item).replace(/(^|, )\//g, '$1'))}',`,
+          `        width: ${item.size[0]},`,
+          `        height: ${item.size[1]},`,
+        ]
+      : []),
     `        alt: '${escapeJs(item.alt)}',`,
     `        caption: '${escapeJs(item.caption)}'`,
     '      }',
@@ -333,6 +409,7 @@ function updateFile(relPath, transforms) {
     updated = spliceBetweenMarkers(updated, marker, body, relPath);
   }
   if (errors.length) return;
+  if (relPath.endsWith('.html')) updated = withIconSprite(updated);
   if (updated === original) {
     console.log(`  ${relPath}: unchanged`);
   } else if (CHECK_MODE) {

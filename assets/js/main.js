@@ -22,10 +22,13 @@ function showModal(message, { showCall = false } = {}) {
   }
   lastFocusedElement = document.activeElement;
   document.getElementById("modalMessage").textContent = message;
-  const modalCallAction = document.getElementById("modalCallAction");
-  if (modalCallAction) {
-    modalCallAction.classList.toggle("hidden", !showCall);
-  }
+  // Round 4 J1: a failed request always offers both ways to reach the crew.
+  ["modalCallAction", "modalTextAction"].forEach((id) => {
+    const action = document.getElementById(id);
+    if (action) {
+      action.classList.toggle("hidden", !showCall);
+    }
+  });
   modal.classList.remove("hidden");
   modal.style.display = "flex";
   modalContent.setAttribute("tabindex", "-1");
@@ -521,6 +524,24 @@ function handoffInstantEstimateToContactForm() {
   return true;
 }
 
+// Round 4: the price check reports problems inline (role="alert"), never in a modal.
+function setPriceCheckError(id, message, fields) {
+  const box = document.getElementById(id);
+  const all = ["serviceType", "propertySize", "zipCode", "instantName", "instantPhone", "propertyAddress", "isOwner"];
+  all.forEach((fieldId) => {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    const bad = Boolean(fields && fields.includes(field));
+    field.classList.toggle("border-red-500", bad);
+    if (bad) field.setAttribute("aria-invalid", "true");
+    else if (fields) field.removeAttribute("aria-invalid");
+  });
+  if (!box) return;
+  box.textContent = message || "";
+  box.hidden = !message;
+  if (fields && fields.length) fields[0].focus();
+}
+
 function calculateQuote() {
   const instantQuoteForm = document.getElementById("quoteForm");
   const service = document.getElementById("serviceType");
@@ -532,42 +553,25 @@ function calculateQuote() {
     return;
   }
 
-  if (!service.value || !size.value || !zip.value || !zip.checkValidity()) {
-    const optionalDetails = size.closest("details");
-    if (optionalDetails) {
-      optionalDetails.open = true;
-    }
-    showModal(
+  // Round 4 (research 03 R3): a range needs only service, size and ZIP. Contact
+  // details are asked for when the visitor chooses to send the request.
+  const missing = [
+    !service.value && service,
+    !size.value && size,
+    (!zip.value || !zip.checkValidity()) && zip,
+  ].filter(Boolean);
+  if (missing.length) {
+    setPriceCheckError(
+      "quoteCalcError",
       getMessage(
         "alerts.instant.missing",
         "Please select a service type, property size, and enter your ZIP code.",
       ),
+      missing,
     );
-    service.classList.toggle("border-red-500", !service.value);
-    size.classList.toggle("border-red-500", !size.value);
-    zip.classList.toggle("border-red-500", !zip.value || !zip.checkValidity());
     return;
   }
-
-  if (instantQuoteForm) {
-    const name = document.getElementById("instantName");
-    const phone = document.getElementById("instantPhone");
-    const address = document.getElementById("propertyAddress");
-    const owner = document.getElementById("isOwner");
-    const coreInvalid =
-      (name && !name.checkValidity()) ||
-      (phone && !phone.checkValidity()) ||
-      (address && !address.checkValidity()) ||
-      (owner && !owner.checkValidity());
-    if (coreInvalid) {
-      instantQuoteForm.reportValidity();
-      return;
-    }
-  }
-
-  service.classList.remove("border-red-500");
-  size.classList.remove("border-red-500");
-  zip.classList.remove("border-red-500");
+  setPriceCheckError("quoteCalcError", "", []);
 
   const basePrices = {
     "lawn-care": { small: 40, medium: 60, large: 80, xlarge: 120 },
@@ -618,14 +622,14 @@ function calculateQuote() {
   if (quoteResult) {
     quoteResult.classList.remove("hidden");
   }
-
-  handoffInstantEstimateToContactForm();
 }
 
 window.calculateQuote = calculateQuote;
 
 const instantQuoteForm = document.getElementById("quoteForm");
 if (instantQuoteForm) {
+  // The browser's required checks would demand contact details before a range.
+  instantQuoteForm.noValidate = true;
   instantQuoteForm.addEventListener("submit", (event) => {
     event.preventDefault();
     calculateQuote();
@@ -643,26 +647,27 @@ async function sendInstantEstimateRequest() {
   const isOwner = document.getElementById("isOwner");
   const sendBtn = document.getElementById("sendInstantRequestBtn");
 
-  const missingCore =
-    !instantName?.value?.trim() ||
-    !instantPhone?.value?.trim() ||
-    !instantPhone.checkValidity() ||
-    !propertyAddress?.value?.trim() ||
-    !service?.value ||
-    !zip?.value?.trim() ||
-    !zip.checkValidity() ||
-    (isOwner && !isOwner.checked);
+  const missingCore = [
+    !service?.value && service,
+    (!zip?.value?.trim() || !zip.checkValidity()) && zip,
+    !instantName?.value?.trim() && instantName,
+    (!instantPhone?.value?.trim() || !instantPhone.checkValidity()) && instantPhone,
+    !propertyAddress?.value?.trim() && propertyAddress,
+    isOwner && !isOwner.checked && isOwner,
+  ].filter(Boolean);
 
-  if (missingCore) {
-    document.getElementById("quoteForm")?.reportValidity();
-    showModal(
+  if (missingCore.length) {
+    setPriceCheckError(
+      "quoteSendError",
       getMessage(
         "alerts.instant.sendMissing",
         "Please enter your name, mobile number, service, address, and ZIP code.",
       ),
+      missingCore,
     );
     return;
   }
+  setPriceCheckError("quoteSendError", "", []);
 
   // Re-read the current choices if the customer edited them after calculating.
   lastInstantEstimate = null;
@@ -705,13 +710,16 @@ async function sendInstantEstimateRequest() {
   const originalText = sendBtn?.textContent || "";
   if (sendBtn) {
     sendBtn.disabled = true;
-    sendBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage("contact.sending", "Sending...")}`;
+    sendBtn.innerHTML = `<svg class="icon icon-spinner icon-spin" width="1em" height="1em" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M304 48q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm0 416q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-304-208q1-20 14-34h0q14-13 34-14 20 1 34 14 13 14 14 34-1 20-14 34-14 13-34 14-20-1-34-14-13-14-14-34zm512 0q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-437 181q-14-15-14-34h0q0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14h0zm68-294q-15 14-34 14h0q-19 0-34-14-14-15-14-34 0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34zm226 226q15-14 34-14h0q19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14-14-15-14-34 0-19 14-34h0z"/></svg> ${getMessage("contact.sending", "Sending...")}`;
   }
 
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), 12000);
   try {
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       body: formData,
+      signal: controller.signal,
     });
     const result = await response.json().catch(() => ({}));
     if (!response.ok || result.success !== true) {
@@ -733,8 +741,10 @@ async function sendInstantEstimateRequest() {
         "alerts.instant.sendError",
         "We could not send your request. Please call (815) 501-1478 or try again.",
       ),
+      { showCall: true },
     );
   } finally {
+    window.clearTimeout(timeoutId);
     if (sendBtn) {
       sendBtn.disabled = false;
       sendBtn.textContent = originalText;
@@ -760,8 +770,8 @@ if (sendEstimateBtn) {
     if (contactName) {
       contactName.focus({ preventScroll: true });
     }
-    scrollElementBelowHeader("quote");
-    scheduleScrollElementBelowHeader("quote");
+    scrollElementBelowHeader(quoteFormTarget);
+    scheduleScrollElementBelowHeader(quoteFormTarget);
   });
 }
 
@@ -776,6 +786,157 @@ if (contactForm) {
     activePrefillService = null;
     renderQuotePrefillNotice(null);
   });
+
+  /* Round 4 · Inline validation (EN/ES). The browser's constraint checks stay
+     the source of truth; with JS on, the transient native bubbles and the old
+     "fill in all required fields" modal give way to a specific message next to
+     each field, shown after the visitor leaves a field they typed in (or on
+     Send) and cleared as soon as the value is fixed. Field names, endpoint and
+     payload are untouched. */
+  contactForm.noValidate = true;
+  const FIELD_ERRORS = {
+    contactName: ["quote.error.name", "Please enter your name."],
+    contactPhone: ["quote.error.phone", "Please enter a phone number with at least 10 digits."],
+    contactEmail: ["quote.error.email", "Please check the email address, or leave it blank."],
+    contactAddress: ["quote.error.address", "Please enter the property address."],
+    ownerVerify: ["quote.error.verify", "Please confirm you are the owner or an authorized agent."],
+    bestTime: ["quote.error.bestTime", "Please choose a callback time."],
+    contactService: ["quote.error.service", "Please choose a service."],
+    projectDetails: ["quote.error.project", "Please tell us a little about the job."],
+  };
+  const validatedFields = () =>
+    Object.keys(FIELD_ERRORS).map((id) => document.getElementById(id)).filter(Boolean);
+  const fieldErrorFor = (field) => {
+    let error = document.getElementById(`${field.id}Error`);
+    if (!error) {
+      error = document.createElement("p");
+      error.id = `${field.id}Error`;
+      error.className = "field-error";
+      error.hidden = true;
+      const anchor = field.type === "checkbox" ? field.parentElement : field;
+      anchor.after(error);
+      const describedBy = (field.getAttribute("aria-describedby") || "").split(" ").filter(Boolean);
+      describedBy.push(error.id);
+      field.setAttribute("aria-describedby", describedBy.join(" "));
+    }
+    return error;
+  };
+  const fieldIsValid = (field) => {
+    if (!field.validity.valid) return false;
+    if (field.type === "checkbox") return true;
+    const value = String(field.value || "");
+    if (field.required && !value.trim()) return false;
+    // A town chip leaves ", Town, IL" until the street is typed in front of it.
+    if (field.id === "contactAddress" && /^\s*,/.test(value)) return false;
+    return true;
+  };
+  const renderFieldError = (field, show) => {
+    const [key, fallback] = FIELD_ERRORS[field.id] || [];
+    const error = fieldErrorFor(field);
+    if (show) {
+      error.textContent = getMessage(key, fallback);
+      error.hidden = false;
+      field.setAttribute("aria-invalid", "true");
+      field.classList.add("border-red-500");
+    } else {
+      error.hidden = true;
+      error.textContent = "";
+      field.removeAttribute("aria-invalid");
+      field.classList.remove("border-red-500");
+    }
+  };
+  const touchedFields = new WeakSet();
+  let submitAttempted = false;
+  validatedFields().forEach((field) => {
+    field.addEventListener("input", () => {
+      touchedFields.add(field);
+      if (field.getAttribute("aria-invalid") === "true" && fieldIsValid(field)) renderFieldError(field, false);
+    });
+    field.addEventListener("change", () => {
+      touchedFields.add(field);
+      if (fieldIsValid(field)) renderFieldError(field, false);
+      else if (submitAttempted) renderFieldError(field, true);
+    });
+    field.addEventListener("blur", () => {
+      if ((touchedFields.has(field) || submitAttempted) && !fieldIsValid(field)) renderFieldError(field, true);
+    });
+  });
+  const validateContactForm = () => {
+    submitAttempted = true;
+    let firstInvalid = null;
+    validatedFields().forEach((field) => {
+      const valid = fieldIsValid(field);
+      renderFieldError(field, !valid);
+      if (!valid && !firstInvalid) firstInvalid = field;
+    });
+    if (firstInvalid) firstInvalid.focus();
+    return !firstInvalid;
+  };
+  contactForm.addEventListener("reset", () => {
+    submitAttempted = false;
+    validatedFields().forEach((field) => renderFieldError(field, false));
+  });
+  if (languageApi && typeof languageApi.onChange === "function") {
+    languageApi.onChange(() => {
+      validatedFields().forEach((field) => {
+        if (field.getAttribute("aria-invalid") === "true") renderFieldError(field, true);
+      });
+    });
+  }
+
+  // The message box turns optional once yard areas carry the request (#51).
+  const projectField = document.getElementById("projectDetails");
+  const projectReqTag = contactForm.querySelector("[data-project-req]");
+  const projectOptTag = contactForm.querySelector("[data-project-opt]");
+  const syncProjectTag = () => {
+    if (!projectField) return;
+    if (projectReqTag) projectReqTag.hidden = !projectField.required;
+    if (projectOptTag) projectOptTag.hidden = projectField.required;
+    if (!projectField.required && projectField.getAttribute("aria-invalid") === "true") {
+      renderFieldError(projectField, false);
+    }
+  };
+  if (projectField && "MutationObserver" in window) {
+    new MutationObserver(syncProjectTag).observe(projectField, { attributes: true, attributeFilter: ["required"] });
+  }
+  syncProjectTag();
+
+  /* Round 4 · Town-first quick start. A chip only prefills the town in the
+     address field (", Town, IL" with the caret before it, so the street goes in
+     front) and shows the matching existing service-policy line(s). The chips
+     are buttons with no name: nothing new is submitted. */
+  const townStart = contactForm.querySelector("[data-town-start]");
+  const addressField = document.getElementById("contactAddress");
+  if (townStart && addressField) {
+    const TOWNS = ["DeKalb", "Sycamore", "Cortland", "Malta", "Genoa", "Kingston"];
+    const townSuffix = new RegExp(`,?\\s*(?:${TOWNS.join("|")}),\\s*IL\\s*$`, "i");
+    const chips = Array.from(townStart.querySelectorAll("[data-town]"));
+    const policyLines = Array.from(townStart.querySelectorAll("[data-town-policy]"));
+    townStart.hidden = false;
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const town = chip.dataset.town || "";
+        if (town && !TOWNS.includes(town)) return;
+        chips.forEach((other) => other.setAttribute("aria-pressed", String(other === chip)));
+        const street = addressField.value.replace(townSuffix, "").replace(/^\s*,\s*/, "").trim();
+        addressField.value = town ? `${street}, ${town}, IL` : street;
+        const primary = town === "DeKalb" || town === "Sycamore";
+        policyLines.forEach((line) => {
+          line.hidden = line.dataset.townPolicy === "outlying" ? primary : false;
+        });
+        addressField.focus();
+        const caret = street ? addressField.value.length : 0;
+        addressField.setSelectionRange(caret, caret);
+        if (addressField.getAttribute("aria-invalid") === "true" && fieldIsValid(addressField)) {
+          renderFieldError(addressField, false);
+        }
+      });
+    });
+    contactForm.addEventListener("reset", () => {
+      chips.forEach((chip) => chip.setAttribute("aria-pressed", "false"));
+      policyLines.forEach((line) => { line.hidden = true; });
+    });
+  }
 
   contactForm.addEventListener(
     "invalid",
@@ -812,46 +973,7 @@ if (contactForm) {
   contactForm.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const contactName = document.getElementById("contactName");
-    const contactPhone = document.getElementById("contactPhone");
-    const contactService = document.getElementById("contactService");
-    const projectDetails = document.getElementById("projectDetails");
-    const yardAreasField = document.getElementById("yardAreasField");
-
-    let isValid = true;
-
-    if (!contactName.value) {
-      contactName.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      contactName.classList.remove("border-red-500");
-    }
-    if (!contactPhone.value || !contactPhone.checkValidity()) {
-      contactPhone.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      contactPhone.classList.remove("border-red-500");
-    }
-    if (!contactService.value) {
-      contactService.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      contactService.classList.remove("border-red-500");
-    }
-    if (!projectDetails.value.trim() && !yardAreasField?.value.trim()) {
-      projectDetails.classList.add("border-red-500");
-      isValid = false;
-    } else {
-      projectDetails.classList.remove("border-red-500");
-    }
-
-    if (!isValid) {
-      showModal(
-        getMessage(
-          "alerts.contact.invalid",
-          "Please fill in all required fields correctly.",
-        ),
-      );
+    if (!validateContactForm()) {
       return;
     }
 
@@ -859,7 +981,7 @@ if (contactForm) {
     const originalText = button ? button.textContent : "";
     if (button) {
       button.disabled = true;
-      button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ${getMessage("contact.sending", "Sending...")}`;
+      button.innerHTML = `<svg class="icon icon-spinner icon-spin" width="1em" height="1em" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><path fill="currentColor" d="M304 48q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm0 416q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-304-208q1-20 14-34h0q14-13 34-14 20 1 34 14 13 14 14 34-1 20-14 34-14 13-34 14-20-1-34-14-13-14-14-34zm512 0q-1 20-14 34h0q-14 13-34 14-20-1-34-14-13-14-14-34 1-20 14-34 14-13 34-14 20 1 34 14 13 14 14 34zm-437 181q-14-15-14-34h0q0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14h0zm68-294q-15 14-34 14h0q-19 0-34-14-14-15-14-34 0-19 14-34 15-14 34-14 19 0 34 14 14 15 14 34 0 19-14 34zm226 226q15-14 34-14h0q19 0 34 14 14 15 14 34 0 19-14 34-15 14-34 14-19 0-34-14-14-15-14-34 0-19 14-34h0z"/></svg> ${getMessage("contact.sending", "Sending...")}`;
     }
 
     const formData = new FormData(this);

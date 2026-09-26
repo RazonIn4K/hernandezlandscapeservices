@@ -7,9 +7,10 @@ test('Spanish entry opens a localized request and keeps the selected service', a
   const response = await page.goto('/es/');
   expect(response?.status()).toBe(200);
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Jardinería');
-  await expect(page.getByRole('link', { name: 'Llamar', exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Enviar mensaje', exact: true })).toBeVisible();
+  // Round 4: /es/ is the Spanish build of the home (scripts/build-es-home.mjs).
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Remoción de árboles');
+  await expect(page.locator('[data-hero-call]')).toBeVisible();
+  await expect(page.locator('[data-hero-call]')).toHaveAttribute('href', 'tel:18155011478');
   // The shared analytics loader must run here too so Spanish call and quote clicks are measured.
   await expect.poll(() => page.evaluate(() => typeof (window as AnalyticsWindow).hlsTrack)).toBe('function');
   const callClicks = await page.evaluate(() => {
@@ -19,18 +20,19 @@ test('Spanish entry opens a localized request and keeps the selected service', a
     return ((window as AnalyticsWindow).dataLayer ?? []).filter((entry) => entry.event === 'call_click').length;
   });
   expect(callClicks).toBe(1);
-  await page.locator('a[href="/?lang=es&service=lawn-care#quote"]').click();
+  // An old in-place link still lands on the Spanish page with the service kept.
+  await page.goto('/?lang=es&service=lawn-care#quote');
+  await expect(page).toHaveURL(/\/es\/\?service=lawn-care#quote$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
   await expect(page.locator('#contactService')).toHaveValue('lawn-care');
-  await expect(page.locator('[data-i18n-key="quote.formHeading"]')).toHaveText('Solicita una cotización gratis');
+  await expect(page.locator('[data-i18n-key="quote.formHeading"]')).toHaveText('Solicite una cotización gratis');
   await expect(page.locator('#quoteFormHelper')).toContainText('no una cita confirmada');
   await expect(page.locator('#instantBestTime option')).toHaveText(['Mañana', 'Tarde', 'Noche']);
   await expect(page.locator('#bestTime option:not([value=""])')).toHaveText(['Mañana', 'Tarde', 'Noche']);
 
-  await page.locator('[data-lang-switch="en"]:visible').click();
-  await page.reload();
+  await page.locator('#header .lang-link:visible').click();
+  await expect(page).toHaveURL(/\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('#contactService')).toHaveValue('lawn-care');
   await expect(page.locator('#quoteFormHelper')).toContainText('not a confirmed appointment');
 });
 
@@ -52,9 +54,11 @@ test('quote heading has readable contrast and each contact action uses its own p
       return (Math.max(foreground, background) + 0.05) / (Math.min(foreground, background) + 0.05);
     });
     expect(contrast, `heading contrast at ${width}px`).toBeGreaterThanOrEqual(4.5);
-    await expect(page.locator('#quote a[href="tel:18155011478"]')).toBeVisible();
-    await expect(page.locator('#quote a[href="sms:+18155011478"]')).toBeVisible();
-    await expect(page.locator('#quote a[href="mailto:hernandezlandscapetreeservices@gmail.com"]')).toBeVisible();
+    // Round 3: the price check (with its own call link) now sits inside #quote, so the
+    // contact actions are scoped to the chapter's contact list.
+    await expect(page.locator('#quote .quote-contact a[href="tel:18155011478"]')).toBeVisible();
+    await expect(page.locator('#quote .quote-contact a[href="sms:+18155011478"]')).toBeVisible();
+    await expect(page.locator('#quote .quote-contact a[href="mailto:hernandezlandscapetreeservices@gmail.com"]')).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   }
 });
@@ -65,7 +69,7 @@ test('a sent Spanish request does not claim an appointment or callback deadline'
     submitted = true;
     await route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify({ success: true }) });
   });
-  await page.goto('/?lang=es#quote');
+  await page.goto('/es/#quote');
   await page.locator('#contactName').fill('Prueba Local');
   await page.locator('#contactPhone').fill('815-555-0100');
   await page.locator('#contactAddress').fill('123 Example Street, DeKalb');
@@ -77,7 +81,7 @@ test('a sent Spanish request does not claim an appointment or callback deadline'
     (input as HTMLInputElement).value = String(Date.now() - 60000);
   });
   await page.locator('#contactForm button[type="submit"]').click();
-  await expect(page.locator('#modalMessage')).toContainText('Tu cita aún no está confirmada');
+  await expect(page.locator('#modalMessage')).toContainText('Su cita aún no está confirmada');
   await expect(page.locator('#modalMessage')).not.toContainText('24 horas');
   expect(submitted).toBe(true);
 });

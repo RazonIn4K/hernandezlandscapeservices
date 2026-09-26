@@ -33,73 +33,62 @@
     <meta name="theme-color" content="#153b2f">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260923">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=20260924aa">
 
     <link rel="stylesheet" href="/assets/css/gallery.css">
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
-    <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260923" />
+    <link rel="stylesheet" href="/assets/css/rings.css?v=20260924ab" />
 </head>
 <body class="bg-gray-50">
+    <!-- @icons: scripts/icons.mjs (symbols this page uses; generated) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-right" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M439 279l-160 160q-10 9-23 9-13 0-23-9-9-10-9-23 0-13 9-23l106-105h-307q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h307l-106-105q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l160 160q9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-bars" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 96q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm0 160q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm416 192h-384q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9z"/></symbol><symbol id="i-bolt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M241 224h111q22 1 29 21 8 20-8 35l-256 224q-19 15-40 2-19-16-10-39l77-179h-113q-20-1-29-21-7-20 9-35l256-224q19-15 40-2 19 16 10 39l-76 179z"/></symbol><symbol id="i-chevron-right" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M96 480q-13 0-23-9-9-10-9-23 0-13 9-23l170-169-170-169q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l192 192q9 10 9 23 0 13-9 23l-192 192q-10 9-23 9z"/></symbol><symbol id="i-clock" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 512q-72-1-129-35h0q-58-34-92-92h0q-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35zm-24-256q0 13 11 19l96 64q19 12 32-6 12-19-6-33l-85-57v-123q-2-22-25-24-10 0-17 7-7 7-7 17l1 136z"/></symbol><symbol id="i-envelope" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 352q-25 0-47-16l-209-163v227q1 20 14 34 14 13 34 14h416q20-1 34-14 13-14 14-34v-227l-209 163q-22 16-47 16zm-240-207l212 165q13 10 28 10 15 0 28-10l212-165q15-13 16-33-1-20-14-34-14-13-34-14h-416q-20 1-34 14-13 14-14 34 0 20 16 33z"/></symbol><symbol id="i-facebook-f" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M279 288l14-93h-89v-60q0-20 12-34 11-15 41-16h40v-79q-1 0-23-3-21-3-49-3-55 0-88 32-32 32-33 93v70h-81v93h81v224h100v-224z"/></symbol><symbol id="i-google" viewBox="0 0 488 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M488 262q-2 108-66 174h0q-65 66-174 68-69-1-125-34-56-33-89-89-33-56-34-125 1-69 34-125 33-56 89-89 56-33 125-34 101 2 166 65l-67 65q-47-42-105-38-58 3-102 44-43 42-46 112 2 67 45 111 44 44 109 46 49-1 79-20 30-19 45-43 14-25 17-44h-141v-86h236q4 18 4 42z"/></symbol><symbol id="i-map-marker-alt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M168 499q-27-33-67-89h0q-39-55-69-114h0q-30-59-32-104 2-82 56-136 54-54 136-56 82 2 136 56 54 54 56 136-2 45-32 104-31 59-70 114-39 56-66 89-10 12-24 12-14 0-24-12h0zm24-243q27-1 45-19h0q18-18 19-45-1-27-19-45-18-18-45-19-27 1-45 19-18 18-19 45 1 27 19 45 18 18 45 19z"/></symbol><symbol id="i-phone-alt" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M19 351l108-46q22-8 37 9l44 53q52-25 93-66 41-41 66-93l-53-44q-17-15-9-37l46-108q12-22 36-18l101 23q23 7 24 31-1 127-63 230-61 103-164 165-103 61-231 62-23-1-30-24l-23-101q-4-24 18-36z"/></symbol></svg>
+    <!-- /@icons -->
     <a class="skip-link" href="#main-content" data-i18n-key="skip.gallery">Skip to gallery content</a>
 
     <!-- Header -->
-    <header id="header" class="bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center py-3">
-                <div class="flex items-center space-x-3">
-                    <a href="/">
-                        <img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape & Tree Service LLC Logo" class="h-12 w-auto object-contain">
-                    </a>
-                    <div>
-                        <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
-                        <!-- LICENSE_NUMBER: Owner to confirm Illinois SOS file number before displaying publicly -->
-                        <p class="text-xs text-gray-600 hidden md:block" data-i18n-key="header.license">Local DeKalb County crew</p>
-                    </div>
-                </div>
-
-                 <!-- Desktop Nav -->
-                <div class="hidden lg:flex items-center space-x-4">
-                    <a href="/#services" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.services">Services</a>
-                    <a href="/gallery/" class="text-sm font-bold text-green-600 hover:text-green-700 transition" data-i18n-key="nav.work">Our Work</a>
-                    <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.videos">Videos</a>
-                    <a href="/service-areas/" class="text-sm font-semibold hover:text-green-600 transition" data-i18n-key="nav.serviceArea">Service Areas</a>
-                    <!-- Language Toggle -->
-                    <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
-                        <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
-                        <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
-                    </div>
-                    <a href="/#quote" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md transform hover:-translate-y-0.5 whitespace-nowrap" data-i18n-key="nav.freeQuote">
-                        Get Free Quote
-                    </a>
-                </div>
-
-                <!-- Mobile Controls (Lang + Menu) -->
-                <div class="flex items-center lg:hidden space-x-3">
-                     <div class="flex items-center bg-gray-100 rounded-full p-1">
-                        <button data-lang-switch="en" class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow" aria-pressed="true">EN</button>
-                        <button data-lang-switch="es" class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300" aria-pressed="false">ES</button>
-                    </div>
-                    <button id="mobileMenuButton" type="button" class="text-gray-700 focus:outline-none" aria-controls="mobileMenu" aria-expanded="false" aria-label="Toggle mobile menu" data-i18n-aria-label="nav.menuToggle">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </nav>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden bg-white border-t lg:hidden absolute w-full shadow-lg" aria-hidden="true">
-            <div class="container mx-auto px-4 py-4 space-y-4">
-                <a href="/#services" class="block text-gray-700 font-semibold" data-i18n-key="nav.services">Services</a>
-                <a href="/gallery/" class="block text-green-600 font-bold" data-i18n-key="nav.work">Our Work</a>
-                <a href="/videos/" class="block text-gray-700 font-semibold" data-i18n-key="nav.videos">Videos</a>
-                <a href="/service-areas/" class="block text-gray-700 font-semibold" data-i18n-key="nav.serviceArea">Service Areas</a>
-                <a href="/#quote" class="block bg-green-600 text-white text-center py-3 rounded-lg font-bold" data-i18n-key="nav.freeQuote">Get Quote</a>
+    <header id="header" class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow">
+      <!-- @site-header: scripts/site-header.mjs (one header on every page; edit there) -->
+      <div class="container mx-auto px-4">
+        <nav class="flex justify-between items-center py-3" aria-label="Primary navigation">
+          <div class="flex items-center space-x-3">
+            <a href="/" aria-label="Hernandez Landscape home"><img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape &amp; Tree Service LLC Logo" class="h-12 w-auto object-contain" width="256" height="192" /></a>
+            <div>
+              <p class="text-lg font-bold text-gray-800 leading-tight">Hernandez Landscape</p>
+              <p class="text-xs text-gray-600 hidden md:block">DeKalb County landscape and tree service</p>
             </div>
-        </div>
+          </div>
+          <div class="desktop-nav hidden lg:flex items-center space-x-4">
+            <a href="/#services" class="text-sm font-semibold hover:text-green-600 transition">Services</a>
+            <a href="/gallery/" class="text-sm font-semibold hover:text-green-600 transition" aria-current="page">Our Work</a>
+            <a href="/videos/" class="text-sm font-semibold hover:text-green-600 transition">Videos</a>
+            <a href="/#testimonials" class="text-sm font-semibold hover:text-green-600 transition">Reviews</a>
+            <a href="/service-areas/" class="text-sm font-semibold hover:text-green-600 transition">Service Area</a>
+            <a href="tel:18155011478" class="header-tel"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>(815) 501-1478</span></a>
+            <a href="/es/#gallery" class="lang-link" hreflang="es" lang="es">Español <span class="lang-hint">(inicio)</span></a>
+            <a href="/#quote" class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md whitespace-nowrap">Get Free Quote</a>
+          </div>
+          <div class="flex items-center gap-2 lg:hidden">
+            <a href="/es/#gallery" class="lang-link" hreflang="es" lang="es">Español <span class="lang-hint">(inicio)</span></a>
+            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>Call</span></a>
+            <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation menu"><svg class="icon icon-bars text-xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bars"/></svg></button>
+          </div>
+        </nav>
+      </div>
+      <div id="mobileMenu" class="hidden absolute w-full border-t bg-white shadow-lg lg:hidden" aria-hidden="true">
+        <nav class="container mx-auto space-y-1 px-4 py-4" aria-label="Mobile navigation">
+          <a href="/#services" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Services</a>
+          <a href="/gallery/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50" aria-current="page">Our Work</a>
+          <a href="/videos/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Videos</a>
+          <a href="/#testimonials" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Reviews</a>
+          <a href="/service-areas/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Service Area</a>
+          <a href="tel:18155011478" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Call (815) 501-1478</a>
+          <a href="/#quote" class="mt-2 block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white hover:bg-green-700">Get Free Quote</a>
+        </nav>
+      </div>
     </header>
-    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
+    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
 
     <main id="main-content" tabindex="-1">
 
@@ -121,8 +110,8 @@
             
             <div class="before-after-container">
                 <div class="before-after-slider" id="mainSlider">
-                    <img src="/hernandez_images/web_Before1.jpeg" alt="Overgrown lawn before service" class="before-image" width="800" height="600" decoding="async">
-                    <img src="/hernandez_images/web_After1.jpeg" alt="Manicured lawn after service" class="after-image" width="800" height="600" decoding="async">
+                    <img src="/hernandez_images/web_Before1.jpeg" srcset="/hernandez_images/w/web_Before1-480.webp 480w, /hernandez_images/w/web_Before1-800.webp 800w, /hernandez_images/web_Before1.jpeg 1200w" sizes="(min-width: 1024px) 800px, 92vw" alt="Overgrown lawn before service" class="before-image" width="800" height="600" decoding="async">
+                    <img src="/hernandez_images/web_After1.jpeg" srcset="/hernandez_images/w/web_After1-480.webp 480w, /hernandez_images/w/web_After1-800.webp 800w, /hernandez_images/web_After1.jpeg 1200w" sizes="(min-width: 1024px) 800px, 92vw" alt="Manicured lawn after service" class="after-image" width="800" height="600" decoding="async">
                     <div
                         class="slider-handle"
                         id="sliderHandle"
@@ -142,16 +131,17 @@
         </div>
     </section>
 
-    <!-- Photo Grid -->
-    <section class="py-16 bg-gray-50">
+    <!-- Photo Grid: prints taped into the crew's field notebook (round 2) -->
+    <section class="py-16 bg-gray-50 field-notebook">
         <div class="container mx-auto px-4">
+            <p class="notebook-label stencil" data-i18n-key="notebook.label">From the crew's field notebook</p>
             <h2 class="text-3xl font-bold text-center mb-12 text-gray-800" data-i18n-key="gallery.recent.heading">Recent Projects</h2>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
                 <!-- Cards generated from media/gallery.json by scripts/update-media.mjs (npm run media:update). Do not edit by hand. -->
                 <!-- GALLERY:GENERATED:START -->
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg" loading="eager" decoding="async" fetchpriority="high" alt="Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb" class="">
+                    <img src="/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg" srcset="/hernandez_images/w/facebook-2026-fire-pit-lawn-finish-480.webp 480w, /hernandez_images/w/facebook-2026-fire-pit-lawn-finish-800.webp 800w, /hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="eager" decoding="async" fetchpriority="high" alt="Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.fire_pit">Finished Lawn &amp; Fire Pit</h3>
@@ -160,7 +150,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg" loading="eager" decoding="async" alt="Fresh green side yard lawn after Hernandez Landscape service" class="">
+                    <img src="/hernandez_images/facebook-2026-side-yard-lawn-finish.jpg" srcset="/hernandez_images/w/facebook-2026-side-yard-lawn-finish-480.webp 480w, /hernandez_images/w/facebook-2026-side-yard-lawn-finish-800.webp 800w, /hernandez_images/facebook-2026-side-yard-lawn-finish.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="eager" decoding="async" alt="Fresh green side yard lawn after Hernandez Landscape service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.side_yard">Fresh Side Yard Finish</h3>
@@ -169,7 +159,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-photos-2026-brush-pile-removal.webp" loading="eager" decoding="async" alt="Brush pile and tree debris staged after Hernandez Landscape cleanup" class="">
+                    <img src="/hernandez_images/google-photos-2026-brush-pile-removal.webp" srcset="/hernandez_images/w/google-photos-2026-brush-pile-removal-480.webp 480w, /hernandez_images/google-photos-2026-brush-pile-removal.webp 655w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="655" height="873" loading="eager" decoding="async" alt="Brush pile and tree debris staged after Hernandez Landscape cleanup" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.brush_removal">Brush Pile Removal</h3>
@@ -178,7 +168,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp" loading="lazy" decoding="async" alt="Woodpile and overgrown yard area before Hernandez cleanup work" class="">
+                    <img src="/hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp" srcset="/hernandez_images/w/google-photos-2026-woodpile-yard-cleanup-480.webp 480w, /hernandez_images/w/google-photos-2026-woodpile-yard-cleanup-800.webp 800w, /hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp 1164w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1164" height="873" loading="lazy" decoding="async" alt="Woodpile and overgrown yard area before Hernandez cleanup work" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.woodpile_cleanup">Woodpile Yard Cleanup</h3>
@@ -187,7 +177,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-photos-2026-backyard-lawn-finish.webp" loading="lazy" decoding="async" alt="Fresh backyard lawn finish after Hernandez Landscape service" class="">
+                    <img src="/hernandez_images/google-photos-2026-backyard-lawn-finish.webp" srcset="/hernandez_images/w/google-photos-2026-backyard-lawn-finish-480.webp 480w, /hernandez_images/w/google-photos-2026-backyard-lawn-finish-800.webp 800w, /hernandez_images/google-photos-2026-backyard-lawn-finish.webp 1164w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1164" height="873" loading="lazy" decoding="async" alt="Fresh backyard lawn finish after Hernandez Landscape service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.backyard_finish">Backyard Lawn Finish</h3>
@@ -196,7 +186,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2024-mulch-bed-edging.jpg" loading="lazy" decoding="async" alt="Fresh red mulch bed with stone edging after Hernandez Landscape service" class="">
+                    <img src="/hernandez_images/google-profile-2024-mulch-bed-edging.jpg" srcset="/hernandez_images/w/google-profile-2024-mulch-bed-edging-480.webp 480w, /hernandez_images/w/google-profile-2024-mulch-bed-edging-800.webp 800w, /hernandez_images/google-profile-2024-mulch-bed-edging.jpg 901w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="901" height="676" loading="lazy" decoding="async" alt="Fresh red mulch bed with stone edging after Hernandez Landscape service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.mulch_edging">Mulch Bed &amp; Edging</h3>
@@ -205,7 +195,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2026-branded-truck-trailers.jpg" loading="lazy" decoding="async" alt="Hernandez Landscape and Tree Service branded truck and trailers" class="">
+                    <img src="/hernandez_images/google-profile-2026-branded-truck-trailers.jpg" srcset="/hernandez_images/w/google-profile-2026-branded-truck-trailers-480.webp 480w, /hernandez_images/w/google-profile-2026-branded-truck-trailers-800.webp 800w, /hernandez_images/google-profile-2026-branded-truck-trailers.jpg 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1200" height="900" loading="lazy" decoding="async" alt="Hernandez Landscape and Tree Service branded truck and trailers" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.crew_equipment">Branded Crew Equipment</h3>
@@ -214,7 +204,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2026-tree-climber-canopy.jpg" loading="lazy" decoding="async" alt="Tree service crew member working high in a tree canopy" class="">
+                    <img src="/hernandez_images/google-profile-2026-tree-climber-canopy.jpg" srcset="/hernandez_images/w/google-profile-2026-tree-climber-canopy-480.webp 480w, /hernandez_images/w/google-profile-2026-tree-climber-canopy-800.webp 800w, /hernandez_images/google-profile-2026-tree-climber-canopy.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Tree service crew member working high in a tree canopy" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.canopy_work">Tree Canopy Work</h3>
@@ -223,7 +213,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg" loading="lazy" decoding="async" alt="Cut logs after Hernandez tree removal cleanup" class="">
+                    <img src="/hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg" srcset="/hernandez_images/w/google-profile-2026-tree-removal-cut-logs-480.webp 480w, /hernandez_images/w/google-profile-2026-tree-removal-cut-logs-800.webp 800w, /hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Cut logs after Hernandez tree removal cleanup" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.removal_cleanup">Removal Cleanup</h3>
@@ -232,7 +222,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-photos-2026-brush-clearing.webp" loading="lazy" decoding="async" alt="Brush and branch clearing pile after yard cleanup" class="">
+                    <img src="/hernandez_images/google-photos-2026-brush-clearing.webp" srcset="/hernandez_images/w/google-photos-2026-brush-clearing-480.webp 480w, /hernandez_images/w/google-photos-2026-brush-clearing-800.webp 800w, /hernandez_images/google-photos-2026-brush-clearing.webp 1050w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1050" height="1400" loading="lazy" decoding="async" alt="Brush and branch clearing pile after yard cleanup" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.brush_clearing">Brush Clearing Cleanup</h3>
@@ -241,7 +231,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2026-tree-climber-roofline.jpg" loading="lazy" decoding="async" alt="Tree service work near a residential roofline" class="">
+                    <img src="/hernandez_images/google-profile-2026-tree-climber-roofline.jpg" srcset="/hernandez_images/w/google-profile-2026-tree-climber-roofline-480.webp 480w, /hernandez_images/w/google-profile-2026-tree-climber-roofline-800.webp 800w, /hernandez_images/google-profile-2026-tree-climber-roofline.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Tree service work near a residential roofline" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.roofline_work">Roofline Tree Work</h3>
@@ -250,7 +240,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2026-tree-climber-full-tree.jpg" loading="lazy" decoding="async" alt="Tree climber working in a tall residential tree" class="">
+                    <img src="/hernandez_images/google-profile-2026-tree-climber-full-tree.jpg" srcset="/hernandez_images/w/google-profile-2026-tree-climber-full-tree-480.webp 480w, /hernandez_images/w/google-profile-2026-tree-climber-full-tree-800.webp 800w, /hernandez_images/google-profile-2026-tree-climber-full-tree.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Tree climber working in a tall residential tree" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.residential_tree">Residential Tree Care</h3>
@@ -259,7 +249,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/google-profile-2026-completed-yard-equipment.jpg" loading="lazy" decoding="async" alt="Completed yard work with Hernandez equipment on site" class="">
+                    <img src="/hernandez_images/google-profile-2026-completed-yard-equipment.jpg" srcset="/hernandez_images/w/google-profile-2026-completed-yard-equipment-480.webp 480w, /hernandez_images/w/google-profile-2026-completed-yard-equipment-800.webp 800w, /hernandez_images/google-profile-2026-completed-yard-equipment.jpg 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Completed yard work with Hernandez equipment on site" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.finished_yard">Finished Yard Work</h3>
@@ -268,7 +258,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_Wideshot_Bestlandscape.jpg" loading="lazy" decoding="async" alt="Wide shot of a beautifully landscaped front yard" class="">
+                    <img src="/hernandez_images/web_Wideshot_Bestlandscape.jpg" srcset="/hernandez_images/w/web_Wideshot_Bestlandscape-480.webp 480w, /hernandez_images/w/web_Wideshot_Bestlandscape-800.webp 800w, /hernandez_images/web_Wideshot_Bestlandscape.jpg 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1200" height="868" loading="lazy" decoding="async" alt="Wide shot of a beautifully landscaped front yard" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.front_yard">Breathtaking Front Yard</h3>
@@ -277,7 +267,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg" loading="lazy" decoding="async" alt="Professional landscaper working on a garden bed" class="">
+                    <img src="/hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg" srcset="/hernandez_images/w/web_Wideshot_Bestlandscape_Person-480.webp 480w, /hernandez_images/w/web_Wideshot_Bestlandscape_Person-800.webp 800w, /hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1200" height="900" loading="lazy" decoding="async" alt="Professional landscaper working on a garden bed" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.landscaper">Expert Care</h3>
@@ -286,7 +276,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_Wideshot_Bestlandscape2.jpeg" loading="lazy" decoding="async" alt="Landscaping design with mulch and retaining wall" class="">
+                    <img src="/hernandez_images/web_Wideshot_Bestlandscape2.jpeg" srcset="/hernandez_images/w/web_Wideshot_Bestlandscape2-480.webp 480w, /hernandez_images/w/web_Wideshot_Bestlandscape2-800.webp 800w, /hernandez_images/web_Wideshot_Bestlandscape2.jpeg 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1200" height="900" loading="lazy" decoding="async" alt="Landscaping design with mulch and retaining wall" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.modern_design">Modern Design</h3>
@@ -295,7 +285,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_IMG_1953.webp" loading="lazy" decoding="async" alt="Tree removal service" class="">
+                    <img src="/hernandez_images/web_IMG_1953.webp" srcset="/hernandez_images/w/web_IMG_1953-480.webp 480w, /hernandez_images/web_IMG_1953.webp 640w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="640" height="896" loading="lazy" decoding="async" alt="Tree removal service" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.tree_service">Professional Tree Care</h3>
@@ -304,7 +294,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_hero_desktop.jpg" loading="lazy" decoding="async" alt="Finished yard landscaping project" class="">
+                    <img src="/hernandez_images/web_hero_desktop.jpg" srcset="/hernandez_images/w/web_hero_desktop-480.webp 480w, /hernandez_images/w/web_hero_desktop-800.webp 800w, /hernandez_images/web_hero_desktop.jpg 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1200" height="868" loading="lazy" decoding="async" alt="Finished yard landscaping project" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.stone_work">Beautiful Pavers</h3>
@@ -313,7 +303,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_After1.jpeg" loading="lazy" decoding="async" alt="Lush green lawn after care" class="">
+                    <img src="/hernandez_images/web_After1.jpeg" srcset="/hernandez_images/w/web_After1-480.webp 480w, /hernandez_images/w/web_After1-800.webp 800w, /hernandez_images/web_After1.jpeg 1200w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="1200" height="900" loading="lazy" decoding="async" alt="Lush green lawn after care" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.lawn_care">Pristine Lawns</h3>
@@ -322,7 +312,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_IMG_0434_poster.jpg" loading="lazy" decoding="async" alt="Lawn edging and clean landscaping lines" class="">
+                    <img src="/hernandez_images/web_IMG_0434_poster.jpg" srcset="/hernandez_images/w/web_IMG_0434_poster-480.webp 480w, /hernandez_images/web_IMG_0434_poster.jpg 720w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="720" height="1280" loading="lazy" decoding="async" alt="Lawn edging and clean landscaping lines" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.precision_edging">Precision Edging</h3>
@@ -331,7 +321,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_IMG_1464_poster.jpg" loading="lazy" decoding="async" alt="Worker trimming a large hedge" class="">
+                    <img src="/hernandez_images/web_IMG_1464_poster.jpg" srcset="/hernandez_images/w/web_IMG_1464_poster-480.webp 480w, /hernandez_images/web_IMG_1464_poster.jpg 540w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="540" height="960" loading="lazy" decoding="async" alt="Worker trimming a large hedge" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.hedge_trimming">Hedge Trimming</h3>
@@ -340,7 +330,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_IMG_3360_2.webp" loading="lazy" decoding="async" alt="Beautiful landscaping project" class="">
+                    <img src="/hernandez_images/web_IMG_3360_2.webp" srcset="/hernandez_images/w/web_IMG_3360_2-480.webp 480w, /hernandez_images/w/web_IMG_3360_2-800.webp 800w, /hernandez_images/web_IMG_3360_2.webp 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Beautiful landscaping project" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.yard_transformation">Yard Transformation</h3>
@@ -349,7 +339,7 @@
                 </div>
 
                 <div class="gallery-item group">
-                    <img src="/hernandez_images/web_IMG_3362_2.webp" loading="lazy" decoding="async" alt="Recent landscaping work" class="">
+                    <img src="/hernandez_images/web_IMG_3362_2.webp" srcset="/hernandez_images/w/web_IMG_3362_2-480.webp 480w, /hernandez_images/w/web_IMG_3362_2-800.webp 800w, /hernandez_images/web_IMG_3362_2.webp 900w" sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 92vw" width="900" height="1200" loading="lazy" decoding="async" alt="Recent landscaping work" class="">
                     <div class="gallery-overlay">
                         <div class="text-center p-4">
                             <h3 data-i18n-key="gallery.item.outdoor_revival">Outdoor Revival</h3>
@@ -369,7 +359,7 @@
             <h2 class="text-4xl font-black mb-6" data-i18n-key="gallery.cta.heading">Inspired? Let's fix your yard.</h2>
             <p class="text-xl mb-8 max-w-2xl mx-auto text-green-100" data-i18n-key="gallery.cta.copy">You don't have to live with an overgrown or stressful outdoor space. We can handle it.</p>
             <a href="/#quote" class="bg-white text-green-800 px-8 py-4 rounded-full text-lg font-bold shadow-lg hover:bg-gray-100 transition transform hover:-translate-y-1 inline-flex items-center">
-                <span data-i18n-key="gallery.cta.button">Get a Free Quote</span> <i class="fas fa-arrow-right ml-2" aria-hidden="true"></i>
+                <span data-i18n-key="gallery.cta.button">Get a Free Quote</span> <svg class="icon icon-arrow-right ml-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
             </a>
         </div>
     </section>
@@ -377,11 +367,12 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="soil" aria-hidden="true"><svg class="soil-roots" viewBox="0 0 480 140" width="480" height="140" focusable="false"><defs><linearGradient id="soilRootFade" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="138"><stop offset="0" stop-color="#b8905f"/><stop offset=".45" stop-color="#8a6848"/><stop offset=".8" stop-color="#6b4e37" stop-opacity=".8"/><stop offset="1" stop-color="#5e4431" stop-opacity=".35"/></linearGradient><linearGradient id="soilBark" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#3d2616"/><stop offset=".45" stop-color="#6b4a33"/><stop offset="1" stop-color="#34200f"/></linearGradient></defs><g class="soil-root-set" fill="none" stroke="url(#soilRootFade)" stroke-linecap="round" stroke-linejoin="round"><path class="rt rt-1" pathLength="1" stroke-width="5" d="M208 30C180 44 150 52 112 60S46 76 12 84"/><path class="rt rt-1" pathLength="1" stroke-width="5" d="M272 30C300 44 330 52 368 60S434 76 470 84"/><path class="rt rt-1" pathLength="1" stroke-width="4.2" d="M224 31C214 56 196 78 168 96S120 116 92 124"/><path class="rt rt-1" pathLength="1" stroke-width="4.2" d="M256 31C266 56 284 78 312 96S360 116 388 124"/><path class="rt rt-1" pathLength="1" stroke-width="5.2" d="M241 32C242 60 238 86 240 106S238 122 236 130"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M150 54C140 66 128 74 112 80"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M92 68C80 78 66 84 50 96"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M330 54C340 66 352 74 368 80"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M388 68C400 78 414 84 430 96"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M190 84C178 98 170 108 164 120"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M290 84C302 98 310 108 316 120"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M239 96C228 106 220 112 206 118"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M240 100C252 108 262 114 276 120"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M50 96C44 102 40 108 34 112"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M430 96C436 102 440 108 446 112"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M164 120C160 124 157 128 151 131"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M316 120C320 124 323 128 329 131"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M92 124C84 126 76 127 68 130"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M388 124C396 126 404 127 412 130"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M12 84C8 90 6 96 3 100"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M470 84C474 90 476 96 478 100"/></g><g class="soil-stump"><path fill="url(#soilBark)" d="M206 9A34 7.5 0 0 0 274 9L276 19C277 24 280 28 287 31L193 31C200 28 203 24 204 19Z"/><path fill="none" stroke="#2c1a0e" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round" d="M217 16.5L216 28M231 17.2L230.5 30M249 17.2L249.6 30M263 16.5L264 28"/><ellipse cx="240" cy="9" rx="34" ry="7.5" fill="#e2c99c" stroke="#4a2f1c" stroke-width="3"/><g fill="none" stroke="#b88f5c" stroke-width="1"><ellipse cx="240" cy="9" rx="27" ry="5.9"/><ellipse cx="240.5" cy="9.2" rx="20" ry="4.4"/><ellipse cx="241" cy="9.3" rx="13" ry="2.9"/><ellipse cx="241.4" cy="9.4" rx="6.4" ry="1.5"/></g><circle cx="241.6" cy="9.4" r="1.3" fill="#8a6244"/><path fill="none" stroke="#6b4a33" stroke-width="1" stroke-linecap="round" d="M241.6 9.4L246 7.2L252 6.4L258 4.4"/></g></svg></div>
         <div class="container mx-auto px-4 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <!-- Column 1: Brand & About -->
                 <div class="space-y-4">
-                    <img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape Logo" class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110">
+                    <img src="/hernandez_images/web_Logo_New_256.png" alt="Hernandez Landscape Logo" width="256" height="192" class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110">
                     <p class="text-gray-400 text-sm leading-relaxed" data-i18n-key="footer.about">
                         Transforming outdoor spaces in DeKalb County with professional craftsmanship and family values.
                     </p>
@@ -395,11 +386,11 @@
                 <div>
                     <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.links">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.home">Home</span></a></li>
-                        <li><a href="/#services" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.services">Services</span></a></li>
-                        <li><a href="/gallery/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.gallery">Our Work</span></a></li>
-                        <li><a href="/videos/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.videos">Videos</span></a></li>
-                        <li><a href="/#quote" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><i class="fas fa-chevron-right text-green-600 text-xs mr-2"></i> <span data-i18n-key="nav.contact">Contact</span></a></li>
+                        <li><a href="/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.home">Home</span></a></li>
+                        <li><a href="/#services" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.services">Services</span></a></li>
+                        <li><a href="/gallery/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.gallery">Our Work</span></a></li>
+                        <li><a href="/videos/" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.videos">Videos</span></a></li>
+                        <li><a href="/#quote" class="text-gray-400 hover:text-green-500 transition-colors duration-300 flex items-center"><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg> <span data-i18n-key="nav.contact">Contact</span></a></li>
                     </ul>
                 </div>
 
@@ -408,25 +399,25 @@
                     <h3 class="text-lg font-bold mb-6 text-white border-b-2 border-green-600 inline-block pb-2" data-i18n-key="footer.contact">Contact Us</h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                            <svg class="icon icon-map-marker-alt text-green-500 mt-1 mr-3" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>
                             <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
                                 1029 Lewis St<br>DeKalb, IL 60115
                             </a>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-phone-alt text-green-500 mr-3"></i>
+                            <svg class="icon icon-phone-alt text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg>
                             <a href="tel:18155011478" class="text-gray-400 hover:text-white transition-colors font-semibold">
                                 (815) 501-1478
                             </a>
                         </li>
                         <li class="flex items-center">
-                            <i class="fas fa-envelope text-green-500 mr-3"></i>
+                            <svg class="icon icon-envelope text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg>
                             <a href="mailto:hernandezlandscapetreeservices@gmail.com" class="text-gray-400 hover:text-white transition-colors text-sm">
                                 hernandezlandscapetreeservices@gmail.com
                             </a>
                         </li>
                         <li class="flex items-start">
-                             <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
+                             <svg class="icon icon-clock text-green-500 mt-1 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
                              <div class="text-sm text-gray-400">
                                  <span class="block">Mon-Sat: 8AM - 5PM</span>
                                  <span class="block">Sun: Closed</span>
@@ -449,10 +440,10 @@
                     <h4 class="text-sm font-semibold mb-3 text-gray-300" data-i18n-key="footer.follow">Follow Us</h4>
                     <div class="flex space-x-4">
                         <a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" aria-label="Facebook" class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
-                            <i class="fab fa-facebook-f"></i>
+                            <svg class="icon icon-facebook-f" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook-f"/></svg>
                         </a>
                         <a href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" aria-label="Google" class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg">
-                            <i class="fab fa-google"></i>
+                            <svg class="icon icon-google" width="0.9531em" height="1em" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>
                         </a>
                     </div>
                 </div>
@@ -479,7 +470,100 @@
         "name": "Hernandez Landscape & Tree Service LLC Recent Work Photos",
         "url": "https://hernandezlandscapeservices.com/gallery/",
         "about": {
-            "@id": "https://hernandezlandscapeservices.com/#organization"
+            "@type": "HomeAndConstructionBusiness",
+            "@id": "https://hernandezlandscapeservices.com/#organization",
+            "name": "Hernandez Landscape & Tree Service LLC",
+            "url": "https://hernandezlandscapeservices.com/",
+            "logo": "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New_256.png",
+            "image": "https://hernandezlandscapeservices.com/hernandez_images/web_Logo_New_256.png",
+            "telephone": "+1-815-501-1478",
+            "email": "hernandezlandscapetreeservices@gmail.com",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "1029 Lewis St",
+                "addressLocality": "DeKalb",
+                "addressRegion": "IL",
+                "postalCode": "60115",
+                "addressCountry": "US"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 41.935162495016,
+                "longitude": -88.740720124283
+            },
+            "openingHoursSpecification": [
+                {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday"
+                    ],
+                    "opens": "08:00",
+                    "closes": "17:00"
+                }
+            ],
+            "priceRange": "$$",
+            "areaServed": [
+                {
+                    "@type": "City",
+                    "name": "DeKalb",
+                    "containedInPlace": {
+                        "@type": "State",
+                        "name": "Illinois"
+                    }
+                },
+                {
+                    "@type": "City",
+                    "name": "Sycamore",
+                    "containedInPlace": {
+                        "@type": "State",
+                        "name": "Illinois"
+                    }
+                },
+                {
+                    "@type": "City",
+                    "name": "Cortland",
+                    "containedInPlace": {
+                        "@type": "State",
+                        "name": "Illinois"
+                    }
+                },
+                {
+                    "@type": "City",
+                    "name": "Malta",
+                    "containedInPlace": {
+                        "@type": "State",
+                        "name": "Illinois"
+                    }
+                },
+                {
+                    "@type": "City",
+                    "name": "Genoa",
+                    "containedInPlace": {
+                        "@type": "State",
+                        "name": "Illinois"
+                    }
+                },
+                {
+                    "@type": "City",
+                    "name": "Kingston",
+                    "containedInPlace": {
+                        "@type": "State",
+                        "name": "Illinois"
+                    }
+                }
+            ],
+            "sameAs": [
+                "https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
+            ],
+            "knowsLanguage": [
+                "English",
+                "Spanish"
+            ]
         },
         "associatedMedia": [
             {
@@ -510,11 +594,11 @@
         ]
     }
     </script>
-    <script src="/assets/js/i18n.js?v=20260923q1" defer></script>
-    <script src="/assets/js/main.js?v=20260923q1" defer></script>
+    <script src="/assets/js/i18n.js?v=20260925b" defer></script>
+    <script src="/assets/js/main.js?v=20260924aa" defer></script>
     <script src="/assets/js/gallery.js" defer></script>
 <script src="/assets/js/analytics.js" defer></script>
 <script src="/assets/js/mobile-call-cta.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260923q1" defer></script>
+  <script src="/assets/js/rings.js?v=20260925a" defer></script>
 </body>
 </html>

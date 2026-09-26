@@ -19,7 +19,7 @@
         box-shadow: 0 16px 36px rgba(10, 38, 28, 0.4);
         color: #fff;
         display: grid;
-        font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-family: "Public Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         gap: 0.4rem;
         grid-template-columns: 1.2fr 0.9fr 1.1fr;
         left: max(10px, env(safe-area-inset-left));
@@ -136,10 +136,11 @@
 
   const estimateHref = () => {
     const quote = document.getElementById("quote") || document.getElementById("instant-quote");
-    const isHomepage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+    // Round 4: /es/ has its own request form, like the English home.
+    const isHomepage = /^\/(?:es\/)?(?:index\.html)?$/.test(window.location.pathname);
     if (isHomepage && quote) return "#quote";
     if (document.documentElement.lang.toLowerCase().startsWith("es")) {
-      return "/?lang=es#quote";
+      return "/es/#quote";
     }
     return "/#quote";
   };
@@ -162,14 +163,16 @@
     );
 
     const callLabel = emergency ? "Emergency Call" : "Call Now";
+    // Each accessible name starts with the words on the button (WCAG 2.5.3),
+    // so a voice-control user can say what they see.
     const callAria = emergency
-      ? `Emergency call Hernandez Landscape at ${PHONE_DISPLAY}`
-      : `Call Hernandez Landscape now at ${PHONE_DISPLAY}`;
+      ? `Emergency Call, Hernandez Landscape at ${PHONE_DISPLAY}`
+      : `Call Now, Hernandez Landscape at ${PHONE_DISPLAY}`;
 
     bar.innerHTML = `
       <a class="mobile-call-cta__btn mobile-call-cta__btn--call${emergency ? " is-emergency" : ""}" href="${PHONE_HREF}" data-mobile-call-cta-call="true" aria-label="${callAria}">${callLabel}</a>
       <a class="mobile-call-cta__btn mobile-call-cta__btn--text" href="${SMS_HREF}" data-mobile-call-cta-text="true" aria-label="Text Hernandez Landscape at ${PHONE_DISPLAY}">Text</a>
-      <a class="mobile-call-cta__btn mobile-call-cta__btn--estimate" href="${estimateHref()}" data-mobile-call-cta-estimate="true" aria-label="Request a free estimate">Free Estimate</a>
+      <a class="mobile-call-cta__btn mobile-call-cta__btn--estimate" href="${estimateHref()}" data-mobile-call-cta-estimate="true">Free Estimate</a>
     `;
 
     document.body.append(bar);
@@ -188,17 +191,15 @@
         : callLabel;
       call.setAttribute("aria-label", spanish
         ? (emergency
-          ? `Llamar a Hernandez Landscape por una emergencia al ${PHONE_DISPLAY}`
-          : `Llamar a Hernandez Landscape al ${PHONE_DISPLAY}`)
+          ? `Emergencia: llamar a Hernandez Landscape al ${PHONE_DISPLAY}`
+          : `Llamar ahora a Hernandez Landscape al ${PHONE_DISPLAY}`)
         : callAria);
       text.textContent = spanish ? "Mensaje" : "Text";
       text.setAttribute("aria-label", spanish
-        ? `Enviar un mensaje a Hernandez Landscape al ${PHONE_DISPLAY}`
+        ? `Mensaje a Hernandez Landscape al ${PHONE_DISPLAY}`
         : `Text Hernandez Landscape at ${PHONE_DISPLAY}`);
+      // The visible words say it all: no separate name.
       estimate.textContent = spanish ? "Cotización gratis" : "Free Estimate";
-      estimate.setAttribute("aria-label", spanish
-        ? "Solicitar una cotización gratis"
-        : "Request a free estimate");
       estimate.setAttribute("href", estimateHref());
     };
 
@@ -208,7 +209,9 @@
       attributeFilter: ["lang"],
     });
 
-    const hero = document.querySelector(".site-hero");
+    const hero = document.querySelector(".site-hero, [data-weather-hero]");
+    // Round 4: the hero has its own Call (815) 501-1478 button on phones now.
+    const heroCall = document.querySelector("[data-hero-call]");
     const quote =
       document.getElementById("quote") ||
       document.getElementById("instant-quote") ||
@@ -219,39 +222,74 @@
       "(max-height: 500px) and (orientation: landscape)",
     );
 
-    const overlapsViewport = (element, inset = 0) => {
-      if (!element) return false;
-      const rect = element.getBoundingClientRect();
-      return rect.bottom > inset && rect.top < window.innerHeight - inset;
+    // Round 5: visibility comes from IntersectionObserver entries, so the bar never
+    // forces a layout while the page is still being built (it used to read
+    // getBoundingClientRect right away, which made the first full-page layout
+    // happen inside this script).
+    const state = {
+      // the hero's call button (or the hero) is on screen, or still below it
+      heroAhead: Boolean(heroCall || hero),
+      conversion: { quote: false, footer: false },
     };
 
-    const updateVisibility = () => {
-      const heroIsVisible = overlapsViewport(hero, 80);
-      const conversionAreaIsVisible =
-        overlapsViewport(quote, 80) || overlapsViewport(footer, 32);
+    const render = () => {
       const shouldShow =
         mobileQuery.matches &&
         !shortLandscapeQuery.matches &&
-        !heroIsVisible &&
-        !conversionAreaIsVisible;
+        !state.heroAhead &&
+        !state.conversion.quote &&
+        !state.conversion.footer;
 
       bar.classList.toggle("is-visible", shouldShow);
       document.body.classList.toggle("has-mobile-cta", shouldShow);
     };
 
-    const observedSections = [hero, quote, footer].filter(Boolean);
-    if ("IntersectionObserver" in window && observedSections.length) {
-      const observer = new IntersectionObserver(updateVisibility, {
-        threshold: [0, 0.05, 0.5, 1],
-        rootMargin: "-32px 0px -32px",
+    const watch = (element, rootMargin, apply) => {
+      if (!element) return;
+      new IntersectionObserver((entries) => {
+        apply(entries[entries.length - 1]);
+        render();
+      }, { rootMargin, threshold: [0] }).observe(element);
+    };
+
+    if ("IntersectionObserver" in window) {
+      // Hidden while the hero's own call button is on screen (or still below it);
+      // it appears once that button has scrolled away, so the call is never repeated.
+      if (heroCall) {
+        watch(heroCall, "0px", (entry) => {
+          state.heroAhead = entry.isIntersecting || entry.boundingClientRect.top > 0;
+        });
+      } else {
+        watch(hero, "-80px 0px -80px", (entry) => {
+          state.heroAhead = entry.isIntersecting;
+        });
+      }
+      watch(quote, "-80px 0px -80px", (entry) => {
+        state.conversion.quote = entry.isIntersecting;
       });
-      observedSections.forEach((section) => observer.observe(section));
+      watch(footer, "-32px 0px -32px", (entry) => {
+        state.conversion.footer = entry.isIntersecting;
+      });
+    } else {
+      // Old browsers: measure on scroll and resize (after the page has laid out).
+      const overlapsViewport = (element, inset = 0) => {
+        if (!element) return false;
+        const rect = element.getBoundingClientRect();
+        return rect.bottom > inset && rect.top < window.innerHeight - inset;
+      };
+      const measure = () => {
+        state.heroAhead = heroCall ? heroCall.getBoundingClientRect().bottom > 0 : overlapsViewport(hero, 80);
+        state.conversion.quote = overlapsViewport(quote, 80);
+        state.conversion.footer = overlapsViewport(footer, 32);
+        render();
+      };
+      window.addEventListener("scroll", measure, { passive: true });
+      window.addEventListener("resize", measure, { passive: true });
+      window.addEventListener("load", measure, { once: true });
     }
 
-    window.addEventListener("scroll", updateVisibility, { passive: true });
-    window.addEventListener("resize", updateVisibility, { passive: true });
-    mobileQuery.addEventListener?.("change", updateVisibility);
-    shortLandscapeQuery.addEventListener?.("change", updateVisibility);
+    mobileQuery.addEventListener?.("change", render);
+    shortLandscapeQuery.addEventListener?.("change", render);
 
     bar.querySelector("[data-mobile-call-cta-call]")?.addEventListener("click", () => {
       if (typeof window.hlsTrack === "function") {
@@ -271,7 +309,7 @@
       }
     });
 
-    updateVisibility();
+    render();
   };
 
   if (document.readyState === "loading") {
