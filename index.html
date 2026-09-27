@@ -69,11 +69,14 @@
       href="https://hernandezlandscapeservices.com/"
     />
 
-    <!-- LCP hero: preload the active breakpoint asset -->
+    <!-- LCP hero: preload the active breakpoint asset (the phone preload mirrors the
+         <source> srcset/sizes so only one copy is fetched) -->
     <link
       rel="preload"
       as="image"
       href="/hernandez_images/web_hero_mobile.webp"
+      imagesrcset="/hernandez_images/w/web_hero_mobile-480.webp 480w, /hernandez_images/w/web_hero_mobile-800.webp 800w, /hernandez_images/web_hero_mobile.webp 900w"
+      imagesizes="100vw"
       type="image/webp"
       media="(max-width: 767px)"
       fetchpriority="high"
@@ -95,18 +98,17 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
 
-    <!-- Load external stylesheets -->
-    <link rel="stylesheet" href="/assets/css/styles.css?v=20260923q1" />
-    <link rel="stylesheet" href="assets/css/custom.css" />
-    <link rel="stylesheet" href="assets/css/video.css" />
-    <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
+    <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260924ab" />
+    <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
-    <link rel="stylesheet" href="/assets/icons/icons.css?v=20260923" />
-    <link rel="stylesheet" href="/assets/css/rings.css?v=20260923" />
   </head>
   <body class="site-body bg-gray-50">
-    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <!-- @icons: scripts/icons.mjs (symbols this page uses; generated) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false"><symbol id="i-arrow-down" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M375 311l-160 160q-10 9-23 9-13 0-23-9l-160-160q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l105 106v-307q0-14 9-22 9-9 22-9 13 0 23 9 10 8 10 22v307l105-106q10-9 23-9 13 0 23 9 9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-arrow-right" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M439 279l-160 160q-10 9-23 9-13 0-23-9-9-10-9-23 0-13 9-23l106-105h-307q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h307l-106-105q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l160 160q9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-arrow-up" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M375 247q-10 9-23 9-13 0-23-9l-105-106v307q0 14-9 22-9 9-22 9-13 0-23-9-10-8-10-22v-307l-105 106q-10 9-23 9-13 0-23-9-9-10-9-23 0-13 9-23l160-160q10-9 23-9 13 0 23 9l160 160q9 10 9 23 0 13-9 23z"/></symbol><symbol id="i-arrow-up-right-from-square" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M384 320q-14 0-23 9h0q-9 9-9 23v96h-288v-288h96q14 0 23-9 9-9 9-23 0-14-9-23-9-9-23-9h-96q-27 1-45 19-18 18-19 45v288q1 27 19 45 18 18 45 19h288q27-1 45-19 18-18 19-45v-96q0-14-9-23-9-9-23-9zm119-311q-9-9-23-9h-160q-14 0-22 9-9 9-9 22 0 14 9 22 9 9 23 9h83l-225 229q-10 10-10 22 0 13 10 23 10 9 22 9 13 0 23-9l224-227v83q0 14 9 22 9 9 22 9 13 0 23-9 10-8 10-22v-161q0-12-9-22z"/></symbol><symbol id="i-bars" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 96q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm0 160q0-14 9-23h0q9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-384q-14 0-23-9-9-9-9-23zm416 192h-384q-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9h384q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9z"/></symbol><symbol id="i-bolt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M241 224h111q22 1 29 21 8 20-8 35l-256 224q-19 15-40 2-19-16-10-39l77-179h-113q-20-1-29-21-7-20 9-35l256-224q19-15 40-2 19 16 10 39l-76 179z"/></symbol><symbol id="i-calculator" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M336 0h-288q-20 1-34 14-13 14-14 34v416q1 20 14 34 14 13 34 14h288q20-1 34-14 13-14 14-34v-416q-1-20-14-34-14-13-34-14zm-272 208q1-15 16-16h32q15 1 16 16v32q-1 15-16 16h-32q-15-1-16-16v-32zm0 96q1-15 16-16h32q15 1 16 16v32q-1 15-16 16h-32q-15-1-16-16v-32zm160 128q-1 15-16 16h-128q-15-1-16-16v-32q1-15 16-16h128q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm96 192q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-32q-15-1-16-16v-32q1-15 16-16h32q15 1 16 16v32zm0-96q-1 15-16 16h-224q-15-1-16-16v-64q1-15 16-16h224q15 1 16 16v64z"/></symbol><symbol id="i-check" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M439 105q9 10 9 23h0q0 13-9 23l-256 256q-10 9-23 9-13 0-23-9l-128-128q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l104 106 234-234q10-9 23-9 13 0 23 9h0z"/></symbol><symbol id="i-check-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 256q1-72 35-129h0q34-58 92-92h0q57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129zm372-44q8-9 8-20h0q0-11-8-20-9-8-20-8-11 0-20 8l-108 108-44-44q-9-8-20-8-11 0-20 8-8 9-8 20 0 11 8 20l64 64q9 8 20 8 11 0 20-8l128-128z"/></symbol><symbol id="i-chevron-down" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M224 416q-13 0-23-9l-192-192q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l169 170 169-170q10-9 23-9 13 0 23 9 9 10 9 23 0 13-9 23l-192 192q-10 9-23 9z"/></symbol><symbol id="i-chevron-right" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M96 480q-13 0-23-9-9-10-9-23 0-13 9-23l170-169-170-169q-9-10-9-23 0-13 9-23 10-9 23-9 13 0 23 9l192 192q9 10 9 23 0 13-9 23l-192 192q-10 9-23 9z"/></symbol><symbol id="i-clipboard-list" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M336 64h-54q-10-28-34-46-24-17-56-18-32 1-56 18-24 18-34 46h-54q-20 1-34 14-13 14-14 34v352q1 20 14 34 14 13 34 14h288q20-1 34-14 13-14 14-34v-352q-1-20-14-34-14-13-34-14zm-240 328q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24zm0-96q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24zm96-232q14 0 23 9h0q9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9zm112 320h-128q-15-1-16-16 1-15 16-16h128q15 1 16 16-1 15-16 16zm0-96h-128q-15-1-16-16 1-15 16-16h128q15 1 16 16-1 15-16 16z"/></symbol><symbol id="i-clock" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 512q-72-1-129-35h0q-58-34-92-92h0q-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129-1 72-35 129-34 58-92 92-57 34-129 35zm-24-256q0 13 11 19l96 64q19 12 32-6 12-19-6-33l-85-57v-123q-2-22-25-24-10 0-17 7-7 7-7 17l1 136z"/></symbol><symbol id="i-comment-dots" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 31q-71 1-129 28h0q-57 28-91 75h0q-34 47-35 105 2 76 57 131-12 39-32 66-20 28-23 30-3 3-1 8 2 5 7 5 50-1 85-18 36-17 55-33 50 19 108 19 71-1 129-28 57-28 91-75 34-46 35-104-1-58-35-105-34-47-92-75-57-28-129-29zm-129 240q-14 0-23-9h0q-9-9-9-22 0-13 9-22 9-10 23-10 14 0 23 9 9 9 9 23-2 29-32 31zm129 0q-14 0-22-9h0q-9-9-9-22 0-13 9-22 9-10 22-10 13 0 22 9 9 9 9 23-2 29-31 31zm127 0q-14 0-23-9h0q-9-9-9-22 0-13 9-22 9-10 23-10 14 0 23 9 9 9 9 23-2 29-32 31z"/></symbol><symbol id="i-comments" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M416 176q-2-75-61-124h0q-59-50-147-52-88 2-147 52-59 49-61 124 1 60 42 105-14 25-26 41-13 16-14 17-3 4-1 8 2 5 7 5 58-2 95-24 47 23 105 24 88-2 147-52 59-49 61-124zm184 268q39-46 40-108-2-75-56-124-54-50-136-52 0 0 0 0-1 0-1 0 0 1 0 2 1 7 1 14-2 75-53 130-52 55-133 73 17 58 67 95 50 37 119 38 51-1 93-22 37 20 91 22 5 0 7-5 2-4-1-8 0 0 0 0-3-2-14-17-12-15-24-38z"/></symbol><symbol id="i-cut" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M397 51q22-21 51-21h0q29 0 51 21 11 13 0 26l-282 283q7 18 7 40-1 48-33 79-31 32-79 33-48-1-79-33-32-31-33-79 1-48 33-80 31-32 79-33 22 1 41 9l38-41-38-38q-19 7-41 7-48-1-79-33-32-31-33-79 1-48 33-79 31-32 79-33 48 1 79 33 32 31 33 79 0 22-7 41l38 38 142-140zm-237 60q-1-20-14-34h0q-14-13-34-14-20 1-34 14-13 14-14 34 1 21 14 34 14 14 34 14 20 0 34-14 13-13 14-34zm-48 337q20-1 34-14h0q13-14 14-34-1-20-14-34-14-13-34-14-20 1-34 14-13 14-14 34 1 20 14 34 14 13 34 14zm167-105l64-64 156 156q11 13 0 26-22 21-51 21-29 0-51-21l-118-118z"/></symbol><symbol id="i-dollar-sign" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M160 0q14 0 23 9h0q9 9 9 23v36q2 0 3 0 1 0 2 0 9 2 26 5 18 3 29 5 12 4 19 15 7 11 4 24-4 13-15 20-11 6-24 3-7-2-21-4-14-2-24-4-2 0-4 0-49-7-78 5-26 10-28 28-2 15 1 20 3 6 13 14 25 14 73 26l3 1q22 5 46 14 23 8 43 20 22 14 36 40 12 27 6 58-6 29-23 48-18 20-43 30-20 8-44 11v33q0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23v-35q0 0 0 0-1-1-1 0h0q-20-3-45-10-26-7-47-16-12-6-17-18-4-12 1-25 6-12 17-17 12-4 24 1 17 7 39 13 21 6 37 9 49 6 76-6 25-10 27-28 2-16-1-21-3-6-13-13-25-15-73-27l-3-1q-22-5-46-14-23-8-43-20-22-14-36-40-12-27-6-59 6-29 24-48 19-19 44-28 20-8 42-10v-35q0-14 9-23 9-9 23-9h0z"/></symbol><symbol id="i-envelope" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 352q-25 0-47-16l-209-163v227q1 20 14 34 14 13 34 14h416q20-1 34-14 13-14 14-34v-227l-209 163q-22 16-47 16zm-240-207l212 165q13 10 28 10 15 0 28-10l212-165q15-13 16-33-1-20-14-34-14-13-34-14h-416q-20 1-34 14-13 14-14 34 0 20 16 33z"/></symbol><symbol id="i-exclamation-triangle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M506 417l-213-364q-14-21-37-21-23 0-37 21l-213 364q-12 22 0 42 11 20 37 21h426q26-1 37-21 12-20 0-42zm-274-249q2-22 24-24 22 2 24 24v128q-2 22-23 24-10 0-17-7-8-7-8-17v-128zm24 248q-13 0-22-9h0q-9-9-9-22 0-14 9-23 9-9 22-9 13 0 22 9 9 9 9 23 0 13-9 22-9 9-22 9z"/></symbol><symbol id="i-facebook" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M504 256q-1-69-34-125h0q-33-56-89-89h0q-56-33-125-34-69 1-125 34-56 33-89 89-33 56-34 125 2 95 60 162 58 67 149 83v-173h-63v-72h63v-55q1-46 26-71 25-25 68-25 21 0 38 2 16 2 17 3 0 0 0 0v61h-31q-23 0-32 12-9 11-8 26v47h69l-11 72h-58v173q91-16 149-83 58-67 60-162z"/></symbol><symbol id="i-facebook-f" viewBox="0 0 320 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M279 288l14-93h-89v-60q0-20 12-34 11-15 41-16h40v-79q-1 0-23-3-21-3-49-3-55 0-88 32-32 32-33 93v70h-81v93h81v224h100v-224z"/></symbol><symbol id="i-google" viewBox="0 0 488 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M488 262q-2 108-66 174h0q-65 66-174 68-69-1-125-34-56-33-89-89-33-56-34-125 1-69 34-125 33-56 89-89 56-33 125-34 101 2 166 65l-67 65q-47-42-105-38-58 3-102 44-43 42-46 112 2 67 45 111 44 44 109 46 49-1 79-20 30-19 45-43 14-25 17-44h-141v-86h236q4 18 4 42z"/></symbol><symbol id="i-handshake" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M0 384h64q14 0 23-9 9-9 9-23v-224h-96v256zm48-64q15 1 16 16-1 15-16 16-15-1-16-16 1-15 16-16zm301-256q-13 0-22 8l-98 90q0 0 0 0 0 1 0 1-13 12-13 28 0 15 11 28 10 10 26 12 16 1 30-10 0 0 0 0 0 0 0 0l80-73q12-9 23 1 8 12-1 23l-27 24 146 118q4 3 8 7v-194q-31-31-71-47-40-17-84-17l-8 1zm-14 153l-30 28q-24 20-52 19-29-2-50-23-20-24-19-52 1-29 23-50l82-75h-6q-44 0-84 17-40 16-71 47v224h18l91 82q21 16 47 14 25-3 43-24l18 16q12 9 27 7 15-1 25-13l32-38 5 4q11 8 23 7 13-1 22-12l10-11q8-11 7-24-2-12-12-21l-149-122zm209-89v224q0 14 9 23 9 9 22 9h65v-256h-96zm48 224q-15-1-16-16 1-15 16-16 15 1 16 16-1 15-16 16z"/></symbol><symbol id="i-home" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M576 256q-1 13-10 22h0q-9 9-22 10h-32l1 160q-1 4-1 8v16q0 17-12 28-11 12-28 12h-16q-1 0-1 0-1-1-2 0-2-1-3 0-1 0-1 0h-57q-17 0-28-12-12-11-12-28v-88q0-14-9-23-9-9-23-9h-64q-14 0-23 9-9 9-9 23v88q0 17-12 28-11 12-28 12h-56q-2 0-4 0 0 0 0 0-2 0-4 0h-16q-17 0-28-12-12-11-12-28v-112q0-1 0-3v-69h-32q-14-1-23-10-9-9-9-22 0-14 10-24l256-224q11-9 22-8 12 0 22 7l255 225q12 10 11 24h0z"/></symbol><symbol id="i-images" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M528 32h-384q-20 1-34 14-13 14-14 34v256q1 20 14 34 14 13 34 14h384q20-1 34-14 13-14 14-34v-256q-1-20-14-34-14-13-34-14zm-305 64q14 0 23 9h0q9 9 9 23 0 14-9 23-9 9-23 9-13 0-23-9-9-9-9-23 1-14 10-23 9-9 22-9zm271 216q-5 8-14 8h-288q-10 0-14-9-4-8 1-16l70-96q5-7 13-7 8 0 13 7l22 30 63-94q4-7 13-7 9 0 14 7l106 160q5 8 1 17zm-38 120h-336q-31-1-51-21-20-20-21-51v-240q-2-22-24-24-22 2-24 24v240q1 51 35 85 34 34 85 35h336q22-2 24-24-2-22-24-24z"/></symbol><symbol id="i-info-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M256 0q-72 1-129 35h0q-58 34-92 92h0q-34 57-35 129 1 72 35 129 34 58 92 92 57 34 129 35 72-1 129-35 58-34 92-92 34-57 35-129-1-72-35-129-34-58-92-92-57-34-129-35zm0 128q14 0 23 9h0q9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9zm40 256h-80q-22-2-24-24 2-22 24-24h16v-64h-8q-22-2-24-24 2-22 24-24h32q22 2 24 24v88h16q22 2 24 24-2 22-24 24z"/></symbol><symbol id="i-layer-group" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M233 5q23-10 47 0l218 101q13 7 14 21-1 16-14 23l-218 101q-24 10-47 0l-219-101q-13-7-14-23 1-14 14-21l219-101zm265 229q13 7 14 21-1 16-14 23l-218 101q-24 10-47 0l-219-101q-13-7-14-23 1-14 14-21l53-24 152 70q37 16 74 0l152-70 53 24zm-205 174l152-70 53 24q13 7 14 21-1 16-14 23l-218 101q-24 10-47 0l-219-101q-13-7-14-23 1-14 14-21l53-24 152 70q37 16 74 0h0z"/></symbol><symbol id="i-leaf" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M512 165q-1 98-48 170h0q-47 73-127 101-31 12-65 12-49-1-91-26-41-25-65-69-39 40-54 73-15 33-15 36-5 17-23 18-3 0-6-1-20-7-17-29 4-22 36-76 33-53 105-100 72-47 194-50 15-1 16-16-1-15-16-16-80 1-140 22-59 22-100 54 0-17 4-33 11-51 46-87 35-35 85-48 43-9 81 0 43 10 84-5 41-15 65-56 5-7 13-7 8 0 12 8 25 58 26 125z"/></symbol><symbol id="i-location-dot" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M168 499q-27-33-67-89h0q-39-55-69-114h0q-30-59-32-104 2-82 56-136 54-54 136-56 82 2 136 56 54 54 56 136-2 45-32 104-31 59-70 114-39 56-66 89-10 12-24 12-14 0-24-12h0zm24-243q27-1 45-19h0q18-18 19-45-1-27-19-45-18-18-45-19-27 1-45 19-18 18-19 45 1 27 19 45 18 18 45 19z"/></symbol><symbol id="i-lock" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M80 192v-48q2-61 42-102 41-40 102-42 61 2 102 42 40 41 42 102v48h16q27 1 45 19 18 18 19 45v192q-1 27-19 45-18 18-45 19h-320q-27-1-45-19-18-18-19-45v-192q1-27 19-45 18-18 45-19h16zm64 0h160v-48q-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57v48z"/></symbol><symbol id="i-map-marker-alt" viewBox="0 0 384 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M168 499q-27-33-67-89h0q-39-55-69-114h0q-30-59-32-104 2-82 56-136 54-54 136-56 82 2 136 56 54 54 56 136-2 45-32 104-31 59-70 114-39 56-66 89-10 12-24 12-14 0-24-12h0zm24-243q27-1 45-19h0q18-18 19-45-1-27-19-45-18-18-45-19-27 1-45 19-18 18-19 45 1 27 19 45 18 18 45 19z"/></symbol><symbol id="i-phone" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M511 387l-23 101q-7 23-31 24-127-1-230-63-103-61-164-164-62-103-63-230 1-24 24-31l101-23q24-4 36 18l46 108q8 22-9 37l-53 43q25 52 66 93 41 41 93 67l44-54q15-17 37-9l108 46q21 13 18 37z"/></symbol><symbol id="i-phone-alt" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M19 351l108-46q22-8 37 9l44 53q52-25 93-66 41-41 66-93l-53-44q-17-15-9-37l46-108q12-22 36-18l101 23q23 7 24 31-1 127-63 230-61 103-164 165-103 61-231 62-23-1-30-24l-23-101q-4-24 18-36z"/></symbol><symbol id="i-play-circle" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M512 256q-1 72-35 129h0q-34 58-92 92h0q-57 34-129 35-72-1-129-35-58-34-92-92-34-57-35-129 1-72 35-129 34-58 92-92 57-34 129-35 72 1 129 35 58 34 92 92 34 57 35 129zm-336-88v176q0 14 12 21 12 6 25 0l144-88q11-8 11-21 0-13-11-20l-144-88q-13-8-25-1-12 7-12 21h0z"/></symbol><symbol id="i-seedling" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M64 95h-64q1 63 31 113 29 51 80 81 50 29 113 30v128q0 14 9 23 9 10 22 10 13 0 23-9 10-9 10-23v-128q-1-63-31-113-29-51-80-81-50-30-113-31zm384-63q-64 1-115 32h0q-51 31-81 83 42 46 59 108 87-11 143-73 56-61 58-150h-64z"/></symbol><symbol id="i-snowflake" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M476 384q-10 16-28 16-8 0-16-4l-25-15 5 20q4 22-17 30-3 0-6 0-18 0-23-17l-18-67-60-35v70l48 49q14 17 0 34-7 7-17 7-9 0-17-7l-14-14v29q0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23v-29l-14 14q-17 14-34 0-14-17 0-34l48-49-1-70-60 35-18 67q-5 17-23 17-3 0-6 0-21-8-17-30l5-20-25 15q-6 4-15 4-18 0-28-16-6-12-3-24 3-12 15-20l26-15-20-5q-21-8-17-30 7-20 29-17l66 18 61-35-61-35-66 18q-3 0-6 0-18 0-23-17-4-22 17-30l20-5-26-15q-12-8-15-20-3-12 3-24 8-12 20-15 12-3 24 3l25 15-5-20q-3-22 16-30 22-3 30 17l18 67 59 35v-70l-47-49q-14-17 0-34 17-14 34 0l14 15-1-30q0-14 9-23 10-9 23-9 14 0 23 9 9 9 9 23v30l14-15q17-14 34 0 15 17 1 34l-49 49 1 70 60-35 18-67q7-20 29-17 21 8 17 30l-5 20 25-15q12-6 24-3 12 3 20 15 6 12 3 24-3 13-15 20l-26 15 20 5q21 8 17 30-5 17-23 17-3 0-6 0l-67-18-59 35 60 35 66-18q22-3 29 17 4 22-16 30l-21 5 26 15q12 8 15 20 3 12-3 24z"/></symbol><symbol id="i-spray-can" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M192 0q14 0 23 9h0q9 9 9 23v96h-128v-96q0-14 9-23 9-9 23-9h64zm-192 256q1-41 28-68h0q27-27 68-28h128q41 1 68 28 27 27 28 68v208q-1 20-14 34-14 13-34 14h-224q-20-1-34-14-13-14-14-34v-208zm160 0q-34 1-57 23h0q-22 23-23 57 1 34 23 57 23 22 57 23 34-1 57-23 22-23 23-57-1-34-23-57-23-22-57-23zm160-192q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm32 0q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23zm160 0q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm-64 96q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23zm64 96q0 14-9 23h0q-9 9-23 9-14 0-23-9-9-9-9-23 0-14 9-23 9-9 23-9 14 0 23 9 9 9 9 23zm-160-96q0-14 9-23h0q9-9 23-9 14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23z"/></symbol><symbol id="i-tools" viewBox="0 0 512 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M332 224q43 1 75 31l19 20q31-14 52-39 22-25 30-58 8-36 0-68-2-9-10-11-8-2-14 4l-69 69h-76v-75l69-69q6-6 4-14-2-8-10-10-33-8-69 0-42 11-71 42-29 32-36 75-2 12-2 24l83 83q12-4 25-4zm52 55q-18-18-41-21h0q-23-4-44 7l-108-107v-62l-127-96-64 63 96 127h62l107 107q-11 21-7 44 3 23 21 41l117 117q11 11 26 11 15 0 26-11l53-52q11-12 11-27 0-15-11-26l-117-115zm-156 28l-59-59-149 149q-20 21-20 48 0 26 20 47 21 20 48 20 26 0 47-20l119-119q-13-32-6-66zm-164 165q-22-2-24-24 2-22 24-24 22 2 24 24-2 22-24 24z"/></symbol><symbol id="i-tree" viewBox="0 0 448 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M414 447l-158 1v32q0 14-9 23-9 9-23 9-14 0-23-9-9-9-9-23v-32h-159q-22-1-30-20-8-18 5-36l69-80h-15q-19-1-27-17-7-16 5-32l60-71h-11q-16-1-23-13-6-12 4-24l135-147q8-8 19-8 11 0 19 8l135 147q10 12 4 24-7 12-23 13h-11l61 71q11 16 4 32-8 16-27 17h-15l69 80q13 18 5 36-9 18-31 19z"/></symbol><symbol id="i-truck" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M368 0q20 1 34 14h0q13 14 14 34v48h51q25 0 45 19l77 77q19 19 19 45v115q14 0 23 9 9 9 9 23 0 14-9 23-9 9-23 9h-32q-1 41-28 68-27 27-68 28-41-1-68-28-27-27-28-68h-128q-1 41-28 68-27 27-68 28-41-1-68-28-27-27-28-68h-16q-20-1-34-14-13-14-14-34v-320q1-20 14-34 14-13 34-14h320zm48 160v96h128v-19l-77-77h-51zm-256 208q-20 1-34 14h0q-13 14-14 34 1 20 14 34 14 13 34 14 20-1 34-14 13-14 14-34-1-20-14-34-14-13-34-14zm320 96q20-1 34-14h0q13-14 14-34-1-20-14-34-14-13-34-14-20 1-34 14-13 14-14 34 1 20 14 34 14 13 34 14z"/></symbol><symbol id="i-users" viewBox="0 0 640 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M320 320q44-1 73-30h0q29-30 30-74-1-44-30-74-30-29-73-30-44 1-73 30-29 30-30 74 0 44 29 74 30 29 74 30zm50 32h-100q-60 1-100 39-40 38-42 94 0 12 8 19 8 8 20 8h328q12 0 20-8 8-7 8-19-2-56-42-94-40-38-100-39zm142-192q34-1 57-23h0q22-23 23-57-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57 1 34 23 57 23 22 57 23zm-328 56q0-6 1-12h0q0-2 1-4-17-8-36-8h-62q-37 1-62 27-25 27-26 66 2 17 18 19h199q-32-37-33-88zm-56-56q34-1 57-23h0q22-23 23-57-1-34-23-57-23-22-57-23-34 1-57 23-22 23-23 57 1 34 23 57 23 22 57 23zm424 32h-62q-19 0-36 8 0 3 1 5 1 5 1 11-1 51-33 88h199q16-2 18-19-1-39-26-66-25-26-62-27z"/></symbol><symbol id="i-video" viewBox="0 0 576 512" preserveAspectRatio="xMinYMid meet"><path fill="currentColor" d="M384 112v288q-1 20-14 34-14 13-34 14h-288q-20-1-34-14-13-14-14-34v-288q1-20 14-34 14-13 34-14h288q20 1 34 14 13 14 14 34zm192 16v256q-1 20-17 28-16 9-33-2l-110-75v-158l110-75q17-11 33-2 16 8 17 28z"/></symbol></svg>
+    <!-- /@icons -->
+    <a class="skip-link" href="#main-content" data-i18n-key="nav.skip">Skip to main content</a>
     <header
       id="header"
       class="site-header bg-white fixed top-0 w-full z-50 transition-all duration-300 shadow"
@@ -168,58 +170,25 @@
               data-i18n-key="nav.serviceArea"
               >Service Area</a
             >
-            <!-- Language Toggle -->
-            <div class="flex items-center bg-gray-100 rounded-full p-1 mx-2">
-              <button
-                type="button"
-                data-lang-switch="en"
-                class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow"
-                aria-pressed="true"
-                aria-label="Use English"
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                data-lang-switch="es"
-                class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300"
-                aria-pressed="false"
-                aria-label="Usar español"
-              >
-                ES
-              </button>
-            </div>
+            <a href="tel:18155011478" class="header-tel"
+              ><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>(815) 501-1478</span></a
+            >
+            <!-- Language: the Spanish home has its own URL (round 4) -->
+            <a href="/es/" class="lang-link" hreflang="es" lang="es">Español</a>
             <a
               href="#quote"
-              class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md transform hover:-translate-y-0.5 whitespace-nowrap"
+              class="header-cta bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition text-sm font-bold shadow-md transform hover:-translate-y-0.5 whitespace-nowrap"
               data-i18n-key="nav.freeQuote"
             >
               Get Free Quote
             </a>
           </div>
 
-          <!-- Mobile Controls (Lang + Menu) -->
+          <!-- Mobile Controls (Español + Menu) -->
           <div class="flex items-center lg:hidden space-x-3">
-            <div class="flex items-center bg-gray-100 rounded-full p-1">
-              <button
-                type="button"
-                data-lang-switch="en"
-                class="px-2 py-1 rounded-full text-xs font-bold transition-all duration-300 bg-green-600 text-white shadow"
-                aria-pressed="true"
-                aria-label="Use English"
-              >
-                EN
-              </button>
-              <button
-                type="button"
-                data-lang-switch="es"
-                class="px-2 py-1 rounded-full text-xs font-bold text-gray-600 hover:text-green-600 transition-all duration-300"
-                aria-pressed="false"
-                aria-label="Usar español"
-              >
-                ES
-              </button>
-            </div>
+            <a href="/es/" class="lang-link" hreflang="es" lang="es">Español</a>
+            <!-- Shown only when JavaScript is off (the menu button needs it; the call bar is scripted) -->
+            <a href="tel:18155011478" class="nojs-call" aria-label="Call (815) 501-1478" data-i18n-aria-label="nav.callName"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span data-i18n-key="quote.phoneLabel">Call</span></a>
             <button
               id="mobileMenuButton"
               type="button"
@@ -229,7 +198,7 @@
               aria-label="Toggle mobile menu"
               data-i18n-aria-label="nav.menuToggle"
             >
-              <i class="fas fa-bars text-2xl" aria-hidden="true"></i>
+              <svg class="icon icon-bars text-2xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bars"/></svg>
             </button>
           </div>
         </nav>
@@ -281,12 +250,13 @@
         </div>
       </div>
     </header>
-    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice"><span><i class="fas fa-bolt" aria-hidden="true"></i> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
+    <div class="storm-band" data-storm-band hidden role="region" aria-label="Storm notice" data-i18n-aria-label="storm.notice"><span><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg> <span data-i18n-key="storm.band">Storm damage? Call about tree service availability</span></span><a class="storm-call" href="tel:18155011478"><span data-i18n-key="storm.call">Call (815) 501-1478</span></a><a href="/emergency-tree-removal/" data-i18n-key="storm.page">Emergency tree help</a></div>
 
     <main id="main-content" tabindex="-1">
     <!-- Hero Section -->
     <section
       id="home"
+      data-weather-hero
       class="site-hero relative min-h-screen flex items-center text-white pt-28 pb-24 md:pt-32 md:pb-28"
     >
       <!-- Background Image with Overlay: tree hero on mobile, wideshot on desktop -->
@@ -308,13 +278,14 @@
           />
           <source
             type="image/webp"
-            srcset="hernandez_images/web_hero_mobile.webp"
+            srcset="hernandez_images/w/web_hero_mobile-480.webp 480w, hernandez_images/w/web_hero_mobile-800.webp 800w, hernandez_images/web_hero_mobile.webp 900w"
+            sizes="100vw"
             width="900"
             height="1200"
           />
           <img
             src="hernandez_images/web_hero_mobile.jpg"
-            alt="Hernandez Landscape crew working on residential landscaping and tree care"
+            alt="Hernandez Landscape crew working on residential landscaping and tree care" data-i18n-alt="alt.hero"
             class="h-full w-full object-cover"
             width="900"
             height="1200"
@@ -329,16 +300,13 @@
 
       <div class="container mx-auto px-4 relative z-10 pt-10 md:pt-16 hero-grid">
         <div class="hero-content max-w-4xl">
-          <!-- Storm-damage service availability -->
+          <!-- Storm-damage strip: shown in full only in storm mode (assets/data/site-status.json
+               "storm": true adds body.storm-on). Otherwise a one-line link sits under the calls. -->
           <div
             class="emergency-strip hero-enter mb-6 flex flex-wrap items-center justify-center gap-3 rounded-lg bg-black/40 border border-white/20 px-4 py-3 text-center"
           >
             <p class="font-bold text-white">
-              <i
-                class="fas fa-exclamation-triangle text-green-400 mr-2"
-                aria-hidden="true"
-              ></i
-              ><span data-i18n-key="hero.emergency"
+              <svg class="icon icon-exclamation-triangle text-green-400 mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-exclamation-triangle"/></svg><span data-i18n-key="hero.emergency"
                 >Storm damage? Call about tree service availability</span
               >
             </p>
@@ -359,13 +327,13 @@
           <p
             class="hero-eyebrow hero-enter hero-enter-delay-1 mb-5 inline-flex items-center gap-2 text-sm font-bold uppercase"
           >
-            <i class="fas fa-location-dot" aria-hidden="true"></i>
+            <svg class="icon icon-location-dot" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-location-dot"/></svg>
             <span data-i18n-key="hero.eyebrow"
               >DeKalb County Landscaping & Tree Service</span
             >
           </p>
           <h1
-            class="hero-heading hero-enter hero-enter-delay-2 text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 leading-tight"
+            class="hero-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-8 md:mb-10 leading-tight"
           >
             <span class="block text-white" data-i18n-key="hero.transform"
               >Tree Removal, Lawn Care &amp;</span
@@ -388,67 +356,52 @@
             class="hero-actions hero-enter hero-enter-delay-4 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-8"
           >
             <a
-              href="#instant-quote"
+              href="#quote"
               class="primary-cta w-full sm:w-auto bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(22,163,74,0.3)] flex items-center justify-center border border-transparent"
             >
-              <i class="fas fa-calculator mr-3 text-xl" aria-hidden="true"></i>
-              <span data-i18n-key="hero.cta">See Starting Range</span>
+              <svg class="icon icon-clipboard-list mr-3 text-xl" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list"/></svg>
+              <span data-i18n-key="hero.ctaQuote">Get a free quote</span>
             </a>
             <a
               href="tel:18155011478"
+              data-hero-call
               class="secondary-cta w-full sm:w-auto bg-white/95 hover:bg-white text-green-800 px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 shadow-[0_8px_30px_rgb(0,0,0,0.12)] flex items-center justify-center border border-transparent"
             >
-              <i
-                class="fas fa-phone-alt mr-3 text-xl text-green-600"
-                aria-hidden="true"
-              ></i>
-              <span data-i18n-key="hero.call">Call Now</span>
+              <svg class="icon icon-phone-alt mr-3 text-xl text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg>
+              <span data-i18n-key="hero.emergencyCall">Call (815) 501-1478</span>
             </a>
           </div>
+
+          <!-- Round 4: the price check is a text link; the storm notice is one line
+               (the full strip above takes over in storm mode). -->
+          <p class="hero-links hero-enter hero-enter-delay-4">
+            <a href="#instant-quote" class="hero-price-link"
+              ><svg class="icon icon-calculator" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg><span data-i18n-key="hero.cta">See Starting Range</span
+              ><svg class="icon icon-arrow-right hero-link-arrow" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+            <a href="/emergency-tree-removal/" class="hero-storm-link"
+              ><svg class="icon icon-exclamation-triangle" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-exclamation-triangle"/></svg><span data-i18n-key="hero.stormLink">Storm damage? Emergency tree help</span
+              ><svg class="icon icon-arrow-right hero-link-arrow" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></a>
+          </p>
 
           <!-- Trust Badges -->
           <div
             class="hero-trust-grid hero-enter hero-enter-delay-5 mt-12 md:mt-16 flex flex-wrap items-center gap-3 sm:gap-5"
           >
-            <details class="trust-chip-details">
-              <summary
-                class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
+            <!-- Round 4: specific, existing facts only (no shield/certificate icons, no tooltips). -->
+            <div
+              class="trust-chip trust-chip-wide flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg"
+            >
+              <svg class="icon icon-clipboard-list text-green-400 mr-2.5" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list"/></svg>
+              <span
+                class="text-sm font-medium tracking-wide text-gray-100"
+                data-i18n-key="whyChoose.process.step3.desc"
+                >Receive a detailed, no-surprise estimate</span
               >
-                <i
-                  class="fas fa-shield-alt text-green-400 mr-2.5"
-                  aria-hidden="true"
-                ></i>
-                <span
-                  class="text-sm font-medium tracking-wide text-gray-100"
-                  data-i18n-key="hero.insured"
-                  >Project Details</span
-                >
-              </summary>
-              <div class="trust-tip" data-i18n-key="hero.insured.tip">Discuss the work, property access, and cleanup with our team before confirming your project.</div>
-            </details>
-            <details class="trust-chip-details">
-              <summary
-                class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
-              >
-                <i
-                  class="fas fa-certificate text-green-400 mr-2.5"
-                  aria-hidden="true"
-                ></i>
-                <span
-                  class="text-sm font-medium tracking-wide text-gray-100"
-                  data-i18n-key="hero.licensed"
-                  >Local Crew</span
-                >
-              </summary>
-              <div class="trust-tip" data-i18n-key="hero.licensed.tip">Hernandez Landscape & Tree Service LLC serves DeKalb County. Call to discuss your property and the service you need.</div>
-            </details>
+            </div>
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
-              <i
-                class="fas fa-users text-green-400 mr-2.5"
-                aria-hidden="true"
-              ></i>
+              <svg class="icon icon-users text-green-400 mr-2.5" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-users"/></svg>
               <span
                 class="text-sm font-medium tracking-wide text-gray-100"
                 data-i18n-key="hero.family"
@@ -458,40 +411,49 @@
             <div
               class="trust-chip flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
             >
-              <i
-                class="fas fa-comments text-green-400 mr-2.5"
-                aria-hidden="true"
-              ></i>
+              <svg class="icon icon-comments text-green-400 mr-2.5" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comments"/></svg>
               <span
                 class="text-sm font-medium tracking-wide text-gray-100"
                 data-i18n-key="hero.bilingual"
                 >Se Habla Español</span
               >
             </div>
+            <a
+              href="/gallery/"
+              class="trust-chip trust-chip-link flex items-center bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg hover:bg-black/50 transition-colors"
+            >
+              <svg class="icon icon-images text-green-400 mr-2.5" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-images"/></svg>
+              <span
+                class="text-sm font-medium tracking-wide text-gray-100"
+                data-i18n-key="services.recent.cta"
+                >View Full Gallery</span
+              ><svg class="icon icon-arrow-right ml-2 text-xs text-gray-100" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
+            </a>
           </div>
         </div>
         <figure class="hero-ring" aria-hidden="true">
           <svg viewBox="0 0 500 500" aria-hidden="true" focusable="false"><circle class="ring-bark" cx="250" cy="250" r="244"/><path class="ring-line" pathLength="1" style="--r:0" d="M304.0 250.0L304.4 259.6L302.5 269.1L298.2 277.8L292.0 285.2L284.6 291.2L276.7 296.2L268.2 300.0L259.3 302.7L250.0 303.6L240.7 302.7L231.8 300.0L223.3 296.2L215.4 291.3L208.0 285.2L201.8 277.8L197.5 269.1L195.6 259.6L196.0 250.0L198.0 240.8L201.0 232.2L204.6 223.8L209.2 215.8L215.2 208.5L222.7 202.6L231.3 198.6L240.5 196.3L250.0 195.6L259.5 196.3L268.7 198.6L277.3 202.6L284.8 208.5L290.8 215.8L295.4 223.8L299.0 232.2L302.0 240.8L304.0 250.0Z"/><path class="ring-line" pathLength="1" style="--r:1" d="M320.5 250.0L320.8 262.5L319.0 275.1L314.2 287.1L306.7 297.6L296.9 305.9L285.9 312.2L274.3 316.8L262.3 319.9L250.0 321.3L237.6 320.4L225.6 317.2L214.4 311.7L204.2 304.6L195.0 296.2L186.9 286.4L180.7 275.2L177.0 262.9L176.5 250.0L179.0 237.5L183.6 225.8L189.5 215.1L196.4 205.0L204.4 195.6L213.9 187.5L225.1 181.5L237.3 178.1L250.0 177.3L262.6 178.6L274.8 181.9L286.4 187.0L296.7 194.3L305.3 203.6L311.7 214.4L316.0 226.0L318.8 237.9L320.5 250.0Z"/><path class="ring-line" pathLength="1" style="--r:2" d="M339.1 250.0L336.8 265.3L332.3 280.0L325.8 293.8L317.2 306.4L306.3 317.0L293.5 325.3L279.6 331.3L265.0 335.2L250.0 337.4L234.6 337.6L219.1 334.8L204.7 328.5L192.2 318.9L182.4 306.8L174.9 293.3L169.3 279.4L165.3 264.9L163.1 250.0L163.4 234.7L166.9 219.8L173.4 205.8L182.3 193.2L193.1 182.2L205.5 172.9L219.4 165.9L234.5 161.9L250.0 161.4L265.1 164.2L279.3 169.4L292.7 176.1L305.4 184.0L317.2 193.6L327.3 205.3L334.7 219.2L338.6 234.4L339.1 250.0Z"/><path class="ring-line" pathLength="1" style="--r:3" d="M359.4 250.0L356.7 268.8L350.7 286.6L342.2 303.2L331.4 318.3L318.5 331.6L303.2 342.2L286.3 349.6L268.3 353.9L250.0 355.5L231.5 354.7L213.1 351.4L195.3 344.8L179.3 334.2L166.4 320.2L157.0 303.7L150.8 286.1L147.1 268.1L145.4 250.0L145.9 231.6L149.6 213.4L156.8 196.2L167.5 180.8L180.9 167.6L196.2 156.9L213.1 148.5L231.2 143.1L250.0 141.5L268.7 144.0L286.3 150.3L302.3 159.4L316.9 170.3L330.3 182.6L342.3 196.7L351.9 212.9L357.8 231.0L359.4 250.0Z"/><path class="ring-line" pathLength="1" style="--r:4" d="M371.3 250.0L368.5 270.9L363.1 291.2L355.5 310.9L344.9 329.6L330.8 346.3L313.2 359.4L292.9 367.9L271.5 371.8L250.0 371.9L229.0 369.3L208.5 364.0L189.0 355.6L171.3 343.8L156.1 328.8L144.0 311.2L134.8 291.9L128.5 271.4L125.3 250.0L126.2 228.2L132.0 207.0L142.4 187.9L156.5 171.5L172.7 157.9L190.2 146.4L208.8 136.7L228.8 129.5L250.0 125.9L271.7 127.0L292.7 132.8L312.0 142.6L329.4 155.4L344.6 170.6L357.1 188.2L366.0 207.8L370.7 228.7L371.3 250.0Z"/><path class="ring-line" pathLength="1" style="--r:5" d="M392.1 250.0L389.8 274.6L382.6 298.3L371.2 320.0L356.7 339.5L339.9 357.1L320.8 372.6L299.2 385.2L275.3 393.3L250.0 395.6L225.0 391.9L201.5 383.3L180.0 371.3L160.4 356.8L142.8 340.0L127.9 320.5L116.8 298.5L110.2 274.7L108.1 250.0L110.1 225.3L115.7 201.1L125.3 178.0L139.1 157.0L157.3 139.5L178.8 126.7L202.1 118.3L225.9 113.6L250.0 111.6L274.3 112.2L298.6 116.4L322.0 125.3L342.9 139.2L360.3 157.4L373.8 178.5L383.6 201.4L389.9 225.3L392.1 250.0Z"/><path class="ring-line" pathLength="1" style="--r:6" d="M406.8 250.0L403.4 277.0L396.1 303.2L384.7 327.8L369.1 350.0L349.5 368.6L327.0 383.3L302.5 394.3L276.8 402.0L250.0 406.3L222.5 406.2L195.3 400.3L170.2 388.2L148.7 370.8L131.2 349.7L117.3 326.6L106.4 302.3L98.6 276.7L94.8 250.0L96.1 222.9L102.9 196.4L114.5 171.8L130.1 149.4L149.0 129.6L171.0 113.1L195.8 101.1L222.6 94.7L250.0 94.3L276.6 98.9L302.0 107.1L326.2 118.0L349.2 131.8L370.2 149.1L387.5 170.6L399.6 195.5L405.9 222.5L406.8 250.0Z"/><path class="ring-line" pathLength="1" style="--r:7" d="M421.3 250.0L417.7 279.6L410.6 308.5L400.0 336.6L384.8 363.1L364.4 386.4L339.1 404.3L310.4 415.9L280.2 421.5L250.0 422.2L220.2 418.9L191.2 411.7L163.6 399.7L138.6 382.8L117.3 361.4L100.1 336.6L86.9 309.4L77.7 280.4L73.3 250.0L75.0 219.1L83.6 189.4L98.6 162.6L118.3 139.5L140.7 119.8L165.1 102.9L191.4 88.9L219.8 78.8L250.0 74.2L280.6 76.2L310.2 84.6L337.6 98.4L362.3 116.2L383.9 137.7L401.5 162.6L413.9 190.4L420.4 220.0L421.3 250.0Z"/><path class="ring-line" pathLength="1" style="--r:8" d="M435.0 250.0L431.2 282.0L423.6 313.2L412.2 343.6L395.8 372.3L373.7 397.4L346.2 416.7L315.2 429.2L282.7 435.2L250.0 436.0L217.8 432.5L186.4 424.7L156.6 411.8L129.6 393.5L106.6 370.3L88.0 343.5L73.7 314.2L63.7 282.8L59.0 250.0L60.9 216.7L70.3 184.6L86.5 155.6L107.7 130.6L132.0 109.3L158.2 91.1L186.6 75.8L217.4 64.9L250.0 60.0L283.1 62.2L315.0 71.4L344.6 86.2L371.3 105.5L394.6 128.6L413.7 155.5L427.0 185.6L434.0 217.6L435.0 250.0Z"/><path class="ring-line" pathLength="1" style="--r:9" d="M453.2 250.0L449.8 285.2L439.4 318.9L423.2 350.0L402.6 378.1L378.7 403.4L351.4 425.6L320.4 443.5L286.1 454.8L250.0 457.7L214.3 452.4L180.8 440.2L149.9 423.3L121.8 402.8L96.5 378.8L75.2 350.9L59.5 319.3L50.2 285.2L47.2 250.0L49.9 214.7L57.9 180.1L71.6 147.0L91.6 117.1L117.7 92.3L148.4 74.0L181.6 62.0L215.6 54.9L250.0 51.7L284.8 52.5L319.6 58.7L352.9 71.7L382.7 91.8L407.5 117.8L426.8 147.9L441.0 180.5L450.0 214.7L453.2 250.0Z"/><path class="ring-line" pathLength="1" style="--r:10" d="M465.6 250.0L460.4 287.1L449.8 322.7L434.9 356.8L415.7 389.1L391.3 418.4L361.1 442.4L326.0 458.7L288.2 466.6L250.0 466.8L212.8 461.2L176.9 450.8L142.8 435.7L111.4 415.2L84.2 389.1L62.7 358.2L46.9 323.9L36.5 287.6L31.6 250.0L33.0 211.7L41.9 174.3L59.1 139.8L83.3 110.1L112.3 85.9L144.1 66.5L177.5 50.9L212.8 39.2L250.0 32.8L288.1 33.8L325.3 43.0L359.8 59.9L390.3 82.8L416.7 110.1L438.5 141.2L454.7 175.5L463.9 212.3L465.6 250.0Z"/><path class="ring-line" pathLength="1" style="--r:11" d="M481.7 250.0L476.3 289.9L464.2 328.0L447.0 363.8L425.6 397.4L399.5 428.2L368.0 454.5L331.3 473.4L291.1 483.3L250.0 484.0L209.9 477.2L171.8 464.8L135.8 447.9L102.4 425.9L73.1 398.5L49.5 365.8L32.5 329.1L22.1 290.2L17.7 250.0L19.4 209.3L28.2 169.3L45.2 131.8L70.2 99.1L101.3 72.8L136.0 52.6L172.6 37.4L210.6 26.3L250.0 20.0L290.5 20.2L330.5 28.8L367.8 46.0L400.6 70.5L428.5 100.2L451.3 133.8L468.6 170.5L479.1 209.6L481.7 250.0Z"/><path class="ring-check" d="M250 250 L262 214 L256 190 L270 150 L266 118 L279 86"/></svg>
-          <div class="hero-ring-photo"><img src="hernandez_images/web_hero_mobile.webp" width="900" height="1200" alt="" loading="lazy" decoding="async" /></div>
+          <div class="hero-ring-photo"><img src="hernandez_images/w/web_hero_mobile-480.webp" srcset="hernandez_images/w/web_hero_mobile-480.webp 480w, hernandez_images/w/web_hero_mobile-800.webp 800w" sizes="300px" width="900" height="1200" alt="" loading="lazy" decoding="async" /></div>
           <span class="hero-ring-tag" data-i18n-key="hero.ringTag">Every ring, a season</span>
         </figure>
       </div>
 
-      <!-- Scroll Indicator -->
+      <!-- Scroll Indicator (round 4: still, no bounce; 44px target) -->
       <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+        class="hero-scroll-cue absolute bottom-6 left-1/2 transform -translate-x-1/2"
       >
         <a
           href="#services"
-          class="text-white opacity-70 hover:opacity-100 transition-opacity"
+          class="inline-flex h-11 w-11 items-center justify-center text-white opacity-70 hover:opacity-100 transition-opacity"
           aria-label="Explore our services"
+          data-i18n-aria-label="hero.scrollCue"
         >
-          <i class="fas fa-chevron-down text-3xl" aria-hidden="true"></i>
+          <svg class="icon icon-chevron-down text-3xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-down"/></svg>
         </a>
       </div>
     </section>
 
-    <section id="services" class="py-16 bg-gray-50">
+    <section id="services" class="services-chapter py-16 bg-gray-50">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12 reveal">
           <h2 class="text-4xl font-bold mb-4" data-i18n-key="services.heading">
@@ -509,7 +471,9 @@
             <div class="h-48 overflow-hidden">
               <img
                 src="hernandez_images/facebook-2026-side-yard-lawn-finish.jpg"
-                alt="Fresh green side yard lawn after Hernandez Landscape service in DeKalb County"
+                srcset="hernandez_images/w/facebook-2026-side-yard-lawn-finish-480.webp 480w, hernandez_images/w/facebook-2026-side-yard-lawn-finish-800.webp 800w, hernandez_images/facebook-2026-side-yard-lawn-finish.jpg 900w"
+                sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw"
+                alt="Fresh green side yard lawn after Hernandez Landscape service in DeKalb County" data-i18n-alt="alt.service.lawn"
                 class="w-full h-full object-cover transition duration-300 hover:scale-105"
                 width="900"
                 height="1200"
@@ -517,6 +481,7 @@
               />
             </div>
             <div class="p-6">
+              <span class="service-icon" aria-hidden="true"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling"/></svg></span>
               <h3
                 class="text-2xl font-bold mb-3"
                 data-i18n-key="services.lawn.title"
@@ -525,24 +490,20 @@
               </h3>
               <ul class="text-gray-600 space-y-2 mb-4">
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item1"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.lawn.item1"
                     >Weekly mowing & edging</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item2"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.lawn.item2"
                     >Fertilization programs</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item3">Weed control</span>
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.lawn.item3">Weed control</span>
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.lawn.item4"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.lawn.item4"
                     >Aeration & overseeding</span
                   >
                 </li>
@@ -552,7 +513,7 @@
                 class="text-green-600 font-semibold hover:text-green-700"
               >
                 <span data-i18n-key="services.learnMore">Learn More</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
               </a>
             </div>
           </div>
@@ -563,7 +524,9 @@
             <div class="h-48 overflow-hidden">
               <img
                 src="hernandez_images/google-profile-2026-tree-climber-canopy.jpg"
-                alt="Hernandez tree service crew working safely in a large tree canopy"
+                srcset="hernandez_images/w/google-profile-2026-tree-climber-canopy-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-canopy-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-canopy.jpg 900w"
+                sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw"
+                alt="Hernandez tree service crew working safely in a large tree canopy" data-i18n-alt="alt.service.tree"
                 class="w-full h-full object-cover transition duration-300 hover:scale-105"
                 width="1050"
                 height="1400"
@@ -571,6 +534,7 @@
               />
             </div>
             <div class="p-6">
+              <span class="service-icon" aria-hidden="true"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree"/></svg></span>
               <h3
                 class="text-2xl font-bold mb-3"
                 data-i18n-key="services.tree.title"
@@ -579,26 +543,22 @@
               </h3>
               <ul class="text-gray-600 space-y-2 mb-4">
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item1"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.tree.item1"
                     >Tree trimming & pruning</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item2"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.tree.item2"
                     >Safe tree removal</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item3"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.tree.item3"
                     >Stump grinding</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.tree.item4"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.tree.item4"
                     >Storm-damage tree service requests</span
                   >
                 </li>
@@ -608,7 +568,7 @@
                 class="text-green-600 font-semibold hover:text-green-700"
               >
                 <span data-i18n-key="services.learnMore">Learn More</span>
-                <i class="fas fa-arrow-right"></i>
+                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
               </a>
             </div>
           </div>
@@ -619,7 +579,9 @@
             <div class="h-48 bg-green-800 flex items-center justify-center">
               <img
                 src="hernandez_images/web_Wideshot_Bestlandscape2.jpeg"
-                alt="Landscaping design with mulch, plants and retaining wall"
+                srcset="hernandez_images/w/web_Wideshot_Bestlandscape2-480.webp 480w, hernandez_images/w/web_Wideshot_Bestlandscape2-800.webp 800w, hernandez_images/web_Wideshot_Bestlandscape2.jpeg 1200w"
+                sizes="(min-width: 1024px) 390px, (min-width: 640px) 46vw, 92vw"
+                alt="Landscaping design with mulch, plants and retaining wall" data-i18n-alt="alt.service.landscaping"
                 class="w-full h-full object-cover"
                 width="1200"
                 height="868"
@@ -627,6 +589,7 @@
               />
             </div>
             <div class="p-6">
+              <span class="service-icon" aria-hidden="true"><svg class="icon icon-layer-group" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-layer-group"/></svg></span>
               <h3
                 class="text-2xl font-bold mb-3"
                 data-i18n-key="services.landscaping.title"
@@ -635,26 +598,22 @@
               </h3>
               <ul class="text-gray-600 space-y-2 mb-4">
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item1"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.landscaping.item1"
                     >Custom garden design</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item2"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.landscaping.item2"
                     >Mulch & rock installation</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item3"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.landscaping.item3"
                     >Sod installation</span
                   >
                 </li>
                 <li>
-                  <i class="fas fa-check text-green-600 mr-2"></i
-                  ><span data-i18n-key="services.landscaping.item4"
+                  <svg class="icon icon-check text-green-600 mr-2" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg><span data-i18n-key="services.landscaping.item4"
                     >Seasonal cleanup</span
                   >
                 </li>
@@ -665,7 +624,7 @@
                   class="text-green-600 font-semibold hover:text-green-700"
                 >
                   <span data-i18n-key="services.learnMore">Learn More</span>
-                  <i class="fas fa-arrow-right"></i>
+                  <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
                 </a>
                 <a
                   href="?service=landscaping#quote"
@@ -673,7 +632,7 @@
                   class="text-green-600 font-semibold hover:text-green-700"
                 >
                   <span data-i18n-key="services.cta">Get Quote</span>
-                  <i class="fas fa-arrow-right"></i>
+                  <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
                 </a>
               </div>
             </div>
@@ -692,8 +651,7 @@
               href="snow-removal/"
               class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
             >
-              <i class="fas fa-snowflake mr-2"></i
-              ><span>Snow Removal</span>
+              <svg class="icon icon-snowflake mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-snowflake"/></svg><span data-i18n-key="services.extra.snow">Snow Removal</span>
             </a>
             <span
               class="inline-flex flex-wrap items-center justify-center gap-2"
@@ -702,16 +660,14 @@
                 href="leaf-removal/"
                 class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
               >
-                <i class="fas fa-leaf mr-2"></i
-                ><span data-i18n-key="services.extra.leaf">Leaf Removal</span>
+                <svg class="icon icon-leaf mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf"/></svg><span data-i18n-key="services.extra.leaf">Leaf Removal</span>
               </a>
               <a
                 href="?service=leaf-removal#quote"
                 data-prefill-service="leaf-removal"
                 class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm"
               >
-                <i class="fas fa-calculator mr-2"></i
-                ><span data-i18n-key="services.cta">Get Quote</span>
+                <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg><span data-i18n-key="services.cta">Get Quote</span>
               </a>
             </span>
             <span
@@ -721,8 +677,7 @@
                 href="gutter-cleaning/"
                 class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
               >
-                <i class="fas fa-home mr-2"></i
-                ><span data-i18n-key="services.extra.gutter"
+                <svg class="icon icon-home mr-2" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-home"/></svg><span data-i18n-key="services.extra.gutter"
                   >Gutter Cleaning</span
                 >
               </a>
@@ -731,8 +686,7 @@
                 data-prefill-service="gutter-cleaning"
                 class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm"
               >
-                <i class="fas fa-calculator mr-2"></i
-                ><span data-i18n-key="services.cta">Get Quote</span>
+                <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg><span data-i18n-key="services.cta">Get Quote</span>
               </a>
             </span>
             <span
@@ -742,8 +696,7 @@
                 href="pressure-washing/"
                 class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80"
               >
-                <i class="fas fa-spray-can mr-2"></i
-                ><span data-i18n-key="services.extra.pressure"
+                <svg class="icon icon-spray-can mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-spray-can"/></svg><span data-i18n-key="services.extra.pressure"
                   >Pressure Washing</span
                 >
               </a>
@@ -752,109 +705,12 @@
                 data-prefill-service="pressure-washing"
                 class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm"
               >
-                <i class="fas fa-calculator mr-2"></i
-                ><span data-i18n-key="services.cta">Get Quote</span>
+                <svg class="icon icon-calculator mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-calculator"/></svg><span data-i18n-key="services.cta">Get Quote</span>
               </a>
             </span>
           </div>
         </div>
 
-        <div class="mt-12">
-          <div
-            class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between"
-          >
-            <div>
-              <p
-                class="text-sm font-bold uppercase tracking-wider text-green-700"
-                data-i18n-key="services.recent.eyebrow"
-              >
-                Fresh Profile Photos
-              </p>
-              <h3
-                class="text-3xl font-bold text-gray-900"
-                data-i18n-key="services.recent.heading"
-              >
-                Recent Tree Service & Equipment Work
-              </h3>
-              <p
-                class="mt-2 max-w-2xl text-gray-600"
-                data-i18n-key="services.recent.copy"
-              >
-                New project photos from the verified Hernandez Landscape &
-                Tree Service LLC business profile.
-              </p>
-            </div>
-            <a
-              href="/gallery/"
-              class="inline-flex items-center justify-center rounded-full border-2 border-green-600 px-5 py-2 font-semibold text-green-700 transition hover:bg-green-50"
-            >
-              <i class="fas fa-images mr-2" aria-hidden="true"></i>
-              <span data-i18n-key="services.recent.cta">View Full Gallery</span>
-            </a>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-3">
-            <article class="overflow-hidden rounded-lg bg-white shadow-lg">
-              <img
-                src="hernandez_images/google-profile-2026-branded-truck-trailers.jpg"
-                alt="Hernandez Landscape and Tree Service branded truck and trailers"
-                class="h-64 w-full object-cover"
-                width="1400"
-                height="1050"
-                loading="lazy"
-              />
-              <div class="p-5">
-                <h4 class="text-lg font-bold text-gray-900">
-                  Branded Crew & Equipment
-                </h4>
-                <p class="mt-2 text-sm text-gray-600">
-                  Clear trucks and trailers help customers recognize the crew
-                  that arrives on site.
-                </p>
-              </div>
-            </article>
-
-            <article class="overflow-hidden rounded-lg bg-white shadow-lg">
-              <img
-                src="hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg"
-                alt="Cut logs after safe tree removal work"
-                class="h-64 w-full object-cover"
-                width="1050"
-                height="1400"
-                loading="lazy"
-              />
-              <div class="p-5">
-                <h4 class="text-lg font-bold text-gray-900">
-                  Tree Removal Cleanup
-                </h4>
-                <p class="mt-2 text-sm text-gray-600">
-                  Careful cutting and cleanup for tree projects near homes,
-                  roofs, and yard structures.
-                </p>
-              </div>
-            </article>
-
-            <article class="overflow-hidden rounded-lg bg-white shadow-lg">
-              <img
-                src="hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg"
-                alt="Finished lawn and fire pit area completed by Hernandez Landscape in DeKalb"
-                class="h-64 w-full object-cover"
-                width="1050"
-                height="1400"
-                loading="lazy"
-              />
-              <div class="p-5">
-                <h4 class="text-lg font-bold text-gray-900">
-                  Finished Lawn Work
-                </h4>
-                <p class="mt-2 text-sm text-gray-600">
-                  Fresh project photos from the Facebook page now support the
-                  lawn care and landscaping pages.
-                </p>
-              </div>
-            </article>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -869,22 +725,22 @@
           <div class="season-panel" data-season-panel="spring">
             <span class="ring-label" data-i18n-key="year.spring.range">March – May</span>
             <h3><span data-season-name data-i18n-key="year.spring.name">Spring</span>: <span data-i18n-key="year.spring.tag">Wake the yard up.</span></h3>
-            <ul><li><a href="/leaf-removal/"><i class="fas fa-leaf" aria-hidden="true"></i><span data-i18n-key="year.spring.link0">Spring cleanup</span></a></li><li><a href="/lawn-care/"><i class="fas fa-seedling" aria-hidden="true"></i><span data-i18n-key="year.spring.link1">Lawn care</span></a></li><li><a href="/landscaping-design/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.spring.link2">Landscaping</span></a></li><li><a href="/tree-trimming-stump-grinding/"><i class="fas fa-cut" aria-hidden="true"></i><span data-i18n-key="year.spring.link3">Tree trimming</span></a></li></ul>
+            <ul><li><a href="/leaf-removal/"><svg class="icon icon-leaf" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf"/></svg><span data-i18n-key="year.spring.link0">Spring cleanup</span></a></li><li><a href="/lawn-care/"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling"/></svg><span data-i18n-key="year.spring.link1">Lawn care</span></a></li><li><a href="/landscaping-design/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree"/></svg><span data-i18n-key="year.spring.link2">Landscaping</span></a></li><li><a href="/tree-trimming-stump-grinding/"><svg class="icon icon-cut" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-cut"/></svg><span data-i18n-key="year.spring.link3">Tree trimming</span></a></li></ul>
           </div>
           <div class="season-panel" data-season-panel="summer">
             <span class="ring-label" data-i18n-key="year.summer.range">June – August</span>
             <h3><span data-season-name data-i18n-key="year.summer.name">Summer</span>: <span data-i18n-key="year.summer.tag">Keep it growing.</span></h3>
-            <ul><li><a href="/lawn-care/"><i class="fas fa-seedling" aria-hidden="true"></i><span data-i18n-key="year.summer.link0">Lawn care</span></a></li><li><a href="/landscaping-design/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.summer.link1">Landscaping</span></a></li><li><a href="/pressure-washing/"><i class="fas fa-spray-can" aria-hidden="true"></i><span data-i18n-key="year.summer.link2">Pressure washing</span></a></li><li><a href="/emergency-tree-removal/"><i class="fas fa-bolt" aria-hidden="true"></i><span data-i18n-key="year.summer.link3">Storm-damage tree help</span></a></li></ul>
+            <ul><li><a href="/lawn-care/"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling"/></svg><span data-i18n-key="year.summer.link0">Lawn care</span></a></li><li><a href="/landscaping-design/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree"/></svg><span data-i18n-key="year.summer.link1">Landscaping</span></a></li><li><a href="/pressure-washing/"><svg class="icon icon-spray-can" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-spray-can"/></svg><span data-i18n-key="year.summer.link2">Pressure washing</span></a></li><li><a href="/emergency-tree-removal/"><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg><span data-i18n-key="year.summer.link3">Storm-damage tree help</span></a></li></ul>
           </div>
           <div class="season-panel is-current" data-season-panel="fall">
             <span class="ring-label" data-i18n-key="year.fall.range">September – November</span>
             <h3><span data-season-name data-i18n-key="year.fall.name">Fall</span>: <span data-i18n-key="year.fall.tag">Leaves, gutters, and trees.</span></h3>
-            <ul><li><a href="/leaf-removal/"><i class="fas fa-leaf" aria-hidden="true"></i><span data-i18n-key="year.fall.link0">Leaf removal</span></a></li><li><a href="/gutter-cleaning/"><i class="fas fa-home" aria-hidden="true"></i><span data-i18n-key="year.fall.link1">Gutter cleaning</span></a></li><li><a href="/tree-removal/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.fall.link2">Tree removal</span></a></li><li><a href="/lawn-care/"><i class="fas fa-seedling" aria-hidden="true"></i><span data-i18n-key="year.fall.link3">Lawn care</span></a></li></ul>
+            <ul><li><a href="/leaf-removal/"><svg class="icon icon-leaf" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf"/></svg><span data-i18n-key="year.fall.link0">Leaf removal</span></a></li><li><a href="/gutter-cleaning/"><svg class="icon icon-home" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-home"/></svg><span data-i18n-key="year.fall.link1">Gutter cleaning</span></a></li><li><a href="/tree-removal/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree"/></svg><span data-i18n-key="year.fall.link2">Tree removal</span></a></li><li><a href="/lawn-care/"><svg class="icon icon-seedling" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-seedling"/></svg><span data-i18n-key="year.fall.link3">Lawn care</span></a></li></ul>
           </div>
           <div class="season-panel" data-season-panel="winter">
             <span class="ring-label" data-i18n-key="year.winter.range">December – February</span>
             <h3><span data-season-name data-i18n-key="year.winter.name">Winter</span>: <span data-i18n-key="year.winter.tag">Snow and storms.</span></h3>
-            <ul><li><a href="/snow-removal/"><i class="fas fa-snowflake" aria-hidden="true"></i><span data-i18n-key="year.winter.link0">Snow removal (subject to availability)</span></a></li><li><a href="/tree-removal/"><i class="fas fa-tree" aria-hidden="true"></i><span data-i18n-key="year.winter.link1">Tree removal</span></a></li><li><a href="/emergency-tree-removal/"><i class="fas fa-bolt" aria-hidden="true"></i><span data-i18n-key="year.winter.link2">Storm-damage tree help</span></a></li></ul>
+            <ul><li><a href="/snow-removal/"><svg class="icon icon-snowflake" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-snowflake"/></svg><span data-i18n-key="year.winter.link0">Snow removal (subject to availability)</span></a></li><li><a href="/tree-removal/"><svg class="icon icon-tree" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tree"/></svg><span data-i18n-key="year.winter.link1">Tree removal</span></a></li><li><a href="/emergency-tree-removal/"><svg class="icon icon-bolt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bolt"/></svg><span data-i18n-key="year.winter.link2">Storm-damage tree help</span></a></li></ul>
           </div>
           </div>
           <p class="mt-4 text-sm" style="color:rgba(245,242,233,.75)" data-i18n-key="year.note">Months are a guide. Call or send a request to ask what fits your yard right now.</p>
@@ -898,194 +754,198 @@
       </div>
     </section>
 
-    <!-- Why Choose Us Section -->
-    <section id="why-choose-us" class="py-16 bg-white">
+    <!-- Proof: before/after, one work filmstrip and the video tours in one chapter (round 3) -->
+    <section id="gallery" class="proof-chapter" aria-labelledby="proof-title">
       <div class="container mx-auto px-4">
-        <div class="text-center mb-12 reveal">
-          <h2 class="text-4xl font-bold mb-4" data-i18n-key="whyChoose.heading">
-            Why Choose Hernandez?
-          </h2>
+        <div class="proof-head reveal">
+          <p class="ring-label" data-i18n-key="proof.label">From the job site</p>
+          <h2 id="proof-title" data-i18n-key="gallery.heading">See The Difference We Make</h2>
+          <p data-i18n-key="gallery.subheading">Drag the slider to see our transformations</p>
+        </div>
+        <div class="proof-grid">
+          <div class="proof-compare reveal">
+        <div class="proof-compare-inner">
+          <div class="before-after-container mb-8">
+            <div class="before-after-slider" id="beforeAfterSlider">
+              <img
+                src="hernandez_images/web_Before1.jpeg"
+                srcset="hernandez_images/w/web_Before1-480.webp 480w, hernandez_images/w/web_Before1-800.webp 800w, hernandez_images/web_Before1.jpeg 1200w"
+                sizes="(min-width: 1024px) 560px, 92vw"
+                alt="Before lawn service, overgrown and messy" data-i18n-alt="alt.before"
+                class="before-image"
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+              <img
+                src="hernandez_images/web_After1.jpeg"
+                srcset="hernandez_images/w/web_After1-480.webp 480w, hernandez_images/w/web_After1-800.webp 800w, hernandez_images/web_After1.jpeg 1200w"
+                sizes="(min-width: 1024px) 560px, 92vw"
+                alt="After lawn service, clean and manicured" data-i18n-alt="alt.after"
+                class="after-image"
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+              <div
+                class="slider-handle"
+                id="sliderHandle"
+                role="slider"
+                tabindex="0"
+                aria-label="Reveal after photo"
+                data-i18n-aria-label="gallery.slider.label"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+                aria-valuetext="Comparison divider at 50%"
+                aria-describedby="homepageComparisonInstructions"
+              ></div>
+            </div>
+          </div>
+          <p class="before-after-story" data-i18n-key="gallery.featured.story"><strong>Before and after</strong> — compare the yard photos using the slider.</p>
           <p
-            class="text-xl text-gray-600 max-w-2xl mx-auto"
-            data-i18n-key="whyChoose.subheading"
-          >A local crew with clear communication from the first estimate through cleanup.</p>
+            id="homepageComparisonInstructions"
+            class="text-center text-sm text-gray-500 mt-3"
+            data-i18n-key="gallery.featured.instructions"
+          >
+            Drag the handle or use the arrow keys to compare the before and after photos.
+          </p>
         </div>
-
-        <div class="grid md:grid-cols-4 gap-6 mb-12 reveal-stagger">
-          <div
-            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
-          >
-            <div
-              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <i class="fas fa-clock text-green-600 text-2xl"></i>
+          </div>
+          <div id="videos" class="proof-videos" data-strip>
+            <div class="strip-head">
+              <h3 data-i18n-key="video.heading">Project Video Tours</h3>
+              <p class="strip-count" data-strip-count aria-hidden="true"></p>
+              <div class="strip-nav" data-strip-nav>
+              <button type="button" class="strip-btn" data-strip-prev aria-label="Previous videos" data-i18n-aria-label="strip.prevVideos"><svg class="icon icon-arrow-right strip-flip" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></button>
+              <button type="button" class="strip-btn" data-strip-next aria-label="Next videos" data-i18n-aria-label="strip.nextVideos"><svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></button>
             </div>
-            <h3
-              class="text-xl font-bold mb-2"
-              data-i18n-key="whyChoose.feature1.title"
-            >
-              Clear, Prompt Quotes
-            </h3>
-            <p class="text-gray-600" data-i18n-key="whyChoose.feature1.desc">
-              Tell us what you need and we will confirm timing, scope, and next steps.
-            </p>
+            </div>
+            <p class="strip-sub" data-i18n-key="video.subheading">Watch our team in action and see the details of our work.</p>
+            <div class="strip-track video-strip" data-strip-track tabindex="0" role="region" aria-label="Project videos" data-i18n-aria-label="strip.videos">
+          <!-- Duplicate IMG_0434-1 removed -->
+
+          <div class="video-card group is-portrait">
+            <div class="video-wrapper relative" style="--ratio:177.7778%">
+              <video
+                controls
+                preload="none"
+                data-poster="hernandez_images/w/web_IMG_0434_poster-480.webp"
+                class="w-full h-full object-cover"
+              >
+                <source
+                  src="hernandez_images/web_IMG_0434.mp4"
+                  type="video/mp4"
+                />
+                <span data-i18n-key="video.fallback">Your browser does not support the video tag.</span>
+              </video>
+              <div
+                class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
+              >
+                <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
+              </div>
+            </div>
+            <p class="video-meta"><time datetime="PT1M41S">1:41</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
           </div>
 
-          <div
-            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
-          >
-            <div
-              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <i class="fas fa-tools text-green-600 text-2xl"></i>
+          <div class="video-card group is-portrait">
+            <div class="video-wrapper relative" style="--ratio:177.7778%">
+              <video
+                controls
+                preload="none"
+                data-poster="hernandez_images/w/web_IMG_1095_poster-480.webp"
+                class="w-full h-full object-cover"
+              >
+                <source
+                  src="hernandez_images/web_IMG_1095.mp4"
+                  type="video/mp4"
+                />
+                <span data-i18n-key="video.fallback">Your browser does not support the video tag.</span>
+              </video>
+              <div
+                class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
+              >
+                <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
+              </div>
             </div>
-            <h3
-              class="text-xl font-bold mb-2"
-              data-i18n-key="whyChoose.feature2.title"
-            >
-              Professional Equipment
-            </h3>
-            <p class="text-gray-600" data-i18n-key="whyChoose.feature2.desc">
-              Commercial-grade tools for better results and faster completion.
-            </p>
+            <p class="video-meta"><time datetime="PT0M27S">0:27</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
           </div>
 
-          <div
-            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
-          >
-            <div
-              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <i class="fas fa-handshake text-green-600 text-2xl"></i>
+          <div class="video-card group is-portrait">
+            <div class="video-wrapper relative" style="--ratio:133.2813%">
+              <video
+                controls
+                preload="none"
+                data-poster="hernandez_images/w/web_IMG_2055_poster-480.webp"
+                class="w-full h-full object-cover"
+              >
+                <source
+                  src="hernandez_images/web_IMG_2055.mp4"
+                  type="video/mp4"
+                />
+                <span data-i18n-key="video.fallback">Your browser does not support the video tag.</span>
+              </video>
+              <div
+                class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
+              >
+                <svg class="icon icon-play-circle text-white text-5xl opacity-80" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-play-circle"/></svg>
+              </div>
             </div>
-            <h3
-              class="text-xl font-bold mb-2"
-              data-i18n-key="whyChoose.feature3.title"
-            >
-              Local & Trusted
-            </h3>
-            <p class="text-gray-600" data-i18n-key="whyChoose.feature3.desc">
-              DeKalb-based family business. We treat your property like our own.
-            </p>
+            <p class="video-meta"><time datetime="PT0M2S">0:02</time><span aria-hidden="true"> · </span><span data-i18n-key="video.onTheJob">On the job</span></p>
           </div>
-
-          <div
-            class="reveal text-center p-6 bg-gray-50 rounded-lg hover:shadow-lg transition"
-          >
-            <div
-              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
-            >
-              <i class="fas fa-dollar-sign text-green-600 text-2xl"></i>
             </div>
-            <h3
-              class="text-xl font-bold mb-2"
-              data-i18n-key="whyChoose.feature4.title"
-            >
-              Fair, Upfront Pricing
-            </h3>
-            <p class="text-gray-600" data-i18n-key="whyChoose.feature4.desc">
-              No hidden fees. You know exactly what you're paying before work
-              begins.
-            </p>
+            <a href="/videos/" class="strip-link"><svg class="icon icon-video" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-video"/></svg><span data-i18n-key="video.viewAll">Watch All Videos</span></a>
           </div>
         </div>
-
-        <!-- What to Expect Process -->
-        <div class="bg-green-50 rounded-lg p-8 reveal">
-          <h3
-            class="text-2xl font-bold text-center mb-8"
-            data-i18n-key="whyChoose.process.heading"
+        <div class="filmstrip" data-strip>
+          <div class="strip-head">
+            <h3 data-i18n-key="gallery.moreHeading">More of Our Work</h3>
+            <p class="strip-count" data-strip-count aria-hidden="true"></p>
+            <div class="strip-nav" data-strip-nav>
+              <button type="button" class="strip-btn" data-strip-prev aria-label="Previous photos" data-i18n-aria-label="strip.prevPhotos"><svg class="icon icon-arrow-right strip-flip" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></button>
+              <button type="button" class="strip-btn" data-strip-next aria-label="Next photos" data-i18n-aria-label="strip.nextPhotos"><svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg></button>
+            </div>
+          </div>
+          <div class="strip-track filmstrip-track" data-strip-track tabindex="0" role="region" aria-label="Photos of our work" data-i18n-aria-label="strip.photos">
+            <figure class="print print--static">
+              <img src="hernandez_images/google-profile-2026-tree-climber-roofline.jpg" srcset="hernandez_images/w/google-profile-2026-tree-climber-roofline-480.webp 480w, hernandez_images/w/google-profile-2026-tree-climber-roofline-800.webp 800w, hernandez_images/google-profile-2026-tree-climber-roofline.jpg 900w" sizes="232px" alt="Tree service crew working near a residential roofline in DeKalb County" data-i18n-alt="alt.print.roofline" width="900" height="1200" loading="lazy" decoding="async" />
+              <figcaption><span data-i18n-key="gallery.card1.title">Tree Work Near Homes</span><small data-i18n-key="gallery.card1.subtitle">DeKalb County Crew</small></figcaption>
+            </figure>
+            <figure class="print print--static">
+              <img src="hernandez_images/google-profile-2026-branded-truck-trailers.jpg" srcset="hernandez_images/w/google-profile-2026-branded-truck-trailers-480.webp 480w, hernandez_images/w/google-profile-2026-branded-truck-trailers-800.webp 800w, hernandez_images/google-profile-2026-branded-truck-trailers.jpg 1200w" sizes="232px" alt="Hernandez Landscape and Tree Service branded truck and trailers" data-i18n-alt="alt.print.truck" width="1400" height="1050" loading="lazy" decoding="async" />
+              <figcaption><span data-i18n-key="gallery.item.crew_equipment">Branded Crew Equipment</span></figcaption>
+            </figure>
+            <figure class="print print--static">
+              <img src="hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg" srcset="hernandez_images/w/google-profile-2026-tree-removal-cut-logs-480.webp 480w, hernandez_images/w/google-profile-2026-tree-removal-cut-logs-800.webp 800w, hernandez_images/google-profile-2026-tree-removal-cut-logs.jpg 900w" sizes="232px" alt="Cut logs after safe tree removal work" data-i18n-alt="alt.print.logs" width="1050" height="1400" loading="lazy" decoding="async" />
+              <figcaption><span data-i18n-key="gallery.item.removal_cleanup">Removal Cleanup</span></figcaption>
+            </figure>
+            <p id="latest-uploads-empty" class="text-gray-500" data-i18n-key="gallery.placeholder">Your new photos will appear here after you upload them.</p>
+            <div id="latest-uploads-carousel" class="hidden latest-uploads-carousel"><div id="latest-uploads-track"></div></div>
+          </div>
+          <div class="proof-links">
+            <a href="/gallery/" class="proof-link"><svg class="icon icon-images" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-images"/></svg><span data-i18n-key="services.recent.cta">View Full Gallery</span></a>
+          <a
+            href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="proof-link proof-link--fb"
           >
-            What to Expect
-          </h3>
-          <div class="grid md:grid-cols-4 gap-8 reveal-stagger">
-            <div class="reveal text-center">
-              <div
-                class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
-              >
-                1
-              </div>
-              <h4
-                class="font-bold mb-1"
-                data-i18n-key="whyChoose.process.step1.title"
-              >
-                Request Quote
-              </h4>
-              <p
-                class="text-sm text-gray-600"
-                data-i18n-key="whyChoose.process.step1.desc"
-              >
-                Fill out our form or call us directly
-              </p>
-            </div>
-            <div class="reveal text-center">
-              <div
-                class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
-              >
-                2
-              </div>
-              <h4
-                class="font-bold mb-1"
-                data-i18n-key="whyChoose.process.step2.title"
-              >
-                Free Assessment
-              </h4>
-              <p
-                class="text-sm text-gray-600"
-                data-i18n-key="whyChoose.process.step2.desc"
-              >
-                We visit your property to understand your needs
-              </p>
-            </div>
-            <div class="reveal text-center">
-              <div
-                class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
-              >
-                3
-              </div>
-              <h4
-                class="font-bold mb-1"
-                data-i18n-key="whyChoose.process.step3.title"
-              >
-                Get Your Quote
-              </h4>
-              <p
-                class="text-sm text-gray-600"
-                data-i18n-key="whyChoose.process.step3.desc"
-              >
-                Receive a detailed, no-surprise estimate
-              </p>
-            </div>
-            <div class="reveal text-center">
-              <div
-                class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold"
-              >
-                4
-              </div>
-              <h4
-                class="font-bold mb-1"
-                data-i18n-key="whyChoose.process.step4.title"
-              >
-                Enjoy Results
-              </h4>
-              <p
-                class="text-sm text-gray-600"
-                data-i18n-key="whyChoose.process.step4.desc"
-              >
-                We complete the work to your satisfaction
-              </p>
-            </div>
+            <svg class="icon icon-facebook mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg>
+            <span data-i18n-key="gallery.facebookCta"
+              >See More on Facebook</span
+            >
+          </a>
+
           </div>
         </div>
       </div>
     </section>
 
-
     <!-- Walk your yard: pick what needs work, prefill the quote -->
     <section id="walk-your-yard" class="walk-yard" aria-labelledby="walk-title">
       <div class="container mx-auto px-4">
         <div class="walk-yard-intro mb-8">
-          <p class="ring-label" data-i18n-key="yard.label">Site plan</p>
+          <p class="ring-label"><span class="step-no" aria-hidden="true">1</span><span data-i18n-key="yard.label">Site plan</span></p>
           <h2 id="walk-title" data-i18n-key="yard.heading">Walk your yard.</h2>
           <p data-i18n-key="yard.intro">Tap what needs work on the plan, or tick it in the list. We add it to your quote request so the crew knows where to look.</p>
         </div>
@@ -1117,7 +977,7 @@
             </fieldset>
             <p class="yard-count" data-yard-count aria-live="polite"></p>
             <div class="yard-cta">
-              <a href="#quoteFormCard" data-yard-cta><i class="fas fa-clipboard-list" aria-hidden="true"></i><span data-i18n-key="yard.cta.empty">Start a quote request</span></a>
+              <a href="#quoteFormCard" data-yard-cta><svg class="icon icon-clipboard-list" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list"/></svg><span data-i18n-key="yard.cta.empty">Start a quote request</span></a>
               <p data-i18n-key="yard.fine">This is a request, not a confirmed appointment. Final pricing is confirmed on site.</p>
             </div>
           </div>
@@ -1125,69 +985,375 @@
       </div>
     </section>
 
-    <section id="instant-quote" class="py-16 bg-white">
+    <!-- Step 2: one request. The full request form leads; the optional price check and
+         other ways to reach the crew sit beside it (round 3). Lead contract unchanged. -->
+    <section
+      id="quote"
+      class="site-contact-quote quote-chapter py-16 bg-green-800 text-white"
+      aria-labelledby="quote-title"
+    >
       <div class="container mx-auto px-4">
-        <h2
-          class="text-4xl font-bold text-center mb-4"
-          data-i18n-key="instant.heading"
-        >
-          Start Your Quote Request
-        </h2>
-        <p
-          class="text-center text-gray-600 mb-8 max-w-xl mx-auto"
-          data-i18n-key="instant.subtitle"
-        >
-          Enter a few details for a starting range, then send your request in
-          one step. Final pricing is confirmed on site.
-        </p>
+        <div class="quote-head">
+          <p class="ring-label"><span class="step-no" aria-hidden="true">2</span><span data-i18n-key="quote.chapterLabel">Your request</span></p>
+          <h2 id="quote-title" data-i18n-key="quote.chapterHeading">Tell us about it.</h2>
+          <p data-i18n-key="quote.chapterLede">One request is all it takes. Fill in the form, or call or text if that is easier.</p>
+        </div>
+        <div class="quote-grid">
+          <div class="quote-main">
+            <div id="quoteFormCard" class="bg-white text-gray-800 p-6 rounded-lg scroll-mt-24">
+              <h3
+                class="text-2xl font-bold text-gray-800 mb-2"
+                data-i18n-key="quote.formHeading"
+              >
+                Request a Free Quote
+              </h3>
+              <p
+                id="quoteFormHelper"
+                class="mb-4 text-sm leading-relaxed text-gray-600"
+                data-i18n-key="quote.formHelper"
+              >Tell us what you need and your preferred callback time. This is an estimate request, not a confirmed appointment. Our team will confirm availability and timing. There is no obligation.</p>
+              <ul
+                class="mb-5 grid gap-2 rounded-lg border border-green-100 bg-green-50 p-4 text-sm text-green-950 sm:grid-cols-2"
+                data-proof-rail
+              >
+                <li>
+                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>
+                  <span data-i18n-key="instant.proof.insured">Local DeKalb County crew</span>
+                </li>
+                <li>
+                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>
+                  <span data-i18n-key="instant.proof.review">Request first; appointment confirmed separately</span>
+                </li>
+                <li>
+                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check"/></svg>
+                  <span data-i18n-key="instant.proof.response">Availability confirmed by our team</span>
+                </li>
+                <li>
+                  <svg class="icon icon-phone mr-1 text-green-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
+                  <span data-i18n-key="quote.proof.call">Prefer to talk? Call (815) 501-1478</span>
+                </li>
+              </ul>
 
-        <div
-          class="instant-card reveal max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg shadow-lg"
-        >
-          <!-- Trust / proof rail beside the quote action -->
-          <div
-            class="mb-6 rounded-lg border border-green-200 bg-white p-4 text-sm text-gray-700"
-            data-proof-rail
-          >
-            <ul class="grid gap-2 sm:grid-cols-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-shield-alt mt-0.5 text-green-700" aria-hidden="true"></i>
-                <span data-i18n-key="instant.proof.insured"
-                  >Local DeKalb County crew</span
-                >
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-clock mt-0.5 text-green-700" aria-hidden="true"></i>
-                <span data-i18n-key="instant.proof.response"
-                  >Availability confirmed by our team</span
-                >
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-star mt-0.5 text-green-700" aria-hidden="true"></i>
-                <span data-i18n-key="instant.proof.review"
-                  >Request first; appointment confirmed separately</span
-                >
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-language mt-0.5 text-green-700" aria-hidden="true"></i>
-                <span data-i18n-key="instant.proof.bilingual"
-                  >Estimates in English or Spanish</span
-                >
-              </li>
-            </ul>
+              <form
+                id="contactForm"
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                aria-describedby="quoteFormHelper quotePrivacyNote"
+              >
+                <div class="space-y-4">
+                  <!-- Web3Forms Access Key -->
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="61e8b0ea-97d8-434c-8c2d-e54a44a63743"
+                  />
+
+                  <!-- Email Subject -->
+                  <input
+                    type="hidden"
+                    name="subject"
+                    value="New Quote Request - Hernandez Landscape Services"
+                  />
+
+                  <!-- Success Page (optional) -->
+                  <input
+                    type="hidden"
+                    name="from_name"
+                    value="Website Quote Form"
+                  />
+                  <!-- ccemail removed 2026-07-08: Pro-only Web3Forms field; its presence made the API 400-reject every submission on free tier -->
+                  <input type="hidden" name="form_loaded_at" id="formLoadedAt" />
+                  <input type="hidden" name="yard_areas" id="yardAreasField" value="" />
+
+                  <div
+                    id="yardSelectionNotice"
+                    class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900"
+                    aria-live="polite"
+                  >
+                    <p class="font-semibold" data-i18n-key="quote.yardSummary">Yard areas added to this request</p>
+                    <p id="yardSelectionText"></p>
+                    <p class="mt-1 text-xs" data-i18n-key="quote.yardSummary.helper">Add more details below, or send these areas as your request.</p>
+                  </div>
+
+                  <div
+                    id="quotePrefillNotice"
+                    class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900"
+                    aria-live="polite"
+                  >
+                    <div class="flex items-start gap-3">
+                      <svg class="icon icon-check-circle mt-0.5 text-green-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>
+                      <div>
+                        <p id="quotePrefillText" class="font-semibold"></p>
+                        <p data-i18n-key="quote.prefill.helper">
+                          Add your property details below and the team can
+                          respond with the right next step.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Round 4: town-first quick start. Buttons carry no name, so nothing new is
+                       submitted: a chip only prefills the town in the address and shows the
+                       matching existing service-policy line. Shown by main.js. -->
+                  <fieldset class="town-start" data-town-start hidden>
+                    <legend class="quote-field-label" data-i18n-key="quote.town.legend">Where is the job?</legend>
+                    <div class="town-chips">
+                      <button type="button" class="town-chip" data-town="DeKalb" aria-pressed="false">DeKalb</button>
+                      <button type="button" class="town-chip" data-town="Sycamore" aria-pressed="false">Sycamore</button>
+                      <button type="button" class="town-chip" data-town="Cortland" aria-pressed="false">Cortland</button>
+                      <button type="button" class="town-chip" data-town="Malta" aria-pressed="false">Malta</button>
+                      <button type="button" class="town-chip" data-town="Genoa" aria-pressed="false">Genoa</button>
+                      <button type="button" class="town-chip" data-town="Kingston" aria-pressed="false">Kingston</button>
+                      <button type="button" class="town-chip" data-town="" aria-pressed="false" data-i18n-key="quote.town.other">Somewhere else</button>
+                    </div>
+                    <ul class="town-policy" aria-live="polite">
+                      <li data-town-policy="primary" hidden data-i18n-key="serviceArea.policy1"><strong>Primary Areas (DeKalb/Sycamore):</strong> No minimum</li>
+                      <li data-town-policy="outlying" hidden data-i18n-key="serviceArea.policy2"><strong>Outlying Areas (20+ min drive):</strong> Minimum 3 hours or $500</li>
+                    </ul>
+                  </fieldset>
+
+                  <label for="contactName" class="quote-field-label"
+                    ><span data-i18n-key="quote.label.name">Your Name</span> <span class="field-tag" data-i18n-key="quote.req">(required)</span></label
+                  >
+                  <input
+                    type="text"
+                    id="contactName"
+                    name="name"
+                    autocomplete="name"
+                    minlength="2"
+                    maxlength="100"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                    required
+                  />
+
+                  <label for="contactPhone" class="quote-field-label"
+                    ><span data-i18n-key="quote.label.phone">Phone Number</span> <span class="field-tag" data-i18n-key="quote.req">(required)</span></label
+                  >
+                  <input
+                    type="tel"
+                    id="contactPhone"
+                    name="phone"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    maxlength="25"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                    pattern="^\+?[0-9 \(\)\-]{10,}$"
+                    title="Enter a valid phone number (digits, spaces, parentheses, or dashes)"
+                    required
+                    data-i18n-title="quote.title.phone"
+                  />
+
+                  <label
+                    for="contactEmail"
+                    class="quote-field-label"
+                    data-i18n-key="quote.label.email"
+                    >Email (optional)</label
+                  >
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    name="email"
+                    autocomplete="email"
+                    maxlength="254"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                  />
+
+                  <!-- Property Address (scam filter) -->
+                  <label for="contactAddress" class="quote-field-label"
+                    ><span data-i18n-key="quote.label.address">Property Address</span> <span class="field-tag" data-i18n-key="quote.req">(required)</span></label
+                  >
+                  <input
+                    type="text"
+                    id="contactAddress"
+                    name="address"
+                    autocomplete="address-line1"
+                    minlength="5"
+                    maxlength="200"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                    required
+                  />
+
+                  <!-- Verification Checkbox (scam filter) -->
+                  <div
+                    class="flex items-start space-x-2 bg-amber-50 p-3 rounded border border-amber-200"
+                  >
+                    <input
+                      type="checkbox"
+                      id="ownerVerify"
+                      name="owner_verified"
+                      class="mt-1"
+                      required
+                    />
+                    <label for="ownerVerify" class="text-sm text-amber-900"
+                      ><span data-i18n-key="quote.verify">I am the property owner or authorized agent, and I will be
+                      present for the estimate.</span> <span class="field-tag" data-i18n-key="quote.req">(required)</span></label
+                    >
+                  </div>
+
+                  <!-- Best Time to Call (scam filter) -->
+                  <label for="bestTime" class="quote-field-label"
+                    ><span data-i18n-key="quote.label.bestTime">Preferred Callback Time</span> <span class="field-tag" data-i18n-key="quote.req">(required)</span></label
+                  >
+                  <select
+                    id="bestTime"
+                    name="best_time"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                    required
+                  >
+                    <option value="" data-i18n-key="quote.time.placeholder">
+                      Best time to call back?
+                    </option>
+                    <option value="morning" data-i18n-key="quote.time.morning">Morning</option>
+                    <option value="afternoon" data-i18n-key="quote.time.afternoon">Afternoon</option>
+                    <option value="evening" data-i18n-key="quote.time.evening">Evening</option>
+                  </select>
+
+                  <label for="contactService" class="quote-field-label"
+                    ><span data-i18n-key="quote.label.service">Select Service Needed</span> <span class="field-tag" data-i18n-key="quote.req">(required)</span></label
+                  >
+                  <select
+                    id="contactService"
+                    name="service"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                    required
+                  >
+                    <option value="" data-i18n-key="quote.select.placeholder">
+                      Select Service Needed
+                    </option>
+                    <option value="lawn-care" data-i18n-key="quote.select.lawn">
+                      Lawn Care
+                    </option>
+                    <option
+                      value="tree-service"
+                      data-i18n-key="quote.select.tree"
+                    >
+                      Tree Service
+                    </option>
+                    <option
+                      value="landscaping"
+                      data-i18n-key="quote.select.landscaping"
+                    >
+                      Landscaping
+                    </option>
+                    <option
+                      value="snow-removal"
+                      data-i18n-key="quote.select.snow"
+                    >
+                      Snow Removal
+                    </option>
+                    <option
+                      value="leaf-removal"
+                      data-i18n-key="quote.select.leaf"
+                    >
+                      Leaf Removal
+                    </option>
+                    <option
+                      value="gutter-cleaning"
+                      data-i18n-key="quote.select.gutter"
+                    >
+                      Gutter Cleaning
+                    </option>
+                    <option
+                      value="pressure-washing"
+                      data-i18n-key="quote.select.pressure"
+                    >
+                      Pressure Washing
+                    </option>
+                    <option
+                      value="multiple-services"
+                      data-i18n-key="quote.select.multiple"
+                    >
+                      Multiple Services
+                    </option>
+                  </select>
+
+                  <label for="projectDetails" class="quote-field-label"
+                    ><span data-i18n-key="quote.label.project">Tell us about your project</span> <span class="field-tag" data-project-req data-i18n-key="quote.req">(required)</span><span class="field-tag" data-project-opt data-i18n-key="quote.opt" hidden>(optional)</span></label
+                  >
+                  <textarea
+                    id="projectDetails"
+                    name="message"
+                    rows="4"
+                    maxlength="2000"
+                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
+                    required
+                  ></textarea>
+                  <p class="sms-photos">
+                    <svg class="icon icon-comment-dots" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots"/></svg>
+                    <span data-i18n-key="quote.smsPhotos">Or text photos of the job to</span>
+                    <a href="sms:+18155011478">(815) 501-1478</a>
+                  </p>
+
+                  <!-- Honeypot Spam Protection -->
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    class="hidden"
+                    style="display: none"
+                  />
+                  <label
+                    class="hidden"
+                    aria-hidden="true"
+                    tabindex="-1"
+                  >
+                    Website
+                    <input
+                      type="text"
+                      name="website"
+                      id="websiteField"
+                      autocomplete="off"
+                      tabindex="-1"
+                    />
+                  </label>
+
+                  <button
+                    type="submit"
+                    class="w-full bg-green-600 text-white py-3 rounded font-bold hover:bg-green-700 transition"
+                    data-i18n-key="quote.submit"
+                  >
+                    Send Quote Request
+                  </button>
+                  <p
+                    id="quotePrivacyNote"
+                    class="text-center text-xs leading-relaxed text-gray-500"
+                    data-i18n-key="quote.privacyNote"
+                  >
+                    Your details are used only to respond to this request.
+                  </p>
+                </div>
+              </form>
+            </div>
           </div>
-
+          <aside class="quote-side" aria-label="Other ways to reach us" data-i18n-aria-label="quote.sideLabel">
+            <div class="quote-contact">
+              <h3 data-i18n-key="quote.contactHeading">Get in Touch</h3>
+              <ul>
+                <li><a href="tel:18155011478"><svg class="icon icon-phone" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg><span><small data-i18n-key="quote.phoneLabel">Call</small><strong>(815) 501-1478</strong></span></a></li>
+                <li><a href="sms:+18155011478"><svg class="icon icon-comment-dots" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots"/></svg><span><small data-i18n-key="quote.textLabel">Send a Text</small><strong>(815) 501-1478</strong></span></a></li>
+                <li class="quote-contact-wide"><a href="mailto:hernandezlandscapetreeservices@gmail.com"><svg class="icon icon-envelope" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg><span><small data-i18n-key="quote.emailLabel">Email</small><strong class="break-all">hernandezlandscapetreeservices@gmail.com</strong></span></a></li>
+                <li><svg class="icon icon-clock" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><span><small data-i18n-key="quote.hoursLabel">Business Hours</small><span data-i18n-key="quote.hoursWeekdays">Mon-Sat: 8AM-5PM</span><span data-i18n-key="quote.hoursSaturday">Sunday: Closed</span></span></li>
+                <li><svg class="icon icon-map-marker-alt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg><span><small data-i18n-key="quote.locationLabel">Location</small><span>1029 Lewis St, DeKalb, IL 60115</span></span></li>
+                <li class="quote-contact-wide"><a href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/" target="_blank" rel="noopener noreferrer"><svg class="icon icon-facebook" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg><span><small data-i18n-key="quote.followLabel">Follow Us</small><strong data-i18n-key="quote.facebook">Facebook</strong></span></a></li>
+              </ul>
+            </div>
+            <section id="instant-quote" class="price-check" aria-labelledby="price-check-title">
+              <p class="price-check-tag stencil" data-i18n-key="instant.tag">Optional</p>
+              <details class="price-check-fold" open data-fold-mobile>
+              <summary><h3 id="price-check-title" data-i18n-key="instant.heading2">Price check: see a starting range</h3></summary>
+              <p class="price-check-sub" data-i18n-key="instant.subtitle">Enter a few details for a starting range, then send your request in one step. Final pricing is confirmed on site.</p>
+              <noscript><p class="price-check-nojs" data-i18n-key="instant.nojs">The starting range needs JavaScript. For a price, <a href="tel:18155011478">call (815) 501-1478</a> or <a href="sms:+18155011478">send a text</a>, or use the <a href="#quoteFormCard">request form</a>.</p></noscript>
+              <div class="instant-card">
           <div
             class="flex flex-wrap justify-center gap-4 mb-6 text-sm text-gray-600"
           >
             <div class="flex items-center">
-              <i class="fas fa-check-circle text-green-600 mr-2"></i>
+              <svg class="icon icon-check-circle text-green-600 mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>
               <span data-i18n-key="instant.trust.free"
                 >Free, no-obligation estimate</span
               >
             </div>
             <div class="flex items-center">
-              <i class="fas fa-clock text-green-600 mr-2"></i>
+              <svg class="icon icon-clock text-green-600 mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
               <span data-i18n-key="instant.trust.response"
                 >Availability confirmed by our team</span
               >
@@ -1195,6 +1361,192 @@
           </div>
           <form id="quoteForm">
             <div class="space-y-4">
+              <!-- Round 4: the range needs only service, size and ZIP (research 03 R3). -->
+              <div class="pc-half">
+                <label
+                  for="serviceType"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.serviceType"
+                  >Service Type</label
+                >
+                <select
+                  id="serviceType"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                  required
+                >
+                  <option
+                    value=""
+                    data-i18n-key="instant.option.servicePlaceholder"
+                  >
+                    Select a service...
+                  </option>
+                  <option value="lawn-care" data-i18n-key="quote.select.lawn">
+                    Lawn Care
+                  </option>
+                  <option
+                    value="tree-service"
+                    data-i18n-key="quote.select.tree"
+                  >
+                    Tree Service
+                  </option>
+                  <option
+                    value="landscaping"
+                    data-i18n-key="quote.select.landscaping"
+                  >
+                    Landscaping
+                  </option>
+                  <option
+                    value="snow-removal"
+                    data-i18n-key="quote.select.snow"
+                  >
+                    Snow Removal
+                  </option>
+                  <option value="leaf-removal" data-i18n-key="quote.select.leaf">
+                    Leaf Removal
+                  </option>
+                  <option
+                    value="gutter-cleaning"
+                    data-i18n-key="quote.select.gutter"
+                  >
+                    Gutter Cleaning
+                  </option>
+                  <option
+                    value="pressure-washing"
+                    data-i18n-key="quote.select.pressure"
+                  >
+                    Pressure Washing
+                  </option>
+                  <option
+                    value="multiple-services"
+                    data-i18n-key="quote.select.multiple"
+                  >
+                    Multiple Services
+                  </option>
+                </select>
+              </div>
+
+              <div class="pc-half">
+                <label
+                  for="propertySize"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.propertySize"
+                  >Property Size</label
+                >
+                <select
+                  id="propertySize"
+                  required
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                >
+                  <option
+                    value=""
+                    data-i18n-key="instant.option.sizePlaceholder"
+                  >
+                    Select size...
+                  </option>
+                  <option
+                    value="small"
+                    data-i18n-key="instant.option.sizeSmall"
+                  >
+                    Small (&lt; 5,000 sq ft)
+                  </option>
+                  <option
+                    value="medium"
+                    data-i18n-key="instant.option.sizeMedium"
+                  >
+                    Medium (5,000 - 10,000 sq ft)
+                  </option>
+                  <option
+                    value="large"
+                    data-i18n-key="instant.option.sizeLarge"
+                  >
+                    Large (10,000 - 20,000 sq ft)
+                  </option>
+                  <option
+                    value="xlarge"
+                    data-i18n-key="instant.option.sizeXLarge"
+                  >
+                    Extra Large (&gt; 20,000 sq ft)
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="zipCode"
+                  class="block text-gray-700 font-semibold mb-2"
+                  data-i18n-key="instant.label.zip"
+                  >Your ZIP Code</label
+                >
+                <input
+                  type="text"
+                  id="zipCode"
+                  inputmode="numeric"
+                  autocomplete="postal-code"
+                  maxlength="10"
+                  placeholder="e.g., 60115"
+                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
+                  pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
+                  title="Enter a valid 5-digit ZIP code"
+                  required
+                  data-i18n-placeholder="instant.placeholder.zip"
+                  data-i18n-title="instant.title.zip"
+                />
+              </div>
+
+              <button
+                type="submit"
+                id="calculateQuoteBtn"
+                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
+                data-i18n-key="instant.button.calculate"
+              >
+                See Starting Range
+              </button>
+              <p id="quoteCalcError" class="field-error" role="alert" hidden></p>
+              <div
+                id="quoteResult"
+                class="hidden mt-6 p-6 bg-green-50 rounded-lg"
+                role="status"
+                aria-live="polite"
+              >
+                <h3
+                  class="text-2xl font-bold text-green-800 mb-2"
+                  data-i18n-key="instant.result.heading"
+                >
+                  Starting Price Range:
+                </h3>
+                <p class="text-3xl font-black text-green-600" id="priceRange" data-i18n-key="instant.result.photoEstimate">
+              Photo estimate — call or text (815) 501-1478
+            </p>
+                <p
+                  class="text-gray-700 mt-2"
+                  data-i18n-key="instant.result.disclaimer"
+                >
+                  This starter range helps set expectations. Final pricing depends
+                  on access, scope, disposal, and the on-site assessment.
+                </p>
+                <button
+                  type="button"
+                  id="sendEstimateBtn"
+                  class="mt-4 mr-3 inline-block bg-white text-green-800 border-2 border-green-600 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
+                >
+                  <svg class="icon icon-arrow-down" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-down"/></svg>
+                  <span data-i18n-key="instant.result.add"
+                    >Add this range to my request</span
+                  >
+                </button>
+                <a
+                  href="tel:18155011478"
+                  class="mt-4 inline-block border-2 border-green-600 text-green-700 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
+                >
+                  <svg class="icon icon-phone" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone"/></svg>
+                  <span data-i18n-key="instant.result.call"
+                    >Call for Exact Quote</span
+                  >
+                </a>
+              </div>
+
+              <!-- Contact details are asked for only to send the request. -->
+              <p class="price-check-step" data-i18n-key="instant.contactStep">To send it as a request, add how we reach you:</p>
               <div class="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label
@@ -1282,142 +1634,12 @@
                 </div>
               </div>
 
-              <div>
-                <label
-                  for="serviceType"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.serviceType"
-                  >Service Type</label
-                >
-                <select
-                  id="serviceType"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                  required
-                >
-                  <option
-                    value=""
-                    data-i18n-key="instant.option.servicePlaceholder"
-                  >
-                    Select a service...
-                  </option>
-                  <option value="lawn-care" data-i18n-key="quote.select.lawn">
-                    Lawn Care
-                  </option>
-                  <option
-                    value="tree-service"
-                    data-i18n-key="quote.select.tree"
-                  >
-                    Tree Service
-                  </option>
-                  <option
-                    value="landscaping"
-                    data-i18n-key="quote.select.landscaping"
-                  >
-                    Landscaping
-                  </option>
-                  <option
-                    value="snow-removal"
-                    data-i18n-key="quote.select.snow"
-                  >
-                    Snow Removal
-                  </option>
-                  <option value="leaf-removal" data-i18n-key="quote.select.leaf">
-                    Leaf Removal
-                  </option>
-                  <option
-                    value="gutter-cleaning"
-                    data-i18n-key="quote.select.gutter"
-                  >
-                    Gutter Cleaning
-                  </option>
-                  <option
-                    value="pressure-washing"
-                    data-i18n-key="quote.select.pressure"
-                  >
-                    Pressure Washing
-                  </option>
-                  <option
-                    value="multiple-services"
-                    data-i18n-key="quote.select.multiple"
-                  >
-                    Multiple Services
-                  </option>
-                </select>
-              </div>
-
-              <div>
-                <label
-                  for="zipCode"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.zip"
-                  >Your ZIP Code</label
-                >
-                <input
-                  type="text"
-                  id="zipCode"
-                  inputmode="numeric"
-                  autocomplete="postal-code"
-                  maxlength="10"
-                  placeholder="e.g., 60115"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                  pattern="^[0-9]{5}(?:[- ][0-9]{4})?$"
-                  title="Enter a valid 5-digit ZIP code"
-                  required
-                  data-i18n-placeholder="instant.placeholder.zip"
-                  data-i18n-title="instant.title.zip"
-                />
-              </div>
-
               <details class="rounded-lg border border-gray-200 bg-white p-4">
                 <summary
                   class="cursor-pointer font-semibold text-gray-800"
-                  data-i18n-key="instant.optional.summary"
-                >Optional details (property size & callback preference)</summary>
+                  data-i18n-key="instant.optional.callback"
+                >Optional: preferred callback time</summary>
                 <div class="mt-4 space-y-4">
-              <div>
-                <label
-                  for="propertySize"
-                  class="block text-gray-700 font-semibold mb-2"
-                  data-i18n-key="instant.label.propertySize"
-                  >Property Size</label
-                >
-                <select
-                  id="propertySize"
-                  class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600"
-                >
-                  <option
-                    value=""
-                    data-i18n-key="instant.option.sizePlaceholder"
-                  >
-                    Select size...
-                  </option>
-                  <option
-                    value="small"
-                    data-i18n-key="instant.option.sizeSmall"
-                  >
-                    Small (&lt; 5,000 sq ft)
-                  </option>
-                  <option
-                    value="medium"
-                    data-i18n-key="instant.option.sizeMedium"
-                  >
-                    Medium (5,000 - 10,000 sq ft)
-                  </option>
-                  <option
-                    value="large"
-                    data-i18n-key="instant.option.sizeLarge"
-                  >
-                    Large (10,000 - 20,000 sq ft)
-                  </option>
-                  <option
-                    value="xlarge"
-                    data-i18n-key="instant.option.sizeXLarge"
-                  >
-                    Extra Large (&gt; 20,000 sq ft)
-                  </option>
-                </select>
-              </div>
-
               <div>
                 <label
                   for="instantBestTime"
@@ -1438,14 +1660,6 @@
               </details>
 
               <button
-                type="submit"
-                id="calculateQuoteBtn"
-                class="w-full bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 transition"
-                data-i18n-key="instant.button.calculate"
-              >
-                See Starting Range
-              </button>
-              <button
                 type="button"
                 id="sendInstantRequestBtn"
                 class="w-full bg-green-800 text-white py-3 rounded-lg font-bold hover:bg-green-900 transition"
@@ -1457,381 +1671,22 @@
                 class="text-xs text-gray-500 text-center mt-3"
                 data-i18n-key="instant.privacy"
               >
-                <i class="fas fa-lock mr-1"></i>Send Free Estimate Request
+                <svg class="icon icon-lock mr-1" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg>Send Free Estimate Request
                 submits your lead now. Starting range is optional guidance only.
               </p>
+              <p id="quoteSendError" class="field-error" role="alert" hidden></p>
             </div>
           </form>
-
-          <div
-            id="quoteResult"
-            class="hidden mt-6 p-6 bg-green-50 rounded-lg"
-            role="status"
-            aria-live="polite"
-          >
-            <h3
-              class="text-2xl font-bold text-green-800 mb-2"
-              data-i18n-key="instant.result.heading"
-            >
-              Starting Price Range:
-            </h3>
-            <p class="text-3xl font-black text-green-600" id="priceRange">
-              $0 - $0
-            </p>
-            <p
-              class="text-gray-700 mt-2"
-              data-i18n-key="instant.result.disclaimer"
-            >
-              This starter range helps set expectations. Final pricing depends
-              on access, scope, disposal, and the on-site assessment.
-            </p>
-            <button
-              type="button"
-              id="sendEstimateBtn"
-              class="mt-4 mr-3 inline-block bg-white text-green-800 border-2 border-green-600 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
-            >
-              <i class="fas fa-arrow-down"></i>
-              <span data-i18n-key="instant.result.send"
-                >Add more details below</span
-              >
-            </button>
-            <a
-              href="tel:18155011478"
-              class="mt-4 inline-block border-2 border-green-600 text-green-700 px-6 py-3 rounded-lg font-bold hover:bg-green-50 transition"
-            >
-              <i class="fas fa-phone"></i>
-              <span data-i18n-key="instant.result.call"
-                >Call for Exact Quote</span
-              >
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="gallery" class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 reveal">
-          <h2 class="text-4xl font-bold mb-4" data-i18n-key="gallery.heading">
-            See The Difference We Make
-          </h2>
-          <p class="text-xl text-gray-600" data-i18n-key="gallery.subheading">
-            Drag the slider to see our transformations
-          </p>
-        </div>
-
-        <!-- Before/After Slider Section -->
-        <div class="mb-20 reveal">
-          <div class="before-after-container mb-8">
-            <div class="before-after-slider" id="beforeAfterSlider">
-              <img
-                src="hernandez_images/web_Before1.jpeg"
-                alt="Before lawn service, overgrown and messy"
-                class="before-image"
-                width="800"
-                height="600"
-                loading="lazy"
-              />
-              <img
-                src="hernandez_images/web_After1.jpeg"
-                alt="After lawn service, clean and manicured"
-                class="after-image"
-                width="800"
-                height="600"
-                loading="lazy"
-              />
-              <div
-                class="slider-handle"
-                id="sliderHandle"
-                role="slider"
-                tabindex="0"
-                aria-label="Reveal after photo"
-                data-i18n-aria-label="gallery.slider.label"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                aria-valuenow="50"
-                aria-valuetext="Comparison divider at 50%"
-                aria-describedby="homepageComparisonInstructions"
-              ></div>
-            </div>
-          </div>
-          <p class="before-after-story" data-i18n-key="gallery.featured.story"><strong>Before and after</strong> — compare the yard photos using the slider.</p>
-          <p
-            id="homepageComparisonInstructions"
-            class="text-center text-sm text-gray-500 mt-3"
-            data-i18n-key="gallery.featured.instructions"
-          >
-            Drag the handle or use the arrow keys to compare the before and after photos.
-          </p>
-        </div>
-
-        <!-- Gallery Section -->
-        <div class="pt-16 border-t border-gray-200">
-          <h3
-            class="text-3xl font-bold text-center mb-8"
-            data-i18n-key="gallery.moreHeading"
-          >
-            More of Our Work
-          </h3>
-          <div class="grid md:grid-cols-3 gap-6">
-            <div
-              class="group relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]"
-            >
-              <img
-                src="hernandez_images/google-profile-2026-tree-climber-roofline.jpg"
-                alt="Tree service crew working near a residential roofline in DeKalb County"
-                class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                width="900"
-                height="1200"
-                loading="lazy"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition"
-              >
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h4 class="font-bold" data-i18n-key="gallery.card1.title">
-                    Tree Work Near Homes
-                  </h4>
-                  <p data-i18n-key="gallery.card1.subtitle">
-                    DeKalb County Crew
-                  </p>
-                </div>
               </div>
-            </div>
-
-            <div
-              class="group relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]"
-            >
-              <img
-                src="hernandez_images/facebook-2026-side-yard-lawn-finish.jpg"
-                alt="Fresh green side yard lawn after Hernandez Landscape cleanup and lawn work"
-                class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                width="900"
-                height="1200"
-                loading="lazy"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition"
-              >
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h4 class="font-bold" data-i18n-key="gallery.card2.title">
-                    Fresh Lawn Finish
-                  </h4>
-                  <p data-i18n-key="gallery.card2.subtitle">
-                    Cortland Area Home
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div
-              class="group relative overflow-hidden rounded-lg shadow-lg aspect-[4/3]"
-            >
-              <img
-                src="hernandez_images/google-photos-2026-woodpile-yard-cleanup.webp"
-                alt="Woodpile and overgrown yard area before Hernandez cleanup work"
-                class="w-full h-full object-cover group-hover:scale-110 transition duration-300"
-                width="1164"
-                height="873"
-                loading="lazy"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition"
-              >
-                <div class="absolute bottom-4 left-4 text-white">
-                  <h4 class="font-bold" data-i18n-key="gallery.card3.title">
-                    Yard Cleanup
-                  </h4>
-                  <p data-i18n-key="gallery.card3.subtitle">
-                    Northern Illinois Job Site
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+              </details>
+            </section>
+            <section id="pricing" class="pricing-note" aria-labelledby="pricing-title">
+              <h2 id="pricing-title" data-i18n-key="pricing.heading">Custom Landscaping Pricing</h2>
+              <p data-i18n-key="pricing.copy">Every yard, project, and season is different. We build tailored estimates after learning about your property and goals so you only pay for the services you need.</p>
+              <a href="#quote" class="pricing-link"><span data-i18n-key="pricing.cta">Request a Personalized Quote</span><svg class="icon icon-arrow-up" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg></a>
+            </section>
+          </aside>
         </div>
-
-        <div class="pt-16 border-t border-gray-200">
-          <h3
-            class="text-3xl font-bold text-center mb-8"
-            data-i18n-key="gallery.latestHeading"
-          >
-            Latest Uploads
-          </h3>
-          <p
-            id="latest-uploads-empty"
-            class="text-gray-500 text-center"
-            data-i18n-key="gallery.placeholder"
-          >
-            Your new photos will appear here after you upload them.
-          </p>
-          <div
-            id="latest-uploads-carousel"
-            class="hidden latest-uploads-carousel overflow-x-auto pb-6"
-          >
-            <div
-              id="latest-uploads-track"
-              class="flex gap-4 sm:gap-6 snap-x snap-mandatory px-1 sm:px-0"
-            ></div>
-          </div>
-        </div>
-
-        <div
-          class="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4 sm:px-0"
-        >
-          <a
-            href="/gallery/"
-            class="bg-green-600 border-2 border-transparent text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center"
-          >
-            <i class="fas fa-images mr-2"></i> View Full Gallery
-          </a>
-          <a
-            href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="bg-blue-600 border-2 border-transparent text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center"
-            aria-label="See more projects on Facebook"
-          >
-            <i class="fab fa-facebook mr-2"></i>
-            <span data-i18n-key="gallery.facebookCta"
-              >See More on Facebook</span
-            >
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Video Section -->
-    <section id="videos" class="video-section">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold mb-4" data-i18n-key="video.heading">
-            Project Video Tours
-          </h2>
-          <p class="text-xl text-gray-600" data-i18n-key="video.subheading">
-            Watch our team in action and see the details of our work.
-          </p>
-        </div>
-        <div class="video-grid">
-          <!-- Duplicate IMG_0434-1 removed -->
-
-          <div class="video-card group">
-            <div class="video-wrapper relative">
-              <video
-                controls
-                preload="none"
-                poster="hernandez_images/web_IMG_0434_poster.jpg"
-                class="w-full h-full object-cover"
-              >
-                <source
-                  src="hernandez_images/web_IMG_0434.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div
-                class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
-              >
-                <i
-                  class="fas fa-play-circle text-white text-5xl opacity-80"
-                ></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="video-card group">
-            <div class="video-wrapper relative">
-              <video
-                controls
-                preload="none"
-                poster="hernandez_images/web_IMG_1095_poster.jpg"
-                class="w-full h-full object-cover"
-              >
-                <source
-                  src="hernandez_images/web_IMG_1095.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div
-                class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
-              >
-                <i
-                  class="fas fa-play-circle text-white text-5xl opacity-80"
-                ></i>
-              </div>
-            </div>
-          </div>
-
-          <div class="video-card group">
-            <div class="video-wrapper relative">
-              <video
-                controls
-                preload="none"
-                poster="hernandez_images/web_IMG_2055_poster.jpg"
-                class="w-full h-full object-cover"
-              >
-                <source
-                  src="hernandez_images/web_IMG_2055.mp4"
-                  type="video/mp4"
-                />
-                Your browser does not support the video tag.
-              </video>
-              <div
-                class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20"
-              >
-                <i
-                  class="fas fa-play-circle text-white text-5xl opacity-80"
-                ></i>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="flex flex-col sm:flex-row justify-center gap-4 mt-12 px-4 sm:px-0"
-        >
-          <a
-            href="/videos/"
-            class="bg-green-600 border-2 border-transparent text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 transition flex items-center justify-center"
-          >
-            <i class="fas fa-video mr-2"></i>
-            <span data-i18n-key="video.viewAll">Watch All Videos</span>
-          </a>
-          <a
-            href="#quote"
-            class="bg-white text-green-600 border-2 border-green-600 px-6 py-2 rounded-lg font-semibold hover:bg-green-50 transition flex items-center justify-center"
-          >
-            <i class="fas fa-calculator mr-2"></i>
-            <span data-i18n-key="nav.freeQuote">Request Free Quote</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="py-16 bg-gray-50">
-      <div class="container mx-auto px-4 text-center">
-        <h2
-          class="text-4xl font-bold mb-6"
-          data-i18n-key="pricing.heading"
-        >
-          Custom Landscaping Pricing
-        </h2>
-        <p
-          class="text-lg text-gray-700 max-w-3xl mx-auto mb-8"
-          data-i18n-key="pricing.copy"
-        >
-          Every yard, project, and season is different. We build tailored
-          estimates after learning about your property and goals so you only pay
-          for the services you need.
-        </p>
-        <a
-          href="#quote"
-          class="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-full transition"
-        >
-          <span data-i18n-key="pricing.cta"
-            >Request a Personalized Quote</span
-          >
-        </a>
       </div>
     </section>
 
@@ -1858,7 +1713,7 @@
               <span
                 class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800"
               >
-                <i class="fas fa-star text-amber-500" aria-hidden="true"></i>
+                <svg class="icon icon-comment-dots text-amber-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots"/></svg>
                 <span data-i18n-key="testimonials.badge"
                   >Published customer feedback</span
                 >
@@ -1913,10 +1768,7 @@
                 <span data-i18n-key="testimonials.reviewSource"
                   >View source review</span
                 >
-                <i
-                  class="fas fa-arrow-up-right-from-square text-xs"
-                  aria-hidden="true"
-                ></i>
+                <svg class="icon icon-arrow-up-right-from-square text-xs" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up-right-from-square"/></svg>
               </a>
             </div>
           </article>
@@ -1931,28 +1783,19 @@
               </h3>
               <ul class="space-y-4 text-gray-700">
                 <li class="flex items-start gap-3">
-                  <i
-                    class="fas fa-check-circle mt-1 text-green-600"
-                    aria-hidden="true"
-                  ></i>
+                  <svg class="icon icon-check-circle mt-1 text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>
                   <span data-i18n-key="testimonials.support1"
                     >A clear response on pricing and next steps</span
                   >
                 </li>
                 <li class="flex items-start gap-3">
-                  <i
-                    class="fas fa-check-circle mt-1 text-green-600"
-                    aria-hidden="true"
-                  ></i>
+                  <svg class="icon icon-check-circle mt-1 text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>
                   <span data-i18n-key="testimonials.support2"
                     >Clean finish and detail-focused work on-site</span
                   >
                 </li>
                 <li class="flex items-start gap-3">
-                  <i
-                    class="fas fa-check-circle mt-1 text-green-600"
-                    aria-hidden="true"
-                  ></i>
+                  <svg class="icon icon-check-circle mt-1 text-green-600" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle"/></svg>
                   <span data-i18n-key="testimonials.support3"
                     >Bilingual communication for scheduling and updates</span
                   >
@@ -1984,7 +1827,7 @@
                 <span data-i18n-key="testimonials.ctaButton"
                   >Request Free Quote</span
                 >
-                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right"/></svg>
               </a>
             </article>
           </div>
@@ -1992,6 +1835,38 @@
       </div>
     </section>
 
+    <!-- Field notes: the crew's values and what to expect, on one notebook page (round 3, existing copy) -->
+    <section id="why-choose-us" class="field-notes" aria-labelledby="notes-title">
+      <div class="container mx-auto px-4">
+        <div class="notes-page reveal">
+          <div class="notes-head">
+            <p class="ring-label" data-i18n-key="notes.label">Field notes</p>
+            <h2 id="notes-title" data-i18n-key="whyChoose.heading">Why Choose Hernandez?</h2>
+            <p data-i18n-key="whyChoose.subheading">A local crew with clear communication from the first estimate through cleanup.</p>
+          </div>
+          <div class="notes-cols">
+            <ul class="notes-values">
+              <li><svg class="icon icon-clock" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><p><strong data-i18n-key="whyChoose.feature1.title">Clear, Prompt Quotes</strong> <span data-i18n-key="whyChoose.feature1.desc">Tell us what you need and we will confirm timing, scope, and next steps.</span></p></li>
+              <li><svg class="icon icon-tools" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-tools"/></svg><p><strong data-i18n-key="whyChoose.feature2.title">Professional Equipment</strong> <span data-i18n-key="whyChoose.feature2.desc">Commercial-grade tools for better results and faster completion.</span></p></li>
+              <li><svg class="icon icon-handshake" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-handshake"/></svg><p><strong data-i18n-key="whyChoose.feature3.title">Local &amp; Trusted</strong> <span data-i18n-key="whyChoose.feature3.desc">DeKalb-based family business. We treat your property like our own.</span></p></li>
+              <li><svg class="icon icon-dollar-sign" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-dollar-sign"/></svg><p><strong data-i18n-key="whyChoose.feature4.title">Fair, Upfront Pricing</strong> <span data-i18n-key="whyChoose.feature4.desc">No hidden fees. You know exactly what you're paying before work begins.</span></p></li>
+            </ul>
+            <div class="notes-steps">
+              <h3 data-i18n-key="whyChoose.process.heading">What to Expect</h3>
+              <ol>
+                <li><p><strong data-i18n-key="whyChoose.process.step1.title">Request Quote</strong> <span data-i18n-key="whyChoose.process.step1.desc">Fill out our form or call us directly</span></p></li>
+                <li><p><strong data-i18n-key="whyChoose.process.step2.title">Free Assessment</strong> <span data-i18n-key="whyChoose.process.step2.desc">We visit your property to understand your needs</span></p></li>
+                <li><p><strong data-i18n-key="whyChoose.process.step3.title">Get Your Quote</strong> <span data-i18n-key="whyChoose.process.step3.desc">Receive a detailed, no-surprise estimate</span></p></li>
+                <li><p><strong data-i18n-key="whyChoose.process.step4.title">Enjoy Results</strong> <span data-i18n-key="whyChoose.process.step4.desc">We complete the work to your satisfaction</span></p></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Area and FAQ share one chapter (round 3) -->
+    <div class="area-faq">
     <section id="service-area" class="py-16 bg-white">
       <div class="container mx-auto px-4">
         <h2
@@ -2028,20 +1903,16 @@
                 </h4>
                 <ul class="space-y-1 text-gray-700">
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >DeKalb
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>DeKalb
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Sycamore
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>Sycamore
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Cortland
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>Cortland
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Malta
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>Malta
                   </li>
                 </ul>
               </div>
@@ -2054,12 +1925,10 @@
                 </h4>
                 <ul class="space-y-1 text-gray-700">
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Genoa
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>Genoa
                   </li>
                   <li>
-                    <i class="fas fa-map-marker-alt text-green-600 mr-2"></i
-                    >Kingston
+                    <svg class="icon icon-map-marker-alt text-green-600 mr-2" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>Kingston
                   </li>
                 </ul>
               </div>
@@ -2067,7 +1936,7 @@
 
             <div class="bg-green-50 p-4 rounded-lg mb-4">
               <p class="text-green-800" data-i18n-key="serviceArea.info">
-                <i class="fas fa-info-circle mr-2"></i>
+                <svg class="icon icon-info-circle mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-info-circle"/></svg>
                 Not sure if we service your area? Give us a call! We're
                 expanding our service area.
               </p>
@@ -2079,7 +1948,7 @@
                 class="font-bold text-amber-800 mb-2"
                 data-i18n-key="serviceArea.policyHeading"
               >
-                <i class="fas fa-truck mr-2"></i>Service Policy
+                <svg class="icon icon-truck mr-2" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-truck"/></svg>Service Policy
               </h4>
               <ul class="text-amber-900 text-sm space-y-1">
                 <li data-i18n-key="serviceArea.policy1">
@@ -2108,23 +1977,28 @@
             </div>
           </div>
 
-          <div class="bg-gray-100 p-8 rounded-lg">
-            <iframe
-              title="Mapa de Hernandez Landscape &amp; Tree Service"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.946874187628!2d-88.75760132421542!3d41.92134107123761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880fcfe9f3319d01%3A0x8d84401d9dc143e9!2s1029%20Lewis%20St%2C%20DeKalb%2C%20IL%2060115!5e0!3m2!1ses!2sus!4v1732240940000!5m2!1ses!2sus"
-              allowfullscreen
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              class="w-full h-80 rounded-lg border-0"
-            ></iframe>
-            <p
-              class="text-sm text-gray-600 mt-3"
-              data-i18n-key="serviceArea.mapNote"
-            >
-              Zoom in on our DeKalb base; we cover all of DeKalb County and
-              nearby communities.
-            </p>
-          </div>
+          <!-- Round 4: an inline field map of the six towns (not to scale) replaces the
+               Google Maps iframe; the existing Maps link opens the real map. -->
+          <figure class="field-map-card">
+            <svg class="field-map" viewBox="0 18 400 256" role="img" aria-labelledby="fieldMapTitle fieldMapDesc">
+              <title id="fieldMapTitle" data-i18n-key="serviceArea.mapTitle">Field map of the towns we serve (not to scale)</title>
+              <desc id="fieldMapDesc" data-i18n-key="serviceArea.mapDesc">DeKalb is our base. Sycamore, Cortland and Malta are primary areas; Genoa and Kingston are also served.</desc>
+              <rect class="fm-paper" width="400" height="300" rx="14"/>
+              <g class="fm-grid"><path d="M25 0V300"/><path d="M50 0V300"/><path d="M75 0V300"/><path d="M100 0V300"/><path d="M125 0V300"/><path d="M150 0V300"/><path d="M175 0V300"/><path d="M200 0V300"/><path d="M225 0V300"/><path d="M250 0V300"/><path d="M275 0V300"/><path d="M300 0V300"/><path d="M325 0V300"/><path d="M350 0V300"/><path d="M375 0V300"/><path d="M0 25H400"/><path d="M0 50H400"/><path d="M0 75H400"/><path d="M0 100H400"/><path d="M0 125H400"/><path d="M0 150H400"/><path d="M0 175H400"/><path d="M0 200H400"/><path d="M0 225H400"/><path d="M0 250H400"/><path d="M0 275H400"/></g>
+              <g class="fm-lines"><path d="M222 226L196 70"/><path d="M222 226L312 70"/><path d="M222 226L312 164"/><path d="M222 226L312 238"/><path d="M222 226L78 226"/></g>
+              <g class="fm-town"><circle cx="196" cy="70" r="7"/><text x="184" y="75" text-anchor="end">Kingston</text></g><g class="fm-town"><circle cx="312" cy="70" r="7"/><text x="324" y="75" text-anchor="start">Genoa</text></g><g class="fm-town is-primary"><circle cx="312" cy="164" r="8"/><text x="324" y="169" text-anchor="start">Sycamore</text></g><g class="fm-town is-primary"><circle cx="312" cy="238" r="8"/><text x="324" y="243" text-anchor="start">Cortland</text></g><g class="fm-town is-primary"><circle cx="78" cy="226" r="8"/><text x="78" y="252" text-anchor="middle">Malta</text></g>
+              <g class="fm-base"><circle cx="222" cy="226" r="11"/><circle class="fm-core" cx="222" cy="226" r="4"/><text x="222" y="256" text-anchor="middle">DeKalb</text></g>
+              <g class="fm-compass" transform="translate(40 58)"><path d="M0 14L6 -8L12 14L6 9Z"/><text x="6" y="-14" text-anchor="middle">N</text></g>
+            </svg>
+            <figcaption>
+              <ul class="field-map-legend">
+                <li><span class="fm-key is-primary" aria-hidden="true"></span><span data-i18n-key="serviceArea.legendPrimary">Primary areas</span></li>
+                <li><span class="fm-key" aria-hidden="true"></span><span data-i18n-key="serviceArea.legendAlso">Also serving</span></li>
+              </ul>
+              <p data-i18n-key="serviceArea.fieldMapNote">Not to scale: a sketch of the six towns around our DeKalb base.</p>
+              <a class="field-map-link" href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/" target="_blank" rel="noopener noreferrer"><svg class="icon icon-map-marker-alt" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg><span data-i18n-key="serviceArea.openMaps">Open in Google Maps</span></a>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -2193,447 +2067,12 @@
         </div>
       </div>
     </section>
-
-    <section
-      id="quote"
-      class="site-contact-quote py-16 bg-green-800 text-white"
-    >
-      <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <h2
-            class="text-4xl font-bold text-center mb-12"
-            data-i18n-key="quote.heading"
-          >
-            Ready to Transform Your Property?
-          </h2>
-
-          <div class="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3
-                class="text-2xl font-bold mb-6"
-                data-i18n-key="quote.contactHeading"
-              >
-                Get in Touch
-              </h3>
-
-              <div class="space-y-4 mb-8">
-                <a
-                  href="tel:18155011478"
-                  class="flex w-full items-start space-x-3 hover:text-green-200 transition"
-                >
-                  <i class="fas fa-phone text-2xl"></i>
-                  <div class="min-w-0">
-                    <p class="font-semibold" data-i18n-key="quote.phoneLabel">Call</p>
-                    <p class="text-xl break-words">(815) 501-1478</p>
-                  </div>
-                </a>
-
-                <a
-                  href="sms:+18155011478"
-                  class="flex w-full items-start space-x-3 hover:text-green-200 transition"
-                >
-                  <i class="fas fa-comment-dots text-2xl" aria-hidden="true"></i>
-                  <div class="min-w-0">
-                    <p class="font-semibold" data-i18n-key="quote.textLabel">Send a Text</p>
-                    <p class="text-xl break-words">(815) 501-1478</p>
-                  </div>
-                </a>
-
-                <div class="flex w-full items-start space-x-3">
-                  <i class="fas fa-envelope text-2xl"></i>
-                  <div class="min-w-0">
-                    <p class="font-semibold" data-i18n-key="quote.emailLabel">
-                      Email
-                    </p>
-                    <a class="break-all underline hover:text-green-200" href="mailto:hernandezlandscapetreeservices@gmail.com">
-                      hernandezlandscapetreeservices@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div class="flex w-full items-start space-x-3">
-                  <i class="fas fa-clock text-2xl"></i>
-                  <div class="min-w-0">
-                    <p class="font-semibold" data-i18n-key="quote.hoursLabel">
-                      Business Hours
-                    </p>
-                    <p data-i18n-key="quote.hoursWeekdays">Mon-Sat: 8AM-5PM</p>
-                    <p data-i18n-key="quote.hoursSaturday">Sunday: Closed</p>
-                  </div>
-                </div>
-
-                <div class="flex w-full items-start space-x-3">
-                  <i class="fas fa-map-marker-alt text-2xl"></i>
-                  <div class="min-w-0">
-                    <p
-                      class="font-semibold"
-                      data-i18n-key="quote.locationLabel"
-                    >
-                      Location
-                    </p>
-                    <p class="break-words">1029 Lewis St, DeKalb, IL 60115</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <p class="font-semibold mb-3" data-i18n-key="quote.followLabel">
-                  Follow Us
-                </p>
-                <a
-                  href="https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-block bg-blue-600 px-4 py-2 rounded hover:bg-blue-700 transition"
-                  aria-label="Visit our Facebook page"
-                >
-                  <i class="fab fa-facebook mr-2"></i>
-                  <span data-i18n-key="quote.facebook">Facebook</span>
-                </a>
-              </div>
-            </div>
-
-            <div id="quoteFormCard" class="bg-white text-gray-800 p-6 rounded-lg scroll-mt-24">
-              <h3
-                class="text-2xl font-bold text-gray-800 mb-2"
-                data-i18n-key="quote.formHeading"
-              >
-                Request a Free Quote
-              </h3>
-              <p
-                id="quoteFormHelper"
-                class="mb-4 text-sm leading-relaxed text-gray-600"
-                data-i18n-key="quote.formHelper"
-              >Tell us what you need and your preferred callback time. This is an estimate request, not a confirmed appointment. Our team will confirm availability and timing. There is no obligation.</p>
-              <ul
-                class="mb-5 grid gap-2 rounded-lg border border-green-100 bg-green-50 p-4 text-sm text-green-950 sm:grid-cols-2"
-                data-proof-rail
-              >
-                <li>
-                  <i class="fas fa-shield-alt mr-1 text-green-700" aria-hidden="true"></i>
-                  <span data-i18n-key="instant.proof.insured">Local DeKalb County crew</span>
-                </li>
-                <li>
-                  <i class="fas fa-star mr-1 text-green-700" aria-hidden="true"></i>
-                  <span data-i18n-key="instant.proof.review">Request first; appointment confirmed separately</span>
-                </li>
-                <li>
-                  <i class="fas fa-clock mr-1 text-green-700" aria-hidden="true"></i>
-                  <span data-i18n-key="instant.proof.response">Availability confirmed by our team</span>
-                </li>
-                <li>
-                  <i class="fas fa-phone mr-1 text-green-700" aria-hidden="true"></i>
-                  <span data-i18n-key="quote.proof.call">Prefer to talk? Call (815) 501-1478</span>
-                </li>
-              </ul>
-
-              <form
-                id="contactForm"
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                aria-describedby="quoteFormHelper quotePrivacyNote"
-              >
-                <div class="space-y-4">
-                  <!-- Web3Forms Access Key -->
-                  <input
-                    type="hidden"
-                    name="access_key"
-                    value="61e8b0ea-97d8-434c-8c2d-e54a44a63743"
-                  />
-
-                  <!-- Email Subject -->
-                  <input
-                    type="hidden"
-                    name="subject"
-                    value="New Quote Request - Hernandez Landscape Services"
-                  />
-
-                  <!-- Success Page (optional) -->
-                  <input
-                    type="hidden"
-                    name="from_name"
-                    value="Website Quote Form"
-                  />
-                  <!-- ccemail removed 2026-07-08: Pro-only Web3Forms field; its presence made the API 400-reject every submission on free tier -->
-                  <input type="hidden" name="form_loaded_at" id="formLoadedAt" />
-                  <input type="hidden" name="yard_areas" id="yardAreasField" value="" />
-
-                  <div
-                    id="yardSelectionNotice"
-                    class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900"
-                    aria-live="polite"
-                  >
-                    <p class="font-semibold" data-i18n-key="quote.yardSummary">Yard areas added to this request</p>
-                    <p id="yardSelectionText"></p>
-                    <p class="mt-1 text-xs" data-i18n-key="quote.yardSummary.helper">Add more details below, or send these areas as your request.</p>
-                  </div>
-
-                  <div
-                    id="quotePrefillNotice"
-                    class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900"
-                    aria-live="polite"
-                  >
-                    <div class="flex items-start gap-3">
-                      <i
-                        class="fas fa-check-circle mt-0.5 text-green-700"
-                        aria-hidden="true"
-                      ></i>
-                      <div>
-                        <p id="quotePrefillText" class="font-semibold"></p>
-                        <p data-i18n-key="quote.prefill.helper">
-                          Add your property details below and the team can
-                          respond with the right next step.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <label
-                    for="contactName"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.name"
-                    >Your Name</label
-                  >
-                  <input
-                    type="text"
-                    id="contactName"
-                    name="name"
-                    autocomplete="name"
-                    minlength="2"
-                    maxlength="100"
-                    placeholder="Your Name"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    required
-                    data-i18n-placeholder="quote.placeholder.name"
-                  />
-
-                  <label
-                    for="contactPhone"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.phone"
-                    >Phone Number</label
-                  >
-                  <input
-                    type="tel"
-                    id="contactPhone"
-                    name="phone"
-                    autocomplete="tel"
-                    inputmode="tel"
-                    maxlength="25"
-                    placeholder="Phone Number"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    pattern="^\+?[0-9 \(\)\-]{10,}$"
-                    title="Enter a valid phone number (digits, spaces, parentheses, or dashes)"
-                    required
-                    data-i18n-placeholder="quote.placeholder.phone"
-                    data-i18n-title="quote.title.phone"
-                  />
-
-                  <label
-                    for="contactEmail"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.email"
-                    >Email (optional)</label
-                  >
-                  <input
-                    type="email"
-                    id="contactEmail"
-                    name="email"
-                    autocomplete="email"
-                    maxlength="254"
-                    placeholder="Email (optional)"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    data-i18n-placeholder="quote.placeholder.email"
-                  />
-
-                  <!-- Property Address (scam filter) -->
-                  <label
-                    for="contactAddress"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.address"
-                    >Property Address</label
-                  >
-                  <input
-                    type="text"
-                    id="contactAddress"
-                    name="address"
-                    autocomplete="address-line1"
-                    minlength="5"
-                    maxlength="200"
-                    placeholder="Property Address (required for quote)"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    required
-                    data-i18n-placeholder="quote.placeholder.address"
-                  />
-
-                  <!-- Verification Checkbox (scam filter) -->
-                  <div
-                    class="flex items-start space-x-2 bg-amber-50 p-3 rounded border border-amber-200"
-                  >
-                    <input
-                      type="checkbox"
-                      id="ownerVerify"
-                      name="owner_verified"
-                      class="mt-1"
-                      required
-                    />
-                    <label
-                      for="ownerVerify"
-                      class="text-sm text-amber-900"
-                      data-i18n-key="quote.verify"
-                    >
-                      I am the property owner or authorized agent, and I will be
-                      present for the estimate.
-                    </label>
-                  </div>
-
-                  <!-- Best Time to Call (scam filter) -->
-                  <label
-                    for="bestTime"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.bestTime"
-                    >Preferred Callback Time</label
-                  >
-                  <select
-                    id="bestTime"
-                    name="best_time"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    required
-                  >
-                    <option value="" data-i18n-key="quote.time.placeholder">
-                      Best time to call back?
-                    </option>
-                    <option value="morning" data-i18n-key="quote.time.morning">Morning</option>
-                    <option value="afternoon" data-i18n-key="quote.time.afternoon">Afternoon</option>
-                    <option value="evening" data-i18n-key="quote.time.evening">Evening</option>
-                  </select>
-
-                  <label
-                    for="contactService"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.service"
-                    >Select Service Needed</label
-                  >
-                  <select
-                    id="contactService"
-                    name="service"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    required
-                  >
-                    <option value="" data-i18n-key="quote.select.placeholder">
-                      Select Service Needed
-                    </option>
-                    <option value="lawn-care" data-i18n-key="quote.select.lawn">
-                      Lawn Care
-                    </option>
-                    <option
-                      value="tree-service"
-                      data-i18n-key="quote.select.tree"
-                    >
-                      Tree Service
-                    </option>
-                    <option
-                      value="landscaping"
-                      data-i18n-key="quote.select.landscaping"
-                    >
-                      Landscaping
-                    </option>
-                    <option
-                      value="snow-removal"
-                      data-i18n-key="quote.select.snow"
-                    >
-                      Snow Removal
-                    </option>
-                    <option
-                      value="leaf-removal"
-                      data-i18n-key="quote.select.leaf"
-                    >
-                      Leaf Removal
-                    </option>
-                    <option
-                      value="gutter-cleaning"
-                      data-i18n-key="quote.select.gutter"
-                    >
-                      Gutter Cleaning
-                    </option>
-                    <option
-                      value="pressure-washing"
-                      data-i18n-key="quote.select.pressure"
-                    >
-                      Pressure Washing
-                    </option>
-                    <option
-                      value="multiple-services"
-                      data-i18n-key="quote.select.multiple"
-                    >
-                      Multiple Services
-                    </option>
-                  </select>
-
-                  <label
-                    for="projectDetails"
-                    class="quote-field-label"
-                    data-i18n-key="quote.label.project"
-                    >Tell us about your project</label
-                  >
-                  <textarea
-                    id="projectDetails"
-                    name="message"
-                    placeholder="Tell us about your project..."
-                    rows="4"
-                    maxlength="2000"
-                    class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
-                    required
-                    data-i18n-placeholder="quote.placeholder.project"
-                  ></textarea>
-
-                  <!-- Honeypot Spam Protection -->
-                  <input
-                    type="checkbox"
-                    name="botcheck"
-                    class="hidden"
-                    style="display: none"
-                  />
-                  <label
-                    class="hidden"
-                    aria-hidden="true"
-                    tabindex="-1"
-                  >
-                    Website
-                    <input
-                      type="text"
-                      name="website"
-                      id="websiteField"
-                      autocomplete="off"
-                      tabindex="-1"
-                    />
-                  </label>
-
-                  <button
-                    type="submit"
-                    class="w-full bg-green-600 text-white py-3 rounded font-bold hover:bg-green-700 transition"
-                    data-i18n-key="quote.submit"
-                  >
-                    Send Quote Request
-                  </button>
-                  <p
-                    id="quotePrivacyNote"
-                    class="text-center text-xs leading-relaxed text-gray-500"
-                    data-i18n-key="quote.privacyNote"
-                  >
-                    Your details are used only to respond to this request.
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
 
     </main>
 
     <footer class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="soil" aria-hidden="true"><svg class="soil-roots" viewBox="0 0 480 140" width="480" height="140" focusable="false"><defs><linearGradient id="soilRootFade" gradientUnits="userSpaceOnUse" x1="0" y1="24" x2="0" y2="138"><stop offset="0" stop-color="#b8905f"/><stop offset=".45" stop-color="#8a6848"/><stop offset=".8" stop-color="#6b4e37" stop-opacity=".8"/><stop offset="1" stop-color="#5e4431" stop-opacity=".35"/></linearGradient><linearGradient id="soilBark" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#3d2616"/><stop offset=".45" stop-color="#6b4a33"/><stop offset="1" stop-color="#34200f"/></linearGradient></defs><g class="soil-root-set" fill="none" stroke="url(#soilRootFade)" stroke-linecap="round" stroke-linejoin="round"><path class="rt rt-1" pathLength="1" stroke-width="5" d="M208 30C180 44 150 52 112 60S46 76 12 84"/><path class="rt rt-1" pathLength="1" stroke-width="5" d="M272 30C300 44 330 52 368 60S434 76 470 84"/><path class="rt rt-1" pathLength="1" stroke-width="4.2" d="M224 31C214 56 196 78 168 96S120 116 92 124"/><path class="rt rt-1" pathLength="1" stroke-width="4.2" d="M256 31C266 56 284 78 312 96S360 116 388 124"/><path class="rt rt-1" pathLength="1" stroke-width="5.2" d="M241 32C242 60 238 86 240 106S238 122 236 130"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M150 54C140 66 128 74 112 80"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M92 68C80 78 66 84 50 96"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M330 54C340 66 352 74 368 80"/><path class="rt rt-2" pathLength="1" stroke-width="2.4" d="M388 68C400 78 414 84 430 96"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M190 84C178 98 170 108 164 120"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M290 84C302 98 310 108 316 120"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M239 96C228 106 220 112 206 118"/><path class="rt rt-2" pathLength="1" stroke-width="2.2" d="M240 100C252 108 262 114 276 120"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M50 96C44 102 40 108 34 112"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M430 96C436 102 440 108 446 112"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M164 120C160 124 157 128 151 131"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M316 120C320 124 323 128 329 131"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M92 124C84 126 76 127 68 130"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M388 124C396 126 404 127 412 130"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M12 84C8 90 6 96 3 100"/><path class="rt rt-3" pathLength="1" stroke-width="1.3" d="M470 84C474 90 476 96 478 100"/></g><g class="soil-stump"><path fill="url(#soilBark)" d="M206 9A34 7.5 0 0 0 274 9L276 19C277 24 280 28 287 31L193 31C200 28 203 24 204 19Z"/><path fill="none" stroke="#2c1a0e" stroke-opacity=".55" stroke-width="1.2" stroke-linecap="round" d="M217 16.5L216 28M231 17.2L230.5 30M249 17.2L249.6 30M263 16.5L264 28"/><ellipse cx="240" cy="9" rx="34" ry="7.5" fill="#e2c99c" stroke="#4a2f1c" stroke-width="3"/><g fill="none" stroke="#b88f5c" stroke-width="1"><ellipse cx="240" cy="9" rx="27" ry="5.9"/><ellipse cx="240.5" cy="9.2" rx="20" ry="4.4"/><ellipse cx="241" cy="9.3" rx="13" ry="2.9"/><ellipse cx="241.4" cy="9.4" rx="6.4" ry="1.5"/></g><circle cx="241.6" cy="9.4" r="1.3" fill="#8a6244"/><path fill="none" stroke="#6b4a33" stroke-width="1" stroke-linecap="round" d="M241.6 9.4L246 7.2L252 6.4L258 4.4"/></g></svg></div>
       <div class="container mx-auto px-4 lg:px-8">
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
@@ -2642,7 +2081,7 @@
           <div class="space-y-4">
             <img
               src="hernandez_images/web_Logo_New_256.png"
-              alt="Hernandez Landscape Logo"
+              alt="Hernandez Landscape Logo" data-i18n-alt="alt.footerLogo"
               class="h-16 w-auto mb-4 bg-white/10 rounded-lg p-2 filter brightness-110"
               width="256"
               height="192"
@@ -2676,9 +2115,7 @@
                 <a
                   href="/"
                   class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
-                  ><i
-                    class="fas fa-chevron-right text-green-600 text-xs mr-2"
-                  ></i>
+                  ><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg>
                   <span data-i18n-key="nav.home">Home</span></a
                 >
               </li>
@@ -2686,9 +2123,7 @@
                 <a
                   href="#services"
                   class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
-                  ><i
-                    class="fas fa-chevron-right text-green-600 text-xs mr-2"
-                  ></i>
+                  ><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg>
                   <span data-i18n-key="nav.services">Services</span></a
                 >
               </li>
@@ -2696,9 +2131,7 @@
                 <a
                   href="/gallery/"
                   class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
-                  ><i
-                    class="fas fa-chevron-right text-green-600 text-xs mr-2"
-                  ></i>
+                  ><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg>
                   <span data-i18n-key="nav.gallery">Our Work</span></a
                 >
               </li>
@@ -2706,9 +2139,7 @@
                 <a
                   href="/videos/"
                   class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
-                  ><i
-                    class="fas fa-chevron-right text-green-600 text-xs mr-2"
-                  ></i>
+                  ><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg>
                   <span data-i18n-key="nav.videos">Videos</span></a
                 >
               </li>
@@ -2716,9 +2147,7 @@
                 <a
                   href="#quote"
                   class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center"
-                  ><i
-                    class="fas fa-chevron-right text-green-600 text-xs mr-2"
-                  ></i>
+                  ><svg class="icon icon-chevron-right text-green-600 text-xs mr-2" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-chevron-right"/></svg>
                   <span data-i18n-key="nav.contact">Contact</span></a
                 >
               </li>
@@ -2735,7 +2164,7 @@
             </h3>
             <ul class="space-y-4">
               <li class="flex items-start">
-                <i class="fas fa-map-marker-alt text-green-500 mt-1 mr-3"></i>
+                <svg class="icon icon-map-marker-alt text-green-500 mt-1 mr-3" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-map-marker-alt"/></svg>
                 <a
                   href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/"
                   target="_blank"
@@ -2746,7 +2175,7 @@
                 </a>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-phone-alt text-green-500 mr-3"></i>
+                <svg class="icon icon-phone-alt text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg>
                 <a
                   href="tel:18155011478"
                   class="text-gray-400 hover:text-white transition-colors font-semibold"
@@ -2755,7 +2184,7 @@
                 </a>
               </li>
               <li class="flex items-center">
-                <i class="fas fa-envelope text-green-500 mr-3"></i>
+                <svg class="icon icon-envelope text-green-500 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-envelope"/></svg>
                 <a
                   href="mailto:hernandezlandscapetreeservices@gmail.com"
                   class="text-gray-400 hover:text-white transition-colors text-sm"
@@ -2764,10 +2193,10 @@
                 </a>
               </li>
               <li class="flex items-start">
-                <i class="fas fa-clock text-green-500 mt-1 mr-3"></i>
+                <svg class="icon icon-clock text-green-500 mt-1 mr-3" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>
                 <div class="text-sm text-gray-400">
-                  <span class="block">Mon-Sat: 8AM - 5PM</span>
-                  <span class="block">Sun: Closed</span>
+                  <span class="block" data-i18n-key="quote.hoursWeekdays">Mon-Sat: 8AM - 5PM</span>
+                  <span class="block" data-i18n-key="quote.hoursSaturday">Sun: Closed</span>
                 </div>
               </li>
             </ul>
@@ -2828,7 +2257,7 @@
                 aria-label="Facebook"
                 class="bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg"
               >
-                <i class="fab fa-facebook-f"></i>
+                <svg class="icon icon-facebook-f" width="0.625em" height="1em" aria-hidden="true" focusable="false"><use href="#i-facebook-f"/></svg>
               </a>
               <a
                 href="https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/"
@@ -2837,7 +2266,7 @@
                 aria-label="Google"
                 class="bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center transition-all transform hover:-translate-y-1 shadow-lg"
               >
-                <i class="fab fa-google"></i>
+                <svg class="icon icon-google" width="0.9531em" height="1em" aria-hidden="true" focusable="false"><use href="#i-google"/></svg>
               </a>
             </div>
           </div>
@@ -2894,6 +2323,14 @@
         >
           Call (815) 501-1478
         </a>
+        <a
+          id="modalTextAction"
+          href="sms:+18155011478"
+          class="mb-3 hidden rounded-full border-2 border-amber-500 px-6 py-2 font-bold text-amber-950 hover:bg-amber-50"
+          data-i18n-key="quote.textLabel"
+        >
+          Send a Text
+        </a>
         <button
           onclick="hideModal()"
           class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition"
@@ -2904,14 +2341,14 @@
       </div>
     </div>
 
-    <button id="backToTopBtn" type="button" aria-label="Back to top">
-      <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    <button id="backToTopBtn" type="button" aria-label="Back to top" data-i18n-aria-label="nav.backToTop">
+      <svg class="icon icon-arrow-up" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up"/></svg>
     </button>
 
-    <script src="assets/js/i18n.js?v=20260923q1" defer></script>
-    <script src="assets/js/main.js?v=20260923q1" defer></script>
+    <script src="assets/js/i18n.js?v=20260925b" defer></script>
+    <script src="assets/js/main.js?v=20260924aa" defer></script>
     <script src="/assets/js/motion.js" defer></script>
-    <script src="assets/js/static-gallery.js?v=2026-07-google-photos" defer></script>
+    <script src="assets/js/static-gallery.js?v=20260924w" defer></script>
 
     <script type="application/ld+json">
       {
@@ -3210,6 +2647,7 @@
     </script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260923q1" defer></script>
+  <script src="/assets/js/price-range-placeholder.js" defer></script>
+  <script src="/assets/js/rings.js?v=20260925a" defer></script>
   </body>
 </html>

@@ -33,7 +33,7 @@ walk(ROOT);
 const references = new Map();
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
-  for (const match of html.matchAll(/data-i18n-(?:key|placeholder|title|aria-label)=["']([^"']+)["']/g)) {
+  for (const match of html.matchAll(/data-i18n-(?:key|placeholder|title|aria-label|alt)=["']([^"']+)["']/g)) {
     const locations = references.get(match[1]) || [];
     locations.push(path.relative(ROOT, file));
     references.set(match[1], locations);

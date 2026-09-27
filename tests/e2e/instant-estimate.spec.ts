@@ -179,25 +179,52 @@ test.describe('Instant estimate lead handoff', () => {
     expect(web3formsRequests).toHaveLength(0);
   });
 
-  test('starter requires the property address and owner confirmation', async ({ page }) => {
+  // Round 4 (research 03 R3): the range needs only service, size and ZIP; the
+  // contact details, address and owner confirmation are required to send.
+  test('the range needs only service, size and ZIP; no modal and no hand-off on its own', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.fill('#instantName', 'Test Lead');
-    await page.fill('#instantPhone', '815-555-0100');
+    await page.click('#calculateQuoteBtn');
+    await expect(page.locator('#quoteResult')).toBeHidden();
+    await expect(page.locator('#quoteCalcError')).toBeVisible();
+    await expect(page.locator('#customModal')).toBeHidden();
+    await expect(page.locator('#serviceType')).toBeFocused();
+    await expect(page.locator('#serviceType')).toHaveAttribute('aria-invalid', 'true');
+
     await page.selectOption('#serviceType', 'tree-service');
-    await page.locator('#quoteForm details').evaluate((details) => {
-      (details as HTMLDetailsElement).open = true;
-    });
     await page.selectOption('#propertySize', 'medium');
     await page.fill('#zipCode', '60115');
     await page.click('#calculateQuoteBtn');
+    await expect(page.locator('#quoteResult')).toBeVisible();
+    await expect(page.locator('#priceRange')).toHaveText('$280 - $420');
+    await expect(page.locator('#quoteCalcError')).toBeHidden();
+    await expect(page.locator('#instantName')).toHaveValue('');
+    await expect(page.locator('#projectDetails')).toHaveValue('');
+    await expect(page.locator('#propertySize')).toHaveAttribute('required', '');
+    await expect(page.locator('#propertySize')).toBeVisible();
 
-    await expect(page.locator('#quoteResult')).not.toBeVisible();
+    await page.click('#sendEstimateBtn');
+    await expect(page.locator('#contactService')).toHaveValue('tree-service');
+    await expect(page.locator('#projectDetails')).toHaveValue(/\$280 - \$420/);
+  });
+
+  test('sending from the price check requires the contact details, address and owner confirmation', async ({ page }) => {
+    const requests: string[] = [];
+    page.on('request', (request) => { if (request.url().includes('web3forms')) requests.push(request.url()); });
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.selectOption('#serviceType', 'tree-service');
+    await page.selectOption('#propertySize', 'medium');
+    await page.fill('#zipCode', '60115');
+    await page.fill('#instantName', 'Test Lead');
+    await page.fill('#instantPhone', '815-555-0100');
+    await page.click('#sendInstantRequestBtn');
+    await expect(page.locator('#quoteSendError')).toBeVisible();
     await expect(page.locator('#propertyAddress')).toBeFocused();
+    await expect(page.locator('#customModal')).toBeHidden();
 
     await page.fill('#propertyAddress', '1234 Main St, DeKalb');
-    await page.click('#calculateQuoteBtn');
-    await expect(page.locator('#quoteResult')).not.toBeVisible();
+    await page.click('#sendInstantRequestBtn');
     await expect(page.locator('#isOwner')).toBeFocused();
+    expect(requests).toHaveLength(0);
   });
 
   test('duplicate bestTime IDs are gone', async ({ page }) => {

@@ -381,7 +381,7 @@ svg {
 .hero-scroll svg {
   width: 22px;
   height: 22px;
-  animation: scroll-cue 1.8s ease-in-out infinite;
+  animation: scroll-cue 1.8s ease-in-out 2; /* round 4: finite (WCAG 2.2.2) */
 }
 
 .hero-enter {

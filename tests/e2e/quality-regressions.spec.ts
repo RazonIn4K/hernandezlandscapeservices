@@ -89,32 +89,24 @@ test.describe('Route-level quality regressions', () => {
 
     const lastVideo = page.locator('.video-grid video').last();
     await lastVideo.scrollIntoViewIfNeeded();
-    await expect(lastVideo).toHaveAttribute('poster', /web_IMG_3611_poster\.jpg$/);
+    // Round 4: posters are the ~40 KB WebP copies from hernandez_images/w/.
+    await expect(lastVideo).toHaveAttribute('poster', /\/w\/web_IMG_3611_poster-480\.webp$/);
     await expect(lastVideo).not.toHaveAttribute('data-poster', /.+/);
   });
 
-  test('Spanish mode localizes menu, slider, and video accessible names', async ({ page }) => {
+  test('the Spanish home localizes menu, slider, strips and image names', async ({ page }) => {
+    // Round 4: /es/ is built in Spanish; the English pages link to it instead of
+    // switching in place (their Spanish link is covered in one-header.spec).
+    await page.goto('/es/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('#mobileMenuButton')).toHaveAttribute('aria-label', 'Abrir menú de navegación');
+    await expect(page.locator('#sliderHandle')).toHaveAttribute('aria-label', 'Mostrar la foto del después');
+    await expect(page.locator('.video-strip')).toHaveAttribute('aria-label', 'Videos de proyectos');
+    await expect(page.locator('#backToTopBtn')).toHaveAttribute('aria-label', 'Volver arriba');
+    await expect(page.locator('img[data-i18n-alt="alt.before"]')).toHaveAttribute('alt', 'Antes del servicio de césped: crecido y desordenado');
+    await expect(page.locator('#latest-uploads-track img').first()).toHaveAttribute('alt', /^Césped terminado/);
     await page.goto('/videos/', { waitUntil: 'domcontentloaded' });
-    await page.locator('[data-lang-switch="es"]:visible').click();
-    await expect(page.locator('#mobileMenuButton')).toHaveAttribute(
-      'aria-label',
-      'Abrir o cerrar el menú móvil',
-    );
-    await expect(page.locator('.video-grid video').first()).toHaveAttribute(
-      'aria-label',
-      'Video del proyecto de Hernandez Landscape 1',
-    );
-    await expect(page.locator('.video-grid video').last()).toHaveAttribute(
-      'aria-label',
-      'Video del proyecto de Hernandez Landscape 38',
-    );
-
-    await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });
-    await page.locator('[data-lang-switch="es"]:visible').click();
-    await expect(page.locator('#sliderHandle')).toHaveAttribute(
-      'aria-label',
-      'Mostrar la foto del después',
-    );
+    await expect(page.locator('[data-lang-switch]')).toHaveCount(0);
+    await expect(page.locator('.video-grid video').first()).not.toHaveAttribute('aria-label', /^Video del proyecto/);
   });
 
   test('public client bundle contains no direct owner-alert webhook', async ({ request }) => {

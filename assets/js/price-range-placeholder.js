@@ -1,7 +1,7 @@
 (() => {
   const PHONE = "(815) 501-1478";
   const EN = `Photo estimate — call or text ${PHONE}`;
-  const ES = `Estimado con foto — llama o manda un mensaje al ${PHONE}`;
+  const ES = `Estimado con foto — llame o envíe un mensaje al ${PHONE}`;
 
   const placeholderText = () =>
     document.documentElement.lang.toLowerCase().startsWith("es") ? ES : EN;

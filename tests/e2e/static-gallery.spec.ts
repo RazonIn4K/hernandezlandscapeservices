@@ -185,8 +185,9 @@ test.describe('Static Gallery Functionality', () => {
   });
 
   test('loads homepage gallery and latest upload images', async ({ page }) => {
-    await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 img');
-    await expect(page.locator('#gallery .grid.md\\:grid-cols-3 img')).toHaveCount(3);
+    // Round 3: the three static work prints open the homepage filmstrip; uploads follow them.
+    await page.waitForSelector('#gallery .filmstrip-track .print--static img');
+    await expect(page.locator('#gallery .filmstrip-track .print--static img')).toHaveCount(3);
 
     // Latest uploads are rendered dynamically by static-gallery.js
     await page.waitForSelector('#latest-uploads-track img');
@@ -460,41 +461,41 @@ test.describe('Static Gallery Functionality', () => {
         : 'Opciones de contacto rápido');
       await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText(emergency ? 'Emergencia' : 'Llamar ahora');
       await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', emergency
-        ? 'Llamar a Hernandez Landscape por una emergencia al (815) 501-1478'
-        : 'Llamar a Hernandez Landscape al (815) 501-1478');
+        ? 'Emergencia: llamar a Hernandez Landscape al (815) 501-1478'
+        : 'Llamar ahora a Hernandez Landscape al (815) 501-1478');
       await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Mensaje');
-      await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveAttribute('aria-label', 'Enviar un mensaje a Hernandez Landscape al (815) 501-1478');
+      await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveAttribute('aria-label', 'Mensaje a Hernandez Landscape al (815) 501-1478');
       await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Cotización gratis');
-      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('aria-label', 'Solicitar una cotización gratis');
-      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '/?lang=es#quote');
+      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).not.toHaveAttribute('aria-label', /.*/);
+      // Round 4: /es/ has the request form itself; other Spanish pages link to it.
+      await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', path === '/es/' ? '#quote' : '/es/#quote');
       expect(await callCta.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(1);
     }
 
     await page.locator('[data-mobile-call-cta-estimate]').click();
-    await expect(page).toHaveURL(/\/\?lang=es#quote$/);
+    await expect(page).toHaveURL(/\/es\/#quote$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'es');
     await expect(page.locator('#quote')).toBeInViewport();
   });
 
-  test('mobile call CTA follows homepage language changes', async ({ page }) => {
+  test('mobile call CTA speaks the language of each home', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await page.goto('/es/', { waitUntil: 'domcontentloaded' });
     const callCta = page.locator('[data-mobile-call-cta]');
 
-    await page.locator('[data-lang-switch="es"]:visible').first().click();
     await expect(callCta).toHaveAttribute('aria-label', 'Opciones de contacto rápido');
     await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText('Llamar ahora');
     await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Mensaje');
     await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Cotización gratis');
     await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '#quote');
 
-    await page.locator('[data-lang-switch="en"]:visible').first().click();
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(callCta).toHaveAttribute('aria-label', 'Quick contact options');
     await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveText('Call Now');
-    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', 'Call Hernandez Landscape now at (815) 501-1478');
+    await expect(callCta.locator('[data-mobile-call-cta-call]')).toHaveAttribute('aria-label', 'Call Now, Hernandez Landscape at (815) 501-1478');
     await expect(callCta.locator('[data-mobile-call-cta-text]')).toHaveText('Text');
     await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveText('Free Estimate');
-    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('aria-label', 'Request a free estimate');
+    await expect(callCta.locator('[data-mobile-call-cta-estimate]')).not.toHaveAttribute('aria-label', /.*/);
     await expect(callCta.locator('[data-mobile-call-cta-estimate]')).toHaveAttribute('href', '#quote');
   });
 
@@ -564,14 +565,16 @@ test.describe('Static Gallery Functionality', () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
 
       await page.goto('/', { waitUntil: 'domcontentloaded' });
-      await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
+      await page.waitForSelector('#gallery .filmstrip-track .print');
 
       const homeOverflow = await page.evaluate(() =>
         document.documentElement.scrollWidth - document.documentElement.clientWidth
       );
       expect(homeOverflow, `Home overflow at ${viewport.name}`).toBeLessThanOrEqual(1);
 
-      const homeSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
+      // All nine filmstrip prints (static + uploads) share one height.
+      await page.waitForFunction(() => document.querySelectorAll('#gallery .filmstrip-track .print').length === 9);
+      const homeSpread = await getCardHeightSpread(page, '#gallery .filmstrip-track .print');
       expect(homeSpread, `Home card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
 
       await page.goto('/gallery/', { waitUntil: 'domcontentloaded' });
@@ -587,39 +590,28 @@ test.describe('Static Gallery Functionality', () => {
         const gallerySpread = await getCardHeightSpread(page, '.gallery-item');
         expect(gallerySpread, `Gallery card height spread at ${viewport.name}`).toBeLessThanOrEqual(1);
       } else {
-        await page.waitForSelector('#gallery .grid.md\\:grid-cols-3 > div');
-        const fallbackSpread = await getCardHeightSpread(page, '#gallery .grid.md\\:grid-cols-3 > div');
+        await page.waitForSelector('#gallery .filmstrip-track .print');
+        const fallbackSpread = await getCardHeightSpread(page, '#gallery .filmstrip-track .print');
         expect(fallbackSpread, `Fallback gallery spread at ${viewport.name}`).toBeLessThanOrEqual(1);
       }
     }
   });
 
-  test('language toggle functionality', async ({ page }) => {
+  test('the language link moves between the English and Spanish homes', async ({ page }) => {
+    // Round 4: each language has its own URL; the link replaces the in-place toggle.
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.evaluate(() => {
-      window.localStorage.clear();
-      window.sessionStorage.clear();
-    });
-    await page.reload({ waitUntil: 'domcontentloaded' });
-
-    // Check language toggle buttons exist
-    const enButton = page.getByRole('button', { name: 'Use English' }).first();
-    const esButton = page.getByRole('button', { name: 'Usar español' }).first();
-    
-    await expect(enButton).toBeVisible();
-    await expect(esButton).toBeVisible();
-    await expect(enButton).toHaveAttribute('aria-pressed', 'true');
-    
-    // Test switching to Spanish
-    await esButton.click();
-    await expect(esButton).toHaveAttribute('aria-pressed', 'true');
+    const toSpanish = page.locator('#header .lang-link:visible');
+    await expect(toSpanish).toHaveText('Español');
+    await expect(toSpanish).toHaveAttribute('hreflang', 'es');
+    await toSpanish.click();
+    await expect(page).toHaveURL(/\/es\/$/);
     await expect(page.locator('[data-i18n-key="hero.emergency"]')).toContainText('Daños por tormenta');
     await expect(page.locator('[data-i18n-key="faq.heading"]')).toHaveText('Preguntas frecuentes');
     await expect(page.locator('[data-i18n-key="quote.label.phone"]')).toHaveText('Número de teléfono');
-    
-    // Test switching back to English
-    await enButton.click();
-    await expect(enButton).toHaveAttribute('aria-pressed', 'true');
+
+    await page.locator('#header .lang-link:visible').click();
+    await expect(page).toHaveURL(/\/$/);
+    await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   });
 
   test('homepage exposes landmarks, skip navigation, and an operable FAQ', async ({ page }) => {
@@ -646,7 +638,7 @@ test.describe('Static Gallery Functionality', () => {
 
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
     await expect(page.locator('body')).toHaveAttribute('data-language', 'en');
-    await expect(page.getByRole('button', { name: 'Use English' }).first()).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('#header .lang-link').first()).toHaveAttribute('href', '/es/');
     await expect(page.locator('[data-i18n-key="hero.cta"]').first()).toContainText('See Starting Range');
 
     const storedLanguage = await page.evaluate(() => ({
@@ -654,19 +646,16 @@ test.describe('Static Gallery Functionality', () => {
       session: window.sessionStorage.getItem('siteLanguage'),
     }));
 
+    // Round 4: no language preference is stored; each language has its own URL.
     expect(storedLanguage).toEqual({
       local: null,
-      session: 'en',
+      session: null,
     });
   });
 
-  test('language toggle translates quote prefill notice', async ({ page }) => {
-    await page.goto('/?service=tree-service#quote', { waitUntil: 'commit' });
+  test('the Spanish home writes the quote prefill notice in Spanish', async ({ page }) => {
+    await page.goto('/es/?service=tree-service#quote', { waitUntil: 'commit' });
     await page.waitForSelector('#quotePrefillNotice:not(.hidden)');
-
-    const esButton = page.locator('nav .hidden.lg\\:flex [data-lang-switch="es"]');
-    await expect(esButton).toBeVisible();
-    await esButton.click();
 
     await expect(page.locator('#quotePrefillText')).toContainText('Servicio seleccionado: Servicio de árboles');
     await page.waitForFunction(() => {

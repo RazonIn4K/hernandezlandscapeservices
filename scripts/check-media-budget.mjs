@@ -85,6 +85,22 @@ for (const asset of referencedAssets.values()) {
   checkFile(asset.type, asset.relPath, BUDGETS[asset.type]);
 }
 
+// Round 4: right-sized WebP variants (hernandez_images/w/) and ~40 KB posters stay light.
+const VARIANT_BUDGETS = { 480: 150 * KB, 800: 350 * KB, 1200: 500 * KB };
+const POSTER_SMALL_BUDGET = 100 * KB;
+const variantPath = (src, width) =>
+  `hernandez_images/w/${path.basename(src).replace(/\.[^.]+$/, '')}-${width}.webp`;
+let variantFiles = 0;
+let smallPosterTotal = 0;
+for (const item of items) {
+  if (!Object.values(surfaces).filter(Array.isArray).some((ids) => ids.includes(item.id))) continue;
+  for (const width of Array.isArray(item.variants) ? item.variants : []) {
+    checkFile(`variant ${width}w`, variantPath(item.src, width), VARIANT_BUDGETS[width] ?? BUDGETS.image);
+    variantFiles += 1;
+  }
+  if (item.posterSmall) smallPosterTotal += checkFile('posterSmall', item.posterSmall, POSTER_SMALL_BUDGET);
+}
+
 const homeGalleryTotal = surfaceItems('homeGallery')
   .filter((item) => item.type === 'image')
   .reduce((sum, item) => sum + sizeOf(item.src), 0);
@@ -110,6 +126,7 @@ console.log(`Media budget: ${referencedAssets.size} referenced files checked`);
 console.log(`  homeGallery images: ${fmt(homeGalleryTotal)} / ${fmt(BUDGETS.homeGalleryTotal)}`);
 console.log(`  galleryPage images: ${fmt(galleryPageImagesTotal)} / ${fmt(BUDGETS.galleryPageImagesTotal)}`);
 console.log(`  videosPage videos: ${fmt(videosPageTotal)} / ${fmt(BUDGETS.videosPageTotal)}`);
+console.log(`  right-sized variants checked: ${variantFiles}; small posters total: ${fmt(smallPosterTotal)}`);
 
 if (failures.length) {
   console.error(`Media budget failed with ${failures.length} issue(s):`);

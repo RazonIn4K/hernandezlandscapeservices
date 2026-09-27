@@ -35,6 +35,15 @@ regenerates all the places that media appears, so the pages never drift apart.
      - `videosPage` → video cards on `videos/index.html`
      - `sitemapGalleryImages` / `sitemapVideos` → media entries in
        `sitemap.xml` under the /gallery/ and /videos/ URLs
+   - Right-sized variants (round 4): run `python scripts/make_image_variants.py`
+     (local-only, needs Pillow). It writes 480/800/1200 px WebP copies of each
+     gallery/home photo (only widths below the original) and a ~40 KB 480 px
+     WebP of each video poster into `hernandez_images/w/`, and prints the
+     `size`, `variants` and `posterSmall` values to record on the item. The
+     generator then emits `srcset`/`sizes` (the original stays the largest
+     candidate and the `src`), the small poster, and the filmstrip data.
+     `npm run media:budget` checks the variants (480w <= 150 KB, 800w <= 350 KB)
+     and the small posters (<= 100 KB).
 4. **Regenerate**:
 
    ```sh
