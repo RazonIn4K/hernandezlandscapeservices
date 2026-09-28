@@ -227,6 +227,32 @@ test.describe('Instant estimate lead handoff', () => {
     expect(requests).toHaveLength(0);
   });
 
+  for (const path of ['/', '/es/']) {
+    test(`direct price-check request rejects short and punctuation-only phones on ${path}`, async ({ page }) => {
+      const requests: string[] = [];
+      await page.route('**/api.web3forms.com/**', (route) => {
+        requests.push(route.request().url());
+        return route.abort();
+      });
+      await page.goto(path);
+      await page.locator('#serviceType').selectOption('tree-service');
+      await page.locator('#propertySize').selectOption('medium');
+      await page.locator('#zipCode').fill('60115');
+      await page.locator('#instantName').fill('Test Lead');
+      await page.locator('#propertyAddress').fill('123 Main St, DeKalb, IL');
+      await page.locator('#isOwner').check();
+
+      for (const phone of ['815-501-147', '----------']) {
+        await page.locator('#instantPhone').fill(phone);
+        await page.locator('#sendInstantRequestBtn').click();
+        await expect(page.locator('#quoteSendError')).toBeVisible();
+        await expect(page.locator('#instantPhone')).toHaveAttribute('aria-invalid', 'true');
+        await expect(page.locator('#customModal')).toBeHidden();
+        expect(requests).toHaveLength(0);
+      }
+    });
+  }
+
   test('duplicate bestTime IDs are gone', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#bestTime')).toHaveCount(1);

@@ -263,7 +263,6 @@
         "Enter a few details for a starting range, then send your request in one step. Final pricing is confirmed on site.",
       "instant.privacy":
         "Send Free Estimate Request submits your lead now. Starting range is optional guidance only.",
-      "instant.result.send": "Add more details below",
       "alerts.instant.sendMissing":
         "Please enter your name, mobile number, service, address, and ZIP code.",
       "alerts.instant.sendSuccess":
@@ -661,7 +660,6 @@
       "instant.result.disclaimer":
         "Este rango inicial ayuda a orientar. El precio final depende del acceso, alcance, retiro de material y evaluación en sitio.",
       "instant.result.call": "Llame para una cotización exacta",
-      "instant.result.send": "Agregar más detalles abajo",
       "instant.privacy":
         "Enviar solicitud de cotización gratis envía su pedido ahora. El rango inicial es solo una guía.",
       "alerts.instant.sendMissing":
@@ -820,7 +818,7 @@
       "serviceArea.heading": "Zonas en las que trabajamos",
       "serviceArea.subheading": "Orgullosos de servir al condado de DeKalb",
       "serviceArea.description":
-        "Con base en DeKalb, ofrecemos servicios profesionales de jardinería y árboles en todo el condado. Respuesta rápida y precios competitivos para cada zona.",
+        "Con base en DeKalb, atendemos el condado de DeKalb. Indíquenos su dirección y proyecto para confirmar zona, disponibilidad y precio.",
       "serviceArea.primaryHeading": "Zonas principales:",
       "serviceArea.secondaryHeading": "También atendemos:",
       "serviceArea.info":

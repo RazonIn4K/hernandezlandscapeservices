@@ -86,6 +86,44 @@ test.describe('Hero weather follows the season hook', () => {
     for (const left of lefts) expect(left).toBeGreaterThanOrEqual(390 * 0.5);
   });
 
+  test('particles retain resolved positions and sizes at phone and desktop widths', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    for (const [viewport, leftBase, leftSpan, scale, topBase, topSpan] of [
+      [390, 58, 20, 1.1, 62, 30],
+      [1440, 63, 26, 1.7, 34, 58],
+    ] as const) {
+      await page.setViewportSize({ width: viewport, height: 844 });
+      for (const [month, selector, x, size, y] of [
+        ['9', '.wx-leaf', 0.10, 26, null],
+        ['0', '.wx-flake', 0.06, 7, null],
+        ['4', '.wx-petal', 0.12, 20, null],
+        ['7', '.wx-fly', 0.10, 30, 0.62],
+      ] as const) {
+        await page.goto(`/?month=${month}`, { waitUntil: 'domcontentloaded' });
+        const particle = page.locator(`#home .wx-sky ${selector}`).first();
+        await expect(particle).toBeVisible();
+        const metrics = await particle.evaluate((el) => {
+          const style = getComputedStyle(el);
+          const sky = el.parentElement!;
+          return {
+            left: parseFloat(style.left),
+            top: parseFloat(style.top),
+            width: parseFloat(style.width),
+            height: parseFloat(style.height),
+            skyWidth: sky.clientWidth,
+            skyHeight: sky.clientHeight,
+          };
+        });
+        expect(metrics.left).toBeCloseTo(metrics.skyWidth * (leftBase + x * leftSpan) / 100, 0);
+        expect(metrics.width).toBeCloseTo(size * scale, 1);
+        expect(metrics.height).toBeCloseTo(size * scale, 1);
+        if (y !== null) {
+          expect(metrics.top).toBeCloseTo(metrics.skyHeight * (topBase + y * topSpan) / 100, 0);
+        }
+      }
+    }
+  });
+
   test('reduced motion draws the settled scene with no movement', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/?month=0', { waitUntil: 'domcontentloaded' });

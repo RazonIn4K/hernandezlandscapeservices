@@ -1699,11 +1699,6 @@ html[data-season="winter"] { --season-glow: #a9d3ee; }
   z-index: 1;
   /* Phones and tablets: six particles in the right-hand strip, low in the
      hero, behind the text layer. */
-  --x0: 58%;
-  --xspan: 20%;
-  --y0: 62%;
-  --yspan: 30%;
-  --k: 1.1;
   opacity: 0.75;
 }
 .wx-sky .wx-p:nth-of-type(n+7) { display: none; }
@@ -1712,9 +1707,10 @@ html[data-season="winter"] { --season-glow: #a9d3ee; }
 .wx-ground svg { display: block; width: 100%; height: 100%; }
 .wx-p {
   position: absolute;
-  left: calc(var(--x0) + var(--x) * var(--xspan));
-  width: calc(var(--s) * var(--k) * 1px);
-  height: calc(var(--s) * var(--k) * 1px);
+  /* rings.js supplies resolved values so older calc() parsers draw particles. */
+  left: var(--wx-left-sm);
+  width: var(--wx-size-sm);
+  height: var(--wx-size-sm);
   animation-timing-function: cubic-bezier(0.3, 0.1, 0.35, 1);
   animation-iteration-count: 1;
   animation-fill-mode: both;
@@ -1725,15 +1721,17 @@ html[data-season="winter"] { --season-glow: #a9d3ee; }
 .wx-k2 { animation-name: wx-fall-2; animation-duration: 3.4s; transform: rotate(-150deg); }
 .wx-k3 { animation-name: wx-fall-3; animation-duration: 3.7s; transform: rotate(95deg); }
 .wx-k4 { animation-name: wx-fall-4; animation-duration: 3.5s; transform: rotate(-35deg); }
-.wx-fly { top: calc(var(--y0) + var(--y) * var(--yspan)); animation-duration: 4s; animation-timing-function: ease-in-out; }
+.wx-fly { top: var(--wx-top-sm); animation-duration: 4s; animation-timing-function: ease-in-out; }
 .wx-fly.wx-k1 { animation-name: wx-glow-1; opacity: 0.55; transform: translate3d(20px, -16px, 0); }
 .wx-fly.wx-k2 { animation-name: wx-glow-2; opacity: 0.5; transform: translate3d(-18px, -12px, 0); }
 .wx-fly.wx-k3 { animation-name: wx-glow-3; opacity: 0.6; transform: translate3d(14px, -22px, 0); }
 @media (min-width: 1280px) {
   /* Desktop: ten particles in the ring column, in front of the ring, never
      over the headline or the calls to action; they fall the full hero. */
-  .wx-sky { z-index: 11; --x0: 63%; --xspan: 26%; --y0: 34%; --yspan: 58%; --k: 1.7; opacity: 1; }
+  .wx-sky { z-index: 11; opacity: 1; }
   .wx-sky .wx-p:nth-of-type(n+7) { display: block; }
+  .wx-p { left: var(--wx-left-lg); width: var(--wx-size-lg); height: var(--wx-size-lg); }
+  .wx-fly { top: var(--wx-top-lg); }
   .wx-k1 { animation-name: wx-fall-1d; }
   .wx-k2 { animation-name: wx-fall-2d; }
   .wx-k3 { animation-name: wx-fall-3d; }

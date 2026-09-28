@@ -247,7 +247,7 @@
           });
         })
         .then(function (data) {
-          if (data.success) {
+          if (data.success === true) {
             showSuccess();
           } else {
             restoreButton();

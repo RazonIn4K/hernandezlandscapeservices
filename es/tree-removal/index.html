@@ -33,7 +33,7 @@
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#153b2f" />
 
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260924ab" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20260927a" />
     <!-- Growth Rings: self-hosted fonts and icons, then the design layer -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -138,7 +138,7 @@
                   <li><svg class="icon icon-clipboard-list w-6" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-clipboard-list"/></svg> Alcance del proyecto confirmado antes de comenzar</li>
                   <li><svg class="icon icon-hard-hat w-6" width="1.125em" height="1em" aria-hidden="true" focusable="false"><use href="#i-hard-hat"/></svg> Escaladores y cuadrilla con experiencia</li>
                   <li><svg class="icon icon-truck-pickup w-6" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-truck-pickup"/></svg> Equipo profesional</li>
-                  <li><svg class="icon icon-broom w-6" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-broom"/></svg> Limpieza completa de escombros</li>
+                  <li><svg class="icon icon-broom w-6" width="1.25em" height="1em" aria-hidden="true" focusable="false"><use href="#i-broom"/></svg> Acarreo y limpieza disponibles</li>
                 </ul>
               </div>
 
@@ -228,7 +228,7 @@
                   autocomplete="tel"
                   inputmode="tel"
                   maxlength="25"
-                  pattern="^\+?[0-9 \(\)\-]{10,}$"
+                  pattern="^\+?(?:[ \(\)\-]*[0-9]){10,}[ \(\)\-]*$"
                   title="Ingrese un teléfono válido"
                   class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600"
                   required
@@ -302,7 +302,7 @@
               </div>
               <div>
                 <h3 class="font-bold text-lg text-gray-800">¿Limpian los escombros después de retirar un árbol?</h3>
-                <p class="text-gray-600">Sí. La limpieza completa es parte estándar del servicio. Acarreamos la madera y dejamos el área rastrillada.</p>
+                <p class="text-gray-600">El acarreo de madera y la limpieza pueden incluirse con el retiro de árboles. Confirmaremos el alcance en su cotización antes de empezar el trabajo.</p>
               </div>
               <div>
                 <h3 class="font-bold text-lg text-gray-800">¿También pueden moler el tocón?</h3>
@@ -464,7 +464,7 @@
               "name": "¿Limpian los escombros después de retirar un árbol?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Sí. La limpieza completa es parte estándar del servicio. Acarreamos la madera y dejamos el área rastrillada."
+                "text": "El acarreo de madera y la limpieza pueden incluirse con el retiro de árboles. Confirmaremos el alcance en su cotización antes de empezar el trabajo."
               }
             },
             {
@@ -483,8 +483,8 @@
     <script src="/assets/js/service-nav.js" defer></script>
     <script src="/assets/js/analytics.js" defer></script>
     <script src="/assets/js/mobile-call-cta.js" defer></script>
-    <script src="/assets/js/emergency-dispatch.js" defer></script>
-    <script src="/assets/js/motion.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260925a" defer></script>
+    <script src="/assets/js/emergency-dispatch.js?v=20260927a" defer></script>
+    <script src="/assets/js/motion.js?v=20260927a" defer></script>
+  <script src="/assets/js/rings.js?v=20260927a" defer></script>
   </body>
 </html>

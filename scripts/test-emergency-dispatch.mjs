@@ -319,6 +319,24 @@ for (const lang of ['en', 'es-MX']) {
     assert.doesNotMatch(client.status.innerHTML, /24\/7|answered|atendemos/i);
   });
 
+  await test(`${lang}: a string false receipt does not erase an emergency request`, async () => {
+    const client = clientForm({ lang, replies: [new Response('{"success":"false"}', { status: 200 })] });
+    const original = client.button.textContent;
+    await client.submit();
+    assert.equal(client.state.calls.length, 1);
+    assert.equal(client.state.panel, null);
+    assert.equal(client.fields.name.value, 'Test Customer');
+    assert.equal(client.fields.phone.value, '8155550142');
+    assert.equal(client.fields.details.value, 'Test request');
+    assert.equal(client.button.disabled, false);
+    assert.equal(client.button.textContent, original);
+    assert.equal(client.form.getAttribute('aria-busy'), null);
+    assert.equal(client.status.getAttribute('role'), 'alert');
+    assert.match(client.status.innerHTML, spanish ? /No pudimos confirmar el envío/ : /couldn't confirm that your request was sent/);
+    assert.match(client.status.innerHTML, /tel:18155011478/);
+    assert.match(client.status.innerHTML, /sms:\+18155011478/);
+  });
+
   await test(`${lang}: geolocation requires a click and localizes both outcomes`, async () => {
     const client = clientForm({ lang, geolocation: true });
     assert.equal(client.state.geoCalls, 0);
