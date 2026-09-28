@@ -85,3 +85,33 @@ test('a sent Spanish request does not claim an appointment or callback deadline'
   await expect(page.locator('#modalMessage')).not.toContainText('24 horas');
   expect(submitted).toBe(true);
 });
+
+for (const path of ['/', '/es/']) {
+  test(`quote form rejects phone numbers with fewer than 10 digits on ${path}`, async ({ page }) => {
+    const submissions: string[] = [];
+    await page.route('**/api.web3forms.com/**', (route) => {
+      submissions.push(route.request().url());
+      return route.abort();
+    });
+    await page.goto(path);
+    await page.locator('#contactName').fill('Test Lead');
+    await page.locator('#contactAddress').fill('123 Main St, DeKalb, IL');
+    await page.locator('#ownerVerify').check();
+    await page.locator('#bestTime').selectOption('afternoon');
+    await page.locator('#contactService').selectOption('lawn-care');
+    await page.locator('#projectDetails').fill('Please quote lawn care.');
+
+    for (const phone of ['815-501-147', '----------']) {
+      await page.locator('#contactPhone').fill(phone);
+      await page.locator('#contactForm button[type="submit"]').click();
+      await expect(page.locator('#contactPhoneError')).toBeVisible();
+      await expect(page.locator('#contactPhone')).toHaveAttribute('aria-invalid', 'true');
+      await expect(page.locator('#customModal')).toBeHidden();
+      expect(submissions).toHaveLength(0);
+    }
+
+    await page.locator('#contactPhone').fill('815-555-0100');
+    await expect(page.locator('#contactPhoneError')).toBeHidden();
+    await expect(page.locator('#contactPhone')).not.toHaveAttribute('aria-invalid', 'true');
+  });
+}

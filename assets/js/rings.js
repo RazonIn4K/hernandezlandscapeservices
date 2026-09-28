@@ -313,8 +313,12 @@
   function particle(cls, p, draw) {
     var span = document.createElement('span');
     span.className = 'wx-p ' + cls + ' wx-k' + p[4];
-    span.style.setProperty('--x', String(p[0]));
-    span.style.setProperty('--s', String(p[1]));
+    /* Keep arithmetic in JS: CSS calc() multiplication is unavailable in
+       some browsers, and invalid positions/sizes can stack these SVGs. */
+    span.style.setProperty('--wx-left-sm', (58 + p[0] * 20).toFixed(2) + '%');
+    span.style.setProperty('--wx-left-lg', (63 + p[0] * 26).toFixed(2) + '%');
+    span.style.setProperty('--wx-size-sm', (p[1] * 1.1).toFixed(2) + 'px');
+    span.style.setProperty('--wx-size-lg', (p[1] * 1.7).toFixed(2) + 'px');
     span.style.animationDelay = p[3] + 's';
     var art = svg('svg', { viewBox: '0 0 32 32', focusable: 'false', 'aria-hidden': 'true' });
     draw(art, p);
@@ -362,7 +366,8 @@
           a.appendChild(svg('circle', { cx: '16', cy: '16', r: '15', fill: 'url(#wxGlow)' }));
           a.appendChild(svg('circle', { cx: '16', cy: '16', r: '2.6', fill: '#fffbe0' }));
         });
-        span.style.setProperty('--y', String(p[2]));
+        span.style.setProperty('--wx-top-sm', (62 + p[2] * 30).toFixed(2) + '%');
+        span.style.setProperty('--wx-top-lg', (34 + p[2] * 58).toFixed(2) + '%');
         sky.appendChild(span);
       });
     }

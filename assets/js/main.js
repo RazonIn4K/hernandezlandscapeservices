@@ -185,7 +185,12 @@ function scrollElementBelowHeader(elementId) {
   const header = document.getElementById("header");
   const headerHeight = header ? header.getBoundingClientRect().height : 0;
   const targetTop = target.getBoundingClientRect().top + window.scrollY;
-  window.scrollTo(0, Math.max(targetTop - headerHeight - 16, 0));
+  // Service-page handoffs should land at the form immediately. The page's
+  // smooth-scroll CSS otherwise animates repeated stabilization jumps.
+  window.scrollTo({
+    top: Math.max(targetTop - headerHeight - 16, 0),
+    behavior: "instant",
+  });
 }
 
 const quoteFormTarget = "quoteFormCard";
@@ -436,6 +441,10 @@ function countUrls(value) {
   return (value.match(/https?:\/\/|www\./gi) || []).length;
 }
 
+function hasTenPhoneDigits(field) {
+  return String(field?.value || "").replace(/\D/g, "").length >= 10;
+}
+
 /**
  * Classify a lead submission.
  * - "block": high-confidence bot signals (honeypot field or botcheck box) are
@@ -651,7 +660,7 @@ async function sendInstantEstimateRequest() {
     !service?.value && service,
     (!zip?.value?.trim() || !zip.checkValidity()) && zip,
     !instantName?.value?.trim() && instantName,
-    (!instantPhone?.value?.trim() || !instantPhone.checkValidity()) && instantPhone,
+    (!instantPhone?.value?.trim() || !instantPhone.checkValidity() || !hasTenPhoneDigits(instantPhone)) && instantPhone,
     !propertyAddress?.value?.trim() && propertyAddress,
     isOwner && !isOwner.checked && isOwner,
   ].filter(Boolean);
@@ -826,6 +835,7 @@ if (contactForm) {
     if (field.type === "checkbox") return true;
     const value = String(field.value || "");
     if (field.required && !value.trim()) return false;
+    if (field.id === "contactPhone" && !hasTenPhoneDigits(field)) return false;
     // A town chip leaves ", Town, IL" until the street is typed in front of it.
     if (field.id === "contactAddress" && /^\s*,/.test(value)) return false;
     return true;
@@ -947,7 +957,8 @@ if (contactForm) {
   );
   ["input", "change"].forEach((eventName) => {
     contactForm.addEventListener(eventName, (event) => {
-      if (event.target.validity?.valid) {
+      if (event.target.validity?.valid &&
+          (event.target.id !== "contactPhone" || hasTenPhoneDigits(event.target))) {
         event.target.removeAttribute("aria-invalid");
         event.target.classList.remove("border-red-500");
       }

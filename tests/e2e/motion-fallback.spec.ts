@@ -14,7 +14,7 @@ for (const route of ['/', '/tree-removal/', '/lawn-care/', '/es/tree-removal/'])
 }
 
 test('homepage content stays readable if motion script fails', async ({ page }) => {
-  await page.route('**/assets/js/motion.js', (route) => route.abort());
+  await page.route('**/assets/js/motion.js*', (route) => route.abort());
   await page.goto('/');
   expect(await page.locator('.reveal').evaluateAll((elements) =>
     elements.filter((element) => getComputedStyle(element).opacity === '0').length,

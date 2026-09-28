@@ -27,7 +27,9 @@
         });
       },
       {
-        threshold: 0.12,
+        // A full service card can be taller than a phone viewport. Requiring
+        // 12% of that card to fit at once can leave its content hidden.
+        threshold: 0.01,
         rootMargin: "0px 0px -8% 0px",
       },
     );

@@ -404,6 +404,33 @@ test.describe('Static Gallery Functionality', () => {
     expect(positions.quoteHeadingTop).toBeLessThanOrEqual(positions.viewportHeight);
   });
 
+  test('mobile service links show the quote form promptly in both languages', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 900 });
+    for (const path of ['/?service=tree-service#quote', '/es/?service=snow-removal#quote']) {
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      await expect.poll(async () => page.evaluate(() => {
+        const card = document.getElementById('quoteFormCard');
+        const header = document.getElementById('header');
+        const top = card?.getBoundingClientRect().top ?? Infinity;
+        const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
+        return top >= headerBottom && top < 240;
+      }), { timeout: 1000 }).toBe(true);
+    }
+  });
+
+  test('tree service page quote links preserve the service when opened', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 900 });
+    for (const path of ['/emergency-tree-removal/', '/tree-trimming-stump-grinding/']) {
+      await page.goto(path);
+      await page.locator('a[href="/?service=tree-service#quote"]').click();
+      await expect(page).toHaveURL(/\/\?service=tree-service#quote$/);
+      await expect(page.locator('#contactService')).toHaveValue('tree-service');
+      await expect.poll(() => page.locator('#quoteFormCard').evaluate(
+        (card) => card.getBoundingClientRect().top,
+      )).toBeLessThan(240);
+    }
+  });
+
   test('testimonials section shows a sourced public review', async ({ page }) => {
     const testimonials = page.locator('#testimonials');
 
