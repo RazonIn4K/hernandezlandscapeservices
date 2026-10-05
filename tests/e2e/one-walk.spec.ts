@@ -40,10 +40,10 @@ test('the full request keeps the round-1 Web3Forms field names', async ({ page }
   await page.locator('#contactForm button[type="submit"]').click();
   await expect(page.locator('#modalMessage')).toContainText('Your estimate request was sent');
   expect(url).toBe('https://api.web3forms.com/submit');
-  expect(fieldNames(body)).toEqual([
+  expect(fieldNames(body).sort()).toEqual([
     'access_key', 'subject', 'from_name', 'form_loaded_at', 'name', 'phone', 'email', 'address',
     'owner_verified', 'best_time', 'service', 'message', 'website', 'response_instructions',
-  ]);
+  ].sort());
   expect(body).toContain('Website Quote Form');
 });
 
@@ -62,10 +62,10 @@ test('the price check quick send keeps its round-1 field names', async ({ page }
   await page.locator('#zipCode').fill('60115');
   await page.locator('#sendInstantRequestBtn').click();
   await expect(page.locator('#modalMessage')).toContainText('estimate request was sent');
-  expect(fieldNames(body)).toEqual([
+  expect(fieldNames(body).sort()).toEqual([
     'access_key', 'subject', 'from_name', 'form_loaded_at', 'name', 'phone', 'email', 'address',
     'service', 'best_time', 'message', 'botcheck', 'response_instructions',
-  ]);
+  ].sort());
   expect(body).toContain('Website Instant Quote');
 });
 

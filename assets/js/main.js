@@ -135,6 +135,7 @@ const SERVICE_PREFILLS = {
 
 const quotePrefillNotice = document.getElementById("quotePrefillNotice");
 const quotePrefillText = document.getElementById("quotePrefillText");
+const quotePrefillStatus = document.getElementById("quotePrefillStatus");
 let activePrefillService = null;
 
 function renderQuotePrefillNotice(serviceKey) {
@@ -146,12 +147,17 @@ function renderQuotePrefillNotice(serviceKey) {
   if (!prefill) {
     quotePrefillText.textContent = "";
     quotePrefillNotice.classList.add("hidden");
+    if (quotePrefillStatus) quotePrefillStatus.textContent = "";
     return;
   }
 
   const label = getMessage(prefill.labelKey, prefill.fallbackLabel);
-  quotePrefillText.textContent = `${getMessage("quote.prefill.prefix", "Selected service:")} ${label}`;
+  const message = `${getMessage("quote.prefill.prefix", "Selected service:")} ${label}`;
+  quotePrefillText.textContent = message;
   quotePrefillNotice.classList.remove("hidden");
+  if (quotePrefillStatus && quotePrefillStatus.textContent !== message) {
+    quotePrefillStatus.textContent = message;
+  }
 }
 
 function applyQuotePrefill(serviceKey) {
@@ -173,6 +179,7 @@ function applyQuotePrefill(serviceKey) {
   contactService.classList.remove("border-red-500");
   activePrefillService = serviceKey;
   renderQuotePrefillNotice(serviceKey);
+  contactService.dispatchEvent(new Event("change", { bubbles: true }));
   return true;
 }
 
@@ -197,55 +204,100 @@ const quoteFormTarget = "quoteFormCard";
 const isQuoteFormHash = () =>
   window.location.hash === "#quote" || window.location.hash === "#quoteFormCard";
 
-let activeScrollStabilizer = null;
-let activeScrollStabilizerTimer = null;
+let cancelActiveScrollStabilizer = null;
 
 function scheduleScrollElementBelowHeader(elementId) {
-  const scrollToElement = () => scrollElementBelowHeader(elementId);
+  cancelActiveScrollStabilizer?.();
+  let cancelled = false;
+  let observer = null;
+  let frame = null;
+  let onLoad = null;
+  const timers = new Set();
+  const interactionEvents = ["wheel", "touchstart", "keydown", "pointerdown"];
+  const cancel = () => {
+    cancelled = true;
+    observer?.disconnect();
+    if (frame !== null) window.cancelAnimationFrame(frame);
+    timers.forEach((timer) => window.clearTimeout(timer));
+    timers.clear();
+    if (onLoad) window.removeEventListener("load", onLoad);
+    interactionEvents.forEach((name) => window.removeEventListener(name, cancel, true));
+    if (cancelActiveScrollStabilizer === cancel) cancelActiveScrollStabilizer = null;
+  };
+  cancelActiveScrollStabilizer = cancel;
+  const scrollToElement = () => {
+    if (!cancelled) scrollElementBelowHeader(elementId);
+  };
+  const later = (callback, delay) => {
+    const timer = window.setTimeout(() => {
+      timers.delete(timer);
+      if (!cancelled) callback();
+    }, delay);
+    timers.add(timer);
+  };
 
-  window.requestAnimationFrame(scrollToElement);
-  window.setTimeout(scrollToElement, 150);
-
+  frame = window.requestAnimationFrame(() => {
+    frame = null;
+    scrollToElement();
+  });
+  later(scrollToElement, 150);
+  // Layout settling can move the form while fonts and photos load. Stop as
+  // soon as the visitor interacts so queued callbacks cannot pull them back.
+  interactionEvents.forEach((name) => window.addEventListener(name, cancel, { capture: true, passive: true }));
+  later(cancel, 2500);
   if ("ResizeObserver" in window && document.body) {
-    if (activeScrollStabilizer) {
-      activeScrollStabilizer.disconnect();
-    }
-    if (activeScrollStabilizerTimer) {
-      window.clearTimeout(activeScrollStabilizerTimer);
-    }
-    activeScrollStabilizer = new ResizeObserver(scrollToElement);
-    activeScrollStabilizer.observe(document.body);
-    activeScrollStabilizerTimer = window.setTimeout(() => {
-      activeScrollStabilizer?.disconnect();
-      activeScrollStabilizer = null;
-      activeScrollStabilizerTimer = null;
-    }, 2500);
+    observer = new ResizeObserver(scrollToElement);
+    observer.observe(document.body);
   }
 
   if (document.readyState === "complete") {
-    window.setTimeout(scrollToElement, 350);
+    later(scrollToElement, 350);
     return;
   }
 
-  window.addEventListener(
-    "load",
-    () => {
-      window.setTimeout(scrollToElement, 0);
-      window.setTimeout(scrollToElement, 350);
-    },
-    { once: true },
-  );
+  onLoad = () => {
+    later(scrollToElement, 0);
+    later(scrollToElement, 350);
+  };
+  window.addEventListener("load", onLoad, { once: true });
 }
 
 document.querySelectorAll("[data-prefill-service], [data-yard-cta]").forEach((link) => {
-  link.addEventListener("click", () => {
+  link.addEventListener("click", (event) => {
+    // Keep native new-tab behavior and links to other pages. A service link on
+    // this home page should carry the visitor's draft into the form in place.
+    if (
+      event.defaultPrevented || event.button !== 0 || event.metaKey ||
+      event.ctrlKey || event.shiftKey || event.altKey ||
+      (link.target && link.target !== "_self") ||
+      link.origin !== window.location.origin ||
+      link.pathname !== window.location.pathname ||
+      !document.getElementById("contactForm")
+    ) {
+      return;
+    }
+    if (link.hash !== "#quote" && link.hash !== "#quoteFormCard") {
+      return;
+    }
+
     const serviceKey = link.getAttribute("data-prefill-service");
-    if (serviceKey) {
-      applyQuotePrefill(serviceKey);
+    if (serviceKey && !applyQuotePrefill(serviceKey)) {
+      return;
     }
-    if (link.hash === "#quote" || link.hash === "#quoteFormCard") {
-      scheduleScrollElementBelowHeader(quoteFormTarget);
+
+    event.preventDefault();
+    const nextUrl = new URL(window.location.href);
+    // Retain campaign parameters. The yard picker applies its final service
+    // after this listener, so its anchor only changes the fragment.
+    if (serviceKey && !link.hasAttribute("data-yard-cta")) {
+      nextUrl.searchParams.set("service", serviceKey);
     }
+    nextUrl.hash = link.hash;
+    if (nextUrl.href !== window.location.href) {
+      window.history.replaceState(window.history.state, "", nextUrl);
+    }
+    document.getElementById(quoteFormTarget)?.focus({ preventScroll: true });
+    scheduleScrollElementBelowHeader(quoteFormTarget);
   });
 });
 
@@ -814,7 +866,7 @@ if (contactForm) {
     projectDetails: ["quote.error.project", "Please tell us a little about the job."],
   };
   const validatedFields = () =>
-    Object.keys(FIELD_ERRORS).map((id) => document.getElementById(id)).filter(Boolean);
+    Array.from(contactForm.elements).filter((field) => FIELD_ERRORS[field.id]);
   const fieldErrorFor = (field) => {
     let error = document.getElementById(`${field.id}Error`);
     if (!error) {

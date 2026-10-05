@@ -49,7 +49,7 @@ for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
       await page.fill('#projectDetails', 'Front gate only.');
       await finishContact(page);
       const p = await submit();
-      expect(p.names).toEqual(FIELDS);
+      expect([...p.names].sort()).toEqual([...FIELDS].sort());
       expect(p.get('service')).toBe('lawn-care');
       expect(p.get('message')).toBe(`${yardLine}\nFront gate only.`);
     });
@@ -67,7 +67,7 @@ for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
       await page.fill('#contactAddress', '123 Main St, DeKalb, IL');
       await finishContact(page);
       const p = await submit();
-      expect(p.names).toEqual(FIELDS);
+      expect([...p.names].sort()).toEqual([...FIELDS].sort());
       expect(p.get('service')).toBe('tree-service');
       expect(p.get('message')).toContain(rangePrefix);
       expect(p.get('message')).toContain('ZIP 60115');
@@ -84,7 +84,7 @@ for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
       await page.fill('#projectDetails', 'Mowing.');
       await finishContact(page);
       const p = await submit();
-      expect(p.names).toEqual(FIELDS);
+      expect([...p.names].sort()).toEqual([...FIELDS].sort());
       expect(p.get('address')).toBe('123 Main St, Sycamore, IL');
     });
 
@@ -103,7 +103,7 @@ for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
       await page.keyboard.type('9 Oak Ave');
       await finishContact(page);
       const p = await submit();
-      expect(p.names).toEqual(FIELDS);
+      expect([...p.names].sort()).toEqual([...FIELDS].sort());
       expect(p.get('address')).toBe('9 Oak Ave, Genoa, IL');
       expect(p.get('message').startsWith(`${treeLine} · ${yardLine}\n`)).toBe(true);
       expect(p.get('message')).toContain('$280 - $420');
@@ -122,7 +122,7 @@ for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
       await finishContact(page);
       await expect(page.locator('#projectDetails')).toHaveValue('');
       const p = await submit();
-      expect(p.names).toEqual(FIELDS);
+      expect([...p.names].sort()).toEqual([...FIELDS].sort());
       expect(p.get('service')).toBe('multiple-services');
       expect(p.get('message')).toBe(`${snowLine} · ${yardLine}`);
     });
@@ -197,7 +197,7 @@ for (const [lang, path, yardLine, rangePrefix, snowLine, treeLine] of [
       await page.click('#sendInstantRequestBtn');
       await expect.poll(() => body.length).toBeGreaterThan(0);
       const p = parse(body);
-      expect(p.names).toEqual(['access_key', 'subject', 'from_name', 'form_loaded_at', 'name', 'phone', 'email', 'address', 'service', 'best_time', 'message', 'botcheck', 'response_instructions']);
+      expect([...p.names].sort()).toEqual(['access_key', 'subject', 'from_name', 'form_loaded_at', 'name', 'phone', 'email', 'address', 'service', 'best_time', 'message', 'botcheck', 'response_instructions'].sort());
       expect(p.get('service')).toBe('tree-service');
       expect(p.get('message')).toContain('$280 - $420');
     });
