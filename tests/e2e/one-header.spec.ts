@@ -14,7 +14,8 @@ const linked: Array<[string, string, 'es' | 'en', string]> = [
   ['/es/service-areas/', '/service-areas/', 'en', 'English'],
   ['/es/snow-removal/', '/snow-removal/', 'en', 'English'],
   ['/', '/es/', 'es', 'Español'],
-  ['/gallery/', '/es/#gallery', 'es', 'Español (inicio)'],
+  ['/gallery/', '/es/gallery/', 'es', 'Español'],
+  ['/es/gallery/', '/gallery/', 'en', 'English'],
   ['/videos/', '/es/#videos', 'es', 'Español (inicio)'],
   ['/es/', '/', 'en', 'English'],
   ['/es/tree-removal/', '/tree-removal/', 'en', 'English'],
@@ -41,7 +42,7 @@ for (const [route, href, lang, label] of linked) {
 }
 
 test('every page with a header uses the shared one (same brand, nav and phone)', async ({ page }) => {
-  for (const route of ['/', '/gallery/', '/videos/', '/tree-removal/', '/service-areas/', '/es/', '/es/lawn-care/', '/es/service-areas/malta-il/']) {
+  for (const route of ['/', '/gallery/', '/es/gallery/', '/videos/', '/tree-removal/', '/service-areas/', '/es/', '/es/lawn-care/', '/es/service-areas/malta-il/']) {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto(route, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('#header.site-header'), route).toHaveCount(1);

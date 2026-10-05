@@ -32,6 +32,7 @@ const PAGES = {
   '/service-areas/genoa-il/': { quoteHref: '/#quote' },
   '/service-areas/kingston-il/': { quoteHref: '/#quote' },
   '/gallery/': { quoteHref: '/#quote', current: 'work' },
+  '/es/gallery/': { quoteHref: '/es/#quote', current: 'work' },
   '/videos/': { quoteHref: '/#quote', current: 'videos' },
   // /es/ gets this header from scripts/build-es-home.mjs.
   '/es/tree-removal/': { quoteHref: '/es/?service=tree-service#quote' },

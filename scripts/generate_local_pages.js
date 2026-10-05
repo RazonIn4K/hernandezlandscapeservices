@@ -36,7 +36,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://hernandezlandscapeservices.com';
 const CHECK = process.argv.includes('--check');
 // Fixed so --check stays drift-free between runs; bump when copy changes.
-const LASTMOD = '2026-09-27';
+const LASTMOD = '2026-10-05';
 
 // Round 2 roots footer: the same decorative soil cross-section every footer carries (aria-hidden).
 const SOIL = "<div class=\"soil\" aria-hidden=\"true\"><svg class=\"soil-roots\" viewBox=\"0 0 480 140\" width=\"480\" height=\"140\" focusable=\"false\"><defs><linearGradient id=\"soilRootFade\" gradientUnits=\"userSpaceOnUse\" x1=\"0\" y1=\"24\" x2=\"0\" y2=\"138\"><stop offset=\"0\" stop-color=\"#b8905f\"/><stop offset=\".45\" stop-color=\"#8a6848\"/><stop offset=\".8\" stop-color=\"#6b4e37\" stop-opacity=\".8\"/><stop offset=\"1\" stop-color=\"#5e4431\" stop-opacity=\".35\"/></linearGradient><linearGradient id=\"soilBark\" x1=\"0\" x2=\"1\" y1=\"0\" y2=\"0\"><stop offset=\"0\" stop-color=\"#3d2616\"/><stop offset=\".45\" stop-color=\"#6b4a33\"/><stop offset=\"1\" stop-color=\"#34200f\"/></linearGradient></defs><g class=\"soil-root-set\" fill=\"none\" stroke=\"url(#soilRootFade)\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"5\" d=\"M208 30C180 44 150 52 112 60S46 76 12 84\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"5\" d=\"M272 30C300 44 330 52 368 60S434 76 470 84\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"4.2\" d=\"M224 31C214 56 196 78 168 96S120 116 92 124\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"4.2\" d=\"M256 31C266 56 284 78 312 96S360 116 388 124\"/><path class=\"rt rt-1\" pathLength=\"1\" stroke-width=\"5.2\" d=\"M241 32C242 60 238 86 240 106S238 122 236 130\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M150 54C140 66 128 74 112 80\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M92 68C80 78 66 84 50 96\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M330 54C340 66 352 74 368 80\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.4\" d=\"M388 68C400 78 414 84 430 96\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M190 84C178 98 170 108 164 120\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M290 84C302 98 310 108 316 120\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M239 96C228 106 220 112 206 118\"/><path class=\"rt rt-2\" pathLength=\"1\" stroke-width=\"2.2\" d=\"M240 100C252 108 262 114 276 120\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M50 96C44 102 40 108 34 112\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M430 96C436 102 440 108 446 112\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M164 120C160 124 157 128 151 131\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M316 120C320 124 323 128 329 131\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M92 124C84 126 76 127 68 130\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M388 124C396 126 404 127 412 130\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M12 84C8 90 6 96 3 100\"/><path class=\"rt rt-3\" pathLength=\"1\" stroke-width=\"1.3\" d=\"M470 84C474 90 476 96 478 100\"/></g><g class=\"soil-stump\"><path fill=\"url(#soilBark)\" d=\"M206 9A34 7.5 0 0 0 274 9L276 19C277 24 280 28 287 31L193 31C200 28 203 24 204 19Z\"/><path fill=\"none\" stroke=\"#2c1a0e\" stroke-opacity=\".55\" stroke-width=\"1.2\" stroke-linecap=\"round\" d=\"M217 16.5L216 28M231 17.2L230.5 30M249 17.2L249.6 30M263 16.5L264 28\"/><ellipse cx=\"240\" cy=\"9\" rx=\"34\" ry=\"7.5\" fill=\"#e2c99c\" stroke=\"#4a2f1c\" stroke-width=\"3\"/><g fill=\"none\" stroke=\"#b88f5c\" stroke-width=\"1\"><ellipse cx=\"240\" cy=\"9\" rx=\"27\" ry=\"5.9\"/><ellipse cx=\"240.5\" cy=\"9.2\" rx=\"20\" ry=\"4.4\"/><ellipse cx=\"241\" cy=\"9.3\" rx=\"13\" ry=\"2.9\"/><ellipse cx=\"241.4\" cy=\"9.4\" rx=\"6.4\" ry=\"1.5\"/></g><circle cx=\"241.6\" cy=\"9.4\" r=\"1.3\" fill=\"#8a6244\"/><path fill=\"none\" stroke=\"#6b4a33\" stroke-width=\"1\" stroke-linecap=\"round\" d=\"M241.6 9.4L246 7.2L252 6.4L258 4.4\"/></g></svg></div>";
@@ -248,14 +248,14 @@ const CITY_PAGES = [
     es: {
       title: 'Jardinería y árboles en Genoa, IL | Hernandez Landscape',
       description:
-        'Corte de pasto, poda y retiro de árboles, limpieza de patios y nieve en Genoa, IL. Hernandez Landscape — llame al (815) 501-1478.',
+        'Corte de pasto, poda y retiro de árboles y limpieza de patios en Genoa, IL. Pregunte por nieve según disponibilidad: (815) 501-1478.',
       ogDescription:
-        'Corte de pasto, servicio de árboles, limpieza y nieve de temporada para casas y negocios de Genoa.',
+        'Corte de pasto, servicio de árboles y limpieza para casas y negocios de Genoa. Consulte la disponibilidad de nieve de temporada.',
       imageAlt: 'Miembro del equipo de Hernandez trabajando en un árbol cerca del techo de una casa',
       kicker: 'Genoa, Illinois',
       h1: 'Corte de pasto, árboles y limpieza en Genoa',
       intro:
-        'Hernandez Landscape & Tree Service LLC, un equipo familiar del condado de DeKalb, atiende casas y negocios de Genoa con corte de pasto, poda y retiro de árboles, limpieza de patios y servicio de nieve en invierno. Lo atendemos en español.',
+        'Hernandez Landscape & Tree Service LLC, un equipo familiar del condado de DeKalb, atiende solicitudes de corte de pasto, poda y retiro de árboles y limpieza de patios en Genoa. Pregunte por el servicio de nieve en invierno según disponibilidad. Lo atendemos en español.',
       ctaText: 'Pida su presupuesto en Genoa',
       ctaHref: '/?service=tree-service#quote',
       cardsTitle: 'Servicios disponibles en Genoa',
@@ -292,18 +292,18 @@ const CITY_PAGES = [
       kicker: 'Kingston, Illinois',
       h1: 'Corte de pasto, árboles y limpieza en Kingston',
       intro:
-        'Las casas y negocios de Kingston pueden contar con Hernandez Landscape & Tree Service LLC para corte de pasto, mantenimiento de jardines, poda y retiro de árboles, limpieza de temporada y servicio de nieve — todo coordinado desde la base en DeKalb. Lo atendemos en español.',
+        'Hernandez Landscape & Tree Service LLC recibe solicitudes de corte de pasto, mantenimiento de jardines, poda y retiro de árboles y limpieza de temporada en Kingston. Pregunte por el servicio de nieve según disponibilidad. El trabajo se coordina desde DeKalb y lo atendemos en español.',
       ctaText: 'Pida su presupuesto en Kingston',
       ctaHref: '/?service=landscaping#quote',
       cardsTitle: 'Servicios de patio en Kingston',
       cards: [
-        { href: '/lawn-care/', h3: 'Corte de pasto', p: 'Rutas confiables de corte, recorte y orillado para los patios de Kingston durante la temporada.' },
-        { href: '/tree-removal/', h3: 'Retiro y poda de árboles', p: 'Poda de ramas problemáticas, retiro completo, destoconado y acarreo con la limpieza incluida.' },
+        { href: '/lawn-care/', h3: 'Corte de pasto', p: 'Corte, recorte y orillado para los patios de Kingston durante la temporada, según la ruta y la disponibilidad.' },
+        { href: '/tree-removal/', h3: 'Retiro y poda de árboles', p: 'Poda, retiro de árboles, molienda de tocones y acarreo; confirme el alcance de la limpieza en su cotización.' },
         { href: '/snow-removal/', h3: 'Limpieza de temporada y nieve', p: 'Limpiezas de primavera y otoño más retiro de nieve para entradas de Kingston, según disponibilidad.' }
       ],
       nearH2: 'Coordinado desde la base en DeKalb',
       nearP:
-        'El equipo programa el trabajo de Kingston desde DeKalb, así que las visitas regulares de pasto, las limpiezas y el trabajo de árboles se agendan sin complicaciones.',
+        'El equipo coordina desde DeKalb las solicitudes de Kingston para corte de pasto, limpiezas y trabajo de árboles. Pida una cotización para revisar el alcance y la disponibilidad.',
       faqTitle: 'Preguntas frecuentes en Kingston',
       faq: [
         { q: '¿Cortan pasto en Kingston?', a: 'Sí. Hay rutas de corte y recorte disponibles en Kingston según la temporada y la disponibilidad.' },
@@ -364,7 +364,7 @@ function jsonLd(city, lang) {
         '@type': 'BreadcrumbList',
         '@id': `${url}#breadcrumb`,
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: home, item: `${SITE}/` },
+          { '@type': 'ListItem', position: 1, name: home, item: lang === 'es' ? `${SITE}/es/` : `${SITE}/` },
           { '@type': 'ListItem', position: 2, name: areas, item: lang === 'es' ? `${SITE}/es/service-areas/` : `${SITE}/service-areas/` },
           { '@type': 'ListItem', position: 3, name: t.breadcrumbCity, item: url }
         ]
@@ -448,10 +448,11 @@ ${BANNER}
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
   </head>
   <body class="site-body bg-gray-50">
+    <a class="skip-link" href="#main-content">${lang === 'es' ? 'Saltar al contenido principal' : 'Skip to main content'}</a>
 ${renderSiteHeader({ lang, alt: altFor(lang === 'es' ? `/es/service-areas/${city.slug}/` : `/service-areas/${city.slug}/`), quoteHref: quoteUrl })}
     ${stormBand}
 
-    <main class="pt-28">
+    <main id="main-content" class="pt-28">
       <section class="bg-white">
         <div class="container mx-auto grid gap-8 px-4 py-14 lg:grid-cols-[1fr_0.9fr] lg:items-center">
           <div>

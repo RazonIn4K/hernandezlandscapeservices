@@ -64,7 +64,7 @@ test('the Spanish nav and hub reach every Spanish area and service page', async 
     expect(links, href).toContain(href);
   }
   // Six confirmed towns only.
-  const towns = await page.locator('main h3').allTextContents();
+  const towns = await page.locator('main a[href^="/es/service-areas/"][href$="-il/"] h3').allTextContents();
   expect(towns.map((t) => t.trim())).toEqual(['DeKalb, IL', 'Sycamore, IL', 'Cortland, IL', 'Malta, IL', 'Genoa, IL', 'Kingston, IL']);
 });
 

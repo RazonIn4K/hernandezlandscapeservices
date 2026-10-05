@@ -17,7 +17,8 @@
         afterImage.style.clipPath = `polygon(${constrained}% 0, 100% 0, 100% 100%, ${constrained}% 100%)`;
         sliderHandle.style.left = `${constrained}%`;
         sliderHandle.setAttribute('aria-valuenow', String(Math.round(constrained)));
-        sliderHandle.setAttribute('aria-valuetext', `Comparison divider at ${Math.round(constrained)}%`);
+        const valueTemplate = window.siteI18n?.t('gallery.slider.value') || 'Comparison divider at {{value}}%';
+        sliderHandle.setAttribute('aria-valuetext', valueTemplate.replace('{{value}}', String(Math.round(constrained))));
     };
 
     const onMove = (clientX) => {

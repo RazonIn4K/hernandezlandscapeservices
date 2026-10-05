@@ -60,7 +60,7 @@
       "caption": "Brush pile and tree debris staged for removal after yard cleanup",
       "tags": ["cleanup", "tree-service"],
       "featured": true,
-      "gallery": { "title": "Brush Pile Removal", "titleKey": "gallery.item.brush_removal" },
+      "gallery": { "title": "Brush Pile", "titleKey": "gallery.item.brush_removal" },
       "sitemap": {
         "title": "Brush pile removal project",
         "caption": "Brush pile and tree debris staged after Hernandez Landscape cleanup service."
@@ -76,7 +76,7 @@
       "caption": "Woodpile and overgrown yard area cleared during a cleanup project",
       "tags": ["cleanup", "tree-service"],
       "featured": true,
-      "gallery": { "title": "Woodpile Yard Cleanup", "titleKey": "gallery.item.woodpile_cleanup" },
+      "gallery": { "title": "Woodpile & Overgrowth", "titleKey": "gallery.item.woodpile_cleanup" },
       "sitemap": {
         "title": "Woodpile yard cleanup",
         "caption": "Woodpile and overgrown yard area prepared for Hernandez Landscape cleanup work."
@@ -137,7 +137,7 @@
       "tags": ["tree-service", "cleanup"],
       "featured": true,
       "gallery": {
-        "title": "Removal Cleanup",
+        "title": "Cut Logs on Site",
         "titleKey": "gallery.item.removal_cleanup",
         "alt": "Cut logs after Hernandez tree removal cleanup"
       },
@@ -208,7 +208,7 @@
       "caption": "Recent completed yard work with equipment still on site",
       "tags": ["lawn-care", "equipment"],
       "featured": false,
-      "gallery": { "title": "Finished Yard Work", "titleKey": "gallery.item.finished_yard" },
+      "gallery": { "title": "Yard Work & Trailer", "titleKey": "gallery.item.finished_yard" },
       "sitemap": {
         "title": "Completed Hernandez Landscape yard project",
         "caption": "Completed yard work with Hernandez Landscape equipment on site."
@@ -262,22 +262,6 @@
       }
     },
     {
-      "id": "wideshot-bestlandscape",
-      "type": "image",
-      "src": "hernandez_images/web_Wideshot_Bestlandscape.jpg",
-      "size": [1200, 868],
-      "variants": [480, 800],
-      "alt": "Beautiful landscape design and installation",
-      "caption": "Complete landscape renovation with premium materials",
-      "tags": ["landscaping"],
-      "featured": false,
-      "gallery": {
-        "title": "Breathtaking Front Yard",
-        "titleKey": "gallery.item.front_yard",
-        "alt": "Wide shot of a beautifully landscaped front yard"
-      }
-    },
-    {
       "id": "wideshot-bestlandscape-person",
       "type": "image",
       "src": "hernandez_images/web_Wideshot_Bestlandscape_Person.jpeg",
@@ -288,7 +272,7 @@
       "tags": ["landscaping"],
       "featured": false,
       "gallery": {
-        "title": "Expert Care",
+        "title": "Garden Bed Work",
         "titleKey": "gallery.item.landscaper"
       }
     },
@@ -303,7 +287,7 @@
       "tags": ["landscaping"],
       "featured": false,
       "gallery": {
-        "title": "Modern Design",
+        "title": "Front Yard Hedge Line",
         "titleKey": "gallery.item.modern_design",
         "alt": "Landscaping design with mulch and retaining wall"
       }
@@ -322,21 +306,6 @@
         "title": "Professional Tree Care",
         "titleKey": "gallery.item.tree_service",
         "alt": "Tree removal service"
-      }
-    },
-    {
-      "id": "hero-desktop",
-      "type": "image",
-      "src": "hernandez_images/web_hero_desktop.jpg",
-      "size": [1200, 868],
-      "variants": [480, 800],
-      "alt": "Finished yard landscaping project",
-      "caption": "Finished yard landscaping project",
-      "tags": ["landscaping"],
-      "featured": false,
-      "gallery": {
-        "title": "Beautiful Pavers",
-        "titleKey": "gallery.item.stone_work"
       }
     },
     {
@@ -847,20 +816,15 @@
       "branded-truck-trailers",
       "tree-climber-canopy",
       "tree-removal-cut-logs",
-      "brush-clearing-cleanup",
       "tree-climber-roofline",
       "tree-climber-full-tree",
       "completed-yard-equipment",
-      "wideshot-bestlandscape",
       "wideshot-bestlandscape-person",
       "wideshot-bestlandscape2",
       "img-1953",
-      "hero-desktop",
       "after1",
       "img-0434-poster",
-      "img-1464-poster",
-      "img-3360",
-      "img-3362"
+      "img-1464-poster"
     ],
     "homeGallery": [
       "fire-pit-lawn-finish",

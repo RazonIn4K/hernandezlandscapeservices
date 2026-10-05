@@ -200,7 +200,9 @@ const inspectPage = async (page, baseURL) => page.evaluate((origin) => {
 const run = async () => {
   const routes = loadRoutes();
   const { server, baseURL } = await createStaticServer();
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(
+    process.env.PLAYWRIGHT_CHANNEL ? { channel: process.env.PLAYWRIGHT_CHANNEL } : {},
+  );
   const failures = [];
   const summary = [];
 
