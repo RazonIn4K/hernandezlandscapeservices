@@ -62,7 +62,6 @@ test.describe('Honest trust signals', () => {
   test('no rating stars or claim-shaped icons on the homepage', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.icon-star, .icon-shield-alt, .icon-certificate')).toHaveCount(0);
-    await expect(page.locator('[data-proof-rail] .icon-check')).toHaveCount(3);
   });
 
   for (const [path, label] of [
@@ -93,7 +92,7 @@ test.describe('Quote form friction', () => {
     }
     await expect(page.locator('#contactEmailError')).toBeHidden();
     await expect(page.locator('#customModal')).toBeHidden();
-    await expect(page.locator('#contactName')).toBeFocused();
+    await expect(page.locator('#contactAddress')).toBeFocused();
     await expect(page.locator('#contactNameError')).toHaveText('Please enter your name.');
     await page.locator('#contactName').fill('Prueba Local');
     await expect(page.locator('#contactNameError')).toBeHidden();

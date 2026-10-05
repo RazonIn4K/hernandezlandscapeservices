@@ -41,7 +41,7 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20260927a" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20261005flow" />
     <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -228,10 +228,14 @@
                   >
                 </li>
               </ul>
-              <a href="/es/lawn-care/" class="text-green-600 font-semibold hover:text-green-700">
-                <span data-i18n-key="services.learnMore">Más información</span>
-                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
-              </a>
+              <div class="service-actions">
+                <a href="/es/lawn-care/" class="service-details" aria-label="Ver servicio: cuidado del césped" data-i18n-aria-label="services.details.lawn">
+                  <span data-i18n-key="services.details">Ver servicio</span>
+                </a>
+                <a href="?service=lawn-care#quote" data-prefill-service="lawn-care" class="service-request" aria-label="Pedir cotización: cuidado del césped" data-i18n-aria-label="services.request.lawn">
+                  <span data-i18n-key="services.request">Pedir cotización</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -260,10 +264,14 @@
                   >
                 </li>
               </ul>
-              <a href="/es/tree-removal/" class="text-green-600 font-semibold hover:text-green-700">
-                <span data-i18n-key="services.learnMore">Más información</span>
-                <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
-              </a>
+              <div class="service-actions">
+                <a href="/es/tree-removal/" class="service-details" aria-label="Ver servicio: árboles" data-i18n-aria-label="services.details.tree">
+                  <span data-i18n-key="services.details">Ver servicio</span>
+                </a>
+                <a href="?service=tree-service#quote" data-prefill-service="tree-service" class="service-request" aria-label="Pedir cotización: servicio de árboles" data-i18n-aria-label="services.request.tree">
+                  <span data-i18n-key="services.request">Pedir cotización</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -292,14 +300,12 @@
                   >
                 </li>
               </ul>
-              <div class="flex items-center gap-4">
-                <a href="/es/landscaping-design/" class="text-green-600 font-semibold hover:text-green-700">
-                  <span data-i18n-key="services.learnMore">Más información</span>
-                  <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
+              <div class="service-actions">
+                <a href="/es/landscaping-design/" class="service-details" aria-label="Ver servicio: paisajismo" data-i18n-aria-label="services.details.landscaping">
+                  <span data-i18n-key="services.details">Ver servicio</span>
                 </a>
-                <a href="?service=landscaping#quote" data-prefill-service="landscaping" class="text-green-600 font-semibold hover:text-green-700">
-                  <span data-i18n-key="services.cta">Solicitar cotización</span>
-                  <svg class="icon icon-arrow-right" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-right" /></svg>
+                <a href="?service=landscaping#quote" data-prefill-service="landscaping" class="service-request" aria-label="Pedir cotización: paisajismo" data-i18n-aria-label="services.request.landscaping">
+                  <span data-i18n-key="services.request">Pedir cotización</span>
                 </a>
               </div>
             </div>
@@ -309,9 +315,12 @@
         <div class="mt-12 bg-green-600 text-white p-6 rounded-lg">
           <h3 class="text-2xl font-bold mb-4 text-center text-white" data-i18n-key="services.extra.heading">También disponibles:</h3>
           <div class="flex flex-wrap justify-center gap-4">
-            <a href="/es/snow-removal/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80">
-              <svg class="icon icon-snowflake mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-snowflake" /></svg><span data-i18n-key="services.extra.snow">Remoción de nieve</span>
-            </a>
+            <span class="inline-flex flex-wrap items-center justify-center gap-2">
+              <a href="/es/snow-removal/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80">
+                <svg class="icon icon-snowflake mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-snowflake" /></svg><span data-i18n-key="services.extra.snow">Remoción de nieve</span>
+              </a>
+              <a href="?service=snow-removal#quote" data-prefill-service="snow-removal" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 text-sm" aria-label="Consultar disponibilidad: retiro de nieve" data-i18n-aria-label="services.snowRequest.label" data-i18n-key="services.snowRequest">Consultar disponibilidad</a>
+            </span>
             <span class="inline-flex flex-wrap items-center justify-center gap-2">
               <a href="/es/leaf-removal/" class="bg-white/20 px-4 py-2 rounded-full transition hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80">
                 <svg class="icon icon-leaf mr-2" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-leaf" /></svg><span data-i18n-key="services.extra.leaf">Recolección de hojas</span>
@@ -504,7 +513,7 @@
       <div class="container mx-auto px-4">
         <div class="walk-yard-intro mb-8">
           <p class="ring-label"><span class="step-no" aria-hidden="true">1</span><span data-i18n-key="yard.label">Plano del terreno</span></p>
-          <h2 id="walk-title" data-i18n-key="yard.heading">Recorra su jardín.</h2>
+          <h2 id="walk-title" tabindex="-1" data-i18n-key="yard.heading">Recorra su jardín.</h2>
           <p data-i18n-key="yard.intro">Toque en el plano lo que necesita trabajo, o márquelo en la lista. Lo agregamos a su solicitud para que el equipo sepa dónde revisar.</p>
         </div>
         <div class="walk-yard-grid" data-yard>
@@ -554,30 +563,12 @@
         </div>
         <div class="quote-grid">
           <div class="quote-main">
-            <div id="quoteFormCard" class="bg-white text-gray-800 p-6 rounded-lg scroll-mt-24">
-              <h3 class="text-2xl font-bold text-gray-800 mb-2" data-i18n-key="quote.formHeading">Solicite una cotización gratis</h3>
-              <p id="quoteFormHelper" class="mb-4 text-sm leading-relaxed text-gray-600" data-i18n-key="quote.formHelper">Cuéntenos qué necesita y cuándo prefiere que le llamemos. Esta es una solicitud de cotización, no una cita confirmada. Nuestro equipo confirmará la disponibilidad y el horario. No hay ninguna obligación.</p>
-              <ul class="mb-5 grid gap-2 rounded-lg border border-green-100 bg-green-50 p-4 text-sm text-green-950 sm:grid-cols-2" data-proof-rail>
-                <li>
-                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg>
-                  <span data-i18n-key="instant.proof.insured">Equipo local del Condado de DeKalb</span>
-                </li>
-                <li>
-                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg>
-                  <span data-i18n-key="instant.proof.review">Primero la solicitud; la cita se confirma por separado</span>
-                </li>
-                <li>
-                  <svg class="icon icon-check mr-1 text-green-700" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check" /></svg>
-                  <span data-i18n-key="instant.proof.response">Nuestro equipo confirma la disponibilidad</span>
-                </li>
-                <li>
-                  <svg class="icon icon-phone mr-1 text-green-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone" /></svg>
-                  <span data-i18n-key="quote.proof.call">¿Prefiere hablar? Llame al (815) 501-1478</span>
-                </li>
-              </ul>
+            <div id="quoteFormCard" role="region" tabindex="-1" aria-labelledby="quoteFormTitle" class="bg-white text-gray-800 p-6 rounded-lg scroll-mt-24">
+              <h3 id="quoteFormTitle" class="text-2xl font-bold text-gray-800 mb-2" data-i18n-key="quote.formHeading">Solicite una cotización gratis</h3>
+              <p id="quoteFormHelper" class="mb-4 text-sm leading-relaxed text-gray-600" data-i18n-key="quote.formHelper">Comparta los detalles del trabajo y cómo contactarle. Nuestro equipo confirmará la disponibilidad y el horario para la cotización. Enviar esta solicitud no confirma una cita.</p>
 
               <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" aria-describedby="quoteFormHelper quotePrivacyNote">
-                <div class="space-y-4">
+                <div class="quote-form-content">
                   <!-- Web3Forms Access Key -->
                   <input type="hidden" name="access_key" value="61e8b0ea-97d8-434c-8c2d-e54a44a63743" />
 
@@ -590,13 +581,20 @@
                   <input type="hidden" name="form_loaded_at" id="formLoadedAt" />
                   <input type="hidden" name="yard_areas" id="yardAreasField" value="" />
 
-                  <div id="yardSelectionNotice" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900" aria-live="polite">
+                  <p id="yardSelectionStatus" class="sr-only" role="status" aria-live="polite"></p>
+                  <p id="quotePrefillStatus" class="sr-only" role="status" aria-live="polite"></p>
+
+                  <div id="yardSelectionNotice" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900">
                     <p class="font-semibold" data-i18n-key="quote.yardSummary">Áreas del jardín agregadas a esta solicitud</p>
                     <p id="yardSelectionText"></p>
                     <p class="mt-1 text-xs" data-i18n-key="quote.yardSummary.helper">Agregue más detalles abajo o envíe estas áreas como su solicitud.</p>
+                    <div class="yard-summary-actions">
+                      <a href="#walk-your-yard" data-yard-edit data-i18n-key="quote.yardEdit">Editar áreas</a>
+                      <button type="button" data-yard-clear data-i18n-key="quote.yardClear">Quitar áreas</button>
+                    </div>
                   </div>
 
-                  <div id="quotePrefillNotice" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900" aria-live="polite">
+                  <div id="quotePrefillNotice" class="hidden rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-900">
                     <div class="flex items-start gap-3">
                       <svg class="icon icon-check-circle mt-0.5 text-green-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-check-circle" /></svg>
                       <div>
@@ -606,92 +604,106 @@
                     </div>
                   </div>
 
-                  <!-- Round 4: town-first quick start. Buttons carry no name, so nothing new is
-                       submitted: a chip only prefills the town in the address and shows the
-                       matching existing service-policy line. Shown by main.js. -->
-                  <fieldset class="town-start" data-town-start hidden>
-                    <legend class="quote-field-label" data-i18n-key="quote.town.legend">¿Dónde es el trabajo?</legend>
-                    <div class="town-chips">
-                      <button type="button" class="town-chip" data-town="DeKalb" aria-pressed="false">DeKalb</button>
-                      <button type="button" class="town-chip" data-town="Sycamore" aria-pressed="false">Sycamore</button>
-                      <button type="button" class="town-chip" data-town="Cortland" aria-pressed="false">Cortland</button>
-                      <button type="button" class="town-chip" data-town="Malta" aria-pressed="false">Malta</button>
-                      <button type="button" class="town-chip" data-town="Genoa" aria-pressed="false">Genoa</button>
-                      <button type="button" class="town-chip" data-town="Kingston" aria-pressed="false">Kingston</button>
-                      <button type="button" class="town-chip" data-town="" aria-pressed="false" data-i18n-key="quote.town.other">En otro lugar</button>
+                  <fieldset class="quote-group">
+                    <legend><span class="quote-group-number" aria-hidden="true">1</span><span data-i18n-key="quote.group.project">Su propiedad y proyecto</span></legend>
+                    <div class="quote-group-fields">
+                      <!-- Round 4: town-first quick start. Buttons carry no name, so nothing new is
+                           submitted: a chip only prefills the town in the address and shows the
+                           matching existing service-policy line. Shown by main.js. -->
+                      <fieldset class="town-start" data-town-start hidden>
+                        <legend class="quote-field-label" data-i18n-key="quote.town.legend">¿Dónde es el trabajo?</legend>
+                        <div class="town-chips">
+                          <button type="button" class="town-chip" data-town="DeKalb" aria-pressed="false">DeKalb</button>
+                          <button type="button" class="town-chip" data-town="Sycamore" aria-pressed="false">Sycamore</button>
+                          <button type="button" class="town-chip" data-town="Cortland" aria-pressed="false">Cortland</button>
+                          <button type="button" class="town-chip" data-town="Malta" aria-pressed="false">Malta</button>
+                          <button type="button" class="town-chip" data-town="Genoa" aria-pressed="false">Genoa</button>
+                          <button type="button" class="town-chip" data-town="Kingston" aria-pressed="false">Kingston</button>
+                          <button type="button" class="town-chip" data-town="" aria-pressed="false" data-i18n-key="quote.town.other">En otro lugar</button>
+                        </div>
+                        <ul class="town-policy" aria-live="polite">
+                          <li data-town-policy="primary" hidden data-i18n-key="serviceArea.policy1"><strong>Zonas principales (DeKalb/Sycamore):</strong> Sin mínimo</li>
+                          <li data-town-policy="outlying" hidden data-i18n-key="serviceArea.policy2"><strong>Zonas alejadas (más de 20 minutos):</strong> Mínimo de 3 horas o $500</li>
+                        </ul>
+                      </fieldset>
+                    <div class="quote-field">
+                        <label for="contactAddress" class="quote-field-label"><span data-i18n-key="quote.label.address">Dirección de la propiedad</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
+                        >
+                        <input type="text" id="contactAddress" name="address" autocomplete="address-line1" minlength="5" maxlength="200" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required />
                     </div>
-                    <ul class="town-policy" aria-live="polite">
-                      <li data-town-policy="primary" hidden data-i18n-key="serviceArea.policy1"><strong>Zonas principales (DeKalb/Sycamore):</strong> Sin mínimo</li>
-                      <li data-town-policy="outlying" hidden data-i18n-key="serviceArea.policy2"><strong>Zonas alejadas (más de 20 minutos):</strong> Mínimo de 3 horas o $500</li>
-                    </ul>
+                    <div class="quote-field">
+                        <label for="contactService" class="quote-field-label"><span data-i18n-key="quote.label.service">Servicio que necesita</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
+                        >
+                        <select id="contactService" name="service" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                          <option value="" data-i18n-key="quote.select.placeholder">Elija un servicio</option>
+                          <option value="lawn-care" data-i18n-key="quote.select.lawn">Cuidado del césped</option>
+                          <option value="tree-service" data-i18n-key="quote.select.tree">Servicio de árboles</option>
+                          <option value="landscaping" data-i18n-key="quote.select.landscaping">Paisajismo</option>
+                          <option value="snow-removal" data-i18n-key="quote.select.snow">Remoción de nieve</option>
+                          <option value="leaf-removal" data-i18n-key="quote.select.leaf">Retiro de hojas</option>
+                          <option value="gutter-cleaning" data-i18n-key="quote.select.gutter">Limpieza de canaletas</option>
+                          <option value="pressure-washing" data-i18n-key="quote.select.pressure">Lavado a presión</option>
+                          <option value="multiple-services" data-i18n-key="quote.select.multiple">Múltiples servicios</option>
+                        </select>
+                    </div>
+                    <div class="quote-field">
+                        <label for="projectDetails" class="quote-field-label"><span data-i18n-key="quote.label.project">Cuéntenos sobre su proyecto</span> <span class="field-tag" data-project-req data-i18n-key="quote.req">(obligatorio)</span><span class="field-tag" data-project-opt data-i18n-key="quote.opt" hidden>(opcional)</span></label
+                        >
+                        <textarea id="projectDetails" aria-describedby="projectDetailsHelper" name="message" rows="4" maxlength="2000" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required></textarea>
+                        <p id="projectDetailsHelper" class="quote-field-helper" data-i18n-key="quote.projectHelper">Describa el trabajo, dónde está y cómo acceder. Si agregó áreas del jardín, las notas son opcionales.</p>
+                        <p class="sms-photos">
+                          <svg class="icon icon-comment-dots" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots" /></svg>
+                          <span data-i18n-key="quote.smsPhotos">O envíe fotos del trabajo por mensaje de texto al</span>
+                          <a href="sms:+18155011478">(815) 501-1478</a>
+                        </p>
+                    </div>
+                    </div>
                   </fieldset>
-
-                  <label for="contactName" class="quote-field-label"><span data-i18n-key="quote.label.name">Su nombre</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
-                  >
-                  <input type="text" id="contactName" name="name" autocomplete="name" minlength="2" maxlength="100" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required />
-
-                  <label for="contactPhone" class="quote-field-label"><span data-i18n-key="quote.label.phone">Número de teléfono</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
-                  >
-                  <input type="tel" id="contactPhone" name="phone" autocomplete="tel" inputmode="tel" maxlength="25" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="^\+?(?:[ \(\)\-]*[0-9]){10,}[ \(\)\-]*$" title="Ingrese un número de 10 dígitos (ej., 8155011478)" required data-i18n-title="quote.title.phone" />
-
-                  <label for="contactEmail" class="quote-field-label" data-i18n-key="quote.label.email">Correo electrónico (opcional)</label
-                  >
-                  <input type="email" id="contactEmail" name="email" autocomplete="email" maxlength="254" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" />
-
-                  <!-- Property Address (scam filter) -->
-                  <label for="contactAddress" class="quote-field-label"><span data-i18n-key="quote.label.address">Dirección de la propiedad</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
-                  >
-                  <input type="text" id="contactAddress" name="address" autocomplete="address-line1" minlength="5" maxlength="200" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required />
-
-                  <!-- Verification Checkbox (scam filter) -->
-                  <div class="flex items-start space-x-2 bg-amber-50 p-3 rounded border border-amber-200">
-                    <input type="checkbox" id="ownerVerify" name="owner_verified" class="mt-1" required />
-                    <label for="ownerVerify" class="text-sm text-amber-900"><span data-i18n-key="quote.verify">Soy el propietario o un representante autorizado y estaré presente para el estimado.</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
-                    >
+                  <fieldset class="quote-group">
+                    <legend><span class="quote-group-number" aria-hidden="true">2</span><span data-i18n-key="quote.group.contact">Cómo contactarle</span></legend>
+                    <div class="quote-contact-fields">
+                    <div class="quote-field">
+                        <label for="contactName" class="quote-field-label"><span data-i18n-key="quote.label.name">Su nombre</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
+                        >
+                        <input type="text" id="contactName" name="name" autocomplete="name" minlength="2" maxlength="100" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required />
+                    </div>
+                    <div class="quote-field">
+                        <label for="contactPhone" class="quote-field-label"><span data-i18n-key="quote.label.phone">Número de teléfono</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
+                        >
+                        <input type="tel" id="contactPhone" name="phone" autocomplete="tel" inputmode="tel" maxlength="25" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" pattern="^\+?(?:[ \(\)\-]*[0-9]){10,}[ \(\)\-]*$" title="Ingrese un número de 10 dígitos (ej., 8155011478)" required data-i18n-title="quote.title.phone" />
+                    </div>
+                    <div class="quote-field">
+                        <label for="contactEmail" class="quote-field-label" data-i18n-key="quote.label.email">Correo electrónico (opcional)</label
+                        >
+                        <input type="email" id="contactEmail" name="email" autocomplete="email" maxlength="254" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" />
+                    </div>
+                    <div class="quote-field">
+                        <label for="bestTime" class="quote-field-label"><span data-i18n-key="quote.label.bestTime">Horario preferido para recibir la llamada</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
+                        >
+                        <select id="bestTime" name="best_time" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
+                          <option value="" data-i18n-key="quote.time.placeholder">Elija un horario</option>
+                          <option value="morning" data-i18n-key="quote.time.morning">Mañana</option>
+                          <option value="afternoon" data-i18n-key="quote.time.afternoon">Tarde</option>
+                          <option value="evening" data-i18n-key="quote.time.evening">Noche</option>
+                        </select>
+                    </div>
+                    </div>
+                  </fieldset>
+                  <div class="quote-confirm">
+                    <div class="flex items-start space-x-2 bg-amber-50 p-3 rounded border border-amber-200">
+                      <input type="checkbox" id="ownerVerify" name="owner_verified" class="mt-1" required />
+                      <label for="ownerVerify" class="text-sm text-amber-900"><span data-i18n-key="quote.verify">Soy el propietario o un representante autorizado y estaré presente para el estimado.</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
+                      >
+                    </div>
+                    <button type="submit" class="w-full bg-green-600 text-white py-3 rounded font-bold hover:bg-green-700 transition" data-i18n-key="quote.submit">Enviar solicitud de cotización</button>
+                    <p id="quotePrivacyNote" class="text-center text-xs leading-relaxed text-gray-500" data-i18n-key="quote.privacyNote">Usamos sus datos únicamente para responder a esta solicitud.</p>
                   </div>
-
-                  <!-- Best Time to Call (scam filter) -->
-                  <label for="bestTime" class="quote-field-label"><span data-i18n-key="quote.label.bestTime">Horario preferido para recibir la llamada</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
-                  >
-                  <select id="bestTime" name="best_time" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
-                    <option value="" data-i18n-key="quote.time.placeholder">¿Cuál es la mejor hora para llamarle?</option>
-                    <option value="morning" data-i18n-key="quote.time.morning">Mañana</option>
-                    <option value="afternoon" data-i18n-key="quote.time.afternoon">Tarde</option>
-                    <option value="evening" data-i18n-key="quote.time.evening">Noche</option>
-                  </select>
-
-                  <label for="contactService" class="quote-field-label"><span data-i18n-key="quote.label.service">Servicio que necesita</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
-                  >
-                  <select id="contactService" name="service" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required>
-                    <option value="" data-i18n-key="quote.select.placeholder">Seleccione el servicio requerido</option>
-                    <option value="lawn-care" data-i18n-key="quote.select.lawn">Cuidado del césped</option>
-                    <option value="tree-service" data-i18n-key="quote.select.tree">Servicio de árboles</option>
-                    <option value="landscaping" data-i18n-key="quote.select.landscaping">Paisajismo</option>
-                    <option value="snow-removal" data-i18n-key="quote.select.snow">Remoción de nieve</option>
-                    <option value="leaf-removal" data-i18n-key="quote.select.leaf">Retiro de hojas</option>
-                    <option value="gutter-cleaning" data-i18n-key="quote.select.gutter">Limpieza de canaletas</option>
-                    <option value="pressure-washing" data-i18n-key="quote.select.pressure">Lavado a presión</option>
-                    <option value="multiple-services" data-i18n-key="quote.select.multiple">Múltiples servicios</option>
-                  </select>
-
-                  <label for="projectDetails" class="quote-field-label"><span data-i18n-key="quote.label.project">Cuéntenos sobre su proyecto</span> <span class="field-tag" data-project-req data-i18n-key="quote.req">(obligatorio)</span><span class="field-tag" data-project-opt data-i18n-key="quote.opt" hidden>(opcional)</span></label
-                  >
-                  <textarea id="projectDetails" name="message" rows="4" maxlength="2000" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required></textarea>
-                  <p class="sms-photos">
-                    <svg class="icon icon-comment-dots" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots" /></svg>
-                    <span data-i18n-key="quote.smsPhotos">O envíe fotos del trabajo por mensaje de texto al</span>
-                    <a href="sms:+18155011478">(815) 501-1478</a>
-                  </p>
-
                   <!-- Honeypot Spam Protection -->
                   <input type="checkbox" name="botcheck" class="hidden" style="display: none" />
                   <label class="hidden" aria-hidden="true" tabindex="-1">
                     Website
                     <input type="text" name="website" id="websiteField" autocomplete="off" tabindex="-1" />
                   </label>
-
-                  <button type="submit" class="w-full bg-green-600 text-white py-3 rounded font-bold hover:bg-green-700 transition" data-i18n-key="quote.submit">Enviar solicitud de cotización</button>
-                  <p id="quotePrivacyNote" class="text-center text-xs leading-relaxed text-gray-500" data-i18n-key="quote.privacyNote">Usamos sus datos únicamente para responder a esta solicitud.</p>
                 </div>
               </form>
             </div>
@@ -1222,8 +1234,8 @@
       <svg class="icon icon-arrow-up" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up" /></svg>
     </button>
 
-    <script src="/assets/js/i18n.js?v=20261005a" defer></script>
-    <script src="/assets/js/main.js?v=20260927a" defer></script>
+    <script src="/assets/js/i18n.js?v=20261005flow" defer></script>
+    <script src="/assets/js/main.js?v=20261005flow" defer></script>
     <script src="/assets/js/motion.js?v=20260927a" defer></script>
     <script src="/assets/js/static-gallery.js?v=20260924w" defer></script>
 
@@ -1371,6 +1383,6 @@
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/mobile-call-cta.js" defer></script>
   <script src="/assets/js/price-range-placeholder.js" defer></script>
-  <script src="/assets/js/rings.js?v=20260927a" defer></script>
+  <script src="/assets/js/rings.js?v=20261005flow" defer></script>
   </body>
 </html>

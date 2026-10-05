@@ -101,8 +101,8 @@
 
   /* ---------- Walk your yard ---------- */
   var COPY = {
-    en: { none: 'Nothing selected yet', one: '1 area selected', many: '{n} areas selected', notes: 'Yard areas', services: 'Services', start: 'Start a quote request', add: 'Add to my quote request' },
-    es: { none: 'Nada seleccionado', one: '1 área seleccionada', many: '{n} áreas seleccionadas', notes: 'Áreas del jardín', services: 'Servicios', start: 'Empezar una solicitud de cotización', add: 'Agregar a mi solicitud' }
+    en: { none: 'Nothing selected yet', one: '1 area selected', many: '{n} areas selected', notes: 'Yard areas', services: 'Services', start: 'Start a quote request', add: 'Add to my quote request', review: 'Review my quote request', applied: 'Yard areas in this request: {areas}.', cleared: 'Yard areas cleared from this request.' },
+    es: { none: 'Nada seleccionado', one: '1 área seleccionada', many: '{n} áreas seleccionadas', notes: 'Áreas del jardín', services: 'Servicios', start: 'Empezar una solicitud de cotización', add: 'Agregar a mi solicitud', review: 'Revisar mi solicitud', applied: 'Áreas del jardín en esta solicitud: {areas}.', cleared: 'Se quitaron las áreas del jardín de esta solicitud.' }
   };
   function initYard() {
     var box = $('[data-yard]');
@@ -117,10 +117,13 @@
     var yardField = document.getElementById('yardAreasField');
     var yardNotice = document.getElementById('yardSelectionNotice');
     var yardSummary = document.getElementById('yardSelectionText');
+    var yardStatus = document.getElementById('yardSelectionStatus');
     var details = document.getElementById('projectDetails');
     var lastYardService = null;
     var lastPicked = [];
     var yardOwnsService = false;
+    var yardApplied = false;
+    var visitorChangedService = false;
     var settingService = false;
     // Round 5 · J2: a service the visitor already chose (in the form, or from the
     // price check's "Add this range to my request") is kept: adding a different
@@ -142,18 +145,29 @@
       var option = service ? Array.prototype.filter.call(service.options, function (o) { return o.value === value; })[0] : null;
       return option ? option.textContent.replace(/\s+/g, ' ').trim() : '';
     }
-    function renderAppliedYard() {
+    function syncTransferredYard(values) {
+      var nextUrl = new URL(window.location.href);
+      if (!nextUrl.searchParams.has('yard')) return;
+      if (values.length) nextUrl.searchParams.set('yard', values.join(','));
+      else nextUrl.searchParams.delete('yard');
+      if (nextUrl.href !== window.location.href) window.history.replaceState(window.history.state, '', nextUrl);
+    }
+    function renderAppliedYard(announce) {
       var labels = yardLabels(lastPicked);
       var t = COPY[lang()] || COPY.en;
       var named = labels.length && namedService ? serviceLabel(namedService) : '';
       if (yardField) yardField.value = labels.length ? (named ? t.services + ': ' + named + ' · ' : '') + t.notes + ': ' + labels.join(', ') : '';
       if (yardSummary) yardSummary.textContent = labels.join(', ');
+      if (yardStatus && (announce || yardStatus.textContent)) yardStatus.textContent = labels.length ? t.applied.replace('{areas}', labels.join(', ')) : t.cleared;
       if (yardNotice) yardNotice.classList.toggle('hidden', !labels.length);
       if (details) {
         details.required = !labels.length;
         if (labels.length) {
           details.classList.remove('border-red-500');
           details.removeAttribute('aria-invalid');
+          // Clear an earlier inline validation error now that the areas
+          // supply the description and the details field is optional.
+          details.dispatchEvent(new Event('change', { bubbles: true }));
         }
       }
     }
@@ -171,9 +185,11 @@
       zones.forEach(function (z) { z.classList.toggle('is-on', values.indexOf(z.getAttribute('data-zone')) !== -1); });
       var t = COPY[lang()] || COPY.en;
       if (count) count.textContent = !picked.length ? t.none : picked.length === 1 ? t.one : t.many.replace('{n}', picked.length);
-      if (ctaLabel) ctaLabel.textContent = picked.length ? t.add : t.start;
+      if (ctaLabel) ctaLabel.textContent = picked.length ? (yardApplied ? t.review : t.add) : t.start;
       var unique = selectedValues();
-      if (unique.length === 1) cta.setAttribute('data-prefill-service', unique[0]);
+      // Once added, the request follows edits immediately. Let this module
+      // reconcile the service so main.js cannot replace a manual form choice.
+      if (unique.length === 1 && !yardApplied) cta.setAttribute('data-prefill-service', unique[0]);
       else cta.removeAttribute('data-prefill-service');
       // A page without the request form sends the selection to the Spanish home's form.
       if (!service) {
@@ -182,49 +198,90 @@
         cta.href = '/es/' + query + '#quoteFormCard';
       }
     }
-    inputs.forEach(function (i) { i.addEventListener('change', sync); });
+    function changeYardSelection() {
+      if (yardApplied) applyYardSelection();
+      sync();
+    }
+    inputs.forEach(function (i) { i.addEventListener('change', changeYardSelection); });
     zones.forEach(function (z) {
       z.addEventListener('click', function () {
         var input = inputs.filter(function (i) { return i.id === z.getAttribute('data-for'); })[0];
         if (!input) return;
         input.checked = !input.checked;
-        sync();
+        changeYardSelection();
       });
     });
     function applyYardSelection(fromClick) {
       var picked = chosen();
       var values = selectedValues();
+      var hadAppliedYard = yardApplied;
       // (on a click the earlier choice was read before main.js prefilled the service)
-      if (!fromClick && !yardOwnsService && service) baseService = service.value;
+      if (!fromClick && !yardApplied && service) baseService = service.value;
       if (values.length === 0) {
         if (yardOwnsService && service && service.value === lastYardService) setService(baseService);
         yardOwnsService = false;
         lastYardService = null;
         lastPicked = [];
         namedService = '';
+        yardApplied = false;
+        visitorChangedService = false;
       } else {
         var yardService = values.length === 1 ? values[0] : 'multiple-services';
         var nextService = baseService && baseService !== yardService ? 'multiple-services' : yardService;
-        yardOwnsService = setService(nextService);
+        yardOwnsService = !visitorChangedService && setService(nextService);
         lastYardService = yardOwnsService ? nextService : null;
         lastPicked = picked.slice();
+        yardApplied = true;
         // Named unless a chosen yard area already stands for it.
         namedService = yardOwnsService && nextService === 'multiple-services' && baseService &&
           baseService !== 'multiple-services' && values.indexOf(baseService) === -1 ? baseService : '';
       }
-      renderAppliedYard();
+      // A transferred URL must reflect edits, so a reload cannot bring back
+      // removed areas. Locally started requests keep their existing URL.
+      syncTransferredYard(values);
+      renderAppliedYard(values.length > 0 || hadAppliedYard);
     }
     // main.js also prefills a single service from this link, and its listener runs
     // first; read the visitor's earlier choice before any click listener does.
     document.addEventListener('click', function (e) {
-      if (!yardOwnsService && service && e.target && e.target.closest && e.target.closest('[data-yard-cta]') === cta) baseService = service.value;
+      if (!yardApplied && service && e.target && e.target.closest && e.target.closest('[data-yard-cta]') === cta) baseService = service.value;
     }, true);
     cta.addEventListener('click', function () {
-      if (service) applyYardSelection(true);
+      if (service) {
+        applyYardSelection(true);
+        sync();
+      }
+    });
+    var edit = $('[data-yard-edit]', yardNotice);
+    if (edit) edit.addEventListener('click', function (event) {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      var heading = document.getElementById('walk-title');
+      var yardSection = document.getElementById('walk-your-yard');
+      if (!heading || !yardSection) return;
+      event.preventDefault();
+      var nextUrl = new URL(window.location.href);
+      nextUrl.hash = 'walk-your-yard';
+      window.history.replaceState(window.history.state, '', nextUrl);
+      // Focus a heading, keeping the mobile keyboard closed while giving
+      // keyboard and screen-reader visitors a clear place to resume editing.
+      heading.focus({ preventScroll: true });
+      var header = document.getElementById('header');
+      var headerHeight = header ? header.getBoundingClientRect().height : 0;
+      window.scrollTo({ top: Math.max(yardSection.getBoundingClientRect().top + window.scrollY - headerHeight - 16, 0), behavior: 'instant' });
+    });
+    var clear = $('[data-yard-clear]', yardNotice);
+    if (clear) clear.addEventListener('click', function () {
+      inputs.forEach(function (input) { input.checked = false; });
+      applyYardSelection();
+      sync();
+      // The notice disappears; retain a useful, non-editable focus target.
+      var card = document.getElementById('quoteFormCard');
+      if (card) card.focus({ preventScroll: true });
     });
     if (service) service.addEventListener('change', function () {
       if (settingService) return;
       yardOwnsService = false;
+      if (yardApplied) visitorChangedService = true;
       // The visitor chose a service by hand: the field says it now.
       if (namedService) {
         namedService = '';
@@ -238,6 +295,10 @@
       lastYardService = null;
       lastPicked = [];
       yardOwnsService = false;
+      yardApplied = false;
+      visitorChangedService = false;
+      if (yardStatus) yardStatus.textContent = '';
+      syncTransferredYard([]);
       inputs.forEach(function (input) { input.checked = false; });
       sync();
       renderAppliedYard();
@@ -250,6 +311,7 @@
       inputs.forEach(function (input) { input.checked = requested.indexOf(input.value) !== -1; });
       sync();
       applyYardSelection();
+      sync();
     }
     if (window.siteI18n && window.siteI18n.onChange) window.siteI18n.onChange(function () {
       window.setTimeout(function () {

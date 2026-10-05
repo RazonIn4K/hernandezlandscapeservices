@@ -143,3 +143,103 @@
         }
     }
 }
+
+/* Service actions and the grouped quote request. */
+.services-chapter .service-card .service-actions {
+    display: grid;
+    gap: 0.625rem;
+    margin-top: auto;
+}
+.services-chapter .service-card .service-actions a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0.625rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-align: center;
+}
+.services-chapter .service-details {
+    border: 1px solid rgba(21, 59, 47, 0.25);
+    color: var(--canopy);
+}
+.services-chapter .service-details:hover { background: var(--limestone); }
+.services-chapter .service-request {
+    border: 1px solid var(--canopy);
+    background: var(--canopy);
+    color: #fff;
+}
+.services-chapter .service-request:hover { background: var(--leaf); }
+@media (min-width: 1100px) {
+    .services-chapter .service-card .service-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+    #services.services-chapter .grid.md\:grid-cols-3 { grid-template-columns: minmax(0, 1fr); }
+    .services-chapter .service-card > .p-6 {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        column-gap: 12px;
+    }
+    .services-chapter .service-card .service-icon { grid-row: span 2; margin-bottom: 0; }
+    .services-chapter .service-card h3 { align-self: end; }
+    .services-chapter .service-card ul { grid-column: 2; }
+    .services-chapter .service-card .service-actions {
+        grid-column: 1 / -1;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 8px;
+    }
+}
+#contactForm .quote-form-content { display: grid; gap: 20px; }
+#contactForm .quote-group { min-width: 0; margin: 0; padding: 0; border: 0; }
+#contactForm .quote-group > legend {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 0;
+    color: var(--canopy);
+    font-size: 1.125rem;
+    font-weight: 800;
+    line-height: 1.35;
+}
+#contactForm .quote-group-number {
+    display: inline-grid;
+    flex: 0 0 28px;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--canopy);
+    color: #fff;
+    font-size: 0.875rem;
+}
+#contactForm .quote-group-fields { display: grid; gap: 18px; }
+#contactForm .quote-contact-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: 18px;
+    align-items: start;
+}
+#contactForm .quote-field { min-width: 0; }
+#contactForm .quote-field-helper { margin-top: 8px; color: #4b5563; font-size: 0.875rem; line-height: 1.5; }
+#contactForm .quote-confirm { display: grid; gap: 16px; border-top: 1px solid #dce6dd; padding-top: 20px; }
+#contactForm #ownerVerify { flex: 0 0 22px; width: 22px; height: 22px; accent-color: var(--canopy); }
+#contactForm .yard-summary-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+#contactForm .yard-summary-actions a,
+#contactForm .yard-summary-actions button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--canopy);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+#quoteFormCard:focus-visible,
+#walk-title:focus-visible { outline: 3px solid var(--fresh); outline-offset: 6px; }
+#contactForm .yard-summary-actions a:focus-visible,
+#contactForm .yard-summary-actions button:focus-visible { outline: 3px solid var(--canopy); outline-offset: 3px; border-radius: 4px; }

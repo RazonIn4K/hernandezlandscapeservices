@@ -1053,14 +1053,6 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
   .services-chapter .service-card ul > li { font-size: 0.9rem; line-height: 1.3; }
   .services-chapter .service-card ul > li .icon { display: none; }
   .services-chapter .service-card a { font-size: 0.9rem; }
-  /* The whole tile opens the service page; "Get Quote" stays its own target. */
-  .services-chapter .service-card .p-6 > a::after,
-  .services-chapter .service-card .p-6 > div > a:first-child::after { content: ""; position: absolute; inset: 0; border-radius: 14px; }
-  .services-chapter .service-card .p-6 > div > a + a { position: relative; z-index: 1; }
-  .services-chapter .service-card:last-child { grid-column: 1 / -1; }
-  .services-chapter .service-card:last-child > .p-6 { display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: center; }
-  .services-chapter .service-card:last-child .service-icon { grid-row: span 3; margin: 0; }
-  .services-chapter .service-card:last-child .p-6 > div { grid-column: 2; }
   .services-chapter .mt-12.bg-green-600 { margin-top: 20px; padding: 16px 12px; }
   .services-chapter .mt-12.bg-green-600 h3 { font-size: 1.25rem !important; margin-bottom: 10px !important; }
   .services-chapter .mt-12.bg-green-600 .gap-4 { gap: 8px; }

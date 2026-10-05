@@ -92,15 +92,12 @@ test('manual service edits survive clearing the yard picker, and reset clears pi
   await expect(page.locator('#yardAreasField')).toHaveValue('');
 });
 
-test('on /es/ the applied yard areas are written in Spanish, without pending picks', async ({ page }) => {
+test('on /es/ changes to applied yard areas reach the request immediately', async ({ page }) => {
   await page.goto('/es/');
   await page.locator('#yard-lawn').check();
   await page.locator('[data-yard-cta]').click();
   await page.locator('#yard-tree').check();
 
-  await expect(page.locator('#contactService')).toHaveValue('lawn-care');
-  await expect(page.locator('#yardAreasField')).toHaveValue('Áreas del jardín: El césped');
-  await page.locator('[data-yard-cta]').click();
   await expect(page.locator('#contactService')).toHaveValue('multiple-services');
   await expect(page.locator('#yardAreasField')).toHaveValue('Áreas del jardín: El árbol grande, El césped');
 });

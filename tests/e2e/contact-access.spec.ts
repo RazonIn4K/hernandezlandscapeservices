@@ -26,14 +26,14 @@ test('Spanish entry opens a localized request and keeps the selected service', a
   await expect(page.locator('html')).toHaveAttribute('lang', 'es');
   await expect(page.locator('#contactService')).toHaveValue('lawn-care');
   await expect(page.locator('[data-i18n-key="quote.formHeading"]')).toHaveText('Solicite una cotización gratis');
-  await expect(page.locator('#quoteFormHelper')).toContainText('no una cita confirmada');
+  await expect(page.locator('#quoteFormHelper')).toContainText('no confirma una cita');
   await expect(page.locator('#instantBestTime option')).toHaveText(['Mañana', 'Tarde', 'Noche']);
   await expect(page.locator('#bestTime option:not([value=""])')).toHaveText(['Mañana', 'Tarde', 'Noche']);
 
   await page.locator('#header .lang-link:visible').click();
   await expect(page).toHaveURL(/\/$/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('#quoteFormHelper')).toContainText('not a confirmed appointment');
+  await expect(page.locator('#quoteFormHelper')).toContainText('does not book an appointment');
 });
 
 test('quote heading has readable contrast and each contact action uses its own protocol', async ({ page }) => {
