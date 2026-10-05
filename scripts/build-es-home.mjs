@@ -161,10 +161,14 @@ function rewriteTag(name, attrSource, selfClose) {
     ['data-i18n-placeholder', 'placeholder'],
     ['data-i18n-title', 'title'],
     ['data-i18n-aria-label', 'aria-label'],
+    ['data-i18n-aria-valuetext', 'aria-valuetext'],
     ['data-i18n-alt', 'alt'],
   ]) {
     const key = get(keyAttr);
-    if (key) set(target, es(key.value));
+    if (key) {
+      const translated = es(key.value);
+      set(target, target === 'aria-valuetext' ? translated.replace('{{value}}', '50') : translated);
+    }
   }
   for (const n of ['src', 'data-poster', 'poster']) {
     const a = get(n);

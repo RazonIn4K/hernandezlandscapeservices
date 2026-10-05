@@ -32,11 +32,10 @@ const COPY = {
     homeLabel: 'Inicio Hernandez Landscape',
     logoAlt: 'Logo de Hernandez Landscape & Tree Service LLC',
     tagline: 'Jardinería y servicio de árboles en DeKalb County',
-    // Round 4 (research 05 X3): the Spanish nav stays on Spanish URLs; the work,
-    // video and area links open those chapters of the Spanish home.
+    // Spanish navigation stays on Spanish pages where those pages exist.
     nav: [
       ['services', '/es/#services', 'Servicios'],
-      ['work', '/es/#gallery', 'Nuestro trabajo'],
+      ['work', '/es/gallery/', 'Nuestro trabajo'],
       ['videos', '/es/#videos', 'Videos'],
       ['reviews', '/es/#testimonials', 'Reseñas'],
       ['areas', '/es/service-areas/', 'Zonas de servicio'],
@@ -112,6 +111,7 @@ ${mob}
 
 // English pages with a Spanish twin, and the reverse.
 export const TWINS = [
+  '/gallery/',
   '/tree-removal/',
   '/emergency-tree-removal/',
   '/tree-trimming-stump-grinding/',
@@ -131,7 +131,7 @@ export const TWINS = [
 ];
 
 // English pages whose Spanish counterpart is a chapter of the Spanish home.
-const CHAPTERS = { '/gallery/': '/es/#gallery', '/videos/': '/es/#videos' };
+const CHAPTERS = { '/videos/': '/es/#videos' };
 
 /** Language link for a route: its twin, or the other language's home. */
 export function altFor(route) {

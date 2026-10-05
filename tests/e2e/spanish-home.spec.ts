@@ -87,7 +87,7 @@ test('English URLs stay English and link to /es/; old ?lang=es home links open /
   await page.goto('/gallery/?lang=es', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('[data-lang-switch]')).toHaveCount(0);
-  await expect(page.locator('#header .lang-link').first()).toHaveAttribute('href', '/es/#gallery');
+  await expect(page.locator('#header .lang-link').first()).toHaveAttribute('href', '/es/gallery/');
 
   await page.goto('/?lang=es', { waitUntil: 'domcontentloaded' });
   await expect(page).toHaveURL(/\/es\/$/);

@@ -27,12 +27,25 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { fileURLToPath } from 'node:url';
 import { icon, withIconSprite } from './icons.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const MANIFEST_PATH = path.join(ROOT, 'media', 'gallery.json');
 const CHECK_MODE = process.argv.includes('--check');
+
+// Captions are written in both languages in the site dictionary. Keep the
+// visible English text in the static markup and let build-es-gallery.mjs write
+// a fully translated Spanish page at build time.
+const i18nSource = fs.readFileSync(path.join(ROOT, 'assets', 'js', 'i18n.js'), 'utf8');
+const dictionaryStart = i18nSource.indexOf('const translations = {');
+const dictionaryEnd = i18nSource.indexOf('\n  };', dictionaryStart);
+if (dictionaryStart < 0 || dictionaryEnd < 0) {
+  console.error('Cannot find the translation dictionary in assets/js/i18n.js');
+  process.exit(1);
+}
+const dictionary = vm.runInNewContext(`(${i18nSource.slice(dictionaryStart + 'const translations = '.length, dictionaryEnd + 4)})`);
 
 const MARKERS = {
   galleryPage: { start: '<!-- GALLERY:GENERATED:START -->', end: '<!-- GALLERY:GENERATED:END -->' },
@@ -187,6 +200,10 @@ for (const item of galleryPageItems) {
   if (!item.gallery || (!item.gallery.title && !item.gallery.titleKey)) {
     fail(`item "${item.id}": used on galleryPage but has no gallery.title`);
   }
+  const noteKey = `gallery.note.${item.id.replace(/-/g, '_')}`;
+  if (typeof dictionary.en[noteKey] !== 'string' || typeof dictionary.es[noteKey] !== 'string') {
+    fail(`item "${item.id}": missing English or Spanish gallery note "${noteKey}"`);
+  }
 }
 for (const item of homeGalleryItems) {
   if (!item.caption || typeof item.caption !== 'string') {
@@ -245,22 +262,25 @@ function renderGalleryCards(list) {
   const cards = list.map((item, index) => {
     const loading = index < 3 ? 'eager' : 'lazy';
     const fetchPriority = index === 0 ? ' fetchpriority="high"' : '';
-    const alt = item.gallery?.alt ?? item.alt;
     const keyAttr = item.gallery?.titleKey ? ` data-i18n-key="${escapeHtml(item.gallery.titleKey)}"` : '';
     const title = item.gallery?.title ?? '';
+    const noteKey = `gallery.note.${item.id.replace(/-/g, '_')}`;
+    const note = dictionary.en[noteKey];
+    const alt = note;
     const srcset = srcsetFor(item);
     const sized = srcset
       ? ` srcset="${escapeHtml(srcset)}" sizes="${GALLERY_SIZES}" width="${item.size[0]}" height="${item.size[1]}"`
       : '';
     return [
-      '                <div class="gallery-item group">',
-      `                    <img src="/${escapeHtml(item.src)}"${sized} loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" class="">`,
-      '                    <div class="gallery-overlay">',
-      '                        <div class="text-center p-4">',
-      `                            <h3${keyAttr}>${escapeHtml(title)}</h3>`,
-      '                        </div>',
+      '                <figure class="gallery-item">',
+      '                    <div class="gallery-photo">',
+      `                        <img src="/${escapeHtml(item.src)}"${sized} loading="${loading}" decoding="async"${fetchPriority} alt="${escapeHtml(alt)}" data-i18n-alt="${escapeHtml(noteKey)}">`,
       '                    </div>',
-      '                </div>',
+      '                    <figcaption class="gallery-caption">',
+      `                        <h3${keyAttr}>${escapeHtml(title)}</h3>`,
+      `                        <p data-i18n-key="${escapeHtml(noteKey)}">${escapeHtml(note)}</p>`,
+      '                    </figcaption>',
+      '                </figure>',
     ].join('\n');
   });
   return cards.join('\n\n');
