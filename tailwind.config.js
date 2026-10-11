@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './index.html',
+    './*.html',
     './es/**/*.html',
     './tree-removal/**/*.html',
     './emergency-tree-removal/**/*.html',
@@ -15,8 +15,6 @@ module.exports = {
     './service-areas/**/*.html',
     './gallery/**/*.html',
     './videos/**/*.html',
-    './gallery.html',
-    './videos.html',
     './src/**/*.{html,js,ts,tsx}',
     './assets/js/**/*.{js,ts}',
     './tests/**/*.{js,ts,tsx}',

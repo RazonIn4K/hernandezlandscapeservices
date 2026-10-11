@@ -885,7 +885,7 @@ footer .bg-gray-800 {
     white-space: normal;
   }
 
-  .site-header .lg\:hidden {
+  .site-header nav > .lg\:hidden {
     flex: 0 0 auto;
     gap: 0.45rem !important;
   }
