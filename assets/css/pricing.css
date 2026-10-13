@@ -2,7 +2,11 @@
         background: #fff;
         border-radius: 1rem;
         padding: 1.75rem;
+        min-width: 0;
         box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+      }
+      .pricing-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
       }
       .pricing-btn {
         display: block;
@@ -48,11 +52,11 @@
       .container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 2rem;
+        padding: clamp(1rem, 4vw, 2rem);
       }
       h1 {
         text-align: center;
-        font-size: 2.5rem;
+        font-size: clamp(1.875rem, 6vw, 2.5rem);
         font-weight: 700;
         color: #1f2937;
         margin-bottom: 1rem;
@@ -62,6 +66,7 @@
         color: #6b7280;
         margin-bottom: 3rem;
         font-size: 1.1rem;
+        overflow-wrap: anywhere;
       }
       .updated-notice {
         background: #dcfce7;

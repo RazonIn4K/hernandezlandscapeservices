@@ -84,12 +84,6 @@
     font-family: var(--body, "Public Sans", system-ui, sans-serif);
 }
 
-@media (min-width: 768px) {
-    .video-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
 @media (max-width: 640px) {
     .video-card:hover .video-wrapper {
         transform: none;

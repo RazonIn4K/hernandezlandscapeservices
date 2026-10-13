@@ -107,6 +107,23 @@ h3 { font-family: var(--body); letter-spacing: -0.01em; }
   background: linear-gradient(90deg, var(--canopy) 0 40%, var(--leaf) 40% 70%, var(--moss) 70% 88%, var(--season) 88%);
   pointer-events: none;
 }
+@media (max-width: 1023px) {
+  /* Let the menu use the space below the actual brand row, even in landscape. */
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh;
+    max-height: 100dvh;
+  }
+  .site-header > .container { flex-shrink: 0; width: 100%; }
+  .site-header #mobileMenu {
+    position: static;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
 .site-header nav > div:first-child p:first-child {
   font-family: var(--display);
   font-weight: 800;
@@ -773,8 +790,8 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
   transform: rotate(-3.5deg);
   clip-path: polygon(2% 0, 98% 6%, 100% 50%, 97% 100%, 1% 94%, 0 45%);
 }
-.when-ring { position: relative; width: 212px; height: 212px; flex: 0 0 auto; }
-.when-ring svg { position: absolute; inset: 16px; width: 180px; height: 180px; overflow: visible; }
+.when-ring { position: relative; width: 212px; max-width: 100%; aspect-ratio: 1; flex: 0 0 auto; }
+.when-ring svg { position: absolute; inset: 7.55%; width: 84.9%; height: 84.9%; overflow: visible; }
 .when-seg { fill: #e6dcc9; stroke: var(--paper); stroke-width: 2; }
 .when-seg.is-on.s-winter { fill: #5b93bb; }
 .when-seg.is-on.s-spring { fill: #6ea45a; }
@@ -788,9 +805,11 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
 .when-months li {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 8.5%;
   width: 0;
-  height: 0;
+  height: 41.5%;
+  transform-origin: 0 100%;
+  transform: rotate(var(--a));
 }
 .when-months span {
   position: absolute;
@@ -805,7 +824,7 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
   letter-spacing: 0.03em;
   color: #6a6155;
   white-space: nowrap;
-  transform: translate(-50%, -50%) rotate(var(--a)) translateY(-88px) rotate(calc(var(--a) * -1));
+  transform: translate(-50%, -50%) rotate(calc(var(--a) * -1));
 }
 .when-months li.is-on span { color: var(--ink); font-weight: 900; }
 .when-months li.is-now span { background: var(--ink); color: #fff; }
@@ -843,9 +862,29 @@ footer.bg-gray-900 .bg-gray-800 { background: rgba(233, 220, 195, 0.08) !importa
 .when-chip.is-now { border-color: var(--leaf); background: var(--leaf); color: #fff; }
 .when-chip.is-now::before { background: var(--fresh); box-shadow: 0 0 0 3px rgba(184, 217, 143, 0.35); }
 .when-note { margin: 12px 0 0; color: var(--ink-soft); font-size: 0.88rem; max-width: 48ch; }
+
+/* Service panels share fluid padding instead of nesting fixed phone gutters. */
+.service-content { padding: clamp(1rem, 4vw, 3rem); }
+.service-cta { padding: clamp(1rem, 3vw, 2rem); }
+.service-cta > .flex { flex-wrap: wrap; }
+.service-cta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+  min-height: 44px;
+  max-width: 100%;
+  padding-inline: 1rem;
+}
+.service-cta .icon { flex-shrink: 0; margin-right: 0; }
+@media (min-width: 640px) {
+  .service-cta > .flex > a { flex: 1 1 12rem; }
+}
 @media (max-width: 600px) {
-  .when-card { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+  .when-card { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
   .when-seasons { justify-content: center; }
+  .when-seasons li { flex-wrap: wrap; justify-content: center; }
   .when-note { margin-inline: auto; }
 }
 
@@ -1783,10 +1822,8 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
 .video-meta time { font-variant-numeric: tabular-nums; color: var(--ink); }
 .video-strip .video-meta { color: rgba(245, 242, 233, 0.86); }
 .video-strip .video-meta time { color: #fff; }
-/* /videos/: portrait clips in portrait cards; a denser grid keeps the page short. */
-.video-grid { align-items: start; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-@media (min-width: 640px) { .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } }
-@media (min-width: 1024px) { .video-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
+/* /videos/: video.css sizes columns to keep native player controls usable. */
+.video-grid { align-items: start; }
 /* Home tours: portrait frames where there is room; phones keep the compact crop
    so the homepage stays inside its length budget. */
 @media (min-width: 640px) {
