@@ -37,6 +37,7 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const EXCLUDED_DIRS = new Set([
   '.claude',
+  '.delta',
   '.git',
   '_media-archive',
   'node_modules',
