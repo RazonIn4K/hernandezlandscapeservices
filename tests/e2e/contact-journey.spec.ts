@@ -37,6 +37,13 @@ for (const [lang, path, callLabel, textLabel] of [
     await expect(text).toHaveAttribute('href', PHONE_SMS);
     await expect(text).toHaveText(textLabel);
     expect((await call.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    const close = page.locator('#customModal button');
+    await page.keyboard.press('Shift+Tab');
+    await expect(close).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(call).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(close).toBeFocused();
     await page.locator('#customModal button').click();
 
     await page.evaluate(() => { const d = document.querySelector<HTMLDetailsElement>('#instant-quote details'); if (d) d.open = true; });
@@ -60,6 +67,13 @@ for (const [lang, path, callLabel, textLabel] of [
     await expect(page.locator('#modalMessage')).toBeVisible();
     await expect(page.locator('#modalCallAction')).toBeHidden();
     await expect(page.locator('#modalTextAction')).toBeHidden();
+    const close = page.locator('#customModal button');
+    await page.keyboard.press('Shift+Tab');
+    await expect(close).toBeFocused();
+    await page.keyboard.press('Shift+Tab');
+    await expect(close).toBeFocused();
+    await page.keyboard.press('Tab');
+    await expect(close).toBeFocused();
   });
 }
 

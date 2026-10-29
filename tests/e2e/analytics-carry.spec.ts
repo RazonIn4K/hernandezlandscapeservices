@@ -31,7 +31,11 @@ test('a quote click that leaves the page before GTM loads reaches the next page\
 test('the emergency page\'s mobile bar estimate carries both of its events', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/emergency-tree-removal/', { waitUntil: 'load' });
-  await page.evaluate(() => window.scrollTo(0, 1200));
+  // past the hero, but short of the first contact panel (the bar steps aside for those)
+  await page.evaluate(() => {
+    const panel = document.querySelector('.service-cta, #emergency-dispatch')!;
+    window.scrollTo(0, panel.getBoundingClientRect().top + window.scrollY - window.innerHeight - 40);
+  });
   const estimate = page.locator('[data-mobile-call-cta-estimate]');
   await expect(estimate).toBeVisible();
   await Promise.all([page.waitForURL(/\/#quote$/), estimate.click()]);

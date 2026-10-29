@@ -26,6 +26,7 @@ const COPY = {
     primaryNav: 'Primary navigation',
     mobileNav: 'Mobile navigation',
     menu: 'Open navigation menu',
+    menuShort: 'Menu',
   },
   es: {
     home: '/es/',
@@ -47,6 +48,7 @@ const COPY = {
     primaryNav: 'Navegación principal',
     mobileNav: 'Navegación móvil',
     menu: 'Abrir menú de navegación',
+    menuShort: 'Menú',
   },
 };
 
@@ -95,6 +97,13 @@ ${desk}
           <div class="flex items-center gap-2 lg:hidden">
             ${langLink()}
             <a href="tel:18155011478" class="nojs-call" aria-label="${c.callName}">${icon('phone-alt')}<span>${c.callShort}</span></a>
+            <details class="nojs-menu">
+              <summary>${c.menuShort}</summary>
+              <nav class="nojs-menu-panel" aria-label="${c.mobileNav}">
+${mob}
+                <a href="${quoteHref}" class="block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white">${c.quote}</a>
+              </nav>
+            </details>
             <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" ${menuLabel}>${icon('bars', 'text-xl')}</button>
           </div>
         </nav>

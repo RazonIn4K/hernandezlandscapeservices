@@ -770,12 +770,12 @@ section h3 {
   content: "+";
   font-size: 1.35rem;
   line-height: 1;
-  transition: transform 180ms ease;
+  transition: none;
 }
 
 .faq-item[open] summary::after {
   content: "\2212";
-  transform: rotate(180deg);
+  transform: none;
 }
 
 .faq-item summary:focus-visible {

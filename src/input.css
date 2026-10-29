@@ -179,20 +179,21 @@
 @media (max-width: 767px) {
     #services.services-chapter .grid.md\:grid-cols-3 { grid-template-columns: minmax(0, 1fr); }
     .services-chapter .service-card > .p-6 {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr);
-        column-gap: 12px;
+        display: flex;
+        flex-direction: column;
     }
-    .services-chapter .service-card .service-icon { grid-row: span 2; margin-bottom: 0; }
-    .services-chapter .service-card h3 { align-self: end; }
-    .services-chapter .service-card ul { grid-column: 2; }
     .services-chapter .service-card .service-actions {
-        grid-column: 1 / -1;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         margin-top: 8px;
     }
 }
-#contactForm .quote-form-content { display: grid; gap: 20px; }
+@media (max-width: 360px) {
+    .services-chapter .service-card .service-actions a {
+        padding-inline: 0.375rem;
+        font-size: 0.8125rem;
+    }
+}
+#contactForm .quote-form-content { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; }
 #contactForm .quote-group { min-width: 0; margin: 0; padding: 0; border: 0; }
 #contactForm .quote-group > legend {
     display: flex;
@@ -217,7 +218,17 @@
     color: #fff;
     font-size: 0.875rem;
 }
-#contactForm .quote-group-fields { display: grid; gap: 18px; }
+#contactForm .quote-group-fields { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+/* A select's min-content is its widest option; keep it inside the card. */
+#contactForm select,
+#contactForm button { min-width: 0; max-width: 100%; }
+#contactForm button { overflow-wrap: anywhere; }
+/* 390px phones at 200% zoom: give form controls back the side gutters. */
+@media (max-width: 240px) {
+    #quote > .container { padding-inline: 8px; }
+    #quote #quoteFormCard { padding-inline: 12px !important; }
+    #contactForm select { padding-inline: 8px; }
+}
 #contactForm .quote-contact-fields {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
@@ -225,6 +236,26 @@
     align-items: start;
 }
 #contactForm .quote-field { min-width: 0; }
+#contactForm .quote-selection-summary {
+    margin-top: 8px;
+    color: var(--canopy);
+    font-size: 0.875rem;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+.quote-selection-fallback,
+.quote-selection-fallback > span { display: none; }
+@media (scripting: none) {
+    .quote-selection-fallback { display: block; }
+    #contactForm:has(#contactService option[value="lawn-care"]:checked) .quote-selection-fallback [data-service="lawn-care"],
+    #contactForm:has(#contactService option[value="tree-service"]:checked) .quote-selection-fallback [data-service="tree-service"],
+    #contactForm:has(#contactService option[value="landscaping"]:checked) .quote-selection-fallback [data-service="landscaping"],
+    #contactForm:has(#contactService option[value="snow-removal"]:checked) .quote-selection-fallback [data-service="snow-removal"],
+    #contactForm:has(#contactService option[value="leaf-removal"]:checked) .quote-selection-fallback [data-service="leaf-removal"],
+    #contactForm:has(#contactService option[value="gutter-cleaning"]:checked) .quote-selection-fallback [data-service="gutter-cleaning"],
+    #contactForm:has(#contactService option[value="pressure-washing"]:checked) .quote-selection-fallback [data-service="pressure-washing"],
+    #contactForm:has(#contactService option[value="multiple-services"]:checked) .quote-selection-fallback [data-service="multiple-services"] { display: block; }
+}
 #contactForm .quote-field-helper { margin-top: 8px; color: #4b5563; font-size: 0.875rem; line-height: 1.5; }
 #contactForm .quote-confirm { display: grid; gap: 16px; border-top: 1px solid #dce6dd; padding-top: 20px; }
 #contactForm #ownerVerify { flex: 0 0 22px; width: 22px; height: 22px; accent-color: var(--canopy); }
@@ -243,3 +274,21 @@
 #walk-title:focus-visible { outline: 3px solid var(--fresh); outline-offset: 6px; }
 #contactForm .yard-summary-actions a:focus-visible,
 #contactForm .yard-summary-actions button:focus-visible { outline: 3px solid var(--canopy); outline-offset: 3px; border-radius: 4px; }
+
+/* Selections only transfer when the planner script has initialized. */
+html:not(.js-rings) .walk-yard-grid,
+html:not(.js-rings) .walk-yard-intro > p[data-i18n-key="yard.intro"],
+html.js-rings .yard-nojs { display: none; }
+
+/* An optional planner should always have an obvious direct route to the form. */
+.yard-skip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.5rem;
+    color: var(--canopy);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+.yard-skip:hover { color: var(--leaf); }
