@@ -142,13 +142,34 @@ test('on phones the price check folds until the visitor asks for it', async ({ p
   await expect(fold).toHaveAttribute('open', '');
 });
 
-test('homepage stays within the round-3 length budget at 390 and 1440', async ({ page }, testInfo) => {
+// Mobile cards now show project photos and all service details, adding up to 500px.
+test('homepage stays within the length budget at 390 and 1440', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'chromium' && testInfo.project.name !== 'chrome-local', 'Font metrics differ per engine; the budget is measured in Chromium.');
-  for (const [width, height, budget] of [[390, 844, 13000], [1440, 900, 9500]] as const) {
+  for (const [width, height, budget] of [[390, 844, 13500], [1440, 900, 9500]] as const) {
     await page.setViewportSize({ width, height });
     await page.goto('/', { waitUntil: 'load' });
     await page.evaluate(() => document.fonts.ready);
     const total = await page.evaluate(() => document.documentElement.scrollHeight);
     expect(total, `home height at ${width}`).toBeLessThanOrEqual(budget);
+  }
+});
+
+test('mobile service cards show project photos, details and usable actions in both languages', async ({ page }) => {
+  for (const path of ['/', '/es/']) {
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto(path, { waitUntil: 'domcontentloaded' });
+      const cards = page.locator('#services .service-card');
+      await expect(cards).toHaveCount(3);
+      for (const card of await cards.all()) {
+        await expect(card.locator('img')).toBeVisible();
+        await expect(card.locator('li:visible')).toHaveCount(4);
+        for (const action of await card.locator('.service-actions a').all()) {
+          const fits = await action.evaluate((element) => element.scrollWidth <= element.clientWidth);
+          expect(fits, `${path} at ${width}: ${await action.innerText()}`).toBeTruthy();
+          expect((await action.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+        }
+      }
+    }
   }
 });

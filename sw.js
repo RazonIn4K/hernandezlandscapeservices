@@ -1,4 +1,4 @@
-const CACHE_NAME = 'hernandez-landscape-v50';
+const CACHE_NAME = 'hernandez-landscape-v52';
 // Round 4 (research 03 R18): install caches only the core shell: the two home
 // pages, the one stylesheet, the scripts they run, and the fonts. Everything else
 // (service and town pages, gallery, videos, images) is cached at runtime on first
@@ -7,15 +7,15 @@ const CACHE_NAME = 'hernandez-landscape-v50';
 const URLS_TO_CACHE = [
   '/',
   '/es/',
-  '/assets/css/site.css?v=20261005flow',
+  '/assets/css/site.css?v=20261028refine',
   '/assets/css/fonts-late.css?v=20260924l',
-  '/assets/js/i18n.js?v=20261005flow',
-  '/assets/js/main.js?v=20261005flow',
+  '/assets/js/i18n.js?v=20261028design',
+  '/assets/js/main.js?v=20261028refine',
   '/assets/js/rings.js?v=20261005flow',
   '/assets/js/static-gallery.js?v=20260924w',
   '/assets/js/motion.js?v=20260927a',
   '/assets/js/analytics.js',
-  '/assets/js/mobile-call-cta.js',
+  '/assets/js/mobile-call-cta.js?v=20261028nav',
   '/assets/js/price-range-placeholder.js',
   '/assets/js/service-nav.js',
   '/assets/fonts/big-shoulders-display-v24-latin-var.woff2',

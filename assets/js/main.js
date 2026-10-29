@@ -58,16 +58,16 @@ if (modalContent) {
       "input:not([disabled])",
       '[tabindex]:not([tabindex="-1"])',
     ];
-    const focusableElements = modalContent.querySelectorAll(
+    const focusableElements = Array.from(modalContent.querySelectorAll(
       focusableSelectors.join(","),
-    );
+    )).filter((element) => element.getClientRects().length > 0 && getComputedStyle(element).visibility !== "hidden");
     if (!focusableElements.length) {
       event.preventDefault();
       return;
     }
     const firstEl = focusableElements[0];
     const lastEl = focusableElements[focusableElements.length - 1];
-    if (event.shiftKey && document.activeElement === firstEl) {
+    if (event.shiftKey && (document.activeElement === firstEl || document.activeElement === modalContent)) {
       event.preventDefault();
       lastEl.focus();
     } else if (!event.shiftKey && document.activeElement === lastEl) {
@@ -1018,8 +1018,24 @@ if (contactForm) {
   });
 
   const contactService = document.getElementById("contactService");
+  const selectedServiceDisplay = document.getElementById("selectedServiceDisplay");
+  const renderSelectedService = () => {
+    if (!contactService || !selectedServiceDisplay) return;
+    const option = contactService.selectedOptions[0];
+    const label = contactService.value && option ? option.textContent.replace(/\s+/g, " ").trim() : "";
+    selectedServiceDisplay.textContent = label
+      ? `${getMessage("quote.prefill.prefix", "Selected service:")} ${label}`
+      : "";
+    selectedServiceDisplay.hidden = !label;
+  };
   if (contactService) {
+    renderSelectedService();
+    contactForm.addEventListener("reset", () => window.setTimeout(renderSelectedService, 0));
+    if (languageApi && typeof languageApi.onChange === "function") {
+      languageApi.onChange(renderSelectedService);
+    }
     contactService.addEventListener("change", () => {
+      renderSelectedService();
       if (
         activePrefillService &&
         SERVICE_PREFILLS[activePrefillService]?.value === contactService.value

@@ -41,7 +41,7 @@
     <meta name="theme-color" content="#153b2f" />
 
     <!-- One stylesheet (scripts/bundle-css.mjs); fonts preloaded below -->
-    <link rel="stylesheet" href="/assets/css/site.css?v=20261005flow" />
+    <link rel="stylesheet" href="/assets/css/site.css?v=20261028refine" />
     <!-- Self-hosted fonts: the two on the first paint are preloaded; Stencil and italic load late (rings.js) -->
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/big-shoulders-display-v24-latin-var.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/assets/fonts/public-sans-v21-latin-var.woff2" crossorigin />
@@ -75,6 +75,17 @@
           <div class="flex items-center gap-2 lg:hidden">
             <a href="/" class="lang-link" hreflang="en" lang="en">English</a>
             <a href="tel:18155011478" class="nojs-call" aria-label="Llamar al (815) 501-1478"><svg class="icon icon-phone-alt" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-phone-alt"/></svg><span>Llamar</span></a>
+            <details class="nojs-menu">
+              <summary>Menú</summary>
+              <nav class="nojs-menu-panel" aria-label="Navegación móvil">
+          <a href="/es/#services" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Servicios</a>
+          <a href="/es/gallery/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Nuestro trabajo</a>
+          <a href="/es/#videos" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Videos</a>
+          <a href="/es/#testimonials" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Reseñas</a>
+          <a href="/es/service-areas/" class="block rounded-lg px-3 py-3 font-semibold text-gray-700 hover:bg-green-50">Zonas de servicio</a>
+                <a href="#quote" class="block rounded-lg bg-green-600 px-3 py-3 text-center font-bold text-white">Cotización gratis</a>
+              </nav>
+            </details>
             <button id="mobileMenuButton" type="button" class="flex h-11 w-11 items-center justify-center rounded-full text-gray-700 hover:bg-green-50 hover:text-green-700" aria-controls="mobileMenu" aria-expanded="false" aria-label="Abrir menú de navegación"><svg class="icon icon-bars text-xl" width="0.875em" height="1em" aria-hidden="true" focusable="false"><use href="#i-bars"/></svg></button>
           </div>
         </nav>
@@ -512,9 +523,11 @@
     <section id="walk-your-yard" class="walk-yard" aria-labelledby="walk-title">
       <div class="container mx-auto px-4">
         <div class="walk-yard-intro mb-8">
-          <p class="ring-label"><span class="step-no" aria-hidden="true">1</span><span data-i18n-key="yard.label">Plano del terreno</span></p>
+          <p class="ring-label"><span data-i18n-key="yard.label">Plano opcional del terreno</span></p>
           <h2 id="walk-title" tabindex="-1" data-i18n-key="yard.heading">Recorra su jardín.</h2>
-          <p data-i18n-key="yard.intro">Toque en el plano lo que necesita trabajo, o márquelo en la lista. Lo agregamos a su solicitud para que el equipo sepa dónde revisar.</p>
+          <p data-i18n-key="yard.intro">Use este plano opcional para mostrarnos qué necesita trabajo, o vaya directamente a la solicitud de abajo. Sus selecciones se agregan a su solicitud de cotización.</p>
+          <p class="yard-nojs" data-i18n-key="yard.nojs">El plano del jardín necesita JavaScript. Use el formulario de cotización para contarnos qué necesita trabajo.</p>
+          <a class="yard-skip" href="#quoteFormCard" data-i18n-key="yard.skip">Ir directamente al formulario de cotización →</a>
         </div>
         <div class="walk-yard-grid" data-yard>
           <div class="yard-plan">
@@ -552,12 +565,12 @@
       </div>
     </section>
 
-    <!-- Step 2: one request. The full request form leads; the optional price check and
+    <!-- One request. The full request form leads; the optional price check and
          other ways to reach the crew sit beside it (round 3). Lead contract unchanged. -->
     <section id="quote" class="site-contact-quote quote-chapter py-16 bg-green-800 text-white" aria-labelledby="quote-title">
       <div class="container mx-auto px-4">
         <div class="quote-head">
-          <p class="ring-label"><span class="step-no" aria-hidden="true">2</span><span data-i18n-key="quote.chapterLabel">Su solicitud</span></p>
+          <p class="ring-label"><span data-i18n-key="quote.chapterLabel">Su solicitud</span></p>
           <h2 id="quote-title" data-i18n-key="quote.chapterHeading">Cuéntenos.</h2>
           <p data-i18n-key="quote.chapterLede">Una sola solicitud es suficiente. Llene el formulario, o llame o envíe un mensaje si le resulta más fácil.</p>
         </div>
@@ -645,6 +658,18 @@
                           <option value="pressure-washing" data-i18n-key="quote.select.pressure">Lavado a presión</option>
                           <option value="multiple-services" data-i18n-key="quote.select.multiple">Múltiples servicios</option>
                         </select>
+                        <p id="selectedServiceDisplay" class="quote-selection-summary" aria-hidden="true" hidden></p>
+                        <!-- Without JavaScript, CSS reveals the line for the chosen option; a closed select can clip it. -->
+                        <p class="quote-selection-summary quote-selection-fallback" aria-hidden="true">
+                          <span data-service="lawn-care"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.lawn">Cuidado del césped</span></span>
+                          <span data-service="tree-service"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.tree">Servicio de árboles</span></span>
+                          <span data-service="landscaping"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.landscaping">Paisajismo</span></span>
+                          <span data-service="snow-removal"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.snow">Remoción de nieve</span></span>
+                          <span data-service="leaf-removal"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.leaf">Retiro de hojas</span></span>
+                          <span data-service="gutter-cleaning"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.gutter">Limpieza de canaletas</span></span>
+                          <span data-service="pressure-washing"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.pressure">Lavado a presión</span></span>
+                          <span data-service="multiple-services"><span data-i18n-key="quote.prefill.prefix">Servicio seleccionado:</span> <span data-i18n-key="quote.select.multiple">Múltiples servicios</span></span>
+                        </p>
                     </div>
                     <div class="quote-field">
                         <label for="projectDetails" class="quote-field-label"><span data-i18n-key="quote.label.project">Cuéntenos sobre su proyecto</span> <span class="field-tag" data-project-req data-i18n-key="quote.req">(obligatorio)</span><span class="field-tag" data-project-opt data-i18n-key="quote.opt" hidden>(opcional)</span></label
@@ -665,7 +690,7 @@
                     <div class="quote-field">
                         <label for="contactName" class="quote-field-label"><span data-i18n-key="quote.label.name">Su nombre</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
                         >
-                        <input type="text" id="contactName" name="name" autocomplete="name" minlength="2" maxlength="100" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required />
+                        <input type="text" id="contactName" name="name" autocomplete="name" maxlength="100" class="w-full p-3 border rounded focus:ring-2 focus:ring-green-600" required />
                     </div>
                     <div class="quote-field">
                         <label for="contactPhone" class="quote-field-label"><span data-i18n-key="quote.label.phone">Número de teléfono</span> <span class="field-tag" data-i18n-key="quote.req">(obligatorio)</span></label
@@ -800,7 +825,7 @@
                 <div>
                   <label for="instantName" class="block text-gray-700 font-semibold mb-2" data-i18n-key="instant.label.name">Su nombre</label
                   >
-                  <input type="text" id="instantName" name="name" autocomplete="name" maxlength="100" minlength="2" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" data-i18n-placeholder="instant.placeholder.name" placeholder="Nombre completo" />
+                  <input type="text" id="instantName" name="name" autocomplete="name" maxlength="100" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-green-600" data-i18n-placeholder="instant.placeholder.name" placeholder="Nombre completo" />
                 </div>
                 <div>
                   <label for="instantPhone" class="block text-gray-700 font-semibold mb-2" data-i18n-key="instant.label.phone">Número de celular</label
@@ -872,13 +897,13 @@
             <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
               <span class="inline-flex items-center gap-2 rounded-full bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
                 <svg class="icon icon-comment-dots text-amber-700" width="1em" height="1em" aria-hidden="true" focusable="false"><use href="#i-comment-dots" /></svg>
-                <span data-i18n-key="testimonials.badge">Opinión de un cliente publicada</span
+                <span data-i18n-key="testimonials.badge">Resumen de la opinión</span
                 >
               </span>
               <p class="text-sm font-medium text-gray-500" data-i18n-key="testimonials.reviewLabel">Publicada el 19 de junio</p>
             </div>
 
-            <blockquote class="mb-8 text-2xl font-semibold leading-snug text-gray-900" data-i18n-key="testimonials.reviewQuote">Robert Tolito destacó que el equipo dejó su jardín muy bien cuidado, trabajó con eficiencia y puso atención a los detalles que pidió.</blockquote>
+            <p class="testimonial-summary mb-8 text-2xl font-semibold leading-snug text-gray-900" data-i18n-key="testimonials.reviewQuote">Robert Tolito destacó que el equipo dejó su jardín muy bien cuidado, trabajó con eficiencia y puso atención a los detalles que pidió.</p>
 
             <div class="border-t border-gray-200 pt-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div class="flex items-center gap-4">
@@ -1234,8 +1259,8 @@
       <svg class="icon icon-arrow-up" width="0.75em" height="1em" aria-hidden="true" focusable="false"><use href="#i-arrow-up" /></svg>
     </button>
 
-    <script src="/assets/js/i18n.js?v=20261005flow" defer></script>
-    <script src="/assets/js/main.js?v=20261005flow" defer></script>
+    <script src="/assets/js/i18n.js?v=20261028design" defer></script>
+    <script src="/assets/js/main.js?v=20261028refine" defer></script>
     <script src="/assets/js/motion.js?v=20260927a" defer></script>
     <script src="/assets/js/static-gallery.js?v=20260924w" defer></script>
 
@@ -1381,7 +1406,7 @@
       }
     </script>
   <script src="/assets/js/analytics.js" defer></script>
-  <script src="/assets/js/mobile-call-cta.js" defer></script>
+  <script src="/assets/js/mobile-call-cta.js?v=20261028nav" defer></script>
   <script src="/assets/js/price-range-placeholder.js" defer></script>
   <script src="/assets/js/rings.js?v=20261005flow" defer></script>
   </body>

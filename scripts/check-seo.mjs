@@ -8,6 +8,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_ORIGIN = 'https://hernandezlandscapeservices.com';
 const EXCLUDED_DIRS = new Set([
   '.claude',
+  '.delta',
   '.git',
   '_media-archive',
   'client-previews',

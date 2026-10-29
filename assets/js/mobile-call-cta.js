@@ -216,6 +216,7 @@
       document.getElementById("quote") ||
       document.getElementById("instant-quote") ||
       document.getElementById("cotizacion");
+    const contactPanels = [...document.querySelectorAll(".service-cta, #emergency-dispatch")];
     const footer = document.querySelector("footer");
     const mobileQuery = window.matchMedia("(max-width: 767px)");
     const shortLandscapeQuery = window.matchMedia(
@@ -230,6 +231,7 @@
       // the hero's call button (or the hero) is on screen, or still below it
       heroAhead: Boolean(heroCall || hero),
       conversion: { quote: false, footer: false },
+      visibleContactPanels: new Set(),
     };
 
     const render = () => {
@@ -238,6 +240,7 @@
         !shortLandscapeQuery.matches &&
         !state.heroAhead &&
         !state.conversion.quote &&
+        state.visibleContactPanels.size === 0 &&
         !state.conversion.footer;
 
       bar.classList.toggle("is-visible", shouldShow);
@@ -267,6 +270,12 @@
       watch(quote, "-80px 0px -80px", (entry) => {
         state.conversion.quote = entry.isIntersecting;
       });
+      contactPanels.forEach((cta) => {
+        watch(cta, "0px", (entry) => {
+          if (entry.isIntersecting) state.visibleContactPanels.add(cta);
+          else state.visibleContactPanels.delete(cta);
+        });
+      });
       watch(footer, "-32px 0px -32px", (entry) => {
         state.conversion.footer = entry.isIntersecting;
       });
@@ -280,6 +289,7 @@
       const measure = () => {
         state.heroAhead = heroCall ? heroCall.getBoundingClientRect().bottom > 0 : overlapsViewport(hero, 80);
         state.conversion.quote = overlapsViewport(quote, 80);
+        state.visibleContactPanels = new Set(contactPanels.filter((cta) => overlapsViewport(cta)));
         state.conversion.footer = overlapsViewport(footer, 32);
         render();
       };

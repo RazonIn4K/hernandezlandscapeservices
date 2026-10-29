@@ -124,19 +124,28 @@ for (const width of [320, 375, 640, 768]) {
 test('seasonal labels scale with a narrower card, not a fixed pixel radius', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   await page.goto('/lawn-care/', { waitUntil: 'load' });
-  await page.locator('.when-card').evaluate((el) => {
-    (el as HTMLElement).style.maxWidth = '180px';
+  await page.evaluate(() => document.fonts.ready);
+  // Compare the ring and its labels in one layout snapshot. Separate browser
+  // round trips can observe different positions while an ancestor settles.
+  const { ring, overflow, labels } = await page.locator('.when-card').evaluate((card) => {
+    (card as HTMLElement).style.maxWidth = '180px';
+    const ring = card.querySelector<HTMLElement>('.when-ring')!;
+    return {
+      ring: ring.getBoundingClientRect().toJSON(),
+      overflow: ring.scrollWidth - ring.clientWidth,
+      labels: Array.from(card.querySelectorAll('.when-months span'), (label) =>
+        label.getBoundingClientRect().toJSON(),
+      ),
+    };
   });
-  const ring = await page.locator('.when-ring').boundingBox();
-  expect(ring!.width).toBeLessThan(212);
-  const overflow = await page.locator('.when-ring').evaluate((el) => el.scrollWidth - el.clientWidth);
+  expect(ring.width).toBeLessThan(212);
   expect(overflow).toBeLessThanOrEqual(1);
-  for (const label of await page.locator('.when-months span').all()) {
-    const box = await label.boundingBox();
-    expect(box!.x).toBeGreaterThanOrEqual(ring!.x - 1);
-    expect(box!.x + box!.width).toBeLessThanOrEqual(ring!.x + ring!.width + 1);
-    expect(box!.y).toBeGreaterThanOrEqual(ring!.y - 1);
-    expect(box!.y + box!.height).toBeLessThanOrEqual(ring!.y + ring!.height + 1);
+  expect(labels).toHaveLength(12);
+  for (const box of labels) {
+    expect(box.x).toBeGreaterThanOrEqual(ring.x - 1);
+    expect(box.x + box.width).toBeLessThanOrEqual(ring.x + ring.width + 1);
+    expect(box.y).toBeGreaterThanOrEqual(ring.y - 1);
+    expect(box.y + box.height).toBeLessThanOrEqual(ring.y + ring.height + 1);
   }
 });
 

@@ -22,7 +22,7 @@ const TYPE = 'HomeAndConstructionBusiness';
 // Order of the slim node's keys (image is inserted after logo).
 const SLIM_KEYS = ['@type', '@id', 'name', 'url', 'logo', 'telephone', 'email', 'address', 'geo', 'openingHoursSpecification', 'priceRange', 'areaServed', 'sameAs', 'knowsLanguage'];
 const SOURCE_PAGE = 'index.html';
-const EXCLUDED_DIRS = new Set(['.claude', '.git', '_media-archive', 'node_modules', 'playwright-report', 'publish', 'test-results', 'tmp', 'vendor']);
+const EXCLUDED_DIRS = new Set(['.claude', '.delta', '.git', '_media-archive', 'node_modules', 'playwright-report', 'publish', 'test-results', 'tmp', 'vendor']);
 const LD_RE = /(<script\b[^>]*type=["']application\/ld\+json["'][^>]*>)([\s\S]*?)(<\/script>)/gi;
 
 let source;
