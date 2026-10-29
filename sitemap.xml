@@ -290,10 +290,26 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/videos/</loc>
-    <lastmod>2026-10-05</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <!-- GALLERY-VIDEOS:GENERATED:START -->
+    <video:video>
+      <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/crew-promo-2026-en-poster.jpg</video:thumbnail_loc>
+      <video:title>Meet the Hernandez Landscape crew</video:title>
+      <video:description>A short look at Hernandez Landscape &amp; Tree Service LLC at work in DeKalb County: weekly mowing for homes and businesses, trimming and edging, and the family-owned crew. Free estimates in English or Spanish.</video:description>
+      <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/crew-promo-2026-en.mp4</video:content_loc>
+      <video:publication_date>2026-10-29T00:00:00-05:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/crew-promo-2026-es-poster.jpg</video:thumbnail_loc>
+      <video:title>Conozca al equipo de Hernandez Landscape (en español)</video:title>
+      <video:description>Conozca a Hernandez Landscape &amp; Tree Service LLC, una empresa familiar del condado de DeKalb: corte de pasto semanal para casas y negocios, recorte y orillado. Cotización gratis en español o inglés.</video:description>
+      <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/crew-promo-2026-es.mp4</video:content_loc>
+      <video:publication_date>2026-10-29T00:00:00-05:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
     <video:video>
       <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_0434_poster.jpg</video:thumbnail_loc>
       <video:title>Hernandez Landscape project video tour</video:title>

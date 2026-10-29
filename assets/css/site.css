@@ -1633,6 +1633,9 @@ body.storm-header-offset .storm-band { margin-top: var(--header-h, 76px); }
   box-shadow: 0 0 8px #e5484d;
   pointer-events: none;
 }
+/* Finished promo edits are not raw crew footage: no "crew cam" pill or recording dot. */
+.video-card.is-promo::before,
+.video-card.is-promo::after { display: none; }
 
 /* ---------- Before / after: then & now ---------- */
 .before-after-slider { border-radius: 18px !important; box-shadow: 0 0 0 4px var(--sapwood), 0 0 0 7px var(--heartwood), 0 24px 40px -20px rgba(0, 0, 0, 0.6) !important; }

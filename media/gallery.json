@@ -768,6 +768,48 @@
       "featured": false
     },
     {
+      "id": "crew-promo-2026-en",
+      "type": "video",
+      "src": "hernandez_images/crew-promo-2026-en.mp4",
+      "poster": "hernandez_images/crew-promo-2026-en-poster.jpg",
+      "posterSmall": "hernandez_images/w/crew-promo-2026-en-poster-480.webp",
+      "captions": "hernandez_images/crew-promo-2026-en.vtt",
+      "lang": "en",
+      "promo": true,
+      "size": [720, 1280],
+      "duration": 37,
+      "tags": [
+        "lawn-care"
+      ],
+      "featured": true,
+      "sitemap": {
+        "title": "Meet the Hernandez Landscape crew",
+        "description": "A short look at Hernandez Landscape & Tree Service LLC at work in DeKalb County: weekly mowing for homes and businesses, trimming and edging, and the family-owned crew. Free estimates in English or Spanish.",
+        "publicationDate": "2026-10-29T00:00:00-05:00"
+      }
+    },
+    {
+      "id": "crew-promo-2026-es",
+      "type": "video",
+      "src": "hernandez_images/crew-promo-2026-es.mp4",
+      "poster": "hernandez_images/crew-promo-2026-es-poster.jpg",
+      "posterSmall": "hernandez_images/w/crew-promo-2026-es-poster-480.webp",
+      "captions": "hernandez_images/crew-promo-2026-es.vtt",
+      "lang": "es",
+      "promo": true,
+      "size": [720, 1280],
+      "duration": 37,
+      "tags": [
+        "lawn-care"
+      ],
+      "featured": true,
+      "sitemap": {
+        "title": "Conozca al equipo de Hernandez Landscape (en español)",
+        "description": "Conozca a Hernandez Landscape & Tree Service LLC, una empresa familiar del condado de DeKalb: corte de pasto semanal para casas y negocios, recorte y orillado. Cotización gratis en español o inglés.",
+        "publicationDate": "2026-10-29T00:00:00-05:00"
+      }
+    },
+    {
       "id": "stone-bed-refresh-reel",
       "orientation": "portrait",
       "type": "video",
@@ -847,6 +889,8 @@
       "img-1464-poster"
     ],
     "videosPage": [
+      "crew-promo-2026-en",
+      "crew-promo-2026-es",
       "stone-bed-refresh-reel",
       "landscape-cleanup-reel",
       "video-0434",
@@ -901,6 +945,8 @@
       "equipment-trailers"
     ],
     "sitemapVideos": [
+      "crew-promo-2026-en",
+      "crew-promo-2026-es",
       "video-0434",
       "video-1095",
       "video-2055"

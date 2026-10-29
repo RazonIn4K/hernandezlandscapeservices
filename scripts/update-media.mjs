@@ -94,6 +94,9 @@ if (!baseUrl) fail('manifest: "baseUrl" is required (e.g. "https://hernandezland
 const items = Array.isArray(manifest.items) ? manifest.items : null;
 if (!items) fail('manifest: "items" must be an array');
 
+// Endonyms, shown as-is on cards whatever the page language.
+const LANG_NAMES = { en: 'English', es: 'Español' };
+
 const byId = new Map();
 for (const item of items ?? []) {
   const label = item?.id ? `item "${item.id}"` : `item ${JSON.stringify(item).slice(0, 60)}...`;
@@ -145,6 +148,24 @@ for (const item of items ?? []) {
   if (item.type === 'video' && item.size !== undefined &&
       !(Array.isArray(item.size) && item.size.length === 2 && item.size.every((n) => Number.isInteger(n) && n > 0))) {
     fail(`${label}: "size" must be [width, height] of the video frame`);
+  }
+  // Optional for narrated videos: a WebVTT captions file, the spoken language, and a
+  // promo flag (finished edits drop the "crew cam" decoration).
+  if (item.captions !== undefined) {
+    if (item.type !== 'video' || typeof item.captions !== 'string' || !item.captions.endsWith('.vtt')) {
+      fail(`${label}: "captions" must be a .vtt path on a video item`);
+    } else if (!fs.existsSync(path.join(ROOT, item.captions))) {
+      fail(`${label}: captions file does not exist on disk: ${item.captions}`);
+    }
+  }
+  if (item.lang !== undefined && !LANG_NAMES[item.lang]) {
+    fail(`${label}: "lang" must be one of ${Object.keys(LANG_NAMES).join(', ')}`);
+  }
+  if (item.captions !== undefined && item.lang === undefined) {
+    fail(`${label}: items with "captions" need "lang" (the track's srclang)`);
+  }
+  if (item.promo !== undefined && typeof item.promo !== 'boolean') {
+    fail(`${label}: "promo" must be true or false`);
   }
   if (item.posterSmall !== undefined && !fs.existsSync(path.join(ROOT, item.posterSmall))) {
     fail(`${label}: posterSmall file does not exist on disk: ${item.posterSmall}`);
@@ -307,7 +328,8 @@ const videoMeta = (item) => {
   const time = clock(item.duration);
   const tag = (item.tags || []).find((t) => SERVICE_TAGS[t]);
   const [key, text] = tag ? SERVICE_TAGS[tag] : ['video.onTheJob', 'On the job'];
-  return `                    <p class="video-meta"><time datetime="${time.iso}">${time.text}</time><span aria-hidden="true"> · </span><span data-i18n-key="${key}">${text}</span></p>`;
+  const language = item.lang ? `<span aria-hidden="true"> · </span><span class="video-lang" lang="${item.lang}">${LANG_NAMES[item.lang]}</span>` : '';
+  return `                    <p class="video-meta"><time datetime="${time.iso}">${time.text}</time><span aria-hidden="true"> · </span><span data-i18n-key="${key}">${text}</span>${language}</p>`;
 };
 const frameStyle = (item) => {
   if (Array.isArray(item.size)) return ` style="padding-bottom:${((item.size[1] / item.size[0]) * 100).toFixed(4)}%"`;
@@ -322,10 +344,13 @@ function renderVideoCards(list) {
       : `data-poster="/${escapeHtml(poster)}"`;
     const label = item.sitemap?.title || `Hernandez Landscape project video ${index + 1}`;
     return [
-    `                <div class="video-card group${Array.isArray(item.size) && item.size[1] > item.size[0] ? ' is-portrait' : ''}">`,
+    `                <div class="video-card group${Array.isArray(item.size) && item.size[1] > item.size[0] ? ' is-portrait' : ''}${item.promo ? ' is-promo' : ''}">`,
     `                    <div class="video-wrapper relative"${frameStyle(item)}>`,
-    `                        <video controls playsinline preload="none" ${posterAttr} aria-label="${escapeHtml(label)}" class="w-full h-full object-cover">`,
+    `                        <video controls playsinline preload="none" ${posterAttr} aria-label="${escapeHtml(label)}"${item.lang && item.lang !== 'en' ? ` lang="${item.lang}"` : ''} class="w-full h-full object-cover">`,
     `                            <source src="/${escapeHtml(item.src)}" type="video/mp4">`,
+    ...(item.captions
+      ? [`                            <track kind="captions" src="/${escapeHtml(item.captions)}" srclang="${item.lang}" label="${LANG_NAMES[item.lang]}" default>`]
+      : []),
     '                            Your browser does not support the video tag.',
     '                        </video>',
     '                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-0 transition-opacity duration-300 bg-black bg-opacity-20">',

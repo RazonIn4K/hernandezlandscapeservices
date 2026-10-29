@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { videosPageIds } from './media-manifest';
 
 // Round 4 · "Show the crew, calm the weather": hero hierarchy, fold and photo.
 
@@ -169,11 +170,11 @@ test.describe('Video cards say what you get', () => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/videos/', { waitUntil: 'domcontentloaded' });
     const cards = page.locator('.video-grid .video-card');
-    await expect(cards).toHaveCount(38);
+    await expect(cards).toHaveCount(videosPageIds.length);
     const times = await page.locator('.video-grid .video-meta time').allTextContents();
-    expect(times).toHaveLength(38);
+    expect(times).toHaveLength(videosPageIds.length);
     for (const t of times) expect(t).toMatch(/^\d+:\d{2}$/);
-    await expect(page.locator('.video-grid .video-meta time').nth(2)).toHaveText('1:41');
+    await expect(page.locator('.video-grid .video-meta time').nth(videosPageIds.indexOf('video-0434'))).toHaveText('1:41');
     await expect(page.locator('.video-grid .video-meta [data-i18n-key="video.onTheJob"]').first()).toHaveText('On the job');
     const frames = await page.locator('.video-grid .video-card.is-portrait .video-wrapper').evaluateAll((els) =>
       els.map((el) => el.getBoundingClientRect().height > el.getBoundingClientRect().width));
@@ -185,7 +186,7 @@ test.describe('Video cards say what you get', () => {
   test('home tours show the running time; portrait frames on desktop, a chip on phones', async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await expect(page.locator('.video-strip .video-meta time')).toHaveText(['1:41', '0:27', '0:02']);
+    await expect(page.locator('.video-strip .video-meta time')).toHaveText(['0:37', '1:41', '0:27', '0:02']);
     const wrap = await page.locator('.video-strip .video-card').first().locator('.video-wrapper').boundingBox();
     expect(wrap!.height).toBeGreaterThan(wrap!.width);
     await expect(page.locator('#home video')).toHaveCount(0);

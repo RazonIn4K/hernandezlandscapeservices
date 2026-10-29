@@ -170,6 +170,12 @@ function rewriteTag(name, attrSource, selfClose) {
       set(target, target === 'aria-valuetext' ? translated.replace('{{value}}', '50') : translated);
     }
   }
+  // Language-specific assets: data-es-src="x" on the English page becomes src="x" here
+  // (e.g. the Spanish cut of a video and its captions track).
+  for (const a of attrs.filter((x) => x.name.startsWith('data-es-') && x.value !== null)) {
+    set(a.name.slice('data-es-'.length), a.value);
+    attrs.splice(attrs.indexOf(a), 1);
+  }
   for (const n of ['src', 'data-poster', 'poster']) {
     const a = get(n);
     if (a && a.value !== null) a.value = rootUrl(a.value);
