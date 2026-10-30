@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { videosPageIds } from './media-manifest';
 
 const serviceRoutes = [
   '/tree-removal/',
@@ -73,9 +74,9 @@ test.describe('Route-level quality regressions', () => {
     const html = await response.text();
     const videoTags = html.match(/<video\b[^>]*>/g) ?? [];
 
-    expect(videoTags).toHaveLength(38);
+    expect(videoTags).toHaveLength(videosPageIds.length);
     expect(videoTags.filter((tag) => /\sposter=/.test(tag))).toHaveLength(3);
-    expect(videoTags.filter((tag) => /\sdata-poster=/.test(tag))).toHaveLength(35);
+    expect(videoTags.filter((tag) => /\sdata-poster=/.test(tag))).toHaveLength(videosPageIds.length - 3);
     expect(videoTags.every((tag) => /\saria-label="[^"]+"/.test(tag))).toBeTruthy();
     expect(videoTags.every((tag) => /\spreload="none"/.test(tag))).toBeTruthy();
   });

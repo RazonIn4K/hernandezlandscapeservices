@@ -1,4 +1,5 @@
 import { expect, test } from './fixtures';
+import { videosPageIds } from './media-manifest';
 
 const routes = [
   '/', '/es/', '/gallery/', '/es/gallery/', '/videos/',
@@ -156,7 +157,7 @@ test('video players keep a usable minimum width across screen sizes', async ({ p
     const sizes = await page.locator('.video-grid .video-wrapper').evaluateAll((elements) =>
       elements.map((el) => el.getBoundingClientRect().width),
     );
-    expect(sizes).toHaveLength(38);
+    expect(sizes).toHaveLength(videosPageIds.length);
     for (const size of sizes) {
       expect(size, `player at ${width}px`).toBeGreaterThanOrEqual(278);
     }
