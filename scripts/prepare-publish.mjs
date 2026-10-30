@@ -217,6 +217,23 @@ for (const relDir of DIRECTORIES) {
 copyReferencedMedia(collectMediaRefs());
 scanPublishedTextForSecrets();
 
+// GitHub Pages refuses published sites over 1 GB
+// (docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits).
+// Fail the deploy at 900 MB so there is margin, instead of finding out from Pages.
+const PUBLISH_LIMIT = 900 * 1024 * 1024;
+const dirBytes = (dir) => fs.readdirSync(dir, { withFileTypes: true }).reduce((sum, entry) => {
+  const full = path.join(dir, entry.name);
+  return sum + (entry.isDirectory() ? dirBytes(full) : fs.statSync(full).size);
+}, 0);
+const publishBytes = dirBytes(OUT_DIR);
+const publishMb = (publishBytes / 1024 / 1024).toFixed(1);
+if (publishBytes > PUBLISH_LIMIT) {
+  console.error(`Publish directory is ${publishMb} MB; GitHub Pages allows 1 GB and this deploy stops at 900 MB.`);
+  console.error('Trim media from media/gallery.json surfaces, or host large videos elsewhere.');
+  process.exit(1);
+}
+
 console.log(`Prepared publish directory: ${path.relative(ROOT, OUT_DIR)}`);
 console.log(`  Runtime files copied: ${runtimeFiles.length}`);
 console.log(`  Referenced media copied: ${copiedMedia.size}`);
+console.log(`  Published size: ${publishMb} MB / 900 MB (GitHub Pages limit: 1 GB)`);

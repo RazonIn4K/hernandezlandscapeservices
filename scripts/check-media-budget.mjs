@@ -21,7 +21,10 @@ const BUDGETS = {
   video: 40 * MB,
   homeGalleryTotal: 5 * MB,
   galleryPageImagesTotal: 7 * MB,
-  videosPageTotal: 350 * MB,
+  // Cards use preload="none", so this is storage/publish weight, not page weight.
+  // Raised 350 -> 600 MB on 2026-10-29: the published site was 385 MB of GitHub
+  // Pages' 1 GB limit; prepare-publish.mjs separately stops deploys at 900 MB.
+  videosPageTotal: 600 * MB,
 };
 
 const fmt = (bytes) => {
