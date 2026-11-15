@@ -17,6 +17,14 @@ deploy does not publish it.
   deploy workflow runs `npm run test:ci -- --project=chromium`, which includes
   generated-media drift checks and media-budget checks before Chromium tests.
 
+## CI runner pin (2026-11-15)
+
+The deploy workflow's `build` job runs on `ubuntu-24.04`, not `ubuntu-latest`:
+`ubuntu-latest` moved to Ubuntu 26.04, where Playwright 1.59.1 cannot install
+chromium, so the test gate failed before running and blocked a deploy (PR #62).
+To return to `ubuntu-latest`, upgrade `@playwright/test` first and confirm the
+suite passes. There are no PR checks; tests only run after a merge to `main`.
+
 ## schema.jsonld (root) — manually-synced reference copy
 
 `schema.jsonld` at the repo root is a **manually-synced reference copy** of the
