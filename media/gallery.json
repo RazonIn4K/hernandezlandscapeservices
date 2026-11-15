@@ -808,7 +808,11 @@
       "size": [720, 1280],
       "duration": 56,
       "tags": ["tree-service"],
-      "featured": false
+      "featured": false,
+      "sitemap": {
+        "title": "Stump grinding along a fence line",
+        "description": "The crew grinding a stump in a side yard and leaving the area level along a fence line."
+      }
     },
     {
       "id": "video-6123",
@@ -819,7 +823,11 @@
       "size": [720, 1280],
       "duration": 73,
       "tags": ["tree-service"],
-      "featured": false
+      "featured": false,
+      "sitemap": {
+        "title": "Tree and brush removal beside a house",
+        "description": "Small trees and brush being cut back and cleared beside a house."
+      }
     },
     {
       "id": "video-6128",
@@ -830,7 +838,11 @@
       "size": [720, 1280],
       "duration": 68,
       "tags": ["tree-service"],
-      "featured": false
+      "featured": false,
+      "sitemap": {
+        "title": "Yard after tree and brush removal",
+        "description": "A walk around the yard after tree and brush removal, with debris cleared."
+      }
     },
     {
       "id": "crew-promo-2026-en",

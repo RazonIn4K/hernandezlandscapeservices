@@ -1959,3 +1959,47 @@ label .field-tag { margin-left: 0.25rem; color: #4b5563; font-size: 0.82em; font
   .notes-head, .notes-cols, .notes-values, .notes-steps { min-width: 0; overflow-wrap: anywhere; }
   .notes-values li > p, .notes-steps li > p { min-width: 0; overflow-wrap: anywhere; }
 }
+
+/* ---------- Motion polish (2026-11-15) ----------
+   Small, on-theme additions. They use the individual `scale` / `rotate` properties so the
+   existing `transform` rules (many are !important) are left alone, and every entrance uses
+   `backwards` fill only, so nothing is ever left hidden if an animation does not run. */
+
+/* Press feedback on the main calls to action. */
+.primary-cta:active,
+.secondary-cta:active,
+a.rounded-full.bg-green-600:active,
+button.rounded-full.bg-green-600:active,
+button[type="submit"]:active,
+.service-actions a:active { scale: 0.97; }
+
+@keyframes ring-badge-grow { from { scale: 0; rotate: -90deg; } }
+@keyframes ring-rule-draw { from { scale: 0 1; opacity: 0; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The tree-ring badge grows in after its service card lands. */
+  .service-card > .p-6::before { transition: scale 0.35s var(--ease), rotate 0.6s var(--ease), box-shadow 0.35s var(--ease); }
+  .service-card.reveal-pending.active > .p-6::before { animation: ring-badge-grow 0.55s cubic-bezier(0.34, 1.45, 0.64, 1) 0.3s backwards; }
+  .reveal-stagger > .service-card.reveal-pending.active:nth-child(2) > .p-6::before { animation-delay: 0.42s; }
+  .reveal-stagger > .service-card.reveal-pending.active:nth-child(3) > .p-6::before { animation-delay: 0.54s; }
+
+  /* The ring-and-rule under section headings draws outward from its centre. */
+  section[id]:not(#home) > .container > .text-center.reveal-pending.active:first-child h2::after { animation: ring-rule-draw 0.7s var(--ease) 0.2s backwards; }
+
+  /* FAQ answers open and close smoothly where the browser can size to content. */
+  @supports selector(::details-content) {
+    .faq-item { interpolate-size: allow-keywords; }
+    .faq-item::details-content { block-size: 0; overflow: clip; transition: block-size 0.28s var(--ease), content-visibility 0.28s allow-discrete; }
+    .faq-item[open]::details-content { block-size: auto; }
+  }
+}
+
+/* Pointer devices only: the badge adds a ring and turns a little as the card lifts. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .service-card:hover > .p-6::before,
+  .service-card:focus-within > .p-6::before {
+    scale: 1.18;
+    rotate: 30deg;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px rgba(107, 74, 51, 0.28), 0 6px 12px -4px rgba(0, 0, 0, 0.4);
+  }
+}
