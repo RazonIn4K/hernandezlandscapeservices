@@ -768,6 +768,71 @@
       "featured": false
     },
     {
+      "id": "video-fd6c2970",
+      "type": "video",
+      "src": "hernandez_images/web_FD6C2970.mp4",
+      "poster": "hernandez_images/web_FD6C2970_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_FD6C2970_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 39,
+      "tags": ["tree-service"],
+      "featured": false,
+      "sitemap": {
+        "title": "Stump grinding close-up in DeKalb County",
+        "description": "A Hernandez Landscape & Tree Service LLC stump grinder working a stump down below grade after a tree removal in DeKalb County.",
+        "publicationDate": "2026-11-15T00:00:00-06:00"
+      }
+    },
+    {
+      "id": "video-3736",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_3736.mp4",
+      "poster": "hernandez_images/web_IMG_3736_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_3736_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 62,
+      "tags": ["tree-service"],
+      "featured": false,
+      "sitemap": {
+        "title": "Stump grinding after a tree removal",
+        "description": "The Hernandez Landscape & Tree Service LLC crew grinding out a stump after a tree removal, with the brush stacked for haul-away.",
+        "publicationDate": "2026-11-15T00:00:00-06:00"
+      }
+    },
+    {
+      "id": "video-3730",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_3730.mp4",
+      "poster": "hernandez_images/web_IMG_3730_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_3730_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 56,
+      "tags": ["tree-service"],
+      "featured": false
+    },
+    {
+      "id": "video-6123",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_6123.mp4",
+      "poster": "hernandez_images/web_IMG_6123_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_6123_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 73,
+      "tags": ["tree-service"],
+      "featured": false
+    },
+    {
+      "id": "video-6128",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_6128.mp4",
+      "poster": "hernandez_images/web_IMG_6128_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_6128_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 68,
+      "tags": ["tree-service"],
+      "featured": false
+    },
+    {
       "id": "crew-promo-2026-en",
       "type": "video",
       "src": "hernandez_images/crew-promo-2026-en.mp4",
@@ -891,6 +956,11 @@
     "videosPage": [
       "crew-promo-2026-en",
       "crew-promo-2026-es",
+      "video-fd6c2970",
+      "video-3736",
+      "video-3730",
+      "video-6123",
+      "video-6128",
       "stone-bed-refresh-reel",
       "landscape-cleanup-reel",
       "video-0434",
@@ -947,6 +1017,8 @@
     "sitemapVideos": [
       "crew-promo-2026-en",
       "crew-promo-2026-es",
+      "video-fd6c2970",
+      "video-3736",
       "video-0434",
       "video-1095",
       "video-2055"
