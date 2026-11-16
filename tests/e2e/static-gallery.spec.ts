@@ -627,7 +627,9 @@ test.describe('Static Gallery Functionality', () => {
   test('the language link moves between the English and Spanish homes', async ({ page }) => {
     // Round 4: each language has its own URL; the link replaces the in-place toggle.
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    const toSpanish = page.locator('#header .lang-link:visible');
+    // Under load the stylesheet can land after DOMContentLoaded, leaving the
+    // desktop and mobile links both visible for a moment; either one is fine.
+    const toSpanish = page.locator('#header .lang-link:visible').first();
     await expect(toSpanish).toHaveText('Español');
     await expect(toSpanish).toHaveAttribute('hreflang', 'es');
     await toSpanish.click();
@@ -636,7 +638,7 @@ test.describe('Static Gallery Functionality', () => {
     await expect(page.locator('[data-i18n-key="faq.heading"]')).toHaveText('Preguntas frecuentes');
     await expect(page.locator('[data-i18n-key="quote.label.phone"]')).toHaveText('Número de teléfono');
 
-    await page.locator('#header .lang-link:visible').click();
+    await page.locator('#header .lang-link:visible').first().click();
     await expect(page).toHaveURL(/\/$/);
     await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   });
