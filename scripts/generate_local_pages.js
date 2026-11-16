@@ -398,6 +398,10 @@ function renderPage(city, lang) {
         `            <a href="${pageHref(card.href, lang)}" class="rounded-lg bg-white p-6 shadow-md"><h3 class="font-bold text-green-900">${card.h3}</h3><p class="mt-3 text-sm text-gray-600">${card.p}</p></a>`
     )
     .join('\n');
+  const moreLink = (href, label) => `<a href="${pageHref(href, lang)}" class="font-semibold text-green-800 hover:underline">${label}</a>`;
+  const moreServices = lang === 'es'
+    ? `También en esta zona: ${moreLink('/tree-trimming-stump-grinding/', 'poda y molienda de tocones')}, ${moreLink('/emergency-tree-removal/', 'retiro de árboles de emergencia')}, ${moreLink('/leaf-removal/', 'recolección de hojas')} y ${moreLink('/gutter-cleaning/', 'limpieza de canaletas')}.`
+    : `Also in this area: ${moreLink('/tree-trimming-stump-grinding/', 'tree trimming and stump grinding')}, ${moreLink('/emergency-tree-removal/', 'emergency tree removal')}, ${moreLink('/leaf-removal/', 'leaf removal')}, and ${moreLink('/gutter-cleaning/', 'gutter cleaning')}.`;
   const faq = t.faq
     .map(
       (f) =>
@@ -474,6 +478,7 @@ ${renderSiteHeader({ lang, alt: altFor(lang === 'es' ? `/es/service-areas/${city
           <div class="mt-8 grid gap-6 md:grid-cols-3">
 ${cards}
           </div>
+          <p class="mt-8 text-gray-600">${moreServices}</p>
         </div>
       </section>
 
