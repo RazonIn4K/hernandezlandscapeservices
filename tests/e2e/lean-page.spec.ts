@@ -32,7 +32,7 @@ test('the service area shows an inline field map, not a Google Maps iframe', asy
   await expect(map.locator('title')).toHaveText(/not to scale/);
   await expect(map.locator('text')).toHaveText(['Kingston', 'Genoa', 'Sycamore', 'Cortland', 'Malta', 'DeKalb', 'N']);
   const link = page.locator('.field-map-link');
-  await expect(link).toHaveAttribute('href', 'https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/');
+  await expect(link).toHaveAttribute('href', 'https://www.google.com/maps?cid=7448479333365361044');
   await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   expect((await link.boundingBox())!.height).toBeGreaterThanOrEqual(44);
 });

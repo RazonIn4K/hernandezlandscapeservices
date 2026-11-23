@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures';
 
 const googleMapsUrl =
-  'https://www.google.com/maps/place/Hernandez+Landscape+%26+Tree+Service+LLC/@41.9353196,-88.7400065,17z/';
+  'https://www.google.com/maps?cid=7448479333365361044';
 const facebookUrl =
   'https://www.facebook.com/people/Hernandez-Landscape-and-Tree-Services-LLC/61557568376084/';
 
