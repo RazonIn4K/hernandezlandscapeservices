@@ -289,9 +289,9 @@
         "Your estimate request was sent. Your appointment is not yet confirmed; our team will contact you about availability and timing.",
       "alerts.instant.sendError":
         "We could not send your request. Please call (815) 501-1478 or try again.",
-      "testimonials.heading": "Featured Customer Feedback",
+      "testimonials.heading": "Customer reviews",
       "testimonials.subheading":
-        "A published customer review from a third-party business directory, with a link to the source.",
+        "Read about one lawn-care visit and see how customers rate us on Google.",
       "testimonials.badge": "Review summary",
       "testimonials.reviewLabel": "Published June 19",
       "testimonials.reviewQuote":
@@ -300,14 +300,11 @@
       "testimonials.reviewMeta":
         "Customer feedback published in the Beautiful Landscapes directory.",
       "testimonials.reviewSource": "View source review",
-      "testimonials.supportTitle":
-        "What local homeowners want confirmed before they call",
-      "testimonials.support1":
-        "A clear response on pricing and next steps",
-      "testimonials.support2":
-        "Clean finish and detail-focused work on-site",
-      "testimonials.support3":
-        "Bilingual communication for scheduling and updates",
+      "testimonials.googleTitle": "Google reviews",
+      "testimonials.googleScore": "3.2 out of 5",
+      "testimonials.googleCount": "9 reviews",
+      "testimonials.googleDate": "As of November 22, 2026",
+      "testimonials.googleLink": "Read reviews on Google Maps",
       "testimonials.ctaEyebrow": "Ready for your quote?",
       "testimonials.ctaText":
         "Choose the service you need and send the property details. The team follows up with the right next step instead of a generic reply.",
@@ -832,9 +829,9 @@
       "gallery.loadMore": "Cargar más fotos",
       "gallery.loadingButton": "Cargando...",
 
-      "testimonials.heading": "Comentario destacado de un cliente",
+      "testimonials.heading": "Reseñas de clientes",
       "testimonials.subheading":
-        "Una opinión de un cliente publicada en un directorio externo de negocios, con enlace a la fuente.",
+        "Lea la experiencia de un cliente con nuestro servicio de césped y consulte nuestra calificación en Google.",
       "testimonials.badge": "Resumen de la opinión",
       "testimonials.reviewLabel": "Publicada el 19 de junio",
       "testimonials.reviewQuote":
@@ -843,14 +840,11 @@
       "testimonials.reviewMeta":
         "Opinión de un cliente publicada en el directorio Beautiful Landscapes.",
       "testimonials.reviewSource": "Ver la reseña original",
-      "testimonials.supportTitle":
-        "Lo que los dueños de casa quieren confirmar antes de llamar",
-      "testimonials.support1":
-        "Una respuesta clara sobre precio y siguientes pasos",
-      "testimonials.support2":
-        "Trabajo limpio y atención a los detalles en la propiedad",
-      "testimonials.support3":
-        "Comunicación bilingüe para agenda y actualizaciones",
+      "testimonials.googleTitle": "Reseñas en Google",
+      "testimonials.googleScore": "3,2 de 5",
+      "testimonials.googleCount": "9 reseñas",
+      "testimonials.googleDate": "Al 22 de noviembre de 2026",
+      "testimonials.googleLink": "Leer reseñas en Google Maps",
       "testimonials.ctaEyebrow": "¿Listo para su cotización?",
       "testimonials.ctaText":
         "Elija el servicio que necesita y comparta los detalles de la propiedad. El equipo responde con el siguiente paso correcto, no con una respuesta genérica.",
