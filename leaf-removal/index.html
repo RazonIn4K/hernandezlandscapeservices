@@ -161,6 +161,30 @@
               </div>
             </div>
 
+            <section id="cleanup-planner" class="mb-10 rounded-lg border border-green-100 bg-green-50 p-6" aria-labelledby="cleanup-heading">
+              <h2 id="cleanup-heading" class="text-2xl font-bold text-green-900">What would you like cleared?</h2>
+              <p class="mt-3 text-gray-700">Choose what you need. You can review your selections and add details about yard access on the estimate form.</p>
+              <form action="/#quote" method="get" class="mt-4">
+                <input type="hidden" name="service" value="leaf-removal" />
+                <fieldset class="space-y-2">
+                  <legend class="mb-2 font-bold text-green-900">Include in my estimate</legend>
+                  <label class="flex cursor-pointer items-center gap-3 rounded-lg bg-white px-3 py-2">
+                    <input class="peer h-5 w-5 shrink-0 accent-green-800" type="checkbox" name="cleanup" value="lawn" />
+                    <span class="rounded px-2 py-1 text-gray-800 peer-checked:bg-green-100 peer-checked:text-green-900 motion-safe:transition-colors">Clear leaves from the lawn</span>
+                  </label>
+                  <label class="flex cursor-pointer items-center gap-3 rounded-lg bg-white px-3 py-2">
+                    <input class="peer h-5 w-5 shrink-0 accent-green-800" type="checkbox" name="cleanup" value="beds" />
+                    <span class="rounded px-2 py-1 text-gray-800 peer-checked:bg-green-100 peer-checked:text-green-900 motion-safe:transition-colors">Clear leaves from garden beds</span>
+                  </label>
+                  <label class="flex cursor-pointer items-center gap-3 rounded-lg bg-white px-3 py-2">
+                    <input class="peer h-5 w-5 shrink-0 accent-green-800" type="checkbox" name="cleanup" value="haul" />
+                    <span class="rounded px-2 py-1 text-gray-800 peer-checked:bg-green-100 peer-checked:text-green-900 motion-safe:transition-colors">Include haul-away of leaves and yard debris</span>
+                  </label>
+                </fieldset>
+                <button class="mt-4 rounded-full bg-green-800 px-6 py-3 font-bold text-white hover:bg-green-900" type="submit">Continue to estimate</button>
+              </form>
+            </section>
+
             <div class="bg-gray-100 p-8 rounded-lg text-center mb-10 service-cta">
               <h3 class="text-2xl font-bold mb-4">Buried in Leaves?</h3>
               <p class="text-gray-600 mb-6">Request a free estimate before the first snow locks the leaves in for winter.</p>
