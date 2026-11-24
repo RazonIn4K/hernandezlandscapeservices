@@ -161,6 +161,30 @@
               </div>
             </div>
 
+            <section id="cleanup-planner" class="mb-10 rounded-lg border border-green-100 bg-green-50 p-6" aria-labelledby="cleanup-heading">
+              <h2 id="cleanup-heading" class="text-2xl font-bold text-green-900">¿Qué quiere incluir en la limpieza?</h2>
+              <p class="mt-3 text-gray-700">Marque lo que necesite. En el formulario podrá revisar sus selecciones y añadir detalles sobre el acceso al jardín.</p>
+              <form action="/es/#quote" method="get" class="mt-4">
+                <input type="hidden" name="service" value="leaf-removal" />
+                <fieldset class="space-y-2">
+                  <legend class="mb-2 font-bold text-green-900">Incluir en mi cotización</legend>
+                  <label class="flex cursor-pointer items-center gap-3 rounded-lg bg-white px-3 py-2">
+                    <input class="peer h-5 w-5 shrink-0 accent-green-800" type="checkbox" name="cleanup" value="lawn" />
+                    <span class="rounded px-2 py-1 text-gray-800 peer-checked:bg-green-100 peer-checked:text-green-900 motion-safe:transition-colors">Quitar las hojas del césped</span>
+                  </label>
+                  <label class="flex cursor-pointer items-center gap-3 rounded-lg bg-white px-3 py-2">
+                    <input class="peer h-5 w-5 shrink-0 accent-green-800" type="checkbox" name="cleanup" value="beds" />
+                    <span class="rounded px-2 py-1 text-gray-800 peer-checked:bg-green-100 peer-checked:text-green-900 motion-safe:transition-colors">Quitar las hojas de las jardineras</span>
+                  </label>
+                  <label class="flex cursor-pointer items-center gap-3 rounded-lg bg-white px-3 py-2">
+                    <input class="peer h-5 w-5 shrink-0 accent-green-800" type="checkbox" name="cleanup" value="haul" />
+                    <span class="rounded px-2 py-1 text-gray-800 peer-checked:bg-green-100 peer-checked:text-green-900 motion-safe:transition-colors">Incluir el retiro de hojas y residuos</span>
+                  </label>
+                </fieldset>
+                <button class="mt-4 rounded-full bg-green-800 px-6 py-3 font-bold text-white hover:bg-green-900" type="submit">Continuar a la cotización</button>
+              </form>
+            </section>
+
             <div class="bg-gray-100 p-8 rounded-lg text-center mb-10 service-cta">
               <h3 class="text-2xl font-bold mb-4">¿Lleno de hojas?</h3>
               <p class="text-gray-600 mb-6">Pida una cotización gratis antes de que la primera nevada deje las hojas atrapadas todo el invierno.</p>
