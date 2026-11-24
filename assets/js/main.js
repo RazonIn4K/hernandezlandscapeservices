@@ -307,6 +307,21 @@ const requestedYard = quoteParams.get("yard");
 if (requestedService) {
   applyQuotePrefill(requestedService);
 }
+// Carry only the leaf planner's published options into the editable quote.
+if (requestedService === "leaf-removal" && quoteParams.has("cleanup")) {
+  const projectDetails = document.getElementById("projectDetails");
+  const spanish = document.documentElement.lang === "es";
+  const selections = new Set(quoteParams.getAll("cleanup"));
+  const tasks = [
+    ["lawn", spanish ? "Quitar las hojas del césped" : "Clear leaves from the lawn"],
+    ["beds", spanish ? "Quitar las hojas de las jardineras" : "Clear leaves from garden beds"],
+    ["haul", spanish ? "Incluir el retiro de hojas y residuos" : "Include haul-away of leaves and yard debris"],
+  ].filter(([key]) => selections.has(key));
+
+  if (projectDetails && !projectDetails.value.trim() && tasks.length) {
+    projectDetails.value = tasks.map(([, label]) => label).join("\n");
+  }
+}
 if ((requestedService || requestedYard) && isQuoteFormHash()) {
   scheduleScrollElementBelowHeader(quoteFormTarget);
 }
