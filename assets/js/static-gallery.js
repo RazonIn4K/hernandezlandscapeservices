@@ -27,6 +27,22 @@
     const staticImages = [
       // GALLERY-DATA:GENERATED:START
       {
+        src: 'hernandez_images/job-2026-11-retaining-wall-finished.jpg',
+        srcset: 'hernandez_images/w/job-2026-11-retaining-wall-finished-480.webp 480w, hernandez_images/w/job-2026-11-retaining-wall-finished-800.webp 800w, hernandez_images/job-2026-11-retaining-wall-finished.jpg 900w',
+        width: 900,
+        height: 1200,
+        alt: 'New gray block retaining wall with a capped top and paver landing beside a patio',
+        caption: 'Rebuilt patio retaining wall with stepped end, cap blocks and a new paver landing'
+      },
+      {
+        src: 'hernandez_images/job-2026-11-pine-removal-climber.jpg',
+        srcset: 'hernandez_images/w/job-2026-11-pine-removal-climber-480.webp 480w, hernandez_images/w/job-2026-11-pine-removal-climber-800.webp 800w, hernandez_images/job-2026-11-pine-removal-climber.jpg 900w',
+        width: 900,
+        height: 1200,
+        alt: 'Tree climber in a helmet and climbing gear standing beside a tall pine before removal',
+        caption: 'Climber geared up at the base of a tall pine before taking it down'
+      },
+      {
         src: 'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',
         srcset: 'hernandez_images/w/facebook-2026-fire-pit-lawn-finish-480.webp 480w, hernandez_images/w/facebook-2026-fire-pit-lawn-finish-800.webp 800w, hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg 900w',
         width: 900,
@@ -303,6 +319,8 @@
     };
     // Spanish alt text for the filmstrip prints (i18n.js alt.upload.*).
     const ALT_KEYS = {
+      'hernandez_images/job-2026-11-retaining-wall-finished.jpg': 'alt.upload.retainingWall',
+      'hernandez_images/job-2026-11-pine-removal-climber.jpg': 'alt.upload.pineClimber',
       'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg': 'alt.upload.firePit',
       'hernandez_images/facebook-2026-side-yard-lawn-finish.jpg': 'alt.upload.sideYard',
       'hernandez_images/google-photos-2026-brush-pile-removal.webp': 'alt.upload.brushPile',

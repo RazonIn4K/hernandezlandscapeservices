@@ -19,7 +19,9 @@ const BUDGETS = {
   image: 650 * KB,
   poster: 350 * KB,
   video: 40 * MB,
-  homeGalleryTotal: 5 * MB,
+  // 5 -> 5.5 MB (2026-11-24): two November job photos added. The carousel serves
+  // the 480w/800w variants; originals load only as the largest srcset candidate.
+  homeGalleryTotal: 5.5 * MB,
   galleryPageImagesTotal: 7 * MB,
   // Cards use preload="none", so this is storage/publish weight, not page weight.
   // Raised 350 -> 600 MB on 2026-10-29: the published site was 385 MB of GitHub

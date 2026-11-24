@@ -222,10 +222,20 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/gallery/</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <!-- GALLERY-IMAGES:GENERATED:START -->
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/job-2026-11-retaining-wall-finished.jpg</image:loc>
+      <image:title>Rebuilt patio retaining wall and paver landing</image:title>
+      <image:caption>A block retaining wall with cap stones and a paver landing rebuilt by Hernandez Landscape &amp; Tree Service LLC.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://hernandezlandscapeservices.com/hernandez_images/job-2026-11-pine-removal-climber.jpg</image:loc>
+      <image:title>Tree climber ready for a pine removal</image:title>
+      <image:caption>A Hernandez Landscape &amp; Tree Service LLC climber in helmet and harness beside a tall pine before removal.</image:caption>
+    </image:image>
     <image:image>
       <image:loc>https://hernandezlandscapeservices.com/hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg</image:loc>
       <image:title>Finished lawn and fire pit project</image:title>
@@ -290,7 +300,7 @@
   </url>
   <url>
     <loc>https://hernandezlandscapeservices.com/videos/</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <!-- GALLERY-VIDEOS:GENERATED:START -->
@@ -348,6 +358,14 @@
       <video:description>A project video from Hernandez Landscape &amp; Tree Service LLC highlighting finished outdoor service work in DeKalb County.</video:description>
       <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_2055.mp4</video:content_loc>
       <video:publication_date>2026-05-19T00:00:00-05:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+    <video:video>
+      <video:thumbnail_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_6348_poster.jpg</video:thumbnail_loc>
+      <video:title>Climber taking down a tall pine</video:title>
+      <video:description>A Hernandez Landscape &amp; Tree Service LLC climber working up a tall pine and removing it in sections in DeKalb County.</video:description>
+      <video:content_loc>https://hernandezlandscapeservices.com/hernandez_images/web_IMG_6348.mp4</video:content_loc>
+      <video:publication_date>2026-11-24T00:00:00-06:00</video:publication_date>
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
     <!-- GALLERY-VIDEOS:GENERATED:END -->

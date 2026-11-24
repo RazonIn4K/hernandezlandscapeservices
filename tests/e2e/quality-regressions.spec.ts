@@ -104,7 +104,7 @@ test.describe('Route-level quality regressions', () => {
     await expect(page.locator('.video-strip')).toHaveAttribute('aria-label', 'Videos de proyectos');
     await expect(page.locator('#backToTopBtn')).toHaveAttribute('aria-label', 'Volver arriba');
     await expect(page.locator('img[data-i18n-alt="alt.before"]')).toHaveAttribute('alt', 'Antes del servicio de césped: crecido y desordenado');
-    await expect(page.locator('#latest-uploads-track img').first()).toHaveAttribute('alt', /^Césped terminado/);
+    await expect(page.locator('#latest-uploads-track img').first()).toHaveAttribute('alt', /^Muro de contención nuevo/);
     await page.goto('/videos/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-lang-switch]')).toHaveCount(0);
     await expect(page.locator('.video-grid video').first()).not.toHaveAttribute('aria-label', /^Video del proyecto/);
