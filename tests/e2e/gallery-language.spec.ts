@@ -2,12 +2,12 @@ import { expect, test } from '@playwright/test';
 
 test('gallery photos have visible context in English and Spanish', async ({ page }) => {
   for (const [route, language, caption] of [
-    ['/gallery/', 'en', 'Stone fire pit with a light gravel border, lawn, and dark planting beds.'],
-    ['/es/gallery/', 'es', 'Fogatero de piedra con borde de grava clara, césped y jardineras oscuras.'],
+    ['/gallery/', 'en', 'Gray block wall with cap stones, a stepped end, and a new paver landing beside the patio.'],
+    ['/es/gallery/', 'es', 'Muro de bloques grises con piezas de remate, un extremo escalonado y un descanso nuevo de adoquines junto al patio.'],
   ]) {
     await page.goto(route, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('html')).toHaveAttribute('lang', language);
-    await expect(page.locator('.gallery-item')).toHaveCount(18);
+    await expect(page.locator('.gallery-item')).toHaveCount(24);
     await expect(page.locator('.gallery-caption p').first()).toHaveText(caption);
     await expect(page.locator('.gallery-caption p').first()).toBeVisible();
   }
@@ -18,7 +18,7 @@ test('Spanish gallery keeps the quote, language switch, and comparison control u
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://hernandezlandscapeservices.com/es/gallery/');
   await expect(page.locator('#header .lang-link').first()).toHaveAttribute('href', '/gallery/');
   await expect(page.locator('#header .header-cta')).toHaveAttribute('href', '/es/#quote');
-  await expect(page.locator('.gallery-item img').first()).toHaveAttribute('alt', /Fogatero de piedra/);
+  await expect(page.locator('.gallery-item img').first()).toHaveAttribute('alt', /Muro de bloques grises/);
 
   const slider = page.getByRole('slider', { name: 'Mostrar la foto del después' });
   await slider.focus();

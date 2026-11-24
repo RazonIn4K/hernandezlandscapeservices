@@ -921,11 +921,143 @@
         "title": "Landscape cleanup in progress",
         "description": "A short look at landscape bed cleanup work."
       }
+    },
+    {
+      "id": "retaining-wall-finished",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-retaining-wall-finished.jpg",
+      "size": [900, 1200],
+      "variants": [480, 800],
+      "alt": "New gray block retaining wall with a capped top and paver landing beside a patio",
+      "caption": "Rebuilt patio retaining wall with stepped end, cap blocks and a new paver landing",
+      "tags": ["landscaping", "hardscaping"],
+      "featured": true,
+      "gallery": { "title": "Rebuilt Patio Retaining Wall", "titleKey": "gallery.item.retaining_wall_finished" },
+      "sitemap": {
+        "title": "Rebuilt patio retaining wall and paver landing",
+        "caption": "A block retaining wall with cap stones and a paver landing rebuilt by Hernandez Landscape & Tree Service LLC."
+      }
+    },
+    {
+      "id": "retaining-wall-before",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-retaining-wall-before.jpg",
+      "size": [900, 1200],
+      "variants": [480, 800],
+      "alt": "Crew member taking apart an old, shifting block wall beside a patio",
+      "caption": "The old wall coming out before the rebuild",
+      "tags": ["landscaping", "hardscaping"],
+      "featured": false,
+      "gallery": { "title": "Retaining Wall: Before", "titleKey": "gallery.item.retaining_wall_before" }
+    },
+    {
+      "id": "retaining-wall-in-progress",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-retaining-wall-in-progress.jpg",
+      "size": [1200, 675],
+      "variants": [480, 800],
+      "alt": "First courses of new gray wall block set along a patio edge",
+      "caption": "New base courses going in along the patio edge",
+      "tags": ["landscaping", "hardscaping"],
+      "featured": false,
+      "gallery": { "title": "Retaining Wall: In Progress", "titleKey": "gallery.item.retaining_wall_in_progress" }
+    },
+    {
+      "id": "retaining-wall-patio-side",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-retaining-wall-patio-side.jpg",
+      "size": [1200, 675],
+      "variants": [480, 800],
+      "alt": "Finished gray retaining wall seen from the patio with the lawn behind it",
+      "caption": "The finished wall from the patio side",
+      "tags": ["landscaping", "hardscaping"],
+      "featured": false,
+      "gallery": { "title": "Finished Wall From the Patio", "titleKey": "gallery.item.retaining_wall_patio_side" }
+    },
+    {
+      "id": "pine-removal-climber",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-pine-removal-climber.jpg",
+      "size": [900, 1200],
+      "variants": [480, 800],
+      "alt": "Tree climber in a helmet and climbing gear standing beside a tall pine before removal",
+      "caption": "Climber geared up at the base of a tall pine before taking it down",
+      "tags": ["tree-service"],
+      "featured": true,
+      "gallery": { "title": "Pine Removal: Ready to Climb", "titleKey": "gallery.item.pine_removal_climber" },
+      "sitemap": {
+        "title": "Tree climber ready for a pine removal",
+        "caption": "A Hernandez Landscape & Tree Service LLC climber in helmet and harness beside a tall pine before removal."
+      }
+    },
+    {
+      "id": "pine-removal-crew",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-pine-removal-crew.jpg",
+      "size": [900, 1200],
+      "variants": [480, 800],
+      "alt": "Two crew members standing beside a tall pine in a wooded backyard",
+      "caption": "The crew on site for a pine removal in a wooded backyard",
+      "tags": ["tree-service"],
+      "featured": false,
+      "gallery": { "title": "Pine Removal Crew", "titleKey": "gallery.item.pine_removal_crew" }
+    },
+    {
+      "id": "video-6348",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_6348.mp4",
+      "poster": "hernandez_images/web_IMG_6348_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_6348_poster-480.webp",
+      "size": [320, 568],
+      "duration": 90,
+      "tags": ["tree-service"],
+      "featured": false,
+      "sitemap": {
+        "title": "Climber taking down a tall pine",
+        "description": "A Hernandez Landscape & Tree Service LLC climber working up a tall pine and removing it in sections in DeKalb County.",
+        "publicationDate": "2026-11-24T00:00:00-06:00"
+      }
+    },
+    {
+      "id": "video-6354",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_6354.mp4",
+      "poster": "hernandez_images/web_IMG_6354_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_6354_poster-480.webp",
+      "size": [540, 960],
+      "duration": 81,
+      "tags": ["tree-service"],
+      "featured": false,
+      "sitemap": {
+        "title": "Grinding the pine stump",
+        "description": "The tracked stump grinder working the pine stump down after the removal."
+      }
+    },
+    {
+      "id": "video-6355",
+      "type": "video",
+      "src": "hernandez_images/web_IMG_6355.mp4",
+      "poster": "hernandez_images/web_IMG_6355_poster.jpg",
+      "posterSmall": "hernandez_images/w/web_IMG_6355_poster-480.webp",
+      "size": [720, 1280],
+      "duration": 39,
+      "tags": ["tree-service"],
+      "featured": false,
+      "sitemap": {
+        "title": "Stump grinding and cleanup",
+        "description": "Stump grinding followed by raking and hauling brush after a pine removal."
+      }
     }
   ],
   "surfaces": {
     "$comment": "Each surface is an ordered list of item ids and maps to one generated region. galleryPage -> gallery/index.html cards; homeGallery -> staticImages array in assets/js/static-gallery.js (the homepage Latest Uploads carousel shows its first 6 entries); videosPage -> videos/index.html cards; sitemapGalleryImages -> image entries under the /gallery/ url in sitemap.xml; sitemapVideos -> video entries under the /videos/ url in sitemap.xml.",
     "galleryPage": [
+      "retaining-wall-finished",
+      "retaining-wall-before",
+      "retaining-wall-in-progress",
+      "retaining-wall-patio-side",
+      "pine-removal-climber",
+      "pine-removal-crew",
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
       "brush-pile-removal",
@@ -946,6 +1078,8 @@
       "img-1464-poster"
     ],
     "homeGallery": [
+      "retaining-wall-finished",
+      "pine-removal-climber",
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
       "brush-pile-removal",
@@ -968,6 +1102,9 @@
     "videosPage": [
       "crew-promo-2026-en",
       "crew-promo-2026-es",
+      "video-6348",
+      "video-6354",
+      "video-6355",
       "video-fd6c2970",
       "video-3736",
       "video-3730",
@@ -1013,6 +1150,8 @@
       "video-3611"
     ],
     "sitemapGalleryImages": [
+      "retaining-wall-finished",
+      "pine-removal-climber",
       "fire-pit-lawn-finish",
       "side-yard-lawn-finish",
       "brush-pile-removal",
@@ -1033,7 +1172,8 @@
       "video-3736",
       "video-0434",
       "video-1095",
-      "video-2055"
+      "video-2055",
+      "video-6348"
     ]
   }
 }
