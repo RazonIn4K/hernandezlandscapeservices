@@ -39,8 +39,8 @@
         srcset: 'hernandez_images/w/job-2026-11-pine-removal-climber-480.webp 480w, hernandez_images/w/job-2026-11-pine-removal-climber-800.webp 800w, hernandez_images/job-2026-11-pine-removal-climber.jpg 900w',
         width: 900,
         height: 1200,
-        alt: 'Tree climber in a helmet and climbing gear standing beside a tall pine before removal',
-        caption: 'Climber geared up at the base of a tall pine before taking it down'
+        alt: 'Tree climber in a helmet and climbing gear standing beside a tall evergreen before removal',
+        caption: 'Climber geared up at the base of a tall evergreen before taking it down'
       },
       {
         src: 'hernandez_images/facebook-2026-fire-pit-lawn-finish.jpg',

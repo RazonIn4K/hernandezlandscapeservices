@@ -980,14 +980,14 @@
       "src": "hernandez_images/job-2026-11-pine-removal-climber.jpg",
       "size": [900, 1200],
       "variants": [480, 800],
-      "alt": "Tree climber in a helmet and climbing gear standing beside a tall pine before removal",
-      "caption": "Climber geared up at the base of a tall pine before taking it down",
+      "alt": "Tree climber in a helmet and climbing gear standing beside a tall evergreen before removal",
+      "caption": "Climber geared up at the base of a tall evergreen before taking it down",
       "tags": ["tree-service"],
       "featured": true,
-      "gallery": { "title": "Pine Removal: Ready to Climb", "titleKey": "gallery.item.pine_removal_climber" },
+      "gallery": { "title": "Tree Removal: Ready to Climb", "titleKey": "gallery.item.pine_removal_climber" },
       "sitemap": {
-        "title": "Tree climber ready for a pine removal",
-        "caption": "A Hernandez Landscape & Tree Service LLC climber in helmet and harness beside a tall pine before removal."
+        "title": "Climber ready to take down a tall evergreen",
+        "caption": "A Hernandez Landscape & Tree Service LLC climber in helmet and harness beside a tall evergreen before removal."
       }
     },
     {
@@ -996,11 +996,11 @@
       "src": "hernandez_images/job-2026-11-pine-removal-crew.jpg",
       "size": [900, 1200],
       "variants": [480, 800],
-      "alt": "Two crew members standing beside a tall pine in a wooded backyard",
-      "caption": "The crew on site for a pine removal in a wooded backyard",
+      "alt": "Two crew members standing beside a tall evergreen in a wooded backyard",
+      "caption": "The crew on site for a tree removal in a wooded backyard",
       "tags": ["tree-service"],
       "featured": false,
-      "gallery": { "title": "Pine Removal Crew", "titleKey": "gallery.item.pine_removal_crew" }
+      "gallery": { "title": "Tree Removal Crew", "titleKey": "gallery.item.pine_removal_crew" }
     },
     {
       "id": "pine-removal-before",
@@ -1037,8 +1037,8 @@
       "tags": ["tree-service"],
       "featured": false,
       "sitemap": {
-        "title": "Climber taking down a tall pine",
-        "description": "A Hernandez Landscape & Tree Service LLC climber working up a tall pine and removing it in sections in DeKalb County.",
+        "title": "Climber taking down a tall evergreen",
+        "description": "A Hernandez Landscape & Tree Service LLC climber working up a tall evergreen and removing it in sections in DeKalb County.",
         "publicationDate": "2026-11-24T00:00:00-06:00"
       }
     },
@@ -1053,8 +1053,8 @@
       "tags": ["tree-service"],
       "featured": false,
       "sitemap": {
-        "title": "Grinding the pine stump",
-        "description": "The tracked stump grinder working the pine stump down after the removal."
+        "title": "Grinding the stump of a tall evergreen",
+        "description": "The tracked stump grinder working the stump down after the tree removal."
       }
     },
     {
@@ -1069,7 +1069,7 @@
       "featured": false,
       "sitemap": {
         "title": "Stump grinding and cleanup",
-        "description": "Stump grinding followed by raking and hauling brush after a pine removal."
+        "description": "Stump grinding followed by raking and hauling brush after a tree removal."
       }
     }
   ],

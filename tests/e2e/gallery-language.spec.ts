@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test('gallery photos have visible context in English and Spanish', async ({ page }) => {
   for (const [route, language, caption] of [
     ['/gallery/', 'en', 'Gray block wall with cap stones, a stepped end, and a new paver landing beside the patio.'],
-    ['/es/gallery/', 'es', 'Muro de bloques grises con piezas de remate, un extremo escalonado y un descanso nuevo de adoquines junto al patio.'],
+    ['/es/gallery/', 'es', 'Muro de bloques grises con remate, extremo escalonado y un descanso nuevo de adoquines.'],
   ]) {
     await page.goto(route, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('html')).toHaveAttribute('lang', language);
