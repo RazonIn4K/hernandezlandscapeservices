@@ -246,6 +246,8 @@
       "gallery.note.retaining_wall_patio_side": "The finished wall from the patio, with the lawn and fence behind it.",
       "gallery.note.pine_removal_climber": "Climber in helmet and harness beside the pine before the removal.",
       "gallery.note.pine_removal_crew": "Two crew members at the base of the pine in a wooded backyard.",
+      "gallery.note.pine_removal_before": "Two tall evergreens at the edge of the yard before the crew took them down.",
+      "gallery.note.pine_removal_after": "The same spot after the removal: the trees are down and a crew member is cleaning up the bed.",
       "nav.contact": "Contact",
       "nav.videos": "Videos",
       "video.viewAll": "View All Videos",
@@ -816,6 +818,8 @@
       "gallery.item.retaining_wall_patio_side": "Muro terminado desde el patio",
       "gallery.item.pine_removal_climber": "Retiro de pino: listo para subir",
       "gallery.item.pine_removal_crew": "Cuadrilla para el retiro del pino",
+      "gallery.item.pine_removal_before": "Retiro de árboles: antes",
+      "gallery.item.pine_removal_after": "Retiro de árboles: después",
       "gallery.page.title": "Fotos recientes de jardinería y árboles",
       "gallery.page.subtitle":
         "Explora fotos de césped, jardineras, trabajo de árboles y el equipo de Hernandez.",
@@ -1076,6 +1080,8 @@
       "gallery.note.retaining_wall_patio_side": "El muro terminado visto desde el patio, con el césped y la cerca al fondo.",
       "gallery.note.pine_removal_climber": "Trabajador con casco y arnés junto al pino, listo para subir.",
       "gallery.note.pine_removal_crew": "Dos integrantes del equipo al pie del pino en un patio arbolado.",
+      "gallery.note.pine_removal_before": "Dos árboles altos de hoja perenne al borde del patio antes de que la cuadrilla los retirara.",
+      "gallery.note.pine_removal_after": "El mismo lugar después del retiro: ya no están los árboles y un trabajador limpia el área.",
 
       "hero.eyebrow": "Jardinería y servicio de árboles en DeKalb County",
       "hero.transform": "Remoción de árboles, césped y",

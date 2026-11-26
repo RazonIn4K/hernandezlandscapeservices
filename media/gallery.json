@@ -1003,6 +1003,30 @@
       "gallery": { "title": "Pine Removal Crew", "titleKey": "gallery.item.pine_removal_crew" }
     },
     {
+      "id": "pine-removal-before",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-pine-removal-before.jpg",
+      "size": [900, 1200],
+      "variants": [480, 800],
+      "alt": "Two tall evergreen trees at the edge of a wooded backyard before removal",
+      "caption": "The two tall evergreens at the back of the yard before the crew took them down",
+      "tags": ["tree-service"],
+      "featured": false,
+      "gallery": { "title": "Tree Removal: Before", "titleKey": "gallery.item.pine_removal_before" }
+    },
+    {
+      "id": "pine-removal-after",
+      "type": "image",
+      "src": "hernandez_images/job-2026-11-pine-removal-after.jpg",
+      "size": [900, 1200],
+      "variants": [480, 800],
+      "alt": "The same backyard edge after the removal, with open sky where the evergreens stood and a crew member cleaning up",
+      "caption": "After the removal: trees down and the bed being cleaned up",
+      "tags": ["tree-service"],
+      "featured": false,
+      "gallery": { "title": "Tree Removal: After", "titleKey": "gallery.item.pine_removal_after" }
+    },
+    {
       "id": "video-6348",
       "type": "video",
       "src": "hernandez_images/web_IMG_6348.mp4",
@@ -1056,6 +1080,8 @@
       "retaining-wall-before",
       "retaining-wall-in-progress",
       "retaining-wall-patio-side",
+      "pine-removal-before",
+      "pine-removal-after",
       "pine-removal-climber",
       "pine-removal-crew",
       "fire-pit-lawn-finish",

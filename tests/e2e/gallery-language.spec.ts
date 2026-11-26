@@ -7,7 +7,7 @@ test('gallery photos have visible context in English and Spanish', async ({ page
   ]) {
     await page.goto(route, { waitUntil: 'domcontentloaded' });
     await expect(page.locator('html')).toHaveAttribute('lang', language);
-    await expect(page.locator('.gallery-item')).toHaveCount(24);
+    await expect(page.locator('.gallery-item')).toHaveCount(26);
     await expect(page.locator('.gallery-caption p').first()).toHaveText(caption);
     await expect(page.locator('.gallery-caption p').first()).toBeVisible();
   }

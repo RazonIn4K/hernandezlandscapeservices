@@ -22,7 +22,10 @@ const BUDGETS = {
   // 5 -> 5.5 MB (2026-11-24): two November job photos added. The carousel serves
   // the 480w/800w variants; originals load only as the largest srcset candidate.
   homeGalleryTotal: 5.5 * MB,
-  galleryPageImagesTotal: 7 * MB,
+  // 7 -> 7.5 MB (2026-11-25): before/after photos of the November tree removal
+  // added. Gallery cards serve the 480/800 WebP variants; this total counts the
+  // full-size JPEGs, which are only fetched as the largest srcset candidate.
+  galleryPageImagesTotal: 7.5 * MB,
   // Cards use preload="none", so this is storage/publish weight, not page weight.
   // Raised 350 -> 600 MB on 2026-10-29: the published site was 385 MB of GitHub
   // Pages' 1 GB limit; prepare-publish.mjs separately stops deploys at 900 MB.
